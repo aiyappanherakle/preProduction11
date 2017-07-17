@@ -1,0 +1,203 @@
+<link type="text/css" href="{https_server}/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="{https_server}/functions/javascript/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{https_server}/functions/javascript/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript">
+function validate()
+{
+	sear_val = document.getElementById("project_id").value;
+	if(sear_val == '')
+	{
+		alert('Please enter Project id/ coin id');
+		return false;
+	}
+	
+	else
+	{
+		return true;
+	}
+}
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4">
+
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Coins Search</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Coins Search</h2>
+			    
+				
+				
+                   
+					
+					<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Coins Search</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can Search the Coins listed in projects using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                <form method="post" action="coins_search.php" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;" onsubmit="return validate();">	
+									<input type="hidden" name="cmd" value="coins_search"/>
+							
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Coin id:</span>
+                                  <td width="90%">
+								  <input type="text" name="project_id"  id ="project_id" value="{projec_id}" style="font-family: Verdana" maxlength="100" size="50">                                       
+										</td>
+                                </tr>
+								<tr>
+                                  <td colspan="2"><div id="sitvalue"><input type="submit" class="buttons" value=" {_search} "  style="font-size:15px" /></div></td> 
+                                  </tr>
+								</table>
+                               </form>
+                               							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				   
+					
+				
+						      <if condition="isset($show_coin_search) and ($show_coin_search==1)">
+									
+									
+									
+											<div class="block-wrapper">
+											<div class="block3">
+											<div class="block3-top">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>						
+											<div class="block3-header">List</div>
+
+											<div class="block3-content" style="padding:0px">
+											<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+																	
+																			
+																	
+																		<if condition="isset($total_n) AND $total_n==true">	
+																			<tr class="alt2">
+																				<td> </td>
+																			
+																				<td>Certification No</td>
+																				<td>Alt Inven No</td>
+																				<td>Pcgs No</td>
+																				<td>Hammer Price</td>
+																				<td>Type</td>
+																				<td>Invoice number/Paid status</td>
+																				<td>Minbid/Buy</td>
+																				<td>Listing Fees</td>
+																				<td>Buyer Fee</td>
+																				<td>Price</td>
+																				<td>Relist Count</td>
+																				
+																				
+																			</tr>
+																		
+																			<loop name="listpagesld">
+																				<tr class="alt1">
+																					<td>GC Item ID:{pro_project_id}<br/><br/>
+																					Consignment ID:{consignid}<br/><br/>
+																					Title:{project_title}
+																					<br/><br/>Seller Name:{seller_name1}
+																					<br/><br/>Seller email:{seller_email}
+																					<br/><br/>Create Date:{Create_Date}
+																					<br/><br/>Buyer Name:{buyer_name}<br/><br/>
+																					Buyer email:{buyer_email}<br/><br/>
+																					Sold Date:{paiddate}<br/><br/>
+																					End Date:{date_end}<br/><br/>
+																					Shipped:{Shipped}<br/><br/>
+																					Date of Shipment:{Shipped_Date}<br/><br/>
+																					Tracking No:{track_no}<br/><br/>
+																					Returned:{return}<br/><br/>
+																					Date Returned:{returndate}
+																					</td>
+																					
+																					<td>{Certification_No}</td>
+																					<td>{Alternate_inventory_No}</td>
+																					<td>{pcgs}</td>
+																					<td>{hammerprice}</td>
+																					<td class="smaller blue">{bids}</td>
+																					<td>{invoiceid}/{paid_status}</td>
+																					<td>{startprice}</td>
+																					<td>{insertionfee}</td>
+																					<td>{buyer_fee}</td>
+																					<td>{currentprice}</td>
+																					<td>{relist_count}</td>
+																					
+																					
+																				</tr>
+																			</loop name="listpagesld"> 
+																		</if>
+																		<if condition="isset($total_n) AND $total_n==false">
+																			<tr class="alt1">
+																				<td  align="center" ><strong>You've no coins in this Coin id.</strong></td>
+																			</tr>
+																		</if>
+
+																	
+																	
+																</table>	 
+											</div>
+											<div class="block3-footer">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>
+											</div>
+											</div>
+									
+										
+										
+									
+										
+												
+									</if>
+								                           			
+                  			
+					{prof2}	
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+         
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->
+</div>
+</div>

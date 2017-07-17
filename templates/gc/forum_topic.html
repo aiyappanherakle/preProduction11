@@ -1,0 +1,460 @@
+<style>
+/* Quotes */
+.quotereply {
+    border: 1px #eee solid;
+    border-left: 3px #ccc solid;
+    background-color: #fff;
+    background-repeat: repeat;
+    margin: 10px 15px;
+    padding: 10px;
+}
+
+* html .quotereply {
+    height: 1%;
+}
+
+* html .quotereply {
+    padding-bottom: 15px;
+}
+
+.quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-1.gif');
+    overflow: auto;
+}
+
+.quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-2.gif');
+    border-color: #eef;
+    border-left-color: #ccf;
+}
+
+.quotereply .quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-3.gif');
+    border-color: #efe;
+    border-left-color: #cfc;
+}
+
+.quotereply .quotereply .quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-4.gif');
+    border-color: #fee;
+    border-left-color: #fcc;
+}
+
+/* Threaded Mode Indentss */
+.topic-reply-indent3 {
+	margin-left: 20px;
+	}
+.topic-reply-indent4 {
+	margin-left: 40px;
+	}
+.topic-reply-indent5 {
+	margin-left: 60px;
+	}
+.topic-reply-indent6 {
+	margin-left: 80px;
+	}
+.topic-reply-indent7 {
+	margin-left: 100px;
+	}
+.topic-reply-indent8 {
+	margin-left: 120px;
+	}
+.topic-reply-indent9 {
+	margin-left: 140px;
+	}
+.topic-reply-indent10 {
+	margin-left: 160px;
+	}
+.topic-reply-indent11 {
+	margin-left: 180px;
+	}
+.topic-reply-indent12 {
+	margin-left: 200px;
+	}
+.topic-reply-indent-max {
+	margin-left: 220px;
+	}
+.topic-reply-indent2,
+.topic-reply-indent3,
+.topic-reply-indent4,
+.topic-reply-indent5,
+.topic-reply-indent6,
+.topic-reply-indent7,
+.topic-reply-indent8,
+.topic-reply-indent9,
+.topic-reply-indent10,
+.topic-reply-indent11,
+.topic-reply-indent12,
+.topic-reply-indent-max 
+{
+	background: transparent url('{template_relativeimagepath}{template_imagesfolder}topic-indent-left.gif') no-repeat left top;
+	padding-left: 18px;
+}
+</style>
+<div style="font-size:20px; padding-bottom:9px" class="gray">{topictitle}</div>
+
+<div style="padding-bottom:9px" class="smaller gray" title="Topic Stats for {topictitle}"><span class="black">{views}</span> {_views} &nbsp;&nbsp;&nbsp;<span class="black">{topicreplies}</span> {_replies} &nbsp;&nbsp;&nbsp;{_last_post}: <span class="black">{lastpostdate}</span> by <span class="blue">{lastpostuser}</span></div>
+
+<if condition="isset($ilance->GPC['highlight']) AND !empty($ilance->GPC['highlight'])">
+<div class="smaller gray" style="padding-bottom:12px">These search terms are highlighted: <span style="background-color:#000000; color:#fff; padding:4px"><strong>{highlight}</strong></span></div>
+</if>
+
+<div class="bigtabs" style="padding-bottom:10px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum">{_forum}</a><else /><a href="{ilpage[forum]}">{_forum}</a></if></li>
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/search">{_search}</a><else /><a href="{ilpage[forum]}?cmd=search">{_search}</a></if></li>
+	<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0"><li title="" class="highlight"><a href="javascript:void(0)" class="nav_top" id="topictools_link">{_topic_tools} &nbsp;&nbsp;&nbsp;<img id="" src="{template_relativeimagepath}{template_imagesfolder}expand_collapsed.gif" border="0" alt="" /></a></li></if>
+</ul>
+
+<if condition="isset($show['issubscribed']) AND $show['issubscribed']">
+    <span style="float:right; font-size:14px; padding-top:8px" id="emailsubscribed_{tid}" class="gray">You are subscribed to this topic&nbsp;&nbsp;&nbsp;<span class="smaller gray">[ <span class="blue"><a href="{http_server}{ilpage[forum]}?cmd=unsubscribe&amp;tid={tid}&amp;page={page}">{_unsubscribe}</a></span> ]</span></span>
+<else />
+	<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+    	<span style="float:right; font-size:14px; padding-top:8px" id="emailsubscribed_{tid}" class="blue"><a href="{http_server}{ilpage[forum]}?cmd=subscribe&amp;tid={tid}&amp;page={page}">{_subscribe_to_topic}</a></span>
+    <else />
+    	<span style="float:right; font-size:14px; padding-top:8px" id="emailsubscribed_{tid}" class="gray">Register or sign-in to reply or subscribe to this topic</span>
+    </if>
+</if>
+
+
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<!-- forum sponsor -->
+<div style="padding-top:9px">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+    <td>
+        <div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="padding-right:20px;; padding-left:10px"><div><span class="gray"><strong>{site_name} Topic Sponsor</strong></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="smaller gray">(Become a sponsor: <span class="blue">Learn more</span>)</span></div>
+            <div style="padding-top:12px; padding-left:10px; padding-right:20px" class="blue">
+            
+              <!-- advert -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="12">
+              <tr valign="top">
+                <td>
+                
+                <h3><strong>{sponsortitle}</strong></h3>
+				<div class="gray">{sponsoradvert}</div>
+                </td>
+              </tr>
+              </table>
+			  <!-- / advert -->
+            
+            </div>
+            
+            
+            </td>
+        </tr>
+        </table>
+        </div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+    </td>
+</tr>
+</table>
+</div>
+<!-- / forum sponsor -->
+
+<div style="padding-bottom:6px">{prevnext}</div>
+
+<loop name="firstpost">
+<div class="block-wrapper">
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header"><if condition="$ilance->lancebb->config['enablexml']"><span style="padding-right:6px"><a href="{ilpage[forum]}?cmd=rss&amp;tid={tid}" accesskey="1" title="RSS"><img src="{template_relativeimagepath}{template_imagesfolder}feed.png" border="0" alt="RSS" /></a></span></if> {subjectfirstpost}</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller"><a name="post{postid}"></a><span style="float:right">{postidrank} Post</span> {_posted} <span class="black">{date}</span></div></div>
+			<div class="block-content" style="padding:0px">
+				
+				
+				<table id="pid{pid}" cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr>
+					<td class="alt2" style="padding:0px; margin:0px;">
+						
+						<!-- user info -->
+						<table cellpadding="0" cellspacing="6" border="0" width="100%">
+						<tr>
+							<td nowrap="nowrap">
+								<div class="blue" style="font-size:18px"><strong>{username}</strong></div>
+								<div class="smaller">{rank}</div>
+								<div class="smaller gray">{infobit}</div>
+							</td>
+							<td width="100%">&nbsp;</td>
+							<td valign="top" nowrap="nowrap"><div>{userbit}</div></td>
+						</tr>
+						</table>
+						<!-- / user info -->
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						
+						<div style="padding-bottom:12px"><span style="float:right">{icon}</span></div>
+						<div style="padding-bottom:8px; font-family: verdana">{message}</div>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" onMouseover="this.className='alt2'" onMouseout="this.className=''">
+                      
+                      <div>
+                      <span style="float:left; font-size:15px; color:#dddddd">Reply actions &raquo;</span>
+                   	  <input type="button" class="buttons" name="reply" value="Reply" onclick="location.href='{http_server}{ilpage[forum]}?cmd=reply&amp;tid={tid}&amp;pid={pid}&amp;page={page}'" style="font-size:15px" />
+                   	  <input type="button" class="buttons" name="replyquote" value="&quot;Quote&quot; Reply" onclick="location.href='{http_server}{ilpage[forum]}?cmd=reply&amp;tid={tid}&amp;pid={pid}&amp;quote=1&amp;page={page}'" style="font-size:15px" />
+					  <if condition="(!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0) AND ($_SESSION['ilancedata']['user']['isadmin'] == '1' OR $_SESSION['ilancedata']['user']['isadmin'] == '1')">
+                      <input type="button" class="buttons" name="edit" value="{_edit_topic}" onclick="location.href='{http_server}{ilpage[forum]}?cmd=edit&amp;pid={pid}&amp;tid={tid}&amp;postid={postid}&amp;page={page}'" style="font-size:15px" /> 
+                      </if>
+                      <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['isadmin'] == '1'">
+					  <input type="button" class="buttons" name="remove" value="{_remove_topic}" onclick="location.href='{http_server}{ilpage[forum]}?cmd=removetopic&amp;tid={tid}&amp;page={page}'" style="font-size:15px" />
+                      <if condition="isset($istopicvalidated{tid}) AND $istopicvalidated{tid} == '0'"><input type="button" class="buttons" name="validate" value="Validate Topic" onclick="location.href='{http_server}{ilpage[forum]}?cmd=validatetopic&amp;tid={tid}&amp;page={page}'" style="font-size:15px" /></if> 
+                      </if>
+                      </div>
+					</td>
+				</tr>
+				<tr>
+                	<td>
+                    	<!-- original poster editing notes -->
+						<div class="smaller gray">{lasteditnotes}</div>
+						<!-- / original poster editing notes --></td>
+                </tr>
+				</table>
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</loop name="firstpost">
+
+<loop name="replies">
+<a name="post{postid}"></a>{lastpost}
+
+<div class="topic-reply-indent{replydepth}">
+<div class="block-wrapper">
+	<div class="block{blockclass}">
+	
+			<div class="block{blockclass}-top">
+					<div class="block{blockclass}-right">
+							<div class="block{blockclass}-left"></div>
+					</div>
+			</div>
+			
+			<div class="block{blockclass}-header">{subject}&nbsp;</div>
+			<div class="block{blockclass}-content-{blockclasscontent}" style="padding:9px">
+			  <div class="smaller"><span style="float:right">{postidrank} Post</span> {_posted} {date} &nbsp;&nbsp;&nbsp;&nbsp;<span class="smaller"><img id="" src="{template_relativeimagepath}{template_imagesfolder}icons/arrowup2.gif" border="0" alt="" />&nbsp; In response to <if condition="{parentid} == 0">the original poster<else /><span class="blue">{responsetouser}</span></if></span></div>
+			</div>
+			<div class="block{blockclass}-content" style="padding:0px">
+				
+				<table id="pid{pid}" cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr>
+					<td class="alt1" style="padding:0px; margin:0px;">
+						
+						<!-- user info -->
+						<table cellpadding="0" cellspacing="6" border="0" width="100%">
+						<tr>
+							<td nowrap="nowrap">
+								<div class="blue" style="font-size:18px"><strong>{username}</strong></div>
+								<div class="smaller">{rank}</div>
+								<div class="smaller gray">{infobit}</div>
+							</td>
+							<td width="100%">&nbsp;</td>
+							<td valign="top" nowrap="nowrap">
+								<div>
+									{userbit}
+								</div>
+								
+							</td>
+						</tr>
+						</table>
+						<!-- / user info -->
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+					
+						<div style="padding-bottom:12px"><span style="float:right">{icon}</span></div>
+						<!-- message -->
+						<div style="padding-bottom:8px; font-family: verdana">{message}</div>
+						<!-- / message -->
+					</td>
+				</tr>
+				<tr>
+					<td align="right" onMouseover="this.className='alt2'" onMouseout="this.className=''">
+                    	
+                        <div>
+                        <span style="float:left; font-size:15px; color:#dddddd">Reply actions &raquo;</span>
+                    	<input type="button" class="buttons" name="reply" value="Reply" onclick="location.href='{http_server}{ilpage[forum]}?cmd=reply&amp;tid={tid}&amp;page={page}'" style="font-size:15px" />
+                    	<input type="button" class="buttons" name="replyquote" value="&quot;Quote&quot; Reply" onclick="location.href='{http_server}{ilpage[forum]}?cmd=reply&amp;tid={tid}&amp;pid={pid}&amp;quote=1&amp;page={page}'" style="font-size:15px" />
+                        <if condition="(!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0) AND ($_SESSION['ilancedata']['user']['isadmin'] == '1' OR $_SESSION['ilancedata']['user']['isadmin'] == '1')">
+                        <input type="button" class="buttons" name="edit" value="{_edit_post}" onclick="location.href='{http_server}{ilpage[forum]}?cmd=edit&amp;pid={pid}&amp;tid={tid}&amp;postid={postid}&amp;page={page}'" style="font-size:15px" />
+                        </if>
+                        <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['isadmin'] == '1'">
+						<input type="button" class="buttons" name="remove" value="{_remove_post}" onclick="location.href='{http_server}{ilpage[forum]}?cmd=remove&amp;pid={pid}&amp;tid={tid}&amp;postid={postid}&amp;page={page}'" style="font-size:15px" /> 
+                        <if condition="isset($ispostvalidated{pid}) AND $ispostvalidated{pid} == '0'">
+                        <input type="button" class="buttons" name="validate" value="Validate Post" onclick="location.href='{http_server}{ilpage[forum]}?cmd=validatepost&amp;pid={pid}&amp;tid={tid}&amp;page={page}'" style="font-size:15px" />
+                        </if>
+                        </if>
+                        </div>
+					</td>
+				</tr>
+                <tr>
+                	<td>
+                    	<!-- last poster editing notes -->
+						<div class="smaller gray">{lasteditnotes}</div>
+						<!-- / last poster editing notes --></td>
+                </tr>
+				</table>
+				
+			</div>
+			
+			<div class="block{blockclass}-footer">
+					<div class="block{blockclass}-right">
+							<div class="block{blockclass}-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</div>
+</loop name="replies">
+
+<if condition="($ilance->lancebb->config['guestposting'] AND empty($_SESSION['ilancedata']['user']['userid']) OR !empty($_SESSION['ilancedata']['user']['userid']))"><div style="padding-top:0px"><if condition="$ilconfig['globalauctionsettings_seourls']"><if condition="isset($show['isclosed']) AND $show['isclosed']"><input type="button" class="buttons" name="reply" value="{_closed}" style="font-size:15px" disabled="disabled" /><else /><input type="button" class="buttons" name="reply" value="{_new_reply}" onclick="location.href='{http_server}forum/topic/{tid}/reply?page={page}'" style="font-size:15px" /></if><else /><if condition="isset($show['isclosed']) AND $show['isclosed']"><input type="button" class="buttons" name="reply" value="{_closed}" style="font-size:15px" disabled="disabled" /><else /><input type="button" class="buttons" name="reply" value="{_new_reply}" onclick="location.href='{http_server}{ilpage[forum]}?cmd=reply&amp;tid={tid}&amp;page={page}'" style="font-size:15px" /></if></if></div></if>
+
+<div style="padding-top:7px; padding-bottom:7px">{prevnext}</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="280" valign="top">
+
+<!-- forum posting permissions -->
+<div class="block-wrapper" style="width:280px">
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header">{_forum_posting_rules}</div>
+			<div class="block3-content-gray" style="padding:9px"><div class="smaller">Learn your permissions from the chart below</div></div>
+			<div class="block3-content" style="padding:0px">
+			
+			<table cellpadding="9" cellspacing="1" border="0" width="100%">
+			<tr>
+				<td>
+				<div>
+					<div>{_you} <strong><if condition="($ilance->lancebb->config['guestposting'] AND empty($_SESSION['ilancedata']['user']['userid']) OR !empty($_SESSION['ilancedata']['user']['userid']))">{_can} <else />{_cannot}</if></strong> {_post_new_topics}</div>
+					<div>{_you} <strong><if condition="($ilance->lancebb->config['guestreplies'] AND empty($_SESSION['ilancedata']['user']['userid']) OR !empty($_SESSION['ilancedata']['user']['userid']))">{_can} <else />{_cannot}</if></strong> {_post_new_replies}</div>
+					<div>{_you} <strong><if condition="!empty($_SESSION['ilancedata']['user']['userid'])">{_can} <else />{_cannot}</if></strong> {_subscribe_to_topics}</div>
+					<div>{_you} <strong><if condition="($ilance->lancebb->config['guestposting'] AND empty($_SESSION['ilancedata']['user']['userid']) OR !empty($_SESSION['ilancedata']['user']['userid']))">{_can} <else />{_cannot}</if></strong> {_post_anonymously}</div>
+					<hr />
+					<div>{_bbcode_is} <strong><if condition="$ilance->lancebb->config['enablebbcode']">{_on}<else />{_off}</if></strong></div>
+					<div>{_html_code_is} <strong><if condition="$ilance->lancebb->config['enablehtmlcode']">{_on}<else />{_off}</if></strong></div>
+				</div>
+				</td>
+			</tr>
+			</table>
+			<!-- / forum posting permissions -->
+				
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div></td>
+    <td width="1">&nbsp;&nbsp;</td>
+    <td valign="top"><!--<div class="block-wrapper" style="width:380px">
+	<div class="block2">
+	
+			<div class="block2-top">
+					<div class="block2-right">
+							<div class="block2-left"></div>
+					</div>
+			</div>
+			
+			<div class="block2-header">Social Bookmarking</div>
+			<div class="block2-content-blue" style="padding:9px"><div class="smaller">Submit this topic to one of your favourite social bookmarking sites</div></div>
+			<div class="block2-content" style="padding:0px">
+			
+			<table cellpadding="9" cellspacing="1" border="0" width="100%">
+			<tr>
+				<td>
+				x
+				</td>
+			</tr>
+			</table>
+							
+			</div>
+			
+			<div class="block2-footer">
+					<div class="block2-right">
+							<div class="block2-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>--></td>
+  </tr>
+</table>
+
+<!-- forum topic popup tools -->
+<div id="topictools" style="display: none">
+		<table cellpadding="9" cellspacing="2" border="0" width="225" bgcolor="#ebebeb">
+		<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['isadmin'] == '1'">
+		<tr>
+			<td class="alt1" onMouseover="this.className='featured_highlight'" onMouseout="this.className='alt1'" nowrap="nowrap"><span class="blue"><if condition="isset($show['isclosed']) AND $show['isclosed']"><a href="{http_server}{ilpage[forum]}?cmd=open&amp;tid={tid}" title="Re-Open Topic">Re-Open Topic</a> &nbsp;&nbsp;<span class="smaller gray">(currently closed)</span><else /><a href="{http_server}{ilpage[forum]}?cmd=close&amp;tid={tid}" title="{_close_topic}">{_close_topic}</a></if></span></td>
+		</tr>
+		</if>
+        <if condition="isset($show['isclosed']) AND $show['isclosed'] == '0'">
+		<if condition="(!empty($_SESSION['ilancedata']['user']['userid']))">
+		<if condition="(!empty($subscribe['topic']) AND $subscribe['topic'])">
+		<tr>
+			<td class="alt1" onMouseover="this.className='featured_highlight'" onMouseout="this.className='alt1'" nowrap="nowrap"><span class="blue"><a href="{http_server}{ilpage[forum]}?cmd=unsubscribe&amp;tid={tid}&amp;page={page}" title="{_unsubscribe_from_topic}" accesskey="2">{_unsubscribe_from_topic}</a></span></td>
+		</tr>
+		<else />
+		<tr>
+			<td class="alt1" onMouseover="this.className='featured_highlight'" onMouseout="this.className='alt1'" nowrap="nowrap"><span class="blue"><a href="{http_server}{ilpage[forum]}?cmd=subscribe&amp;tid={tid}&amp;page={page}" title="{_subscribe_to_topic}" accesskey="2">{_subscribe_to_topic}</a></span></td>
+		</tr>
+		</if>
+		<tr>
+			<td class="alt1" onMouseover="this.className='featured_highlight'" onMouseout="this.className='alt1'" nowrap="nowrap"><span class="blue"><a href="{http_server}{ilpage[forum]}?cmd=sticky&amp;tid={tid}&amp;page={page}" accesskey="a" title="Sticky Topic">Sticky Topic</a></span></td>
+		</tr>
+        <tr>
+			<td class="alt1" onMouseover="this.className='featured_highlight'" onMouseout="this.className='alt1'" nowrap="nowrap"><span class="blue"><a href="{http_server}{ilpage[forum]}?cmd=unsticky&amp;tid={tid}&amp;page={page}" accesskey="a" title="Un-Sticky Topic">Un-Sticky Topic</a></span></td>
+		</tr>
+        <tr>
+			<td class="alt1" onMouseover="this.className='featured_highlight'" onMouseout="this.className='alt1'" nowrap="nowrap"><span class="blue"><a href="{http_server}{ilpage[abuse]}?cmd=forum&amp;id={tid}&amp;page={page}" accesskey="a" title="{_report_abuse}">{_report_abuse}</a></span></td>
+		</tr>
+		</if>
+        </if>
+        <tr>
+			<td class="alt1" onMouseover="this.className='featured_highlight'" onMouseout="this.className='alt1'" nowrap="nowrap"><span class="blue"><img src="{template_relativeimagepath}{template_imagesfolder}feed.png" border="0" alt="RSS" />  <a href="{http_server}{ilpage[forum]}?cmd=rss&amp;tid={tid}" accesskey="a" title="RSS">RSS</a></span></td>
+		</tr>
+		</table>
+</div>
+
+<div align="center" style="padding-bottom:7px" class="blue"><strong>&laquo;</strong> <a href="{http_server}{ilpage[forum]}?tid={prev_tid}&amp;ftid={tid}" rel="nofollow">Previous Topic</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{http_server}{ilpage[forum]}?tid={next_tid}&amp;ftid={tid}" rel="nofollow">Next Topic</a> <strong>&raquo;</strong></div>
+
+<script type="text/javascript">
+menu_init('topictools_link', 'topictools');
+</script>
+<!-- / forum topic popup tools -->

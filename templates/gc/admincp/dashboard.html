@@ -1,0 +1,349 @@
+<div id="v3body4">
+	<!--<div id="sub">
+		<div id="subnav"></div>
+	</div>-->
+	
+	<script language="JavaScript">
+	<!--
+	function validate_all()
+	{	
+		fetch_bbeditor_data();
+		return(true);
+	}
+	//-->
+	</script>
+	
+	<!-- content -->
+	<div id="content">
+	<div class="header" style="padding-bottom:6px">{site_name} {_dashboard}</div>
+	
+	{apihook[dashboard_template_start]}
+	
+	<br />
+	
+	<div class="tab-pane">
+		<div class="tab-page" id="dashboard">
+			<h2 class="tab">{_overview}</h2>
+			
+			<div class="block-wrapper">
+			<div class="block3">
+			
+					<div class="block3-top">
+							<div class="block3-right">
+									<div class="block3-left"></div>
+							</div>
+					</div>
+					
+					<div class="block3-header">{_server_and_marketplace_information}</div>
+					
+					<div class="block3-content" style="padding:0px">
+						
+						<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+						<tr class="alt2_top">
+							<td colspan="2" align="left"><span style="float:left; padding-right:10px"><a href="javascript:void(0)" onclick="return toggle('acpinfo');"><div style="padding-right:5px; padding-top:3px"><img id="collapseimg_acpinfo" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_acpinfo]}.gif" border="0" alt="" /></div></a></span><strong>{_information_from_your_server_gathered_below}</strong></td>
+							<td colspan="2" align="left"><strong>{_php_information}</strong></td>
+						</tr>
+                        <tbody id="collapseobj_acpinfo" style="{collapse[collapseobj_acpinfo]}">
+						<loop name="dashboard">
+						{apihook[dashboard_template_tablerow_start]}
+						<tr align="center" class="alt1">
+							<td width="32%" align="left" class="alt1">{_server_type}</td>
+							<td width="18%" align="left">{servertype}</td>
+							<td width="33%" align="left" class="alt1">{_gd_available}</td>
+							<td width="17%" align="left">{gd}</td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_web_server}</td>
+							<td align="left">{webserver}</td>
+							<td class="alt1" align="left">{_mbstring_available}</td>
+							<td align="left">{mbstring}</td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">PHP</td>
+							<td align="left">{phpversion}</td>
+							<td class="alt1" align="left">{_openssl_available}</td>
+							<td align="left">{openssl}</td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_php_max_post_size}</td>
+							<td align="left">{phpmaxpost}</td>
+							<td class="alt1" align="left">{_ftp_available}</td>
+							<td align="left">{ftp}<a href="{ilpage[accounting]}?tab=2"></a></td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_php_maximum_upload_size}</td>
+							<td align="left">{phpmaxupload}</td>
+							<td class="alt1" align="left">{_safe_mode}</td>
+							<td align="left">{safemode}</td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_php_memory_limit}</td>
+							<td align="left">{phpmemorylimit}</td>
+							<td class="alt1" align="left">{_register_globals}</td>
+							<td align="left">{registerglobals}</td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_mysql_version}</td>
+							<td align="left">{mysqlversion}</td>
+							<td class="alt1" align="left">{_mysql_packet_size}</td>
+							<td align="left">{mysqlpacketsize}</td>
+						</tr>
+						{apihook[dashboard_template_tablerow_end]}
+						</tbody>
+						<tr align="center" class="alt2_top">
+						  <td colspan="4" align="left"><span style="float:left; padding-right:10px"><a href="javascript:void(0)" onclick="return toggle('acp24h');"><div style="padding-right:5px; padding-top:3px"><img id="collapseimg_acp24h" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_acp24h]}.gif" border="0" alt="" /></div></a></span><strong>{_information_gathered_from_your_marketplace_today}</strong></td>
+						</tr>	
+						<tbody id="collapseobj_acp24h" style="{collapse[collapseobj_acp24h]}">  
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_registrations_today}</td>
+							<td align="left"><div style="font-size:14px">{newmembers}</div></td>
+							<td class="alt1" align="left">{_referral_leads_today}</td>
+							<td align="left"><div style="font-size:14px">{newreferrals}</div></td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_service_auctions_today}</td>
+							<td align="left"><div style="font-size:14px">{newserviceauctions}</div></td>
+							<td class="alt1" align="left">{_service_bid_proposals_today}</td>
+							<td align="left"><div style="font-size:14px">{newservicebids}</div></td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_service_auctions_expired_today}</td>
+							<td align="left"><div style="font-size:14px">{expiredserviceauctions}</div></td>
+							<td class="alt1" align="left">{_service_auctions_delisted_today}</td>
+							<td align="left"><div style="font-size:14px">{delistedserviceauctions}</div></td>
+						</tr>
+						<tr align="center" class="alt1">
+						  	<td class="alt1" align="left">{_product_auctions_today}</td>
+						  	<td align="left"><div style="font-size:14px">{newproductauctions}</div></td>
+						  	<td class="alt1" align="left">{_product_bids_today}</td>
+						  	<td align="left"><div style="font-size:14px">{newproductbids}</div></td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_product_auctions_expired_today}</td>
+							<td align="left"><div style="font-size:14px">{expiredproductauctions}</div></td>
+							<td class="alt1" align="left">{_product_auctions_delisted_today}</td>
+							<td align="left"><div style="font-size:14px">{delistedproductauctions}</div></td>
+						</tr>
+						<!--
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_private_messages_today}</td>
+							<td align="left">{privatemessages}</td>
+							<td class="alt1" align="left">{_public_messages_today}</td>
+							<td align="left">{publicmessages}<a href="{ilpage[accounting]}?tab=2"></a></td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_feedback_left_today}</td>
+							<td align="left">{feedbacktoday}</td>
+							<td class="alt1" align="left">/td>
+							<td align="left"></td>
+						</tr>-->
+						{apihook[dashboard_template_24hour]}
+						</tbody>
+						<tr class="alt2_top">
+							<td colspan="4" align="left"><span style="float:left; padding-right:10px"><a href="javascript:void(0)" onclick="return toggle('acpmod');"><div style="padding-right:5px; padding-top:3px"><img id="collapseimg_acpmod" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_acpmod]}.gif" border="0" alt="" /></div></a></span><strong>{_events_that_may_require_attention_or_review}</strong></td>
+						</tr>
+					  	<tbody id="collapseobj_acpmod" style="{collapse[collapseobj_acpmod]}">
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_members_to_moderate}</td>
+							<td align="left"><div class="blue" style="font-size:14px"><a href="{ilpage[subscribers]}?cmd=search&amp;searchstatus=1&amp;status=moderated&amp;filterby=user_id&amp;filtervalue=0">{members}</a></div></td>
+							<td class="alt1" align="left">{_listings_to_moderate}</td>
+							<td align="left"><div class="blue" style="font-size:14px"><a href="{ilpage[distribution]}">{auctions}</a></div></td>
+						</tr>
+						<tr align="center" class="alt1">
+							<td class="alt1" align="left">{_attachments_to_moderate}</td>
+							<td align="left"><div class="blue" style="font-size:14px"><a href="{ilpage[distribution]}?cmd=attachments">{attach}</a></div></td>
+							<td class="alt1" align="left">{_verifications_to_moderate}</td>
+							<td align="left"><div class="blue" style="font-size:14px"><a href="{ilpage[distribution]}?cmd=verifications">{verifies}</a></div></td>
+						</tr>
+						<tr align="center" class="alt1">
+						  	<td class="alt1" align="left">{_referral_payouts_pending}</td>
+						  	<td align="left"><div class="blue" style="font-size:14px"><a href="{ilpage[distribution]}?cmd=referrals">{referral}</a></div></td>
+						  	<td class="alt1" align="left">{_withdrawal_requests_pending}</td>
+						  	<td align="left"><div class="blue" style="font-size:14px"><a href="{ilpage[accounting]}?cmd=withdraws">{withdraws}</a></div></td>
+						</tr>
+						<tr align="center">
+							<td class="alt1" align="left">{_unpaid_invoices} </td>
+							<td align="left" class="alt1"><div class="blue" style="font-size:14px"><a href="{ilpage[accounting]}?cmd=invoices&amp;status=unpaid">{unpaid}</a></div></td>
+							<td class="alt1" align="left">{_scheduled_invoices}</td>
+							<td align="left" class="alt1"><div class="blue" style="font-size:14px"><a href="{ilpage[accounting]}?cmd=invoices&amp;status=scheduled">{scheduled}</a></div></td>
+						</tr>
+						<tr align="center">
+							<td align="left">Unpaid Provider Generated Invoices </td>
+							<td align="left"><div class="blue" style="font-size:14px"><a href="{ilpage[accounting]}?cmd=invoices&amp;status=unpaid&amp;invoicetype=p2b">{unpaidp2b}</a></div></td>
+							<td align="left">&nbsp;</td>
+							<td align="left">&nbsp;</td>
+						</tr>
+						{apihook[dashboard_template_requireattention]}
+						</tbody>
+						</loop name="dashboard">
+						</table>
+						
+					</div>
+					
+					<div class="block3-footer">
+							<div class="block3-right">
+									<div class="block3-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+			
+		</div>
+		
+		<div class="tab-page" id="motd">
+        	<if condition="isset($show['footerwysiwygpopup']) AND $show['footerwysiwygpopup']"><!-- START wysiwyg popup controls -->
+            <div id="insert_pop" style="display:none; width:50; position:absolute;"><table class="wysiwyg_popuplayer tableborder" border="0" cellpadding="1" cellspacing="6">
+            <tr>
+                <td id="insert_title" class="wysiwyg_popuplayer_title" style="cursor: move" width="*"><ilayer><layer onmouseover="steditor=1;" onmouseout="steditor=0"><span id="change_title" style="font-size:11px"></span></layer></ilayer></td>
+                <td width="1%" class="wysiwyg_popuplayer_title"><span class="smaller blue"><a href="javascript:void(0)" onclick="close_insert_pop(); return false">Close</a></span></td>
+            </tr>
+            <tr>
+                <td width="100%" colspan="2"><iframe onmouseover="hide_it2()" name="insert_elm" id="insert_elm" frameborder="0" width="100%" height="250" src="" scrolling="no"></iframe></td>
+            </tr>
+            </table></div><!-- END wysiwyg popup controls --></if>
+			<h2 class="tab">MOTD</h2>
+			<form action="{ilpage[dashboard]}" method="post" accept-charset="UTF-8" style="margin:0px" onsubmit="return validate_all();">
+			<input type="hidden" name="cmd" value="motd" />
+			<input type="hidden" name="id" value="{motdid}" />
+			<if condition="isset($ilance->GPC['subcmd']) AND $ilance->GPC['subcmd'] == 'edit'"><input type="hidden" name="subcmd" value="update" /><else /><input type="hidden" name="subcmd" value="insert" /></if>
+			<input type="hidden" name="return" value="{ilpage[dashboard]}" />
+			<div><strong>{_message_of_the_day}</strong></div>
+			<div style="padding-top:6px" class="gray">{_here_you_can_compose_the_message_of_the_day}</div>
+			<div style="padding-top:6px">{wysiwyg_area}</div>
+			<div style="padding-top:6px"><if condition="isset($ilance->GPC['subcmd']) AND $ilance->GPC['subcmd'] == 'edit'"><input type="submit" value=" {_save} " class="buttons" /><else /><input type="submit" value=" {_compose} " class="buttons" /></if></div>
+			</form>
+			
+			<hr size="1" width="100%" style="color:#ebebeb" />
+			
+			<div><strong>List of All Messages</strong></div>
+			<div style="padding-top:6px">
+			<div>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+			<tr>
+			<td>
+			<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td style="padding-left:5px;" valign="top"></td>
+				<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+				<td style="padding-right:5px;">{currentmotd_preview}</td>
+			</tr>
+			</table>
+			</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+			</td>
+			</tr>
+			</table>
+			</div>
+			</div>
+			
+		</div>
+		
+		<if condition="isset($show['admincpnews']) AND $show['admincpnews'] AND isset($ilconfig['showadmincpnews']) AND $ilconfig['showadmincpnews']">
+		<div class="tab-page" id="news">
+			<h2 class="tab">{_newscast}</h2>
+			
+			<div>{admincpnews}</div>
+		</div>
+		</if>
+		
+		<!--<div class="tab-page">
+			<h2 class="tab">Backup</h2>
+			
+			<form action="{ilpage[dashboard]}" name="ilform" method="post" accept-charset="UTF-8" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="backup" />
+			<input type="hidden" name="return" value="{ilpage[dashboard]}" />
+			<div class="block-wrapper">
+				<div class="block">
+				
+						<div class="block-top">
+								<div class="block-right">
+										<div class="block-left"></div>
+								</div>
+						</div>
+						
+						<div class="block-header">{_backup_marketplace_configuration}</div>
+						<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_backup_the_entire_marketplace_using_the_tools_below_you_can_restore_your_configuration_anytime_at_a_later_date}</div></div>
+						<div class="block-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+							<tr class="alt1"> 
+								<td class="alt1"><input type="radio" name="all" value="true" checked="checked" /> {_backup_marketplace_configuration}</td>
+							</tr>
+							<tr>
+								<td colspan="4"><input type="submit" value=" {_backup} " class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" style="font-size:15px" /></td>
+							</tr>
+							</table>
+
+							
+						</div>
+						
+						<div class="block-footer">
+								<div class="block-right">
+										<div class="block-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+			</form>
+			
+		</div>
+		<div class="tab-page">
+			
+			<h2 class="tab">{_restore}</h2>
+		
+			
+			<form action="{ilpage[dashboard]}" name="ilform" method="post" accept-charset="UTF-8" enctype="multipart/form-data" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="restore" />
+			<input type="hidden" name="return" value="{ilpage[dashboard]}" />
+			<div class="block-wrapper">
+				<div class="block">
+				
+						<div class="block-top">
+								<div class="block-right">
+										<div class="block-left"></div>
+								</div>
+						</div>
+						
+						<div class="block-header">{_restore_marketplace_configuration_from_backup}</div>
+						<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_find_the_previous_backup_file_from_your_computer_and_click_the_restore_button}</div></div>
+						<div class="block-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+							<tr class="alt1"> 
+								<td class="alt1"><table width="100%" border="0" cellspacing="0" cellpadding="3">
+											<tr> 
+									
+												<td width="21%" valign="middle" nowrap="nowrap">{_browse_for_saved_configuration_file}</td>
+												<td width="100%"><input type="file" name="xml_file" /></td>
+											</tr>
+											
+											</table></td>
+							</tr>
+							<tr>
+								<td colspan="4"><input type="submit" value=" {_restore} " class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" style="font-size:15px" /></td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block-footer">
+								<div class="block-right">
+										<div class="block-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+			</form>
+			
+			
+			Functionality will be available in the next version.
+		</div>-->
+		
+		{apihook[feedback_tab_end]}
+		
+</div>
+	
+{apihook[dashboard_template_end]}

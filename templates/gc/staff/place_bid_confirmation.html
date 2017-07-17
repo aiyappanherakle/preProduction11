@@ -1,0 +1,130 @@
+<div id="v3body4">
+
+	<div id="content">
+	
+		<div class="header">PLACE BID</div><br />
+		<div class="tab-pane">
+
+		<div class="tab-page">
+				<form method="post" action="place_bid.php" 	accept-charset="UTF-8" name="ilform_place_bid">
+					<input type="hidden" name="cmd" value="place_bids">
+					<div class="block-wrapper">
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							 
+							
+							<div class="block3-header">PROJECTS DETAILS FOR PLACE BID</div>
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">You can see the project details of the coins to place a  next/current  minimum bid/price for the items. </div></div>
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">Total {place_count} Coin(s) to place a  next/current  minimum bid/price for the items. </div></div>
+								<div class="block3-content" style="padding: 0px 0px 0px 0px;">
+								
+								<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+										<form method="post" action="place_bid.php" 	accept-charset="UTF-8" name="place_fixed_bid_update">
+											<input type="hidden" name="cmd" value="place_fixed_bid_update">
+												<tr class="alt2">
+													<td>SL No</td>
+													<td>Item ID</td>
+													<td>Title </td>
+													<td>Bids Count</td>
+													<td>Bidder User id</td>
+													<td>Starting bid</td>
+													<td>Current Price</td>
+													<td>End Date</td>
+													<td><input type="checkbox" name="select-all" id="select-all" /></td>
+												</tr>
+											
+												<loop name="projects_list">
+													<tr class="alt1">
+														<td>{slno}</td>
+														<td>{project_id}</td>
+														<td>{project_title}</td>
+														<td class="smaller blue">{bids}</td>
+														<td>{bidder_id}
+															<input type="hidden" name="fixed_bidder_id[{project_id}]"  value="{bidder_id}"></td>
+														<td>{startprice}</td>
+														<td>{currentprice}</td>
+														<td>{date_end}</td>
+														<td><input type="checkbox" name="place_next_id[]" id="checkbox-1" value ="{project_id}" /></td>
+													</tr>
+													
+													
+												</loop name="projects_list"> 
+
+																	
+																	
+								</table>	 
+								
+								<br>
+									Fixed Price : <input type="text" name="price_fixed" Value=""><br>
+									(Will be next bid if left empty)
+									<br>
+									<input type="hidden" name="coin_not_list" value="{result_Not_lists}">
+									<input type="submit" name="Submit_place_fixed" Value="PlaceBid" style="margin-left: 420px;">
+														</form>
+								</div>
+							 
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<div class="block3-header" style="font-size: 18px; color: red;">Not Listed Coins:</div>
+							<div class="block3-content-gray" style="padding:9px;width:900px;"><div class="smaller">{result_Not_list}</div></div>
+					
+				</form>
+			</div>
+							 
+		<!-- / tab pane -->
+		
+	</div>
+	
+</div>	
+<script type="text/javascript">
+function validate()
+{
+	var sear_val = document.getElementById("coin_list_Next").value;
+	var sear_vals = document.getElementById("bidder_id").value;
+	if(sear_val == '')
+	{
+		alert('Please enter Project id/ coin id');
+		return false;
+	}
+	
+	else if(sear_vals == '')
+	{
+		alert('Please Enter Bidder User ID');
+		return false;
+	}
+	
+	else
+	{
+		return true;
+	}
+}
+$( document ).ready(function() {
+$('#select-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;                        
+        });
+    }
+	else 
+	{
+	 $(':checkbox').each(function() {
+            this.checked = false;                        
+        });
+	
+	}
+});
+});
+
+</script>

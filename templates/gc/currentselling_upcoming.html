@@ -1,0 +1,216 @@
+<div class="block-wrapper">
+	<div class="block">
+		<div class="block-top">
+			<div class="block-right">
+				<div class="block-left">
+				</div>
+			</div>
+		</div>
+		<div class="block-header">{_current_selling_upcoming_block_header}</div>
+		<div style="padding:9px" class="block-content-yellow">
+			<div class="smaller">{_current_selling_upcoming_block_content_yellow}</div>
+		</div>
+		<div style="background:url(images/gc/icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:14px" class="block-content">
+			<div>
+				{_current_selling_upcoming_block_content}
+			</div>
+		</div>
+		<div class="block-footer">
+			<div class="block-right">
+				<div class="block-left"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+
+#boom select
+{
+width:210px;
+}
+
+#textim {
+    background-image: url("images/gc/coin_bg.jpg");
+	background-size: 100% 100%;
+    height: 160px;
+    width: 95%;
+}
+#auction_box {
+    border: 1px solid #CCCCCC;
+    min-height: 300px;
+    padding: 15px 50px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: auto;
+    margin-right: auto;
+   
+}
+#seperator {
+	height: 300px;
+	width:20%;
+}
+#abox01
+{
+	width:40%;
+}
+</style>
+
+<div style=" padding: 10px; border: 1px solid #CCCCCC; margin: 30px auto; width:98%; float:left;" id="">
+
+	<div style=" border-right: 1px solid #DDDDDD;
+    float: left;
+    margin-right: 15px;
+    padding-right: 15px;
+    width: 48%;">
+	<div style="text-align:center;background-color:#CCCCCC;"><h2>{_current_selling_coin}</h2></div>
+	<loop name="currentissues_coin">
+	<div class="" style="border:1px solid #ddd; width: 100%; margin-bottom:10px; padding: 15px 0px;">
+	
+		<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+			<tbody>
+				
+				<tr>
+					<td valign="top">
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tbody>
+								<tr>
+									<td width="60%" valign="top" style="">
+										<span id="blockheadertext" style=" ;"></span>
+
+										<div id="placebid" style="width="70%"">
+											<table width="100%" cellspacing="0" cellpadding="0" border="0"><tbody>
+												<tr>
+												<td width="100%" valign="top">
+													<table width="100%" cellspacing="0" cellpadding="6" border="0" style="margin:0px">
+													<tbody>
+														<tr valign="top" id="currentpricerow" style=" ">
+															<td>
+																<span style="font-family: arial; font-size:16px; font-weight:bold" id="currentbidtext"><strong>
+																 {_currentselling_upcoming_title}: {title}
+																</strong>
+																</span>
+															</td>
+														</tr>
+														<tr valign="top" id="endsrow">
+															<td>
+															<span style="font-family: arial; font-size:16px; font-weight:bold;">
+															 {_currentselling_upcoming_description}: {description}
+															</span>
+															</td>
+														</tr>
+														<tr valign="top" id="itemidrow">
+															<td>
+															<div class="bolder">
+															Link to GC Back Issue Categories: <a href="#" >{categorieslink}</a>						
+															</div>
+															</td>
+														</tr>
+														<tr valign="top" id="itemidrow">
+															<td>
+															<div class="bolder">
+															Link to GC Item ID: <a href="#" >{link}</a>
+															</div>
+															</td>
+														</tr>														
+													</tbody>
+													</table>
+												</td>
+												</tr>
+											</tbody>
+											</table>
+										</div>
+									</td>
+						</tr>
+						</tbody>
+						</table>
+					</td>
+				
+				</tr>
+				
+			</tbody>
+		</table>
+		
+	</div>
+	</loop name="currentissues_coin">
+	</div>
+<!--<div style="width: 2%; height: 260px; float:left;" id="seperator"></div>-->
+	<div style="width:48%; float:left;">
+	<div style="text-align:center;background-color:#CCCCCC;"><h2>{_upcoming_coin}</h2></div>
+	<loop name="upcoming_coin">
+	<div class="" style="border:1px solid #ddd; width: 100%;  margin-bottom:10px; ">
+		<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+		<tbody>
+			<tr>
+				<td valign="top">
+					<table width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+						<tr>
+						<td width="60%" valign="top" style="">
+							
+							<div id="placebid" style=" ">
+								<table width="100%" cellspacing="0" cellpadding="0" border="0">
+								<tbody>
+									<tr>
+										<td width="100%" valign="top">
+											<table width="100%" cellspacing="0" cellpadding="6" border="0" style="margin:0px">
+											<tbody>
+												<tr valign="top" id="currentpricerow" style=" ">
+													<td>
+														<span style="font-family: arial; font-size:16px; font-weight:bold" id="currentbidtext">
+														<strong>
+															 {_currentselling_upcoming_title}: {title}
+														</strong>
+														</span>
+													</td>
+												</tr>
+												<tr valign="top" id="endsrow">
+													<td>
+														<span style="font-family: arial; font-size:16px; font-weight:bold;">
+															 {_currentselling_upcoming_description}: {description}
+														</span>
+													</td>
+												</tr>
+												<tr valign="top" id="itemidrow">
+													<td>
+														<div class="bolder">
+															U.S. Mint Release Date: {releasedate}
+														</div>
+													</td>
+												</tr>
+												<tr valign="top" id="itemidrow">
+													<td>
+														<div class="bolder">
+															Expected GC Sell Date: {excepteddate}
+														</div>
+													</td>
+												</tr>	
+												<tr valign="top" id="itemidrow">
+													<td>
+														<div class="bolder">
+															Link to GC Back Issue Categories: <a href="#">{categorieslink}</a>
+														</div>
+													</td>
+												</tr>														
+											</tbody>
+											</table>
+										</td>
+									</tr>
+								</tbody>
+								</table>
+							</div>
+			
+						</td>
+						</tr>
+					</tbody>
+					</table>
+				</td>
+				
+	
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	</loop name="upcoming_coin">
+	</div>
+</div>

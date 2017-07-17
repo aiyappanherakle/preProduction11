@@ -1,0 +1,107 @@
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php"><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" class="sel"><span>All Cancel Sale</span></a>
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Cancel List </div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Cancel</h2>
+			    
+				
+				   
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{number} List of all cancel sale</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+						       <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt2">
+								<td width="12%">Item ID</td>
+								<td width="12%">Seller</td>
+								<td width="12%">Buyer</td>
+								<td width="12%">Date of purchase</td>
+								<td width="12%" nowrap="nowrap">Charge Fees + Shipping Fees</td>
+								<td width="12%">Take over</td>
+								
+							    </tr>
+							    <loop name="cancel_sale_list">
+							    <tr class="alt1" valign="top">
+								<td width="12%">{project_id}</td>
+								<td width="12%">{sel}</td>
+								<td width="12%">{buy}</td>
+								<td width="12%">{date_sent}</td>
+								<td width="12%">{c_fees}</td>
+								<td width="12%">{tover}</td>
+								</tr>
+							   </loop name="cancel_sale_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'cancel_list'">
+							   <tr class="alt1">
+								 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+							   </tr>
+							   </if>
+							   </table>
+								                           			
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				
+			
+								
+								
+					
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+         
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

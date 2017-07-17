@@ -1,0 +1,223 @@
+<script type="text/javascript">
+function selectall(){
+
+		var len = document.getElementsByName('check_property[]');
+        for (var idx = 0; idx < len.length; idx++) {
+		document.getElementsByName('check_property[]')[idx].checked = true;
+        }
+}
+function deselectall(){
+		var len = document.getElementsByName('check_property[]');
+        for (var idx = 0; idx < len.length; idx++) {
+		document.getElementsByName('check_property[]')[idx].checked = false;
+        }	
+}	
+function invert(){
+        var len = document.getElementsByName('check_property[]');
+        for (var idx = 0; idx < len.length; idx++) {
+		if (document.getElementsByName('check_property[]')[idx].checked==false){
+		    document.getElementsByName('check_property[]')[idx].checked=true;}
+        else{
+	        document.getElementsByName('check_property[]')[idx].checked=false;}
+			}	
+		
+}
+</script>
+
+<div id="v3body4">
+
+	<div id="sub">
+	
+		<div id="subnav">
+			<loop name="subnav_settings">
+				<a href="{url}" {class}><span>{name}</span></a> <span> | </span> 
+			</loop name="subnav_settings">
+		</div>
+		
+	</div>
+	<div id="content">
+		<div class="header">Staff Management (admin)</div>
+		<br>	
+			
+		<div class="dynamic-tab-pane-control tab-pane">
+					<div class="tab-page">
+				<h2 class="tab">Properties</h2>
+				<div class="dynamic-tab-pane-control tab-pane">
+					<div class="tab-page">
+						<h2 class="tab">Edit</h2>						
+						<form method="post" action="{ilpage[subscribers]}" name="updateprofile1" accept-charset="UTF-8" id="updateprofile1" style="margin:0px">
+							<input type="hidden" name="cmd" value="delete_permission" />
+							<input type="hidden" name="redirect" value="{redirect}" />
+							<input type="hidden" name="uid" value="{id}" />
+							<div class="block-wrapper">
+								<div class="block3">
+									<div class="block3-top">
+										<div class="block3-right">
+											<div class="block3-left"></div>
+										</div>
+									</div>				
+									
+									<div class="block3-content" style="padding:0px">
+									
+									<div class="block3-header">List of fucntionalities currently assigned for staff&nbsp;&nbsp;{id}
+										<span style=" float: right;padding-top:4px; padding-right: 10px;">
+										<span class="blue" style="font-size:14px">
+										<a href="javascript:void(0)"onClick="selectall();" style="text-decoration:underline; font-weight: normal;">{_select_all}</a></span>
+										&nbsp;&nbsp; 
+										<span class="blue" style="font-size:14px">
+										<a href="javascript:void(0)" onClick="deselectall();" style="text-decoration:underline;font-weight: normal;">{_deselect_all}</a></span>
+										&nbsp;&nbsp;
+										<span class="blue" style="font-size:14px">
+										<a href="javascript:void(0)" onClick="invert();" style="text-decoration:underline;font-weight: normal;">{_invert}</a></span>
+										&nbsp;&nbsp;
+										</span>
+									</div>
+									
+										<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+
+											<tr class="alt2">
+												<td width="85%">Property name</td>
+												<td width="15%">Select to remove</td>
+											</tr>										
+
+											<loop name="permission_name">
+												<tr class="alt1" valign="top">
+													<td valign="top" align="left">
+														<div>
+															<span style="color:#444">
+																<strong>{permission_name}</strong>
+															</span>
+														</div>
+														<div class="gray" style="font-size:10px; font-family: verdana; padding-top:3px">
+															{permission_desc}
+														</div>
+													</td>
+													<td>
+														{permission_check}
+													</td>
+												</tr>
+											</loop name="permission_name">
+										</table>
+									</div>
+									
+									
+									<div class="block3-content" style="padding:0px">
+										<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+											<tr>
+												<td colspan="2"><input type="submit" class="buttons" value=" {_delete} " style="font-size:15px" accesskey="s" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" /></td>
+																		
+												
+											</tr>								
+										</table>
+									</div>
+									<div class="block3-footer">
+										<div class="block3-right">
+											<div class="block3-left"></div>
+										</div>
+									</div>	
+									
+								</div>
+							</div>
+						
+						</form>
+					
+					</div>
+					<div class="tab-page">
+						<h2 class="tab">Add</h2>
+							<form method="post" action="{ilpage[subscribers]}" name="updateprofile1" accept-charset="UTF-8" id="updateprofile1" style="margin:0px">
+							<input type="hidden" name="cmd" value="add_property" />
+							<input type="hidden" name="redirect" value="{redirect}" />
+							<input type="hidden" name="uid" value="{id}" />
+							<div class="block-wrapper">
+								<div class="block3">
+									<div class="block3-top">
+										<div class="block3-right">
+											<div class="block3-left"></div>
+										</div>
+									</div>
+									
+									<div class="block3-header">Add permissions for staff &nbsp;&nbsp;{id}</div>
+									<div class="block3-content" style="padding:0px">
+										<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="50%" >
+											
+											<tr>
+												<td>Property name:</td><td>{rem_perm_list}</td>
+											</tr>																						
+										</table>
+									</div>
+									
+									
+									<div class="block3-content" style="padding:0px">
+										<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+											<tr>
+												<td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" accesskey="s" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" /></td>
+											</tr>								
+										</table>
+									</div>
+									<div class="block3-footer">
+										<div class="block3-right">
+											<div class="block3-left"></div>
+										</div>
+									</div>	
+									
+								</div>
+							</div>
+						
+						</form>
+					</div>					
+				</div>			  					
+			</div>
+			
+			<div class="tab-page">
+			
+				<h2 class="tab">IP address</h2>
+				
+				<form method="post" action="{ilpage[subscribers]}" name="updateprofile1" accept-charset="UTF-8" id="updateprofile1" style="margin:0px">
+					<input type="hidden" name="cmd" value="_do-ip_address" />
+					<input type="hidden" name="redirect" value="{redirect}" />
+					<input type="hidden" name="uid" value="{id}" />
+					<div class="block-wrapper">
+						<div class="block3">
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							<div class="block3-header">Edit the IP addresses for the staff &nbsp;&nbsp;{id}</div>
+							
+							<div class="block3-content" style="padding:0px">
+								<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+									<tr>
+										<td><textarea name="ip_address" id="ip_address" size="100">{ip_add}</textarea></td>
+									</tr>
+									<tr>
+										<td>{check}{check_text}</td>
+									</tr>
+									
+								</table>
+							</div>
+							
+							
+							<div class="block3-content" style="padding:0px">
+								<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+									<tr>
+										<td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" accesskey="s" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" /></td>
+									</tr>								
+								</table>
+							</div>
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>	
+							
+						</div>
+					</div>
+				</form>	  								
+			</div>
+	
+
+
+		</div>	
+	</div>	
+</div>	

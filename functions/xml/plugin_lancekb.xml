@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+LanceKB plugin script for use with ILance 3.1.3 or higher.
+//-->
+
+<plugin>
+
+        <plug key="lancekbinitend" addon="lancekb">
+		<title>LanceKB Module Init</title>
+		<api>init_configuration_end</api>
+		<php><![CDATA[
+                global $ilance, $show, $phrase;
+                $ilance->lancekb = construct_object('api.lancekb');
+                
+		$show['lancekb'] = (!empty($ilance->lancekb->config) AND $ilance->lancekb->config['enablekb']) ? 1 : 0;
+		$show['lancekbnavlink'] = (!empty($ilance->lancekb->config) AND $ilance->lancekb->config['enablenavlink']) ? 1 : 0;
+		
+		$default['phrasegroups'] = array('lancekb');
+		
+		if (!empty($phrase['groups']) AND is_array($phrase['groups']) AND count($phrase['groups']) > 0)
+		{
+			$phrase['groups'] = array_merge($phrase['groups'], $default['phrasegroups']);
+			$phrase['groups'] = array_unique($phrase['groups']);
+		}
+		]]></php>
+	</plug>
+        
+	<plug key="searchresultsauctionsend" addon="lancekb">
+		<title>LanceKB Related Search Results - Auctions</title>
+		<api>search_results_auctions_end</api>
+		<php><![CDATA[
+                $keywords = '';
+                if (isset($ilance->GPC['q']))
+                {
+                        $keywords = $ilance->GPC['q'];
+                }
+                
+                $pieces = explode (',', $keywords);
+                $selectquery = " SELECT * FROM " . DB_PREFIX . "kbposts ";
+                if (isset($pieces) AND !empty($keywords))
+                {
+                        $selectquery .= " WHERE approved = '1' AND ";
+                        for ($i = 0; $i < count($pieces); $i++)
+                        {
+                                $selectquery .= " ((answer LIKE '%" . $ilance->db->escape_string($pieces[$i]) ."%') OR (keywords LIKE '%" . $ilance->db->escape_string($pieces[$i]) ."%'))";
+                                if ($i < count($pieces)-1)
+                                {
+                                        $selectquery .= " OR ";
+                                }
+                        }
+                        $selectquery .= " ORDER BY RAND() LIMIT 3";
+                }
+                else
+                {
+                	$selectquery .= " WHERE approved = '1' ORDER BY RAND() LIMIT 3";
+                }
+                
+                // is lancekb enabled?
+                $show['relatedrows'] = 0;
+                $show['norelatedrows'] = 1;
+                if ($ilance->lancekb->config['enablekb'])
+                {
+                        $run_search = $ilance->db->query($selectquery);
+                        if ($ilance->db->num_rows($run_search) > 0)
+                        {
+                                while ($rowkb = $ilance->db->fetch_array($run_search, DB_ASSOC))
+                                {
+                                        $sql_kbcat = $ilance->db->query("
+                                                SELECT catname
+                                                FROM " . DB_PREFIX . "kbcategory
+                                                WHERE categoryid = '" . $rowkb['catid'] . "'
+                                        ");
+                                        $res_kbcat = $ilance->db->fetch_array($sql_kbcat, DB_ASSOC);
+            
+                                        $rowkb['related_kb_title'] = '<a href="' . HTTP_KB . construct_seo_url_name(stripslashes($rowkb['subject'])) . '-t' . $rowkb['postsid'] . '-4.html">' . short_string($rowkb['subject'], 50) . '</a>';
+                                        $rowkb['kb_id'] = $rowkb['postsid'];                            
+                                        $rowkb['related_kb_category'] = '<a href="' . HTTP_KB . construct_seo_url_name(stripslashes($res_kbcat['catname'])) . '-' . $rowkb['catid'] . '-2.html">'.stripslashes($res_kbcat['catname']). '</a>';
+                                        $related_kb_results_rows[] = $rowkb;
+                                        $row_count++;
+                                }
+                                $show['relatedrows'] = 1;
+                                $show['norelatedrows'] = 0;
+                        }
+                }]]></php>
+	</plug>
+        
+        <plug key="searchresultsprovidersend" addon="lancekb">
+		<title>LanceKB Related Search Results - Providers</title>
+		<api>search_results_providers_end</api>
+		<php><![CDATA[
+                $keywords = '';
+                if (isset($ilance->GPC['q']) AND !empty($ilance->GPC['q']))
+                {
+                        $keywords = $ilance->GPC['q'];
+                        
+                        $pieces = explode (',', $keywords);
+                        $selectquery = " SELECT * FROM " . DB_PREFIX . "kbposts ";
+                        if (isset($pieces))
+                        {
+                                $selectquery .= " WHERE ";
+                                for ($i = 0; $i < count($pieces); $i++)
+                                {
+                                        $selectquery .= " (answer LIKE '%" . $ilance->db->escape_string($pieces[$i]) ."%') OR (keywords LIKE '%" . $ilance->db->escape_string($pieces[$i]) ."%')";
+                                        if ($i < count($pieces)-1)
+                                        {
+                                                $selectquery .= " OR ";
+                                        }
+                                }
+                                $selectquery .= " ORDER BY RAND() LIMIT 3";
+                        }
+                        
+                        // is lancekb enabled?
+                        $show['relatedrows'] = 0;
+                        $show['norelatedrows'] = 1;
+                        if ($ilance->lancekb->config['enablekb'])
+                        {
+                                $run_search = $ilance->db->query($selectquery);
+                                if ($ilance->db->num_rows($run_search) > 0)
+                                {
+                                        while ($rowkb = $ilance->db->fetch_array($run_search))
+                                        {
+                                                $sql_kbcat = $ilance->db->query("
+                                                        SELECT catname
+                                                        FROM " . DB_PREFIX . "kbcategory
+                                                        WHERE categoryid = '" . $rowkb['catid'] . "'
+                                                ");
+                                                $res_kbcat = $ilance->db->fetch_array($sql_kbcat);
+                                                
+                                                $rowkb['related_kb_title'] = '<a href="' . HTTP_KB . construct_seo_url_name(stripslashes($rowkb['subject'])) . '-t' . $rowkb['postsid'] . '-4.html">' . short_string($rowkb['subject'], 50) . '</a>';
+                                                $rowkb['kb_id'] = $rowkb['postsid'];
+                                                $rowkb['related_kb_category'] = stripslashes($res_kbcat['catname']);
+                                                $related_kb_results_rows[] = $rowkb;
+                                                $row_count++;
+                                        }
+                                        
+                                        $show['relatedrows'] = 1;
+                                        $show['norelatedrows'] = 0;
+                                }
+                        }
+                }]]></php>
+	</plug>
+        
+        <plug key="searchresultsauctionstemplate" addon="lancekb">
+		<title>LanceKB Related Search Result Template Code - Auctions</title>
+		<api>search_results_auctions_template</api>
+		<php><![CDATA[
+                $ilance->template->parse_loop('main', 'related_kb_results_rows');
+                ]]></php>
+	</plug>
+        
+        <plug key="searchresultsproviderstemplate" addon="lancekb">
+		<title>LanceKB Related Search Result Template Code - Providers</title>
+		<api>search_results_providers_template</api>
+		<php><![CDATA[
+                $ilance->template->parse_loop('main', 'related_kb_results_rows');
+                ]]></php>
+	</plug>
+        
+        <plug key="rsssyndication" addon="lancekb">
+		<title>LanceKB RSS Syndication</title>
+		<api>rss_start</api>
+		<php><![CDATA[                
+                if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'syndication' AND isset($ilance->GPC['subcmd']) AND $ilance->GPC['subcmd'] == 'kb')
+                {
+                        $area_title = 'Syndicating KB Articles';
+                        $page_title = SITE_NAME.' - Syndicating KB Articles';
+                        
+                        $ilance->GPC['limit'] = isset($ilance->GPC['limit']) ? intval($ilance->GPC['limit']) : 15;
+                        
+                        $myRSS = construct_object('api.myrss');
+                
+                        $myRSS->channelTitle = SITE_NAME . " Knowledge Base";
+                        $myRSS->channelLink = HTTP_KB;
+                        $myRSS->channelDesc = "Knowledge Base Articles";
+                        $myRSS->imageTitle = SITE_NAME . " Knowledge Base";
+                        $myRSS->imageLink = HTTP_KB;
+                        $myRSS->imageURL = HTTP_SERVER . $iltemplate['template_imagesfolder'] . 'logo.gif';
+                
+                        if (isset($ilance->GPC['sid']) AND $ilance->GPC['sid'] == 'all')
+                        {
+                                $SubCatClause = "AND catid > 0";
+                        }
+                        else if (isset($ilance->GPC['sid']) AND $ilance->GPC['sid'] != "" AND $ilance->GPC['sid'] != 'all')
+                        {
+                                $cats = $ilance->GPC['sid'];
+                                $pieces = explode(',', $cats);
+                                $count = count($pieces);
+                                $piece = '';
+                                if ($count > 1)
+                                {
+                                        $piece = " AND ( ";
+                
+                                        foreach ($pieces as $subcatvalue)
+                                        {
+                                                $piece .= " catid = '" . intval($subcatvalue) . "' OR ";
+                                        }
+                                        $SubCatClause = mb_substr($piece, 0, -3);
+                                        $SubCatClause = $SubCatClause . " ) ";
+                                }
+                                else
+                                {
+                                        $piece .= " AND catid = '" . intval($cats) . "' ";
+                                        $SubCatClause = $piece;
+                                }
+                        }
+                        else
+                        {
+                                $SubCatClause = "AND catid > 0";
+                        }
+                
+                        $WhereClause = "WHERE approved = '1' $SubCatClause ";
+                        if (empty($ilance->GPC['limit']))
+                        {
+                                $LimitClause = "LIMIT 10";
+                        }
+                        else
+                        {
+                                $LimitClause = "LIMIT " . intval($ilance->GPC['limit']);
+                        }
+                
+                        // get the RSS data
+                        $rssData = $myRSS->GetRSS(DB_PREFIX . "kbposts", "subject", "answer", "postsid", HTTP_KB . "?cmd=4&id={linkId}", $WhereClause, $LimitClause, "postsid");
+                        
+                        header('Content-type: application/xml; charset="' . $ilconfig['template_charset'] . '"');
+                        echo $rssData;
+                }]]></php>
+	</plug>
+        
+        <plug key="lancekbsearchresults" addon="lancekb">
+		<title>LanceKB Similar Search Results Template Bit</title>
+		<api>search_results_end</api>
+		<html><![CDATA[
+<if condition="isset($show['lancekb']) AND $show['lancekb'] AND isset($show['relatedrows']) AND $show['relatedrows']">
+<if condition="isset($ilance->GPC['mode']) AND ($ilance->GPC['mode'] == 'service' OR $ilance->GPC['mode'] == 'experts')">
+<div class="block-wrapper">
+    <div class="block5">
+		    <div class="block5-top">
+				    <div class="block5-right">
+						    <div class="block5-left"></div>
+				    </div>
+		    </div>
+		    <div class="block5-header">{_knowledge_base}</div>
+		    <div class="block5-content" style="padding:0px">
+			    
+			    <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+			    <loop name="related_kb_results_rows"> 
+			    <tr class="alt1"> 
+				    <td><div style="padding-top:7px; padding-bottom:7px" class="blue">{related_kb_title}</div><div class="smaller">Posted in <span class="smaller blue">{related_kb_category}</span></div></td>
+				    <td nowrap="nowrap"></td>
+			    </tr>
+			    </loop name="related_kb_results_rows"> 
+			    <if condition="isset($show['norelatedrows']) AND $show['norelatedrows']"> 
+			    <tr> 
+				    <td colspan="3" align="center">{_no_related_results_found}</td>
+			    </tr>
+			    </if>
+			    <tr><td colspan="3"><span class="gray">You are reviewing related search results based on knowledge base articles</span></td>
+			    </tr>
+			    </table>
+		    </div>
+		    <div class="block5-footer">
+				    <div class="block5-right">
+						    <div class="block5-left"></div>
+				    </div>
+		    </div>
+    </div>
+</div>
+<else />
+<div class="block-wrapper">
+    <div class="block5">
+    
+		    <div class="block5-top">
+				    <div class="block5-right">
+						    <div class="block5-left"></div>
+				    </div>
+		    </div>
+		    <div class="block5-header">{_knowledge_base}</div>
+		    <div class="block5-content" style="padding:0px">
+			    
+			    <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+			    <loop name="related_kb_results_rows"> 
+			    <tr class="alt1"> 
+				    <td><div style="padding-top:7px; padding-bottom:7px" class="blue">{related_kb_title}</div><div class="smaller">Posted in <span class="smaller blue">{related_kb_category}</span></div></td>
+				    <td nowrap="nowrap"></td>
+			    </tr>
+			    </loop name="related_kb_results_rows"> 
+			    <if condition="isset($show['norelatedrows']) AND $show['norelatedrows']"> 
+			    <tr> 
+				    <td colspan="3" align="center">{_no_related_results_found}</td>
+			    </tr>
+			    </if>
+			    <tr><td colspan="3"><span class="gray">You are reviewing related search results based on knowledge base articles</span></td>
+			    </tr>
+			    </table>
+		    </div>
+		    <div class="block5-footer">
+				    <div class="block5-right">
+						    <div class="block5-left"></div>
+				    </div>
+		    </div>
+    </div>
+</div>
+</if></if>]]></html>
+	</plug>
+        
+        <plug key="lancekbnavlink" addon="lancekb">
+		<title>LanceKB Top Nav Link Template Bit</title>
+		<api>topnav_end</api>
+		<html><![CDATA[<option phrase="_help" link="kb/" seolink="" guests="true" members="true" admins="true" show="lancekb,lancekbnavlink" permissions="" locations="kb" linkextra=""></option>]]></html>
+	</plug>
+	
+	<plug key="lancekbadmincpajax" addon="lancekb">
+		<title>LanceKB AJAX Article Approve Handler</title>
+		<api>ajax_start</api>
+		<php><![CDATA[
+                // #### ACP AJAX ENHNACEMENTS ##################################
+		if (isset($ilance->GPC['do']) AND $ilance->GPC['do'] == 'kbajaxarticles' AND isset($_SESSION['ilancedata']['user']['isadmin']) AND $_SESSION['ilancedata']['user']['isadmin'])
+		{
+			$ilance->xml = construct_object('api.xml');
+			
+			$ilance->GPC['id'] = intval($ilance->GPC['id']);
+			$ilance->GPC['value'] = ($ilance->GPC['value'] == 'on' ? 1 : 0);
+			
+			$ilance->db->query("
+				UPDATE " . DB_PREFIX . "kbposts
+				SET approved = '" . intval($ilance->GPC['value']) . "'
+				WHERE postsid = '" . intval($ilance->GPC['id']) . "'
+				LIMIT 1
+			", 0, null, __FILE__, __LINE__);
+			
+			if ($ilance->GPC['value'])
+			{
+				$ilance->xml->add_tag('status', 'on');
+			}
+			else
+			{
+				$ilance->xml->add_tag('status', 'off');
+			}
+			
+			$ilance->xml->print_xml();
+			exit();
+		}
+		]]></php>
+	</plug>
+        
+</plugin>

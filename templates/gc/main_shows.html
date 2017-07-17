@@ -1,0 +1,275 @@
+<style type="text/css"> 
+h1{
+margin:0px;
+color: #FFFFFF;
+font-family: Arial,Helvetica,sans-serif;
+font-size: medium;
+font-weight: bold;
+}
+h2{
+margin:0px;
+font-family: Arial,Helvetica,sans-serif;
+font-size: small;
+font-weight: bold;
+}
+
+</style>
+
+<style type="text/css">
+.c-middle{
+    width: 100%;
+}
+
+
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+}
+
+
+
+
+table.listing {
+    border-collapse: separate;
+    width: 100%;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+}
+
+table.listing tr:first-child th {
+    border-bottom: 1px solid #dedede;
+}
+table.listing tr th:first-child {
+    border-left: 1px solid #dedede;
+    border-top-left-radius: 8px;
+}
+table.listing tr th {
+    background: none repeat scroll 0 0 #f2f2f2;
+	border: 1px solid #dedede;
+    box-shadow: 1px 1px 0 0 #fff inset;
+    color: #363636;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 1.1em;
+    font-weight: normal;
+    height: 35px;
+    line-height: 34px;
+    text-align: center;
+    text-decoration: none;
+}
+
+table.listing tr td {
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    font-size: 1em;
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table.listing tr td:first-child {
+    border-left: 1px solid #dedede;
+}
+
+table.listing tr .evLogo {
+    width: 120px;
+}
+
+table.listing tr .evDate {
+    width: 21%;
+}
+
+table.listing tr .evDetails {
+    font-size: 1.1em;
+    text-align: center;
+    width: 50%;
+}
+
+table.listing tr .evPeople {
+    padding: 15px 0 0;
+    text-align: left;
+}
+
+.info {
+    float: left;
+    height: 63px;
+    margin: 0 0 15px 15px;
+    position: relative;
+    width: 54px;
+    z-index: 1;
+}
+
+.info img {
+    position: absolute;
+    z-index: 10;
+}
+
+.info .desc, .info .desc a, .info .desc a:hover {
+    color: #fff;
+}
+.info .desc {
+    opacity: 0;
+    transition: all 0.4s ease-in-out 0s;
+	width: 130px;
+}
+
+.info .desc a, .info .desc h5, .info .desc span {
+    display: block;
+    white-space: nowrap;
+}
+.desc h5 {
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1em;
+	font-family: Helvetica,Arial,sans-serif;
+	margin: 2px 0px;
+}
+
+.info .desc span {
+    color: #b3e0f1;
+    font-size: 0.9em;
+	margin-bottom: 7px
+}
+
+
+.info .desc a.sprite {
+    text-decoration: underline;
+	margin-left: 23px;
+}
+
+.info .desc, .info .desc a, .info .desc a:hover {
+    color: #fff;
+}
+
+.info:hover .desc {
+    background-color: #00A0D6;
+    border-radius: 2px;
+    left: -4px;
+    min-height: 66px;
+    opacity: 1;
+    padding: 5px 15px 0 70px;
+    position: absolute;
+    top: -4px;
+    z-index: 9;
+}
+
+.info:hover {
+    z-index: 2;
+}
+
+.evOutdated td {
+    color: #ddd;
+}
+
+.evOutdated .info img {
+    opacity: 0.15;
+}
+
+.evOutdated .info:hover .desc {
+    background: none repeat scroll 0 0 #eee;
+}
+
+table.listing tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+table.listing tr:last-child td {
+    background: none repeat scroll 0 0 #fff;
+    border-top: medium none;
+}
+
+table.listing tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+table.listing tr th:last-child {
+    border-top-right-radius: 8px;
+}
+</style>
+<div class="block-wrapper">        
+<div class="block">
+
+        <div class="block-top">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+         <div class="block-header"><h1>{_coin_shows_title}</h1></div>
+        <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_coin_shows_content}</div></div>
+        <div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:14px">
+        
+        	<div>
+
+
+         <!--   <b>February 2012</b><br />
+            February 2-4 - Long Beach Coin Expo.  Long Beach, California<br />
+            <Br />
+            <b>March 2012</b><br />
+            March 22-25 - Baltimore Coin Show and Expo.  Baltimore, Maryland<br />
+            <Br />
+            <b>April 2012</b>
+                        <br />
+            April 18-21 - Central States, Schaumburg, Illinois
+            <br /><br />
+            <b>May 2012</b><br />
+            May 10-12 - ANA National Money Show.  Denver, Colorado
+  			<Br /><br />
+            <b>June 2012</b><br />
+            May 31-June 2 - Long Beach Coin Expo.  Long Beach, California<br />
+            June 28-July 1 - Baltimore Coin Show and Expo.  Baltimore, Maryland<br />
+            <Br />
+            <b>July 2012</b><br />
+            July 12-14 - FUN Coin Show.  Orlando, Florida
+            <Br /><br />
+            <b>August 2012</b><br />
+            August 7-11 - ANA World's Fair of Money.  Philadelphia, Pennsylvania
+            <Br /><br />
+            <b>September 2012</b><br />
+            September 6-8 - Long Beach Coin Expo.  Long Beach, California
+            September 20-22 - Whitman Philadelphia Expo.  Philadelphia, Pennsylvania
+            <Br /><br />
+            <b>October 2012</b><br />
+            October 18-20 - ANA National Money Show.  Dallas, Texas
+  			<Br /><br />
+            <b>November 2012</b><br />
+            November 15-18 - Baltimore Coin Show and Expo.  Baltimore, Maryland
+			
+			{coin_shows}
+			
+            <br /><br />
+           {_coin_shows_final_content}-->
+           
+  <br />	   
+
+<div class="c-middle">
+	<table class="listing" cellspacing="0">
+	<tbody>
+		<tr>
+			<th>Date</th>
+			<th>Details</th>
+			<th>Our Representatives</th>
+		</tr>
+
+		{coin_shows}
+
+	</tbody>
+	</table>
+</div>	
+
+<br /><br />
+           {_coin_shows_final_content}	   
+            
+            </div>
+            
+       	</div>
+                
+        <div class="block-footer">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+</div>
+</div>

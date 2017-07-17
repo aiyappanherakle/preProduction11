@@ -1,0 +1,394 @@
+<style>
+/* Box styles */
+.myBox {
+border: none;
+padding: 5px;
+ 
+width: 95%;
+height: 350px;
+ overflow-y: scroll; overflow-x: hidden;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 10px olivedrab;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+border-radius: 10px;
+background: yellowgreen; 
+box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+</style>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+    
+        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+		<!--murugan changes on jan 23 for buying to buy selling to sell-->
+        <ul>
+            <li title="" class="on"><a href="javascript:void(0)">{_dashboard}</a></li>
+			<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Watchlist/Management">{_watchlist}</a><else /><a href="{ilpage[watchlist]}?cmd=management">{_watchlist}</a></if></li>
+			 <li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Buy/Active">{_buying_activity}</a><else /><a href="buy.php?cmd=active">{_buying_activity}</a></if></li>
+			  <li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Current">{_selling_activity}</a><else /><a href="sell.php?cmd=current">{_selling_activity}</a></if></li>
+           <li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Favorites">{_favorite_searches}</a><else /><a href="{ilpage[preferences]}?cmd=favorites">{_favorite_searches}</a></if></li>
+            <!--<li title="" class=""><a href="{ilpage[watchlist]}?cmd=management">{_watchlist}</a></li>-->
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        
+        <div class="block-wrapper">
+        
+            <div class="block3">
+            
+                    <div class="block3-top">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block3-header">
+                        <span style="float:right;">
+                        <form name="sortswitch" method="get" action="{ilpage[main]}" accept-charset="UTF-8" style="margin:0px">
+                        <input type="hidden" name="cmd" value="cp" />
+                        <table border="0" cellspacing="0" cellpadding="0">
+						<!--Murugan Changes on march 10-->
+                          <!--<tr>
+                            <td>
+                            <select name="period" class="smaller" style="font-family: verdana">
+                                <option value="1" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 1">selected="selected"</if>>{_last_24_hours}</option>
+                                <option value="7" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 7">selected="selected"</if>>{_last_7_days}</option>
+                                <option value="14" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 14">selected="selected"</if>>{_last_14_days}</option>
+                                <option value="15" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 15">selected="selected"</if>>{_last_30_days}</option>
+                                <option value="16" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 16">selected="selected"</if>>{_last_60_days}</option>
+                                <option value="17" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 17">selected="selected"</if>>{_last_90_days}</option>
+                            </select>&nbsp;</td>
+                        
+                            <td><input type="submit" value="{_go}" class="buttons_smaller" /></td>
+                          </tr>-->
+                        </table>
+                        </form>
+                        </span>{_reminders}
+                    </div>
+                    
+                    <div class="block3-content" style="padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+						<tr>
+						<td>
+						Active Winning Items
+						</td>
+						<td>
+						{curr_win}
+						</td>
+						</tr>
+						<tr>
+						<td>
+						Active Outbid Items
+						</td>
+						<td>
+						{curr_out}
+						</td>
+						</tr>
+						<tr>
+						<td>
+						Active Selling Items
+						</td>
+						<td>
+						{curr_sell}
+						</td>
+						</tr>
+                        <loop name="banner_loop">          
+                         {newfeature}          
+                        </loop name="banner_loop">             
+            <if condition="$enable_hotlist=='1'">
+            <tr>
+            <td>Active Hotlist Items      
+            </td>
+            <td>
+            <strong>
+            <a style="color: #e16e19y;" href="/consingned_hotlist.php?cmd=consigned_hotlist">Congratulations {counthotlist} of your coins are on the GreatCollections HotList</a> - <a style="color: #e16e19y;" href="hotlist">View the HotList.</a></strong>
+            </td>
+            </tr>
+            </if>
+						<!--Murugan Changes on march 10-->
+                        <!--<tr class="alt2">
+                              <td width="33.3%" nowrap="nowrap">{_buying_reminders}</td>
+                              <td width="33.3%" nowrap="nowrap">{_selling_reminders}</td>
+                              <td width="33.3%" nowrap="nowrap">{_feedback_reminders} </td>
+                        </tr>
+                        <tr class="alt1">
+                              <td valign="top">{buyingreminders}</td>
+                              <td valign="top" class="alt3">{sellingreminders}</td>
+                              <td valign="top" class="featured_highlight">{feedbackactivity}</td>
+                        </tr>
+                        <tr class="alt2_top">
+                              <td width="33.3%" nowrap="nowrap">{_messages}</td>
+                              <td width="33.3%" nowrap="nowrap">{_todays_remaining_bids}: <span class="blue"><strong>{bidsleft}</strong></span> <a href="javascript:void(0)" onmouseover="Tip('<div style=\'font-size:14px\' class=\'blue\'><strong>{bidsleft}</strong></div>' + phrase['_this_number_will_represent_how_many_bids_you_have_left_for_today'], BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                              <td width="33.3%" nowrap="nowrap">{_invitation_reminders} </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" style="padding-top:10px; padding-bottom:10px;"><div>{messagesactivity}</div>
+                          <if condition="$ilconfig['globalfilters_cansendpms']">
+                          <div style="padding-bottom:6px; padding-top:6px"><span class="smaller blue"><a href="{ilpage[messages]}?cmd=compose">{_compose_a_new_private_message}</a></span></div></if></td>
+                          <td valign="top"><div><span class="gray">{_your_bids_will_renew_on}</span> {datereset}</span></div>
+                          <div></div></td>
+                          <td valign="top" style="padding-top:10px; padding-bottom:10px;">{invitationactivity}</td>
+                        </tr>-->
+                        <!--<tr>
+                          <td valign="top" class="alt2">{_subscription}</td>
+                          <td valign="top" class="alt2">{_account_reminder__total_balance_due} </td>
+                          <td valign="top" class="alt2"></td>
+                        </tr>
+                        <tr>
+                          <td valign="top" class="" style="padding-top:10px; padding-bottom:10px;"><div><span style="float:right"><span class="gray">{_days_until_subscription_expires}:</span> <strong>{subscriptionexpirydate}</strong><div class="smaller blue" align="right"><a href="{ilpage[subscription]}">{_renew_or_upgrade_my_subscription}</a></div> </span><span class="header"><span class="blue">{subscriptiondaysleft}</span></span></div></td>
+                          <td valign="top" class="" style="padding-top:10px; padding-bottom:10px;"><div><span style="float:right"><span class="gray">{_pending_transactions_found_for_total_of}</span> <strong>{unpaidamount}</strong> </span><span class="header"><span class="blue">{unpaidinvoices}</span></span></div></td>
+                          <td valign="top" class="" style="padding-top:10px; padding-bottom:10px;"></td>
+                        </tr>-->
+                        </table>
+                    </div>
+                    
+                    <div class="block3-footer">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+					
+<!--1111111111111 for Bug #vijay start -->
+					
+					<if condition="isset($show['message_column']) AND $show['message_column']">
+						<br>
+					    <div class="block3-top">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block3-header">
+                        <span style="float:right;">
+                        
+                        </span>Latest Consignment Notes
+					
+                    </div>
+                
+                    <div class="block3-content" style="padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+						<tr valign="top" class="alt1">
+						<td width="10%">Date</td>
+						<td width="5%" nowrap="nowrap">Consignment ID</td>
+						<td width="45%" nowrap="nowrap">Note</td>
+						</tr>
+						
+						<loop name="consign_receive">
+						<tr valign="top" class="alt1">
+						<td valign="top" >{created_on}</td>
+						<td valign="top" >{consign_id}</td>
+                         <td valign="top" >{consign_message}</td>        
+                        </tr>
+							
+                        </loop name="consign_receive">
+						<if condition="isset($show['view_list']) AND $show['view_list']">
+						<tr valign="top" class="alt1">
+						<td colspan="3" align="center" >{details_link}</td>
+						</tr>				
+						</if>
+						
+                        </table>
+                    </div>
+                    
+                    <div class="block3-footer">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+					
+					</if>
+					
+
+					<!--1111111111111 for Bug #vijay end -->
+					<!-- for Bug #vijay start -->
+           <if condition="$_SESSION['ilancedata']['user']['is_auto_lower_min_bid']=='1' or $_SESSION['ilancedata']['user']['enable_batch_bid']=='1' ">
+					<div class="block3-top" style="margin-top: 20px;">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+					
+					<div class="block3-header">
+                        <span style="float:right;">
+                        <form name="sortswitch" method="get" action="{ilpage[main]}" accept-charset="UTF-8" style="margin:0px">
+                        <input type="hidden" name="cmd" value="cp" />
+                        </form>
+                        </span>Your Special Features
+                    </div>
+					
+					         <if condition="$_SESSION['ilancedata']['user']['is_auto_lower_min_bid']=='1'">
+					         <div class="block3-content" style="padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">	<tr>
+                            <td>
+                            <strong>
+                            Auto-Reduction of Min Bids </strong> - For any coins that do not sell, your minimum bids will be reduced by {auto_min_bid_lower_prec}% each auction cycle.
+                           
+                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                     </if>
+
+                  <if condition="$_SESSION['ilancedata']['user']['enable_batch_bid']=='1'">
+                   <div class="block3-content" style="padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">  <tr>
+                            <td>
+                            <strong>
+                            Multi-Bid Enabled for VIP Clients </strong> - You can now bid directly from your Watchlist on any number of items with a single "Place Bid" click.
+                            
+                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                    </if>
+                    <div class="block3-footer">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+                    </if>
+                    <!-- for Bug #vijay end -->
+
+
+                    <div class="block3-top" style="margin-top: 20px;">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+          
+          <div class="block3-header">
+                        <span style="float:right;">
+                        <form name="sortswitch" method="get" action="{ilpage[main]}" accept-charset="UTF-8" style="margin:0px">
+                        <input type="hidden" name="cmd" value="cp" />
+                        </form>
+                        </span>Advanced Tools
+                    </div>
+          
+          
+          <div class="block3-content" style="padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+            
+            <!-- start 18 nov for bb on off-->
+            
+            <if condition="$_SESSION['ilancedata']['user']['userid']=='101' or $_SESSION['ilancedata']['user']['userid']=='154' or $_SESSION['ilancedata']['user']['userid']=='163' or $_SESSION['ilancedata']['user']['userid']=='12513' or $_SESSION['ilancedata']['user']['userid']=='1122' or $_SESSION['ilancedata']['user']['userid']=='6205' or $_SESSION['ilancedata']['user']['userid']=='13726' or $_SESSION['ilancedata']['user']['userid']=='18561' or $_SESSION['ilancedata']['user']['access_bb']=='1'">
+            <tr>
+            <td>
+            <strong>
+            <a style="color: #0B2130;" href="post_forum.php">Post Links of Your Consigned Coins To Forums </a>
+            <strong>
+            </td>
+            </tr>
+            </if>
+            
+            <!--  start  18 nov for bb on off end-->
+            <tr>
+            <td>
+            <strong>
+            <a style="color: #0B2130;" href="certificationnumber_search.php">Search Auctions Won/Sold by Certification Number</a>
+            <strong>
+            </td>
+            </tr>
+            
+                        </table>
+                    </div>
+                    
+                    <div class="block3-footer">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+                    <!-- for Bug #3107 end -->
+                    
+            </div>
+        </div>
+        
+	 
+		 <!--<if condition="$_SESSION['ilancedata']['user']['userid']=='101' or $_SESSION['ilancedata']['user']['userid']=='154' or $_SESSION['ilancedata']['user']['userid']=='163'">
+	   <span class="blue"><a href="/post_forum.php">Get code(BBCODE,HTML,PLAIN TEXT) to post in forum</a></span>
+	   </if>-->
+	   
+        {apihook[main_mycp_end]}
+        
+        <!--
+        {mycalendar}
+        -->
+        
+        
+        <if condition="$ilconfig['referalsystem_active']">
+        <div class="block-wrapper">
+        
+            <div class="block5">
+            
+                    <div class="block5-top">
+                            <div class="block5-right">
+                                    <div class="block5-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block5-header">{_referral_activity}</div>
+                    
+                    <div class="block5-content" style="padding:0px; background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_gray_1x1000.gif) repeat-x;">
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+                        <!--<tr>
+                              <td class="alt2" colspan="2">Detailed Reporting Statistics</td>
+                        </tr>
+                        <tr>
+                              <td class="alt1" colspan="2">{flashstats}</td>
+                        </tr>-->
+                        <tr class="alt2">
+                              <td width="50%"><strong>{_actions_taken_by_people_referred_by_you}</strong></td>
+                              <td width="50%"><strong>{_referral_links_for} {user[username]}</strong></td>
+                        </tr>
+                        <tr>
+                              <td class="" width="50%" valign="top"><div class="gray">{_below_you_will_find_detailed_and_realtime_referral_activity_for_your_profile}</div>
+                              <div style="clear:both"><div style="padding-top:9px">{referalactivity}</div></div></td>
+                              <td class="" width="50%" valign="top"><div class="gray">{_when_referring_others_to_the_marketplace_you_can_use_the_link_below}</div>
+                              <div style="padding-top:10px; padding-bottom:10px">{_referral_code}: <span class="blue" style="font-size:18px">{user[ridcode]}</span></div>
+                              <hr size="1" style="color:#cccccc; margin-top:9px; margin-bottom:9px" width="100%" />
+                              <div class="smaller"><strong>{_standard_web_link}</strong> <span class="gray">- {_place_this_link_anywhere_on_your_web_site_to_start_referring_users}</span></div>
+                              <div><input type="text" name="" value="<a href=&quot;{ridlink}&quot;>{site_name}</a>" class="input" size="80" /></div>
+                              <div class="gray">{_example}: <span class="blue"><a href="javascript:void(0)">{site_name}</a></span></div>
+                              <hr size="1" style="color:#cccccc; margin-top:9px; margin-bottom:9px" width="100%" />
+                              <div class="smaller" style="padding-top:6px"><strong>{_logo_web_link}</strong>  <span class="gray">- {_place_this_link_anywhere_on_your_web_site_to_start_referring_users}</span></div>
+                              <div><input type="text" name="" value="<a href=&quot;{ridlink}&quot;><img src=&quot;{http_server}{template_logo}&quot; border=&quot;0&quot; alt=&quot;&quot; /></a>" class="input" size="80" /></div>
+                              <div class="gray">{_example}:</div><div><a href="javascript:void(0)"><img src="{template_relativeimagepath}{template_logo}" border="0" alt="" /></a></div>
+                              </td>
+                        </tr>
+                        </table>	
+                    </div>
+                    
+                    <div class="block5-footer">
+                            <div class="block5-right">
+                                    <div class="block5-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        </if>
+
+    </td>
+</tr>
+</table>

@@ -1,0 +1,207 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+ 
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_email_preferences}</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Preferences</h2>
+			
+			
+ 				    
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_email_preferences} Details   </div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Your {_email_preferences} User Details</div></div>
+                            <div class="block3-content" style="padding:0px">
+                             <table width="100%"  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td  width="20%" align="center">User Id</td>
+ 								<td width="20%" align="center">User Name</td>
+								<td width="20%" align="center">Email</td>
+								 
+								<!--<td width="12%">No.Of.Coins</td>-->
+							  </tr>
+							  
+							  <tr class="alt1" valign="top">
+								 <td width="20%" align="center">{user_id_de}</td>								  
+								 <td width="20%" align="center">{username_de}</td>
+								 <td width="20%" align="center">{email_de}</td>							 
+								<!-- <td width="12%">{coins}</td>-->
+								</tr>						  
+							  <tr class="alt1" valign="top">
+								 <td  colspan="5" width="12%"><div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">{_email_preferences}</div>
+                     
+                    <div class="block-content" style="padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+                        <tr>
+                            <td align="center">
+                            <div>
+                                <div align="left">
+                                    
+                                    <if condition="isset($show['EM_view']) AND $show['EM_view']"> 
+
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                      <tr> 
+                                         <td colspan="2"><div class="gray" style="padding-bottom:3px">{_enable_email_notification}</div><div>{email_pulldown}</div></td>
+                                      </tr>
+									  <!--Herakle Murugan Changes For Email Preferences-->
+									  <tr>
+									  <td>&nbsp;  </td>
+									  <td>&nbsp;  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td> {related} </td>
+									  <td> {bidconfirm}	  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td> {outbid} </td>
+									  <td> {wantlist} </td>
+									  </tr>
+									  
+									  <tr>
+									  <td>  {recommend}  </td>
+									  <td>  {dailydeal} </td>
+									  </tr>
+									  
+									   <tr>
+									  <td> {gccollection} </td>
+									  <td>  {itemtracked}  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td>  {gcoffer}  </td>
+									  <td>&nbsp;  </td>
+									  </tr>
+									   <!--Herakle Murugan Changes For Email Preferences END here-->
+                                    </table>
+                                    </if>
+                                    <if condition="isset($show['EM_edit']) AND $show['EM_edit']"> 
+                                    <form method="post" action="email_preferences.php" name="emailupdate" accept-charset="UTF-8" onsubmit="return checkform(this); form(this); " style="margin:0px">
+                                      <input type="hidden" name="subcmd" value="_do-email-change" />
+                                      <input type="hidden" name="cmd" value="email_list_edit" />
+                                      <input type="hidden" name="id" value="{user_id_de}" />
+                                       <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                      <tr> 
+                                         <td colspan="2"><div class="gray" style="padding-bottom:3px">{_enable_email_notification}</div><div>{email_pulldown}</div></td>
+                                      </tr>
+									  <!--Herakle Murugan Changes For Email Preferences-->
+									  <tr>
+									  <td>&nbsp;  </td>
+									  <td>&nbsp;  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td> {related} </td>
+									  <td> {bidconfirm}	  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td> {outbid} </td>
+									  <td> {wantlist} </td>
+									  </tr>
+									  
+									  <tr>
+									  <td>  {recommend}  </td>
+									  <td>  {dailydeal} </td>
+									  </tr>
+									  
+									   <tr>
+									  <td> {gccollection} </td>
+									  <td>  {itemtracked}  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td>  {gcoffer}  </td>
+									  <td>&nbsp;  </td>
+									  </tr>
+									   <!--Herakle Murugan Changes For Email Preferences END here-->
+                                    </table>      <br />  
+                                    <input type="submit" class="buttons" value=" {_save} " accesskey="s" style="font-size:15px" />  <br /><br />
+                                    
+                                    
+                                    </form>
+                                    
+                                    
+                                    </if>
+                                    
+                                </div>
+                            </div>
+                            </td>
+                        </tr>
+                        </table>
+        
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div></td>
+						      </tr>
+
+							  
+							  <tr class="alt1" valign="top">
+								 <td  colspan="5" width="12%" >{back}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             
+                                 </td>
+						      </tr>
+							  </table>					
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"> </div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                     					
+				 
+				   <br />
+				   
+				   
+      				
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

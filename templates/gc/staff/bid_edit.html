@@ -1,0 +1,178 @@
+<script type="text/javascript">
+function validate()
+{
+	sear_val = document.getElementById("project_id").value;
+	if(sear_val == '')
+	{
+		alert('Please enter Project id/ coin id');
+		return false;
+	}
+	
+	else
+	{
+		return true;
+	}
+}
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4">
+
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Edit the Title & Descriptions for All coins </div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Edit coins</h2>
+			    
+				
+				
+                   
+					
+					<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Search Coins </div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can Search the Coins using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                <form method="post" action="bid_edit.php" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;" onsubmit="return validate();">	
+									<input type="hidden" name="cmd" value="bid_edit"/>
+							
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Coin id:</span>
+                                  <td width="90%">
+								  <input type="text" name="project_id"  id ="project_id" value="{projec_id}" style="font-family: Verdana" maxlength="100" size="50">                                       
+										</td>
+                                </tr>
+								<tr>
+                                  <td colspan="2"><div id="sitvalue"><input type="submit" class="buttons" value=" {_search} "  style="font-size:15px" /></div></td> 
+                                  </tr>
+								</table>
+                               </form>
+                               							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				   
+					
+				
+						      <if condition="isset($show_coin_search) and ($show_coin_search==1)">
+									
+									
+									
+											<div class="block-wrapper">
+											<div class="block3">
+											<div class="block3-top">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>	
+											<if condition="isset($ifcoins) AND $ifcoins==true">	
+											<div class="block3-header">Coin Details</div>
+
+											<div class="block3-content" style="padding:0px">
+											<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+																	
+																			
+																	
+																		
+
+																		<form method="post" action="bid_edit.php" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;" onsubmit="return validate();">	
+																		<input type="hidden" name="cmd" value="update_coins_tit_des"/>
+
+																			<tr class="alt2">
+																				<td>GC Item ID</td>
+																				<td>Project Title</td>
+																				<td>Min Bid</td>
+																				<td>Current Bid</td>
+																				<td>No of bids</td>
+																				<td>End Date</td>
+																			
+																			</tr>
+																		
+																			<loop name="edit_coin">
+																				<tr class="alt1">
+																					<td >{project_id}</td>
+																					<td >{project_title}</td>
+																					<td >{Minimum_bid}</td>
+																					<td >{currentprice}</td>
+																					<td >{bids}</td>
+																					<td >{date_end}</td>
+																				</tr>
+																				
+																			</loop name="edit_coin">
+																			<if condition="isset($editcoins) AND $editcoins==true">	
+																			<td colspan="2"><div id="sitvalue"><input type="submit" class="buttons" value=" {_update} "  style="font-size:15px" /></div></td>
+																			</if>
+																		</form>  
+																		
+											</table>	 
+											</div>
+											</if>
+											<if condition="isset($ifcoins) AND $ifcoins==false">
+											<div class="block3-content" style="padding:0px">
+											<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+											<tr class="alt1">
+											<td  align="center" ><strong>You've no coins in this Coin id.</strong></td>
+											</tr>
+											</table>	 
+											</div>
+											</if>
+
+											<div class="block3-footer">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>
+											</div>
+											</div>
+											
+											{print_project_bids_html}
+											
+											{print_proxy_bids_html}
+																																
+												
+									</if>
+								                           			
+                
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+         
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

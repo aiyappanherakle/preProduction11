@@ -1,0 +1,5 @@
+RewriteEngine On
+ErrorDocument 404 /preProduction11/index.php?cmd=404
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /preProduction11/index.php?p=$1 [NC,L,QSA]

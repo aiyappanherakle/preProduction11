@@ -1,0 +1,231 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		
+<a href="consignments.php"><span>Listing</span></a>
+<a href="consignments.php?cmd=create" ><span>Create</span></a> 
+<a href="consignments.php?cmd=list_raw_send" ><span>List Raw</span></a>
+<a href="consignments.php?cmd=search" ><span>Search</span></a>
+<a href="consignments.php?cmd=pen_con_list"  class="sel"><span>Pending List</span></a>
+<a href="consignments.php?cmd=quick_page" ><span>Edit Min/BN</span></a>
+<a href="minbids_change.php" ><span>Edit Min/BN(Inc.Live)</span></a>
+<a href="consignments.php?cmd=listing_page"><span>Editing Fvf</span></a>	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Consignments</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+			
+			
+			     <form method="get" action="{ilpage[consignment]}" accept-charset="UTF-8" id="consignment" style="margin: 0px;">
+				  <input type="hidden" name="cmd" value="pen_con_list" />
+				    <input type="hidden" name="subcmd" value="search_list_new" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                        <option value="user_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option value="username" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'username'">selected="selected"</if>>{_username}</option>
+                                        <option value="email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        <option value="zip_code" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'zip_code'">selected="selected"</if>>{_zipcode}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18"  style="width: 75%;" /></td>
+                                </tr>
+                                <tr class="alt1" style="display:none;">
+                                  <td nowrap="nowrap"><span class="gray">{_filter_by} {_status}</span></td> 
+                                    <td><input type="checkbox" name="searchstatus" value="1" <if condition="isset($ilance->GPC['searchstatus']) AND $ilance->GPC['searchstatus'] == '1'">checked="checked"</if> />
+                                        <select name="status" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by} {_status}">
+                                        <option value="active" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'active'">selected="selected"</if>>{_active}</option>
+                                        <option value="moderated" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'moderated'">selected="selected"</if>>Moderated</option>
+                                        <option value="suspended" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'suspended'">selected="selected"</if>>{_suspended}</option>
+                                        <option value="cancelled" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'cancelled'">selected="selected"</if>>{_cancelled}</option>
+                                        <option value="unverified" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'unverified'">selected="selected"</if>>{_unverified}</option>
+                                        <option value="banned" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'banned'">selected="selected"</if>>{_banned}</option>
+                                        </optgroup>
+                                        </select></td>
+                                </tr>
+                                <tr class="alt1" style="display:none;">
+                                  <td nowrap="nowrap"><span class="gray">{_sort_results_by}</span></td>
+                                  <td><label for="orderbyasc"><input type="radio" id="orderby" name="orderby" value="ASC" />{_ascending}</label>
+                                        <label for="orderbydesc"><input type="radio" name="orderby" value="DESC" checked="checked" />{_descending}</label></td>
+                                  </tr>
+                                <tr>
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+					
+				   <if condition="isset($show['search_list']) AND $show['search_list'] == 'search_list'">
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number_search} Consignments Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="12%" align="left">Username</td>
+								<td width="12%" align="left">First Name</td>
+								<td width="12%" align="left">Last Name</td>
+								<td width="12%">Consignment</td>
+								<td width="12%">No.of.Coins</td>
+								<td width="12%">No.of.Posted Coins</td>
+								
+								<td width="12%"  nowrap="nowrap">View Consignment List</td>
+								<td width="12%" nowrap="nowrap">Edit Consignment</td>
+							  </tr>
+							  <loop name="consignment_listing_search">
+								<tr class="alt1" valign="top">
+								  
+								  <td nowrap="nowrap"><span class="blue">{username}</span>
+									</td>
+									<td>{firstname}</td>
+									<td>{lastname}</td>
+								  <td>{consignid}</td>
+								  <td>{coins}</td>
+								  <td width="12%">{posted}</td>
+								  <td width="12%">{View}</td>
+								 <td width="12%"><span class="blue">{edit}</span></td>
+								</tr>
+							  </loop name="consignment_listing_search">
+							   <if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							 
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				   <else />
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number} Consignments Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="12%" align="left">Username</td>
+								<td width="12%" align="left">First Name</td>
+								<td width="12%" align="left">Last Name</td>
+								<td width="12%">Consignment</td>
+								<td width="12%">No.of.Coins</td>
+								<td width="12%">No.of.Posted Coins</td>
+								<td width="12%"  nowrap="nowrap">View Consignment List</td>
+								<td width="12%" nowrap="nowrap">Edit Consignment</td>
+							  </tr>
+							  <loop name="consignment_listing">
+								<tr class="alt1" valign="top">
+								  
+								  <td nowrap="nowrap"><span class="blue">{username}</span>
+									</td>
+									<td>{firstname}</td>
+									<td>{lastname}</td>
+								  <td>{consignid}</td>
+								  <td>{coins}</td>
+								  <td width="12%">{posted}</td>
+								  <td width="12%">{View}</td>
+								 <td width="12%"><span class="blue">{edit}</span></td>
+								</tr>
+							  </loop name="consignment_listing">
+							  {prof}
+							  <if condition="isset($show['no']) AND $show['no'] == 'list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				</if>
+      				
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

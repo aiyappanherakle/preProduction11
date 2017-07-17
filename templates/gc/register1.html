@@ -1,0 +1,204 @@
+<style>
+.buttonss {
+	background: #007cc7;
+	background-image: -webkit-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -moz-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -ms-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -o-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: linear-gradient(to bottom, #007cc7, #1d4aa6);
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	text-shadow: 1px 1px 1px #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #ffffff;
+	text-decoration: none;
+	width: 230px;
+	height: 37px;
+	border: medium none;
+	cursor: pointer;
+	border-radius: 6px;
+}
+.buttonss:hover {
+	background: #1d4aa6;
+	background-image: -webkit-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -moz-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -ms-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -o-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: linear-gradient(to bottom, #1d4aa6, #007cc7);
+	text-decoration: none;
+}
+</style>
+<form method="post" action="{ilpage[registration]}" accept-charset="UTF-8" onsubmit="return  register1(this); validatecustomform(this); " style="margin: 0px;">
+<input type="hidden" name="cmd" value="register" />
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="email" value="{email}" />
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header"><span style="float:right"><img src="{template_relativeimagepath}{template_imagesfolder}icons/project_3.gif" border="0" alt="" /></span>{_user_registration}</span></div>
+			
+			<div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:0px">
+				
+
+				<table cellpadding="6" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td>
+					
+						<div> 
+				
+							<table width="100%"  border="0" cellspacing="0" cellpadding="4">
+							<tr>
+								<td valign="top">
+									
+									<table width="100%"  border="0" cellspacing="3" cellpadding="0">
+									<tr>
+										<td><div><strong>* {_username}</strong></div></td>
+										<div style="color: #0000CC; float:right">* indicates a required field</div>
+										</br></br><td><div style="float:right"><label style="color:#006600"><strong>You're just one step away from joining GreatCollections!</strong></label></div></td>
+									</tr>
+									<tr>
+										<td>
+										<if condition="isset($show['username']) AND $show['username']"><input type="text" name="username" id="username" value="{username}" maxlength="49"  class="input" />
+										<else /><input type="text" name="username" id="username" value="{email}" maxlength="49"  class="input" />
+										</if>
+										&nbsp;&nbsp;&nbsp;<i>(Feel free to change your Username)</i>
+										</td>
+										
+									</tr>
+									<tr>
+									<td><if condition="isset($show['error_username_exist']) AND $show['error_username_exist']"><span style="color:#FF0000"><strong>Username Already Exist</strong></span></if>
+									<if condition="isset($show['error_username']) AND $show['error_username']"><span style="color:#FF0000"><strong>Enter Username</strong></span></if>
+									<if condition="isset($show['error_username_sapce']) AND $show['error_username_sapce']"><span style="color:#FF0000"><strong>Enter Username Without Space</strong> </span></if></td>
+									</tr>
+									</table>			
+								<div style="padding-bottom:15px"></div>
+									<table border="0" cellspacing="3" cellpadding="0">
+									
+									<tr>
+										<td><div><strong>* {_password}</strong></div></td>
+										<td><div><strong>* Confirm Password</strong></div></td>
+									</tr>
+									<tr>
+										<td valign="top"><input type="password" name="password" value="{password}" id="password" maxlength="32" onkeyup="verify.check()" class="input" /> <img name="passworderror" src="{template_relativeimagepath}{template_imagesfolder}icons/blankimage.gif" width="21" height="13" border="0" alt="{_this_form_field_is_required}" />
+										<if condition="isset($show['error_password']) AND $show['error_password']"><br /><span style="color:#FF0000"><strong>Enter Password</strong></span></if>
+										<if condition="isset($show['error_password_length']) AND $show['error_password_length']"><br /><span style="color:#FF0000"><strong>Password length should be min 4 character.</strong></span></if></td>
+									
+										<td valign="top"><input type="password" name="password2" value="{password2}" id="password2" maxlength="32" onkeyup="verify.check()" class="input" /> <img name="password2error" src="{template_relativeimagepath}{template_imagesfolder}icons/blankimage.gif" width="21" height="13" border="0" alt="{_this_form_field_is_required}" /><if condition="isset($show['error_password2']) AND $show['error_password2']"><br /><span style="color:#FF0000"><strong>Enter Confirm password</strong></span></if>
+										<if condition="isset($show['error_pwd_miss_match']) AND $show['error_pwd_miss_match']"><br /><span style="color:#FF0000"><strong>{_passwords_do_not_match}</strong></span></if>
+										<span id="password_result"></span></td>
+									</tr>
+	
+									<tr>
+									
+										<td><div><strong>* First Name</strong></div></td>
+										<td><div><strong>* Last Name</strong></div></td>
+									<tr>
+										<td valign="top"><input type="text" name="first_name" value= "{first_name}"   maxlength="49"  class="input" /> </td>
+										<td valign="top"><input type="text" name="last_name" value= "{last_name}" maxlength="49" class="input" />  </td>
+									</tr>
+									<tr>
+									    <td valign="top"><if condition="isset($show['error_firstname']) AND $show['error_firstname']"><span style="color:#FF0000"><strong>Enter First Name</strong></span></if></td>
+									    <td><if condition="isset($show['error_lastname']) AND $show['error_lastname']"><span style="color:#FF0000"><strong>Enter Last Name</strong></span></if></td>
+										</tr>
+									
+								
+									<tr>
+										<td><div><strong>Company</strong></div></td>
+									</tr>
+									<tr>
+										<td valign="top"><input type="text" name="companyname" value="{companyname}" maxlength="49" class="input" /> </td>
+										
+									</tr>
+									<tr>
+									<td><if condition="isset($show['error_company']) AND $show['error_company']"><span style="color:#FF0000"><strong>Enter Company Name</strong></span></if></td>
+									</tr>
+									<tr>
+										<td><div><strong>* Address 1</strong></div></td>
+										<td><div><strong>Address 2</strong></div></td>
+									</tr>
+									<tr>
+										<td valign="top"><input type="text" name="address" value="{address}" maxlength="49" class="input" /> </td>
+										<td><div><input type="text" name="address2" value="{address2}" maxlength="49" class="input" /></div></td>
+									</tr>
+									<tr>
+									<td><if condition="isset($show['error_address']) AND $show['error_address']"><span style="color:#FF0000"><strong>Enter Address</strong></span></if></td>
+									<td><if condition="isset($show['error_address2']) AND $show['error_address2']"><span style="color:#FF0000"><strong>Enter Address 2</strong></span></if></td>
+									</tr>
+									<tr>
+										<td><div><strong>* City</strong></div></td>
+										<td><div><strong>* State</strong></div></td>
+										<td></td>
+										<td><div><strong>* Zip/Postal Code</strong></div></td>
+									</tr>
+									<tr>
+										<td valign="top"><input type="text" name="city" value="{city}" maxlength="49" class="input" /> </td>
+										<td><div>{state_js_pulldown}</div></td>
+										<td></td>
+										<td valign="top"><input type="text" name="zipcode" value="{zipcode}" maxlength="49" class="input" /> </td>
+									</tr>
+									<tr>
+									<td><if condition="isset($show['error_city']) AND $show['error_city']"><span style="color:#FF0000"><strong>Enter City Name</strong></span></if></td>
+									<td><if condition="isset($show['error_state']) AND $show['error_state']"><span style="color:#FF0000"><strong>Enter State Name</strong></span></if></td><td>&nbsp;</td>
+									<td><if condition="isset($show['error_zip']) AND $show['error_zip']"><span style="color:#FF0000"><strong>Enter Zip/Postal Code</strong></span></if></td>
+									</tr>
+									<tr>
+										<td><div><strong>* {_country}</strong></div><div>{country_js_pulldown}</div></td>
+										<td><if condition="isset($show['error_country']) AND $show['error_country']"><span style="color:#FF0000"><strong>Please select country</strong></span></if></td>
+									</tr>
+								
+							
+									</table>
+									<div style="padding-bottom:9px"></div>
+							
+									
+									<table border="0" cellspacing="3" cellpadding="0">
+									<tr>
+										<td><div><strong>* Telephone</strong></div></td>
+									</tr>
+									<tr>
+									     <td><div style="padding-bottom:3px" class="gray">xxx-xxx-xxxx</div></td>
+									</tr>
+									<tr>
+										<td valign="top"><input type="text" name="telephone" value="{telephone}" maxlength="49" class="input" /> </td>
+										
+									</tr>
+									<tr>
+									<td valign="top"><if condition="isset($show['error_telephone']) AND $show['error_telephone']"><span style="color:#FF0000"><strong>Enter Telephone Number</strong></span></if></td>
+									</tr>
+									</table>
+									
+									
+								</td>
+								
+							</tr>
+							</table>
+				
+						</div>
+						
+					</td>
+				</tr>
+				</table>
+				
+				<hr size="1" width="100%" style="color:#cccccc; margin-top:12px; padding-bottom:8px" />
+				
+				<div style="padding:9px"><input type="submit" class="buttonss" value="{_continu}"  accesskey="s" style="font-size:19px" /> <span id="inlineerror"></span></div>
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</form>
+
+{js}

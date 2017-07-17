@@ -1,0 +1,144 @@
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea" class="sel"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline"><span>{_time_line}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		
+		<!-- Alert area -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_alert_area}</h2>
+			
+			<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="alertarea" />
+			<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdalert}" />
+			{hiddendo}
+			{hiddenid}	
+				<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_alert_area}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_message_to_home_page}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_message}</span></td>
+                                  <td width="80%"><input type="text" name="message" size="18" value="{message}" style="width: 50%;" />
+                                       </td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_location}</span></td> 
+                                    <td>{alertarea_pulldown}</td>
+                                </tr>
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>	
+				</form>
+					
+				
+				<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="20%" nowrap="nowrap">{_message}</td>
+								<td width="20%" nowrap="nowrap">{_location}</td>
+								<td width="15%" align="left">{_edit}</td>
+								<td width="65%">{_delete}</td>
+							  </tr>
+							  <loop name="alertarea">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top"><span style="font-size:17px" class="gray">{message}</span></td>
+								  <td nowrap="nowrap">{location}</td>
+								  <td nowrap="nowrap">{edit}</td>
+								 <td nowrap="nowrap">{remove}</td>
+								 							 
+								</tr>
+							  </loop name="alertarea">
+							  <if condition="isset($show['no_alertarea']) AND $show['no_alertarea']">
+								<tr class="alt1">
+								  <td colspan="3" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  							  
+							  <!--<tr>
+								<td colspan="11">{prevnext}</td>
+							</tr>-->
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>	
+						
+				
+			</div>
+			
+
+			
+		<!-- / Alert area -->
+		
+		
+			
+</div>
+<!-- / tab pane -->
+

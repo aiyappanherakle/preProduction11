@@ -1,0 +1,85 @@
+<script type="text/javascript">
+function validate()
+{
+	var sear_val = document.getElementById("coin_list_Next").value;
+	sear_val.trim();
+	if(sear_val == '')
+	{
+		alert('Please enter Project id/ coin id');
+		return false;
+	}
+	
+		
+	else
+	{
+		return true;
+	}
+}
+
+
+</script>
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+
+	
+
+	<!-- begin content -->
+	<div id="content">
+	
+		<div class="header">Add Images To Ebay</div><br />
+
+		
+			<div class="tab-page">
+					<form method="post" action="AddImage.php" 	accept-charset="UTF-8" name="ilform_AddImage" onsubmit="return validate()">
+				
+					<input type="hidden" name="cmd" value="ilform_AddImage">
+					<div class="block-wrapper">
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							 
+							<div class="block3-header">Upload images through Ebay API</div>
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">You can Upload images through Ebay API for the items. </div></div>
+							
+							<div class="block3-content" style="padding: 0px 0px 0px 10px;">
+								<br>
+								<table width="100%" border="0" >
+									<tr>
+										<td><strong>Paste here the item ids seperated each other by semicolon.</strong></td>
+										
+									</tr>
+									<tr>
+										<td><textarea id="coin_list_Next" name="coin_list_Next" cols="80" rows="30"></textarea></td>
+										
+									</tr>	
+									
+
+									
+								</table>
+								<br>
+									    <input type="submit" name="Submit_ebay" Value="Submit" style="margin-left:420px;">
+							</div>
+							
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</form>
+			</div>
+	
+		</div>
+		<!-- / tab pane -->
+		
+	</div>
+	
+</div>	

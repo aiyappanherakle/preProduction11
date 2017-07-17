@@ -1,0 +1,470 @@
+<script type="text/javascript">
+	function checkUser(user_id,event)
+	{
+		event.preventDefault();
+		var href = event.currentTarget.getAttribute('href');
+		//alert(href);
+		$.ajax({
+	        url: 'consignment_ajax.php',
+	        type: 'post',
+	        dataType: 'json',
+	        data: {cmd: '_check-user', userid: user_id},
+	        success: function(data)
+	        {
+	        	if(data.status)
+	        	{
+	        		window.location.href = href;	        		
+	        	}
+	        	else
+	        	{
+	        		if(confirm("Invalid user.Do you want to continue ?"))
+					{
+						window.location.href = href;
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+	        	}
+	        },
+	        error: function(data)
+	        {
+	        	alert("functionality error.");
+	        }         
+	    });
+	    return false;
+	}
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		
+		<a href="consignments.php" class="sel"><span>Listing</span></a>
+		<a href="consignments.php?cmd=create" ><span>Create</span></a> 
+		<a href="consignments.php?cmd=list_raw_send" ><span>List Raw</span></a>
+		 <a href="consignments.php?cmd=search" ><span>Search</span></a>
+		 <a href="consignments.php?cmd=pen_con_list" ><span>Pending List</span></a>
+		  <a href="consignments.php?cmd=quick_page" ><span>Edit Min/BN</span></a>
+		  <a href="minbids_change.php" ><span>Edit Min/BN(Inc.Live)</span></a>
+	    <a href="consignments.php?cmd=listing_page"  ><span>Editing Fvf</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Consignments</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Coins</h2>
+			
+			
+			     <form method="get" action="{ilpage[consignment]}" accept-charset="UTF-8" id="consignment" style="margin: 0px;">
+				    <input type="hidden" name="subcmd" value="search_list" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Coin User Details   </div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Your Consignment Coin Details</div></div>
+                            <div class="block3-content" style="padding:0px">
+                             <table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="12%" align="left">Username</td>
+								<td width="12%" align="left">Firstname/Last Name</td>
+								<td width="12%">Email</td>
+								<td width="12%">Consignment Id</td>
+								<td width="12%">Referal Id</td>
+								<!--<td width="12%">No.Of.Coins</td>-->
+							  </tr>
+							  
+							  <tr class="alt1" valign="top">
+								 <td width="12%">{username}</td>
+								 <td width="12%">{firstname} {lastname}</td>
+								 <td width="12%">{email}</td>
+								 <td width="12%">{consignid}</td>
+								 <td width="12%">{referal_id}</td>
+								<!-- <td width="12%">{coins}</td>-->
+								</tr>
+							  </table>					
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+					
+				   <div><table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="5%" align="left">No.Of.Coin : <strong>{coins}</strong></td>
+								<td width="1%"></td>
+								<td width="10%">No.Of.Posted : <strong>{posted}</strong></td>
+								<td width="10%">No.Of.Listed Coins : <strong>{listed_count}</strong></td>
+								<td width="11%">No.Of.Listed Raw Coins : <strong>{raw_count}</strong></td>
+								<td width="15%">No.Of.Listed Send Certified Coins : <strong>{send_count}</strong></td>
+							  </tr>
+							  </table></div>
+				   <br />
+				   <if condition="isset($show['new_message']) AND $show['new_message'] == true">
+				   <div class="block-wrapper">
+				   					<div class="block3">
+				   					
+				   							<div class="block3-top">
+				   									<div class="block3-right">
+				   											<div class="block3-left"></div>
+				   									</div>
+				   							</div>
+				   							
+				   							<div class="block3-header">Add Consignment Note</div>
+				   							<div class="block3-content" style="padding:0px">
+				   							<form action="" method="post">
+			   								<input name="msgcmd" value="add_new" type="hidden">
+			   								<textarea name="new_message" cols="50" rows="6"></textarea>
+			   								<br>
+			   								<input type="checkbox" checked name="send_email" id="send_email" value="1"><label for="send_email">Notify Consignor through EMail</label><input name="save_message" value="Save" type="submit">
+					   						</form>
+				   							</div>
+				   							
+				   							<div class="block3-footer">
+				   									<div class="block3-right">
+				   											<div class="block3-left"></div>
+				   									</div>
+				   							</div>
+				   							
+				   					</div>
+	   				</div>
+	   				</if>
+					<if condition="isset($show['edit_message']) AND $show['edit_message'] == true">
+				   <div class="block-wrapper">
+				   					<div class="block3">
+				   					
+				   							<div class="block3-top">
+				   									<div class="block3-right">
+				   											<div class="block3-left"></div>
+				   									</div>
+				   							</div>
+				   							
+				   							<div class="block3-header">Edit Consignment Note</div>
+				   							<div class="block3-content" style="padding:0px">
+				   							<form action="" method="post">
+			   								<input name="edit_message_id" value="{edit_message_id}" type="hidden">
+			   								<textarea name="edit_message" cols="50" rows="6">{edit_message}</textarea>
+			   								<br>
+			   								<input type="checkbox" name="send_email" id="send_email" value="1"><label for="send_email">Notify Consignor through EMail</label><input name="save_message" value="Save" type="submit">
+					   						</form>
+				   							</div>
+				   							
+				   							<div class="block3-footer">
+				   									<div class="block3-right">
+				   											<div class="block3-left"></div>
+				   									</div>
+				   							</div>
+				   							
+				   					</div>
+	   				</div>
+	   				</if>
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Add Consignment Note (can be seen by Consignor!){add_new_note}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="5%" align="left">Slno</td>
+								<td width="70%">Message</td>
+								<td width="10%">Print</td>
+								<td width="20%">Send On</td>
+								<td width="10%">Edit</td>
+
+								<td width="10%">Delete</td>
+							  </tr>
+							  <loop name="consignment_message_list">
+							  <tr class="alt1" valign="top">
+								<td nowrap="nowrap">{slno}</td>
+								<td>{message}</td>
+								<td>{note_pdf_generator_link}</td>
+								<td>{created_on}</td>
+								<td>{edit}</td>
+								<td width="12%">{delete}</td>
+							  </tr>
+							  </loop name="consignment_message_list">
+		 						<if condition="isset($show['consignment_message']) AND $show['consignment_message'] == 'consignment_message'">
+                                   <tr class="alt1">
+                                     <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                   </tr>
+                            	</if>
+							                      
+							</table>
+								
+							</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Coin Details {catlogorder} {coinorder}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="5%" align="left">coin</td>
+								<td width="5%">PCGS</td>
+								<td width="10%">Title</td>
+								<td width="10%">Coin Id</td>
+								<td width="11%">List as Certified Coin</td>
+								<td width="11%">List as Raw Coin</td>
+								<td width="15%">List as Send Certified Coin</td>
+							  </tr>
+							  <loop name="coin_list">
+								<tr class="alt1" valign="top">
+								  
+								  <td nowrap="nowrap">{coin}
+									</td>
+								  <td>{pc}</td>
+								  <td>{desci}</td>
+								  <td width="12%">{coinid}</td>
+								 <td width="12%">{certified}</td>
+								 <td width="12%">{raw}</td>
+								 <td width="12%">{send_certified}</td>
+								 
+								</tr>
+							  </loop name="coin_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'coin_list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							                      
+							</table>
+							<bR />
+							<table>
+							  <tr class="alt1">
+                                                                 <td colspan="15" nowrap="nowrap" align="center">{addsinglecoin}</td>
+																  <td nowrap="nowrap" align="center">{addrawcoin}</td>
+																   <td  nowrap="nowrap" align="center">{sendcer}</td>
+																  <td  nowrap="nowrap" align="center">{newadd}</td> 
+                                                               </tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				   
+      				
+	  </div>
+		<!-- / grading tab page -->
+		
+	<!--vijay commented the code for bug #8255 - Suku - changes to Consignment Note Project start  >	
+	<div class="tab-page">
+			
+			<h2 class="tab">Messages</h2>
+			
+			
+				   <if condition="isset($show['new_message']) AND $show['new_message'] == true">
+				   <div class="block-wrapper">
+				   					<div class="block3">
+				   					
+				   							<div class="block3-top">
+				   									<div class="block3-right">
+				   											<div class="block3-left"></div>
+				   									</div>
+				   							</div>
+				   							
+				   							<div class="block3-header">Add Consignment Note</div>
+				   							<div class="block3-content" style="padding:0px">
+				   							<form action="" method="post">
+			   								<input name="msgcmd" value="add_new" type="hidden">
+			   								<textarea name="new_message" cols="50" rows="6"></textarea>
+			   								<br>
+			   								<input type="checkbox" checked name="send_email" id="send_email" value="1"><label for="send_email">Notify Consignor through EMail</label><input name="save_message" value="Save" type="submit">
+					   						</form>
+				   							</div>
+				   							
+				   							<div class="block3-footer">
+				   									<div class="block3-right">
+				   											<div class="block3-left"></div>
+				   									</div>
+				   							</div>
+				   							
+				   					</div>
+	   				</div>
+	   				</if>
+					<if condition="isset($show['edit_message']) AND $show['edit_message'] == true">
+				   <div class="block-wrapper">
+				   					<div class="block3">
+				   					
+				   							<div class="block3-top">
+				   									<div class="block3-right">
+				   											<div class="block3-left"></div>
+				   									</div>
+				   							</div>
+				   							
+				   							<div class="block3-header">Edit Consignment Note</div>
+				   							<div class="block3-content" style="padding:0px">
+				   							<form action="" method="post">
+			   								<input name="edit_message_id" value="{edit_message_id}" type="hidden">
+			   								<textarea name="edit_message" cols="50" rows="6">{edit_message}</textarea>
+			   								<br>
+			   								<input type="checkbox" name="send_email" id="send_email" value="1"><label for="send_email">Notify Consignor through EMail</label><input name="save_message" value="Save" type="submit">
+					   						</form>
+				   							</div>
+				   							
+				   							<div class="block3-footer">
+				   									<div class="block3-right">
+				   											<div class="block3-left"></div>
+				   									</div>
+				   							</div>
+				   							
+				   					</div>
+	   				</div>
+	   				</if>
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Add Consignment Note (can be seen by Consignor!){add_new_note}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="5%" align="left">Slno</td>
+								<td width="70%">Message</td>
+								<td width="10%">Print</td>
+								<td width="20%">Send On</td>
+								<td width="10%">Edit</td>
+
+								<td width="10%">Delete</td>
+							  </tr>
+							  <loop name="consignment_message_list">
+							  <tr class="alt1" valign="top">
+								<td nowrap="nowrap">{slno}</td>
+								<td>{message}</td>
+								<td>{note_pdf_generator_link}</td>
+								<td>{created_on}</td>
+								<td>{edit}</td>
+								<td width="12%">{delete}</td>
+							  </tr>
+							  </loop name="consignment_message_list">
+		 						<if condition="isset($show['consignment_message']) AND $show['consignment_message'] == 'consignment_message'">
+                                   <tr class="alt1">
+                                     <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                   </tr>
+                            	</if>
+							                      
+							</table>
+								
+							</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				<div class="block-wrapper">
+									<div class="block3">
+									
+											<div class="block3-top">
+													<div class="block3-right">
+															<div class="block3-left"></div>
+													</div>
+											</div>
+											
+											<div class="block3-header">Pdf Generator</div>
+											<div class="block3-content" style="padding:0px">
+												
+											<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+											  <tr class="alt2">
+												<td colspan="3">Composed messaged will be available for all consignor(Should be used for general messages only)</td>
+												</tr>
+											  <tr><td>
+											  	{pdf_content_drop_down}
+											  </td><td>	<a onclick="var r=$('#pdf_drop_down').val(); window.open('consignments_fast.php?cmd=pdf_message_add&user_id={user_id}&consignid={consignid}&msgid='+r,'mywindow','width=400,height=200,scrollbars=yes')">Add</a> / 
+											  			<a onclick="var r=$('#pdf_drop_down').val(); window.open('consignments_fast.php?cmd=pdf_message_edit&user_id={user_id}&consignid={consignid}&msgid='+r,'mywindow','width=400,height=200,scrollbars=yes')">Edit</a> / 
+											  			<a onclick="var r=$('#pdf_drop_down').val(); window.open('consignments_fast.php?cmd=pdf_message_delete&user_id={user_id}&consignid={consignid}&msgid='+r,'mywindow','width=400,height=200,scrollbars=yes')">Delete</a>
+											  	</td><td>
+									  <button onclick="var r=$('#pdf_drop_down').val(); window.open('{pdf_generator_link}'+r,'mywindow','width=400,height=200,scrollbars=yes')">Generate PDF</button>
+											  </td></tr>
+											  
+
+
+											</table>
+												
+											</div>
+											
+											<div class="block3-footer">
+													<div class="block3-right">
+															<div class="block3-left"></div>
+													</div>
+											</div>
+											
+									</div>
+								</div>
+				   
+				   
+      				
+	  </div>	
+	<-- vijay commented the end-->		
+		
+		
+</div>
+<!-- / tab pane -->

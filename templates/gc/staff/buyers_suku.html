@@ -1,0 +1,552 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- begin content -->
+<div id="content">
+<div class="header">Buyer</div>
+<br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- shipping tab page for search -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Search</div>
+                            <div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Search Payment </div>
+                            </div>
+                            <div class="block3-content" style="padding:0px">
+                          <form name="ilform" action="buyers_suku.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+						  <input type="hidden" name="cmd" value="buyer" />   
+						  <input type="hidden" name="subcmd" value="search" />
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Search by</span></td>
+								
+								<td><select name="searchby" style="width:150px" onchange="" >							
+								<option value="invoiceid">Invoice ID</option>
+								<option value="user_id">User ID</option>
+								<option value="username">User Name</option>
+								<option value="email" selected="selected">User Email</option>
+								<option value="amount">Amount</option>																
+								</select>
+								<input type="text" name="searchkey" size="18" value="{searchkey_value}" style="width:150px" /></td>		
+								<td>{reportfromrange}</td>								
+							    </tr>					                                
+                                <tr>
+								<td align="left" colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> <br />
+								</tr>                        
+                                </table>
+                           		</form>				
+                            </div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+						<!--	Listing of all invoices tab start-->
+						</div></div>
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            						
+						 <div class="block3-header">Invoice Listing <span style="float:right; vertical-align:middle">
+						 <if condition="isset($show['all_invoices']) AND $show['all_invoices']=='true'">
+						 <a href="buyers.php">Back to All Invoices</a>
+						 </if>
+						 {invoice_type_drop_down}
+						 </span></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td><a href="buyers.php?order=invoice">Invoice ID</a></td>								 
+								  <td>Buyer Name</td>
+								  <td>First Name</td>
+								  <td>Last Name</td>
+								  <td>Amount</td>
+								  <td>Date Paid</td>
+								  <td>Method</td>
+								  <td>Items</td>
+								  <td>payment</td>
+								  
+								
+							</tr>
+							<loop name="invoicelist"> 							
+							<tr class="alt1" valign="top">								
+								<td nowrap="nowrap"><span class="blue">{invoiceid}</span> </td>
+								<td nowrap="nowrap">{user_name}</td>
+								<td nowrap="nowrap">{first_name}</td>
+								<td nowrap="nowrap">{last_name}</td>
+								<td nowrap="nowrap">{totalamount}</td>								
+								<td nowrap="nowrap"><div class="blue">{paiddate}</div></td>
+								<td>{paymethod}</td>
+								<td><span class="blue">{details}</span></td>
+								<td><span class="blue">{status}</span></td>
+								
+								
+							</tr>
+							</loop name="invoicelist">
+						
+                           <tr>
+								<td colspan="11">{series_prevnext}</td>
+							</tr>
+						
+							
+							</table>
+							
+</div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							<div>&nbsp;</div>
+							
+							</div></div>
+			<!--<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+						<div class="block3-header">Update Payment</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Update Payment Here</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                <form name="ilform" action="{ilpage[buyers]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+								<input type="hidden" name="cmd" value="buyer" />
+						 
+								<input type="hidden" name="subcmd" value="paymentpaid" />
+								<input type="hidden" name="invoiceid" value="{pay_invoice_id}" />								
+								{hiddendo}
+								{hiddenid}
+                                 <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}" align="center">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">Name</span>
+                                  <td width="80%">{pay_first_name}{pay_last_name}</td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Username</span></td> 
+                                    <td>{pay_username}</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Email ID</span></td> 
+                                    <td>{pay_email}</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Address</span></td> 
+                                    <td>{pay_address}
+									</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Phone No</span></td> 
+                                    <td>{pay_phone}</td>
+                                </tr>
+							       
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Invoice ID</span></td> 
+                                    <td>{pay_invoice_id}
+									</td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Amount</span></td> 
+                                    <td><input type="text" name="amount" value="{pay_amount}" />
+									</td>
+                                </tr>
+								 
+								<tr class="alt1">
+                                 
+                                    <td colspan="2" align="center"><input type="submit" class="buttons" value="Save" style="font-size:15px" />	</td> 
+                                </tr>
+								   </table>	
+								   </form>					
+					            </div> 	
+							
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>-->
+
+		</div>
+		
+		
+		
+		<!-- / shipping tab page shipping new  -->
+		<div class="tab-page">
+			
+			<h2 class="tab">A/R Report</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <!--This Items are Removed From here and Pasted Above Set of Code-->
+								
+								
+                            <div class="block3-header">A/R Report</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">A/ R Report Listed Here</div></div>
+                            <div class="block3-content" style="padding:0px">
+                          
+                             <table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td width="7%">Customer ID</td>								 
+								  <td width="20%" >Customer Name</td>
+								  <td width="20%" >Number Of invoice</td>
+								  <td width="15%" >Total</td>
+								  
+								  <td width="20%">Email Notification</td>
+								  
+								
+							</tr>
+							<loop name="reportlist"> 							
+							<tr class="alt1" valign="top">								
+								<td nowrap="nowrap"><span class="blue">{user_id}</span> </td>
+								<td nowrap="nowrap">{username}</td>
+								<td nowrap="nowrap">{num_invoice}</td>								
+								<td nowrap="nowrap"><div class="blue">{amount}</div></td>
+								
+								<td>{email_notify}</td>
+								
+								
+							</tr>
+							</loop name="reportlist">
+							
+                           <tr>
+								<td colspan="11">{reportprevnext}</td>
+							</tr>
+						
+							
+							</table>
+							
+							
+							</div>	
+								
+                           							
+                          
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		<!--A/R Report tab-->
+		
+		<div class="tab-page">
+			
+			<h2 class="tab">Shipping List</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Shipping List</div>                            
+                            <div class="block3-content" style="padding:0px">
+							 <form name="ilform" action="{ilpage[buyers]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+							 <input type="hidden" name="cmd" value="buyer" />
+							 <!--<input type="hidden" name="subcmd" value="csvgenerate" />-->
+							  <input type="hidden" name="subcmd1" value="pdflist" />
+							<table align="center">
+							 <tr class="alt1">
+                                  <td width="40%"><span class="gray">Date of Shipment</span>
+                                  <td width="60%">{daylist}&nbsp;&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;&nbsp;{yearlist}</td>
+                              </tr>
+							 <tr class="alt1">
+							<td colspan="2" align="center">
+							<input type="submit" name="generate" value="Generate"/>
+							</td>
+							</tr>
+							</table>
+                               <!-- This Only for Shipping List-->	
+							   </form>	
+                            </div>
+								
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		<!--Shipping list-->
+		
+		<!-- schedule tab by karthik on Sep 29- -->
+			<div class="tab-page">
+			
+			<h2 class="tab">Schedule</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Schedule</div>                            
+                            <div class="block3-content" style="padding:0px">
+							 <form name="ilform" action="{ilpage[buyers]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+							 <input type="hidden" name="cmd" value="buyer" />
+							 <!--<input type="hidden" name="subcmd" value="csvgenerate" />-->
+							  <input type="hidden" name="subcmd2" value="schedule" />
+						
+                               <!-- This Only for Shipping List-->	
+							  
+								<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td>Invoice ID</td>								 
+								  <td>Buyer Name</td>
+								  <td>First Name</td>
+								  <td>Last Name</td>
+								  <td>Amount</td>
+								  <td>Method</td>
+						          <td>Sel</td>
+							</tr>
+							<loop name="invoicelist1"> 							
+							<tr class="alt1" valign="top">								
+								<td nowrap="nowrap"><span class="blue">{invoiceid}</span> </td>
+								<td nowrap="nowrap">{user_name}</td>
+								<td nowrap="nowrap">{first_name}</td>
+								<td nowrap="nowrap">{last_name}</td>
+								<td nowrap="nowrap">{totalamount}</td>								
+								<td>{paymethod}</td>
+							    <td nowrap="nowrap">{check}</td>
+							</tr>
+							</loop name="invoicelist1">
+							
+                           <tr class="alt1">
+								<td colspan="11" align="right"><span style="float:left; padding-top:2px; font-size:14px" class="blue">
+							<a href="javascript:void(0)" onclick="check.check_all(true)" style="text-decoration:underline"></a>&nbsp;&nbsp; 
+							<a href="javascript:void(0)" onclick="inlineCB.check_all(false)" style="text-decoration:underline"></a>&nbsp;&nbsp;
+							</span>
+							<select name="subcmd" style="font-family: verdana">
+                            <optgroup label="{_select_action}">
+                            <option value="paid">Mark As Paid</option>
+                            </optgroup>
+                            </select>
+							
+							<input type="submit" class="buttons" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}" id="inlinebutton" />
+							</td>
+							</tr>
+						
+							<tr>
+								<td colspan="11">{series_prevnext1}</td>
+							</tr>
+							</table>
+							 </form>	
+                            </div>
+								
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		
+		<!-- Schedule tab -->
+		
+		<div class="tab-page">
+			
+			<h2 class="tab">Un Paid Invoices</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Unpaid User List</div>                            
+                            <div class="block3-content" style="padding:0px">
+							 <form name="ilform" action="buyers_suku.php" method="post" accept-charset="UTF-8" style="margin: 0px;">
+							 <input type="hidden" name="cmd" value="buyer" />
+							 <input type="hidden" name="subcmd" value="unpaid" />
+							
+							<table align="center">
+							 <tr class="alt1">
+                                  <td width="40%"><span class="gray">Click the Button</span>
+								  <td>Here we get unpaid user list and their Amount in Excel Format</td>                                  
+                              </tr>
+							 <tr class="alt1">
+							<td colspan="2" align="center">
+							<input type="submit" name="generate" value="Generate"/>
+							</td>
+							</tr>
+							</table>
+                               <!-- This Only for Shipping List-->	
+							   </form>	
+							   
+							   
+							   
+							   
+							   		 <form name="ilform" action="excelreport.php" method="post" accept-charset="UTF-8" style="margin: 0px;">
+							 <input type="hidden" name="cmd" value="unpaid_excel" />
+							 
+							
+							<table align="center">
+							 <tr class="alt1">
+		                       <td>Here we get unpaid user list and their Amount in Excel Format</td>                                  
+                              </tr>
+							 <tr class="alt1">
+							<td colspan="2" align="center">
+							<input type="submit" name="submit" value="submit"/>
+							</td>
+							</tr>
+							</table>
+                               <!-- This Only for Shipping List-->	
+							   </form>	  
+							   
+							   
+                            </div>
+								
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		<!--Shipping list-->
+	
+	
+	<!--new itemid unpaid june3-->
+	
+	<div class="tab-page">
+			
+			<h2 class="tab">Un Paid Item</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Unpaid Item List</div>                            
+                            <div class="block3-content" style="padding:0px">
+							 <form name="ilform" action="{ilpage[buyers]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+							 <input type="hidden" name="cmd" value="buyer" />
+							 <input type="hidden" name="subcmd" value="unpaid_itemlist" />
+							
+							<table align="center">
+							 <tr class="alt1">
+                                  <td width="40%"><span class="gray">Click the Button</span>
+								  <td>Here we get Unpaid Item List and their Amount in PDF format</td>                                  
+                              </tr>
+							 <tr class="alt1">
+							<td colspan="2" align="center">
+							<input type="submit" name="generate" value="Generate"/>
+							</td>
+							</tr>
+							</table>
+                               <!-- This Only for Shipping List-->	
+							   </form>	
+                            </div>
+								
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		
+			<!-- Buyers tab  -->
+		<div class="tab-page">
+						<h2 class="tab">Buyers List</h2>
+						<div class="block-wrapper">
+						
+						<div class="block">		
+								<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+								</div>
+								<div class="block-header">Buyer's List</div>
+								<div class="block-content" style="padding:0px">
+								<form name="ilform" action="{ilpage[buyers]}" method="post" accept-charset="UTF-8" style="margin: 0px;" >
+						  		<input type="hidden" name="cmd" value="buyers_print" />
+								<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+								<tr>
+							    <td>Buyer's Unpaid Invoice in PDF</td>
+								</tr>
+								<tr>
+								<td align="center">
+								<input type="submit" class="buttons" value=" {_print} " style="font-size: 15px;" />
+								</td>
+								</tr>
+								</table>
+								</form>
+								</div>
+								<div class="block-footer">
+									<div class="block-right">
+										<div class="block-left"></div>
+									</div>
+								</div>
+							</div>
+							
+						
+							</div>
+						</div>
+		
+		<!-- Buyers tab -->
+	

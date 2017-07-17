@@ -1,0 +1,350 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="content">
+	<div class="header"> Total Owing </div>
+	<br />
+
+<table align="center" border="2">
+<tr>
+<td>
+Total Amount Owing to Great Collection (A/R)
+</td>
+<td>
+<strong> {totamtowing}</strong></td>
+</tr>
+<tr>
+<td>
+Total Amount Owing to Great Collection In Past 15 Days (A/R)
+</td> 
+<td>
+<strong> {totamtowing15}</strong></td>
+</tr>
+<tr>
+<td>
+Total Amount Owing to Great Collection In Past 30 Days (A/R)
+</td>
+<td>
+<strong> {totamtowing30}</strong></td>
+</tr>
+<tr>
+<td>
+Total Amount Owing to Clients (A/P)
+</td>
+<td>
+<strong> {totamtowingclient}</strong></td>
+</tr>
+</table>
+<div>&nbsp;&nbsp;</div>
+
+<div class="header">Top 10 A / R Report </div><br />
+<table align="center" border="2">
+<tr>
+<td>
+Date
+</td>
+<td>
+Customer ID
+</td>
+<td>
+Name
+</td>
+<td>
+Amount
+</td>
+<td>
+Due Days
+</td>
+</tr>
+<loop name="arreport"> 
+<tr>
+<td>
+{date}
+</td>
+<td>
+{cust_id}
+</td>
+<td>
+{name}
+</td>
+<td>
+{amount}
+</td>
+<td>
+{due_days}
+</td>
+</tr>
+</loop name="arreport"> 
+</table>
+
+
+<div>&nbsp;&nbsp;</div>
+
+<div class="header">Top 10 A / P Report </div><br />
+<table align="center" border="2">
+<tr>
+<td>
+Date
+</td>
+<td>
+Customer ID
+</td>
+<td>
+Name
+</td>
+<td>
+Amount
+</td>
+<td>
+Due Days
+</td>
+</tr>
+
+<loop name="apreport"> 
+<tr>
+<td>
+{date}
+</td>
+<td>
+{user_id}
+</td>
+<td>
+{first_name}
+</td>
+<td>
+{amount}
+</td>
+<td>
+{due_days}
+</td>
+</tr>
+</loop name="apreport"> 
+</table>
+
+
+<div>&nbsp;&nbsp;</div>
+
+<div class="header">Fees Collected</div><br />
+<table align="center" border="2">
+<tr>
+<td>
+Month
+</td>
+<td>
+Buyer Fee
+</td>
+<td>
+FVF
+</td>
+<td>
+  Insertion  Fees</td>
+<td>
+Advance Interest
+</td>
+</tr>
+
+
+<loop name="feecal"> 
+<tr>
+<td>
+<strong>{months}</strong>
+</td>
+<td>
+<strong>{buyerfee}</strong>
+</td>
+<td>
+<strong>{fvffee}</strong>
+</td>
+<td>
+<strong>{insfee}</strong>
+</td>
+<td>
+<strong>{adv_int}</strong>
+</td>
+</tr>
+</loop name="feecal"> 
+</table>
+
+<div>&nbsp;&nbsp;</div>
+
+<div class="header">Number Of Item Viewed And Registration</div><br />
+<table align="center" border="2">
+<tr>
+<td>
+Days
+</td>
+<td>
+Total Views
+</td>
+<td>
+Total Registration
+</td>
+<td>
+Total Buyers
+</td>
+</tr>
+
+		
+<tr>
+<td>
+Today
+</td>
+<td>
+<strong>{today_view}</strong>
+</td>
+<td>
+<strong>{today_reg}</strong>
+</td>
+<td>
+<strong>{today_buyer}</strong>
+</td>
+</tr>
+
+<tr>
+<td> Yesterday </td>
+<td>
+{yes_view}
+</td>
+<td>
+<strong>{yes_reg}</strong>
+</td>
+<td>
+<strong>{yes_buyer}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Last 30 Days
+</td>
+<td>
+{month_view}
+</td>
+<td>
+<strong>{month_reg}</strong>
+</td>
+<td>
+<strong>{month_buyer}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Last 60 Days
+</td>
+<td>
+{sixty_view}
+</td>
+<td>
+<strong>{sixty_reg}</strong>
+</td>
+<td>
+<strong>{sixty_buyer}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Last 90 Days
+</td>
+<td>
+{ninety_view}
+</td>
+<td>
+<strong>{ninety_reg}</strong>
+</td>
+<td>
+<strong>{ninety_buyer}</strong>
+</td>
+</tr>
+
+</table>
+
+<div>&nbsp;&nbsp;</div>
+
+<div class="header">Details</div><br />
+<table align="center" border="2">
+
+<tr>
+<td>
+No Auctions Sold   Yesterday</td>
+<td>
+<strong>{auctionyes}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+No of Bin   Yesterday  </td>
+<td>
+<strong>{binyes}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Total Amount on Auctions   Yesterday  </td>
+<td>
+<strong> {totauctionyes}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Total Amount of Bin   Yesterday</td>
+<td>
+<strong>  {totbinyes}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Total values of items listed in GC till now
+</td>
+<td>
+<strong> {totamount}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Total values of items live  in GC now
+</td>
+<td>
+<strong> {totliveamount}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+
+Total No of items listed in GC till now
+</td>
+<td>
+<strong>{totitem}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Total No of items live  in GC now
+</td>
+<td>
+<strong>{totliveitem}</strong>
+</td>
+</tr>
+
+<tr>
+<td>
+Total Amount of cash advance out
+</td>
+<td>
+<strong> {totadv}</strong>
+</td>
+</tr>
+
+</table>
+</div> <!-- Content div -->
+		
+</div>
+<!-- / tab pane -->

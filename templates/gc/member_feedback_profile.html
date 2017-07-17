@@ -1,0 +1,256 @@
+<loop name="memberinfo">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td width="1" valign="top">{profile_logo}</td>
+	<td>&nbsp;&nbsp;&nbsp;</td>
+	<td width="100%" valign="top"><div style="padding-bottom:6px; padding-top:10px"><span class="header blue"><strong>{vendorname}</strong></span><if condition="isset($show['openingstatement']) AND $show['openingstatement']"><div style="font-size:15px; padding-top:3px" class="black">{openingstatement}</div></if></div>
+	<div style="color:#444; padding-top:8px"><span class="gray">{_member_since} {membersince}</span></div></td>
+</tr>
+</table>
+
+<br />
+<div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class="on"><a href="javascript:void(0)">{_feedback}</a></li>
+	<li title="" class=""><a href="{fullprofileurl}">{_full_profile}</a></li>
+    <if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><!--<li title="" class=""><a href="{jobhistoryurl}">{_job_history}</a></li>--></if>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled'] AND isset($show['portfoliolink']) AND $show['portfoliolink']"><li title="" class=""><a href="{http_server}{ilpage[portfolio]}?id={uid}">{_portfolio}</a></li></if>
+	<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND ($_SESSION['ilancedata']['user']['userid'] == $ilance->GPC['id'] OR $_SESSION['ilancedata']['user']['username'] == $ilance->GPC['id'])"><li title="" class="highlight"><a href="{ilpage[selling]}?cmd=profile">{_edit}</a></li></if>
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<div style="color:#444; padding-top:6px; padding-bottom:16px"><strong>{_lifetime_summary}:</strong> {_positives}: <span style="color:#008000">{pos}</span>,  {_neutral}: <span style="color:#000000">{neu}</span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{_negatives}: <span style="color:#FF0000">{neg}</span>, {_bid_retracts}: <span style="color:#FF9900">{ret}</span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{_positive_feedback}: <span style="font-size:14px"><strong>{pcnt}%</strong></span></div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="30%" valign="top">
+	
+		
+		<div class="block-wrapper">
+		<div class="block">
+		
+				<div class="block-top">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+				
+				<div class="block-header">{_feedback_in_depth} <span class="smaller gray">({_past_12_months})</span></div>
+				
+				<div class="block-content" style="padding:0px">
+					
+					<table border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}" width="100%">
+					<tr class="alt2">
+						<td align="left"><span class="gray">{_response}</span></td>
+						<td align="right"><strong>{_past_month}</strong></td>
+						<td align="right"><strong>{_past_6_months}</strong></td>
+						<td align="right"><strong>{_past_12_months}</strong></td>
+					</tr>
+					<tr>
+						<td width="70" align="left" nowrap="nowrap"><span class="gray">{_positive}</span></td>
+						<td align="right"><span style="color:#008000">{pos30}</span></td>
+						<td align="right"><span style="color:#008000">{pos180}</span></td>
+						<td align="right"><span style="color:#008000">{pos365}</span></td>
+					</tr>
+					<tr>
+						<td colspan="4" class="alt2" style="padding:1px"></td>
+					</tr>
+					<tr>
+						<td align="left" nowrap="nowrap"><span class="gray">{_neutral}</span></td>
+						<td align="right">{neu30}</td>
+						<td align="right">{neu180}</td>
+						<td align="right">{neu365}</td>
+					</tr>
+					<tr>
+						<td colspan="4" class="alt2" style="padding:1px"></td>
+					</tr>
+					<tr>
+						<td align="left" nowrap="nowrap"><span class="gray">{_negative}</span></td>
+						<td align="right"><span style="color:#FF0000">{neg30}</span></td>
+						<td align="right"><span style="color:#FF0000">{neg180}</span></td>
+						<td align="right"><span style="color:#FF0000">{neg365}</span></td>
+					</tr>
+					<tr>
+						<td colspan="4" class="alt2" style="padding:1px"></td>
+					</tr>
+					<tr>
+						<td align="left" nowrap="nowrap"><span class="gray">{_bid_retracts}</span></td>
+						<td align="right"><span style="color:#FF9900">{ret30}</span></td>
+						<td align="right"><span style="color:#FF9900">{ret180}</span></td>
+						<td align="right"><span style="color:#FF9900">{ret365}</span></td>
+					</tr>
+					</table>
+					
+				</div>
+				
+				<div class="block-footer">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+				
+		</div>
+		</div>
+		
+		
+			
+		
+		{apihook[leftnav_member]}		
+	
+	</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td width="70%" valign="top">
+
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+    	<tr> 
+    		<td valign="top" width="60%">
+		   
+			
+		  	<!-- feedback profile -->
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_detailed_seller_rating} <span class="smaller gray">({_past_12_months})</span></div>
+					
+					<div class="block-content" style="padding:0px">
+						
+						<div>
+						  <if condition="isset($show['hidecriteria']) AND $show['hidecriteria']">
+							<div align="left" style="padding-top:70px; padding-bottom:82px; padding-left:15px" class="gray">{_this_information_will_be_visible_when_this_member_receives}</div>
+						  <else />
+                          	<div style="width:100%">
+							<table cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}" border="0" width="99.9%">
+							  <tr class="alt2">
+								<td align="left" width="50%" class="smaller"><strong>{_criteria}</strong></td>
+								  <td class="smaller"><strong>{_average}</strong></td>
+								  <td nowrap="nowrap" class="smaller"><strong>{_ratings}</strong></td>
+							  </tr>
+							  <loop name="criteria">
+								<tr class="alt1">
+								  <td nowrap="nowrap"><span class="gray">{title}</span></td>
+									<td>{average}</td>
+									<td><span class="blue">{ratings}</span></td>
+								</tr>
+							  </loop name="criteria">
+							  <tr>
+							  	<td colspan="3"><div class="blue" style="padding-top:8px; padding-bottom:8px"><a onmouseover="Tip('<div><strong>{_how_is_feedback_percentage_calculated}</strong></div><table border=0 cellpadding=0 cellspacing=0 width=100%><tr><td colspan=2 align=justify>{_the_positive_feedback_overall_percentage_is_calculated}</td></tr><tr><td colspan=2><br /></td></tr><tr><td colspan=2><table align=center><tr><td align=center><label>{_positives}</label></td></tr><tr><td align=center><label><hr size=1 width=100% />{_positives} + {_negatives}</label></td></tr></table></td></tr></table>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()" href="javascript:void(0)">{_how_is_feedback_percentage_calculated}</a></div></td>
+							  </tr>					  		
+							  </table>
+                              </div>
+						  </if>
+					  </div>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			</div><!-- / feedback profile -->
+		  	</td>
+			
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			
+			<td valign="top" width="50%"><span style="font-size:13px"><strong>{_member_links}</strong></span><hr size="1" width="100%" style="color:#ebebeb" />
+			<if condition="$ilconfig['globalauctionsettings_productauctionsenabled']"><div style="padding-top:6px"><span class="blue"><a href="{ilpage[search]}?mode=product&amp;searchuser={vendorname_plain}" rel="nofollow">{_see_items_listed_by_this_member}</a></span></div></if>
+			<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><div style="padding-top:6px"><span class="blue"><a href="{ilpage[search]}?mode=service&amp;searchuser={vendorname_plain}" rel="nofollow">{_see_projects_listed_by_this_member}</a></span></div></if>
+			
+            <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $ilconfig['globalauctionsettings_productauctionsenabled']">
+                <if condition="isset($show['selleraddedtowatchlist']) AND $show['selleraddedtowatchlist']">
+                    <div style="padding-top:6px"><span id="sellerwatchlistresponse" class="blue">{_seller_is_in_favorites}&nbsp;&nbsp;&nbsp;<span class="smaller blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}watchlist?tab=2" style="text-decoration:underline">{_watchlist}</a><else /><a href="{http_server}{ilpage[watchlist]}?tab=2" style="text-decoration:underline">{_watchlist}</a></if></span></span></div>
+                <else />
+                    <div style="padding-top:6px"><span id="sellerwatchlistresponse" class="blue"><a href="javascript:void(0)" onclick="add_seller_to_watchlist('{project_user_id}', '{user[userid]}')" style="text-decoration:none">{_add_seller_to_favorites}</a></span></div>
+                </if>
+            </if>
+			
+            <div style="padding-top:6px"><span class="blue"><a href="{https_server}{ilpage[abuse]}?cmd=profile&amp;id={uid}" rel="nofollow">{_report_abuse}</a></span></div>
+            
+			<if condition="isset($ilconfig['globalfilters_contactform_member']) AND $ilconfig['globalfilters_contactform_member']">
+            <div style="padding-top:6px"><span class="blue"><a href="{https_server}{ilpage[merch]}?cmd=contact&uid={uid}">{_contact_form}</a></span></div>
+            </if>	
+			
+			</td>
+        </tr>
+    	
+      </table>
+	  
+<br />
+  <!-- / feedback -->
+	
+	
+	
+
+
+	</td>
+</tr>
+</table>
+ 
+<a name="feedback"></a>
+{feedbacktabs}
+<div class="block-wrapper">
+<div class="block3">
+
+		<div class="block3-top">
+				<div class="block3-right">
+						<div class="block3-left"></div>
+				</div>
+		</div>
+		
+		<div class="block3-header">{_feedback}</div>
+		
+		<div class="block3-content" style="padding:0px">
+			
+			<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+			<tr>
+				<td width="4%" class="alt2"></td>
+				<td class="alt2" width="38%">{_feedback}</td>
+				<td class="alt2" width="9%" nowrap="nowrap">{_listing_type}</td>
+				<td class="alt2" width="9%" nowrap="nowrap">{_win_type}</td>
+				<td width="20%" nowrap="nowrap" class="alt2">{columnas}</td>
+				<td width="12%" nowrap="nowrap" class="alt2">{_shipping}</td>
+				<td width="15%" align="left" class="alt2">{_date}</td>
+			</tr>
+			<loop name="feedback">
+			<tr class="alt1" valign="top">
+				<td align="center" valign="top">{icon}</td>
+				<td><div>{comment} {commentresponse} {mutuallywithdrawresponse}</div><div class="gray" style="padding-top:8px">{project_title} (#{project_id})</div></td>
+				<td nowrap="nowrap"><div>{listingtype}</div></td>
+				<td nowrap="nowrap" width="20%"><div class="smaller gray">{wintype}</div></td>
+				<td nowrap="nowrap"><div class="smaller gray">{membertype} <span class="blue">{member}</span></div><div style="color:#bbb; font-size:15px; padding-top:5px">{total}</div></td>
+				<td nowrap="nowrap"><div class="smaller gray">{shippingtotal}</div></td>
+				<td nowrap="nowrap" align="left"><div>{date}</div><div style="padding-top:8px" class="blue">{viewitem}</div></td>
+			</tr>
+			</loop name="feedback">	
+			<if condition="isset($show['no_feedback_results']) AND $show['no_feedback_results']"><tr> 
+				<td colspan="7" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px">{_no_results_found}</div></td>
+            </tr></if>
+			<tr>
+				<td colspan="7">{prevnext}</td>
+			</tr>		
+			</table>
+			
+		</div>
+		
+		<div class="block3-footer">
+				<div class="block3-right">
+						<div class="block3-left"></div>
+				</div>
+		</div>
+		
+</div>
+</div>
+</loop name="memberinfo">
+
+<if condition="empty($_SESSION['ilancedata']['user']['userid'])"><div style="padding-top:12px" class="gray">{_market_yourself} – <span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{https_server}register" rel="nofollow">{_get_your_own_profile_now}</a><else /><a href="{https_server}{ilpage[registration]}" rel="nofollow">{_get_your_own_profile_now}</a></if></span> {_and_grow_your_business_free_and_paid_memberships}.</div></if>

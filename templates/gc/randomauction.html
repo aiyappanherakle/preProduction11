@@ -1,0 +1,171 @@
+<style type="text/css">
+div.sc_menu_wrapper {
+  position: relative;   
+  height: 533px;
+  width: 195px;
+  margin-top: 0px;
+  overflow: auto;
+}
+div.sc_menu {
+  padding: 15px 0;
+  width: 195px;
+}
+#open
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#imgs
+{
+background-image: url(images/gc/w2.jpg);
+width:198px;
+height:151px;
+}
+#textim
+{
+background-image: url(images/gc/coin_bg.jpg);
+width:198px;
+height:160px;
+
+}
+#amo
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#fetit
+{
+background:none;
+color:#303030;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}		
+#titl
+{
+background:none;
+color:#5B6C7E;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+		
+		a:focus { outline:none }
+		
+		img { border: 0 }
+		
+	
+	  
+		.slider-wrap { /* This div isn't entirely necessary but good for getting the side arrows vertically centered */
+			
+			position: relative;
+			width: 100%;
+		}
+
+
+
+		.stripViewer { /* This is the viewing window */
+			position: relative;
+			overflow: hidden; 
+			/*border: 5px solid #000;*/ /* this is the border. should have the same value for the links */
+			margin: auto;
+			
+		}
+		
+		.stripViewer .panelContainer { /* This is the big long container used to house your end-to-end divs. Width is calculated and specified by the JS  */
+			position: relative;
+			left: 0; top: 0;
+			
+			list-style-type: none;
+			/* -moz-user-select: none; // This breaks CSS validation but stops accidental (and intentional - beware) panel highlighting in Firefox. Some people might find this useful, crazy fools. */
+		}
+		
+		.stripViewer .panelContainer .panel { /* Each panel is arranged end-to-end */
+			float:left;
+			height: 100%;
+			position: relative;
+			width: 700px; /* Also specified in  .stripViewer  above */
+		}
+		
+		.stripViewer .panelContainer .panel .wrapper { /* Wrapper to give some padding in the panels, without messing with existing panel width */
+			padding: 10px;
+		}
+		
+		
+		
+		.stripNavL, .stripNavR { /* The left and right arrows */
+			position: absolute;
+			top: 80px;
+			text-indent: -9000em;
+		}
+		
+		.stripNavL a, .stripNavR a {
+			display: block;
+			height: 40px;
+			width: 40px;
+		}
+		
+		.stripNavL {
+			left: 0;
+		}
+		
+		.stripNavR {
+			right: 0;
+		}
+		
+		.stripNavL {
+			background: url("images/arrow-left.gif") no-repeat center;
+		}
+		
+		.stripNavR {
+			background: url("images/arrow-right.gif") no-repeat center;
+		}
+		 .stripNav ul
+		{
+		display:none;
+		} 
+		h1
+		{
+		margin:0px;
+		color: #FFFFFF;
+		font-family: Arial,Helvetica,sans-serif;
+		font-size: medium;
+		font-weight: bold;
+		}
+	</style>
+
+<div class="block-wrapper">                
+                            <div class="block">                            
+                                    <div class="block-top">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>                                    
+                                    <div class="block-header"><h1>{_random_coin_auctions_content_title}</h1></div>   
+									 <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_random_coin_auctions_content}</div></div>                                 
+                                    <div class="block-content" style="padding: 6px 0px 0px 6px">
+                     
+										{myfeature_random}							
+									
+                                    </div>                                    
+                                    <div class="block-footer">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>                                    
+                            </div>
+                        </div>

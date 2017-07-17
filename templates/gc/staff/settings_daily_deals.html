@@ -1,0 +1,305 @@
+<!-- begin v3body4 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+$('span#ssel_auto_bud').click(function() {
+	
+		cat_list = '{categoty_arr}';
+		cat_id = cat_list.split('|');
+		cats = cat_id.length;
+		
+		for(i=0;i<cats;i++)
+		{
+			var checkboxes = parseInt($('table#daily_deal_tab').children('tbody').children('tr.category_'+cat_id[i]).children("td:last-child").children('input.daily_deal_cls').length)-1;
+
+			var random_checkbox = Math.floor(Math.random() * checkboxes) ;
+			var random_checkbox1 = Math.floor(Math.random() * checkboxes) - 1;
+			$('table#daily_deal_tab').children('tbody').children('tr.category_'+cat_id[i]).children("td:last-child").children('input.daily_deal_cls').prop("checked", false);
+			
+			if(random_checkbox == random_checkbox1)
+			{
+				random_checkbox1++;
+			}
+			
+			if(random_checkbox1 > checkboxes || random_checkbox > checkboxes)
+			{
+				random_checkbox1--;
+				random_checkbox--;random_checkbox--;
+			}
+			
+			
+			$('table#daily_deal_tab').children('tbody').children('tr.category_'+cat_id[i]).eq(random_checkbox).children("td:last-child").children('input.daily_deal_cls').prop("checked", true);
+			$('table#daily_deal_tab').children('tbody').children('tr.category_'+cat_id[i]).eq(random_checkbox1).children("td:last-child").children('input.daily_deal_cls').prop("checked", true);
+		}
+		
+	});
+	
+});
+
+</script>
+<style>
+#amo {
+    background: none repeat scroll 0 0 transparent;
+    color: #E16E19;
+    font-family: Tahoma,Arial,"Times New Roman",Verdana;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+</style>
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals" class="sel"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline"><span>{_time_line}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		
+		<!-- daily deals -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_daily_deals}</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+					
+					<div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            <div class="block3-header">{_daily_deals}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_list_of_setting_available_for_staff_to_edit}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                          <form name="ilform" action="{ilpage[settings]}" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+						  <input type="hidden" name="cmd" value="dailydeals" />   
+						  <input type="hidden" name="coin_id" value="{coin_id}" />  
+						  <input type="hidden" name="subcmd" value="{hiddenfieldsubcmd}" />
+								{hiddendo}
+								{hiddenid}
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Coin ID</span></td> 
+                                    <td>{coin_id}</td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_name_of_the_deal}</span></td> 
+                                    <td><input type="text" name="nameofthedeal" size="18" value="{nameofthedeal}" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_offer_amount}</span></td> 
+                                    <td><input type="text" name="offeramount" value="{offerAmt}"  /></td>
+                                </tr>
+								 <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_offer_type}</span></td> 
+                                    <td>{Type}</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_go_live_date}</span></td> 
+                                    <td>{daylist}&nbsp;&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;&nbsp;{yearlist}</td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_notes}</span></td> 
+                                    <td><textarea name="description">{notes}</textarea></td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray"></span></td> 
+                                    <td>* {_when_a_coin_is_made_as_deal_of_the_day_it_will_be_posted_or_modified_as_buy_now_posting}</td>
+                                </tr>
+								
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+								</form>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+						  
+						  
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							<div>&nbsp;</div>
+					
+					
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                          
+							
+							  
+                            <div class="block3-header">{_listing}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Daily Deal Listing</div></div>
+                            <div class="block3-content" style="padding:0px">
+                              <table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">								
+								<td width="35%" align="left">Deal</td>
+								<td width="10%">Offer</td>								
+								<td width="15%">Coin ID</td>
+								<td width="20%">Live Date</td>
+								<td width="20%">Notes</td>
+								<td align="center" nowrap="nowrap">{_actions}</td>
+								
+							  </tr>
+							  <loop name="dailydeal">							 
+								<tr class="alt1" valign="top">	
+															
+								  <td nowrap="nowrap">{deal_name}</td>
+								  <td>{offer_type} {offer_amt}</td>
+								  <td>{coin_id}</td>
+								  <td>{live_date}</td>
+								  <td>{notes}</td>
+								  
+								  <td align="center">{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{remove}</td>
+								
+								</tr>
+							  </loop name="dailydeal">
+								<if condition="isset($show['promocode']) AND $show['promocode'] == 'false'">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+								</if>
+								
+							  
+							 
+							</table>
+							{prof}							
+                            </div>
+                            
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+			
+	  	</div>
+		<!-- / daily deals -->
+		
+		
+<!--3066 -->
+		<!-- List deals -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_listing}</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">                          
+
+
+                            
+                            <div class="block3-header">Autoselect DailyDeals</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">The items belonging to gchouse and gchouseian will be listed as dailydeal item.</div></div>
+                            <div class="block3-content" style="padding:0px">
+								<form name="daily_deal_form" action="" method="post" style="margin-bottom: 0px;">
+                              <table width="100%"  id="daily_deal_tab" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">								
+								<td align="left">UserName</td>
+
+
+
+
+
+								<td >Item</td>
+								<td >Title</td>
+								<td >Old Price</td>
+								<td >Offer Price</td>
+								<td >Category</td>
+								<td ><span class="blue" id="ssel_auto_bud" style="cursor:pointer;" >Select</span></td>									
+							  </tr>
+							  <loop name="dailydeal_buynow">							 
+								<tr class="category_{class_type}" valign="top">	
+															
+								  <td nowrap="nowrap">{user_name}</td>
+
+								  <td><span id="amo">{item_id}</span></td>
+								  <td><span class="blue">{item_title}</span></td>
+								  <td>{old_price}</td>
+								  <td>{offer_price}</td>
+
+
+								  <td>{category}</td>
+								  <td>{select_box}</td>							  
+								
+								</tr>
+							  </loop name="dailydeal_buynow">
+								<if condition="isset($show['promocode']) AND $show['promocode'] == 'false'">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+								</if>
+								
+							  <tr class="alt1">
+								<td colspan="7" nowrap="nowrap"style="text-align:right;" ><input type="hidden" name="cmd" value="daily_deal_create_new"/>
+								Offer Name <input type="text" name="offer_name" />								
+								</td>
+							  </tr>
+							   <tr class="alt1">
+								<td colspan="7" nowrap="nowrap" style="text-align:right;" ><input type="hidden" name="cmd" value="daily_deal_create_new" />
+							
+								<input type="submit" name="Create" value="MakeDailyDeal" />
+								</td>
+							  </tr>
+							 
+							</table>	
+							 
+							
+							
+							
+							</form>
+                            </div>
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+			
+	  	</div>
+		<!-- / List deals -->
+
+			<!--3066 -->
+</div>
+<!-- / tab pane -->

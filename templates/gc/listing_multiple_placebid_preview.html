@@ -1,0 +1,160 @@
+<style type="text/css">
+.buttonsc {
+	background: #007cc7;
+	background-image: -webkit-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -moz-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -ms-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -o-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: linear-gradient(to bottom, #007cc7, #1d4aa6);
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	text-shadow: 1px 1px 1px #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #ffffff;
+	text-decoration: none;
+	width: 130px;
+	height: 30px;
+	border: medium none;
+	cursor: pointer;
+	border-radius: 6px;
+}
+.buttonsc:hover {
+	background: #1d4aa6;
+	background-image: -webkit-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -moz-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -ms-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -o-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: linear-gradient(to bottom, #1d4aa6, #007cc7);
+	text-decoration: none;
+}
+</style>
+<style type="text/css">
+.buttonsr {
+	background: #007cc7;
+	background-image: -webkit-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -moz-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -ms-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -o-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: linear-gradient(to bottom, #007cc7, #1d4aa6);
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	text-shadow: 1px 1px 1px #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #ffffff;
+	text-decoration: none;
+	width: 150px;
+	height: 30px;
+	border: medium none;
+	cursor: pointer;
+	border-radius: 6px;
+}
+.buttonsr:hover {
+	background: #1d4aa6;
+	background-image: -webkit-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -moz-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -ms-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -o-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: linear-gradient(to bottom, #1d4aa6, #007cc7);
+	text-decoration: none;
+}
+</style>
+<script type="text/javascript">
+function setAction (element, page)
+{
+element.form.action =  page;
+//element.form.submit();
+} 
+</script>
+<form method="post" action="" name="previewbid" accept-charset="UTF-8" style="margin:0px">
+
+<input type="hidden" name="cmd" value="_do-bid-submit" />
+<input type="hidden" name="subcmd" value="product-bid" />
+
+<div class="block-wrapper">
+
+	<div class="block">
+	   
+			<!--bid confirmation  new page create-->
+			<div style="font:'Courier New', Courier, monospace; font-size:21px;">Review and Confirm your bid</div>
+            <div><hr /></div>
+            <loop name="coin_array"> 
+			<table width="100%"><tr><td width="10%" style="padding-top: 15px;" valign="top" >
+			{newhead}
+			</td><td width="70%">
+			
+			<table cellpadding="10">
+			<tr><td style="font-size:16px; color:#0000FF;">{title}</td></tr></table>
+			<table cellpadding="10"> 
+			<tr><td style="width: 100px;" align="right">{_current_bid}</td><td align="left">{current_bidamount_formatteds}</td></tr>
+			<tr><td style="width: 100px;" align="right">Your Secret Maximum Bid</td><td  align="left" style="font-size:18px;">{next_bidamountformatted}</td></tr>
+			<input type="hidden" name="confirm_bid_amount[{projectlist_id}][next_bid_amount]" value ="{next_bid_amount}"  size="8"/>
+
+			<input type="hidden"   name="confirm_bid_amount[{projectlist_id}][current_bid]" value="{current_bidamount}"/>
+
+			<input type="hidden" name="confirm_bid_amount[{projectlist_id}][projectlist_id]" value="{projectlist_id}"/>
+
+			<input type="hidden" name="confirm_bid_amount[{projectlist_id}][previous_bidamount]" value="{previous_bidamount}"/>
+			
+			<input type="hidden" name="confirm_bid_amount[{projectlist_id}][bidstate]" value="auction" />
+			
+			<input type="hidden" name="confirm_bid_amount[{projectlist_id}][state]" value="product" />
+			
+			<input type="hidden" name="confirm_bid_amount[{projectlist_id}][qty]" value="1" />
+			
+		
+
+
+			
+			</table>
+			</td></tr>
+			</table>
+			<div><hr /></div>
+			 </loop name="coin_array">
+			<table width="100%"><tr><td width="70%">
+			<tr><td align="left" colspan="2">{_your_bid_is_contract}</td></tr>
+			<tr><td align="left" colspan="2">
+			</td></tr>
+			<tr><td colspan="2" align="center">
+			<input type="submit" name="confirm_bids" value="{_bid_now} " onclick="setAction(this,'{http_server}watchlist.php')" class="buttonsc" style="font-size:17px" /><br /><br />
+
+			<input type="submit" name="revise_bids_w" value="{_revise_bid_amount}" onclick="setAction(this,'{http_server}rfp.php')" class="buttonsr" style="font-size:17px" />
+			<br /><br />
+			</td></tr>
+			
+			</td></tr></table>
+	</div>
+		 	    
+
+ </div>
+
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+goog_snippet_vars = function() {
+var w = window;
+w.google_conversion_id = 978185347;
+w.google_conversion_label = "XYEyCM3rjFsQg9m30gM";
+w.google_remarketing_only = false;
+}
+// DO NOT CHANGE THE CODE BELOW.
+goog_report_conversion = function(url) {
+goog_snippet_vars();
+window.google_conversion_format = "3";
+window.google_is_call = true;
+var opt = new Object();
+opt.onload_callback = function() {
+if (typeof(url) != 'undefined') {
+window.location = url;
+}
+}
+var conv_handler = window['google_trackConversion'];
+if (typeof(conv_handler) == 'function') {
+conv_handler(opt);
+}
+}
+/* ]]> */
+</script>
+<script type="text/javascript"
+src="//www.googleadservices.com/pagead/conversion_async.js">
+</script>
+{apihook[item_placebid_preview_end]}

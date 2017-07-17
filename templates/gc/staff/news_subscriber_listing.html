@@ -1,0 +1,286 @@
+<script type="text/javascript">
+$(document).on('click','.status_checks',function(){
+      var status = ($(this).hasClass("btn-success")) ? '0' : '1';
+      var msg = (status=='0')? 'Un-Subscriber' : 'Subscriber';
+      if(confirm("Are you sure to "+ msg)){
+        var current_element = $(this);
+        url = "/staff/ajaxs.php";
+        $.ajax({
+          type:"GET",
+          url: url,
+          data: {id:$(current_element).attr('data'),status:status},
+
+          success: function(data)
+          {    
+            location.reload();
+          }
+        });
+      }      
+    });
+           
+</script>
+<style type="text/css">
+
+
+.btn-success {
+   background-color: #65B688;
+   border-color: #65B688;
+   }
+   .btn-danger {
+   color: #fff;
+   background-color: #d9534f;
+   border-color: #d43f3a;
+   }
+   .btn {
+   color: white;
+   display: inline-block;
+   margin-bottom: 0;
+   font-weight: 400;
+   text-align: center;
+   vertical-align: middle;
+   cursor: pointer;
+   background-image: none;
+   border: 1px solid transparent;
+   white-space: nowrap;
+   padding: 1px 12px;
+   width: 86px;
+   font-size: 14px;
+   line-height: 1.42857143;
+   border-radius: 4px;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+
+
+
+</style>
+<script>
+
+ 
+	 $(function () {
+            $("#datepicker7").datepicker({
+                numberOfMonths: 1,
+                dateFormat: 'yy-mm-dd',
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() + 1);
+                    $("#datepicker8").datepicker("option", "minDate", dt);
+                }
+            });
+            $("#datepicker8").datepicker({
+                numberOfMonths: 1,
+                dateFormat: 'yy-mm-dd',
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() - 1);
+                    $("#datepicker7").datepicker("option", "maxDate", dt);
+                }
+            });
+        });
+</script>
+<div id="v3body4">
+<!-- sub navigation -->
+ 
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Newsletter Subscriber</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+						     <form method="post" action="news_subscriber.php" accept-charset="UTF-8"   style="margin: 0px;">
+				    <input type="hidden" name="subcmd" value="search_list" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Contact us  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value="email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18"  style="width: 75%;" />
+                                  </td>
+                                </tr>
+                                  <tr class="alt1">
+                                  <td width="10%"><span class="gray">Date</span>
+                                  <td width="90%">
+
+
+From&nbsp;&nbsp;
+                                   <input id="datepicker7" type="text" name="from_date" value="" style="width:17%;" >&nbsp;&nbsp; To&nbsp;&nbsp;<input id="datepicker8" type="text" name="to_date" value="" style="width:17%;">
+                                  </td>
+                                </tr>
+                                  <tr class="alt1">
+                                  <td width="10%"><span class="gray">Action</span>
+                                  <td width="90%">
+								  <input type="radio" name="filter" value="1" id="1"><label for="sold">Subscriber</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="filter" value="0" id="0"><label for="old">Un-Subscriber</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="filter" value="all" id="all" checked><label for="old">All</label>
+								  </td>
+                                </tr>                                   <tr class="alt1">
+                                  <td width="10%"><span class="gray">Option</span>
+                                  <td width="90%">
+								  <input type="radio" name="export" value="excel" id="excel"><label for="old">Excel</label>
+								  </td>
+                                </tr>
+                              
+                               
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" Go " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                           							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+			 
+					
+				   <if condition="isset($show['search_list']) AND $show['search_list'] == 'search_list'">
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number_search} Newsletter Subscriber Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+										<td width="12%" align="center">Subscriber Id</td>
+								<td width="12%">Subscriber Email</td>
+								<td width="12%">Subscriber Date</td>
+								<td width="12%">Action</td>
+								 
+							  </tr>
+							  <loop name="contactus_listing_search">
+								<tr class="alt1" valign="top">
+								  
+								  <td align="center">{subscriber_id}</td>
+								  <td> {email}</td>
+								  <td> {subscribe_date}<br>{subscribe_time}</td>
+								  <td> {delete}</td>								   
+							   </tr>
+							  </loop name="contactus_listing_search">
+							   <if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="4" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+
+                             <tr class="alt1" valign="top">
+						      <td  colspan="5" width="12%" > </td>
+						      </tr>
+							 
+							</table>
+ 
+                         
+							
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				   <else />
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number} Newsletter Subscriber Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="12%" align="center">Subscriber Id</td>
+								<td width="12%">Subscriber Email</td>
+								<td width="12%">Subscriber Date</td>
+								<td width="12%">Action</td>
+  								
+							 
+							  </tr>
+							  <loop name="contactus_listing">
+								<tr class="alt1" valign="top">
+								  
+								 <td align="center">{subscriber_id}</td>
+								  <td > {email}</td>
+								  <td> {subscribe_date}<br>{subscribe_time}</td>
+								  <td> {delete}</td>			
+								   
+ 								 
+							  </loop name="contactus_listing">
+							  
+							  <if condition="isset($show['no']) AND $show['no'] == 'list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							</table>
+							 {listing_pagnation}
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				</if>
+      				
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

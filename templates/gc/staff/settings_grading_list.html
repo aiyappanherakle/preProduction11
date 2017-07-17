@@ -1,0 +1,613 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="settings.php" class="sel"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- settings tab page -->
+		<div class="tab-page"> 
+		
+			<h2 class="tab">{_settings}</h2>
+				
+				
+				<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_settings}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_list_of_setting_available_for_staff_to_edit}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_buyer_fees_in_whole_number}</span>
+                                  <td width="80%"><input type="text" name="feewhole" size="18" value="" style="width: 50%;" />
+                                       </td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_buyer_fees_in_percentage}</span></td> 
+                                    <td><input type="text" name="feepercentage" size="18" value="" style="width: 50%;" /></td>
+                                </tr>
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				
+							
+		</div>
+		<!-- / settings tab page -->
+		
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_grading_list}</h2>
+			
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+			
+		<!-- referal tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_referal_id}</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_referal_id}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_referal_id}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_added_on}</span>
+                                  <td width="80%"><select name="day" style="font-family: verdana"><option value="" selected="selected">date</option><option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+									&nbsp;&nbsp;&nbsp;&nbsp;<select name="month" style="font-family: verdana"><option value="" selected="selected">month</option><option value="01">{_january}</option><option value="02">{_february}</option><option value="03">{_march}</option><option value="04">{_april}</option><option value="05">{_may}</option><option value="06">{_june}</option><option value="07">{_july}</option><option value="08">{_august}</option><option value="09">{_september}</option><option value="10">{_october}</option><option value="11">{_november}</option><option value="12">{_december}</option></select>
+									&nbsp;&nbsp;&nbsp;&nbsp;<select name="year" style="font-family:Verdana"><option value="" selected="selected">year</option><option value="2010">2010</option></select></td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_referal_id}</span></td> 
+                                    <td><input type="text" name="feepercentage" size="18" value="" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_short_description}</span></td> 
+                                    <td><textarea name="text" id="text" style="font-family: verdana; width: 490px; height: 80px;"></textarea></td>
+                                </tr>
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_create} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+			
+	  </div>
+		<!-- / referal tab page -->
+			
+		<!-- shipping tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_shipping}</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_shipping}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_shipping_company}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">{_shipping_company_name}</span></td>
+								<td><input type="text" name="firstname" id="firstname" style="width:275px" /></td>
+								<td width="5%" nowrap="nowrap" class="alt1"><span class="gray">{_added_fee}</span></td>
+								<td><input type="text" name="lastname" id="lastname" style="width:275px" /></td>
+							    </tr>
+                                <tr class="alt1">
+                                  <td width="5%" nowrap="nowrap"><span class="gray">{_base_fee}</span></td> 
+                                    <td><input type="text" name="feepercentage" size="18" value="" style="width:275px" /></td>
+									<td width="5%" nowrap="nowrap"><span class="gray"></span></td> 
+									<td></td>
+                                </tr>
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		<!-- / shipping tab page -->
+		
+		<!-- daily deals -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_daily_deals}</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_daily_deals}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_list_of_setting_available_for_staff_to_edit}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_user_name}</span>
+                                  <td width="80%">marc</td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_status}</span></td> 
+                                    <td>listed in GC</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_end_date}</span></td> 
+                                    <td>20 Aug 2010</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_buy_now_price}</span></td> 
+                                    <td>950</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_final_value}</span></td> 
+                                    <td>7</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_name_of_the_deal}</span></td> 
+                                    <td><input type="text" name="nameofthedeal" size="18" value="" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_offer_percentage}</span></td> 
+                                    <td><input type="text" name="offerpercentage" size="18" value="" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_go_live_date}</span></td> 
+                                    <td><select name="day" style="font-family: verdana"><option value="" selected="selected">date</option><option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+									&nbsp;&nbsp;&nbsp;&nbsp;<select name="month" style="font-family: verdana"><option value="" selected="selected">month</option><option value="01">{_january}</option><option value="02">{_february}</option><option value="03">{_march}</option><option value="04">{_april}</option><option value="05">{_may}</option><option value="06">{_june}</option><option value="07">{_july}</option><option value="08">{_august}</option><option value="09">{_september}</option><option value="10">{_october}</option><option value="11">{_november}</option><option value="12">{_december}</option></select>
+									&nbsp;&nbsp;&nbsp;&nbsp;<select name="year" style="font-family:Verdana"><option value="" selected="selected">year</option><option value="2010">2010</option></select></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray"></span></td> 
+                                    <td>* {_when_a_coin_is_made_as_deal_of_the_day_it_will_be_posted_or_modified_as_buy_now_posting}</td>
+                                </tr>
+								
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+			
+	  	</div>
+		<!-- / daily deals -->
+		
+		<!-- search -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_search_page}</h2>
+			
+			
+			
+	  	</div>
+		<!-- / search -->
+		
+		<!-- Alert area -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_alert_area}</h2>
+			
+				<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_alert_area}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_message_to_home_page}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_message}</span>
+                                  <td width="80%"><input type="text" name="message" size="18" value="" style="width: 50%;" />
+                                       </td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_location}</span></td> 
+                                    <td><select name="location">
+									<option value="footer">footer</option>
+									<option value="header">header</option>
+									</select></td>
+                                </tr>
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>								
+				
+			</div>
+			
+
+			
+		<!-- / Alert area -->
+		<!-- Affliate Listing -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_affiliate_listing}</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_affiliate_listing}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_affiliate_listing}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_add_new_listing}</span>
+                                  <td width="80%"><input type="text" name="feewhole" size="18" value="" style="width: 50%;" />
+                                       </td>
+                                </tr>                       
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_add} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+			</div>			
+												
+				
+			</div>
+
+			
+		<!-- / Affliate Listing -->
+		
+		<!-- Promocode -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_promocode}</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_promocode}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_invoice_promocode}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_promocode}</span>
+                                  <td width="80%">marc</td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_offer_type}</span></td> 
+                                    <td><select name="offertype"><option value="percentage">%</option><option value="dollar">$</option></select></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_offer_amount}</span></td> 
+                                    <td><input type="text" name="offeramount" size="18" value="" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_condition_amount}</span></td> 
+                                    <td>950</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_final_value}</span></td> 
+                                    <td>7</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_name_of_the_deal}</span></td> 
+                                    <td><input type="text" name="nameofthedeal" size="18" value="" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_offer_percentage}</span></td> 
+                                    <td><input type="text" name="offerpercentage" size="18" value="" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_go_live_date}</span></td> 
+                                    <td><select name="day" style="font-family: verdana"><option value="" selected="selected">date</option><option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+									&nbsp;&nbsp;&nbsp;&nbsp;<select name="month" style="font-family: verdana"><option value="" selected="selected">month</option><option value="01">{_january}</option><option value="02">{_february}</option><option value="03">{_march}</option><option value="04">{_april}</option><option value="05">{_may}</option><option value="06">{_june}</option><option value="07">{_july}</option><option value="08">{_august}</option><option value="09">{_september}</option><option value="10">{_october}</option><option value="11">{_november}</option><option value="12">{_december}</option></select>
+									&nbsp;&nbsp;&nbsp;&nbsp;<select name="year" style="font-family:Verdana"><option value="" selected="selected">year</option><option value="2010">2010</option></select></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray"></span></td> 
+                                    <td>* {_when_a_coin_is_made_as_deal_of_the_day_it_will_be_posted_or_modified_as_buy_now_posting}</td>
+                                </tr>
+								
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>									
+				
+			</div>
+			
+			
+		<!-- / Promocode -->
+		
+		<!-- coin condition -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_coin_condition}</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_coin_condition}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_condition_or_edit_condition}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_condition}</span>
+                                  <td width="80%"><input type="text" name="feewhole" size="18" value="" style="width: 50%;" />
+                                       </td>
+                                </tr>                       
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+			</div>			
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_pedigree}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_pedigree_or_edit_pedigree}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_pedigree}</span>
+                                  <td width="80%"><input type="text" name="feewhole" size="18" value="" style="width: 50%;" />
+                                       </td>
+                                </tr>                       
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+			</div>								
+				
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_other_details}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_other_details}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_pedigree}</span>
+                                  <td width="80%"><input type="text" name="feewhole" size="18" value="" style="width: 50%;" />
+                                       </td>
+                                </tr>                       
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+			</div>	
+		
+		</div>
+				
+		<!-- / coin condition -->
+		
+		
+</div>
+<!-- / tab pane -->

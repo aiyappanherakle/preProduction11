@@ -1,0 +1,39 @@
+{form[start]}
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_submit_abuse_report}</div>
+			<div class="block-content-yellow"><div class="smaller">{_you_can_submit_an_abuse_report_using_the_form_below}</div></div>
+			
+			<div class="block-content" style="padding:0px">
+				
+				<table width="100%" border="0" cellspacing="0" cellpadding="12">
+				<tr class="alt1"> 
+					<td><strong>{_abuse_type}</strong><div class="gray" style="padding-bottom:3px">{_this_type_cannot_be_changed_and_is_populated_when_you_click_on_a_valid_report_abuse_url}</div><div>{abusetype_pulldown}</div></td>
+				</tr>
+				<tr class="alt1">
+					<td><strong>{_abuse_report_below}</strong><div class="gray" style="padding-bottom:3px">{_please_include_your_abuse_report_below_please_be_specific}</div><div><textarea name="abusemessage" style="width: 525px; height: 84px; font-family: verdana" wrap="physical"></textarea></div></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value=" {_submit} " class="buttons" style="font-size:15px" /></td>
+				</tr>
+				</table>
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+{form[end]}

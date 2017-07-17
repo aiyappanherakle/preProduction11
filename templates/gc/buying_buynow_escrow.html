@@ -1,0 +1,180 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	
+    	<div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+<td>
+<div class="grayborder" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x;"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr valign="top">
+	<td style="padding-left:5px;" valign="top"><img src="{template_relativeimagepath}{template_imagesfolder}escrow_icon.gif" alt="{_escrow}" border="0" id="" /></td>
+	<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+	<td style="padding-right:5px;">
+		
+		<div style="font-size:14px; padding-top:3px"><strong>{_you_are_currently_viewing_items_you_are_bidding_on_have_won}</strong></div>
+		<div class="gray" style="padding-top:4px">{_when_you_skip_the_bidding_process_and_directly_purchase_merchandise_from_our_merchants_an_escrow_account_for_that_order_will_be_created_below}</div>
+        <div style="padding-top:9px" class="smaller">{_your_escrow_agent} <span class="blue">{site_name}</span></div>
+        
+</td>
+</tr>
+</table>
+</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+</td>
+</tr>
+</table>
+</div>
+
+{producttabs}
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_purchase_now_escrow_buying_activity}</div>
+			<!--<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_when_you_skip_the_bidding_process_and_directly_purchase_merchandise_from_our_merchants_an_escrow_account_for_that_order_will_be_created_below}</div></div>-->
+			<div class="block-content-yellow" style="padding:9px"><div><span style="max-height:0px">
+			<form name="sortswitch" method="get" action="{https_server}{ilpage[escrow]}" accept-charset="UTF-8" style="margin:0px">
+			<input type="hidden" name="cmd" value="management" />
+			<input type="hidden" name="bidsub" value="buynow-escrow" />
+			<table border="0" cellspacing="0" cellpadding="0" class="smaller">
+			  <tr>
+				<td>{_period}:&nbsp;</td>
+				<td>
+				<select name="period2" class="smaller" style="font-family: verdana">
+					<option value="-1" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == -1">selected="selected"</if>>{_any_date}</option>
+					<option value="7" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 7">selected="selected"</if>>{_last_24_hours}</option>
+					<option value="13" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 13">selected="selected"</if>>{_last_7_days}</option>
+					<option value="14" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 14">selected="selected"</if>>{_last_14_days}</option>
+					<option value="15" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 15">selected="selected"</if>>{_last_30_days}</option>
+                    <option value="16" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 16">selected="selected"</if>>{_last_60_days}</option>
+					<option value="17" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 17">selected="selected"</if>>{_last_90_days}</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td>{_order_by}:&nbsp;</td>
+				<td>
+				<select name="orderby2" class="smaller" style="font-family: verdana">
+                    <option value="project_id" <if condition="isset($ilance->GPC['orderby2']) AND $ilance->GPC['orderby2'] == 'project_id'">selected="selected"</if>>{_item_id}</option>
+                    <option value="amount" <if condition="isset($ilance->GPC['orderby2']) AND $ilance->GPC['orderby2'] == 'amount'">selected="selected"</if>>{_amount}</option>
+                    <option value="orderdate" <if condition="isset($ilance->GPC['orderby2']) AND $ilance->GPC['orderby2'] == 'orderdate'">selected="selected"</if>>{_order_date}</option>
+                    <option value="paiddate" <if condition="isset($ilance->GPC['orderby2']) AND $ilance->GPC['orderby2'] == 'paiddate'">selected="selected"</if>>{_paid_date}</option>
+                    <option value="qty" <if condition="isset($ilance->GPC['orderby2']) AND $ilance->GPC['orderby2'] == 'qty'">selected="selected"</if>>{_quantity}</option>
+                    <option value="escrowfeebuyer" <if condition="isset($ilance->GPC['orderby2']) AND $ilance->GPC['orderby2'] == 'escrowfeebuyer'">selected="selected"</if>>{_escrow} {_fee}</option>
+				</select></td>
+                <td>&nbsp;&nbsp;<span class="smaller gray">|</span>&nbsp;&nbsp;</td>
+                <td>
+                <select name="pics2" class="smaller" style="font-family: verdana">
+                    <option value="1" <if condition="isset($ilance->GPC['pics2']) AND $ilance->GPC['pics2'] == '1'">selected="selected"</if>>{_include_pictures}</option>
+                    <option value="0" <if condition="isset($ilance->GPC['pics2']) AND $ilance->GPC['pics2'] == '0'">selected="selected"</if>>{_exclude_pictures}</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td>{_display_order}:&nbsp;</td>
+				<td>
+				<select name="displayorder2" class="smaller" style="font-family: verdana">
+					<option value="desc" <if condition="isset($ilance->GPC['displayorder2']) AND $ilance->GPC['displayorder2'] == 'desc'">selected="selected"</if>>{_descending}</option>
+					<option value="asc" <if condition="isset($ilance->GPC['displayorder2']) AND $ilance->GPC['displayorder2'] == 'asc'">selected="selected"</if>>{_ascending}</option>
+				</select>&nbsp;</td>
+				<td><input type="submit" value="{_go}" class="buttons_smaller" /></td>
+			  </tr>
+			</table>
+			</form>			
+			</span></div></div>
+			<div class="block-content" style="padding:0px">
+				
+				<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+				<tr class="alt2"> 
+					<td width="13%" nowrap="nowrap">{_more} &nbsp;&nbsp;/&nbsp;&nbsp; <span class="blue"><a href="{php_self}&amp;bidsub=buynow-escrow&amp;orderby2=project_id">{_item_id}</a></span></td>
+                    <td width="7%">{_contact}</td>
+					<td width="5%">{_share}</td>
+					<td width="6%">{_feedback}</td>
+                    <td width="8%"><span class="blue"><a href="{php_self}&amp;bidsub=buynow-escrow&amp;orderby2=qty">{_qty}</a></span></td>
+                    <td width="11%" nowrap="nowrap">{_shipping}</td>
+                    <td width="9%"><span class="blue"><a href="{php_self}&amp;bidsub=buynow-escrow&amp;orderby2=amount">{_amount}</a></span></td>
+                    <td width="8%" nowrap="nowrap">{_total}</td>
+					<if condition="$ilconfig['escrowsystem_enabled']"><td width="10%" nowrap="nowrap"><span class="blue"><a href="{php_self}&amp;bidsub=buynow-escrow&amp;orderby2=escrowfeebuyer">{_escrow_fee}</a></span> <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_buyer} {_escrow_fee}</strong></div>{_this_is_the_escrow_fee_associated_with_securing_your_funds_for_this_item_within_escrow} {site_name}', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td></if>
+                    <if condition="$ilconfig['escrowsystem_enabled']"><td width="12%" nowrap="nowrap">{_in_escrow}</td></if>
+					<td width="14%">{_actions}</td>
+				</tr>
+				<loop name="purchase_now_activity"> 
+				<tr class="alt1"> 
+					<td nowrap="nowrap" valign="top">
+                    
+                    <div class="smaller blue" style="float:right">&nbsp;&nbsp;&nbsp;# {itemid}</div>
+                    <div><a href="#top" onclick="return toggle('buyingbuynow{orderid}')"><img src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_buyingbuynow{orderid}]}.gif" alt="" border="0" id="collapseimg_buyingbuynow{orderid}" /></a></div>
+					<div style="padding-top:5px" class="smaller gray">{_seller}: <span class="blue">{ordermerchant}</span></div>
+                    <div style="clear:both"></div>
+                    <if condition="isset($ilance->GPC['pics2']) AND $ilance->GPC['pics2'] == '0'"><else /><div style="padding-top:5px; padding-bottom:4px" align="center">{sample}</div></if>
+                    </td>
+                    <td valign="top" align="center">{pmb}</td>
+					<td valign="top" align="center">{share}</td>
+					<td valign="top" align="center">{feedback}</td>
+                    <td valign="top"><div class="smaller blue">{orderqty} {_qty_lower}</div></td>
+                    <td valign="top" nowrap="nowrap"><div class="smaller blue">{shipping}</div></td>
+                    <td valign="top" nowrap="nowrap"><div class="smaller blue">{orderamount}</div></td>
+                    <td valign="top" nowrap="nowrap"><div class="smaller blue">{total}</div></td>
+                    <if condition="$ilconfig['escrowsystem_enabled']"><td valign="top" nowrap="nowrap"><div class="smaller blue">{escrowfeebuyer}</div></td></if>
+					<if condition="$ilconfig['escrowsystem_enabled']"><td valign="top" nowrap="nowrap"><div class="smaller blue">{escrowtotal}</div></td></if>
+					<td valign="top"><div class="smaller">{orderactions}</div></td>
+				</tr>
+				<tbody id="collapseobj_buyingbuynow{orderid}" style="{collapse[collapseobj_buyingbuynow{orderid}]}">
+				<tr class="alt1">
+					<td colspan="2" class="alt2" align="right"><span class="gray">{_title}:</span></td>
+					<td colspan="10"><span class="blue">{item_name}</span></td>
+				</tr>
+                <tr class="alt1">
+				  <td colspan="2" class="alt2" align="right"><span class="gray">{_payment}:</span></td>
+				  <td colspan="10"><div><span class="blue">{payment}</span> {_using} <span class="blue">{buyerpaymethod}</span></div></td>
+				</tr>
+				<tr class="alt1">
+					<td colspan="2" class="alt2" align="right"><span class="gray">{_order_date}:</span></td>
+					<td colspan="10"><span>{orderdate}</span></td>
+				</tr>
+				<!--<tr class="alt1">
+					<td colspan="2" class="alt2" align="right"><span class="gray">{_tax}:</span></td>
+					<td colspan="11"><span class="blue">{taxinfo}</span></td>
+				</tr>-->
+                <tr class="alt1">
+					<td colspan="2" class="alt2" align="right" valign="top"><span class="gray">{_ships_to}:</span></td>
+					<td colspan="10"><span class="black">{orderlocation}</span></td>
+				</tr>
+                <tr class="alt1" valign="top">
+					<td colspan="2" class="alt2" align="right"><span class="gray">{_ship_service}:</span></td>
+					<td colspan="10" class="alt1"><div class="blue">{shippingpartner}</div><div style="padding-top:3px">{delivery}</div></td>
+				</tr>
+				</tbody>
+				</loop name="purchase_now_activity"> 
+				<if condition="isset($show['no_purchase_now_activity']) AND $show['no_purchase_now_activity']"> 
+				<tr> 
+					<td colspan="11" align="center"><div style="padding-top:8px; padding-bottom:8px">{_no_results_found}</div></td>
+				</tr>
+				<else />
+				<tr> 
+					<td colspan="11">{prevnext}</td>
+				</tr>
+				</if>
+				</table>
+
+				
+</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+
+<if condition="!isset($ilance->GPC['cancelled'])"><div class="litegray" style="padding-top:5px; padding-bottom:5px">{_please_note_cancelled_buy_now_orders_will_not_appear_by_default} <span class="blue"><a href="{https_server}{ilpage[escrow]}?cmd=management&amp;bidsub=buynow-escrow&amp;cancelled=1">{_to_view_cancelled_order_listings_please_use_this_link}</a></div><else /><div style="padding-top:5px; padding-bottom:5px" class="blue"><a href="{https_server}{ilpage[escrow]}?cmd=management&amp;bidsub=buynow-escrow">{_hide_cancelled_orders}</a></div></div></if>
+<if condition="isset($show['escrowcolumn']) AND $show['escrowcolumn']"><div class="litegray" style="padding-top:4px">{_fees_related_to_each_escrow_account_will_be_included_in_the_total_amount_column_for_example_if_you_purchased_an_item_for_2000}</div></if>
+    
+	</td>
+</tr>
+</table>

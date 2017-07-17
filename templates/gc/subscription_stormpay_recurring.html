@@ -1,0 +1,72 @@
+<script language="javascript">
+<!--
+function validate_sp_email(form)
+{
+	if (form.payer_email.value == '')
+	{
+		alert(phrase['_you_must_enter_your_verified_stormpay_member_email_address_to_continue']);
+		return false;
+	}
+	return true;
+}
+//-->
+</script>
+{hidden_form_start}
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_subscribe_to_our_marketplace_via_stormpay_recurring_subscriptions}</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_you_must_have_or_be_eligible_for_a_stormpay_account_before_using_our_recurring_subscription_service}</div></div>
+			<div class="block-content" style="padding:0px">
+				
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td>
+					
+						<div>
+							<div><img src="{template_relativeimagepath}{template_imagesfolder}payment/stormpay.gif" border="0" alt="" id="stormpay" /></div>
+							<blockquote><div>
+							{_subscription_details_at_stormpay_once_payment_over_at_stormpay_is_verified}
+							<br />
+							<br />
+							{_stormpay_will_continue_to_bill_you_for_the_duration_you_selected_on_the_previous_menu}
+							<br />
+							<br />
+							{_this_will_be_an_automated_process_whereby_stormpay_will_notify_us_upon_successful_subscription_payments_from_you}
+							<div class="gray"><br />
+							{_please_note_if_you_manually_cancel_your_subscription_plan_on_stormpaycom}</div>
+						</div></blockquote>
+						</div>
+					
+						<hr size="1" width="100%" style="color:#cccccc; margin-top:6px" />
+					
+						<div>
+							<div><strong>{_enter_your_stormpay_email_address}</strong></div>
+							<div class="gray">{_please_enter_your_verified_stormpay_email_address_you_will_be_sending_payment_with_below}</div>
+							<div><input type="text" size="5" name="payer_email" value="" class="input" style="width:250px" /> </div>
+						</div>
+						<br />
+						
+					</td>
+				</tr>
+				</table>
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<div><input type="submit" value=" {_subscribe} " style="font-size:15px" name="submit" class="buttons" /></div>
+{hidden_form_end}

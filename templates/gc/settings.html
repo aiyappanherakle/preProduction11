@@ -1,0 +1,1265 @@
+<link type="text/css" href="{https_server}/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="{https_server}/functions/javascript/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{https_server}/functions/javascript/jquery-ui-1.8.17.custom.min.js"></script>
+
+<script>
+	$(function() {
+	    $("#datepicker").datepicker({
+	      dateFormat: 'yy-mm-dd',
+	    });
+		 $("#datepicker1").datepicker({
+	      dateFormat: 'yy-mm-dd',
+	    });
+	});
+</script>
+
+<script type="text/javascript">
+function add_text()
+{
+var num=document.getElementById("hid").value;
+num1=parseInt(num)+1;
+if(num1<5)
+{
+document.getElementById("hid").value=num1;
+document.getElementById("A"+num).innerHTML="Image InnerText</span>&nbsp;&nbsp; <span id='A1'><input type='text' name='inner_text[]'   /></span>&nbsp;&nbsp;<span class='gray'>Image InnerText Link</span>&nbsp;&nbsp;<input type='text' name='inner_text_link[]'   /><br><br><span id=A"+num1+"></span>";
+}
+}
+function sub_text()
+{
+var num=document.getElementById("hid").value;
+
+if(num!=2)
+{
+num1=num-1;
+
+document.getElementById("hid").value=num1;
+document.getElementById("A"+num1).innerHTML="";
+}
+}
+</script>
+
+<script type="text/javascript">
+function validate()
+{
+ 
+var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+var err="";
+
+
+  if(document.getElementById("title").value == '')
+   {
+      document.getElementById("error_title").innerHTML= "Enter Your Title";
+	err=1;	
+    }
+  else
+  {
+     document.getElementById("error_title").innerHTML= "";
+  }
+ 
+  if(document.getElementById("description").value == '')
+   {
+   document.getElementById("error_desc").innerHTML= "Enter Your Description";
+		err=1;
+ }
+    else
+  {
+     document.getElementById("error_desc").innerHTML= "";
+  }
+ 
+  
+ if(document.getElementById("firstname").value == '')
+ {
+ 
+     document.getElementById("error_firstnam").innerHTML= "Enter Your firstname";
+	err=1;
+	
+ }
+  else
+  {
+     document.getElementById("error_firstnam").innerHTML= "";
+  }
+   
+	 
+	 
+  if(document.getElementById("lastname").value == '')
+ {
+ document.getElementById("error_lastname").innerHTML= "Enter Your Lastname";
+  err=1;
+ }
+    
+  else
+  {
+     document.getElementById("error_lastname").innerHTML= "";
+  }
+ 
+
+   
+ if(document.getElementById("location").value == '')
+ {
+    document.getElementById("error_location").innerHTML= "Enter your Location";
+	err=1;
+   }
+    else
+  {
+     document.getElementById("error_location").innerHTML= "";
+  }
+   
+   
+        if (document.form_id.email.value.search(emailRegEx) == -1) 
+        {
+        document.getElementById("error_email").innerHTML= "Inavalid email address";
+        err=1;
+        }
+		else
+		{
+		  document.getElementById("error_email").innerHTML= "";
+		}
+		
+  
+   
+ if(err == 1)
+  {
+  return false;
+  }
+  else
+  {
+  return true;
+  }
+ 
+ 
+ 
+}
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php" class="sel"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline"><span>{_time_line}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- settings tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_settings}</h2>
+			
+			{global_staff}
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_uploads}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Bulk upload for images and csv files</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td   nowrap="nowrap"><a href="bulk_upload.php">Image upload as attachments</a></td>
+							    </tr>
+								<tr class="alt1">
+								<td   nowrap="nowrap"><a href="AddImage.php">Image upload to Ebay</a></td>
+							    </tr><tr class="alt1">
+								<td   nowrap="nowrap"><a href="population_price.php">Population and price suggestions from NGC and PCGS</a></td>
+							    </tr>
+                                <tr class="alt1">
+								<td   nowrap="nowrap"><a href="settings.php?cmd=reset_cat_count">Reset category count</a></td>
+							    </tr>
+								<tr class="alt1">
+								<td   nowrap="nowrap"><a href="settings.php?cmd=update_view_count">Update Page View count</a></td>
+							    </tr>
+								<tr class="alt1">
+								<td   nowrap="nowrap"><a href="settings.php?cmd=update_watch_count">Update Watch List count</a></td>
+							    </tr>
+                                       
+                                </table>
+								
+									<!--karthik on july 21 for automated endtimes-->
+								<hr style="border:2px dotted #666666;"/>
+								<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				                <input type="hidden" name="cmd" value="admin_time" />
+								<input type="hidden" name="return" value="{ilpage[staffsettings]}" />
+								
+								
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td nowrap="nowrap">Enter a date </td><td><input type="text" name="date_id" id="date_id" /><br />(Date format should be <b>Y-m-d</b>)</td>
+							    </tr>
+								<tr class="alt1">
+								<td nowrap="nowrap">Time from </td><td><input type="text" name="from_id" id="from_id" /><br />(Time from :Ex <b>17:00:00</b>)</td>
+								<td nowrap="nowrap">Time to </td><td><input type="text" name="to_id" id="to_id" /><br />(Time to :Ex <b>20:00:00</b>)</td>
+							    </tr>
+                                 
+								 <tr class="alt1">
+								<td><input type="submit" name="submit_time" id="submit_time" value="Submit" onclick="return txtcheck();"/></td>
+								
+							    </tr>    
+                                </table>
+								
+								
+								</form>
+								
+								<!--karthik on july 21 for automated endtimes-->
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+		</div>
+		<!-- /settings tab page -->	
+		
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_grading}</h2>
+			
+			<form method="post" action="{ilpage[staffsettings]}" enctype="multipart/form-data" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdgrading}" />
+			{hiddendo}
+			{hiddenid}	
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_create}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_grading_service}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">{_add_new_grading_service}</span></td>
+								<td><input type="text" name="newgs" id="newgs" style="width:275px" value="{grading}" /></td>
+								<td width="5%" nowrap="nowrap" class="alt1"><span class="gray"><input type="file" name="upload" id="upload" /></span></td>
+								<td><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td>
+							    </tr>
+                                       
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</form>
+				
+				<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="20%" nowrap="nowrap">{_grading}</td>								
+								<td align="center" nowrap="nowrap">{_actions}</td>
+								
+							  </tr>
+							  <loop name="gradinglist">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top"><span style="font-size:17px" class="gray">{grading}</span></td>	
+								  <td align="center">{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--{delete}--></td>
+								 
+								</tr>
+							  </loop name="gradinglist">
+							  <if condition="isset($show['no_gradinglist']) AND $show['no_gradinglist']">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  							  
+							  <tr>
+								<td colspan="11">{prevnext}</td>
+							</tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>
+	  </div>
+		<!-- / grading tab page -->
+		
+		<!-- / service tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_service}</h2>
+			
+			<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdservice}" />
+			{hiddendo}
+			{hiddenid}
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_create}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_service_level}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                 <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">{_under_grading_service}</span></td>
+								<td>{service_pulldown}</td>
+								<td width="5%" nowrap="nowrap" class="alt1"><span class="gray"></span></td>
+								<td>&nbsp;</td>
+							    </tr>
+								
+								<tr class="alt1">
+                                  <td width="5%" nowrap="nowrap"><span class="gray">{_name_of_the_service_level}</span></td> 
+                                    <td><input type="text" name="servicename" size="18" value="{servicename}" style="width:275px" /></td>
+									<td width="5%" nowrap="nowrap"><span class="gray"></span></td> 
+									<td></td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td width="5%" nowrap="nowrap"><span class="gray">{_fees_amount}</span></td> 
+                                    <td><input type="text" name="feeamount" size="18" value="{feeamount}" style="width:275px" /></td>
+									<td width="5%" nowrap="nowrap"><span class="gray"></span></td> 
+									<td></td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td width="5%" nowrap="nowrap"><span class="gray">{_no_of_days}</span></td> 
+                                    <td><input type="text" name="nodays" size="18" value="{nodays}" style="width:275px" /></td>
+									<td width="5%" nowrap="nowrap"><span class="gray"></span></td> 
+									<td></td>
+                                </tr>
+								 	                                
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</form>
+				
+				<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="20%" nowrap="nowrap">{_grading_service}</td>
+								<td width="23%" align="left">{_level}</td>
+								<td width="12%">{_fees}</td>
+								<td width="10%">{_days}</td>
+								<td align="center" nowrap="nowrap">{_auction}</td>
+								
+							  </tr>
+							  <loop name="servicelist">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top"><span style="font-size:17px" class="gray">{level}</span></td>
+								   <td nowrap="nowrap">{servicename}</td>
+								  <td nowrap="nowrap">{amount}</td>
+								 <td nowrap="nowrap">{days}</td>
+								  <td align="center">{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--{delete}--></td>
+								 
+								</tr>
+							  </loop name="servicelist">
+							  <if condition="isset($show['no_servicelist']) AND $show['no_servicelist']">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  							  
+							  <tr>
+								<td colspan="11">{prevnext1}</td>
+							</tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>
+			
+		</div>	
+		
+		<!-- / grading tab page -->
+		
+		<!--consinor reports on jully 15 sekar-->
+		
+		<div class="tab-page">
+			
+			<h2 class="tab">consignor reports</h2>
+			
+			
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">consignor reports</div>
+                            <div class="block3-content-gray" style="padding:9px">
+                            <div class="block3-content" style="padding:0px">
+                                
+                               {email_pdf}
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+		</div>
+		</div>
+	<!--consinor reports finished on jully 15 sekar-->	
+	
+	 <!--sekar query to image not matching projectid on july 15-->
+	<div class="tab-page">
+			
+			<h2 class="tab">Img Not Macth</h2>
+			
+			
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Image Reports </div>
+                            <div class="block3-content-gray" style="padding:9px">
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="5%">Image not matching report</td>
+								<td width="5%"><a href="notmatching.php"><input type="button" value="Generate PDF" /></a></td>
+								   <td><a href="notmatching.php?cmd=image_update"><input type="button" value="Update" /></a></td>
+							   </tr>
+							   <tr class="alt1">
+								<td   nowrap="nowrap"><a href="liveimage.php"><b>Live Auction Image Missing</b></a></td>
+							   </tr>
+                                       
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</div>
+				
+		</div>
+		<!--sekar finished query to image not matching projectid on july 15-->
+		<!--Murugan added on july 19-->
+		<div class="tab-page">
+			
+			<h2 class="tab">Image reports</h2>
+			
+			<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="check_image" />
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Reports for missing coin images </div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Generate a report for missing coin images</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                <br />
+								<br />
+								
+								Click this button to generate a report which contains missing coin image details
+								<br />
+								<br />
+								<input type="submit" value="generate" name="submit" /> 
+                                 
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</form>
+	
+			
+		</div>
+		
+		<!-- banner tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Banner</h2>
+			
+			 <if condition="!(isset($show['edit']))">	
+			
+			<form method="post" action="{ilpage[staffsettings]}" enctype="multipart/form-data" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="banner_upload" />
+			{hiddendo}
+			{hiddenid}	
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_create}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Add new Banner</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Upload Image</span></td>
+								<td><input type="file" name="upload" id="upload"  /></td>
+								</tr>
+								 <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Image Link</span></td>
+								<td><input type="text" name="link" id="link"  /></td>
+								</tr>
+								 <tr class="alt1">
+								
+								<td width="10%"  colspan="2" nowrap="nowrap"><span class="gray">Image InnerText</span>&nbsp;&nbsp; <span id="A1"><input type="text" name="inner_text[]" id="inner_text"  /></span>&nbsp;&nbsp;<span class="gray">Image InnerText Link</span>&nbsp;&nbsp;<input type="text" name="inner_text_link[]" id="inner_text_link"  />
+								<br /><br /><span id="A2">
+</span>
+								</td>
+								</tr>
+								<tr class="alt1">
+								<td width="5%" nowrap="nowrap"></td><td><input type="hidden" id="hid" value="2"><a href="javascript: void(0);" onclick="add_text()">Add</a>&nbsp;&nbsp;<a href="javascript: void(0);" onclick="sub_text()">Remove</a></td>
+							
+								</tr>
+							
+							
+								</tr>
+								<tr>
+								<td><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td>
+							    </tr>
+                                       
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							</form>
+							
+							<!--bug no 1498-->
+							<!--bug no 1498-->
+							<br />
+<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+				<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px; width:896px;">
+		<form id="staffsettings" action="{ilpage[staffsettings]}" method="post"  accept-charset="UTF-8" style="margin:0px">
+				     <input type="hidden" name="cmd" value="banner_order_change">	 
+					 <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+										<tr>
+										<td width="10%"  colspan="2" >Current Banner order :&nbsp;&nbsp; 
+										<textarea rows="7" name="banner_order" style=" width: 600px; margin-left: 180px; height: 253px;"><loop name="banner_name_list">{filename}</loop name="banner_name_list"></textarea></td>
+										<td>&nbsp;</td>
+										</tr>
+										<tr>
+						<td><input type="submit" class="buttons" value="Save" style="font-size:15px" /></td>
+						</tr>
+						<tr><td>{var}</td></tr>
+					</table>
+					   </form>     	
+                            </div>
+								
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+				</div>
+				</div>
+			<form method="post" action="{ilpage[staffsettings]}" enctype="multipart/form-data" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="search" />
+							 <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Searching With Banner Name</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                
+								 
+								<tr>
+								<td width="10%"  colspan="2" nowrap="nowrap">Banner Name :&nbsp;&nbsp; <input type="text" name="banner_name" id="banner_name" value="{search_text}"size="50"/>
+								</td><td><input type="submit" class="buttons" value=" {_go} " style="font-size:12px" /></td>
+								</tr>
+								      
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							</form>
+							<br />
+							<!--bug no 1498-->
+							<!--end  bug no 1498-->
+							
+                            
+                    </div>
+                </div>
+				
+				
+				</if>
+				
+			 <if condition="isset($show['edit'])">	
+				
+			<form method="post" action="{ilpage[staffsettings]}" enctype="multipart/form-data" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="edit_update" />
+			{hiddendo}
+			{hiddenid}	
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Edit Banner</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Edit existing Banner</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                               <!-- <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Upload Image</span></td>
+								<td><input type="file" name="upload" id="upload"  /></td>
+								</tr>-->
+								 <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Image Link</span></td>
+								<td><input type="text" name="link" id="link" value="{link}" size="40" /></td>
+							    <td><input type="hidden" name="banner_id"  value="{id}"  /></td>
+								</tr>
+								 <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Image InnerText1</span></a></td>
+								<td><input type="text" name="inner_text" id="inner_text" value="{inner_text}" size="40"/></td>
+	                            </tr>
+								<tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Image InnerText2</span></a></td>
+								<td><input type="text" name="inner_text1" id="inner_text1" value="{inner_text1}" size="40"/></td>
+	                            </tr>
+								<tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Image InnerText3</span></a></td>
+								<td><input type="text" name="inner_text2" id="inner_text2" value="{inner_text2}" size="40"/></td>
+	                            </tr>
+								 <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">InnerText Link1</span></td>
+								<td><input type="text" name="inner_text_link" id="inner_text_link" value="{inner_text_link}" size="40"/></td>
+	                            </tr>
+	                         <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">InnerText Link2</span></td>
+								<td><input type="text" name="inner_text_link1" id="inner_text_link1" value="{inner_text_link1}" size="40"/></td>
+	                            </tr>
+								<tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">InnerText Link3</span></td>
+								<td><input type="text" name="inner_text_link2" id="inner_text_link2" value="{inner_text_link2}" size="40"/></td>
+	                            </tr>
+								 <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Order</span></td>
+								<td><input type="text" name="order" id="order" value="{order}" size="3"  /></td>
+								</tr>
+								 <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Status</span></td>
+								<td><input type="checkbox" name="status" id="status" {status}  /></td>
+								</tr>
+								<tr>
+								<td><input type="submit" class="buttons" value="Save Changes" style="font-size:15px" /></td>
+								
+								<td><input type="button" class="buttons" value="Cancel" style="font-size:15px" onClick="location.href='{ilpage[staffsettings]}'" /></td>
+							    </tr>
+                                       
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</form>
+				
+				</if>
+				
+				<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							 <div class="block3-content-gray" style="padding:9px"><div class="smaller">Listing of available banner's</div></div>
+							<div class="block3-content" style="padding:0px; width:875px;">
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<!--venkat-->
+							    <td width="30%">Image</td>
+								<td width="30%">Name</td>
+								<td width="20%">Display Order</td>
+								<td width="25%">Edit | Delete</td>
+								<td width="25%">Visible</td>
+								<!--<td width="8%">Image Link</td>
+								<td width="8%">Inner Text</td>
+								 
+								<td width="5%">Order</td>
+								<td width="10%">Action</td>
+								<td width="6%">Status</td>-->
+								
+							
+							  </tr>
+							    <if condition="isset($show['banner_search'])">
+							    <loop name="banner_list1">
+								<tr valign="top">
+								  
+								
+								<td width="30%" >{image}</td>
+								
+								<td width="30%" >{name}</td>
+								</tr><tr class="alt1">
+								<td >{link}</td>
+								<td >{text}</td>
+						   	    <td width="25%" align="center">{order}</td>
+								<td  width="25%">{edit} | {remove}</td>
+								<td  width="25%" >{status}</td>
+								 
+								</tr>
+							  </loop name="banner_list1">
+							   <else />
+							   <loop name="banner_list">
+								<tr valign="top">
+								  
+								
+								<td  >{image}</td>
+								
+								<td >{name}</td>
+								</tr><tr class="alt1">
+								<td >{link}</td>
+								<td >{text}</td>
+						   	    <td >{order}</td>
+								<td >{edit} | {remove}</td>
+								<td >{status}</td>
+								 
+								</tr>
+							  </loop name="banner_list">
+							   
+							   </if>
+							   
+							   
+                              </table>
+								  
+                            </div>
+							
+						{banner_pagnation}
+							
+							
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>                                                                                                                                                                                                                                                        
+							
+					</div>
+				</div>
+      				</form>
+	
+		<!-- / banner tab page -->
+		
+		<!-- Coin Shows -->
+		
+		<div class="tab-page">
+			
+			<h2 class="tab">coin shows</h2>
+			
+			
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Coin Shows We Attend </div>
+							
+							<if condition="isset($show['edit_coin_show'])">	
+							 <div class="block3-content-gray" style="padding:9px"><div class="smaller">Edit your coin shows detail</div></div>
+                            <div class="block3-content" style="padding:0px">
+                               <form name="show" method="post">
+							   <input type="hidden" name="subcmd" value="edit_coin_show" />
+							   {hiddenid}
+                              <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							   <tr class="alt1" valign="top">
+							   <td>Enter the Show Start Date</td>
+							   <td><input type="text" name="show_start_date" value="{coin_date}" id="datepicker"/></td>
+							   </tr>
+							   <tr class="alt1" valign="top">
+							   <td>Enter the Show End date</td>
+							   <td><input type="text" name="show_end_date" value="{coin_end_date}" id="datepicker1"/></td>
+							   </tr>
+							   
+							<tr class="alt1" valign="top">
+							   <td>Enter the Description</td>
+							   <td><textarea name="show_desc" rows="5" cols="30">{coin_desc}</textarea></td>
+							   </tr>
+							   
+							   <tr class="alt1" valign="top">
+							   <td>Representatives</td>
+							   <td>{show_representatives}</td>
+							   </tr>
+							   
+							   <tr class="alt1" valign="top">
+							   <td>&nbsp;</td>
+							    <td><input type="submit"  name="submit" value="{_update}" />&nbsp;&nbsp;
+							    <input type="button" class="buttons" value="{_cancel}" style="font-size:15px" onClick="location.href='{ilpage[staffsettings]}'" /></td>
+							   </tr>
+							</table>
+							 </form>
+                               </div> 	
+							  <else /> 	
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Enter your coin shows detail</div></div>
+                            <div class="block3-content" style="padding:0px">
+                               <form name="show" method="post">
+							   <input type="hidden" name="cmd" value="coin_show" />
+                              <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							   <tr class="alt1" valign="top">
+							   <td>Enter the Show Start Date</td>
+							   <td><input type="text" name="show_start_date" id="datepicker"/></td>
+							   </tr>
+							   <tr class="alt1" valign="top">
+							   <td>Enter the Show End date</td>
+							   <td><input type="text" name="show_end_date" id="datepicker1"/></td>
+							   </tr>
+							   
+							<tr class="alt1" valign="top">
+							   <td>Enter the Description</td>
+							   <td><textarea name="show_desc" rows="5" cols="30"></textarea></td>
+							   </tr>
+							   
+							<tr class="alt1" valign="top">
+							   <td>Representatives</td>
+							   <td>{show_representatives}</td>
+							   </tr>   
+							   
+							   <tr class="alt1" valign="top">
+							   <td>&nbsp;</td>
+							    <td><input type="submit" name="submit" value="{_save}" />
+							   </td>
+							   </tr>
+							</table>
+							 </form>
+                               </div> 							
+                           
+						   </if>
+						   
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                             </div>
+                    </div>
+					
+					<br />
+					<br />
+					
+					<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">List of the shows <div class="smaller" align="right"><a href="{http_server}main-shows">View Coin Shows</a></div></div>
+                            <div class="block3-content-gray" style="padding:9px;"><div class="smaller">List of the Shows </div></div>
+                            <div class="block3-content" style="padding:9px;">
+                             <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr class="alt1">
+							<td width="10%">S.No</td>
+							<td width="15%">Show Start Date</td>
+							<td width="15%">Show End Date</td>
+							<td width="40%">Description</td>
+							<td width="10%">Edit</td>
+							<td width="10%">Delete</td>
+							</tr>
+							
+							 <loop name="coin_shows_list">
+							  <tr class="alt1">
+								<td width="10%">{id}</td>
+								<td width="10%">{start_date}</td>
+								<td width="10%">{end_date}</td>
+								<td width="40%">{description}</td>
+								<td width="10%">{edit}</td>
+								<td width="10%">{delete}</td>
+								</tr>
+							  </loop name="coin_shows_list">
+							
+							</table>
+							 {coin_show_pagnation}
+                              	</div>						
+                          
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							
+                              </div>
+                           
+                    </div>
+                </div>
+				
+				<!-- Coin Shows -->
+		
+
+				
+				
+				<!--Testimonials-->
+				
+				<div class="tab-page">
+			
+			<h2 class="tab">Testimonial</h2>
+			
+	
+				
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+							<!--sen on mar24 bug id 1329-->
+							
+							<div class="block3-header">Testimonial Form</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller"> 
+							Our clients depend on us to provide reliable and exceptional customer service. We do our best to meet and exceed their high standards. 
+							Here is what our clients say about GreatCollections. Already a client and want to leave a testimonial? E-mail it to us at                            info@greatcollections.com.</div></div>
+							
+                            <div class="block3-content" style="padding:0px">
+                            <form action="settings.php" method="post" id="form_id" name="form_id" style="margin:0px">
+							 <if condition="isset($show['edit_coin'])">
+							<input type="hidden" name="monial_update" value="testimonial_update" />
+						    <input type="hidden" name="id" value="{id}" />
+							<else /> 
+                            <input type="hidden" name="cmd" value="testimonials" /> 
+							 </if> 
+                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							    <tr>
+									<td>Title</td>
+									<td><input type="text" name="title" id="title" value="{title_monial}"/></td><td id="error_title" style="color:#FF0000"></td>
+							   </tr>
+							   <tr>
+									<td>Description</td>
+									<td><textarea name="description"  id="description" rows="3" cols="50">{description_monial}</textarea></td><td id="error_desc" style="color:#FF0000">
+									</td>
+							  </tr>
+							  <tr>
+								  <td>Firstname</td>
+								  <td><input type="text" name="firstname" id="firstname" value="{first_name}"/></td><td id="error_firstnam" style="color:#FF0000"></td>
+							  </tr>
+							  <tr>
+								  <td>Lastname</td>
+								  <td><input type="text" name="lastname" id="lastname" value="{last_name}"/></td><td id="error_lastname" style="color:#FF0000"></td>
+							  </tr>
+							  <tr>
+								  <td>Email</td>
+								  <td><input type="text" name="email" id="email" value="{email}"/></td><td id="error_email" style="color:#FF0000"></td>
+							  </tr>
+							  <tr>
+								  <td>Client Location</td>
+								  <td><input type="text" name="location" id="location" value="{location}"/></td><td id="error_location" style="color:#FF0000"></td>
+							  </tr>
+                             <tr>
+							    <td></td>
+								 <if condition="isset($show['edit_coin'])">
+								 <td><input type="submit" name="update" value="{_update}" onclick="return validate();"/></td>
+								    
+								 <else />
+							    <td><input type="submit" name="submit" value="{_submit}" onclick="return validate();"/></td>
+								</if>
+						    </tr>
+						</table>
+						</form>
+							
+						 							
+                            </div>
+							
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							<!--sen on  mar24 bug id 1329  end-->
+							
+							
+							<div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							
+                            <div class="block3-header">Testimonial</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">select users</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                             <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr class="alt1">
+							<td width="10%">Title</td>
+							<td width="40%">Description</td>
+							<td width="10%">Firstname</td>
+							<td width="10%">Lastname</td>
+							<td width="10%">Location</td>
+							<td width="10%">Added Date</td>
+							<td width="10%">Status</td>
+							<td width="10%">Edit</td>
+							<td width="10%">Delete</td>
+							</tr>
+							
+							 <loop name="total_testimonial">
+							  <tr class="alt1">
+								<td width="10%">{title}</td>
+								<td width="40%">{description}</td>
+								<td width="10%">{firstname}</td>
+								<td width="10%">{lastname}</td>
+								<td width="10%">{location}</td>
+								<td width="10%">{date_added}</td>
+								<td width="10%">{status}</td>
+								<td width="10%">{edit}</td>
+								<td width="10%">{remove}</td>
+								
+								</tr>
+							  </loop name="total_testimonial">
+							
+							</table>
+							{prof}
+						 							
+                            </div>
+							
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				
+				
+				
+	  </div>
+	  
+	  
+	 <!-- search page-->
+	 
+	 
+				<div class="tab-page">
+			
+			<h2 class="tab">Serach</h2>
+			
+	
+				
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+							<!--sen on mar24 bug id 1329-->
+							
+							<div class="block3-header">Search</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller"> 
+							Our clients depend on us to provide reliable and exceptional customer service. We do our best to meet and exceed their high standards. 
+							Here is what our clients say about GreatCollections. Already a client and want to leave a testimonial? E-mail it to us at                            info@greatcollections.com.</div></div>
+							
+                            <div class="block3-content" style="padding:0px">
+                            <form action="settings.php" method="post" id="form_id" name="form_id" style="margin:0px">
+							<input type="hidden" name="secrchcmd" value="search_insert"
+							<table>
+							      <tr>
+								       <td>Search text</td>
+									    <td><input type="text" name="search_text" value=""/></td>
+								  </tr>
+								  <tr>
+								       <td>Define search </td>
+									    <td><input type="text" name="define_search" value=""/></td>
+								  </tr>
+								   <tr>
+								       
+									    <td><input type="submit" name="submit" value="submit"/></td>
+								  </tr>
+							</table>
+						</form>
+							
+						 							
+                            </div>
+							
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							<!--sen on  mar24 bug id 1329  end-->
+							
+							
+						
+                            
+                    </div>
+                </div>
+				
+				
+				
+	  </div>
+</div>
+	
+		
+</div>
+
+

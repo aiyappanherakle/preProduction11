@@ -1,0 +1,291 @@
+<script type="text/javascript">    
+       
+function PrintDiv()
+{  
+          var r = document.getElementById('new');
+          var y = r.innerHTML;
+          y = y.replace(/\s+/g," ");
+          if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+               request = new XMLHttpRequest();
+           } else if (window.ActiveXObject) { // Internet Explorer
+               request = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+       
+          request.onreadystatechange = function ajaxResponse(){
+            if (request.readyState==4){
+               window.open('{https_server}staff/email_template.php?var=template', '_blank', 'width=300,height=300');
+          }else{
+                      // document.getElementById('txt').innerHTML= "<img src='images/default/wheel.gif'/>";        
+               }
+          }
+          // http_request.onreadystatechange = alertContents;
+	  url = '{https_server}staff/email_template.php';
+	  var parameter = 'you=uio&user=';
+          request.open('POST', url, true);
+          request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          request.setRequestHeader("Content-length", parameter.length);
+          request.setRequestHeader("Connection", "close");
+          request.send(parameter);
+    
+}
+
+function PrintText()
+{  
+           var r = document.getElementById('new');
+           var y = r.innerHTML;
+           y = y.replace(/\s+/g," ");
+           if (window.XMLHttpRequest){ // Mozilla & other compliant browsers
+               request = new XMLHttpRequest();
+            } 
+	  else if (window.ActiveXObject) 
+	  { // Internet Explorer
+               request = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          request.onreadystatechange = function ajaxResponse()
+	  {
+            if (request.readyState==4){
+	        window.open('{https_server}staff/email_template.php?txt=template', '_blank', 'width=300,height=300');
+          }else{
+                      // document.getElementById('txt').innerHTML= "<img src='images/default/wheel.gif'/>";        
+               }
+          }
+	   
+	   
+       // http_request.onreadystatechange = alertContents;
+	   
+	    url = '{https_server}staff/email_template.php';
+	    var parameter = 'text=text_temp&temp=';
+           request.open('POST', url, true);
+           request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+           request.setRequestHeader("Content-length", parameter.length);
+           request.setRequestHeader("Connection", "close");
+           request.send(parameter);
+} //end of PrintText()
+</script>
+
+
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class=""><span>{_management}</span></a>
+		<a href="email_generator.php" class=""><span>Email Template</span></a>  
+		<a href="email_template.php" class="sel"><span>New Template</span></a>
+		<a href="email_export.php" class=""><span>Email Export</span></a> 
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+	<div class="block-wrapper">
+	  <div class="block3"> 
+	     <div class="block3-top">
+	       <div class="block3-right">
+		    <div class="block3-left"></div>
+	       </div>
+	  </div>
+	  <div class="block3-header">Generate Email Template</div>
+	  <div class="block3-content" style="padding:0px"> 
+								
+
+<div><font face="arial" style="font:x-small" color="#000000"><br/></font></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GC - NEWSLETTER</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	text-align:left;
+}
+body {
+	background-color: #f9f9ed;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+#container {width:630px; background-color:#FFF;}
+#header {background-color:#f9f9ed; height:70px;	}
+#header_left {float:left; width:400px; color:#999; font-size:11px; text-align:left; padding:15px 10px 0px 10px; }
+#header_right {float:right; width:150px; color:#999; font-size:11px; text-align:right; padding:15px 10px 0px 10px; }
+#content {padding:15px; }
+#menu1 { height:30px; border-bottom: 1px solid #666; }
+#menu1 .bg { background:url({https_server}images/gc/light_blue_button_repeat.jpg) repeat-x; color:#FFF; width:450px; height:30px; padding:8px 0px 0px 0px;  margin-left:-130px; }
+#menu1 ul li {display:inline;  padding:00px 15px 0px 15px; background:url({https_server}images/gc/button_sepetor.jpg) no-repeat top right; height:30px; }
+#gc_logo {  height:85px;}
+#logo_left { float:left;  padding:15px 0px 0px 0px; }
+#logo_right { float:right; color:#2d5b8e;  padding:20px 20px 0px 0px; text-align:center;}
+#text1 { font-size:14px;}
+#text2 { font-size:13px;}
+#text3 { font-size:12px;}
+#menu2 { height:30px;  }
+#menu2 .bg { background:url({https_server}images/gc/blue_button_repeat.jpg) repeat-x; color:#FFF;  font-size:11px; height:30px; padding:8px 0px 0px 0px; }
+#menu2 ul li {display:inline;  padding:00px 7px 0px 7px; background:url({https_server}images/gc/button_sepetor.jpg) no-repeat top right; height:30px; }
+
+#banner { width:600px; height:276px; background:url({https_server}images/gc/bg_blue.jpg) no-repeat; margin-top:5px; margin-bottom:10px;  }
+
+#coin_cont { }
+#coin_box { border:1px solid #CCC; min-height:250px; margin-bottom:20px; }
+#coin_box_title { background:url({https_server}images/gc/tilt_name_bg.png) no-repeat top left; height:47px; margin-top:-1px; color:#FFF; padding:9px 0px 0px 15px; text-align:left; font-weight:bold; }
+
+#footer #blue { height:80px; background:url({https_server}images/gc/footer_blue.jpg) repeat-x top;}
+#footer #green { height:34px; background:url({https_server}images/gc/footer_green.jpg) repeat-x top; color: #fff; font-size: 10px; margin: 0; padding: 10px 0; }
+#footer #trans { height:70px; background-color: #f9f9ed; color: #555555; font-size: 10px; margin: 0; padding: 10px 0;}
+
+
+-->
+</style></head>
+
+<body>
+<div align="center">
+
+<div id="container"> 
+	
+    <div id="header"> 
+		<div id="header_left"> 
+        	Skip the e-mail! Just go straight to GreatCollections.com.<br /><br />
+			Having problems viewing this email? View it in your browser.
+        </div>
+        
+    	<div id="header_right"> 
+        	{VR_SOCIAL_SHARING}<br />
+			<a href="#">Forward to a Friend </a></div>
+		</div>
+    
+    <div id="content">
+    	
+        <div id="menu1">  
+        	<ul class="bg">
+            	<li> GreatCollections.com  </li>		 	
+	            <li> About Us </li>
+                <li> Consign</li>
+                <li> Contact Us</li>
+            </ul>
+        </div>
+        
+        <div id="gc_logo">  
+        	<div id="logo_left"><img src="{https_server}images/gc/logoBLUE_275px_x.gif" />  </div>
+        	<div id="logo_right">
+            	<span id="text1">Auctions Ending This Week!</span><br />
+				<span id="text2">www.greatcollections.com</span><br />
+				<span id="text3">New Coins Listed Daily</span><br />
+            </div>
+        </div>
+        
+        
+        <div id="menu2"> 
+        	<ul class="bg">
+            	<li> Browse Coins  </li>		 	
+	            <li> Silver Dollars 	</li>
+                <li> 24-Hour Deals 	 </li>
+                <li> $1,000+ Certified Coins 	</li>
+                <li> $1-$100 Certifed Coins </li>
+            </ul>
+        </div>
+        
+        <div id="new">
+        <div id="banner">  
+		<div style="padding:10px;">
+		{myfeat}
+		<div style="float:left; width:460px;">
+		   <p style="margin:0; padding:10px 0; font-family:verdana,arial; font-size:12px; color:555555;" align="center">
+                       <strong>Browse Over 1,900 Coin Auctions
+                        <br />
+                        No Hidden Reserves - Items Bid from $1 to $25,000+
+                        </strong>
+
+                       <br /><Br />
+                       
+                       <strong>Great</strong>Collections offers:<br />
+                     	<strong>Value:</strong>  The lowest fees, whether buying or selling.
+           				<br />
+                        <strong>Selection:</strong>  Over 1,900 certified coins currently listed.
+                        <br />
+                        <strong>Service:</strong>  Fast, professional customer service.
+           				<br /><br />
+
+ <strong>All first-time U.S. auction winners receive free shipping.</strong>
+         <br /><br />
+         <A href="{http_server}registration.php?referal_name=email01"><strong style="color:#336699;">Register to Bid and Be Part of the Action</strong></A><br /><br>
+         It's fast and free, and gives you instant access to bid, our auction archives, your personal watchlist and more.    
+         
+         <br /><br />
+
+           Ian Russell, Raeleen Endo and the <strong>Great</strong>Collections Team  
+        </p></div></div></div><br / clear="all">
+        
+        <div id="coin_cont"> 
+        		
+             {item}
+        
+        </div>
+		</div>
+  
+    </div>
+        <div id="footer"> 
+          	<div id="blue">  
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr><td>&nbsp;</td></tr>
+			 <tr><td>&nbsp;</td></tr>
+			<tr>
+  <td align="center" style="border-collapse:collapse;text-align:center;"><a href="{http_server}main.php?cmd=cp&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">MyGC</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;text-align:center;"><a href="{http_server}watchlist.php?referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Watchlist</a></td>
+
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;text-align:center;"><a href="{http_server}main.php?cmd=about&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">About Us</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;text-align:center;"><a href="{http_server}kb/" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Help</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;text-align:center;"><a href="{http_server}main.php?cmd=contact&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Contact Us</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;text-align:center;"><a href="{http_server}main.php?cmd=promise&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Trust</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;text-align:center;"><a href="{http_server}main.php?cmd=shows&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Coin Shows</a></td>
+</tr>
+ <tr><td>&nbsp;</td></tr>
+ 
+      </table>
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+          
+			<tr>
+  <td align="center" style="border-collapse:collapse;text-align:center;"><a href="{http_server}main.php?cmd=through&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Bidding/Buying Coins Through GreatCollections</a></td>
+  
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;text-align:center;"><a href="http://www.facebook.com/GreatCollections" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Facebook</a></td>
+
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;text-align:center;"><a href="http://twitter.com/greatcollection" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Follow Us On Twitter</a></td>
+  
+ 
+</tr>
+ 
+      </table> </div>
+          	<div id="green"> 
+            	This message was sent to {EMAIL_ADDRESS}.<br />
+				Please add info@greatcollections.com to your address book to ensure our emails reach your inbox!
+            </div>
+          
+			<div id="trans">&copy; 2010 - 2012 GreatCollections.com, LLC<br />
+							17500 Red Hill Avenue, Suite 160, Irvine, CA 92614<br />
+							Tel: 1.800.44.COINS (+1.949.679.4180) 
+		  	</div>
+        </div>
+
+</div>
+</div>
+</body>
+</html>
+
+
+</div>
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+					
+					<center><input type="button" value="Download HTML" onClick="PrintDiv();" ><input type="button" value="Download Text" onClick="PrintText();" ><a href="email_template.php?ck=op"><input type="button" value="Back" ></center>
+					
+				</div>
+				

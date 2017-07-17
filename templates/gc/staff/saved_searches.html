@@ -1,0 +1,110 @@
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class=""><span>{_management}</span></a>
+		<a href="email_generator.php" class=""><span>Email Template</span></a> 
+		<a href="email_template.php" class=""><span>New Template</span></a> 
+		<a href="uhr_template.php" class=""><span>UHR Template</span></a>
+		<a href="email_export.php" class=""><span>Email Export</span></a> 
+		<a href="saved_search.php" class="sel"><span>Search Options</span></a>
+		<a href="user_watchlist.php" class=""><span>watchlist Export</span></a> 
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+
+
+
+<div id="content">
+
+
+
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left">
+</div></div></div>
+<div class="block3-header">Search</div>
+<div style="padding:9px" class="block3-content-gray">
+<div class="smaller">You can search and filter saved searches  using the following form below</div>
+</div>
+<div style="padding:0px" class="block3-content">
+
+<form method="post" action="saved_search.php">
+<table width="100%" cellspacing="0" cellpadding="9" border="0">
+<tbody><tr class="alt1">
+<td width="10%"><span class="gray">Filter by</span></td>
+<td width="90%"><select style="font-family: Verdana" name="filterby">
+<optgroup label="Filter by">
+<option name="s.searchid" value="s.searchid">Searchid</option>
+<option name="s.title" value="s.title">Title</option>
+<option name="u.email" value="u.email">Email</option>
+</optgroup></select>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" id="search_save" name="save_search" style="width: 75%;" value="" size="18">
+<input type="hidden" name="cmd" value="search_save" />
+    </td></tr>
+<tr>
+	<td colspan="2"><input type="submit" id="submit" name="submit" value="search"></td></tr>
+	</tbody></table>
+	</form>
+	
+	</div>
+								<div class="block3-footer">
+								<div class="block3-right">
+								<div class="block3-left"></div></div></div></div></div>
+
+
+
+
+<div style="margin-top:20px;">
+<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+					<tr> 					
+						<td><b>SEARCHID</b></td>
+						<td><b>TITLE</b></td>
+						<td><b>SEARCHOPTIONS</b></td>
+						<td><b>FIRSTNAME</b></td>
+						<td><b>LASTNAME</b></td>
+						<td><b>EMAIL</b></td>
+						<td><b>ADDED</b></td>
+                        <td><b>EDIT</b></td>						
+					</tr>
+	
+		
+		
+		<loop name="saved_search_results1"> 
+		
+					<tr class="alt1" valign="top"> 
+						<td>{searchid}</td>
+                        <td>{title1}</td>
+                        <td>{searchoptions1}</td>
+                        <td>{first_name}</td>
+                        <td>{last_name}</td>
+                        <td>{email}</td>
+                        <td>{added}</td>
+                        <td>{edit}</td>							
+					</tr>
+		</loop name="saved_search_results1"> 
+					<if condition="isset($show['no_save_result']) AND $show['no_save_result']">
+					<tr>
+						<td colspan="8" align="center">{_no_results_found}</td>
+					</tr>					
+					</if>
+					</table>
+</div>
+	
+	
+					
+</div>
+					
+					
+					
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+</div>

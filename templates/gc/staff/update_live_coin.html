@@ -1,0 +1,171 @@
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php"><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+		<a href="listings.php?cmd=search_coin"  class="sel"><span>listed in gc</span></a>
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Updating Live Listing</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Updating</h2>
+			    
+				
+				
+						<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">Updating live listing</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						<form method="post" action="{ilpage[listedarea]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+
+						<input type="hidden" name="cmd" value="update_live" />
+		
+						<input type="hidden" name="subcmd" value="update_live_coin" />
+		
+						<input type="hidden" name="return" value="{ilpage[listedarea]?cmd=search_coin}" />
+						
+						       <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr>
+								
+								<td width="14%">Project ID</td> <td><input type="text" name="proid" id="proid" value="{project_id}" readonly="readonly"/></td>
+							    </tr>
+								
+								<tr>
+								
+								<td width="14%">Original Title</td> <td>{Title}</td>
+							    </tr>
+								<tr>
+								
+								<td width="14%">Title</td> <td><input type="text" name="title" id="title"  style="width:250px;" /></td>
+							    </tr>
+								<tr> 
+
+						       
+
+								<td nowrap="nowrap"  style="width: 125px;"><span class="gray">Pcgs(Catergory)</span></td>
+
+								<td>
+								<input type="text" name="pcgs" id="pcgs" value="{pcgs}" style="width:250px;" /> </td>
+
+
+							 </tr>
+							 
+							 <!--- kumaravel bug # 4519 start -->
+							 
+							<tr>
+								<td width="14%">Bids</td> 
+								<td><input type="text" name="bids" id="bids" value="{bids}" readonly="readonly"/></td>
+							</tr>
+							 
+							 
+							 <!--- kumaravel bug # 4519 end -->
+
+							 
+							  <tr>
+
+
+								<td nowrap="nowrap" ><span class="gray">End Date</span></td>
+
+								<td>{daylist_r}&nbsp;&nbsp;{monthlist_r}&nbsp;&nbsp;{yearlist_r} <input type="text" name="endtime" id="endtime" value="{endtime}"/> </td>
+
+							  </tr>
+							<tr>
+						<td nowrap="nowrap">
+								<input type="radio" name="bidacu" id="bidacu" value="1"/> Award to the highest bidder at the current bid.</td>
+<td><input type="radio" name="bidacu" id="bidacu" value="0"/>Cancel the auction and mark item as unsold.</td>
+							</tr>
+							<tr>
+
+								<td nowrap="nowrap" ><span class="gray">Minimum bid</span></td>
+
+								<td><input type="text" name="Minimum_bid" id="Minimum_bid" value="{start}" style="width:275px" readonly="readonly"/></td>
+
+								
+
+							</tr>
+
+						   <tr> 
+                             	<td nowrap="nowrap" > <span class="gray">Buy it now</span></td>
+
+								<td> <input type="text" name="Buy_it_now" id="Buy_it_now"  value="{buy}"style="width:275px" readonly="readonly"/></td>
+
+							
+							</tr> 
+							
+							 <tr> 
+                             	<td nowrap="nowrap" > <span class="gray">Currentprice</span></td>
+
+								<td> <input type="text" name="current" id="current"  value="{current}"style="width:275px" /></td>
+
+							
+							</tr> 
+							
+							<tr > 
+
+								<td nowrap="nowrap" ><input type="submit" name="submit" id="submit" value="submit" /></td>
+
+							</tr>
+
+							    
+							   </table>
+							   </form>
+								                           			
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>		
+								
+					
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+         
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

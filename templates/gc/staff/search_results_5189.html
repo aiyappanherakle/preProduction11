@@ -1,0 +1,354 @@
+<div id="v3body4">
+<h1>Bug #5189</h1>
+<script language="JavaScript">
+	<!--
+	function validate_all()
+	{	
+		fetch_bbeditor_data();
+		return(true);
+	}
+	//-->
+	</script>
+<!-- begin content -->
+<div id="content">
+<div class="header">Search</div>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	
+            {apihook[search_results_start]}
+        
+        <if condition="isset($show['mode_service']) AND $show['mode_service'] AND $ilconfig['globalauctionsettings_serviceauctionsenabled']"> 
+        <div class="bigtabs" style="padding-bottom:6px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul><if condition="isset($ilance->GPC['cid']) AND $ilance->GPC['cid'] > 0 AND isset($show['allowlisting']) AND $show['allowlisting']"><li title="" class="highlight"><a href="{ilpage[buying]}?cmd=new-rfp&amp;cid={cid}" rel="nofollow">{_post_your_service_auction}</a></li><else /><li title="" class="on"><a href="javascript:void(0)">{_refine_search}</a></li></if></ul>
+        <div style="padding-top:6px"></div>
+        <span style="padding-left:15px" id="searchresultoptions">
+        
+             <if condition="!empty($_SESSION['ilancedata']['user']['postalzip'])"><span style="float:right; padding-bottom:6px" class="gray"><span style="font-size:10px; font-family: verdana">{_projects_near}:</span>&nbsp;<span class="blue"><span class="blue" style="font-size:14px"><a href="{ilpage[preferences]}?cmd=profile&amp;redirect={php_self_urlencoded}#address" rel="nofollow"><strong>{user[postalzip]}, {user[countryshort]}</strong></a></span> <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_projects_near_me}</strong></div><div>{_if_you_are_registered_and_signed_in_this_zip_or_postal_code_will_be_used_to_also_include_local_services}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></span></span>
+            <else />
+            <if condition="!empty($ilance->GPC['radiuszip'])"><span style="float:right; padding-bottom:6px" class="gray"><span style="font-size:10px; font-family: verdana">{_projects_near}:</span>&nbsp;<span class="blue"><span class="blue" style="font-size:14px"><a href="javascript:void(0)" rel="nofollow" onclick="javascript:jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();"><strong>{radiuszip}</strong></a></span> <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_projects_near_me}</strong></div><div>{_if_you_are_registered_and_signed_in_this_zip_or_postal_code_will_be_used_to_also_include_local_services}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></span></span>
+            <else /><span style="float:right; padding-bottom:6px" class="gray"><span style="font-size:10px; font-family: verdana">{_projects_near}:</span>&nbsp;<span class="blue"><span class="blue" style="font-size:14px"><a href="javascript:void(0)" rel="nofollow" onclick="javascript:jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();"><strong>{_my_region_dot_dot}</strong></a></span> <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_projects_near_me}</strong></div><div>{_if_you_are_registered_and_signed_in_this_zip_or_postal_code_will_be_used_to_also_include_local_services}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></span></span>
+            </if></if>
+            <if condition="isset($ilconfig['savedsearches']) AND $ilconfig['savedsearches']"><span class="smaller blue"><a href="{http_server}{ilpage[preferences]}?cmd=favorites&amp;returnurl={php_self_urlencoded}" rel="nofollow">{_view_saved_searches}</a></span></if>&nbsp;&nbsp;&nbsp; <span class="smaller gray">|</span> &nbsp;&nbsp;&nbsp;<span class="smaller blue"><a href="{ilpage[search]}?returnurl={php_self_urlencoded}" rel="nofollow">{_advanced_search}</a></span>&nbsp;&nbsp;&nbsp; <span class="smaller gray">|</span> &nbsp;&nbsp;&nbsp;<span class="smaller blue"><a href="{ilpage[search]}?tab=3&amp;returnurl={php_self_urlencoded}" rel="nofollow">{_display_options}</a></span>
+        </span>
+        </div>
+        </div>
+        
+        <div style="clear:both;"></div>
+        
+        <form method="get" action="{php_self}" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;">
+        {hiddenfields}
+        <div style="margin-top:6px">
+        <div style="padding-bottom:12px" class="gray"><strong>{text}</strong></div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+            <td width="7%" nowrap="nowrap"><strong>{_find}</strong>&nbsp;&nbsp;<input type="text" name="q" value="{q}" maxlength="100" size="50" class="input" />&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td width="19%" nowrap="nowrap"><strong>{_in}</strong>&nbsp;&nbsp;{search_category_pulldown}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td width="5%" nowrap="nowrap"><strong>{_view}</strong>&nbsp;&nbsp;{sortpulldown}&nbsp;&nbsp;&nbsp;</td>
+            <td width="59%" nowrap="nowrap"><input type="submit" class="buttons" value=" {_go} " /></td>
+        </tr>
+        </table>
+        </div>
+        </form>
+        
+        <div>{didyoumean}</div>
+        
+        <if condition="isset($show['showfewerkeywords']) AND $show['showfewerkeywords']">{fewer_keywords}</if>
+        
+        <if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled'] AND isset($show['featuredserviceauctions']) AND $show['featuredserviceauctions'] AND $ilconfig['showfeaturedlistings']">
+        <div class="block-wrapper" id="featuredblock">
+        
+            <div class="block2">
+            
+                    <div class="block2-top">
+                            <div class="block2-right">
+                                    <div class="block2-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block2-header">
+                    <span style="float:right; padding-top:3px" class="smaller gray"></span>{_featured}</div>
+                    <div class="block2-content" style="padding:0px">
+                        
+                        <table border="0" cellpadding="6" cellspacing="{table_cellspacing}" width="100%">
+                        <if condition="$show['featuredserviceauctions']">
+                        <tr>
+                            <loop name="featuredserviceauctions">
+                            <td width="{width}%" valign="top">
+                                <div style="padding:4px">
+                                    <div class="blue">{title}</div><div class="smaller gray" style="padding-top:3px; padding-bottom:6px">{description}</div>
+                                    <div style="padding-top:10px" class="black"><strong>{_average_bid}: {average}</strong> &nbsp;<span class="smaller gray">({bids} {_bids_lower})</span></div>
+                                    <div style="width:100%; padding-top:10px"><span style="font-size:15px" class="black"><strong>{timeleft}</strong></span></div>
+                                </div>
+                            </td>
+                            {separator}
+                            {separator_end}
+                            </loop name="featuredserviceauctions">
+                        </tr>
+                        <else />
+                        <tr>
+                            <td align="center"><span class="blue"><a href="{ilpage[main]}?cmd=buying">{_buy_services}</a></span></td>
+                        </tr>
+                        </if>
+                        </table>
+                    </div>
+                    
+                    <div class="block2-footer">
+                            <div class="block2-right">
+                                    <div class="block2-left"></div>
+                            </div>
+                    </div>			
+            </div>	
+        </div>
+        </if>
+        
+        </if>
+        
+        <if condition="isset($show['mode_product']) AND $show['mode_product'] AND $ilconfig['globalauctionsettings_productauctionsenabled']">
+        
+        
+        
+        <div style="clear:both;"></div>
+        
+        <form method="get" action="{php_self}" accept-charset="UTF-8" id="search" style="margin: 0px; padding-bottom:12px;">
+        {hiddenfields}
+        
+        </form>
+        
+        <div>{didyoumean}</div>
+        
+        <if condition="isset($show['showfewerkeywords']) AND $show['showfewerkeywords']"><div id="tip_fewerkeywords">{fewer_keywords}</div></if>
+        
+        
+        <if condition="isset($ilance->GPC['penny']) AND $ilance->GPC['penny']"><!-- BEGIN penny auctions -->
+        {pennyauctions}<!-- END penny auctions -->
+        <else />
+        
+        <if condition="isset($show['featuredproductauctions']) AND $show['featuredproductauctions'] AND $ilconfig['globalauctionsettings_productauctionsenabled'] AND $ilconfig['showfeaturedlistings']">
+        
+        <div style="clear:both;"></div>
+        
+        <!-- BEGIN featured products -->
+        <div class="block-wrapper" id="featuredblock">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">
+                    <span style="float:right; padding-top:3px" class="smaller gray"></span>{_featured}</div>
+                    
+                    <div class="block-content" style="padding:0px">
+                        
+                        <if condition="$show['featuredproductauctions']">
+                        <table border="0" cellpadding="6" cellspacing="{table_cellspacing}" width="100%">
+                        <tr>
+                            <loop name="featuredproductauctions">
+                            {separator_begin}
+                            <td width="{width}%" valign="top">
+                                <div style="padding:4px">
+                                    <table border="0" cellspacing="0" cellpadding="0"><tr><td align="left"><div style="width:100%; height:100px" align="center">{photo}</div></td></tr></table>
+                                    <div style="height:45px"><span class="blue">{title}</span><div class="smaller black" style="padding-top:3px; padding-bottom:6px">{description}</div></div>
+                                    <div style="width:100%; padding-top:15px"><span class="black"><strong>{price}</strong> &nbsp;<span class="smaller gray">({bids} {_bids_lower})</span></span></div>
+                                    <div style="width:100%; padding-top:3px" class="gray">{buynowtxt} {buynow}</div>
+                                    <div style="width:100%; padding-top:10px"><span style="font-size:15px" class="black"><strong>{timeleft}</strong></span></div>
+                                </div>			
+                            </td>
+                            {separator}
+                            {separator_end}
+                            </loop name="featuredproductauctions">	
+                        </tr>
+                        </table>
+                        </if>
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+            
+        </div><!-- END featured products -->
+        </if>
+        
+        <form method="get" action="{ilpage[rfp]}" accept-charset="UTF-8" style="margin: 0px;" id="searchform">
+        <input type="hidden" name="cmd" value="auctioncmd" />
+        <input type="hidden" name="mode" value="product" />
+        <input type="hidden" name="returnurl" value="{php_self_urlencoded}" />
+        {search_results_table}
+		
+        </form>
+		
+		<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0 AND $_SESSION['ilancedata']['user']['isadmin'] == '1'">
+		<form method="post" action="{ilpage[search]}"  accept-charset="UTF-8" style="margin: 0px;" id="searchform" onsubmit="return validate_all();">
+		 <input type="hidden" name="cmd" value="saveurl" />
+		 <input type="hidden" name="url" value="{searchurl}" />
+		 <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_save}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">save this search page</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="15%" nowrap="nowrap"><span class="gray">Title</span></td>
+								<td><input type="text" name="title" id="title" style="width:275px" value="" /></td>
+								</tr>
+								<tr>
+								<td width="15%" nowrap="nowrap"><span class="gray">Description</span></td>
+								<td>{wysiwyg_area}</td>
+								</tr>
+								<tr>
+								<td width="5%" nowrap="nowrap" class="alt1"><span class="gray"></span></td>
+								<td><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td>
+							    </tr>
+                                       
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+		
+		</form>
+		</if>
+		
+        </if>
+        </if>
+        
+        <if condition="isset($show['mode_providers']) AND $show['mode_providers']"> 
+        <div class="bigtabs" style="padding-bottom:5px; padding-top:00px">
+        <div class="bigtabsheader">
+        <ul><if condition="isset($ilconfig['enableskills']) AND $ilconfig['enableskills']"><li title="" class="highlight"><a href="javascript:void(0)" onclick="javascript:jQuery('#skills_selector_modal').jqm({modal: false}).jqmShow();" rel="nofollow">{_search_by_skill}</a></li><else /><li title="" class="on"><a href="javascript:void(0)">{_refine_search}</a></li></if></ul>
+        <div style="padding-top:6px"></div>
+        <span style="padding-left:15px" id="searchresultoptions">
+        
+            <if condition="!empty($_SESSION['ilancedata']['user']['postalzip'])"><span style="float:right; padding-bottom:6px" class="gray"><span style="font-size:10px; font-family: verdana">{_experts_near}:</span>&nbsp;<span class="blue"><span class="blue" style="font-size:14px"><a href="{ilpage[preferences]}?cmd=profile&amp;redirect={php_self_urlencoded}#address" rel="nofollow"><strong>{user[postalzip]}, {user[countryshort]}</strong></a></span> <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_experts_near_me}</strong></div><div>{_if_you_are_registered_and_signed_in_this_zip_or_postal_code_will_be_used_to_also_include_local_professionals}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></span></span>
+            <else />
+            <if condition="!empty($ilance->GPC['radiuszip'])"><span style="float:right; padding-bottom:6px" class="gray"><span style="font-size:10px; font-family: verdana">{_experts_near}:</span>&nbsp;<span class="blue"><span class="blue" style="font-size:14px"><a href="javascript:void(0)" rel="nofollow" onclick="javascript:jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();"><strong>{radiuszip}</strong></a></span> <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_experts_near_me}</strong></div><div>{_if_you_are_registered_and_signed_in_this_zip_or_postal_code_will_be_used_to_also_include_local_professionals}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></span></span>
+            <else /><span style="float:right; padding-bottom:6px" class="gray"><span style="font-size:10px; font-family: verdana">{_experts_near}:</span>&nbsp;<span class="blue"><span class="blue" style="font-size:14px"><a href="javascript:void(0)" rel="nofollow" onclick="javascript:jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();"><strong>{_my_region_dot_dot}</strong></a></span> <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_experts_near_me}</strong></div><div>{_if_you_are_registered_and_signed_in_this_zip_or_postal_code_will_be_used_to_also_include_local_professionals}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></span></span>
+            </if></if>
+            
+            <if condition="isset($ilance->GPC['cid']) AND $ilance->GPC['cid'] > 0 AND !empty($_SESSION['ilancedata']['user']['userid']) AND is_profile_cat_prepared($_SESSION['ilancedata']['user']['userid'], $ilance->GPC['cid']) == false"><span class="smaller blue"><a href="{ilpage[selling]}?cmd=profile&amp;cid={cid}&amp;returnurl={php_self_urlencoded}#categories" rel="nofollow" onmouseover="Tip('{_create_a_selling_profile}', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><strong>{_create_a_selling_profile}</strong></a></span>&nbsp;&nbsp;&nbsp; <span class="smaller gray">|</span> &nbsp;&nbsp;&nbsp;</if>
+            <if condition="isset($ilconfig['savedsearches']) AND $ilconfig['savedsearches']"><span class="smaller blue"><a href="{http_server}{ilpage[preferences]}?cmd=favorites&amp;returnurl={php_self_urlencoded}" rel="nofollow">{_view_saved_searches}</a></span></if>&nbsp;&nbsp;&nbsp; <span class="smaller gray">|</span> &nbsp;&nbsp;&nbsp;<span class="smaller blue"><a href="{ilpage[search]}?tab=2&amp;returnurl={php_self_urlencoded}" rel="nofollow">{_advanced_search}</a></span>&nbsp;&nbsp;&nbsp; <span class="smaller gray">|</span> &nbsp;&nbsp;&nbsp;<span class="smaller blue"><a href="{ilpage[search]}?tab=3&amp;returnurl={php_self_urlencoded}" rel="nofollow">{_display_options}</a></span>
+        </span>
+        </div>
+        </div>
+        
+        <div style="clear:both;"></div>
+        
+        <form method="get" action="{php_self}" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;">
+        {hiddenfields}
+        <div style="margin-top:6px">
+        <div style="padding-bottom:12px" class="gray"><strong>{text}</strong></div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+            <td width="7%" nowrap="nowrap"><strong>{_find}</strong>&nbsp;&nbsp;<input type="text" name="q" value="{q}" maxlength="100" size="50" class="input" />&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td width="19%" nowrap="nowrap"><strong>{_in}</strong>&nbsp;&nbsp;{search_category_pulldown}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td width="5%" nowrap="nowrap"><strong>{_view}</strong>&nbsp;{sortpulldown2}&nbsp;&nbsp;&nbsp;</td>
+            <td width="59%" nowrap="nowrap"><input type="submit" class="buttons" value=" {_go} " /></td>
+        </tr>
+        </table>
+        </div>
+        </form>
+        
+        <div>{didyoumean}</div>
+        
+        <if condition="isset($show['showfewerkeywords']) AND $show['showfewerkeywords']"><div id="tip_fewerkeywords">{fewer_keywords}</div></if>
+        <form method="get" action="{ilpage[rfp]}" accept-charset="UTF-8" style="margin: 0px;" id="searchform">
+        <input type="hidden" name="cmd" value="expertcmd" />
+        <input type="hidden" name="mode" value="experts" />
+        <input type="hidden" name="returnurl" value="{php_self_urlencoded}" />
+        {search_results_table}
+        </form>
+        
+        <!-- START skills filters --><div id="skills_selector_modal" class="modal modal_window" style="display: none; cursor: default; width: 760px; height: 500px;">
+            <div class="bigtabs" style="padding-bottom:5px; padding-top:5px">
+            <div class="bigtabsheader">
+            <span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+            <ul id="skilltabs">
+                <li title="" id="cbskills" class="on"><a href="javascript:void(0)" target="skills_iframe" rel="nofollow">{_search_by_skill}</a></li>
+            </ul>
+            </div>
+            </div>
+            <div style="clear:both;"></div>
+            <div class="gray" id="tabtext">{_search_by_skills_to_quickly_find_experts_that_matter_most_to_you}</div>
+            <form name="ilform_modal" method="get" accept-charset="UTF-8" action="{http_server}{ilpage[search]}">
+            <input type="hidden" name="q" value="{q}" />
+            {hiddenfields}
+            <iframe name="skills_iframe" id="skills_iframe" width="100%" scrolling-bottom="yes" border="0" frameborder="0" class="" style="height:320px; border-top:1px solid #fff; border-left:1px solid #fff; border-right:1px solid #fff; border-bottom:1px solid #bdbdbd; padding-bottom:9px" src="{template_relativeimagepath}ajax.php?do=cbskills"></iframe>
+            <div id="selectedskills" style="padding-top:9px"></div>
+            <div id="skillhiddenfields"></div>
+            </form>
+        </div><!-- END skills filters --></if>
+        
+        <!-- START save this search modal --><div id="saved_search_modal" class="modal modal_window"  style="display:none; cursor: default; width: 570px; height: 230px;">
+            <div class="bigtabs" style="padding-bottom:5px; padding-top:5px">
+            <div class="bigtabsheader">
+            <span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+            <ul id="skilltabs">
+                <li title="" class="highlight"><a href="javascript:void(0)" rel="nofollow">{_save_this_search}</a></li>
+            </ul>
+            </div>
+            </div>
+            <div style="clear:both;"></div>            
+            <div class="gray">{_you_can_now_save_this_search_into_an_orgainzed_folder}</div>
+            <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+            <form name="ilform_modal" method="post" action="{http_server}{ilpage[preferences]}" accept-charset="UTF-8" style="margin:0px">
+            <div style="padding-top:20px"><strong>{_title_of_this_saved_search}</strong></div>
+            <div style="padding-top:3px"><input type="text" name="title" value="{q}" class="input" style="font-family: verdana; width:300px" /></div>
+            <div style="padding-top:9px"><input type="submit" value=" {_save} " class="buttons" style="font-size:15px" /></div>
+            <input type="hidden" name="cmd" value="favorites" />
+            <input type="hidden" name="subcmd" value="save" />
+            <input type="hidden" name="fav" value="{favoritesearchurl}" />
+            <input type="hidden" name="verbose" value="{favtext}" />
+            </form>
+            <else /><div style="padding-top:12px"><strong><span class="blue"><a href="{https_server}{ilpage[login]}">{_please_login_or_register_to_save_this_search}</a></span></strong></div>
+            <div class="smaller gray">{_note_when_you_register_or_login_you_may_need_to_reexecute_this_specific_search}</div></if>
+        </div><!-- END save this search modal -->
+        
+        <!-- START region modal --><div id="zipcode_nag_modal" class="modal modal_window" style="display:none; cursor: default; width: 560px; height: 200px;">       
+            <div class="bigtabs" style="padding-bottom:5px; padding-top:5px"><div class="bigtabsheader"><span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span><ul id="skilltabs"><li title="" class="highlight"><a href="javascript:void(0)" rel="nofollow">{_enter_your_location}</a></li></ul></div></div><div style="clear:both;"></div>
+            <form name="ilform2_modal" method="get" action="{php_self}" accept-charset="UTF-8" style="margin:0px">
+            <if condition="empty($ilance->GPC['sef'])"><input type="hidden" name="mode" value="{mode}" /><input type="hidden" name="sort" value="{sort}" /></if>
+            <div style="padding-left:9px">
+                <div class="gray">{_please_select_your_country}</div>
+                <div style="padding-top:4px">{full_country_pulldown}</div>
+                <hr size="1" width="100%" style="color:#ccc; margin-top:4px" />
+                <span style="float:left; padding-right:10px; padding-top:3px" class="gray">{_zip_slash_postal_code}</span><input type="text" name="radiuszip" id="radiuszip" maxlength="15" size="9" value="{radiuszip}" /> <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_zip_code} &amp; {_distance}</strong></div><div>{_in_order_to_view_search_results_based_on_distance_away_from_you}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a>
+
+                <div style="padding-top:12px"><input type="submit" value=" {_save} " class="buttons" style="font-size:15px" /> &nbsp;&nbsp;&nbsp;<span class="blue"><a href="javascript:void(0)" onclick="javascript:jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmHide();">{_cancel}</a></span></div>
+            </div>
+            <input type="hidden" name="do" value="saveregion" />
+            </form>
+        </div><!-- END region modal -->
+        
+        {apihook[search_results_end]}
+
+</td></tr></table>    </div>
+                </div>
+
+		</div>

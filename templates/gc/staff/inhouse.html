@@ -1,0 +1,72 @@
+			
+		
+		
+<div id="v3body4">
+<!-- begin content -->
+<div id="content">
+<div class="header">Inhouse Account Summary</div>
+<br />
+	
+ 				
+				 
+						<div class="block">		
+								<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+								</div>
+								<div class="block-header">All the inhouse accounts profit details for the selected statment date will be shown</div>
+								<div class="block-content" style="padding:0px">
+								<form name="ilform" action="" method="post" accept-charset="UTF-8" style="margin: 0px;" >
+						  		<input type="hidden" name="cmd" value="calc_inhouse_profit" />
+								<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+								<tr>
+								<td>
+								Statement Date
+								</td>
+								<td>
+								<input id="datepicker" name="start_date" type="text">
+								 
+								</td>
+								</tr>
+								 
+								<tr>
+								<td colspan="2" align="center">
+								<input type="submit" class="buttons" value=" {_export} " name="print" style="font-size:15px" />
+								 
+								</td>
+								</tr>
+								 
+								<tr>
+								<td colspan="2" style="padding:20px;" align="center">
+								  {html}
+								</td>
+								</tr>
+								</table>
+								</form>
+								
+								</div>
+								<div class="block-footer">
+									<div class="block-right">
+										<div class="block-left"></div>
+									</div>
+								</div>
+							</div>
+					 
+							 
+						
+						<script>
+								$(function() {
+									$("#datepicker").datepicker({
+											dateFormat: 'yy-mm-dd',
+											beforeShowDay: enableSUNDAYS
+										});
+										function enableSUNDAYS(date) {
+										var day = date.getDay();
+										return [(day == 0), ''];
+										}
+								});
+						</script>
+ 
+</div>
+</div>								

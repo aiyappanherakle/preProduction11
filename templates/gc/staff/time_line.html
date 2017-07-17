@@ -1,0 +1,154 @@
+<html>
+	    <head>
+<script type="text/javascript" src="{https_server}functions/javascript/jquery-ui-timepicker-addon.js"></script>
+<script>
+	    $(function(){
+			
+	    $('#time1').datetimepicker({
+	    showSecond: true,
+	    dateFormat:'yy-mm-dd',
+	    timeFormat: 'hh:mm:ss',
+	    stepHour: 2,
+	    stepMinute: 10,
+	    stepSecond: 10
+});
+});
+
+
+
+</script> 
+        <script language="JavaScript">
+	<!--
+	
+        
+        function function2()
+        {
+            var x=document.fname.description.value;
+            if(document.fname.datetime.value=="")
+            {
+                alert("date is empty");
+                return false;
+            }
+                 
+            else if(x==null || x=="")            
+            {
+                alert("type the text");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        
+	function validate_all()
+	{
+	    
+	   
+            fetch_bbeditor_data();
+            return (true);
+	}
+ 
+	//-->
+	</script>
+
+
+	    </head>
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline" class="sel"><span>{_time_line}</span></a>
+	</div>
+</div>
+
+<div id="content">
+<div class="header">Timeline</div><br />
+	
+    	<div class="tab-pane">
+		<div class="tab-page">
+			
+                    <h2 class="tab">Insert</h2>
+                    <form name="fname" id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" onSubmit=' validate_all();  return function2();'>
+                   <input type="hidden" name="cmd" value="timeline" />
+		    <input type="hidden" name="subcmd" value="editor" />
+                    <table><tr><td>Date  <input type="text" id="time1" name="datetime" value="{currentmotd1}"  ></td></tr>
+                    <tr><td><div style="padding-top:6px">{wysiwyg_area}</div></td></tr></table><table>
+                    <tr><td align='right' style="width: 300px;">
+                    <if condition="isset($show['edit']) AND $show['edit']=='true'">
+			<input type="hidden" name="cmd" value="timeline" />
+                   <center><input type="submit" name="update" value="update" ></center>
+                    <input type="hidden" name="id" value="{id}">
+                    <else />
+                    <center><input type="submit" name="submit" value="submit"></center></td></tr>  </table>
+		    
+		    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+			    <div class="block3-header">{_view}</div>
+			    <div class="block3-content" style="padding:0px">
+				    
+				    <div class="block3-content" style="padding:0px">
+							
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td width="7%"><center style="margin-left: 0px; margin-right: 5px;">ID</center></td>
+								  <td width="23%" style="width: 0px; margin-right: 0px; padding: 9px; border-right-width: 0px; border-top-width: 0px;"><left style="margin-left: 220px;">CONTENT</left></td>
+								 
+								  <td width="10%" ><left style="margin-left: -65px;">DATE & TIME</left></td>
+								  <td width="10%" ><left style="margin-left: -20px;">EDIT</left></td>
+								  <td width="10%" ><left style="margin-left: -10px;">DELETE</left></td>
+								  
+								  </tr>
+							<loop name="searchcustomers"> 
+				    
+		   <if condition="isset($show['con']) AND $show['con']=='true'">
+			{html}
+			</if>
+                    </if>
+		    
+		    <!--<div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>-->
+		    
+		     
+                                        <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                              
+                                  <td width="90%">
+                                      
+			    </div>     
+                                      
+                    </div></div>
+            	                      
+        </form>      		
+		</div>
+		             
+        </div>
+
+	
+	
+</div>
+		    
+		    
+		    
+		    
+		    
+		  

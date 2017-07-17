@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy for Windows (vers 14 February 2006), see www.w3.org">
+    
+</script>
+    <title></title>
+  </head>
+  <body>
+    <div id="v3body4">
+      <!-- sub navigation -->
+      <!-- /sub navigation -->
+      <div id="content">
+        <div class="header">
+          {_report_management}
+        </div><br>
+        <div class="tab-pane">
+          <div class="tab-pane" id="reportlistings">
+            <div class="tab-page">
+              <h2 class="tab">
+                Consignor
+              </h2>
+              <form name="generatereports" method="post" action="accounting_export.php" accept-charset="UTF-8" style="margin: 0px;" id="generatereports">
+                <input type="hidden" name="cmd" value="list_all_consignor">
+                <div class="block-wrapper">
+                  <div class="block">
+                    <div class="block-top">
+                      <div class="block-right">
+                        <div class="block-left"></div>
+                      </div>
+                    </div>
+                    <div class="block-header">
+                     Consignor list
+                    </div>
+                    <div class="block-content-yellow" style="padding:9px">
+                      <div class="smaller">
+                        Exports all consignors having statement for the month selected below
+                      </div>
+                    </div>
+                    <div class="block-content" style="padding:0px">
+                      <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                        <tr class="alt1">
+                          <td align="right">
+                            <span class="gray">Month</span>
+                          </td>
+                          <td width="83%">
+                            {months},{years}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <input type="submit" value=" {_create_report} " style="font-size:15px" class="buttons">
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="block-footer">
+                      <div class="block-right">
+                        <div class="block-left"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="tab-page">
+              <h2 class="tab">
+                Sales
+              </h2>
+              <div class="block-wrapper">
+                <form name="generatereports" method="post" action="accounting_export.php" accept-charset="UTF-8" style="margin: 0px;" id="generatereports">
+                  <input type="hidden" name="cmd" value="list_all_statements">
+                  <div class="block">
+                    <div class="block-top">
+                      <div class="block-right">
+                        <div class="block-left"></div>
+                      </div>
+                    </div>
+					<div class="block-header">
+                      Consignor Statements
+                    </div>
+                    <div class="block-content-yellow" style="padding:9px">
+                      <div class="smaller">
+                        Exports all consignor statements to a csv file for the month selected below
+                      </div>
+                    </div>
+                    <div class="block-content" style="padding:0px">
+                      <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                        <tr class="alt1">
+                          <td align="right">
+                            <span class="gray">Month</span>
+                          </td>
+                          <td width="83%">
+                            {months},{years}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <input type="submit" value=" {_create_report} " style="font-size:15px" class="buttons">
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="block-footer">
+                      <div class="block-right">
+                        <div class="block-left"></div>
+                      </div>
+                    </div>
+                  </div>
+                </form><!--block wrapper-->
+              </div>
+            </div>
+            <div class="tab-page">
+              <h2 class="tab">
+                Pending
+              </h2>
+              <div class="block-wrapper">
+                <form name="generatereports" method="post" action="accounting_export.php" accept-charset="UTF-8" style="margin: 0px;" id="generatereports">
+                  <input type="hidden" name="cmd" value="pending_invoice_export">
+                  <div class="block">
+                    <div class="block-top">
+                      <div class="block-right">
+                        <div class="block-left"></div>
+                      </div>
+                    </div>
+					<div class="block-header">
+                      Pending Invoices
+                    </div>
+                    <div class="block-content-yellow" style="padding:9px">
+                      <div class="smaller">
+                        Exports all Pending invoices for the month selected below
+                      </div>
+                    </div>
+                    <div class="block-content" style="padding:0px">
+                      <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                        <tr class="alt1">
+                          <td align="right">
+                            <span class="gray">Month</span>
+                          </td>
+                          <td width="83%">
+                            {months},{years}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <input type="submit" value=" {_create_report} " style="font-size:15px" class="buttons">
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="block-footer">
+                      <div class="block-right">
+                        <div class="block-left"></div>
+                      </div>
+                    </div>
+                  </div>
+                </form><!--block wrapper-->
+              </div>
+            </div>
+			<div class="tab-page">
+              <h2 class="tab">
+                invoices-All
+              </h2>
+              <div class="block-wrapper">
+                <form name="generatereports" method="post" action="accounting_export.php" accept-charset="UTF-8" style="margin: 0px;" id="generatereports">
+                  <input type="hidden" name="cmd" value="all_invoice_export">
+                  <div class="block">
+                    <div class="block-top">
+                      <div class="block-right">
+                        <div class="block-left"></div>
+                      </div>
+                    </div>
+					<div class="block-header">
+                      All Invoices
+                    </div>
+                    <div class="block-content-yellow" style="padding:9px">
+                      <div class="smaller">
+                        Exports all invoices for the month selected below
+                      </div>
+                    </div>
+                    <div class="block-content" style="padding:0px">
+                      <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                        <tr class="alt1">
+                          <td align="right">
+                            <span class="gray">Month</span>
+                          </td>
+                          <td width="83%">
+                            {months},{years}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <input type="submit" value=" {_create_report} " style="font-size:15px" class="buttons">
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="block-footer">
+                      <div class="block-right">
+                        <div class="block-left"></div>
+                      </div>
+                    </div>
+                  </div>
+                </form><!--block wrapper-->
+              </div>
+            </div>
+          </div><!--Multi-item buynow ends-->
+        </div>
+      </div><br>
+      <br>
+    </div>
+  </body>
+</html>

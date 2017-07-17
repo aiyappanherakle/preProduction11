@@ -1,0 +1,238 @@
+{template_htmldoctype}
+<html dir="{template_textdirection}" lang="{template_languagecode}">
+<head>
+<title>{page_title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={template_charset}">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="revisit-after" content="0">
+<meta name="robots" content="noindex, nofollow">
+<link type="text/css" href="{https_server}/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+
+{headinclude}
+
+<style type="text/css">
+li ul li {
+	position:relative;
+	z-index: 100;
+	width:auto;
+}
+#align{
+	display:block;
+	text-align:left; 
+	width:150px;
+	padding-left:10px;
+	background-color:#FFFFFF;
+	border:solid 1px;
+	font-size:11px;
+}
+</style>
+</head>
+
+<body onLoad="{onload}">
+
+<script language="javascript" type="text/javascript" src="{template_relativeimagepath}functions/javascript/tooltip.js" charset="utf-8"></script>
+
+<div id="v3body1"><div id="v3body2"><div id="v3body3">
+
+<div id="top"><span style="float:left; padding-top:6px" class="smaller gray">{official_time}</span>
+<div id="version">
+	<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0 AND $_SESSION['ilancedata']['user']['isadmin'] == '1'">
+	<span class="smaller gray">{ilanceversion}&nbsp;&nbsp;|&nbsp;&nbsp;Build <strong>{buildversion}</strong></span>
+	<else />&nbsp;</if>
+</div>
+
+<div id="logo">
+<div style="padding-bottom:25px"></div>
+
+<span class="blue"><a href="{https_server}staff/{ilpage[dashboard]}" style="text-decoration:none; font-family: Georgia, Times New Roman, Times, serif; font-size: 21px; line-height: 25px; letter-spacing: -1px; font-weight: normal;">{site_name}</a></span>
+<div class="smaller" style="padding-top:6px;">
+	<span class="blue" style="float:right">
+	<a href="{http_server}staff/{ilpage[dashboard]}">{_dashboard}</a>&nbsp;&nbsp;
+	<span class="smaller gray">|</span>&nbsp;&nbsp;
+	<a href="{http_server}asst/user_report.php">Accounting</a></a>&nbsp;&nbsp;
+	<span class="smaller gray">|</span>&nbsp;&nbsp;
+	<a href="{http_server}" target="_blank">{_client_cp}</a>
+	</span>
+	<span>{login_include_admin}</span>
+</div>
+
+</div></div>
+
+<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0 "><!-- main header links -->
+<div id="v3menu">
+
+<ul id="treemenu1">
+	<loop name="v3nav">
+	<li id="1" onMouseOver="dropdown('setting');" onMouseOut="dropdownb('setting');"><a href="{https_server}staff/settings.php" accesskey="{key}" {class}><span><strong>{_settings}</strong></span></a>
+    
+     <ul id="setting" style="display:none; position:relative;" >
+<li><a  href="{https_server}staff/settings.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Grading List</span></a></li>
+<li><a href="{https_server}staff/settings.php?cmd=referalid" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Referal id</span></a></li>
+<li><a href="{https_server}staff/settings.php?cmd=shipping" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Shipping</span></a></li>
+<li><a href="{https_server}staff/settings.php?cmd=dailydeals" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Daily Deals</span></a></li>
+<li><a href="{https_server}staff/settings.php?cmd=searchpage" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Search Page</span></a></li>
+<li><a href="{https_server}staff/settings.php?cmd=alertarea" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Alert Area</span></a></li>
+<li><a href="{https_server}staff/settings.php?cmd=affiliatelist" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Affiliate List</span></a></li>
+<li><a href="{https_server}staff/settings.php?cmd=promocode" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Promocode</span></a></li>
+<li><a href="{https_server}staff/settings.php?cmd=coincondition" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Coin condition</span></a></li>
+</ul>
+    
+    </li>
+	
+	
+	<li id="2" onMouseOver="dropdown('custidoff');" onMouseOut="dropdownb('custidoff');"><a href="{https_server}staff/users.php" accesskey="{key}" {class}><div><strong>{_customers}</strong></div></a>
+     <ul id="custidoff"  style="display:none; position:relative;">
+    <li><a  href="{https_server}staff/users.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">Management</div></a></li>
+	<li><a  href="{https_server}staff/email_generator_version4.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'" target="_blank"><div id="align">Email Generator 4.0</div></a></li>
+	<li><a  href="{https_server}staff/email_export.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">Email Export</div></a></li>
+	<li><a  href="{https_server}staff/email_design.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">Email Design</div></a></li>
+	<li><a  href="{https_server}staff/email_generator_hotlist.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">Email Hotlist</div></a></li>
+	<li><a  href="{https_server}staff/email_preferences.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">Email Preferences</div></a></li>
+	<li><a  href="{https_server}staff/email_generator.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">Email Template</div></a></li>
+	<li><a  href="{https_server}staff/email_template.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">New Template</div></a></li>
+	<li><a  href="{https_server}staff/email_generator_version2.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">Email Template 2.0</div></a></li>
+	<li><a  href="{https_server}staff/uhr_template.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">UHR Template</div></a></li>
+	<li><a  href="{https_server}staff/saved_search.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">Search Options</div></a></li>
+	<li><a  href="{https_server}staff/user_watchlist.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><div id="align">watchlist Export</div></a></li>
+
+    </ul>
+    
+    </li>
+	
+
+	
+	<li id="3" onMouseOver="dropdown('consignsd');" onMouseOut="dropdownb('consignsd');"><a href="{https_server}staff/consignments.php" accesskey="{key}" {class}><span><strong>{_consignments}</strong></span></a> 
+      <ul id="consignsd"  style="display:none; position:relative;">
+  <li><a href="{https_server}staff/consignments.php" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Listing</span></a></li>
+  <li><a href="{https_server}staff/consignments.php?cmd=create" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Create</span></a></li>
+  <li><a href="{https_server}staff/consignments.php?cmd=list_raw_send" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">List Raw</span></a></li>
+  <li><a href="{https_server}staff/consignments.php?cmd=search" style="width:120px;"onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'" ><span id="align">Search</span></a></li>
+  <li><a href="{https_server}staff/consignments.php?cmd=pen_con_list" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Pending List</span></a></li>
+  <li><a href="{https_server}staff/consignments.php?cmd=quick_page" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Edit Min / BN</span></a></li>
+  <li><a href="{https_server}staff/consignments.php?cmd=listing_page" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Editing Fvf</span></a></li>
+  <li><a href="{https_server}staff/consignments.php?cmd=consignments.php" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Consignor statement.</span></a></li>
+  <li><a href="{https_server}staff/minbidlog.php" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Min Bid History</span></a></li>
+  </ul>
+  
+  </li>
+	<li id="4" onMouseOver="dropdown('pending'); " onMouseOut="dropdownb('pending');"><a href="{https_server}staff/pendings.php" accesskey="{key}" {class}><span><strong>{_pendings}</strong></span></a>
+	
+	 <ul id="pending"  style="display:none; position:relative;">
+	<li><a  href="{https_server}staff/pendings.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'" ><span id="align">Pending</span></a></li>
+	<li><a  href="{https_server}staff/pendingsnew.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Pending User</span></a></li>
+	<li><a  href="{https_server}staff/rependings.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Re-list</span></a></li>
+	<li><a  href="{https_server}staff/rependings_ebay.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Re-list Ebay</span></a></li>
+	<li><a  href="{https_server}staff/auction_archive.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Auction Archive</span></a></li>
+	<li><a  href="{https_server}staff/auction_details_change.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">To Modify</span></a></li>
+	</ul>
+  
+   </li>
+    <li id="5" onMouseOver="dropdown('listing'); " onMouseOut="dropdownb('listing');"><a href="{https_server}staff/listings.php" accesskey="{key}" {class}><span><strong>{_listings}</strong></span></a>
+   
+    <ul id="listing"  style="display:none; position:relative;">
+<li><a  href="{https_server}staff/listings.php" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Holding</span></a></li>
+<li><a  href="{https_server}staff/listings.php?cmd=all_listing" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Affiliate listing</span></a></li>
+<li><a  href="{https_server}staff/listings.php?cmd=item_won" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Item Won</span></a></li>
+<li><a  href="{https_server}staff/listings.php?cmd=all_list_can" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">All Cancel Sale</span></a></li>
+<li><a  href="{https_server}staff/listings.php?cmd=search_coin" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Listed in gc</span></a></li>
+<li><a  href="{https_server}staff/listings.php?cmd=itembold_list" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Listing</span></a></li>
+<li><a  href="{https_server}staff/listings.php?cmd=image_list" style="width:120px;"onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Image List</span></a></li>
+<li><a  href="{https_server}staff/coins_search.php" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Sold Item Info</span></a></li>
+<li><a  href="{https_server}staff/edit_coins_details.php" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Edit the Title & Des</span></a></li>
+<li><a  href="{https_server}staff/extend_end_dates.php" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Extend Coins End date</span></a></li>
+<li><a  href="{https_server}staff/advanced_listing_edit.php" style="width:120px;" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Advanced Listing Edit</span></a></li>
+</ul>
+
+   </li>
+   
+	
+	<li id="6" onMouseOver="dropdown('reports'); " onMouseOut="dropdownb('reports');"><a href="{https_server}staff/reports.php" accesskey="{key}" {class}><span><strong>{_report}</strong></span></a>
+	<ul id="reports"  style="display:none; position:relative;">
+	<li style="width: 250px;"><a  href="{https_server}staff/high_value_coins.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">High Value Report</span></a></li>
+	<li style="width: 250px;"><a  href="{https_server}staff/inventory_costs.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">House Account Inventory Costs Live</span></a></li>
+	<li style="width: 250px;"><a  href="{https_server}staff/inventory_costs.php?cmd=pending" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">House Account Inventory Costs Pending</span></a></li>
+	<li style="width: 250px;"><a  href="{https_server}staff/currently_listed_bid_report_pdf.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Currently Listed, PCGS # PDF Dealer Bid Report</span></a></li>
+	<li style="width: 250px;"><a  href="{https_server}staff/currently_listed_csv.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Currently Listed, PCGS # CSV Dealer Bid Report</span></a></li>
+		<li style="width: 250px;"><a  href="{https_server}staff/alt_addition_report.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Special Reports ( Alt Addition Report )</span></a></li>
+	</ul>
+	</li>
+	
+	<li id="7" onMouseOver="dropdown('buyers'); " onMouseOut="dropdownb('buyers');"><a href="{https_server}staff/buyers.php" accesskey="{key}" {class}><span><strong>{_buyers}</strong></span></a>
+<ul id="buyers"  style="display:none; position:relative;">
+<li><a  href="{https_server}staff/paypal_invoices.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Paypal Invoices</span></a></li>
+<li><a  href="{https_server}staff/ar.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Ar Report</span></a></li>
+<li><a  href="{https_server}staff/ian_clientrep_ar.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Ar Report(Ian)</span></a></li>
+<li><a  href="{https_server}staff/master_outstanding_invoice_list.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'"><span id="align">Master Outstanding</span></a></li>
+</ul>
+	</li>
+	<li id="8"><a href="{https_server}staff/shipping.php" accesskey="{key}" {class}><span><strong>{_shipping}</strong></span></a></li>
+	
+	<li id="9" onMouseOver="dropdown('quickbook'); " onMouseOut="dropdownb('quickbook');">
+		<a href="{https_server}staff/invoices_quickbook.php" accesskey="{key}" {class}><span><strong>Quickbooks_Export</strong></span></a>
+			<ul id="quickbook"  style="display:none; position:relative;">
+				<li>
+					<a  href="{https_server}staff/invoices_quickbook.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'">
+						<span id="align">Invoices</span>
+					</a>
+				</li>
+				<li>
+					<a  href="{https_server}staff/consignors_quickbook.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'">
+						<span id="align">Consignor</span>
+					</a>
+				</li>
+				<li>
+					<a  href="{https_server}staff/payments_quickbook.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'">
+						<span id="align">Payments</span>
+					</a>
+				</li>
+				<!--- bug #4486 
+				<li>
+					<a  href="{https_server}staff/ebay_sales.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'">
+						<span id="align">Ebay Sales</span>
+					</a>
+				</li>	
+				 end-->
+			</ul>
+	</li>
+	
+		<li id="10" onMouseOver="dropdown('newissueid');" onMouseOut="dropdownb('newissueid');">
+			<a href="{https_server}staff/issues.php" accesskey="{key}" {class}>
+				<span><strong>Issues</strong></span>
+			</a>
+				<ul id="newissueid"  style="display:none; position:relative;">
+					<li>
+						<a  href="{https_server}staff/issues.php" onMouseover="this.style.color = 'red'; " onMouseout="this.style.color = 'black'">
+							<span id="align">Management</span>
+						</a>
+					</li>
+				</ul>
+		</li>	
+	
+	
+	<li id="{id}"><a href="{https_server}staff/catalog.php" accesskey="{key}" {class}><span><strong>Catalog</strong></span></a></li>
+	</loop name="v3nav">
+</ul>
+
+
+
+</div><!-- / main header links --><else /><div style="height:28px"></div></if>
+
+<script>
+
+    function dropdown(a)
+	{
+	
+		  $("#"+a).show();
+		 
+		
+   }
+   
+   function dropdownb(a)
+	{
+		  $("#"+a).hide();
+		
+   }	
+</script>

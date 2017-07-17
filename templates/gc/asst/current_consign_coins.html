@@ -1,0 +1,194 @@
+		<link type="text/css" href="{https_server}/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="{https_server}/functions/javascript/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="{https_server}/functions/javascript/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript">
+function valt()
+{ 
+   if(document.getElementById('fees').value == '')
+   {
+   alert('Enter charge fees');
+   return false;
+   }
+   if(document.getElementById('return_opt').value == '-1')
+   {
+   alert('Select shipping');
+   return false;
+   }
+
+   var counter = document.getElementsByName('print_confirm').length;
+   var res = 0;
+   for(var i = 0 ; i < counter ; i++)
+   {
+	if(document.getElementsByName('print_confirm')[i].checked)
+	{
+	res=1	
+	}
+   }
+   if(res==0)
+   {
+   alert('Select printing confirmation option(Y/N)');
+   return false;
+   }
+   
+   return true;
+ 
+}
+
+
+</script>
+
+<div id="v3body4">
+
+<!-- begin content -->
+	<div id="content">
+		<div class="header">Current Consign Coins</div><br />
+			<div class="block">		
+				<div class="block-top">
+					<div class="block-right">
+						<div class="block-left"></div>
+					</div>
+				</div>
+
+	<if condition="isset($show['print_return_confirmation']) AND $show['print_return_confirmation'] == 'print_return_confirmation'">
+	
+		<div class="block-wrapper">
+		
+			<div class="block3">
+		
+				<div class="block3-top">
+						<div class="block3-right">
+								<div class="block3-left"></div>
+						</div>
+				</div>	
+				
+				<div class="block3-header">{display_result}</div>
+				
+				<div class="block3-content" style="padding:10px">
+					<form method="post" action="{form_action}" accept-charset="UTF-8" name="ilform" >
+						<input type="hidden" name="cmd" value="print_return_confirmation" />
+						<input type="hidden" name="coin_id" value="{coin_id}" />
+						<input type="hidden" name="consng_id" value="{consng_id}" />
+						
+						<table>
+							<tr>
+								<td><input type="submit" name="Submit_return" value="Download Return confirmation" /></td>				
+					</form>
+								<td><a href="5204.php?subcmd=_update-customer&id={consng_id}">Return another</a></td>
+							</tr>
+						</table>
+				</div>
+				
+				<div class="block3-footer">
+					<div class="block3-right">
+						<div class="block3-left"></div>
+					</div>
+				</div>
+				
+			</div>
+		</div>					
+	
+	<else />
+
+
+	<if condition="isset($show['return_second_page']) AND $show['return_second_page'] == 'second_page'"> 
+
+		<form method="post" action="{form_action}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				
+					<input type="hidden" name="cmd" value="insert_return_user" />
+					<input type="hidden" name="return" value="{form_action}" />			
+
+					<div class="block-wrapper">
+					
+						<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+						   
+							<div class="block3-header">Return sale </div>
+							 
+						   
+							<!--<div class="block3-header">Return sale for Item ID - {selected_coins}</div>-->
+							
+						   
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_return_the_coins_to_consignor_using_the_form_below}</div></div>
+							
+							<div class="block3-content" style="padding:0px">
+							
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+									
+									<tr>
+										<td width="5%">Coin Id</td>
+										
+										<!--This will be used if more than coin is going to be returned
+										<td width="12%"><textarea rows="3" cols="30" name="coin_list">{coin_id}</textarea></td>-->
+										
+										<td width="12%"><strong>{selected_coins}</strong></td>
+									</tr>
+									
+									<tr>
+										<td width="5%">Seller</td>
+										<td width="12%"><strong>{seller_name}</strong></td>
+									</tr>									
+
+									<tr>
+										<td width="5%">Shipping Method</td>
+										<td width="12%">{html}</td>
+									</tr>
+
+									<tr>
+										<td width="5%">Charge Fee</td>
+										<td width="12%">
+											<input type="text" style="width : 155px;" name="feesc" id="fees" />
+											<input type="hidden" name="consignid" value="{consignid}" />
+											<input type="hidden" name="user_id" value="{user_id}" />
+											<input type="hidden" name="coin_id" value="{selected_coins}" />
+										</td>
+									</tr>
+										
+									<tr>
+										<td width="5%">Notes for Client</td>
+										<td width="12%"><textarea name="notes_client" rows="3" cols="20" ></textarea>
+										</td>
+									</tr>	
+									<tr>
+										<td width="5%">Notes for GC</td>
+										<td width="12%"><textarea name="notes_gc" rows="3" cols="20" ></textarea>
+										</td>
+									</tr>
+									<tr>
+										<td width="5%">Print Return Confirmation Y/N</td>
+										<td width="12%" colspan="2">
+											<input type="radio" name="print_confirm" value="1" id="print_confirm1" >YES
+											<input type="radio" name="print_confirm" value="0" id="print_confirm2">NO
+										</td>
+									</tr>
+									
+									<tr>
+										<td width="5%"><input type="submit" value="Return sale" onclick="return valt();"/></td>
+									</tr>
+								</table>
+						
+		</form>
+
+
+
+				<div class="block-footer">
+					<div class="block-right">
+						<div class="block-left"></div>
+					</div>
+				</div>
+		</div>
+
+	</if>
+	</if>
+
+					 
+							 
+						
+ 
+</div>
+</div>								

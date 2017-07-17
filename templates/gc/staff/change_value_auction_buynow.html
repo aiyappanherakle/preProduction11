@@ -1,0 +1,177 @@
+ <div id="v3body4">
+ <div id="content">
+<div class="header">Change Value and Type</div><br />
+ 	<div class="tab-pane">
+		<div class="tab-page">
+			<h2 class="tab">Upload CSV</h2>
+						     <form action="change_value_auction_buynow.php" accept-charset="UTF-8" method="post" name="upload_excel" id="upload_excel" enctype="multipart/form-data">
+						    <input type="hidden" name="subcmd" value="search_list" />
+		                    <div class="block-wrapper">
+		                    <div class="block3">                    
+                            <div class="block3-top">
+							<div class="block3-right">
+							<div class="block3-left"></div>
+							</div>
+							</div>                            
+                            <div class="block3-header">Upload the CSV File</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can Upload the CSV File using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">                                
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr class="alt1">
+							<td width="13%"><span class="gray">Upload CSV File</span>
+							<td width="30%">
+							 <input type="file" name="file" id="file">                     
+							</td>
+							<td width="90%">
+							<strong> Ex. </strong><img src="{https_server}images/gc/ex.jpg" style="vertical-align: top; width: 110px; height: 83px;" />                     
+							</td>
+							</tr>
+							<tr>
+							<td colspan="2"><button type="submit" id="submit" name="Import">Upload</button></td> 
+							</tr>
+							</table>                           							
+                            </div>                            
+							<div class="block3-footer">
+							<div class="block3-right">
+							<div class="block3-left"></div>
+							</div>
+							</div>
+                            
+                    </div>
+                </div>
+                    </form>
+			 
+					
+				   <if condition="isset($show['search_list']) AND $show['search_list'] == 'search_list'">
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">List of Change Value and Type</div>
+							<div class="block3-content" style="padding:0px">						 
+ 										 
+												<div class="block3-content" style="padding: 0px 0px 0px 0px;">
+												 
+												<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+														<form method="post" action="change_value_auction_buynow.php" 	accept-charset="UTF-8" name="changed_invoice_update">
+															<input type="hidden" name="cmd" value="changed_value">
+																<tr class="alt2">
+														<td style="width: 7%;text-align: center;">Item ID</td>
+														<td style="width: 23%;text-align: center;">Title</td>
+														<td style="width: 1%;text-align: center;">MinBid</td>
+														<td style="width: 1%;text-align: center;">BuyNow</td>
+														<td style="width: 6%;text-align: center;">Value</td>
+														<td style="width: 8%;text-align: center;">C to Auction&nbsp; <input type="checkbox" name="CtoA" id="CtoA" /></td>
+														<td style="width: 8%;text-align: center;">C to BuyNow&nbsp; <input type="checkbox" name="CtoB" id="CtoB" /></td>													</tr>	
+														<loop name="pending_listing_search">
+														<tr class="alt1">						 
+														<td style="width: 7%;text-align: center;"> {Item_id}</td>
+														<td style="width: 23%;text-align: left;">{Title}</td>
+														<td style="width: 1%;text-align: center;">{MinBid}</td>
+														<td style="width: 1%;text-align: center;">{BuyNow}</td>
+														<td style="width: 6%;text-align: center;">{ChangedMinBid}</td>
+															<td style="width: 8%;text-align: center;">{changed_to_auction}
+																<input type="hidden" name="coin_list[]" id="coin_list" value ="{Item_id}" />
+																<input type="hidden" name="price_list[]" id="price_list" value ="{ChangedMinBid}" />
+															</td>
+															<td style="width: 8%;text-align: center;">{changed_to_buynow} 
+															</td> 											
+														</tr>									
+														</loop name="pending_listing_search"> 
+
+																<if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="7" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+
+
+
+																					
+																					
+												</table>	 
+												
+												<!-- <br>
+													&nbsp;&nbsp;Moved User Id : <input type="text" name="changed_user_id" Value=""><br> -->
+ 													<br>
+ 													<input type="hidden" name="user_id" Value="{user_id}" style="margin-left: 420px;">
+													<input type="submit" name="submit" Value="Change" style="margin-left: 410px;">
+																		</form>
+ 											 
+											<div class="block3-footer">
+												<div class="block3-right">
+													<div class="block3-left"></div>
+												</div>
+											</div>
+											
+ 									</div>
+ 
+                         
+							
+
+								
+</div>
+							
+							 
+							
+					</div>
+				</div>
+				 
+											 
+						<!-- / tab pane -->
+						
+					</div>
+					
+				</div>
+								  </if>
+				      				
+					  </div>
+						<!-- / grading tab page -->
+						
+						
+						
+</div>
+<!-- / tab pane -->
+
+<script type="text/javascript"> 
+$( document ).ready(function() {
+$('#CtoA').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $('.checkbox1').each(function() {
+            this.checked = true;                        
+        });
+    }
+	else 
+	{
+	 $('.checkbox1').each(function() {
+            this.checked = false;                        
+        });
+	
+	}
+});
+});
+$( document ).ready(function() {
+$('#CtoB').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $('.checkbox2').each(function() {
+            this.checked = true;                        
+        });
+    }
+	else 
+	{
+	 $('.checkbox2').each(function() {
+            this.checked = false;                        
+        });
+	
+	}
+});
+});
+
+</script>

@@ -1,0 +1,525 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+            {apihook[accounting_tabs_header_start]}
+           <!-- <li title="" class="on"><a href="javascript:void(0)">{_accounting}</a></li>
+            <if condition="empty($_SESSION['ilancedata']['user']['active']) OR $_SESSION['ilancedata']['user']['active'] == 'no' OR $ilance->subscription->check_access($_SESSION['ilancedata']['user']['userid'], 'deposit') == 'no'"><else /><li title="" class=""><a href="{https_server}{ilpage[accounting]}?cmd=deposit">{_deposit}</a></li></if>
+            <if condition="empty($_SESSION['ilancedata']['user']['active']) OR $_SESSION['ilancedata']['user']['active'] == 'no' OR $ilance->subscription->check_access($_SESSION['ilancedata']['user']['userid'], 'withdraw') == 'no'"><else /><li title="" class=""><a href="{https_server}{ilpage[accounting]}?cmd=withdraw">{_withdraw}</a></li></if>
+            <li title="" class=""><a href="{https_server}{ilpage[accounting]}?cmd=transactions">{_transactions}</a></li>	-->             
+			 <li title="" class="on"><a href="{https_server}{ilpage[accounting]}?cmd=com-transactions">{_paid_invoice}</a></li>
+			 <li title="" class=""><a href="{https_server}{ilpage[accounting]}?cmd=sch-transactions">{_scheduled_transactions}</a></li>
+            {apihook[accounting_tabs_header_end]}
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        
+        <div class="black" style="font-size:18px; padding-bottom:15px; padding-top:6px"><strong>{_accounting_dashboard}</strong>
+        
+        <div style="padding-top:8px" class="gray">{_below_you_will_find_your_financial_accounting_dashboard}</div>
+        </div>
+        
+        <div class="tab-pane" id="accountingcp">
+            <div class="tab-page">
+                <h2 class="tab" id="0">{_summary}</h2>
+                
+                
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td valign="top" width="70%">
+				<div class="block-wrapper">
+        
+                    <div class="block">
+                    
+                            <div class="block-top">
+                                    <div class="block-right">
+                                            <div class="block-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block-header">{_online_account_balance}</div>
+                            <div class="block-content" style="padding:0px">
+                                
+                               
+                                <table width="99.9%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                                <tr> 
+                                    <td class="alt2" nowrap="nowrap">{_account_number}</td>
+                                    <td class="alt2" nowrap="nowrap">{_available_balance}  <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_available_balance}</strong></div><div>{_your_available_balance_is_the_amount_of_funds_available_to_you}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                                    <td class="alt2" nowrap="nowrap"> {_total_balance}  <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_total_balance}</strong></div><div>{_your_total_balance_is_the_amount_of_funds_available_to_you_before}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                                    <td class="alt2" nowrap="nowrap">{_income_spent}  <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_income_spent}</strong></div><div>{_income_spent_refers_to_the_total_amount_of_funds_your_account_has}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                                    <td class="alt2" nowrap="nowrap">{_income_received}  <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_income_received}</strong></div><div>{_income_received_refers_to_the_total_amount_of_funds_your_account_has_received}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                                </tr>
+                                <tr> 
+                                    <td><div style="padding-top:8px; padding-bottom:8px"><span class="gray" style="font-size:14px">{account_number}</span></div></td>
+                                    <td><div style="font-size:14px">{available_balance}</div></td>
+                                    <td><div style="font-size:14px">{total_balance}</div></td>
+                                    <td><div style="font-size:14px">{income_spent}</div></td>
+                                    <td><div style="font-size:14px">{income_received}</div></td>
+                                </tr>
+                                </table>
+        						
+                                
+                            </div>
+                            
+                            <div class="block-footer">
+                                    <div class="block-right">
+                                            <div class="block-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div></td>
+                    <td valign="top">&nbsp;&nbsp;&nbsp;</td>
+                    <td valign="top" width="30%"><div>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+                    <tr>
+                        <td>
+                            <div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+                            <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td style="padding-right:10px; padding-left:10px"><div><span class="black" style="font-size:16px">{_account} {_auto_payments} <sup><em class="smaller red">{_new}</em></sup></span></div>
+                                
+                                <div style="padding-bottom:9px">
+                                    <div class="smaller gray" style="padding-bottom:6px">{_would_you_like_us_to_autodebit_your_account_balance_for_fees}</div>
+                                    <form name="autopayment" action="{https_server}{ilpage[accounting]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+                                    <input type="hidden" name="cmd" value="_do-autopayment-change" />
+                                    <div style="padding-top:4px">{autopayments_pulldown} <input type="submit" class="buttons_smaller" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" value=" {_save} "/></div>
+                                    </form>
+                                </div>
+                  
+                                </td>
+                            </tr>
+                            </table>
+                            </div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+                        </td>
+                    </tr>
+                    </table>
+                    </div>
+                    
+                    <div style="padding-top:1px" class="smaller blue">
+					<a href="{https_server}{ilpage[accounting]}?cmd=deposit">{_deposit_funds}</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+					<a href="{https_server}{ilpage[accounting]}?cmd=withdraw">{_withdraw_funds}</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+					<a href="{https_server}{ilpage[accounting]}?cmd=transactions">{_transactions}</a>
+					</div>
+					</td>
+                </tr>
+                </table>
+        
+                
+                
+            </div>
+            <div class="tab-page">
+                <h2 class="tab" id="1">{_unpaid}</h2>
+                
+                 <!--       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr valign="top">
+                            <td width="50%">-->
+						<div class="block-wrapper">
+            
+                            <div class="block3">
+                            
+                                    <div class="block3-top">
+                                            <div class="block3-right">
+                                                    <div class="block3-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="block3-header">{_unpaid_account_balance_transactions}</div>
+                                    <div class="block3-content" style="padding:0px">
+                                        
+                                        
+                                        <table width="99.9%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                                        <tr>
+                                            <td class="alt2">{_description}</td>
+                                            <td class="alt2">{_due_date}</td>
+                                            <td class="alt2" nowrap="nowrap">{_amount}</td>
+                                        </tr>        
+                                        <loop name="unpaidinvoices"> 
+                                        <tr class="alt1"> 
+                                            <td width="60%" valign="top"><div style="padding-bottom:7px"><span class="blue">{description}</span> <div class="smaller gray">{invoicetype}</div></div></td>
+                                            <td width="27%" align="left" valign="top" nowrap="nowrap"><span class="smaller gray">{duedate}</span></td>
+                                            <td width="13%" align="left" nowrap="nowrap" valign="top"><div style="font-size:14px">{amount}</div></td>
+                                        </tr>
+                                        </loop name="unpaidinvoices"> 
+                                        <if condition="isset($show['no_unpaidinvoices']) AND $show['no_unpaidinvoices']"> 
+                                        <tr class="alt1"> 
+                                            <td colspan="3" align="center"><div style="padding-top:8px; padding-bottom:8px;">{_no_unpaid_account_balance_transaction_found}</div></td>
+                                        </tr>
+                                        </if>
+                                        <tr>
+                                            <td colspan="3">
+                                                <span class="blue"><a href="{https_server}{ilpage[accounting]}?cmd=transactions&amp;status=unpaid">{_view_all_unpaid_account_balance_transactions}</a></span>
+                                            </td>
+                                        </tr>
+                                        </table>
+                
+                                        
+                                    </div>
+                                    
+                                    <div class="block3-footer">
+                                            <div class="block3-right">
+                                                    <div class="block3-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                            </div>
+                        </div><!--</td>
+                            <td valign="top">&nbsp;&nbsp;&nbsp;</td>
+                            <td valign="top" width="50%">-->
+						<div class="block-wrapper">
+            	
+                            <div class="block3">
+                            
+                                    <div class="block3-top">
+                                            <div class="block3-right">
+                                                    <div class="block3-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="block3-header">{_unpaid_provider_generated_invoice_requests}</div>
+                                    <div class="block3-content" style="padding:0px">
+                                        
+                                        <table width="99.9%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                                        <tr>
+                                            <td class="alt2">{_description}</td>
+                                            <td class="alt2">{_due_date}</td>
+                                            <td class="alt2">{_provider}</td>
+                                            <td class="alt2" nowrap="nowrap">{_amount}</td>
+                                        </tr>        
+                                        <loop name="unpaidp2binvoices"> 
+                                        <tr class="alt1"> 
+                                            <td width="50%" valign="top"><div style="padding-bottom:7px"><span class="blue">{description}</span> <div class="smaller gray">{invoicetype}</div></div></td>
+                                            <td width="14%" align="left" valign="top" nowrap="nowrap"><span class="smaller gray">{duedate}</span></td>
+                                            <td width="13%" align="left" valign="top" nowrap="nowrap">{provider}</td>
+                                            <td width="13%" align="left" nowrap="nowrap" valign="top"><div style="font-size:14px">{amount}</div></td>
+                                        </tr>
+                                        </loop name="unpaidp2binvoices"> 
+                                        <if condition="isset($show['no_unpaidp2binvoices']) AND $show['no_unpaidp2binvoices']"> 
+                                        <tr class="alt1"> 
+                                            <td colspan="4" align="center"><div style="padding-top:8px; padding-bottom:8px;">{_no_unpaid_provider_generated_transactions_found}</div></td>
+                                        </tr>
+                                        </if>
+                                        <tr>
+                                            <td colspan="4"><span class="blue"><a href="{https_server}{ilpage[accounting]}?cmd=transactions&amp;status=unpaid&amp;invoicetype=p2b">{_view_all_unpaid_provider_generated_invoice_requests}</a></span></td>
+                                        </tr>	
+                                        </table>
+                
+                                        
+                                    </div>
+                                    
+                                    <div class="block3-footer">
+                                            <div class="block3-right">
+                                                    <div class="block3-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                            </div>
+                        </div><!--</td>
+                        </tr>
+                        </table>
+                    -->
+                        
+                        
+                        
+                                
+                                
+                        </div>
+                        <div class="tab-page">
+                        <h2 class="tab" id="2">{_credits}</h2>
+                    
+                            <div class="block-wrapper">
+            
+                            <div class="block">
+                            
+                                    <div class="block-top">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="block-header">{_recent_credits_to_your_account_balance}</div>
+                                    <div class="block-content" style="padding:0px">
+                                        
+                                        <table width="99.9%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                                        <tr>
+                                          <td class="alt2" align="center">{_method}</td>
+                                            <td class="alt2">{_description}</td>
+                                            <td class="alt2">{_paid}</td>
+                                            <td class="alt2" nowrap="nowrap">{_amount}</td>
+                                        </tr>         
+                                        <loop name="latesttransactions"> 
+                                        <tr class="alt1">
+                                          <td width="7%" align="center" valign="top">{paymethod}</td> 
+                                            <td width="59%" valign="top"><div style="padding-bottom:7px"><span class="blue">{description}</span> <div class="smaller gray">{invoicetype}</div></div></td>
+                                            <td width="26%" align="left" valign="top" nowrap="nowrap"><div class="gray">{paiddate}</div></td>
+                                            <td width="8%" align="left" nowrap="nowrap" valign="top"><div style="font-size:14px" class="blue">{amount}</div></td>
+                                        </tr>
+                                        </loop name="latesttransactions"> 
+                                        <if condition="isset($show['no_latesttransactions']) AND $show['no_latesttransactions']"> 
+                                        <tr class="alt1"> 
+                                            <td colspan="4" align="center"><div style="padding-top:8px; padding-bottom:8px;">{_no_results_found}</div></td>
+                                        </tr>
+                                        </if> 
+                                        <tr>
+                                            <td colspan="4"><div style="padding-top:8px; padding-bottom:8px;" class="blue"><a href="{https_server}{ilpage[accounting]}?cmd=transactions&amp;status=paid&amp;invoicetype=credit">{_view_all_account_balance_credit_transactions}</a></div></td>
+                                        </tr>
+                                        </table>
+                
+                                        
+                                    </div>
+                                    
+                                    <div class="block-footer">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+        
+                                
+                        </div>
+                        <div class="tab-page">
+                        <h2 class="tab" id="3">{_debits}</h2>
+                              <!--<table width="99.9%" border="0" cellspacing="0" cellpadding="0">
+                                <tr valign="top">
+                                    <td width="50%" valign="top">-->
+								<div class="block-wrapper">
+            
+                                    <div class="block">
+                                
+                                        <div class="block-top">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    	</div>
+                                        
+                                        <div class="block-header">{_recent_debit_payments_from_your_account_balance}</div>
+                                        <div class="block-content" style="padding:0px">
+                                            
+                                           <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                                            <tr>
+                                                    <td class="alt2" align="center">{_method}</td>
+                                                    <td class="alt2">{_description}</td>
+                                                    <td class="alt2">{_paid}</td>
+                                                    <td class="alt2" nowrap="nowrap">{_cost}</td>
+                                            </tr>         
+                                            <loop name="latesttransactions2"> 
+                                            <tr class="alt1">
+                                                  <td width="7%" align="center" valign="top">{paymethod}</td> 
+                                                  <td width="59%" valign="top"><div style="padding-bottom:7px"><span class="blue">{description}</span> <div class="smaller gray">{invoicetype}</div></div></td>
+                                                  <td width="24%" align="left" nowrap="nowrap" valign="top"><div class="smaller gray">{paiddate}</div></td>
+                                                  <td width="10%" nowrap="nowrap" valign="top"><div style="font-size:14px" class="blue">{amount}</div></td>
+                                            </tr>
+                                            </loop name="latesttransactions2">
+                                            <if condition="isset($show['no_latesttransactions2']) AND $show['no_latesttransactions2']">
+                                            <tr> 
+                                                <td colspan="4" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px;">{_no_recent_account_balance_debits}</div></td>
+                                            </tr>
+                                            </if>
+                                            <tr> 
+                                                <td colspan="4"><div style="padding-top:8px; padding-bottom:8px;" class="blue"><a href="{https_server}{ilpage[accounting]}?cmd=transactions&amp;status=paid&amp;invoicetype=debit">{_view_all_account_balance_debit_transactions}</a></div></td>
+                                            </tr>
+                                            </table>
+            
+                    
+                                            
+                                        </div>
+                             
+                                        <div class="block-footer">
+                                                <div class="block-right">
+                                                        <div class="block-left"></div>
+                                                </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div><!--</td>
+                                    <td>&nbsp;&nbsp;&nbsp;</td>
+                                    <td width="50%" valign="top">-->
+							<div class="block-wrapper">
+            
+                                <div class="block2">
+                            
+                                    <div class="block2-top">
+                                            <div class="block2-right">
+                                                    <div class="block2-left"></div>
+                                            </div>
+                                    </div>
+                                  
+                                    <div class="block2-header">{_provider_generated_invoice_requests}: {_marked_as_paid}</div>
+                                    <div class="block2-content" style="padding:0px">
+                                        
+                                        <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                                        <tr>
+                                          <td class="alt2">{_description}</td>
+                                            <td class="alt2">{_marked_as_paid} <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_marked_as_paid}</strong></div><div>{_this_column_will_display_the_date_of_payment_on_all_transactions_generated_from_you}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                                            <td class="alt2" nowrap="nowrap">{_cost}</td>
+                                        </tr>       
+                                        <loop name="paidp2binvoices"> 
+                                        <tr class="alt1">
+                                          <td valign="top"><div style="padding-bottom:7px"><span class="blue">{description}</span> <div class="smaller">{invoicetype} &nbsp;&nbsp;|&nbsp;&nbsp; <span class="gray">{_payment_method}:</span> {paymethod}</div>
+                                          </div></td> 
+                                          <td width="24%" align="left" nowrap="nowrap" valign="top"><div class="smaller gray">{paiddate}</div></td>
+                                          <td width="10%" nowrap="nowrap" valign="top"><div style="font-size:14px" class="blue">{amount}</div></td>
+                                        </tr>
+                                        </loop name="paidp2binvoices">
+                                        <if condition="isset($show['no_paidp2binvoices']) AND $show['no_paidp2binvoices']">
+                                        <tr> 
+                                          <td colspan="3" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px;">{_no_results_found}</div></td>
+                                        </tr>
+                                        </if>
+                                        <tr> 
+                                              <td colspan="3"><div style="padding-top:8px; padding-bottom:8px;" class="blue"><a href="{https_server}{ilpage[accounting]}?cmd=transactions&amp;status=paid&amp;invoicetype=p2b">{_view_all_provider_generated_invoice_requests}</a></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                    <div class="block2-footer">
+                                            <div class="block2-right">
+                                                    <div class="block2-left"></div>
+                                            </div>
+                                    </div>
+                              
+                            </div>
+                        </div><!--</td>
+                                </tr>
+                                </table>-->
+                      			
+                        </div>
+                        
+                        <if condition="$ilconfig['enable_bank_deposit_support']">
+                        <div class="tab-page">
+                        <h2 class="tab" id="4">{_wire_info}</h2>
+                        
+                        <div class="block-wrapper">
+        
+                            <div class="block">
+                            
+                                    <div class="block-top">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="block-header">{_bank_accounts_registered}</div>
+                                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_by_adding_a_deposit_account_allows_you_to_choose_this_bank}</div></div>
+                                    
+                                    <div class="block-content" style="padding:0px">
+                                        
+                                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" border="0">
+                                        <tr> 
+                                            <td class="alt2" nowrap="nowrap">{_type}</td>
+                                            <td class="alt2" nowrap="nowrap">{_account_number}</td>
+                                            <td class="alt2" nowrap="nowrap">{_status}</td>
+                                            <td class="alt2" nowrap="nowrap" align="center">{_action}</td>
+                                        </tr>
+                                        <loop name="bankaccount_rows"> 
+                                        <tr class="alt1"> 
+                                            <td align="left">{bank_account_type}</td>
+                                            <td align="left">{beneficiary_account_number}</td>
+                                            <td>{bank_account_status}</td>
+                                            <td align="center">{bank_account_action}</td>
+                                        </tr>
+                                        </loop name="bankaccount_rows"> 
+                                        <if condition="isset($show['no_bankaccount_rows_returned']) AND $show['no_bankaccount_rows_returned']"> 
+                                        <tr> 
+                                            <td colspan="5" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px;">{_no_accounts_available}</div></td>
+                                        </tr>
+                                        </if>
+                                        <tr>
+                                            <td colspan="4"><if condition="isset($show['wiretransfer_active']) AND $show['wiretransfer_active']"><input type="button" value=" {_add_new_bank} " onclick="location.href='{https_server}{ilpage[accounting]}?cmd=_add-bankaccount'" class="buttons" style="font-size:15px" /><else /><input type="button" value=" {_add_new_bank} " class="buttons" style="font-size:15px" disabled="disabled" /></if></td>
+                                        </tr>
+                                        </table>
+                                        
+                                    </div>
+                                    
+                                    <div class="block-footer">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                        
+                        </div>
+                        </if>
+                        
+                        <if condition="$ilconfig['use_internal_gateway'] != 'none' AND $ilconfig['save_credit_cards']">
+                        <div class="tab-page">
+                        <h2 class="tab" id="5">{_cards}</h2>
+                        
+                        <div class="block-wrapper">
+        
+                            <div class="block">
+                            
+                                    <div class="block-top">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+
+                                    </div>
+                                    
+                                    <div class="block-header">{_credit_cards_registered}</div>
+                                    
+                                    <div class="block-content" style="padding:0px">
+                                        
+                                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" border="0">
+                                        <tr> 
+                                            <td class="alt2" nowrap="nowrap">{_type}</td>
+                                            <td class="alt2" nowrap="nowrap">{_card_number}</td>
+                                            <td class="alt2" nowrap="nowrap">{_status}</td>
+                                            <td align="center" class="alt2" nowrap="nowrap">{_action}</td>
+                                        </tr>
+                                        <loop name="creditcard_rows"> 
+                                        <tr class="alt1"> 
+                                            <td align="left">{creditcard_type}</td>
+                                            <td align="left">{creditcard_hidden}</td>
+                                            <td><span class="blue">{creditcard_status}</span></td>
+                                            <td align="center" valign="bottom">{creditcard_action}</td>
+                                        </tr>
+                                        </loop name="creditcard_rows"> 
+                                        <if condition="isset($show['no_creditcard_rows_returned']) AND $show['no_creditcard_rows_returned']"> 
+                                        <tr> 
+                                            <td colspan="4" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px;">{_no_credit_cards_available}</div></td>
+                                        </tr>
+                                        </if>
+                                        <tr>
+                                            <td colspan="4"><input type="button" value=" {_add_new_credit_card} " onclick="location.href='{https_server}{ilpage[accounting]}?cmd=_add-creditcard'" class="buttons" style="font-size:15px" /></td>
+                                        </tr>
+                                        </table>
+                                        
+                                    </div>
+                                    
+                                    <div class="block-footer">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                        
+                        </div>
+                        </if>
+                        
+                        {apihook[accounting_cp_tabs_end]}
+                        
+        </div>
+        </div>
+        
+        <script type="text/javascript">
+        <!--
+        setupAllTabs();
+        //-->
+        </script>
+        
+        {apihook[accounting_cp_end]}
+	</td>
+</tr>
+</table>

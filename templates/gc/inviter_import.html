@@ -1,0 +1,46 @@
+<form action="" method="POST" name="openinviter">{oi_messages}
+
+    <div class="block2-wrapper">
+        <div class="block2">
+            <div class="block2-top">
+                <div class="block2-right">
+                    <div class="block2-left"></div>
+                </div>
+            </div>
+            <div class="block2-header">{_step_1}: {_Select_your_provider}</div>
+            <div class="block2-content">
+
+                <div style="padding:3px">
+
+                    <div id="oi_selection_container">
+                        <div class="gray" style="padding-left: 5px; padding-top: 6px; font-size: 16px;">
+                            <strong>{_make_use_of_the_easy_email_importer}</strong>
+                        </div>
+
+                        {provider_selection}
+
+                        <div class="oi_credentials">
+                            <div class="oi_inputrow"><label for="email_box">{_email}</label><input type="text" name="email_box" value="{email_box}"></div>
+                            <div class="oi_inputrow"><label for="password_box">{_password}</label><input type="password" name="password_box" value="{password_box}"></div>
+                        </div>
+
+
+
+                        <div class="oi_submit_row">
+                            <input class="thButton" type="submit" name="import" value="{_Import_Contacts}"><input type="hidden" name="step" value="get_contacts">
+
+
+                        </div>
+                    </div>
+                </div> </div><div class="block2-footer">
+                <div class="block2-right">
+
+                    <div class="block2-left"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+

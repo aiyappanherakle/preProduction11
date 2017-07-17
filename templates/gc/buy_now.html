@@ -1,0 +1,114 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+  <tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	<!--buynow tab end-->
+	<div class="block-wrapper">
+					<!--<div class="block">-->
+						<div class="block-top">
+						  <div class="block-right"></div>
+						</div>
+						<div class="block-content" id="collapseobj_recenthistory" style="{collapse[collapseobj_recenthistory]}; padding:0px">
+					
+							<div class="bigtabs" style="padding-bottom:10px; padding-top:10px">
+								<div class="bigtabsheader">
+									<ul id="homepagetabs2">
+									{apihook[main_template_top_bigtabs_start]}
+									<li id="currently_selling" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Buy/Active">{_active}</a><else /><a href="buy.php?cmd=active">{_active}</a></if></li>
+									<li id="_items_sold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Buy/Won">{_i_won}</a><else /><a href="buy.php?cmd=won">{_i_won}</a></if></li>
+									<li id="_items_unsold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Buy/Notwon">{_didnt_win}</a><else /><a href="buy.php?cmd=notwon">{_didnt_win}</a></if></li>
+									 <li id="_items_pending" title="" class="on"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Buy/Buynow">{_buy_now}</a><else /><a href="buy.php?cmd=buynow">{_buy_now}</a></if></li>
+									
+									{apihook[main_template_top_bigtabs_end]}
+									</ul>
+								</div>
+							</div>
+						</div>
+								<div style="clear:both;"></div>
+
+		<div id="new3">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">{_buy_now}</div>
+							<div style="padding: 0px;" class="block3-content">
+							
+							<div style="background-color:#cd9c9c">
+							<div style="margin-left:700px;">
+							<form name="ilform" action="" method="get" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+											<input type="hidden" name="subcmd" value="buynowsearch" /> 
+												<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+													<tr>
+														<td>
+														{_select_date}
+														</td>
+														<td>
+														{drop_value}
+														</td>
+														<td>
+														<input type="submit" class="buttons" value=" {_search} " style="font-size:15px" />
+														</td>
+													</tr>
+												</table>
+											</form>
+											</div>
+							</div>
+							<!-- BEGIN service panel buying activity -->
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>
+										<tr class="alt2">
+											<td>{_thumbnail}</td>
+											<td>{_item_id}</td>
+											<td>{_auction_title}</td>											
+											<td>{_qty}</td>  
+											<td>{_buy_now_amount}</td>											
+											<td>{_order_date}</td>
+											<td>{_invoice_date}</td>
+											<td>{_status}</td>
+										</tr>
+										<loop name="res_gc_buynow"> 
+										<tr>
+										 <td>{thumbnail}</td>
+										 <td>{item_id}</td>
+										 <td>{item_title}</td>										
+										 <td>{bids}</td>
+										  <td>{current_bid}</td>										
+										 <td>{timelef}</td>										
+										 <td>{invoice}</td>
+										 <td>{status}</td>
+										</tr>
+										</loop name="res_gc_buynow">
+											<if condition="isset($res_gc_buynow['buynow']) AND $res_gc_buynow['buynow'] == 'Nofound'">
+										<tr>
+											<td colspan="9" align="center">{_no_results_found}</td>
+										</tr>
+										<else />
+										<tr>
+											<td colspan="9">{prevnext}</td>
+										</tr>
+										</if>										
+									</tbody>
+								</table>
+								
+							<!-- END service panel buying activity -->
+							</div>
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+	</div>
+					<!--buynow tab end-->
+	</td>
+ </tr>
+</table>

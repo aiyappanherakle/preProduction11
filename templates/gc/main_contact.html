@@ -1,0 +1,305 @@
+<style type="text/css"> 
+h1{
+margin:0px;
+color: #FFFFFF;
+font-family: Arial,Helvetica,sans-serif;
+font-size: medium;
+font-weight: bold;
+}
+h2{
+margin:0px;
+color: #FFFFFF;
+font-family: Arial,Helvetica,sans-serif;
+font-size: medium;
+font-weight: bold;
+}
+
+</style>
+<script type="text/javascript">
+function selgallery()
+{
+ 
+	 var email = document.getElementById("ufehx").value;
+	 var subject = document.getElementById("subject_other").value;
+	 var message = document.getElementById("message").value;
+
+		
+	 var emailRegEx =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+	 var captcha_text = document.getElementById("captcha").value;
+	 var nameRegEx =/^[a-zA-Z0-9]/;
+		 
+	if (email.search(emailRegEx) == -1)
+	  {
+	
+         document.getElementById("error_email").innerHTML= "Enter Valid Email ID";
+		 return false;
+     }
+	 else
+	 {
+	  document.getElementById("error_email").innerHTML= "";
+	 }
+
+     //5345
+     if(document.notify.subject[2].checked)
+	{
+	 
+	     if (subject.search(nameRegEx) == -1)
+	     {
+
+	     	 document.getElementById("error_subject").innerHTML= "Enter valid Other subject";
+			 return false;
+
+	     }else
+	     {
+	     	document.getElementById("error_subject").innerHTML= "";
+	     }
+	}
+	else
+    {
+     	document.getElementById("error_subject").innerHTML= "";
+    }
+
+	 if (message=='')
+	  {
+	
+         document.getElementById("error_message").innerHTML= "Please Enter the message";
+		 return false;
+     
+
+     } /*else if (message.search(nameRegEx) == -1)
+     {
+
+     	 document.getElementById("error_message").innerHTML= "Enter valid message only";
+		 return false;
+
+     }*/else
+     {
+     	document.getElementById("error_message").innerHTML= "";
+     }
+	 //
+
+	 if(captcha_text=='')
+	 {
+	   document.getElementById("error_captcha").innerHTML= "Please Enter the Security Code Shown on the Image";
+		 return false;
+	 }
+	 else
+	 {
+	
+			if (window.XMLHttpRequest)
+	        {// code for IE7+, Firefox, Chrome, Opera, Safari
+	           xmlhttp=new XMLHttpRequest();
+	        }
+	        else
+	        {// code for IE6, IE5
+	          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	        }
+	        xmlhttp.onreadystatechange=function()
+	       {
+	         if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		     {
+			  
+				if(xmlhttp.responseText =='error')
+				{
+				document.getElementById("error_captcha").innerHTML='Invalid Security Code.Try Again';
+				er = 1;
+				}
+				 else
+			   {
+				document.getElementById("error_captcha").innerHTML= "";
+				er = 0;
+			  }
+		    }
+		    else
+		   {
+		     document.getElementById('error_captcha').innerHTML= "<img src='{https_server}images/gc/wheel.gif'/>";  
+		    }
+	     }
+	     xmlhttp.open("GET","notify.php?do=validate_captcha&value="+captcha_text,false);
+	     xmlhttp.send();
+		 
+		 if(er=='1')
+		 {
+		 return false; 
+		 }
+		 else
+		 {
+		 return true;
+		 }
+	}
+return true;
+  }
+
+</script>
+<script type='text/javascript'>
+function refreshCaptcha(){
+	var img = document.images['captchaimg'];
+	img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
+}
+</script>
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+		<div class="block-header"><span style="float:right; padding-top:3px" class="smaller gray">{_all_contact_inquiries_are_confidential}</span><h1>{_contact} Information</h2></div>
+			
+			<div class="block-content" style="padding:0px">
+				
+					<div style="padding-left:10px;">
+			<div style="height:10px;"></div>
+			
+			<div>
+			<address>
+			    {_gc_address_br}
+				</address>
+				<span style="float:right"><!--<img style="width: 280px; height: 278px; margin-top: -55px; margin-right: 5px;" src="images/gc/wfb_gc.jpg" alt="GreatCollections, Irvine California">--></span>
+			</div>
+ 			<div>
+			     Our office is conveniently located near John Wayne Airport in Orange County, on the corner of Red Hill Avenue and Reynolds Avenue.
+			</div>	
+			<div style="height:13px;"></div>
+			<div>
+			    Tel: 1.800.44.COINS or +1.949.679.4180 <br />  
+                Fax: +1.949.679.4178
+			</div>	
+ 			<div>
+			  General E-mail Inquiries: <a href="mailto:info@greatcollections.com" style="text-decoration:none;color:#6395C8;">info@greatcollections.com</a>
+			</div>	
+ 			<div>
+			   Direct E-mail:
+			</div>	
+			<div>
+			  &nbsp;&nbsp;&nbsp;Ian Russell - President: <a  href="mailto:ian@greatcollections.com" style="text-decoration:none; color:#6395C8;"> ian@greatcollections.com</a><br />
+              &nbsp;&nbsp;&nbsp;Raeleen Endo - Director of Client Services: <a  href="mailto:raeleen@greatcollections.com" style="text-decoration:none; color:#6395C8;">raeleen@greatcollections.com</a>
+			</div>	
+			<div>
+			 You may also use our web contact form below.
+			</div>
+			<div style="height:13px;"></div>
+			 <div>
+			     All visitors are by appointment only. Please telephone 1-800-442-6467 to make an appointment.
+			</div>	
+	
+                                                             			
+                                                        <div style="height:5px;"></div>
+                                                                                                            			<div style="height:10px;"></div>
+                                                                                                                                    			<div style="height:10px;"></div>
+	</div>	
+				
+			</div>
+
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<div style="height:20px;"></div>
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header"><span style="float:right; padding-top:3px" class="smaller gray">{_all_contact_inquiries_are_confidential}</span><h2>{_contact} {site_name}</h2></div>
+			
+			<div class="block-content" style="padding:0px">
+				
+					<form action="{ilpage[notify]}" method="post" name="notify" id="notify" accept-charset="UTF-8" style="margin:0px" onSubmit="return selgallery();" >
+					<div align="left">
+								<noscript><input id="captchaa" name="captchaa" value="hi" type="hidden"></noscript>
+
+						    
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+ 							<tr class="alt1">
+								<td>
+									<div style="padding-bottom:3px" class="gray">{_first_name}</div>
+									<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+									<input type="text" class="input" name="name" value="{user[firstname]}" size="50" />
+									<else />
+									<input type="text" class="input" name="name" value="" size="50" />
+									</if>
+							    </td>
+							</tr>
+							<tr class="alt1">
+								<td>
+									<div style="padding-bottom:3px" class="gray">{_email}<span style="font-weight:bold; color:red;"> * </span></div>
+									<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+									<input type="text" class="input" id ="ufehx" name="ufehx" value="{user[email]}" size="50" dir="{template_textdirection}" />
+									<span id="error_email" style="font-weight:bold; color:#FF0000;"> </span>
+									<else />
+									<input type="text" class="input" id ="ufehx" name="ufehx" value="" size="50" dir="{template_textdirection}" />
+									<span id="error_email" style="font-weight:bold; color:#FF0000;"> </span>
+									</if>
+								</td>
+							</tr>
+							<tr class="alt1">
+								<td>
+									<div class="gray">{_subject}<span style="font-weight:bold; color:red;"> * </span></div>
+										<div>
+										<div class="blue"><label for="rb_0"><input type="radio" name="subject" id="rb_0" value="0" checked="checked" />Website Inquiry</label></div>
+										<div class="blue"><label for="rb_1"><input type="radio" name="subject" id="rb_1" value="1"  />{_registration}</label></div>
+										<div class="blue"><label for="rb_other"><input type="radio" name="subject" value="other" id="rb_other" />{_other}</label> &nbsp;<input type="text" class="input" name="subject_other" id ="subject_other" size="42" maxlength="85" /></div>
+										<span id="error_subject" style="font-weight:bold; color:#FF0000;"> </span>
+									</div>
+								</td>
+							</tr>
+							<tr class="alt1">
+								<td>
+									<div class="gray">{_message}<span style="font-weight:bold; color:red;"> * </span></div>
+										<div style="padding-top:3px">
+										<textarea name="message" id ="message" rows="10" cols="50" wrap="virtual" style="width:540px"></textarea><br>
+										<span id="error_message" style="font-weight:bold; color:#FF0000;"> </span>
+									</div>
+								</td>
+							</tr>
+							
+ 
+							<tr class="alt1">
+								<td>
+							    <img src="captcha_images.php?rand=<?php echo rand();?>" id='captchaimg'><br>
+						        <label for='message'>Enter the code above here :<span style="font-weight:bold; color:red;"> * </span></label>
+						        <br>
+						        <input id="captcha" name="captcha" type="text">
+						        <span id="error_captcha" style="font-weight:bold; color:#FF0000;"></span>
+						        <br>
+						            Letters are Case Sensitive <br>
+						        Can't read the image? click <a href='javascript: refreshCaptcha();' style=" color:blue;">here</a> to refresh.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+								<input type="submit" class="buttons" name="submit" value=" {_send} " accesskey="s" style="font-size:15px" />
+							</div>
+								</td>
+							</tr>
+							</table>
+						
+							
+					</div>
+					<input type="hidden" name="cmd" value="_submit-contactus" />
+ 					</form>
+				
+			</div>
+
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>

@@ -1,0 +1,228 @@
+<style>
+.buttonss {
+	background: #007cc7;
+	background-image: -webkit-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -moz-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -ms-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -o-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: linear-gradient(to bottom, #007cc7, #1d4aa6);
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	text-shadow: 1px 1px 1px #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #ffffff;
+	text-decoration: none;
+	width: 230px;
+	height: 37px;
+	border: medium none;
+	cursor: pointer;
+	border-radius: 6px;
+}
+.buttonss:hover {
+	background: #1d4aa6;
+	background-image: -webkit-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -moz-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -ms-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -o-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: linear-gradient(to bottom, #1d4aa6, #007cc7);
+	text-decoration: none;
+}
+</style>
+{apihook[registration_template_start]}
+
+<form method="post" action="{ilpage[registration]}" accept-charset="UTF-8" onsubmit="return checkform(this); form(this); " style="margin: 0px;">
+<input type="hidden" name="cmd" value="register" />
+<input type="hidden" name="step" value="1" />
+<input type="hidden" name="agreement" value="1" />
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_registration}<span style="float:right"><img src="{template_relativeimagepath}{template_imagesfolder}icons/project_0.gif" border="0" alt="" /></span></div>
+			
+			<div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:0px">
+				
+				
+				<table cellpadding="6" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr class="alt1">
+					<td>
+							<div style="padding-top: 6px; width: 590px;">
+											<b>Don't have an email address? Dont Worry!</b> Give us a call at <b>1-800-442-6467</b><br/>
+											<br/><b>Ready to Register with GreatCollections?<br/>
+											It's fast, free and easy.</b><div style="color: #0000CC; float:right">* indicates a required field</div><br/><br />
+											
+											- Bid on coins at auction, buy coins instantly with Buy Now.<br />
+										
+											- View coin prices of past sales and our PhotoRecords of every sale.<br />
+											- Join the fastest growing coin auction house in the United States. <br />
+							</div>
+							<div style="padding-top: 6px; width: 450px;"></div>
+							<table cellpadding="0" cellspacing="3" border="0" align="left" width="350">
+							<tr>
+										<td><div><strong>* First Name</strong></div></td>
+								
+										<td><div><strong>* Last Name</strong></div></td>
+							</tr>			
+							<tr>		
+										<td valign="top"><input type="text" name="first_name" value="{first_name}" size="20" maxlength="49" class="input" id="first"/> </td>
+										
+										<td valign="top"><input type="text" name="last_name" value="{last_name}" size="20" maxlength="49" class="input" id="last" /> </td>
+										
+										
+							</tr>
+							<tr>
+							<td><div id="f" style="font-weight:bold;  color:#FF0000;"><if condition="isset($show['error_firstname']) and $show['error_firstname']">Enter First Name</if></div></td>
+							<td><div id="l" style="font-weight:bold; color:#FF0000;"><if condition="isset($show['error_lastname']) and $show['error_lastname']">Enter Last Name</if></div></td>
+									</tr>
+									
+							<tr>
+										<td><div><strong>* E-mail</strong></div></td>
+									</tr>
+									<tr>
+										<td colspan="3" valign="top"><input type="text" id="regemail"  name="email" value="{email}" size="44" maxlength="49" class="input" /> </td>
+										<td>
+										
+										<div id="txtHint" style="font-weight:bold; color:#FF0000";></div></td>
+										
+							</tr>
+							<if condition="isset($show['error_email_exist']) and $show['error_email_exist']">
+							<tr><td colspan="3"><div style="font-weight:bold; color:#FF0000";>This e-mail address is already registered at GreatCollections. Please enter a new e-mail address above, or use &nbsp;<a style="color: #0000CC;" href="login.php?cmd=_pw-renew">Recover my password</a></div></td></tr></if>
+							
+							<if condition="isset($show['error_email_space']) and $show['error_email_space']">
+							<tr><td colspan="3"><div style="font-weight:bold; color:#FF0000";>This e-mail address contains empty space. Please enter e-mail address without empty spaces</div></td></tr></if>
+
+							<if condition="isset($show['error_email']) and $show['error_email']">
+							<tr><td colspan="3"><div style="font-weight:bold; color:#FF0000";>Please enter a valid email address.</div></td></tr></if>
+							
+							<tr>
+								<td colspan="3" valign="top">
+									<div><label style="display: block; margin-left: 20px;">
+									<input type="checkbox" id="regoptin" name="optin" value="1" style="float: left; margin-left: -20px; margin-right: 7px;" />
+									<strong>Please send me e-mails twice a week with coin highlights, special offers and information about GreatCollections.</strong>
+									</label></div>
+								</td>
+								<td>
+									<div id="txtHint" style="font-weight:bold; color:#FF0000";></div>
+								</td>
+							</tr>
+
+							<tr>
+							<td><div id="e" style="font-weight:bold; color:#FF0000";></div></td>
+							</tr>
+							</table>
+							<div style="clear:both;"></div>
+								
+					
+												
+					</td>
+					<td>
+					<div style="padding-top: 6px; width: 250px; height: 100px; background: none repeat scroll 0% 0% rgb(225, 237, 235); padding-left: 10px;"><b>
+											Trust GreatCollections</b><br />
+                                            Professional photography of every coin being offered.  PCGS, NGC & ANACS Certified Coins.
+					</div>
+					<div style="padding-top: 6px; width: 250px;"></div>
+					<div style="padding-top: 6px; width: 250px;"></div>
+					<div style="padding-top: 6px; width: 250px; height: 100px; background: none repeat scroll 0% 0% rgb(236, 236, 236); padding-left: 10px;"><b>
+											Privacy</b><br />
+											We will never sell or rent your personal information.  Our website security uses the highest level of SSL encryption.<br />
+											
+										
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="submit" class="buttonss" value="{_continu}"  accesskey="s" style="font-size:19px" /></td>
+				</tr>
+				</table>
+				
+				
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</form>
+{apihook[registration_template_end]}
+
+<script type="text/javascript">
+/* <![CDATA[ */
+goog_snippet_vars = function() {
+var w = window;
+w.google_conversion_id = 978185347;
+w.google_conversion_label = "58WvCL3NsAIQg9m30gM";
+w.google_conversion_value = 1.00;
+w.google_conversion_currency = "USD";
+w.google_remarketing_only = false;
+}
+// DO NOT CHANGE THE CODE BELOW.
+goog_report_conversion = function(url) {
+goog_snippet_vars();
+window.google_conversion_format = "3";
+window.google_is_call = true;
+var opt = new Object();
+opt.onload_callback = function() {
+if (typeof(url) != 'undefined') {
+window.location = url;
+}
+}
+var conv_handler = window['google_trackConversion'];
+if (typeof(conv_handler) == 'function') {
+conv_handler(opt);
+}
+}
+/* ]]> */
+</script>
+<script type="text/javascript"
+src="//www.googleadservices.com/pagead/conversion_async.js">
+</script>
+<script type="text/javascript">
+
+function checkform(formobj)
+{
+    var error_count = 0;
+	 	 
+	if (formobj.first_name.value.length == 0)
+	{		
+		document.getElementById("f").innerHTML="Enter First Name";
+		error_count++;
+	}
+	else
+	{
+		document.getElementById("f").innerHTML="";
+	}	
+	
+	if (formobj.last_name.value.length == 0)
+	{
+		document.getElementById("l").innerHTML="Enter Last Name";
+		error_count++;
+	}
+	else
+	{
+		document.getElementById("l").innerHTML="";
+	}
+	//(formobj.email.value.search("@") == -1 || formobj.email.value.search("[.*]") == -1)
+    var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    var str=formobj.email.value;
+	if(!pattern.test(str))
+	{
+		document.getElementById("e").innerHTML="Please enter a valid email address.";
+		error_count++;
+	}
+
+    if (error_count > 0) {
+        return false;
+    }	
+}
+</script>

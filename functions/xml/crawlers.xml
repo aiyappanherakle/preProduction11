@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Add new robot or search engine tags following the same format as you see below.
+//-->
+
+<crawlers>
+	<crawler>
+                <title>Google</title>
+		<agent>GoogleBot</agent>
+	</crawler>
+        <crawler>
+                <title>Yahoo</title>
+		<agent>Yahoo</agent>
+	</crawler>
+        <crawler>
+                <title>MSNBot</title>
+		<agent>msnbot</agent>
+	</crawler>
+        <crawler>
+                <title>AOL</title>
+		<agent>aol</agent>
+	</crawler>
+        <crawler>
+                <title>BaiduSpider</title>
+		<agent>baiduspider</agent>
+	</crawler>
+        <crawler>
+                <title>ExaBot</title>
+		<agent>exabot</agent>
+	</crawler>
+	<crawler>
+                <title>Yandex</title>
+		<agent>Yandex</agent>
+	</crawler>
+	<crawler>
+                <title>bing</title>
+		<agent>bing</agent>
+	</crawler>
+
+</crawlers>

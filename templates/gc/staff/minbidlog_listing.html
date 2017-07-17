@@ -1,0 +1,186 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+ 
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Minimum Bid History</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+						     <form method="get" action="minbidlog.php" accept-charset="UTF-8" id="minbidlog" style="margin: 0px;">
+				    <input type="hidden" name="subcmd" value="search_list" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Minimum Bid History  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value="project_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'project_id'">selected="selected"</if>>project id </option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" value="{filtervalue}" size="18"  style="width: 75%;" />
+                                  </td>
+                                </tr>
+                               
+                               
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                           							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+			 
+					
+				   <if condition="isset($show['search_list']) AND $show['search_list'] == 'search_list'">
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number_search} Results Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="12%" align="left">Item #</td>
+								<td width="12%">Original Minimum Bid</td>
+								<td width="12%">Changed Minimum Bid</td>
+								<td width="12%">Changed Date</td>
+
+							  </tr>
+							  <loop name="minbidlog_listing_search">
+								<tr class="alt1" valign="top">
+								  
+								  <td>{project_id}</td>								  
+								  <td >{original_minimum_bid}</td>
+								  <td >{changed_minimum_bid}</td>
+								  <td>{changeddate} , {changedtime}</td>
+
+							   </tr>
+							  </loop name="minbidlog_listing_search">
+							   <if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="4" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+
+                             <tr class="alt1" valign="top">
+						      <td  colspan="5" width="12%" ></td>
+						      </tr>
+							 
+							</table>
+ 
+                         
+							
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				   <else />
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number} Results Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="12%" align="left">Item #</td>
+								<td width="12%">Original Minimum Bid</td>
+								<td width="12%">Changed Minimum Bid</td>
+								<td width="12%">Changed Date</td>
+  								
+							 
+							  </tr>
+							  <loop name="minbidlog_listing">	
+								<tr class="alt1" valign="top">
+								  
+								  <td>{project_id}</td>								  
+								  <td >{original_minimum_bid}</td>
+								  <td >{changed_minimum_bid}</td>
+								  <td>{changeddate} , {changedtime}</td>
+								   
+ 								 
+							  </loop name="minbidlog_listing">
+							  
+							  <if condition="isset($show['no']) AND $show['no'] == 'list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							</table>
+							 {listing_pagnation}
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				</if>
+      				
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

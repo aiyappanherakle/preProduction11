@@ -1,0 +1,206 @@
+<if condition="$ilconfig['registrationdisplay_dob']"><script type="text/javascript">
+<!--
+function checkform(formobj)
+{
+		if (formobj.month.selectedIndex == 0)
+		{
+				alert("{_select_the_month_you_were_born}");
+				return false;
+		}
+		if (formobj.day.selectedIndex == 0)
+		{
+				alert("{_select_the_day_you_were_born}");
+				return false;
+		}
+		if (! formobj.year.value.match(/^\d{4}$/))
+		{
+				alert("{_please_enter_the_proper_year_you_were_born_yyyy}");
+				return false;
+		}
+		return true;
+}
+//-->
+</script><else /><script type="text/javascript">
+<!--
+function checkform(formobj)
+{
+		return true;
+}
+//-->
+</script></if>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+            <li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Management">{_preferences}</a><else /><a href="{ilpage[preferences]}?cmd=management">{_preferences}</a></if></li>
+			
+            <li title="" class="on"><a href="javascript:void(0)">{_my_profile}</a></li>
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        <form method="post" action="{https_server}{ilpage[preferences]}" name="updateprofile" id="updateprofile" style="margin:0px" accept-charset="UTF-8" onsubmit="return validatecustomform(this);">
+        <input type="hidden" name="cmd" value="_do-profile-change" />
+        <input type="hidden" name="redirect" value="{redirect}" />
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">{_personal_profile}</div>
+                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_overview}</div></div>
+                    <div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+                        
+                        <tr>
+                            <td>
+                            
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                      <tr> 
+                                        <td><div style="padding-bottom:3px" class="black">{_first_name}</div><div><input type="text" name="first_name" id="first_name" value="{first_name}" maxlength="49" size="22"  class="input" readonly="readonly" /></div></td>
+                                        <td><div style="padding-bottom:3px" class="black">{_last_name}</div><div><input type="text" name="last_name" id="last_name" value="{last_name}" maxlength="49" size="22"  class="input" readonly="readonly" /></div></td>
+                                      </tr>
+                                      <tr> 
+                                        <td><div style="padding-bottom:3px; padding-top:6px" class="black">{_phone_number}</div><div><input type="text" id="phone" name="phone" value="{phone}" maxlength="49" size="22"  class="input" /></div></td>
+                                        <td></td>
+                                      </tr>
+                                    </table>
+                                    
+                                    <div style="padding-bottom:6px"></div>
+                                    <hr size="1" width="100%" style="color:#cccccc" />
+                                    
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                  <tr> 
+                                    <td width="50%"><div style="padding-bottom:3px" class="black">{_address}</div><div><input type="text" name="address" id="address" value="{address}" maxlength="150" class="input" /></div></td>
+                                    <td width="50%"><div style="padding-bottom:3px" class="black">{_address_two_optional}</div><div><input type="text" name="address2" id="address2" value="{address2}" maxlength="150" class="input" /></div></td>
+                                  </tr>
+                                  
+                                  <tr> 
+                                    <td><div style="padding-bottom:3px; padding-top:9px" class="black">{_country}</div><div>{country_js_pulldown}</div></td>
+                                    <td><div style="padding-bottom:3px; padding-top:9px" class="black">{_state_or_province}</div><div>{state_js_pulldown}</div></td>
+                                  </tr>
+                                  <tr> 
+                                    <td colspan="2"></td>
+                                  </tr>
+                                  <tr> 
+                                    <td><div style="padding-bottom:3px; padding-top:9px" class="black">{_city_or_town}</div><div><input type="text" name="city" id="city" value="{city}" maxlength="49" size="22"  class="input" /></div></td>
+                                    <td><div style="padding-bottom:3px; padding-top:9px" class="black">{_zip_or_postal_code}</div><div><input type="text" name="zipcode" id="zipcode" value="{zipcode}" maxlength="49" size="22"  class="input" /></div></td>
+                                  </tr>
+                                  
+                                  <tr valign="top">
+                                    <td colspan="2"><hr size="1" width="100%" style="color:#cccccc; margin-top:6px; margin-bottom:3px" />
+                                    
+                                        
+                                        
+                                        
+                                        
+                                        </td>
+                                    <td>&nbsp;</td>
+                                    </tr>
+                                  <tr valign="top">
+                                    <if condition="$ilconfig['registrationdisplay_dob']">
+                                    <td><div style="width:100%; padding-bottom:9px" align="left"> 
+                                        
+                                        <div style="padding-bottom:3px; padding-top:3px" class="black">{_please_enter_your_date_of_birth}</div>
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                            <tr>
+                                                <td width="10%"><div style="padding-bottom:3px" class="smaller gray">{_month}</div><div style="padding-right:5px"><select name="month" style="font-family: verdana"><option value="">-</option>{month}</select></div></td>
+                                                <td width="10%"><div style="padding-bottom:3px" class="smaller gray">{_day}</div><div style="padding-right:5px"><select name="day" style="font-family: verdana"><option value="" selected="selected">-</option>{day}</select></div></td>
+                                                <td width="50%"><div style="padding-bottom:3px" class="smaller gray">{_year}</div><div style="padding-right:5px"><input type="text" style="font-family: verdana" class="input" name="year" size="10" maxlength="4" value="{year}" /></div></td>
+                                            </tr>
+                                            </table>
+                                      </div></td></if>
+                                    <if condition="$ilconfig['genderactive']"><td><div style="padding-bottom:3px; padding-top:3px" class="black">{_gender}</div>
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                            <tr>
+                                                <td width="33.3%" nowrap="nowrap"><div style="padding-bottom:3px"><input type="radio" name="gender" value="" {cb_gender_undecided} /> {_undecided}</div><div style="padding-right:5px"></div></td>
+                                                <td width="33.3%" nowrap="nowrap"><div style="padding-bottom:3px"><input type="radio" name="gender" value="male" {cb_gender_male} /> {_male}</div><div style="padding-right:5px"></div></td>
+                                                <td width="33.3%" nowrap="nowrap"><div style="padding-bottom:3px"> <input type="radio" name="gender" value="female" {cb_gender_female} /> {_female}</div><div style="padding-right:5px"></div></td>
+                                            </tr>
+                                            </table></td></if>
+                                  </tr>
+                                  <tr valign="top">
+                                    <td colspan="2"><hr size="1" width="100%" style="color:#cccccc; margin-top:2px; margin-bottom:3px" />
+                                    
+                                        
+                                        
+                                        
+                                        
+                                        </td>
+                                    <td>&nbsp;</td>
+                                    </tr>
+                                </table>
+                               
+                           	  <if condition="!empty($customquestions)"><div style="padding-top:6px"></div><div>{customquestions}</div></if>
+                            
+                            </td>
+                        </tr>
+                        </table>
+        
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        
+        {apihook[preferences_profile_town]}
+        
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">{_business_registration_information}</div>
+                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_overview}</div></div>
+                    <div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+                      <tr>
+                        <td valign="top"><div style="padding-bottom:3px">{_company_name}</div><div><input type="text" name="companyname" id="companyname" value="{companyname}" maxlength="49" class="input" /></div></td>
+                        <td><div style="padding-bottom:3px">{_dun_and_bradstreet_number_duns}</div><div><input type="text" name="dnbnumber" id="dnbnumber" value="{dnbnumber}" maxlength="49" class="input" /></div></td>
+                      </tr>
+                      <tr> 
+                        <td width="50%"><div style="padding-bottom:3px">{_company_registration_number}</div><div><input type="text" name="regnumber" id="regnumber" value="{regnumber}" maxlength="49" class="input" /></div></td>
+                        <td width="50%"><div style="padding-bottom:3px">{_vat_registration_number}</div><div><input type="text" name="vatnumber" id="vatnumber" value="{vatnumber}" maxlength="49" class="input" /></div></td>
+                      </tr>
+                    </table>
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        
+        <div style="margin-top:3px"><input type="submit" class="buttons" value=" {_save} " accesskey="s" style="font-size:15px" /></div>
+        </form>
+        {dynamic_js_bodyend}
+
+	</td>
+</tr>
+</table>

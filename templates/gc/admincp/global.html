@@ -1,0 +1,207 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<loop name="subnav_settings"><a href="{url}" {class}><span>{name}</span></a> <span> | </span></loop name="subnav_settings">
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_global_configuration}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- server settings tab page -->
+		<div class="tab-page"> 
+		
+			<h2 class="tab">{_server}</h2>
+				
+			<!-- server tab pane -->
+			<div class="tab-pane" id="serversettings">
+			
+				<!-- server owner -->
+				<div class="tab-page">
+					
+					<h2 class="tab">{_owner}</h2>
+					
+					{global_serversettings}
+					
+				</div>
+				<!-- / server owner -->
+				
+				<!-- distance api -->
+				<div class="tab-page">
+					
+					<h2 class="tab">{_distance}</h2>
+					
+                    	{global_serverdistanceapi}
+                    
+                   	 	<form method="post" action="{ilpage[language]}" name="managelanguage" accept-charset="UTF-8" style="margin: 0px;">
+						<input type="hidden" name="cmd" value="managelanguage" />
+						<input type="hidden" name="return" value="{ilpage[language]}" />
+						<div class="block-wrapper">
+						<div class="block">
+						
+								<div class="block-top">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+								<div class="block-header">Distance Databases Installed</div>
+								<div class="block-content-yellow" style="padding:9px"><div class="smaller">Review existing distance longitude and latitude data installed in the marketplace</div></div>
+								<div class="block-content" style="padding:0px">
+									
+									<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+									<tr class="alt2">
+										<td width="47%">{_country}</td>
+										<td width="16%" nowrap="nowrap">Cities</td>
+										<td width="14%" nowrap="nowrap">States</td>
+										<td width="15%" nowrap="nowrap">Area Codes</td>
+										<td width="8%" nowrap="nowrap">Zip Codes</td>
+									</tr>
+									<loop name="installedcountries">
+									<tr class="alt1">
+										<td>{title}</td>
+										<td>{cities}</td>
+										<td>{states}</td>
+										<td>{areacodes}</td>
+										<td>{zipcodecount}</td>
+									</tr>
+									</loop name="installedcountries">
+                                    <if condition="isset($show['nodistancerows']) AND $show['nodistancerows']">
+                                    <tr>
+                                    	<td colspan="5" align="center"><div style="padding-top:9px; padding-bottom:9px">{_no_results_found}</div></td>
+                                    </tr>
+                                    </if>
+									</table>
+
+									
+								</div>
+								
+								<div class="block-footer">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+						  </div>
+						</div>
+						</form>
+                    
+				</div>
+				<!-- / distance api -->
+				
+				<!-- server locale -->
+				<div class="tab-page">
+					
+					<h2 class="tab">{_locale}</h2>
+					
+					{global_serverlocale}
+					
+			  </div>
+				<!-- / server locale -->
+				
+			</div>
+			<!-- / server tab pane -->
+				
+		</div>
+		<!-- / server settings tab page -->
+			
+		<!-- filter tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_filter}</h2>
+			
+			<!-- filter tab pane -->
+			<div class="tab-pane" id="filtersettings">
+			
+				<!-- filter settings page -->
+				<div class="tab-page">
+					
+					<h2 class="tab">{_settings}</h2>
+					
+					{global_filtersettings}
+					
+			  </div>
+				<!-- / filter settings page -->
+				
+				<!-- filter results -->
+				<div class="tab-page">
+					
+					<h2 class="tab">{_results}</h2>
+					
+					{global_filterresults}
+					
+			  </div>
+				<!-- / filter results -->
+				
+			</div>
+			<!-- / filter tab pane -->
+	  </div>
+		<!-- / filter tab page -->
+			
+		<!-- security tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_security}</h2>
+			
+			{global_securitysettings}
+
+		</div>
+		<!-- / security tab page -->
+		
+		<!-- search -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_search}</h2>
+			
+			{global_search}
+			
+	  	</div>
+		<!-- / search -->
+		
+		<!-- meta -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_meta_tags}</h2>
+			
+			{global_metatags}
+			
+	  	</div>
+		<!-- / meta -->
+		
+		<!-- SEO -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_seo}</h2>
+			
+			<div class="grayborder" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_gray_1x1000.gif) repeat-x;">
+				<div class="n">
+					<div class="e">
+						<div class="w"></div>
+					</div>
+				</div>
+				
+				<div style="padding:6px"><span style="float:left; padding-right:10px; padding-left:10px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/checkmark.gif" border="0" alt="" id="" /></span>URL objects: <span class="smaller"><strong>{HTTP_SERVER}, {DOMAIN}, {KEYWORDS}, {CATEGORY}, {CATEGORYLOWERCASE}, {IDENTIFIER}, {CID}, {ID}</strong></span></div>		
+				
+				<div class="s">
+					<div class="e">
+						<div class="w"></div>
+					</div>
+				</div>
+			</div>
+			
+
+			<div style="padding:9px"></div>
+
+			{global_seo}
+			
+	  	</div>
+		<!-- / SEO -->
+		
+<!-- / tab pane -->

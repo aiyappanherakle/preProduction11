@@ -1,0 +1,279 @@
+<style type="text/css">
+
+div#topcontent div.page
+{
+width:960px !important;
+}
+
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+</script>
+<script type="text/javascript">
+function validate_form()
+{
+	var coin=document.getElementById("coin_id").value;
+	var image=document.getElementById("item_image").value;
+	var image_size_1=document.getElementById("item_image_size_1");
+	var image_size_2=document.getElementById("item_image_size_2");
+	var image_size_3=document.getElementById("item_image_size_3");
+	
+	
+	
+	if(document.getElementById("item_image").checked)
+	{
+
+		if(!(image_size_1.checked) && !(image_size_2.checked) && !(image_size_3.checked))
+		{
+			alert("Please select the size of image you need")
+			return false
+		}
+		else
+			return true		
+	}
+	
+}
+
+$(document).ready(function(){
+  $("#item_image").click(function(){
+    
+		$("#radi_id").toggle(this.checked);	
+  });
+});
+
+</script>
+
+<if condition="isset($show_bb_code['show_bb_code']) AND $show_bb_code['show_bb_code']=='show'">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	
+<!-- 		
+<div id="new3"><div class="block3">
+<div class="block3-top">
+	<div class="block3-right">
+		<div class="block3-left"></div>
+	</div>
+</div>
+<div class="block3-header">{_forum_block_content}</div>
+<div class="block3-content" style="padding: 0px;">
+	<table width="100%" border="0" align="center" cellspacing="0" cellpadding="9">
+	<tbody>
+		<tr class="alt2">
+			<td>{bb_code_text}</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="9" style="padding:15px 9px;">
+				<textarea cols="89" rows="8" >{bb_code}</textarea>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+
+<div class="block3-content" style="padding: 0px;">
+	<table width="100%" border="0" align="center" cellspacing="0" cellpadding="9">
+	<tbody>
+		<tr class="alt2">
+			<td>{html_code_text}</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="9" style="padding:15px 9px;">
+				<textarea cols="89" rows="8" >{html}</textarea>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+
+<div class="block3-content" style="padding: 0px;">
+	<table width="100%" border="0" align="center" cellspacing="0" cellpadding="9">
+	<tbody>
+		<tr class="alt2">
+			<td>{plain_text}</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="9" style="padding:15px 9px;">
+				<textarea cols="89" rows="8" >{text}</textarea>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+	
+	<div class="block3-footer"><div class="block3-right"><div class="block3-left"></div></div></div></div></div>
+
+<br/><br/>	 -->
+
+<div id="new3"><div class="block3">
+<div class="block3-top">
+	<div class="block3-right">
+		<div class="block3-left"></div>
+	</div>
+</div>
+<div class="block3-header">{bb_code_text}</div>
+<div class="block3-content" style="padding: 0px;">
+	<table width="100%" border="0" align="center" cellspacing="0" cellpadding="9">
+	<tbody>
+		
+		<tr>
+			<td align="center" colspan="9" style="padding:15px 9px;">
+				<textarea cols="89" rows="8" >{bb_code}</textarea>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</div>	
+<div class="block3-footer"><div class="block3-right"><div class="block3-left"></div></div></div></div>
+</div>
+
+
+<br/><br/>	
+
+<div id="new3"><div class="block3">
+<div class="block3-top">
+	<div class="block3-right">
+		<div class="block3-left"></div>
+	</div>
+</div>
+<div class="block3-header">{html_code_text}</div>
+<div class="block3-content" style="padding: 0px;">
+	<table width="100%" border="0" align="center" cellspacing="0" cellpadding="9">
+	<tbody>
+		
+		<tr>
+			<td align="center" colspan="9" style="padding:15px 9px;">
+				<textarea cols="89" rows="8" >{html}</textarea>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</div>	
+<div class="block3-footer"><div class="block3-right"><div class="block3-left"></div></div></div></div></div>
+
+<br/><br/>	
+
+<div id="new3"><div class="block3">
+<div class="block3-top">
+	<div class="block3-right">
+		<div class="block3-left"></div>
+	</div>
+</div>
+<div class="block3-header">{plain_text}</div>
+<div class="block3-content" style="padding: 0px;">
+	<table width="100%" border="0" align="center" cellspacing="0" cellpadding="9">
+	<tbody>
+		
+		<tr>
+			<td align="center" colspan="9" style="padding:15px 9px;">
+				<textarea cols="89" rows="8" >{text}</textarea>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</div>	
+
+<div class="block3-footer"><div class="block3-right"><div class="block3-left"></div></div></div></div></div>
+
+<br/><br/>		
+
+<!-- 		<div style="padding:10px;">
+			<div>
+				<div>{bb_code_text}</div>
+				<textarea cols="80" rows="8" >{bb_code}</textarea>
+			</div>
+			<br>
+			<div>
+				<div>{html_code_text}</div>
+				<div><textarea cols="80" rows="8" >{html}</textarea></div>
+			</div>
+			<br>
+			<div>
+				<div>{plain_text}</div>
+				<div><textarea cols="80" rows="8" >{text}</textarea></div>
+			</div>
+		</div>	 -->
+	</td>
+</tr>
+</table>	
+<else />
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+		
+		<form name="post_forum_form" method="post" onSubmit="return validate_form()" action="post_forum.php" >
+		<input type="hidden" name="cmd" value="invoicing" />
+			
+			<div>From the following,Select the options you neeeded to post in forum</div>
+			
+			<table>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_title" id="item_title" value="3" />Item Title
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_id" id="item_id" value="1" />Item Id
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_image" id="item_image" value="2" />Item Image
+					</td>
+				</tr>
+				<tr id="radi_id" style="display:none;" >
+					<td>
+					</td>
+					<td>
+					</td>
+					<td colspan="3">
+						<input type="radio" name="item_image_size[]" id="item_image_size_1" value="1" />Thumbnail
+						<input type="radio" name="item_image_size[]" id="item_image_size_2" value="2" />Medium
+						<input type="radio" name="item_image_size[]" id="item_image_size_3" value="3" />Full
+					</td>
+				</tr>
+					
+				<!--<tr>
+					<td>
+						<input type="checkbox" name="item_denomination" id="item_denomination" value="5" />ITEM DENOMINATION
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_series" id="item_series" value="6" />ITEM SERIES
+					</td>
+				</tr>-->
+
+				<tr>
+					<td>
+						<input type="checkbox" name="item_start_price" id="item_start_price" value="7" />Item Start Price
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_end_date" id="item_end_date" value="8" />Item Ending Date
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_description" id="item_description" value="4" />Item Description
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" name="submit" value="GET CODE" >
+					</td>
+				</tr>
+			</table>
+
+		</form>	
+	</td>	
+</tr>
+</table>
+	
+</if>

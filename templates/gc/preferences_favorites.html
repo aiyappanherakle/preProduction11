@@ -1,0 +1,434 @@
+<script type="text/javascript">
+
+function checkupdata(v)
+{
+
+if(v == '')
+{
+alert('Enter Keyword');
+return false;
+}
+if(document.getElementById('titleid').value == '')
+{
+alert('Enter Title');
+return false;
+}
+var c = document.getElementById('titleid').value;
+
+url = '{http_server}preferences.php?cmd=favorites&subcmd=save&check=do&title='+c+'&fav='+v;
+
+window.location = url;
+
+}
+
+</script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+	$('span.serch_s1').click(function()
+	{
+		keyword = $(this).parent().parent().children('td').eq(1).children().children('div').children('strong').eq(0).children('strong').html();
+		ids = $(this).parent().children('span').children('div').eq(0).attr('id');
+		id = ids.split('_');
+		$('input#get_id').val(id[2]);
+		$('input#keyword').val(keyword);
+		$('input#title').val($(this).parent().children('span').children('div').eq(0).html());
+		jQuery('#edit_saved_search').jqm({modal: false}).jqmShow();
+	});
+});
+</script>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+            <if condition="!empty($ilance->GPC['returnurl'])"><li title="" class=""><a href="{returnurl}"><img src="{template_relativeimagepath}{template_imagesfolder}icons/selectedcat_back.gif" alt="" border="0" /> {_all_listings}</a></li></if>
+            <li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="mygc">{_dashboard}</a><else /><a href="{ilpage[main]}?cmd=cp">{_dashboard}</a></if></li>
+            <li title="" class="on"><a href="javascript:void(0)">{_favorite_searches}</a></li>
+			 <li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Notifications">{_notifications}</a><else /><a href="{ilpage[preferences]}?cmd=notifications">{_notifications}</a></if></li>
+            <li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Watchlist/Management">{_watchlist}</a><else /><a href="{ilpage[watchlist]}?cmd=management">{_watchlist}</a></if></li>
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">{_favorite_searches}</div>
+                    
+                    <div class="block-content" style="padding:0px">
+                        
+                        <form method="post" action="{ilpage[preferences]}" accept-charset="UTF-8" style="margin: 0px;">
+                        <input type="hidden" name="cmd" value="favorites" />
+                        <input type="hidden" name="subcmd" value="deletesearches" />
+                        <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" id="favoritesearches">
+                        <tr> 
+                              <td width="30%" class="alt2">{_custom} {_title} <a href="javascript:void(0)" onmouseover="Tip('<strong>{_inline_edit}</strong><br/>{_you_can_now_change_the_title_on_each_listing_by_double_clicking_on_the_title_text_to_edit_inline}', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                              <td width="43%" class="alt2" nowrap="nowrap">{_search_criteria} </td>
+                              <td width="10%" nowrap="nowrap" class="alt2">{_subscribed} <a href="javascript:void(0)" onmouseover="Tip(phrase['_subscribe_via_email_daily_when_new_matches_meet_my_search_criteria'], BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                              <td width="12%" nowrap="nowrap" class="alt2">{_email} {_subscription}</td>
+                              <td width="4%" class="alt2" align="center">{_select}</td>
+                        </tr>		   
+                        <loop name="favorites"> 
+                        <tr class="alt1" valign="top"> 
+                              <td style="max-width:150px;word-wrap:break-word;"><span  class="serch_ss">{title}</span><span class="">{edit}</span></td>
+                              <td style="max-width:150px;word-wrap:break-word;"><div class="black">{searchoptionstext}</div><div style="padding-top:6px" class="blue">{goto}</div></td>
+                             <td nowrap="nowrap">{ajax_subscribed}</td>
+                              <td nowrap="nowrap"><div class="green">{daysleft}</div><div class="smaller gray">{_last_sent}: {lastsent}</div></td>
+                              <td align="center" class="alt2">{action}</td>
+                        </tr>
+                        </loop name="favorites"> 
+                        <if condition="isset($show['no_favorites']) AND $show['no_favorites']"> 
+                        <tr> 
+                            <td colspan="6" nowrap="nowrap" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px">{_no_results_found}</div></td>
+                        </tr>
+                        </if> 
+                        <if condition="$show['no_favorites'] == false">
+                        <tr class="alt2_top"> 
+                          <td colspan="6" align="right"><select name="rfpcmd" style="font-family: verdana">
+                              <optgroup label="{_select_action}">
+                              <option value="delete">{_delete}</option>
+                              </optgroup>
+                            </select> <input type="submit" class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}"></td>
+                        </tr>
+                        </if>
+						<!--sekar working for add new saves search-->
+						<tr>
+						<td align="left" colspan="6">{popup_new}</td>
+						</tr>
+                        <tr> 
+                            <td colspan="6"><div class="gray" style="padding-top:6px">{_saved_searches_can_be_used_when_you_are_viewing_search_results_from_the_marketplace}</div></td>
+                        </tr>
+                        </table>
+                        </form>
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+
+	</td>
+</tr>
+</table>
+<!--sekar works on add new saved search on sep 27-->
+ <div id="saved_search_modal" class="modal modal_window"  style="display:none; cursor: default; width: 570px; height: 230px;">
+            <div class="bigtabs" style="padding-bottom:5px; padding-top:5px">
+            <div class="bigtabsheader">
+            <span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+            <ul id="skilltabs">
+                <li title="" class="highlight"><a href="javascript:void(0)" rel="nofollow">{_save_this_search}</a></li>
+            </ul>
+            </div>
+            </div>
+            <div style="clear:both;"></div>            
+            <!--<div class="gray">{_you_can_now_save_this_search_into_an_orgainzed_folder}</div>-->
+            <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+            
+            <div style="padding-top:20px"><strong>{_title_of_this_saved_search}</strong></div>
+            <div style="padding-top:3px"><input type="text" name="title" value="" id="titleid" class="input" style="font-family: verdana; width:300px" /></div>
+			 <div style="padding-top:20px"><strong>Keyword</strong></div>
+            <div style="padding-top:3px"><input type="text" name="keyword" value="" id="keyid" class="input" style="font-family: verdana; width:300px" /></div>
+            <div style="padding-top:9px"><input type="submit" value=" {_save} " class="buttons" style="font-size:15px" onclick="return checkupdata(document.getElementById('keyid').value);"/></div>
+            
+            
+            <else /><div style="padding-top:12px"><strong><span class="blue"><a href="{https_server}{ilpage[login]}">{_please_login_or_register_to_save_this_search}</a></span></strong></div>
+            <div class="smaller gray">{_note_when_you_register_or_login_you_may_need_to_reexecute_this_specific_search}</div></if>
+        </div>
+		
+		
+		
+		
+<!-- START Saved search Edit -->
+<div id="edit_saved_search" class="modal modal_window"  style="display:none; cursor: default; width: 570px; height: 300px; overflow:scroll;">
+            <div class="bigtabs" style="padding-bottom:5px; padding-top:5px">
+            <div class="bigtabsheader">
+            <span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+            <ul id="skilltabs">
+                <li title="" class="highlight"><a href="javascript:void(0)" rel="nofollow">{_save_this_search}</a></li>
+            </ul>
+            </div>
+            </div>
+            <div style="clear:both;"></div>      
+		
+            <div class="gray">{_you_can_now_save_this_search_into_an_orgainzed_folder}</div>
+            <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+		
+            <form name="ilform_modal" method="post" action="{http_server}{ilpage[preferences]}" accept-charset="UTF-8" style="margin:0px">
+            <div style="padding-top:20px"><strong>{_title_of_this_saved_search}</strong></div>
+            <div style="padding-top:3px"><input type="text"  name="title" value="{pop_up_search_title}" class="input" style="font-family: verdana; width:300px" /></div>
+            <div style="padding-top:20px"><strong>{_keywords}</strong></div>
+            <div style="padding-top:3px"><input type="text"  name="q" value="{q}" class="input" style="font-family: verdana; width:300px" /></div>
+			
+			<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" >
+				<span style="float:left; padding-top:5px; padding-right:10px"></span>
+				<span><strong>Year Range</strong></span>
+			</div>
+			
+
+			<div class="block-content alt1" style="padding:6px">
+				<div style="padding-top:6px; padding-bottom:6px">
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tr>
+							<td width="38%">
+								<span class="gray">Year Range</span>
+							</td>
+							<td width="25%">
+								<input type="text" id="fromyearrange" name="fromyear" value="{fromyear}" size="4" class="input" />
+							</td>
+							<td width="8%"  >
+								<span class="black">&nbsp;&nbsp;{_to}&nbsp;&nbsp;</span>
+							</td>
+							<td width="29%"  >					
+								<input type="text" id="toyearrange" name="toyear" value="{toyear}" size="4" class="input" />
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			
+													<!-- Grade range -->
+			<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px">
+				<span style="float:left; padding-top:5px; padding-right:10px"></span>
+				<span><strong>Grade Range</strong></span>
+			</div>
+			
+			<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_2" style="padding:6px">
+				<div style="padding-top:6px; padding-bottom:6px">
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tr>
+							<td  width="37%">
+								<span class="gray">Grade Range</span>
+							</td>
+							<td  width="20%">
+								{grade_range_dropdown_1}
+							</td>
+							<td width="8%"  >
+								<span class="black">{_to}&nbsp;</span>
+							</td>
+							<td  width="25%">
+								{grade_range_dropdown_2}
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			
+													<!-- Grading companies -->
+			<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px">
+				<span style="float:left; padding-top:5px; padding-right:10px"></span>
+				<span><strong>Grading Companies</strong></span>
+			</div>
+			
+			<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_3" style="padding:6px">
+				<div style="padding-top:6px; padding-bottom:6px">
+
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tr>
+							<td  width="50%">
+								<span class="gray">Grading Org</span>
+							</td>
+							<td colspan="3" width="50%">
+							{grading_service_dropdown}
+							</td>				
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+													<!-- Price range-->
+			<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px">
+				<span style="float:left; padding-top:5px; padding-right:10px"></span>
+				<span><strong>Price Range</strong></span>
+			</div>
+			
+			<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_9" style="padding:6px">
+				<div style="padding-top:6px; padding-bottom:6px">
+						
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tr>
+							<td width="38%">
+								<span class="gray">Range </span>
+							</td>
+							<td width="25%">
+								<input type="text" id="frompricerange" name="fromprice" value="{fromprice}" size="5" class="input" >
+							</td>
+							<td width="8%"  >
+								<span class="black">&nbsp;&nbsp;{_to}&nbsp;&nbsp;</span>
+							</td>
+							<td width="29%"  >					
+								<input type="text" id="topricerange" name="toprice" value="{toprice}" size="5" class="input" />
+							</td>
+						</tr>
+					</table>
+					<input type="hidden" value="product" name="mode">
+					<input type="hidden" value="{sort_value}" name="sort">
+					{action_field_hidden}
+					{series_hidden_fld}
+					
+				</div>
+			</div>
+			<script type="text/javascript">
+	function toggle_denom_edit1(obj) {
+
+		var el = document.getElementById(obj);
+
+		if ( el.style.display != 'none' ) {
+
+			el.style.display = 'none';
+			document.getElementById("denom_checkk").checked=true;			
+			document.getElementById("denom_checkk").disabled=false;
+			document.getElementById("denom_editt").innerHTML="(Edit)";
+			$(function(){ $('select#denom_dropdown option').removeAttr("selected"); });
+
+		}
+
+		else {
+		
+			
+			el.style.display = '';
+			document.getElementById("denom_checkk").checked=false;
+			document.getElementById("denom_checkk").disabled=true;			
+			document.getElementById("denom_editt").innerHTML="&nbsp;(Select All)";
+			
+
+		}
+
+	}
+	
+	</script>
+			<!-- Denomination -->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px">
+		<span style="float:left; padding-top:5px; padding-right:10px"></span>
+		<span><strong>Denomination</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_7" style="padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">			
+				<tr>
+					<td >
+					
+					<input type="checkbox" id="denom_checkk" name="denom_all" value="1" {denom_checkbox}><span class="gray" >&nbsp;All Denomination</span><span id="denom_editt" class="blue" onClick="toggle_denom_edit1('denom_dropp')">&nbsp;{checkbox_denom_value_all}</span>
+					</td >
+					
+				</tr>
+				<tr id="denom_dropp" {denom_drop_is_sel}>
+					<td >
+					{product_denom_selection}
+					</td >					
+				</tr>
+				
+			</table>
+		</div>
+	</div>
+	
+ 
+											<!-- Listing Type-->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px">
+		<span style="float:left; padding-top:5px; padding-right:10px"></span>
+		<span><strong>Listing Type</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_8" style="padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">			
+				<tr>
+					<td width="40%">
+					<span class="gray">Listing Type</span>
+					</td >
+					<td width="60%"></td >
+				</tr>
+				<tr>
+					<td width="40%"></td >
+					<td width="60%">
+						<input type="radio" name="listing_type" value="1" {checkbox_lt_1}>Auction
+					</td >
+				</tr>
+				<tr>
+					<td width="40%"></td >
+					<td width="60%">
+						<input type="radio" name="listing_type" value="2" {checkbox_lt_2}>Buy Now
+					</td >
+				</tr>
+				<tr>
+					<td width="40%"></td >
+					<td width="60%">
+						<input type="radio" name="listing_type" value="3" {checkbox_lt_3}>Multi Coin Lots
+					</td >
+				</tr>
+				<tr>
+					<td width="40%"></td >
+					<td width="60%">
+						<input type="radio" name="listing_type" value="4" {checkbox_lt_4}>Completed Items
+					</td >
+				</tr>			
+				
+			</table>
+			
+			
+			
+		</div>
+
+	</div>
+	
+	
+	
+											<!-- Bid range -->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px">
+		<span style="float:left; padding-top:5px; padding-right:10px"></span>
+		<span><strong>Bid Count</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_5" style=" padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="38%">
+						<span class="gray">Range</span>
+					</td>
+					<td width="25%">
+						<input type="text" id="frombidrange" name="frombid" value="{frombid}" size="4" class="input" />
+					</td>
+					<td width="8%"  >
+						<span class="black">&nbsp;&nbsp;{_to}&nbsp;&nbsp;</span>
+					</td>
+					<td width="29%"  >					
+						<input type="text" id="tobidrange" name="tobid" value="{tobid}" size="4" class="input" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+			<div style="padding-top:9px"><input type="submit" value=" {_update} " class="buttons" style="font-size:15px" /></div>
+            <input type="hidden" name="cmd" value="favorites" />
+            <input type="hidden" name="subcmd" value="update_search" />
+			<input type="hidden" name="fav" value="{favoritesearchurl}" />
+            <input type="hidden" name="verbose" value="{favtext}" />
+			<input type="hidden" name="series_save_search" value="{series_save_search}" />
+			<input type="hidden" name="save_search_denomination" value="{save_search_denomination}" />
+            </form>
+            <else /><div style="padding-top:12px"><strong><span class="blue"><a href="{https_server}{ilpage[login]}">{_please_login_or_register_to_save_this_search}</a></span></strong></div>
+            <div class="smaller gray">{_note_when_you_register_or_login_you_may_need_to_reexecute_this_specific_search}</div></if>
+            </div>
+<!-- END Saved search Edit -->
+

@@ -1,0 +1,143 @@
+<div class="bigtabs" style="padding-bottom:10px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{seocategories}">{_categories}</a><else /><a href="{ilpage[main]}?cmd=categories">{_categories}</a></if></li>
+	<li title="" class="on"><a href="javascript:void(0)">{_listings}</a></li>
+	<if condition="$ilconfig['globalauctionsettings_productauctionsenabled']">
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}Denominations" rel="nofollow">{_product}</a><else /><a href="{ilpage[merch]}?cmd=listings" rel="nofollow">{_product}</a></if></li>
+	</if>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']">
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{seoservicecategories}" rel="nofollow">{_service}</a><else /><a href="{ilpage[rfp]}?cmd=listings" rel="nofollow">{_service}</a></if></li>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><li title="" class="highlight"><a href="{http_server}{ilpage[search]}?mode=experts" rel="nofollow">{_experts}</a></li></if>
+	</if>
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+    <td width="70%" valign="top">
+	
+    	{apihook[main_listings_start]}
+    
+		<div class="block-wrapper">
+
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_find_what_youre_looking_for}</div>
+					
+					<div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x;">
+					
+                    	  {apihook[main_listings_table_start]}
+                    
+						  <table width="100%" border="0" cellspacing="0" cellpadding="{table_cellpadding}">
+						  <tr>
+                          
+                          	{apihook[main_listings_td_start]}
+                          
+						    <if condition="$ilconfig['globalauctionsettings_productauctionsenabled']">
+							<td valign="top">
+							<div style="font-size:14px; padding-bottom:5px"><strong>{_items}</strong></div>
+							<ul style="margin-top:5px; list-style:circle">
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=product&amp;sort=01" rel="nofollow">{_all}: {_ending_soon}</a></span></li>
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=product&amp;sort=02" rel="nofollow">{_auctions}</a></span></li>
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=product&amp;buynow=1&amp;sort=02" rel="nofollow">{_fixed_price}</a></span></li>
+								<if condition="$ilconfig['enable_uniquebidding']"><li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=product&amp;lub=1&amp;sort=01" rel="nofollow">{_lowest_unique_bid}</a></span></li></if>
+								<if condition="$ilconfig['enablenonprofits']"><li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=product&amp;donation=1&amp;sort=01" rel="nofollow">{_nonprofit} {_items}</a></span></li></if>
+                               <!-- <li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=product&amp;sort=01&amp;scheduled=1" rel="nofollow">{_scheduled}</a></span></li>-->
+                                <li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=product&amp;sort=01&amp;completed=1" rel="nofollow">{_completed}</a></span></li>
+							</ul></td>
+							</if>
+							<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']">
+							<td valign="top" class="<if condition="$ilconfig['globalauctionsettings_productauctionsenabled']">alt1_left</if>">
+							
+							<div style="font-size:14px; padding-bottom:5px"><strong>{_services}</strong></div>
+							<ul style="margin-top:5px; list-style:circle">
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;sort=01" rel="nofollow">{_all}: {_ending_soon}</a></span></li>
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;sort=02" rel="nofollow">{_all}: {_newly_listed}</a></span></li>
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;sort=121" rel="nofollow">{_distance_closest_first}</a></span></li>
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;sort=122" rel="nofollow">{_distance_furthest_first}</a></span></li>
+                                <li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;sort=01&amp;scheduled=1" rel="nofollow">{_scheduled}</a></span></li>
+                                <li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;sort=01&amp;completed=1" rel="nofollow">{_completed}</a></span></li>
+							</ul></td>
+							<td valign="top" class="alt1_left">
+							
+							<div style="font-size:14px; padding-bottom:5px"><strong>{_experts}</strong></div>
+							<ul style="margin-top:5px; list-style:circle">
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=experts&amp;sort=52" rel="nofollow">{_rated_highest_first}</a></span></li>
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=experts&amp;sort=112" rel="nofollow">{_awards_highest_first}</a></span></li>
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=experts&amp;sort=111" rel="nofollow">{_awards_lowest_first}</a></span></li>
+								<li style="padding-bottom:2px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=experts&amp;sort=102" rel="nofollow">{_earnings_highest_first}</a></span></li>
+							</ul></td>
+							</if>
+                            
+                            {apihook[main_listings_td_end]}
+                            
+						  </tr>
+						  </table>
+                          
+                          {apihook[main_listings_table_end]}
+
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div>
+        
+        {apihook[main_listings_end]}
+	
+	</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="30%" valign="top">
+	
+		
+	
+		<div class="block-wrapper">
+
+			<div class="block3">
+			
+					<div class="block3-top">
+							<div class="block3-right">
+									<div class="block3-left"></div>
+							</div>
+					</div>
+					
+					<div class="block3-header">{_other_ways_to_search}</div>
+					
+					<div class="block3-content alt_top" style="padding:14px">
+                    		
+                            {apihook[main_listings_otherways_start]}
+                            
+							<div style="padding-bottom:4px"><span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}search" rel="nofollow">{_advanced_search}</a><else /><a href="{http_server}{ilpage[search]}" rel="nofollow">{_advanced_search}</a></if></span></div>
+							<div style="padding-bottom:4px"><span class="blue"><a href="{ilpage[preferences]}?cmd=favorites" rel="nofollow">{_favorite_searches}</a></span></div>
+							<div style="padding-bottom:4px"><span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}watchlist" rel="nofollow">{_watchlist_manager}</a><else /><a href="{http_server}{ilpage[watchlist]}" rel="nofollow">{_watchlist_manager}</a></if></span></div>
+                            
+                            {apihook[main_listings_otherways_end]}
+                            
+                            <div style="padding-bottom:6px; padding-top:12px"><strong>{_more}</strong></div>
+		<div class="blue"><if condition="$ilconfig['globalauctionsettings_productauctionsenabled']"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}main-sell">{_sell_coins_through_greatcollections}</a><else /><a href="{http_server}{ilpage[main]}?cmd=sell">{_sell_coins_through_greatcollections}</a></if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</if><if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}buy">{_create_service_auction}</a><else /><a href="{http_server}{ilpage[main]}?cmd=buying">{_create_service_auction}</a></if></if></div>
+					</div>
+					
+					<div class="block3-footer">
+							<div class="block3-right">
+									<div class="block3-left"></div>
+							</div>
+					</div>
+			</div>
+		</div>
+	</td>
+</tr>
+</table>

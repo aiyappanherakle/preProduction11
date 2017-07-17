@@ -1,0 +1,142 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Update Catalog List</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		 <if condition="isset($show['update-toplevel']) AND $show['update-toplevel'] == 'update-toplevel'">
+		<div class="tab-page">
+			
+			<h2 class="tab">Update</h2>
+			
+			
+			     <form method="POST" action="{ilpage[catalog]}" accept-charset="UTF-8" id="subscribers" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="update-catalog" />
+					 <input type="hidden" name="subcmd" value="update_toplist" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Update TopLevel Catagory</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                             <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							 <input type="hidden" value="{id}" name="id" />
+							 {update_table}
+							 </table>
+                               <input type="submit" value="update" /> 						
+                            </div>
+                           
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</form>
+                   
+	  </div>
+	  </if>
+	   <if condition="isset($show['update-secondlevel']) AND $show['update-secondlevel'] == 'update-secondlevel'">
+		<div class="tab-page">
+			
+			<h2 class="tab">Update</h2>
+			
+			
+			     <form method="POST" action="{ilpage[catalog]}" accept-charset="UTF-8" id="subscribers" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="update-catalog" />
+					 <input type="hidden" name="subcmd" value="update_secondlist" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Update SecondLevel Catagory</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                             <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							 <input type="hidden" value="{id}" name="id" />
+							 {update_second_table}
+							 </table>
+                               <input type="submit" value="update" /> 						
+                            </div>
+                           
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</form>
+                   
+	  </div>
+	  </if>
+	  <if condition="isset($show['update-coinlist']) AND $show['update-coinlist'] == 'update-coinlist'">
+		<div class="tab-page">
+			
+			<h2 class="tab">Update</h2>
+			
+			
+			     <form method="POST" action="{ilpage[catalog]}" accept-charset="UTF-8" id="subscribers" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="update-catalog" />
+					 <input type="hidden" name="subcmd" value="update_coinlist_save" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Update CoinList Catagory</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                             <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							 <input type="hidden" value="{id}" name="id" />
+							 {update_coin_table}
+							 </table>
+                               <input type="submit" value="update" /> 						
+                            </div>
+                           
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</form>
+                   
+	  </div>
+	  </if>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

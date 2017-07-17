@@ -1,0 +1,142 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+            <li title="" class=""><a href="{ilpage[preferences]}">{_preferences}</a></li>
+            <li title="" class="on"><a href="javascript:void(0)">{_attachments}</a></li>
+            <li title="" class=""><a href="{ilpage[portfolio]}?cmd=management">{_portfolio_manager}</a></li>
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        <form action="{ilpage[preferences]}" method="post" name="attachments" accept-charset="UTF-8" style="margin:0px;">
+        <input type="hidden" name="crypted" value="{inputcrypted}" />
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header"><span style="float:right"><!--<select name="attachtype" style="font-family:verdana"><option value="">{_all} {_attachments}</option><option value="profile">{_profile} {_attachments}</option><option value="portfolio">{_portfolio} {_attachments}</option><option value="project">{_project} {_attachments}</option><option value="itemphoto">{_item} {_picture} {_attachments}</option><option value="itemphoto">{_item} {_slideshow} {_attachments}</option><option value="bid">{_service} {_bid} {_attachments}</option><option value="pmb">{_pmb} {_attachments}</option><option value="ws">{_workspace} {_attachments}</option></select>--></span>{_attachment_manager}</div>
+                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_attachment_usage}&nbsp;{attach_usage_total}&nbsp;{_of}&nbsp;<strong>{attach_user_max}</strong></div></div>
+                    <div class="block-content" style="padding:0px">
+                        
+                        <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                        <tr class="alt2"> 
+                            <td width="33%">{_attachment}</td>
+                            <td width="7%" nowrap="nowrap">{_invoice_id}</td>
+                            <td width="14%" nowrap="nowrap">{_type}</td>
+                            <td width="12%">{_views}</td>
+                            <td width="22%">{_date}</td>
+                            <td align="right" width="1%">{_sel}</td>
+                        </tr>
+                        <loop name="attachment_rows"> 
+                        <tr class="alt1"> 
+                            <td><span class="blue"><a href="{http_server}{ilpage[attachment]}?id={filehash}">{attach_filename}</a></span> <span class="smaller gray">({attach_size})</span></td>
+                            <td>{invoiceid}</td>
+                            <td><span class="smaller gray">{attach_type}</span></td>
+                            <td>{attach_views}</td>
+                            <td nowrap="nowrap"><span class="gray">{attach_date}</span></td>
+                            <td align="right" class="alt2">{attach_action}</td>
+                        </tr>
+                        </loop name="attachment_rows">
+                        <if condition="isset($show['no_attachment_rows']) AND $show['no_attachment_rows']"> 
+                        <tr> 
+                            <td colspan="6" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px">{_no_results_found}</div></td>
+                        </tr>
+                        </if> 
+                        <if condition="$show['no_attachment_rows'] == false">
+                        <tr class="alt2_top"> 
+                            <td colspan="6" align="right"> 
+                            <select name="attachcmd" style="font-family:verdana"><optgroup label="{_please_select}"><option value="delete">{_delete}</option></optgroup></select> 
+                            <input type="submit" class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}"/>					</td>
+                        </tr>
+                        </if>
+                        <tr> 
+                            <td colspan="6">{prevnext}</td>
+                        </tr>
+                        </table>
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        </form>
+        
+        
+        <form action="{ilpage[preferences]}" method="post" name="attachments" accept-charset="UTF-8" style="margin:0px">
+        <input type="hidden" name="crypted" value="{inputcrypted}" />
+        <div class="block-wrapper">
+        
+            <div class="block3">
+            
+                    <div class="block3-top">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block3-header">{_pending_attachments}</div>
+                    <div class="block3-content" style="padding:0px">
+                        
+                        <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                        <tr class="alt2"> 
+                            <td nowrap="nowrap">{_attachment}</td>
+                            <td nowrap="nowrap">{_attachment_type}</td>
+                            <td width="21%" nowrap="nowrap">{_status}</td>
+                            <td align="right" width="1%" nowrap="nowrap">{_action}</td>
+                        </tr>
+                        <loop name="attachment_pending_rows"> 
+                        <tr class="alt1"> 
+                            <td width="45%" align="left"><span class="blue"><a href="{ilpage[attachment]}?id={filehash}">{attach_filename}</a></span></td>
+                            <td width="23%">{attach_type} {_attachment}</td>
+                            <td>{status}</td>
+                            <td align="right" class="alt2">{actions}</td>
+                        </tr>
+                        </loop name="attachment_pending_rows"> 
+                        <if condition="isset($show['no_attachment_pending_rows']) AND $show['no_attachment_pending_rows']">
+                        <tr> 
+                            <td colspan="4" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px">{_no_results_found}</div></td>
+                        </tr>
+                        </if>
+                        <if condition="$show['no_attachment_pending_rows'] == false">
+                        <tr class="alt2_top"> 
+                            <td colspan="4" align="right">
+                            <select name="attachcmd" style="font-family: verdana"><optgroup label="{_please_select}"><option value="delete">{_delete}</option></optgroup></select>
+                            <input type="submit" class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}"/>
+                            </td>
+                        </tr>
+                        </if>
+                        <tr> 
+                            <td colspan="5">{prevnext2}</td>
+                        </tr>
+                        </table>
+                        
+                    </div>
+                    
+                    <div class="block3-footer">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        </form>
+	</td>
+</tr>
+</table>

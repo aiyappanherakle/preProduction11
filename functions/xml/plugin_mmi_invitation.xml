@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin>
+     <plug key="init_configuration_start" addon="mmi_invitation">
+		<title>specifically for iLPage</title>
+		<api>init_configuration_start</api>
+		<php><![CDATA[
+function parray($array = array(), $text = ''){
+
+                  $html= '<pre><b>' .$text . '  </b>' ;
+                  ob_start();
+                  print_r($array);
+
+                  $html .= ob_get_contents();
+                  ob_end_clean();
+
+                  $html .= '</pre>';
+                  echo $html;
+                  echo time().'<br/>';
+            }
+
+                if($this->invitation = construct_object('api.mmi_invitation')){
+                    if(!defined('DS')){
+                        define('DS', DIRECTORY_SEPARATOR);
+                    }
+            //        define('OIBASE', DIR_FUNCTIONS .  'OpenInviter');
+                }
+                $this->inviter->config = 1;
+                if($this->inviter->config == 1){
+
+                    $ilpage['inviter'] =   'inviter' . $ilconfig['globalsecurity_extensionmime'];
+                }
+
+
+             ]]>
+        </php>
+     </plug>
+      <plug key="fetch_breadcrumb_titles_end" addon="mmi_invitation">
+		<title>BreadCrumbs</title>
+		<api>fetch_breadcrumb_titles_end</api>
+		<php><![CDATA[
+                $phrase['_inviter'] = 'inviter';
+                if($ilance->inviter->config == 1){
+                
+                $ilcrumbs['inviter'. $ilconfig['globalsecurity_extensionmime']] = $phrase['_inviter'];
+                }
+
+             ]]>
+        </php>
+     </plug>
+  <plug key="init_configuration_end" addon="mmi_invitation">
+		<title>Encoding</title>
+		<api>init_configuration_end</api>
+		<php><![CDATA[
+
+                
+             ]]>
+        </php>
+     </plug>
+</plugin>
+

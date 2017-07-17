@@ -1,0 +1,241 @@
+<div class="bigtabs" style="padding-bottom:5px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class="on"><a href="javascript:void(0)">Invoice View</a></li>
+
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<div style="padding-top:12px">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+<td>
+<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td style="padding-left:5px;" valign="top"></td>
+	<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+	<td style="padding-right:5px;">
+	<if condition="$show['ispaid'] OR $show['iscomplete']">
+	<div>
+		<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice_checkmark.gif" border="0" alt="" id="invoicepaidicon" /></span> {_amount_paid}: <span class="blue">{amountpaid}</span></div>
+		<div class="smaller gray">{_this_invoice_has_been_paid_in_full} {_as_of} <span class="blue">{paiddate}</span></div>
+	</div>
+  </if>
+  <if condition="$show['isunpaid'] OR $show['isscheduled']">
+	<div>
+		<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice.gif" border="0" alt="" id="invoiceunpaidicon" /></span> {_amount_due}: <span class="red" id="totalamt_area">{pending_amount}</span></div>
+		<div class="smaller gray">{_this_invoice_is_pending} {_as_of} <span class="red">{createdate}</span></div>
+		</div>
+		</if>
+
+
+
+</td>
+</tr>
+</table>
+</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+</td>
+</tr>
+</table>
+</div>
+
+<div style="padding-top:6px"></div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td valign="top" width="50%">
+
+		<div class="block-wrapper">
+
+			<div class="block">
+
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+
+					<div class="block-header">{_customer_information}</div>
+
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller"><div>{customername} <span class="gray">"GC Username: {customer}"</span> </div></div></div>
+					<div class="block-content" style="padding:12px">
+
+
+
+						<!--Murugan For Customer Email-->
+						<div></div>
+						<!--Murugan For Customer Email-->
+						<div><blockquote>
+						Name: {customername} <br />
+						Email: {customeremail} <br />
+						{customerinfo}
+
+						<div class="smaller gray" style="padding-top:6px">[ <span class="blue"><a href="{https_server}{ilpage[preferences]}?cmd=profile&amp;redirect={pageurl_urlencoded}">{_edit}</a></span> ]</div>
+						</blockquote>
+
+						</div>
+
+
+					</div>
+
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+
+			</div>
+		</div>
+	</td>
+
+</tr>
+</table>
+
+<!--Murugan For Item Details-->
+<!--<if condition="isset($show['listing']) AND $show['listing']">-->
+<div class="block-wrapper">
+
+	<div class="block">
+
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+
+			<div class="block-header">{_items_won_purchased}</div>
+
+
+			<div class="block-content" style="padding:0px">
+
+
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td align="left" nowrap="nowrap" class="alt2">Item</td>
+					<td width="40%" align="left" class="alt2" nowrap="nowrap">Title</td>
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Site</td>
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Final Price</td>
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Buyer Fee's</td>
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">{_total}</td>
+				</tr>
+				<loop name="itemlist">
+				<tr>
+					<td align="left" nowrap="nowrap" valign="top">{item_id}</td>
+					<td align="left" valign="top">{itemtitle}</td>
+					<td align="left" valign="top">{Site_Id}</td>
+					<td align="left" nowrap="nowrap" valign="top">{finalprice}</td>
+					<td align="left" nowrap="nowrap" valign="top">{buyerfees}</td>
+					<td align="left" nowrap="nowrap" valign="top">{totallistamount}</td>
+				</tr>
+				</loop name="itemlist">
+				</table>
+
+
+			</div>
+
+			<div class="block-footer">
+					<div class="block-right">
+
+							<div class="block-left"></div>
+					</div>
+			</div>
+
+	</div>
+</div>
+<!--</if>-->
+
+
+<form method="post" action="{ilpage[invoicepayment]}" name="invoicepayment" accept-charset="UTF-8" style="margin:0px;">
+<input type="hidden" name="cmd" value="{cmd}" />
+{securekey_hidden}
+<div class="block-wrapper">
+
+	<div class="block">
+
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+
+			<div class="block-header">{_total_options_and_payments}</div>
+			<div class="block-content" style="padding:0px">
+
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr class="alt1">
+					<td colspan="2">
+				<if condition="isset($show['partial_payment_rows']) AND $show['partial_payment_rows'] == true">
+								<table width="100%">
+								<tr><td colspan="3"><strong>Partial Payments</strong></td>
+								<tr><td  width="20%">Date</td>
+								<td width="20%">Amount</td>
+								<td width="20%">Method</td></tr>
+
+								<loop name="partial_payment_rows">
+								<tr><td>{payment_date}</td><td>{partial_amount}</td><td>{paymethod}</td></tr>
+								</loop name="partial_payment_rows">
+								</table>
+								<else />
+								<div style="padding-top:6px; padding-bottom:6px; font-size:13px" class="blue">{description}</div>
+								</if>
+
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="gray">Sub Total</span></td>
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray">{amount}</span></td>
+				</tr>
+				<if condition="isset($show['taxes']) AND $show['taxes']">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{taxinfo}</span></td>
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray">{taxamount}</span></td>
+				</tr>
+				</if>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">Shipping/Handling Charges</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="green">({shipping})</span></td>
+				</tr>
+				<if condition="isset($show['miscamount']) AND $show['miscamount']==true">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{_misc_amount}</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="green">({miscamount})</span></td>
+				</tr>
+				</if>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{_total}</span></td>
+					<td colspan="-3" align="right"><span style="font-size:16px" class="blue"><strong>{totalamount}</strong></span></td>
+				</tr>
+
+				<tr>
+					<td align="right"><span style="font-size:14px" class="green">{_payments}</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="green">({amountpaid})</span></td>
+				</tr>
+
+				<if condition="isset($show['partial_payment_rows']) AND $show['partial_payment_rows'] == true AND $show['ispaid']==false">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">Pending Amount</span></td>
+					<td colspan="-3" align="right"><span style="font-size:16px" class="blue"><strong>{pending_amount}</strong></span></td>
+				</tr>
+				</if>
+				</table>
+
+			</div>
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+
+	</div>
+</div>
+
+
+
+<div style="margin-top:3px"><span class="blue"><a href="javascript:history.back()">{_return_to_the_previous_menu}</a></span></div>
+</form>
+
+
+<div align="center" style="padding-top:7px"></div>

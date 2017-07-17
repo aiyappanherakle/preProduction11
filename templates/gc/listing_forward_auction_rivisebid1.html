@@ -1,0 +1,199 @@
+<style type="text/css">
+.buttonr {
+	background: #007cc7;
+	background-image: -webkit-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -moz-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -ms-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -o-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: linear-gradient(to bottom, #007cc7, #1d4aa6);
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	text-shadow: 1px 1px 1px #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #ffffff;
+	text-decoration: none;
+	width: 110px;
+	height: 28px;
+	border: medium none;
+	cursor: pointer;
+	border-radius: 6px;
+}
+.buttonr:hover {
+	background: #1d4aa6;
+	background-image: -webkit-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -moz-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -ms-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -o-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: linear-gradient(to bottom, #1d4aa6, #007cc7);
+	text-decoration: none;
+}
+</style>
+<script type="text/javascript">
+function isFloat(n) 
+{
+     return parseFloat(n.match(/^-?\d*(\.\d+)?$/))>0;
+}
+function setAction (element, page)
+	{
+	var bidbox_count=$(".bid_amount").length;
+	var er=0;
+	
+	var emp = 0;	
+	for(var i=1;i<=bidbox_count;i++)
+	{
+		var minimum_bid=parseFloat($("#min_bid_amount_"+i).val());
+		var bidded_amount=parseFloat($("#bid_amount_"+i).val());
+		var bid_amt_str=$("#bid_amount_"+i).val();
+		
+		if($("#bid_amount_"+i).val() == '')
+		{
+			emp++;
+		}
+		
+		if(bidded_amount>0)
+		{
+		
+		//alert(bidded_amount+' == '+$("#bid_amount_"+i).val());
+		if(bidded_amount<minimum_bid)
+			{
+				alert("Bid amount must exceed Minimum bid amount mentioned below the bid box");
+				$("#bid_amount_"+i).focus();
+				$("#bid_amount_"+i).select();
+				return false;
+			}
+			
+		}
+		
+		if(bidded_amount <= 0  || (isNaN(bidded_amount)== true && bid_amt_str !=''))
+		{
+			er=1;
+			alert("Enter the valid amount");
+			$("#bid_amount_"+i).focus();
+			$("#bid_amount_"+i).select();
+			return false;
+		}
+
+		if(isFloat(bid_amt_str)== false && bid_amt_str !='' )
+		{
+			er=1;
+			alert("Enter the valid amount");
+			$("#bid_amount_"+i).focus();
+			$("#bid_amount_"+i).select();
+			return false;
+			
+		}
+		
+		//er=1;
+		
+	}
+		if(emp==bidbox_count)
+		{
+			alert("Fill atleast one bid box to make a bid");
+			return false;
+		}
+		if(er==1)
+		{
+			alert("Enter the valid amount");
+			return false;
+		}
+		
+		if(er==0)
+		{
+		element.form.action =  page;
+		//element.form.submit();
+		return true;
+		}
+			return true;
+	}
+</script>		
+<form method="post" action="{http_server}rfp1.php"  accept-charset="UTF-8" style="margin:0px">
+<input type="hidden" name="cmd" value="revisebid_submit" />
+<input type="hidden" name="subcmd" value="revise_bid" />
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_enter_bid_amount}</div>
+            <div class="block-content-yellow smaller" style="padding:9px">{_place_a_bid}</div>
+			<div class="block-content" style="padding:9px">
+				 <loop name="revise_coin_array"> 
+                <table border="0" cellpadding="5" cellspacing="{table_cellspacing}" width="100%" align="center">
+				<tr>
+                    <td align="right"><span class="black">GC Item ID:</span></td>
+                    <td colspan="3" nowrap="nowrap">{projectlist_id} </td>
+                </tr>
+                <tr>
+                    <td align="right" valign="top"><span class="black">{_title}:</span></td>
+                    <td colspan="3" nowrap="nowrap"><span class="blue">{title}</span><if condition="isset($revise_coin_bid_amount[auctiontype]) AND $revise_coin_bid_amount[auctiontype] == 'fixed'">&nbsp;&nbsp;&nbsp;<span class="smaller gray">({buynow_qty} {_available})</span></if></td>
+                </tr>
+                <if condition="isset($revise_coin_bid_amount[reserve_auction]) AND $revise_coin_bid_amount[reserve_auction] > 0">
+                <tr>
+                    <td align="right"><span class="black">{_reserve_price}:</span></td>
+                    <td colspan="3" nowrap="nowrap">{reserve_met} </td>
+                </tr>
+                </if>
+                <if condition="isset($show['localpickuponly']) AND $show['localpickuponly'] == false AND isset($shippercount) AND $shippercount >= 1">
+                <tr> 
+                    <td align="right" nowrap="nowrap">{_your_ship_service}:</td>
+                    <td nowrap="nowrap" colspan="3">{shipservicepulldown}</td>
+                </tr>
+                </if>
+                <if condition="!empty($revise_coin_bid_amount[proxybit])">
+                <tr> 
+                    <td align="right" nowrap="nowrap"><span class="gray">{_your_maximum_bid}: </span></td>
+                    <td colspan="3" nowrap="nowrap"><span class="gray">{proxybit}</span></td>
+                </tr>
+                </if>
+                <tr> 
+                    <td align="right" nowrap="nowrap"><span class="black">{_minimum_bid_amount}:</span></td>
+                    <td colspan="3" nowrap="nowrap"><span class="black">{min_bidamountformatted}</span></td>
+                </tr>
+                <tr> 
+                    <td width="19%" align="right" nowrap="nowrap"><span class="black">{_bid_amount}:</span></td>
+                    <td width="1%" nowrap="nowrap"><input type="text" name="bid_amount[{projectlist_id}][next_bid_amount]" class="bid_amount" id="bid_amount_{r}" value="{next_bid_amount}"  style="width:80px" /></td>
+                    <td nowrap="nowrap"><img name="bidamounterror" src="{template_relativeimagepath}{template_imagesfolder}icons/blankimage.gif" width="21" height="13" border="0" alt="{_this_form_field_is_required}" /></td>
+                    <td width="100%" nowrap="nowrap"><if condition="$ilconfig['productbid_enableproxybid'] AND $show['categoryuseproxybid']"><span class="smaller litegray">({_enter} {min_bidamountformatted} <strong>{_or_more}</strong>)</span> <else />({_your_maximum_bid_is_public})</if></td>
+                </tr>
+				
+
+                 
+				<input type="hidden" name="bid_amount[{projectlist_id}][min_bid_amount]" value ="{current_bidamount}"  size="8"/>
+
+			
+
+				<input type="hidden" class="proj_id"  name="bid_amount[{projectlist_id}][projectlist_id]" value="{projectlist_id}"/>
+
+				<input type="hidden"  class="min_bid_amount" id="min_bid_amount_{r}" name="bid_amount[{projectlist_id}][previous_bidamount]" value="{min_bidamount}"/>
+
+				<input type="hidden" name="bid_amount[{projectlist_id}][bidstate]" value="auction" />
+
+				<input type="hidden" name="bid_amount[{projectlist_id}][state]" value="product" />
+
+				<input type="hidden" name="bid_amount[{projectlist_id}][qty]" value="1" />
+               
+                
+                </table>
+				<div><hr /></div>
+				 </loop name="revise_coin_array"> 
+				
+				
+			</div>
+            
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<div><input type="submit" name="place_bid_w"  value="{_preview}"  onclick="return setAction(this,'{http_server}rfp1.php')"  class="buttonr" style="font-size:15px" />&nbsp;&nbsp;&nbsp;<span class="blue"><a href="{http_server}watchlist1.php">{_cancel}</a></span></div>
+<div><br /></div>
+</form>

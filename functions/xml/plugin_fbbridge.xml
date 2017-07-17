@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<plug key="fb_initend" addon="fbbridge">
+		<title>init_configuration_end</title>
+		<api>init_configuration_end</api>
+		<php><![CDATA[]]></php>
+	</plug>
+	
+	<plug key="fb_reverse_auction_start" addon="fbbridge">
+		<title>project_title_start</title>
+		<api>project_title_start</api>
+		<html><![CDATA[]]></html>
+	</plug>
+	
+	<plug key="fb_reverse_auction_start" addon="fbbridge">
+		<title>reverse_auction_start</title>
+		<api>reverse_auction_start</api>
+		<html><![CDATA[]]></html>
+	</plug>
+	
+	<plug key="fb_login_include_end" addon="fbbridge">
+		<title>login_include_end</title>
+		<api>login_include_end</api>
+		<php><![CDATA[global $ilance, $ilpage, $show, $ilconfig;
+				include('facebook.php');
+					if(isset($show['fbbridge']) AND $show['fbbridge'])
+					{
+						$login_include.= '
+						<html xmlns:fb="http://ogp.me/ns/fb#">
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId='.$ilfbconfig['appId'].'";
+						fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>';
+						$login_include.='<div id="fb-root"></div>
+						<script>
+						  window.fbAsyncInit = function() {
+							FB.init({
+							  appId: '.$facebook->getAppID() .',
+							  cookie: true,
+							  xfbml: true,
+							  oauth: true
+							});
+							FB.Event.subscribe("auth.login", function(response) {
+							  window.location.reload();
+							});
+							FB.Event.subscribe("auth.logout", function(response) {
+							  window.location.reload();
+							});
+						  };
+						  (function() {
+							var e = document.createElement("script"); e.async = true;
+							e.src = document.location.protocol +"//connect.facebook.net/en_US/all.js";
+							document.getElementById("fb-root").appendChild(e);
+						  }());
+						</script>';
+					}
+]]></php>
+	</plug>
+	
+	<plug key="fb_ajax_start" addon="fbbridge">
+		<title>ajax_start</title>
+		<api>ajax_start</api>
+		<php><![CDATA[global $ilance, $ilconfig, $show;
+			include('facebook.php');
+			if (isset($show['fbbridge']) AND $show['fbbridge'] AND isset($ilfbconfig['fbregister']) AND $ilfbconfig['fbregister'] AND isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'fbbridge')
+			{	
+				
+				if (!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0) 
+				{
+					echo json_encode(array('success' => TRUE, 'message' => ''));
+					exit();
+				}
+				if (isset($fbuser) AND $fbuser > 0)
+				{
+					$fbuser_profile;
+				}
+				else
+				{
+					echo json_encode(array('success' => FALSE, 'message' => 'Unable to locate your Facebook Account Information'));
+					exit();
+				}
+				if (!isset($fbuser_profile['first_name']) OR !isset($fbuser_profile['last_name']) OR !isset($fbuser_profile['email']))
+				{
+					echo json_encode(array('success' => FALSE, 'message' => 'Insufficient permissions to import your Facebook account to ' . SITE_NAME . '.  Minimum requirements are first name, last name and email address.'));
+					exit();
+				}
+				echo $username = $fbuser_profile['email'];
+				
+				if ($ilance->common->is_email_banned(trim($fbuser_profile['email'])))
+				{
+					echo json_encode(array('success' => FALSE, 'message' => 'It appears this email address is banned.'));
+					exit();
+				}
+				// sign in via facebook
+				if (isset($ilance->GPC['subcmd']) AND $ilance->GPC['subcmd'] == 'login' AND isset($fbuser_profile['id']) AND !empty($fbuser_profile['id']))
+				{
+					$sqlusercheck = $ilance->db->query("
+						SELECT user_id
+						FROM " . DB_PREFIX . "users
+						WHERE facebookid IN ('" . $fbuser_profile['id'] . "')
+					", 0, null, __FILE__, __LINE__);
+					if ($ilance->db->num_rows($sqlusercheck) > 0)
+					{
+						if ($ilance->fb->login_via_facebookid($fbuser_profile['id']))
+						{
+							echo json_encode(array('success' => TRUE, 'message' => ''));
+							exit();
+						}
+					}
+					
+					$sqlusercheck = $ilance->db->query("
+						SELECT user_id
+						FROM " . DB_PREFIX . "users
+						WHERE email IN ('" . $fbuser_profile['email'] . "')
+					", 0, null, __FILE__, __LINE__);
+					if ($ilance->db->num_rows($sqlusercheck) > 0)
+					{
+						$res = $ilance->db->fetch_array($sqlusercheck, DB_ASSOC);
+						$ilance->db->query("
+							UPDATE " . DB_PREFIX . "users
+							SET facebookid = '" . $fbuser_profile['id'] . "'
+							WHERE user_id = '" . $res['user_id'] . "'
+						", 0, null, __FILE__, __LINE__);
+						if ($ilance->fb->login_via_facebookid($fbuser_profile['id']))
+						{
+							echo json_encode(array('success' => TRUE, 'message' => ''));
+							exit();
+						}
+					}
+					$sqlusercheck = $ilance->db->query("
+						SELECT *
+						FROM " . DB_PREFIX . "users
+						WHERE email= $fbuser_profile['email'])
+					", 0, null, __FILE__, __LINE__);
+					if ($ilance->db->num_rows($sqlusercheck) > 0)
+					{
+						$res = $ilance->db->fetch_array($sqlusercheck, DB_ASSOC);
+						$ilance->db->query("
+							UPDATE " . DB_PREFIX . "users
+							SET facebookid = '" . $user['id'] . "'
+							WHERE user_id = '" . $res['user_id'] . "'
+						", 0, null, __FILE__, __LINE__);
+						if ($ilance->fb->login_via_facebookid($user['id']))
+						{
+							echo json_encode(array('success' => TRUE, 'message' => ''));
+							exit();
+						}
+					}
+					
+					// require geoip backend to build a better user profile
+					require_once(DIR_CORE . 'functions_geoip.php');
+					// let's build this new facebook user
+					$randomPassword = construct_password(8);
+					$newuser = $subscription = $questions = $preferences = array();	
+					$newuser['roleid'] = '1';
+					$newuser['username'] = trim($username);
+					$newuser['password'] = $randomPassword;
+					$newuser['secretquestion'] = '{_what_is_my_email_address}';
+					$newuser['secretanswer'] = md5($fbuser_profile['email']);
+					$newuser['email'] = $fbuser_profile['email'];
+					$newuser['firstname'] = (!empty($fbuser_profile['first_name'])) ? $fbuser_profile['first_name'] : 'unknown';
+					$newuser['lastname'] = (!empty($fbuser_profile['last_name'])) ? $fbuser_profile['last_name'] : 'unknown';
+					$newuser['address'] = (!empty($fbuser_profile['website'])) ? $fbuser_profile['website'] : 'No address';
+					list($fbuser_profile['city'],$fbuser_profile['state'])=explode(',',$fbuser_profile['location']['name']);
+					$newuser['city'] = (!empty($fbuser_profile['city'])) ? $fbuser_profile['city'] : 'unknown';
+					$newuser['state'] = (!empty($fbuser_profile['state']) ? $fbuser_profile['state'] : $ilconfig['registrationdisplay_defaultstate']);
+					$newuser['zipcode'] = (!empty($fbuser_profile['postal_code']) ? $fbuser_profile['postal_code'] : '00000');
+					$newuser['phone'] = '000-000-0000';
+					$newuser['styleid'] = $_SESSION['ilancedata']['user']['styleid'];
+					$newuser['slng'] = $_SESSION['ilancedata']['user']['slng'];
+					$newuser['languageid'] = $_SESSION['ilancedata']['user']['languageid'];
+					$newuser['country'] = (!empty($fbuser_profile['country']) ? $fbuser_profile['country'] : $ilconfig['registrationdisplay_defaultcountry']);
+					$newuser['countryid'] = (!empty($fbuser_profile['country']) ? fetch_country_id_by_code($fbuser_profile['country']) : fetch_country_id($ilconfig['registrationdisplay_defaultcountry']));
+					if (!empty($fbuser_profile['birthday']))
+					{
+						$dob = explode('/', $fbuser_profile['birthday']);
+						$newuser['dob'] = $dob[2] . '-' . $dob[0] . '-' . $dob[1]; // MM/DD/YYYY
+						unset($dob);
+					}
+					$newuser['gender'] = (!empty($fbuser_profile['gender'])) ? $fbuser_profile['gender'] : 'male';
+					// we must tell the registration system what plan to set as default!
+					$subscription['subscriptionid'] = (isset($ilance->GPC['subscriptionid'])) ? intval($ilance->GPC['subscriptionid']) : '1';
+					$subscription['subscriptionpaymethod'] = (isset($ilance->GPC['subscriptionpaymethod'])) ? $ilance->GPC['subscriptionpaymethod'] : 'account';        
+					$subscription['promocode'] = '';
+					
+					// build user
+					$ilance->registration = construct_object('api.registration');
+					$final = $ilance->registration->build_user_datastore($newuser, $preferences, $subscription, $questions, 'return_userarray', 1, 'Facebook');
+					if (!empty($final))
+					{
+						// add the facebook id to user record
+						$ilance->db->query("
+							UPDATE " . DB_PREFIX . "users
+							SET facebookid = '" . $user['id'] . "'
+							WHERE user_id = '" . $final['userid'] . "'
+						", 0, null, __FILE__, __LINE__);
+						set_cookie('username', $ilance->crypt->three_layer_encrypt($final['username'], $ilconfig['key1'], $ilconfig['key2'], $ilconfig['key3']), true);
+						set_cookie('lastvisit', DATETIME24H, true);
+						set_cookie('lastactivity', DATETIME24H, true);
+						switch ($final['status'])
+						{
+							case 'active':
+							{
+								if (!empty($_SESSION['ilancedata']['user']['password_md5']))
+								{
+									$_SESSION['ilancedata']['user']['password'] = $_SESSION['ilancedata']['user']['password_md5'];
+									session_unregister($_SESSION['ilancedata']['user']['password_md5']);
+								}
+								$ilance->email = construct_dm_object('email', $ilance);
+								$ilance->email->mail = $newuser['email'];
+								$ilance->email->slng = $_SESSION['ilancedata']['user']['slng'];
+								$ilance->email->get('fbbridge_password_email');		
+								$ilance->email->set(array(
+									'{{username}}' => $newuser['username'],
+									'{{password}}' => $randomPassword,
+									'{{sitename}}' => SITE_NAME,
+								));
+								$ilance->email->send();
+								echo json_encode(array('success' => TRUE, 'message' => 'Registration Complete, please wait while we forward you to your Account Control Panel'));	
+								exit();
+								break;        
+							}
+							case 'unverified':
+							{
+								// display email link code information
+								$ilance->email = construct_dm_object('email', $ilance);
+								$ilance->email->mail = $newuser['email'];
+								$ilance->email->slng = $_SESSION['ilancedata']['user']['slng'];
+								$ilance->email->get('fbbridge_password_email');		
+								$ilance->email->set(array(
+									'{{username}}' => $newuser['username'],
+									'{{password}}' => $randomPassword,
+									'{{sitename}}' => SITE_NAME,
+								));
+								$ilance->email->send();
+								echo json_encode(array('success' => TRUE, 'message' => 'Thank you for registering, we have dispatched an email to you for account verification'));	
+								exit();
+								break;
+							}
+						}
+					}
+					else
+					{
+						echo json_encode(array('success' => FALSE, 'message' => 'Sorry there was a problem completing your registration.'));								
+						exit();
+					}
+				}
+}
+
+]]></php>
+	</plug>
+	
+	<plug key="fb_template_shell_html_tag" addon="fbbridge">
+		<title>Facebook Main Shell HTML Template Bit</title>
+		<api>template_shell_html_tag_end</api>
+		<html><![CDATA[<if condition="isset($show['fbbridge']) AND $show['fbbridge'] AND isset($ilance->fb->config['fbregister']) AND $ilance->fb->config['fbregister'] AND defined('LOCATION') AND LOCATION != 'admin'">xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"</if>]]></html>
+	</plug>
+	
+</plugin>

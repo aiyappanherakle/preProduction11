@@ -1,0 +1,56 @@
+<div id="v3body4">
+	<!-- sub navigation -->
+	<div id="sub">
+		<div id="subnav">
+			<loop name="subnav_settings">
+				<a href="{url}" {class}><span>{name}</span></a> <span> | </span> 
+			</loop name="subnav_settings">
+		</div>
+	</div>
+	<!-- /sub navigation -->
+	
+	<!-- content -->
+	<div id="content">
+	<div class="header">{_product_addons}</div>
+	<br />
+	
+		<div class="block-wrapper">
+		<div class="block3">
+		
+				<div class="block3-top">
+						<div class="block3-right">
+								<div class="block3-left"></div>
+						</div>
+				</div>
+				
+				<div class="block3-header"><span style="float:left; padding-top:5px; padding-right:10px"><a href="javascript:void(0)" onclick="return toggle('components_menu');"><img id="collapseimg_components_menu" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_components_menu]}.gif" border="0" alt="" /></a></span>{_installed_products_and_addons}</div>
+				<div class="block3-content" style="padding:0px">
+					
+					<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+					<tbody id="collapseobj_components_menu">
+					<tr class="alt2">
+						<td width="33%" class="smaller">{_product}</td>
+						<td width="6%" nowrap="nowrap" class="smaller">{_version}</td>
+						<td width="6%" nowrap="nowrap" class="smaller">{_latest_version}</td>
+						<td width="12%" nowrap="nowrap" class="smaller">{_phrases}</td>
+						<td width="11%" nowrap="nowrap" class="smaller">{_css_elements}</td>
+						<td width="12%" nowrap="nowrap" class="smaller">{_email_templates}</td>
+						<td width="20%" nowrap="nowrap" class="smaller">{_developer}</td>
+					</tr>
+					{cbaddons}
+					</tbody>
+					</table>
+					
+    </div>
+				
+				<div class="block3-footer">
+						<div class="block3-right">
+								<div class="block3-left"></div>
+						</div>
+				</div>
+				
+		</div>
+	</div>	
+	
+	<div style="padding-top:15px"></div>		
+	<div><loop name="modulegroups"><!-- module pane --><div class="tab-pane" id="{modulegroup}{id}"><loop name="moduletabs{id}">{moduletab}</loop name="moduletabs{id}"></div><!-- / module pane --></loop name="modulegroups"></div>

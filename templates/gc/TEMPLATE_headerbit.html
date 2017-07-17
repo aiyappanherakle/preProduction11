@@ -1,0 +1,15 @@
+<!-- content table -->
+
+{apihook[headerbit_start]}
+
+
+
+<!--[if lte IE 6]><div id="infobar" style="width:100%"><a href="http://www.mozilla.com" target="_blank"><strong>{_warning_exclamation}</strong> &nbsp;&nbsp;{_the_browser_you_are_using_is_old_and_no_longer_a_supported}</a></div><![endif]-->
+
+
+
+<!--<if condition="(empty($_SESSION['ilancedata']['user']['userid']) AND empty($_COOKIE[COOKIE_PREFIX . 'lastvisit']) AND defined('LOCATION') AND LOCATION != 'registration' AND LOCATION != 'login' AND LOCATION != 'ipn')"><div id="infobar" style="width:100%"><a href="{https_server}{ilpage[registration]}?rid=REGBAR">{_it_appears_you_have_not_yet_registered_with_our_marketplace}</a></div>--><!-- infobar --><!--</if>-->
+
+<noscript><div id="infobar" style="width:100%"><a href="http://www.mozilla.com" target="_blank"><strong>{_warning_exclamation}</strong> &nbsp;&nbsp;{_the_web_browser_youre_using_does_not_have_javascript_enabled} <strong>{_click_here}</strong>.</a></div></noscript>
+
+<if condition="!empty($_SESSION['ilancedata']['user']['active']) AND $_SESSION['ilancedata']['user']['active'] == 'no' AND defined('LOCATION') AND (LOCATION != 'invoicepayment' AND LOCATION != 'forum' AND LOCATION != 'subscription' AND LOCATION != 'ipn' AND LOCATION != 'search' AND LOCATION != 'main') AND !empty($_SESSION['ilancedata']['user']['cost']) AND $_SESSION['ilancedata']['user']['cost'] > 0"><div id="infobar" style="width:100%"><a href="{http_server}{ilpage[subscription]}?returnurl={pageurl_urlencoded}"><strong>{_notice}:</strong> &nbsp;&nbsp;{_unpaid_subscription_please_make_subscription_payment} - {_click_here}</a></div></if>

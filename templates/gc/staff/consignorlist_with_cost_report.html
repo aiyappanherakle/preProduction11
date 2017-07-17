@@ -1,0 +1,120 @@
+<div id="v3body4">
+
+	<div id="content">
+	
+		<div class="header">Report</div><br />
+		
+		<div class="tab-pane">
+		
+			<div class="tab-pane" id="reportlistings">
+			
+				<div class="tab-page">
+
+					<h2 class="tab">Consignors</h2>
+
+					<div class="block-wrapper">
+
+										
+
+						<div class="block">		
+
+							<div class="block-top">
+
+								<div class="block-right">
+
+										<div class="block-left"></div>
+
+								</div>
+
+							</div>
+
+							<div class="block-header">Consignors List PDF Report</div>
+
+							<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="consignorlist_with_cost_report.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+
+									<input type="hidden" name="cmd" value="consignorlist" />
+
+									<table align="center" border="0" cellspacing="0" cellpadding="9">
+
+										<tr>
+
+											<td>
+
+											Select User
+
+											</td>
+
+											<td>
+
+											<select name="filterby" style="font-family: Verdana">
+
+												<optgroup label="{_filter_by}">
+
+												<option value=""></option>
+
+												<option value="user_id">{_user_id}</option>
+
+												<option value="username">{_username}</option>
+
+												<option value="email">{_email}</option>
+
+												</optgroup>
+
+											</select>&nbsp;&nbsp;&nbsp;&nbsp;
+
+											<input type="text" name="filtervalue" size="18"  style="width: 75%;" />
+
+											</td>
+
+											<td>
+
+											<input type="submit" class="buttons" value=" {_go} " style="font-size:15px" />
+
+											</td>
+
+										</tr>
+
+										<!-- <tr>
+											<td colspan="3" align="center"><input type="radio" name="excsold" value="sold" id="sold"/><label for="sold">Exclude sold/returned items.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="excsold"  value="old" id="old"/><label for="old">Exclude old sold/returned items.</label></td>
+										</tr> -->
+
+									</table>
+
+								</form>
+
+							</div>
+
+
+
+							<div class="block-footer">
+
+								<div class="block-right">
+
+									<div class="block-left"></div>
+
+								</div>
+
+							</div>
+
+							<!--block-content-->
+
+						</div>
+
+						<!--block-->
+
+					</div>
+
+					<!--block wrapper-->
+
+				</div>
+			
+			</div>
+		
+		</div>
+	
+	</div>
+
+</div>
+

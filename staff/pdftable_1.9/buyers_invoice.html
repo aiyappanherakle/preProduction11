@@ -1,0 +1,125 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- begin content -->
+<div id="content">
+<div class="header">Buyer</div>
+<br />
+ 
+<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Detailed Invoice</div>
+                            <div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Buyer Details </div>
+                            </div>
+							
+                            <div class="block3-content" style="padding:0px">
+                           	<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+ 							<loop name="buyerdetail"> 							
+							<tr class="alt1" valign="top">								
+								<td nowrap="nowrap">Name:	 {first_name} {last_name} </td><td nowrap="nowrap">Email:	 {email}</td>
+							</tr><tr class="alt1" valign="top">
+								<td nowrap="nowrap">Address:	{address}</td>	<td nowrap="nowrap">City:	{city}, {state}</td>	
+							<tr class="alt1" valign="top">							
+								<td nowrap="nowrap">Zip: 	{zip_code}</td>	 <td nowrap="nowrap">Country: 	{country}</td>									
+							</tr> 
+							<tr class="alt1" valign="top">							
+								<td nowrap="nowrap">Phone: 	{phone}</td>										
+							</tr>
+							</loop name="buyerdetail">
+							</table>
+							</div>
+							<div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Items included in Invoice- {invoice_id} </div>
+                            </div>
+							
+                            <div class="block3-content" style="padding:0px">
+                           									<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td>Invoice ID</td>
+								   <td>Item ID</td>								 
+								  <td>Item Title</td>
+								  <td>Amount</td>
+								  <td>Type</td>
+								  <td>Qty</td>
+							</tr>
+							<loop name="invoicelist"> 							
+							<tr class="alt1" valign="top">								
+								<td nowrap="nowrap"><span class="blue">{invoiceid}</span> </td>
+								<td nowrap="nowrap">{itemid}</td>
+								<td nowrap="nowrap">{item}</td>
+								<td nowrap="nowrap">{totalamount}</td>								
+								<td nowrap="nowrap"><div class="blue">{type}</div></td>
+								<td>{qty}</td>
+							</tr>
+							</loop name="invoicelist">
+							
+                           <tr>
+								<td colspan="11">{series_prevnext}</td>
+							</tr>
+						
+							
+							</table>
+							</div>
+							
+							
+							<div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Shipping and Tax Details </div>
+                            </div>
+							
+                            <div class="block3-content" style="padding:0px">
+							<form action="buyers.php" method="post">
+							<input type="hidden" name="cmd" value="_do-invoice-mark-as-paid" />
+							<input type="hidden" name="invoice_id" value="{invoice_id}" />
+                           	<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+ 							<tr class="alt1" valign="top">								
+								<td width="90%" align="right"><span class="blue">{shipper_title}</span> </td>
+								<td width="10%">{shippping_cost}</td>
+							</tr> 
+							<tr class="alt1" valign="top">								
+								<td width="90%"  align="right"><span class="blue">Buyers Fees</span> </td>
+								<td width="10%">{buyerfee}</td>
+							</tr> 
+							<tr class="alt1" valign="top">								
+								<td width="90%"  align="right"><span class="blue">{taxinfo}</span> </td>
+								<td width="10%">{taxamount}</td>
+							</tr>
+							<tr class="alt1" valign="top">								
+								<td width="90%"  align="right"><span class="blue">Discounts</span> </td>
+								<td width="10%">({discount})</td>
+							</tr>
+							<tr class="alt1" valign="top">								
+								<td width="90%"  align="right"><span class="blue"><strong>{_total}</strong></span> </td>
+								<td width="10%"><span class="red">{totalamount}</span></td>
+							</tr>
+							<tr class="alt1" valign="middle">								
+								<td width="90%"  align="right">{payment_methods} </td>
+								<td width="10%"><input type="submit" style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value=" Mark As Paid " class="buttons" /></td>
+							</tr>
+							<tr>
+							<td colspan="2">
+							<a href="{link}">print invoice</a>
+							</td>
+							</tr>
+							 
+							 
+							</table>
+							</form>
+							</div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+						<!--	Listing of all invoices tab start-->
+						</div></div>	
+ 
+
+	 
+ 

@@ -1,0 +1,212 @@
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php"><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"  class="sel"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+		<a href="listings.php?cmd=search_coin" ><span>listed in gc</span></a> 
+		<a href="listings.php?cmd=image_list"><span>Image List</span></a>
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Item Won</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Item</h2>
+			    
+				
+				
+                   
+					
+					<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                        <option value="coin_id" selected="selected">coin_id</option>
+                                        <option value="user_id" >user_id</option>
+                                       
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" id="serachid" value="" size="18"  style="width: 75%;" />
+										</td>
+                                </tr>
+								<tr>
+                                  <td colspan="2"><div id="sitvalue"><input type="submit" class="buttons" value=" {_search} " onclick="return checklistedajax('0',document.getElementById('serachid').value);" style="font-size:15px" /></div></td> 
+                                  </tr>
+								</table>
+                               
+                               							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				   
+					<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">List of all items won in GC listing</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+						       <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt2">
+								<td width="12%">Item ID</td>
+								<td width="14%">Consignment ID</td>
+								<td width="12%">Seller</td>
+								<td width="12%">Buyer</td>
+								<td width="12%">Amount</td>
+								<td width="12%">Sold Date</td>
+								<td width="12%">Listed In</td>
+								<td width="12%">Shipment ID</td>
+								<td width="12%" nowrap="nowrap">Cancel Sale</td>
+							    </tr>
+							    <loop name="item_won_list">
+							    <tr class="alt1" valign="top">
+								<td width="12%">{project_id}</td>
+								<td width="14%">{consignlist}</td>
+								<td width="12%">{Seller}</td>
+								<td width="12%">{Buyer}</td>
+								<td width="12%">{Amount}</td>
+								<td width="12%">{SoldDate}</td>
+								<td width="12%">Listed GC</td>
+								<td width="12%" nowrap="nowrap">{ship_id_link}</td>
+								<td width="12%">{CancelSale}</td></tr>
+							   </loop name="item_won_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'won_list'">
+							   <tr class="alt1">
+								 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+							   </tr>
+							   </if>
+							   </table>
+								  {item_won_pagnation}                            			
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				
+						<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">List of all items won in Affiliate listing</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+						       <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt2">
+								<td width="12%">Coin ID</td>
+								<td width="14%">Consignment ID</td>
+								<td width="12%">Seller</td>
+								<td width="12%">Buyer</td>
+								<td width="12%">Amount</td>
+								<!--<td width="12%">Sold Date</td>-->
+								<td width="12%">Listed In</td>
+								<td width="12%">Shipment ID</td>
+								<!--<td width="12%" nowrap="nowrap">Cancel Sale</td>-->
+							    </tr>
+							    <loop name="item_won_aff_list">
+							    <tr class="alt1" valign="top">
+								<td width="12%">{coin_id}</td>
+								<td width="14%">{con_aff}</td>
+								<td width="12%">{sel_aff}</td>
+								<td width="12%">{buy_aff}</td>
+								<td width="12%">{amount}</td>
+								<!--<td width="12%">{SoldDate}</td>-->
+								<td width="12%">{sit_aff}</td>
+								<td width="12%" nowrap="nowrap">{ship_id_link_aff}</td>
+								<!--<td width="12%">{CancelSale}</td>--></tr>
+							   </loop name="item_won_aff_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'won_aff_list'">
+							   <tr class="alt1">
+								 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+							   </tr>
+							   </if>
+							   </table>
+								                        			
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>		
+								
+					
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+         
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

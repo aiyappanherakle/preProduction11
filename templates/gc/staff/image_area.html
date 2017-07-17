@@ -1,0 +1,176 @@
+<script type="text/javascript">
+
+function newsearch(pro)
+{
+
+if(pro == '')
+{
+alert("Item ID is empty");
+}
+else
+{
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+
+		request = new XMLHttpRequest();
+
+	} else if (window.ActiveXObject) { // Internet Explorer
+
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+
+	}
+
+	
+
+	request.onreadystatechange = function ajaxResponse(){
+
+		if (request.readyState==4){
+
+		// jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();
+
+			document.getElementById('innerid').innerHTML= request.responseText;
+
+		
+
+		}
+
+		else{
+//jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();
+			document.getElementById('innerid').innerHTML= "<img src='images/default/wheel.gif'/>";	
+
+		}
+
+	}
+
+	url ='consignment_ajax.php?newidsearch=product&item=' +pro;
+
+	request.open("GET", url,true);
+
+	request.send(null);
+
+}	
+}
+
+</script>
+<div id="tr"></div>
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php" ><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+		<a href="listings.php?cmd=search_coin" ><span>listed in gc</span></a> 
+		<a href="listings.php?cmd=image_list" class="sel"><span>Image List</span></a> 
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Holding</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Image</h2>
+			    
+				<div class="block-wrapper">                
+                            <div class="block">                            
+                                    <div class="block-top">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>                                    
+                                    <div class="block-header">All Image Listing</div>                                    
+                                   <div class="block-content" style="padding:0px">
+                                    
+                             <form method="post" action="{ilpage[listedarea]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				             <input type="hidden" name="cmd" value="image_list" />
+							 <input type="hidden" name="subcmd" value="image_list_deleted" />
+				             <input type="hidden" name="return" value="{ilpage[listedarea]?cmd=image_list}" />
+                                                                            
+									<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+									 <tr class="alt2">
+								
+								     <td width="12%" align="left">Images -- Itemphoto / Slideshow</td>
+								  
+								
+							        </tr>
+								 
+								   {table_row}
+										
+										{prof}
+										<tr><input type="submit" value="Delete" /></tr>															
+									</table>
+									
+									</form>
+                                    </div>                                    
+                                    <div class="block-footer">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>                                    
+                            </div>
+                        </div>
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+
+<!-- / tab pane -->
+<div class="tab-page">
+			
+			<h2 class="tab">Search</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <!--This Items are Removed From here and Pasted Above Set of Code-->
+								
+								
+                            <div class="block3-header">Search Item ID</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Image list for Particular Item ID</div></div>
+                            <div class="block3-content" style="padding:0px">
+                         
+                           <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							  <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Search Item ID</span></td> 
+                                    <td><input type="text" name="upload" value="" id="item_search"/>  <span style="cursor:pointer;" onclick="return newsearch(document.getElementById('item_search').value);"><strong>GO</strong></span>
+								 </td>  
+								
+                                </tr>             
+                               
+							</table>
+							<span id="innerid"></span>
+							</div>	
+								
+                           							
+                          
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div></div>

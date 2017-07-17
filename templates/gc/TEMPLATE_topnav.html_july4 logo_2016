@@ -1,0 +1,229 @@
+<script type="text/javascript" src="{https_server}jquery.autocomplete.js"></script>
+<script type="text/javascript" language="javascript"> 
+var options, a;
+jQuery(function(){
+  	var a = $('#query').autocomplete({ 
+    serviceUrl:'suggestion.php',
+    minChars:2, 
+    delimiter: /(,|;)\s*/, // regex or character
+    maxHeight:400,
+    width:365,
+    zIndex: 9999,
+    deferRequestBy: 0, //miliseconds
+    params: { mode:'product' }, //aditional parameters
+    noCache: false, //default is false, set to true to disable caching
+    // callback function:
+    onSelect: function(value, data){ window.location = "{https_server}merch.php?id="+data }
+  });
+});
+</script>
+<style type="text/css">
+ 
+	body
+	{
+	margin: 0px;
+	}	
+	#content
+	{
+	margin-top :60px;
+	width :300px;
+	}
+	
+	#title
+	{
+	width:200px;
+	}
+	#suggestions
+	{
+	margin-top :0px;
+	width:375px;
+	z-index: 10;
+	position: relative;
+	background-color:#FFFFFF;
+	}
+	 #newuser span.blue
+	 {
+	 float:right;
+	 }  
+	.left_nav 
+	{
+	width:50px;
+	position:absolute;
+	float:left;
+	z-index:1;
+	}
+	#link:hover{
+	background-color:#AAAAAA;
+	cursor:default;
+	}
+	
+ 	#loginbutton
+	{
+	float:right;
+	
+ 
+	color:#FFFFFF;	
+	/*text-shadow:3px 3px 2px #555555;*/
+	font-weight:bold;
+	}
+	body
+	{
+	margin: 0px;
+	}
+.autocomplete-w1 { position:absolute; top:0px; left:0px; margin:6px 0 0 6px; 
+/* IE6 fix: */ _background:none;   _margin:1px 0 0 0; }
+.autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; 
+/* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; }
+.autocomplete div { padding:2px 5px; white-space:nowrap; overflow:hidden; }
+.autocomplete strong { font-weight:normal; color:#3399FF; }
+.smaller 
+{
+font-size:12px;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+</style>
+<div id="header_next" >
+	<div id="width" align="left" style="width: 960px;">
+		
+<div style="height:100px;">
+              <div id="logo_gc" style="padding: 1px 0px 0px;"><a href="{http_server}"><img src="{https_server}/images/gc/july4.png" alt="GreatCollections Coin Auctions and Rare Coins" title="GreatCollections Coin Auctions and Rare Coins" width="393" height="100" /></a>			  </div>                   
+                <div id="top_menu" style="width: auto;">
+                  <!--  <div id="rc_top_menu">--><div>
+                    <div class="links_l">
+		<!--Karthik on jun09 for pending invoice -->				
+		<if condition="isset($show['pending_invoice']) AND $show['pending_invoice'] == 'show'">		
+		 <div class="links_r">	
+		 <else />
+		 <div class="links_r">
+		 </if>				
+        <!--<div class="links_r" style="padding-left: 0px; padding-right: 0px;">-->
+           <div class="link_row" style="height: 32px;">
+		   
+		   
+			<!--Karthik on August-07  -->
+                <ul class="smaller" style="padding-top: 2px; padding-left: 0px;">
+                    <if condition="$ilconfig['globalauctionsettings_seourls']">
+					 <if condition="isset($show['pending_invoice']) AND $show['pending_invoice'] == 'show'">
+					 <li class="first blue"><a href="{http_server}buyer_invoice.php"><font color="#FF0000">Pending Invoice</font></a></li>
+					 <li class="blue"><a href="{http_server}{ilpage[main]}"><font color="#666666">{_home}</font></a></li>
+					<li class="blue"><a href="{http_server}mygc"><font color="#666666"><b>{_my_cp}</b></font></a></li>
+					<else />
+					 <li class="first blue"><a href="{http_server}{ilpage[main]}"><font color="#666666">{_home}</font></a>
+					<li class="blue"><a href="{http_server}mygc"><font color="#666666"><b>{_my_cp}</b></font></a></li>
+					</if>
+                    <li class="blue"><a href="{http_server}watchlist"><font color="#666666">{_watchlist}</font></a></li>
+					<li class="blue"><a href="{http_server}main-sell"><font color="#666666">{_sell_coins}</font></a></li>
+					<li class="blue"><a href="{http_server}main-contact"><font color="#666666">{_contact}</font></a></li>
+					<li class="blue"><a href="{http_server}kb/?cmd=2&catid=18"><font color="#666666">{_news} </font></a></li>
+					<li class="blue"><a href="{http_server}kb/"><font color="#666666">{_help}</font></a></li>
+                    <else />
+					<li class="first blue"><a href="{http_server}{ilpage[main]}"><font color="#666666">{_home}</font></a>
+                    <li class="blue"><a href="{http_server}{ilpage[main]}?cmd=cp"><font color="#666666"><b>{_my_cp}</b>b</font></a></li>
+                    <li class="blue"><a href="{http_server}{ilpage[watchlist]}"><font color="#666666">{_watchlist}</font></a></li>
+					<li class="blue"><a href="{http_server}{ilpage[main]}?cmd=sell"><font color="#666666">{_sell_coins}</font></a></li>
+					<li class="blue"><a href="{http_server}{ilpage[main]}?cmd=contact"><font color="#666666">{_contact}</font></a></li>
+					<li class="blue"><a href="{http_server}kb/?cmd=2&catid=18"><font color="#666666">{_news} </font></a></li>
+					<li class="blue"><a href="{http_server}kb/"><font color="#666666">{_help}</font></a></li>
+					</if>
+                </ul>
+            </div>
+			<br />
+		 
+	    
+	    <if condition="isset($show['pending_invoice']) AND $show['pending_invoice'] == 'show'">
+			
+			     <span style="padding-top: 15px; border-left-width: 50px; padding-left: 200px;margin-left:50px;">
+				 <a href="{http_server}main-sell">
+				 <img src="images/gc/sell_coins_02.png" style="padding-bottom: 4px;" width="100" height="34" title="Selling Your Coins at GreatCollections Coin Auctions" alt="Selling Your Coins at GreatCollections Coin Auctions"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				 <a href="{http_server}main-promise">
+				 <img src="images/gc/tshield.png" width="160" height="41" title="Trust GreatCollections Online Coin Auction" alt="Trust GreatCollections Online Coin Auction"/></a></span>
+				 
+			<else />
+			
+			   	 <span style="padding-top: 15px; border-left-width: 50px; padding-left: 140px;">
+				 <a href="{http_server}main-sell">
+				 <img src="images/gc/sell_coins_02.png" style="padding-bottom: 4px;" width="100" height="34" title="Selling Your Coins at GreatCollections Coin Auctions" alt="Selling Your Coins at GreatCollections Coin Auctions"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				 <a href="{http_server}main-promise">
+				 <img src="images/gc/tshield.png" width="160" height="41" title="Trust GreatCollections Online Coin Auction" alt="Trust GreatCollections Online Coin Auction"/></a></span>
+   
+            </if>
+			
+        </div>
+    </div>	
+                    </div><!--roundcornor end-->		
+                </div><!--top_menu end-->	
+         </div>   
+ 
+			<div id="search_bar" style="padding: 10px 10px;">
+			
+			 <table  style="margin-top:-5px;" width="920" border="0">
+                
+				<tr>
+					
+					<td>
+						<form name="global" action="{ilpage[search]}" method="get" accept-charset="UTF-8" style="margin: 3px">
+						<input style="padding:2px; height:15px; width:355px; font-family: verdana" id="query" autocomplete="off" type="text" name="q" size="55" value="{q}" />
+						<input type="hidden" name="mode" value="product" />
+						<input type="hidden" name="sort" value="01" /><input type="submit" class="buttons" value="{_search}" style="padding-left:6px; padding-right:6px;" />&nbsp;&nbsp;&nbsp;&nbsp;<span class="smaller blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}search"><b>{_advanced_search}</b></a><else /><a href="{ilpage[search]}"><font color="#FFFFFF">{_advanced_search}</font></a></if></span>
+						
+						
+						
+						
+						
+						</form>
+					</td> <!--Search button Close-->
+					
+					<td align="right">
+					<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+					  <div style="height: 15px; color:#FFFFFF;"><span style=" float:right;" id="loginwelcome">{login_include}</span></div>
+					<else /><span align="left" id="ietest" style="color:#FFFFFF;"><a href="{https_server}Register"><img src="images/new_register.png" alt="Register to Bid at GreatCollections" title="Register to Bid at GreatCollections" width="119" height="33" /></a> <a href="{https_server}login.php?redirect={pageurl_urlencoded}" target="_self"><img src="images/new_login.png"  width="119" height="33" alt="Login to GreatCollections" title="Login to GreatCollections" /></a></span>
+					
+					
+					</if>
+					</td> <!--Login button Close-->
+				</tr>
+				
+		     </table>			
+             		
+                
+          </div> 
+			 
+			 
+			 <div id="menu_bar">
+<div class="bl">
+	<div class="br">   
+		<div class="secondrow" style="width: 960px; margin-left: -20px;">
+		<ul style="padding-left: 0px;">
+		<if condition="$ilconfig['globalauctionsettings_seourls']">
+ 		<li class="first"><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a onmouseout="hide_category_popup();" onmouseover="show_category_popup();" href="{http_server}Denominations">View Coin Auctions</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}search.php?mode=product&sort=01&auction=1&fromprice=1.00&toprice=250.00&q=">Auctions $1-$250</a></h3></li>
+        <li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}search.php?mode=product&sort=01&auction=1&fromprice=250.00&toprice=100000.00">$250 & up</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}search.php?mode=product&sort=01&buynow=1">Buy Now Coins</a></h3></li>
+        <li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}Denomination/32/Books-and-Accessories">Coin Books</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}search.php?mode=product&q=Coins)&series=&sort=01">Multi-Coin Auctions</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}DailyDeal">24-Hour Deals</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}CoinPrices">Auction Archive</a></h3></li>
+		<else />
+		<li class="first"><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a onmouseout="hide_category_popup();" onmouseover="show_category_popup();" href="{http_server}merch.php?cmd=listings">View Coin Auctions</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}search.php?mode=product&sort=01&auction=1&fromprice=1.00&toprice=100.00">Auctions $1-$250</a></h3></li>
+        <li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}search.php?mode=product&sort=01&auction=1&fromprice=250.00&toprice=100000.00">$250 & up</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}search.php?mode=product&sort=01&buynow=1">Buy Now Coins</a></h3></li>
+        <li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}Denomination/32/Books-and-Accessories">Coin Books</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}search.php?q=*+Coins%29&mode=product&sort=01">Multi-Coin Auctions</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}DailyDeal">24-Hour Deals</a></h3></li>
+		<li class=""><h3 style="font: bold 13px/100% arial; margin-top:0px;"><a href="{http_server}denomination.php?cmd=CoinPrices">Auction Archive</a></h3></li>
+		</if>
+ 
+ 
+ 		</ul>
+		</div>        
+	</div>    
+</div>
+<div class="clear"></div>
+<div style="display:none; position: absolute; z-index:5000; background-color:#fff; margin-top:-2px" id="category_popup" onmouseover="show_category_popup_link();" onmouseout="hide_category_popup();"><if condition="$ilconfig['categorylinkheaderpopup']"><table width="650" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 0px 0px;"><tr><td>{categorypopup}</td></tr></table></if></div>
+<div style="padding-bottom:5px"></div>
+</div><!--menu_bar end-->	</div></div><div align="center" id="topcontent">
+<div class="page" style="width:<if condition="isset($show['widescreen']) AND $show['widescreen']">98%
+<else />{template_table_width}</if>; text-align:{template_textalignment}">
+<a name="top"></a>

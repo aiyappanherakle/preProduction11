@@ -1,0 +1,668 @@
+<div id="v3body4"> 
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<loop name="subnav_settings">
+			<a href="{url}" {class}><span>{name}</span></a> <span> | </span> 
+		</loop name="subnav_settings">
+	</div>
+</div>
+<!-- /sub navigation -->
+<div id="content">
+<div class="header">{_automated_tasks_and_scheduled_events}</div><br />
+
+<div class="tab-pane">
+<div class="tab-pane" id="automation">
+<div class="tab-page">
+      <h2 class="tab">{_tasks}</h2>
+	  
+	  		<div class="block-wrapper">
+
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_automated_tasks_and_scheduled_events}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_an_overview_of_all_scheduled_automated_tasks_is_presented_below}</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">	
+						<tr class="alt2"> 
+							<td width="5%" align="center">{_minute}</td>
+							<td width="5%" align="center">{_hour}</td>
+							<td width="5%" align="center">{_day}</td>
+							<td width="5%" align="center">{_month}</td>
+							<td width="5%" align="center" nowrap="nowrap">{_day_of_week}</td>
+							<td width="27%">{_task}</td>
+							<td width="10%">{_next_run}</td>
+							<td width="5%">{_product}</td>
+							<td width="30%">{_action}</td>
+						</tr>
+						<loop name="tasks">
+						<tr class="alt1"> 
+							<td width="8%" align="center">{minute}</td>
+							<td width="7%" align="center">{hour}</td>
+							<td width="8%" align="center">{day}</td>
+							<td width="9%" align="center">{month}</td>
+							<td width="11%" align="center">{day_of_week}</td>
+							<td width="27%">{job}</td>
+							<td nowrap="nowrap"><span class="gray">{nextrun}</span></td>
+							<td width="5%">{product}</td>
+							<td width="30%" align="center" nowrap="nowrap">{action}</td>
+						</tr>
+						</loop name="tasks">
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+			
+  </div>
+  
+  	
+  	<!-- add task tab page -->
+	<div class="tab-page">
+	
+			<h2 class="tab">{_add_task}</h2>
+			<form method="post" action="{ilpage[settings]}" name="ilform" accept-charset="UTF-8" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="automation" />
+			<input type="hidden" name="subcmd" value="add-new-task" />
+			<input type="hidden" name="return" value="{ilpage[settings]}?cmd=automation" />
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_add_new_scheduled_task}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_add_a_new_scheduled_task_using_the_form_below}</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+						<tr class="alt1">
+							<td>{_task_identifier_title} </td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><input type="text" class="input" name="title" id="title" value="" size="35" dir="ltr" tabindex="1" /></td><td align="right" style="padding-left:4px"><a class="helplink" href="#" onclick="alert(phrase['_for_example_if_you_are_creating_a_subscription_task_you_would_call_this_subscriptions']); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}talk.gif" alt="" border="0" title="{_click_for_help}" /></a> </td></tr></table></td>
+						</tr>
+						<tr class="alt1">
+							<td>{_minutes}</td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><select name="minute[0]" tabindex="1" class="input">
+								<option value="-1" selected="selected">*</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+								<option value="31">31</option>
+								<option value="32">32</option>
+								<option value="33">33</option>
+								<option value="34">34</option>
+								<option value="35">35</option>
+								<option value="36">36</option>
+								<option value="37">37</option>
+								<option value="38">38</option>
+								<option value="39">39</option>
+								<option value="40">40</option>
+								<option value="41">41</option>
+								<option value="42">42</option>
+								<option value="43">43</option>
+								<option value="44">44</option>
+								<option value="45">45</option>
+								<option value="46">46</option>
+								<option value="47">47</option>
+								<option value="48">48</option>
+								<option value="49">49</option>
+								<option value="50">50</option>
+								<option value="51">51</option>
+								<option value="52">52</option>
+								<option value="53">53</option>
+								<option value="54">54</option>
+								<option value="55">55</option>
+								<option value="56">56</option>
+								<option value="57">57</option>
+								<option value="58">58</option>
+								<option value="59">59</option>
+						</select>
+						<select name="minute[1]" tabindex="1" class="input">
+								<option value="-2" selected="selected">-</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+								<option value="31">31</option>
+								<option value="32">32</option>
+								<option value="33">33</option>
+								<option value="34">34</option>
+								<option value="35">35</option>
+								<option value="36">36</option>
+								<option value="37">37</option>
+								<option value="38">38</option>
+								<option value="39">39</option>
+								<option value="40">40</option>
+								<option value="41">41</option>
+								<option value="42">42</option>
+								<option value="43">43</option>
+								<option value="44">44</option>
+								<option value="45">45</option>
+								<option value="46">46</option>
+								<option value="47">47</option>
+								<option value="48">48</option>
+								<option value="49">49</option>
+								<option value="50">50</option>
+								<option value="51">51</option>
+								<option value="52">52</option>
+								<option value="53">53</option>
+								<option value="54">54</option>
+								<option value="55">55</option>
+								<option value="56">56</option>
+								<option value="57">57</option>
+								<option value="58">58</option>
+								<option value="59">59</option>
+						</select>
+						<select name="minute[2]" tabindex="1" class="input">
+								<option value="-2" selected="selected">-</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+								<option value="31">31</option>
+								<option value="32">32</option>
+								<option value="33">33</option>
+								<option value="34">34</option>
+								<option value="35">35</option>
+								<option value="36">36</option>
+								<option value="37">37</option>
+								<option value="38">38</option>
+								<option value="39">39</option>
+								<option value="40">40</option>
+								<option value="41">41</option>
+								<option value="42">42</option>
+								<option value="43">43</option>
+								<option value="44">44</option>
+								<option value="45">45</option>
+								<option value="46">46</option>
+								<option value="47">47</option>
+								<option value="48">48</option>
+								<option value="49">49</option>
+								<option value="50">50</option>
+								<option value="51">51</option>
+								<option value="52">52</option>
+								<option value="53">53</option>
+								<option value="54">54</option>
+								<option value="55">55</option>
+								<option value="56">56</option>
+								<option value="57">57</option>
+								<option value="58">58</option>
+								<option value="59">59</option>
+						</select>
+						<select name="minute[3]" tabindex="1" class="input">
+								<option value="-2" selected="selected">-</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+								<option value="31">31</option>
+								<option value="32">32</option>
+								<option value="33">33</option>
+								<option value="34">34</option>
+								<option value="35">35</option>
+								<option value="36">36</option>
+								<option value="37">37</option>
+								<option value="38">38</option>
+								<option value="39">39</option>
+								<option value="40">40</option>
+								<option value="41">41</option>
+								<option value="42">42</option>
+								<option value="43">43</option>
+								<option value="44">44</option>
+								<option value="45">45</option>
+								<option value="46">46</option>
+								<option value="47">47</option>
+								<option value="48">48</option>
+								<option value="49">49</option>
+								<option value="50">50</option>
+								<option value="51">51</option>
+								<option value="52">52</option>
+								<option value="53">53</option>
+								<option value="54">54</option>
+								<option value="55">55</option>
+								<option value="56">56</option>
+								<option value="57">57</option>
+								<option value="58">58</option>
+								<option value="59">59</option>
+						</select>
+						</td><td align="right" style="padding-left:4px"><a class="helplink" href="#" onclick="alert(phrase['_you_may_specify_what_minutes_past_the_hour_this_task_will_run']); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}talk.gif" alt="" border="0" title="{_click_for_help}" /></a> </td></tr></table></td>
+						</tr>
+						<tr class="alt1">
+							<td>{_hour}</td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><select name="hour" id="sel_hour" tabindex="1" class="input">
+								<option value="-1" selected="selected">*</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+						</select>
+						</td><td align="right" style="padding-left:4px"><a class="helplink" href="#" onclick="alert(phrase['_you_may_specify_what_hour_this_task_will_run']); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}talk.gif" alt="" border="0" title="{_click_for_help}" /></a> </td></tr></table></td>
+						</tr>
+						
+						<tr class="alt1">
+							<td>{_day_of_the_week} <div class="smaller gray">({_note_this_overrides_day_of_the_month_option_below})</div></td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><select name="weekday" id="sel_weekday" tabindex="1" class="input">
+								<option value="-1" selected="selected">*</option>
+								<option value="1">{_monday}</option>
+								<option value="2">{_tuesday}</option>
+								<option value="3">{_wednesday}</option>
+								<option value="4">{_thursday}</option>
+								<option value="5">{_friday}</option>
+								<option value="6">{_saturday}</option>
+								<option value="0">{_sunday}</option>
+						</select>
+						</td><td align="right" style="padding-left:4px"><a class="helplink" href="#" onclick="alert(phrase['_you_may_specify_what_day_of_the_week_this_task_will_run']); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}talk.gif" alt="" border="0" title="{_click_for_help}" /></a> </td></tr></table></td>
+						</tr>
+						<tr class="alt1">
+							<td>{_day_of_the_month}</td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><select name="day" id="sel_day" tabindex="1" class="input">
+								<option value="-1" selected="selected">*</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+								<option value="31">31</option>
+						</select>
+						</td><td align="right" style="padding-left:4px"><a class="helplink" href="#" onclick="alert(phrase['_you_may_specify_what_day_of_the_month_this_task_will_run']); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}talk.gif" alt="" border="0" title="{_click_for_help}" /></a> </td></tr></table></td>
+						</tr>
+						<tr class="alt1">
+							<td>{_save_logged_tasks_into_the_database}  </td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><span class="smallfont" style="white-space:nowrap">
+								<label for="rb_1_loglevel"><input type="radio" name="loglevel" id="rb_1_loglevel" value="1" tabindex="1" />{_yes}</label>
+								<label for="rb_0_loglevel"><input type="radio" name="loglevel" id="rb_0_loglevel" value="0" tabindex="1" checked="checked" />{_no}</label>
+							</span></td><td align="right" style="padding-left:4px"><a class="helplink" href="#" onclick="alert(phrase['_whenever_a_task_you_create_is_executed_at_the_specified_time_the_cron_system_may']); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}talk.gif" alt="" border="0" title="{_click_for_help}" /></a> </td></tr></table></td>
+						</tr>
+						<tr class="alt1">
+							<td>{_php_script_filename}</td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><input type="text" class="input" name="filename" id="it_filename" value=".php" size="35" dir="ltr" tabindex="1" /></td><td align="right" style="padding-left:4px"><a class="helplink" href="#" onclick="alert(phrase['_you_will_enter_the_name_of_the_php_script_you_wish_to_execute']); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}talk.gif" alt="" border="0" title="{_click_for_help}" /></a> </td></tr></table></td>
+						</tr>
+						<tr class="alt1">
+							<td>{_product}</td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+							  <td>{products_pulldown}</td>
+							  <td align="right" style="padding-left:4px"><a class="helplink" href="#" onclick="alert(phrase['_you_will_select_here_for_which_product_or_addon_this_scheduled_task_is_associated_with']); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}talk.gif" alt="" border="0" title="{_click_for_help}" /></a> </td></tr></table></td>
+						</tr>
+						<tr>
+							<td colspan="2">	
+							<input type="submit" class="buttons" tabindex="1" value="  {_save}  " style="font-size:15px" accesskey="s" />
+						</td>
+						</tr>
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+		</form>
+	</div>
+	<!-- / add task tab page -->
+	
+	<!-- task log -->
+	<div class="tab-page">
+	
+			<h2 class="tab">{_task_log}</h2>
+			
+			<form action="{ilpage[settings]}" name="ilform" method="post" accept-charset="UTF-8" style="margin:0px">
+			<input type="hidden" name="cmd" value="automation" />
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_search_scheduled_task_history}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_view_scheduled_task_log_and_review_past_events_executed}</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+						<tr class="alt1">
+							<td width="34%">{_entries_to_show_per_page}</td>
+							<td width="66%">
+								<table cellpadding="0" cellspacing="0" border="0" width="100%">
+								<tr valign="top">
+									<td>
+										<select name="pp" id="sel_pp" tabindex="1" class="input">
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15" selected="selected">15</option>
+										<option value="20">20</option>
+										<option value="25">25</option>
+										<option value="30">30</option>
+										<option value="40">40</option>
+										<option value="50">50</option>
+										<option value="100">100</option>
+										</select>
+									</td>
+							</tr>
+							</table>
+						</td>
+						</tr>
+						<tr class="alt1" valign="top">
+							<td>{_show_only_entries_generated_by}</td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr valign="top">
+								<td>{tasks_pulldown}</td>
+							</tr>
+							</table></td>
+						</tr>
+						<tr valign="top" class="alt1">
+							<td>{_order_by}</td>
+							<td>
+								<table cellpadding="0" cellspacing="0" border="0" width="100%">
+								<tr valign="top">
+									<td>
+										<select name="orderby" id="sel_orderby" tabindex="1" class="input">
+										<option value="dateline">{_date}</option>
+										<option value="varname">{_task}</option>
+										</select>
+									</td>
+							</tr>
+							</table></td>
+						</tr>
+						<tr>
+							<td colspan="2"><input type="submit" class="buttons" tabindex="1" value=" {_view} " style="font-size:15px" accesskey="s" />
+						</td>
+						</tr>
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+		<input type="hidden" name="do" value="view" />
+		</form>
+			
+			<if condition="isset($ilance->GPC['do']) AND $ilance->GPC['do'] == 'view'">
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_task_log_viewer}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">Task History Log Results</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+						<tr valign="top" class="alt2">
+							<td align="left">{_id}</td>
+							<td>{_task}</td>
+							<td>{_date}</td>
+							<td>{_details}</td>
+						</tr>
+						<loop name="cronlog">
+						<tr align="center" class="alt1">
+							<td align="left">{cronlogid}</td>
+							<td align="left" nowrap="nowrap">{varname}</td>
+							<td align="left" nowrap="nowrap">{dateline}</td>
+							<td align="left">{description}</td>
+						</tr>
+						</loop name="cronlog">
+						<tr>
+							<td colspan="4">{prevnext}</td>
+						</tr>
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+			</if>
+
+	</div>
+	<!-- / task log -->
+	
+	<!-- prune log -->
+	<div class="tab-page">
+	
+			<h2 class="tab">{_prune_log}</h2>
+			<form action="{ilpage[settings]}" name="ilform" method="post" accept-charset="UTF-8" style="margin:0px">
+			<input type="hidden" name="cmd" value="automation" />
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_prune_scheduled_task_log}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_remove_old_scheduled_task_logs_that_have_executed_in_the_past}</div></div>
+					<div class="block-content" style="padding:0px">
+						<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+						<tr class="alt1">
+							<td width="35%">{_remove_logs_relating_to_task}</td>
+							<td width="65%">
+							  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+								<tr>
+								  <td>{tasks_pulldown}</td>
+							</tr>
+							</table></td>
+						</tr>
+						<tr class="alt1">
+							<td>{_remove_logs_older_than_days}</td>
+							<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><input type="text" class="input" name="days" id="days" value="30" size="10" dir="ltr" tabindex="1" /></td>
+							</tr>
+							</table></td>
+						</tr>
+						<tr>
+							<td colspan="2"><input type="submit" class="buttons" tabindex="1" value="{_prune}" accesskey="s" style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}');" />
+						</td>
+						</tr>
+						</table>
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+			
+			<input type="hidden" name="do" value="prune" />
+			<input type="hidden" name="return" value="{ilpage[settings]}?cmd=automation" />
+			</form>
+
+	</div>
+	<!-- / prune log -->
+	
+</div>

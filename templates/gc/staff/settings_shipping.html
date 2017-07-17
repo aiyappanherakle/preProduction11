@@ -1,0 +1,156 @@
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping" class="sel"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline"><span>{_time_line}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- begin shipping partners -->
+					<div class="tab-page">
+						<h2 class="tab">{_shipping}</h2>
+						
+                       <!-- {configuration_shippingsettings}-->
+                        
+						<form action="{ilpage[staffsettings]}" name="ilform" method="post" accept-charset="UTF-8" style="margin: 0px;">
+						<input type="hidden" name="cmd" value="shipping" />
+						<input type="hidden" name="subcmd" value="update-shippers" />
+						<input type="hidden" name="return" value="{ilpage[staffsettings]}?cmd=shipping" />						
+						<div class="block-wrapper">
+						<div class="block">
+						
+								<div class="block-top">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+								<div class="block-header">Shipping Services API</div>
+								<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_below_you_can_manage_shipping_partners_which_sellers_can_chose_from_when_posting_product_auctions}</div></div>
+								<div class="block-content" style="padding:0px">
+									
+									<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+									<tr class="alt2"> 
+										<td width="35%">Shipping Service Title</td>
+										<td width="9%">Carrier</td>
+										<td width="7%" nowrap="nowrap">Carrier Code</td>
+										<td width="7%" nowrap="nowrap">Base Fee</td>
+										<td width="7%" nowrap="nowrap">Added Fee</td>
+										<td width="9%" nowrap="nowrap">Domestic</td>
+										<td width="7%" nowrap="nowrap">Intl</td>
+										<td width="10%" align="center">{_action}</td>
+									</tr>
+									<loop name="shippers"> 
+									<tr class="{class}"> 
+										<td nowrap="nowrap">{title}</td>
+										<td nowrap="nowrap">{carrier}</td>
+										<td nowrap="nowrap">{shipcode}</td>
+										<td nowrap="nowrap">{basefee}</td>
+										<td nowrap="nowrap">{addedfee}</td>										
+										<td>{domestic}</td>
+										<td>{international}</td>
+										<td align="center">{action}</td>
+									</tr>
+									</loop name="shippers">
+									<if condition="isset($show['no_shippers_rows']) AND $show['no_shippers_rows']"> 
+									<tr> 
+										<td colspan="6" align="center">{_no_shipping_partners_found}</td>
+									</tr>
+									</if>
+									<tr>
+										<td colspan="6"><input type="submit" value=" {_save} " style="font-size:15px" class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" /></td>
+									</tr>
+									</table>
+									
+  </div>
+								
+								<div class="block-footer">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+						</div>
+					</div>
+						</form>
+						
+						
+						<form action="{ilpage[staffsettings]}" name="ilform" method="post" accept-charset="UTF-8" style="margin: 0px;">
+						<input type="hidden" name="cmd" value="shipping" />
+						<input type="hidden" name="subcmd" value="insert-shipper" />
+						<input type="hidden" name="return" value="{ilpage[staffsettings]}?cmd=shipping" />
+						<div class="block-wrapper">
+						<div class="block">
+						
+								<div class="block-top">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+								<div class="block-header">{_add_new_shipping_partner}</div>
+								<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_please_create_a_new_shipping_partner_sellers_will_be_able_to_choose}</div></div>
+								<div class="block-content" style="padding:0px">
+									
+									<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+									<tr class="alt1"> 
+										<td width="7%" nowrap="nowrap">{_title}</td>
+										<td width="8%"><input type="text" name="title" style="width:110px; font-family: verdana" /></td>
+										<td width="4%">Carrier</td>
+										<td width="5%"><input type="text" name="carrier" style="width:60px; font-family: verdana" /></td>
+										<td width="8%" nowrap="nowrap">Carrier Code</td>
+										<td width="9%"><input type="text" name="shipcode" style="width:60px; font-family: verdana; text-align:center" /></td>
+										<td width="18%" nowrap="nowrap"><input type="checkbox" name="domestic" value="1" checked="checked" /> Domestic shipping service</td>
+										<td width="41%" nowrap="nowrap"><input type="checkbox" name="international" value="1" />									      Intl shipping service</td>
+										</tr>
+										<tr  class="alt1">
+										<td width="14%" nowrap="nowrap">Base Fee</td>
+										<td width="15%"><input type="text" name="basefee" style="width:60px; font-family: verdana" /></td>
+										<td width="14%" nowrap="nowrap">Added Fee</td>
+										<td width="15%"><input type="text" name="addedfee" style="width:60px; font-family: verdana" /></td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="8" valign="top"><input type="submit" name="save" value=" {_save} " style="font-size:15px" class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" /></td>
+									</tr>
+									</table>
+									
+</div>
+								
+								<div class="block-footer">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+						</div>
+					</div>
+					</form>
+						
+					</div>
+					<!-- /begin shipping partners -->
+		
+		
+</div>
+<!-- / tab pane -->

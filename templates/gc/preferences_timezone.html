@@ -1,0 +1,81 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+            <li title="" class=""><a href="{http_server}{ilpage[preferences]}?cmd=management">{_preferences}</a></li>
+            <li title="" class="on"><a href="javascript:void(0)">{_time_zone_preference}</a></li>
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        <form method="post" action="{ilpage[preferences]}" name="ilform" accept-charset="UTF-8" style="margin:0px">
+        <input type="hidden" name="cmd" value="_do-timezone-change" />
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">{_time_zone_management}</div>
+                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_our_interactive_marketplace_platform_allows_global_time_zone_consideration}</div></div>
+                    <div class="block-content" style="padding:0px">
+                        
+                                <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+                                <tr>
+                                      <td class="alt1">{site_name} {_official_marketplace_time} <strong>{official_time}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <div>
+                                        
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                              <tr>
+                                                <td width="41%"><div><strong>{_my_local_time}</strong></div><div style="padding-top:3px">{user_time}</div></td>
+                                                <td width="59%"><div><strong>{_time_zone_preference}</strong></div><div style="padding-top:3px">{timezone_pulldown}</div></td>
+                                              </tr>
+                                              
+                                              <tr> 
+                                                <td valign="bottom"></td>
+                                                <td valign="bottom"><div class="black" style="padding-top:3px">{timezone_dst_checkbox}&nbsp;{_enable_daylight_savings_time}&nbsp;<span class="litegray">(+1 {_hour})</div></td>
+                                              </tr>
+                                              <tr> 
+                                                <td></td>
+                                                <td> </td>
+                                              </tr>
+                                
+                                            </table>
+                                            
+                                        
+                                    </div>
+                                    
+                                    </td>
+                                </tr>
+                                </table>
+        
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        <div style="margin-top:3px">
+             <input type="submit" class="buttons" value=" {_save} " accesskey="s" style="font-size:15px" />
+        </div>
+        </form>
+
+	</td>
+</tr>
+</table>

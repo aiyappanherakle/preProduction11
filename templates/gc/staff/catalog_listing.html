@@ -1,0 +1,673 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Catalog Listing</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+			<a href="catalog.php?cmd=_update-product-category-for-catalog&amp;breakup=category_update" style="float:right;">Update Categories</a>
+					<br>
+					<a href="catalog.php?cmd=_update-product-category-for-catalog&amp;breakup=sort_order_catalog" style="float:right;">Update Catalog order</a>
+					<br>
+					<a href="catalog.php?cmd=_update-product-category-for-catalog&amp;breakup=sort_order_project" style="float:right;">Update Project Order</a>
+					<br>
+					<a href="catalog_4567.php?cmd=_update-product-category-for-catalog&breakup=update_coin_mintmarks" style="float:right;">Update Catalog Mintmarks</a>
+					<br>
+					
+			
+			     <form method="get" action="{ilpage[catalog]}" accept-charset="UTF-8" id="subscribers" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="search" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%" ><span class="gray">List by</span>
+                                  <td width="90%">
+                                       <SELECT name="toplevel">
+<OPTION  value="denomination unique no">denomination unique no</OPTION>
+<OPTION selected value="denomination short">denomination short</OPTION>
+<OPTION  value="denomination long">denomination long</OPTION>
+<OPTION  value="denomination sort">denomination sort</OPTION>
+<OPTION  value="denomination description">denomination description</OPTION>
+<OPTION  value="denomination image">denomination image</OPTION>
+<OPTION  value="denomination image alt">denomination image alt</OPTION>
+<OPTION  value="denomination meta title">denomination meta title</OPTION>
+<OPTION  value="denomination meta description">denomination meta description</OPTION>
+</SELECT>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18"  style="width: 65%;" /></td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+				     <if condition="isset($show['topsearch']) AND $show['topsearch'] == 'topsearch'">
+					
+					 <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Catalog(Main Catagory)</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">Denomination short</td>
+								<td width="23%" align="left">Denomination Long</td>
+								<td width="23%">Denomination description</td>
+								<td width="12%">Edit</td>
+								<td width="12%">Delete</td>
+								
+								
+							  </tr>
+							  <loop name="toplevelcatergorysearch">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top" >{denomination_short}</td>
+								  <td nowrap="nowrap">{denomination_long}</td>
+								
+								  <td>{denomination_description}</td>
+								  <td>{edit}</td>
+								  <td><div class="blue">{delete}</div></td>
+								  
+								 
+								</tr>
+								
+							  </loop name="toplevelcatergorysearch">
+							  <if condition="isset($showsearch['no']) AND $showsearch['no'] == 'no'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+					 <else />
+					
+					 <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Catalog(Main Catagory)</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">Denomination short</td>
+								<td width="23%" align="left">Denomination Long</td>
+								<td width="23%">Denomination description</td>
+								<td width="12%">Edit</td>
+								<td width="12%">Delete</td>
+								
+								
+							  </tr>
+							  <loop name="toplevelcatergory">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top">{denomination_short}</td>
+								  <td nowrap="nowrap">{denomination_long}</td>
+								
+								  <td>{denomination_description}</td>
+								  <td>{edit}</td>
+								  <td><div class="blue">{delete}</div></td>
+								  
+								 
+								</tr>
+								
+							  </loop name="toplevelcatergory">
+							  <if condition="isset($show['no']) AND $show['no'] == 'no'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				    </if>
+				
+				<form id="catalog" method="post" action="{ilpage[catalog]}" accept-charset="UTF-8" style="margin:0px" enctype="multipart/form-data">
+				<input type="hidden" name="cmd" value="toplevel_upload" />
+				<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">upload <input type="file"  name="fileup" /></td>
+								<td width="23%" nowrap="nowrap"><SELECT  name="type_insert">
+<OPTION  value="appendtolist">Append to list</OPTION>
+<OPTION  value="overwrite">Overwrite</OPTION>
+</SELECT></td>
+
+								<td width="12%"><input type="submit" value="upload" /></td>
+								<td width="12%"><u>Link to sample excel</u></td>
+								
+								
+								
+							  </tr>
+							  </table>
+      				</form>
+					<br />
+					<hr />
+					<br />
+					
+					<form method="get" action="{ilpage[catalog]}" accept-charset="UTF-8" id="catalog" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="search_second" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%" ><span class="gray">List by</span>
+                                  <td width="90%">
+                                      <SELECT  name="second_level" >
+<OPTION selected value="coin series unique no">coin series unique no</OPTION>
+<OPTION  value="coin series denomination no">coin series denomination no</OPTION>
+<OPTION  value="coin series name">coin series name</OPTION>
+<OPTION selected value="coin series date from">coin series date from</OPTION>
+<OPTION  value="coin series date to">coin series date to</OPTION>
+<OPTION  value="coin series description long">coin series description long</OPTION>
+<OPTION  value="coin series description short">coin series description short</OPTION>
+<OPTION  value="coin series sort">coin series sort</OPTION>
+<OPTION  value="coin series meta title">coin series meta title</OPTION>
+<OPTION  value="coin series meta description">coin series meta description</OPTION>
+<OPTION  value="coin series image">coin series image</OPTION>
+<OPTION  value="coin series image alt">coin series image alt</OPTION>
+<OPTION  value="coin series designer">coin series designer</OPTION>
+<OPTION  value="coin series key">coin series key</OPTION>
+<OPTION  value="coin series notes">coin series notes</OPTION>
+</SELECT>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18"  style="width: 65%;" /></td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+				     <if condition="isset($show['secondsearch']) AND $show['secondsearch'] == 'secondsearch'">
+					
+					 <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Catalog(Second Level)</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">Denomination short</td>
+								<td width="23%" align="left">coin series name</td>
+								<td width="23%">coin series date from</td>
+								<td width="23%">coin series date to</td>
+								<td width="12%">Edit</td>
+								<td width="12%">Delete</td>
+								
+								
+							  </tr>
+							  <loop name="secondlevelcatergorysearch">
+								<tr class="alt1" valign="top">
+								 <td nowrap="nowrap" valign="top">{coin_series_description_short}</td>
+								  <td nowrap="nowrap">{coin_series_name}</td>
+								
+								  <td>{coin_series_date_from}</td>
+								   <td>{coin_series_date_to}</td>
+								  <td>{edit}</td>
+								  <td><div class="blue">{delete}</div></td>
+								  
+								 
+								</tr>
+								
+							  </loop name="secondlevelcatergorysearch">
+							  <if condition="isset($showsearch['no']) AND $showsearch['no'] == 'secyes'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+					 <else />
+					
+					 <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Catalog(Second Level)</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">Denomination short</td>
+								<td width="23%" align="left">coin series name</td>
+								<td width="23%">coin series date from</td>
+								<td width="23%">coin series date to</td>
+								<td width="12%">Edit</td>
+								<td width="12%">Delete</td>
+								
+								
+							  </tr>
+							  <loop name="secondlevelcatergory">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top">{coin_series_description_short}</td>
+								  <td nowrap="nowrap">{coin_series_name}</td>
+								
+								  <td>{coin_series_date_from}</td>
+								   <td>{coin_series_date_to}</td>
+								  <td>{edit}</td>
+								  <td><div class="blue">{delete}</div></td>
+								  
+								 
+								</tr>
+								
+							  </loop name="secondlevelcatergory">
+							  <!--<tr>
+								<td colspan="11">{prevnext}</td>
+							</tr-->
+							  <if condition="isset($show['no']) AND $show['no'] == 'second'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				    </if>
+				
+				<form id="catalog" method="post" action="{ilpage[catalog]}" accept-charset="UTF-8" style="margin:0px" enctype="multipart/form-data">
+				<input type="hidden" name="cmd" value="secondlevel_upload" />
+				<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">upload <input type="file"  name="fileup" /></td>
+								<td width="23%" nowrap="nowrap"><SELECT  name="type_insert">
+<OPTION  value="appendtolist">Append to list</OPTION>
+<OPTION  value="overwrite">Overwrite</OPTION>
+</SELECT></td>
+
+								<td width="12%"><input type="submit" value="upload" /></td>
+								<td width="12%"><u>Link to sample excel</u></td>
+								
+								
+								
+							  </tr>
+							  </table>
+      				</form>
+					
+					
+					<br />
+					<hr />
+					<br />
+					
+					<form method="get" action="{ilpage[catalog]}" accept-charset="UTF-8" id="catalog" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="search_coin" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%" ><span class="gray">List by</span>
+                                  <td width="90%">
+                                     <SELECT name="coin_list" >
+<OPTION selected value="Order">Order</OPTION>
+<OPTION  value="PCGS">PCGS</OPTION>
+<OPTION  value="coin_series_unique_no">coin_series_unique_no</OPTION>
+<OPTION  value="coin_series_denomination_no">coin_series_denomination_no</OPTION>
+<OPTION  value="coin_detail_year">coin_detail_year</OPTION>
+<OPTION  value="coin_detail_mintmark">coin_detail_mintmark</OPTION>
+<OPTION  value="coin_detail_coin_series">coin_detail_coin_series</OPTION>
+<OPTION  value="coin_detail_denom_long">coin_detail_denom_long</OPTION>
+<OPTION  value="coin_detail_denom_short">coin_detail_denom_short</OPTION>
+<OPTION  value="coin_detail_proof">coin_detail_proof</OPTION>
+<OPTION  value="coin_detail_suffix">coin_detail_suffix</OPTION>
+<OPTION  value="coin_detail_major_variety">coin_detail_major_variety</OPTION>
+<OPTION  value="coin_detail_die_variety">coin_detail_die_variety</OPTION>
+<OPTION  value="coin_detail_key_date">coin_detail_key_date</OPTION>
+<OPTION  value="coin_detail_mintage">coin_detail_mintage</OPTION>
+<OPTION  value="coin_detail_low_mintage">coin_detail_low_mintage</OPTION>
+<OPTION  value="coin_detail_weight">coin_detail_weight</OPTION>
+<OPTION  value="coin_detail_composition">coin_detail_composition</OPTION>
+<OPTION  value="coin_detail_diameter">coin_detail_diameter</OPTION>
+<OPTION  value="coin_detail_designer">coin_detail_designer</OPTION>
+<OPTION  value="coin_detail_description_long">coin_detail_description_long</OPTION>
+<OPTION  value="coin_detail_description_short">coin_detail_description_short</OPTION>
+<OPTION  value="coin_detail_notes">coin_detail_notes</OPTION>
+<OPTION  value="coin_detail_ngc_no">coin_detail_ngc_no</OPTION>
+<OPTION  value="coin_detail_ebay_heading">coin_detail_ebay_heading</OPTION>
+<OPTION  value="coin_detail_ebay_category">coin_detail_ebay_category</OPTION>
+<OPTION  value="coin_detail_related_coins">coin_detail_related_coins</OPTION>
+<OPTION  value="coin_detail_meta_description">coin_detail_meta_description</OPTION>
+<OPTION  value="coin_detail_meta_title">coin_detail_meta_title</OPTION>
+<OPTION  value="coin_detail_image">coin_detail_image</OPTION>
+<OPTION  value="coin_detail_image_alt">coin_detail_image_alt</OPTION>
+<OPTION  value="coin_detail_sort">coin_detail_sort</OPTION>
+<OPTION  value="coin_detail_coin_series_no">coin_detail_coin_series_no</OPTION>
+</SELECT>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18"  style="width: 65%;" /></td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+				     <if condition="isset($show['searchcoin']) AND $show['searchcoin'] == 'searchcoin'">
+					
+					 <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Catalog(Coin List)  <a href="" style="float:right;">Updated Categories</a></div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">Order</td>
+								<td width="23%" align="left">PCGS</td>
+								<td width="23%">Modern</td>
+								<td width="23%">Cat</td>
+								<td width="23%">Series</td>
+								<td width="23%">Date</td>
+								<td width="23%">Denom</td>
+								<td width="23%">Grade</td>
+								<td width="23%">Description_short</td>
+								<td width="23%">Coin_detail_coin_series</td>
+								<td width="12%">Edit</td>
+								<td width="12%">Delete</td>
+								
+								
+							  </tr>
+							  <loop name="coincatergorysearch">
+								<tr class="alt1" valign="top">
+								 <td width="23%" nowrap="nowrap">{Orderno}</td>
+								<td width="23%" align="left">{PCGS}</td>
+								<td width="23%">{coin_detail_year}</td>
+								<td width="23%">{coin_detail_major_variety}</td>
+								<td width="23%">{coin_detail_coin_series}</td>
+								<td width="23%">{coin_detail_key_date}</td>
+								<td width="23%">{coin_detail_ebay_category}</td>
+								<td width="23%">{coin_detail_designer}</td>
+								<td width="23%">{coin_detail_denom_short}</td>
+								<td width="23%">{coin_detail_coin_series}</td>
+								
+								  <td>{edit}</td>
+								  <td><div class="blue">{delete}</div></td>
+								  
+								 
+								</tr>
+								
+							  </loop name="coincatergorysearch">
+							  <if condition="isset($showsearch['no']) AND $showsearch['no'] == 'list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+					 <else />
+					
+					 <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							
+							<div class="block3-header">Catalog(Coin List)  </div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">Order</td>
+								<td width="23%" align="left">PCGS</td>
+								<td width="23%">Modern</td>
+								<td width="23%">Cat</td>
+								<td width="23%">Series</td>
+								<td width="23%">Date</td>
+								<td width="23%">Denom</td>
+								<td width="23%">Grade</td>
+								<td width="23%">Description_short</td>
+								<td width="23%">Coin_detail_coin_series</td>
+								<td width="12%">Edit</td>
+								<td width="12%">Delete</td>
+								
+								
+							  </tr>
+							  <loop name="coinlistcatergory">
+								<tr class="alt1" valign="top">
+								 <td width="23%" nowrap="nowrap">{Orderno}</td>
+								<td width="23%" align="left">{PCGS}</td>
+								<td width="23%">{coin_detail_year}</td>
+								<td width="23%">{coin_detail_major_variety}</td>
+								<td width="23%">{coin_detail_coin_series}</td>
+								<td width="23%">{coin_detail_key_date}</td>
+								<td width="23%">{coin_detail_ebay_category}</td>
+								<td width="23%">{coin_detail_designer}</td>
+								<td width="23%">{coin_detail_denom_short}</td>
+								<td width="23%">{coin_detail_coin_series}</td>
+								  <td>{edit}</td>
+								  <td><div class="blue">{delete}</div></td>
+								  
+								 
+								</tr>
+								
+							  </loop name="coinlistcatergory">
+							  <!--<tr>
+								<td colspan="11">{prevnext}</td>
+							</tr-->
+							  <if condition="isset($show['no']) AND $show['no'] == 'coin'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				    </if>
+				
+				<form id="catalog" method="post" action="{ilpage[catalog]}" accept-charset="UTF-8" style="margin:0px" enctype="multipart/form-data">
+				<input type="hidden" name="cmd" value="coin_upload" />
+				<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="23%" nowrap="nowrap">upload <input type="file"  name="fileup" /></td>
+								<td width="23%" nowrap="nowrap"><SELECT  name="type_insert">
+<OPTION  value="appendtolist">Append to list</OPTION>
+<OPTION  value="overwrite">Overwrite</OPTION>
+</SELECT></td>
+
+								<td width="12%"><input type="submit" value="upload" /></td>
+								<td width="12%"><u>Link to sample excel</u></td>
+								
+								
+								
+							  </tr>
+							  </table>
+      				</form>
+					
+					
+					
+	  </div>
+		<!-- / grading tab page -->
+		
+</div>
+<!-- / tab pane -->

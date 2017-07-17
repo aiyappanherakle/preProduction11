@@ -1,0 +1,111 @@
+<!--  Tamil -->
+<link type="text/css" href="{https_server}/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="{https_server}/functions/javascript/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{https_server}/functions/javascript/jquery-ui-1.8.17.custom.min.js"></script>
+<div id="v3body4">	
+	<div id="content">
+		<div class="header">Minimum Bid Change</div><br />
+		<div class="tab-pane">
+			<div class="tab-page">
+				<h2 class="tab">Fixed</h2>
+				<form method="post" action="" 	accept-charset="UTF-8" name="ilform_min_bid">
+				
+					<input type="hidden" name="cmd" value="change_bids">
+					<div class="block-wrapper">
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+							<div class="block3-header">Minimum Bid Change</div>
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">You can change minimum bid/price for the items. </div></div>
+							
+							<div class="block3-content" style="padding: 0px 0px 0px 10px;">
+								<br>
+								<table width="100%" border="0" >
+									<tr>
+										<td><strong>Paste here the item ids seperated each other by line break.</strong></td>
+										<td><strong>Paste here the respective min bid value seperated each other by line break.</strong></td>
+									</tr>
+									<tr>
+										<td><textarea id="coin_list" name="coin_list" cols="5" rows="15"></textarea></td>
+										<td><textarea id="coin_list" name="price_list" cols="5" rows="15"></textarea></td>
+									</tr>
+								</table>
+								
+								<br>
+								<input type="submit" name="submit" Value="Change"  style="margin-left: 183px;">
+							</div>
+							
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</form>
+			</div>
+			<div class="tab-page">
+				<h2 class="tab">Percentile</h2>
+				<form method="post" action="" 	accept-charset="UTF-8" name="ilform_min _bid">
+				
+					<input type="hidden" name="cmd" value="change_bids_by_percent">
+					<div class="block-wrapper">
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+							<div class="block3-header">Minimum Bid Change</div>
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">You can increment/decrement minimum bid/price for the items. </div></div>
+							
+							<div class="block3-content" style="padding: 0px 0px 0px 10px;">
+								<br>
+								<table width="100%" border="0" >
+									<tr>
+										<td><strong>Paste here the item ids seperated each other by line break.</strong></td>
+										
+									</tr>
+									<tr>
+										<td><textarea id="coin_list_percent" name="coin_list_percent" cols="5" rows="15"></textarea></td>
+										
+									</tr>								
+									
+								</table>
+								<br>
+								<strong>Percentage&nbsp;</strong><input type="text"  name="percentile" style="width: 50px;" >
+								<br>
+								<br>
+								<input type="radio"  name="change_by"  value="1"><strong>Increase</strong>
+										<input type="radio"  name="change_by" checked="checked" value="2"><strong>Decrease</strong>
+								<br>
+								<br>
+								<input type="submit" name="submit_percent" Value="Change" style="margin-left: 300px;">
+								
+								
+							</div>
+							
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  Tamil -->

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>tellafriend</title>
+<script type="text/javascript">
+function check()
+{
+var to=document.getElementById("to").value;
+var subj=document.getElementById("subject").value;
+var mess=document.getElementById("message").value;
+var cc=document.getElementById("Cc").value;
+var len=to.length;
+var at=to.indexOf("@");
+var dot=to.lastIndexOf(".");
+var at1=cc.indexOf("@");
+var dot1=cc.lastIndexOf(".");
+var len1=cc.length;
+if(to=='')
+{
+alert("please fill the to mail address");
+return false;
+}
+else if(at==-1)
+{
+alert("invalid emailid");
+return false;
+}
+else if(dot==-1)
+{
+alert("invalid emailid");
+return false;
+}
+else if((dot-at)<2)
+{
+alert("invalid emailid");
+return false;
+
+}
+else if(len-dot<=2)
+{
+alert("invalid emailid");
+return false;
+}
+else if(subj=='')
+{
+alert("please fill the subject field");
+return false;
+}
+else if(mess=='')
+{
+alert("please fill the message field");
+return false;
+}
+else if(cc)
+{
+if(at1==-1)
+{
+alert("invalid Cc emailid ");
+return false;
+}
+else if(dot1==-1)
+{
+alert("invalid Cc emailid");
+return false;
+}
+else if((dot1-at1)<2)
+{
+alert("invalid Cc emailid");
+return false;
+}
+else if(len1-dot1<=2)
+{
+alert("invalid emailid");
+return false;
+}
+}
+
+else
+{
+return true;
+}
+}
+function addcc()
+{
+document.getElementById("add").style.display="none";
+document.getElementById("removecc").style.display="block";
+document.getElementById("cc").style.display="block";
+}
+function remcc()
+{
+document.getElementById("removecc").style.display="none";
+document.getElementById("cc").style.display="none";
+document.getElementById("add").style.display="block";
+}
+</script>
+</head>
+
+
+<body>
+<form name="form1" method="post" action="main.php">
+<input type="hidden" name="cmd" value="tellafriend" />
+				 <input type="hidden" name="subcmd" value="tf" />
+				 <div align="center">
+				 <h3>Send a mail to your friend</h3>
+				 <table width="468" border="0">
+  <tr>
+    <td width="122" align="right"><b>To</b></td>
+	<td width="13"></td>
+	<td width="319" align="left"><input type="text" name="to" id="to" /> &nbsp;&nbsp;<span id="add"><input type="button" name="add" onclick="addcc()" value="Add Cc" /></span><span id="removecc" style="display:none"><input type="button" name="add" onclick="remcc()" value="remove Cc" /></span> </td>
+  </tr>
+  <tr>
+  <td colspan="3" align="center">
+  <span id="cc" style="display:none" >
+  <table width="369" border="0">
+  <tr>
+    <td width="72" align="right"><b>Cc</b></td>
+	<td width="13"></td>
+	<td width="270" align="left"><input type="text" name="Cc" id="Cc" /> </td>
+  </tr>
+  </table>
+  </span>
+    </td>
+  </tr>
+  <tr>
+    <td align="right"><b>Subject</b></td>
+	<td></td>
+	<td align="left"><input type="text" name="subject" id="subject" /> </td>
+  </tr>
+  <tr>
+    <td align="right"><b>Message</b></td>
+	<td></td>
+	<td align="left"><textarea name="message" rows="10" id="message"></textarea> </td>
+  </tr>
+      <tr>
+    <td colspan="3" align="center"><input type="submit"  name="submit" value="submit" onclick="return check();"/> &nbsp;<input type="reset" name="reset" value="reset" /></td>
+  </tr>
+</table>
+</div>
+</form>
+</body>
+</html>

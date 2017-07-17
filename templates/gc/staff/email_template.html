@@ -1,0 +1,386 @@
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php"><span>{_management}</span></a>
+    <a href="email_generator_version4.php"  target="_blank" class=""><span>Email Generator 4.0</span></a> 
+    <a href="email_export.php"><span>Email Export</span></a> 
+    <a href="email_design.php" class=""><span>Email Design</span></a>
+    <a href="email_generator_hotlist.php" class=""><span>Email Hotlist</span></a> 
+    <a href="email_preferences.php" class=""><span>Email Preferences</span></a>
+    <a href="email_generator.php" class=""><span>Email Template</span></a> 
+    <a href="email_template.php"   class="sel"><span>New Template</span></a> 
+    <a href="email_generator_version2.php" class=""><span>Email Template 2.0</span></a> 
+    <a href="uhr_template.php" class=""><span>UHR Template</span></a>
+    <a href="saved_search.php" class=""><span>Search Options</span></a>
+    
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+	<div class="block-wrapper"> 
+					<div class="block3"> 
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">Generate Email Template</div>
+							<div class="block3-content" style="padding:0px"> 
+							<head> 
+	<script type="text/javascript">
+	
+	function check(f,fr,p,w,qx,y,z)
+{
+document.getElementById('feat_v').value = f;
+document.getElementById('feat_r').value = fr;
+
+var i = 0;
+
+while(i<=p-parseInt(1))
+{
+
+n = w.split('|');
+v = qx.split('|');
+k = y.split('|');
+l = z.split('|');
+
+if(i==0)
+{
+document.getElementById('sub-'+i).value = n[i];
+document.getElementById('item1-'+i).value = v[i];
+document.getElementById('item2-'+i).value = k[i];
+document.getElementById('item3-'+i).value = l[i];
+}
+else
+{
+var len=document.getElementById('myTable').rows.length;
+var x=document.getElementById('myTable').insertRow(len);
+var a=x.insertCell(0);
+var b=x.insertCell(1);
+var c=x.insertCell(2);
+var d=x.insertCell(3);
+a.innerHTML='<input type="text" value="'+n[i]+'" name="sub_heading[]" id="sub-'+i+'"/><br>';
+b.innerHTML='<input type="text" value="'+v[i]+'" name="item1[]" id="item1-'+i+'" />';
+c.innerHTML='<input type="text" value="'+k[i]+'" name="item2[]" id="item2-'+i+'" />';
+d.innerHTML='<input type="text"  value="'+l[i]+'" name="item3[]" id="item3-'+i+'" />&nbsp;<span onclick="deleteRow(this)" style="cursor:pointer;">Remove</span>';
+}
+i++;
+}
+ 
+ 
+}
+
+function insRow()
+{
+var ti = parseInt(document.getElementById('ert').value) + parseInt(1) ;
+document.getElementById('ert').value = ti ;
+ti = ti - parseInt(1);
+var len=document.getElementById('myTable').rows.length;
+//alert(ss);
+var x=document.getElementById('myTable').insertRow(len);
+var a=x.insertCell(0);
+var b=x.insertCell(1);
+var c=x.insertCell(2);
+var d=x.insertCell(3);
+a.innerHTML='<input type="text" name="sub_heading[]" id="sub-'+ti+'"/><br>';
+b.innerHTML='<input type="text" name="item1[]" id="item1-'+ti+'" />';
+c.innerHTML='<input type="text" name="item2[]" id="item2-'+ti+'" />';
+d.innerHTML='<input type="text" name="item3[]" id="item3-'+ti+'" />&nbsp;<span onclick="deleteRow(this)" style="cursor:pointer;">Remove</span>';
+
+}
+
+function deleteRow(r)
+{
+var ti = parseInt(document.getElementById('ert').value) - parseInt(1);
+document.getElementById('ert').value = ti ;
+var i=r.parentNode.parentNode.rowIndex;
+document.getElementById('myTable').deleteRow(i);
+}
+
+function ala()
+{
+
+
+var c = parseInt(document.getElementById('ert').value);
+
+var i=0;
+var su = new Array();
+var its = new Array();
+var itss = new Array();
+var itsss = new Array();
+while (i<=c - parseInt(1))
+  {
+  w = document.getElementById('sub-'+i).value;
+  x = document.getElementById('item1-'+i).value;
+  y = document.getElementById('item2-'+i).value;
+  z = document.getElementById('item3-'+i).value;
+ su[i] = w;
+ its[i] = x;
+ itss[i] = y;
+ itsss[i] = z;
+  
+  i++
+  }
+  w = su.join('|');
+  x = its.join('|');
+  y = itss.join('|');
+  z = itsss.join('|');
+  
+  document.getElementById('subf').value = w;
+  document.getElementById('item1f').value = x;
+  document.getElementById('item2f').value = y;
+  document.getElementById('item3f').value = z;
+
+  }
+  
+</script>							
+							
+</head>
+ <form onsubmit="return ala(this);" action="email_template.php" name="email" method="post" accept-charset="UTF-8" style=" margin-left:10px;">
+			  <input type="hidden" name="cmd" value="view" />
+			  <tr><td><input type="hidden" id="ert" value="{couo}" name="cou"/></td></tr>
+<tr><td><input type="hidden" id="subf" value="0" name="subs"/></td></tr>
+<tr><td><input type="hidden" id="item1f" value="0" name="itemf"/></td></tr>
+<tr><td><input type="hidden" id="item2f" value="0" name="items"/></td></tr>
+<tr><td><input type="hidden" id="item3f" value="0" name="itemt"/></tr>
+  <table width="598" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td width="598" style="border-collapse:collapse;"><!-- start PREHEADER TABLE -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td width="60%" style="border-collapse:collapse; padding-bottom:10px; font-family:verdana,arial; font-size:10px; text-align:left; line-height:13px; color:#999999;">
+
+         Skip the e-mail! Just go straight to 
+<a href="{http_server}main.php?referal_name=email01" style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; text-decoration:underline; font-size:10px; color:#999999;">GreatCollections.com</a>.
+<br /><br />Having problems viewing this email? <a href="{http_server}main.php?referal_name=email01" style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; text-decoration:underline; font-size:10px; color:#999999;">View it in your browser.</a>
+      </td>
+      <td width="40%" style="border-collapse:collapse; padding-bottom:10px; font-family:verdana,arial; font-size:10px; text-align:right; line-height:13px; color:#999999;">
+{VR_SOCIAL_SHARING}<br /><a href="{VR_F2AF_LINK}">Forward to a Friend</a>
+      </td>
+    </tr>
+
+  </table>  
+  <!-- end PREHEADER TABLE --></td>
+    </tr>
+    <tr>
+      <td width="598" height="17" style="border-collapse:collapse;"><!-- start GLOBAL NAV TABLE -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color:#DEE7EC; background:url('https://www.greatcollections.com/images/gc/globalnavbg.gif') center left repeat-x #DEE7EC;">
+    <tr>
+      <td width="350" height="17" align="center" style="border:1px solid #B0C4CF; border-bottom:none; border-collapse:collapse; background-color:#DEE7EC; background:url('https://www.greatcollections.com/images/gc/globalnavbg.gif') center left repeat-x #DEE7EC; color:#555555;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign="middle" style="background-color:#DEE7EC; background:url('https://www.greatcollections.com/images/gc/globalnavbg.gif') center left repeat-x #DEE7EC;">
+
+          <tr height="30" style="background:url('{https_server}images/gc/blue_button_repeat.jpg');">
+            <td align="center" style="border-collapse:collapse;"><a href="{http_server}main.php?referal_name=email01" style="margin:0; padding:0 3px 0 7px; color:#fff; font-family:verdana,arial; font-size:10px; font-weight:bold; text-decoration:none;">GreatCollections.com</a></td>
+            <td align="center" style="border-collapse:collapse;"><a href="{http_server}main.php?cmd=about&referal_name=email01" style="margin:0; padding:0 3px 0 7px; color:#fff; font-family:verdana,arial; font-size:10px; font-weight:bold; text-decoration:none;">About Us</a></td>
+            <td align="center" style="border-collapse:collapse;"><a href="{http_server}main.php?cmd=sell&referal_name=email01" style="margin:0; padding:0 3px 0 7px; color:#fff; font-family:verdana,arial; font-size:10px; font-weight:bold; text-decoration:none;">Consign</a></td>
+            <td align="center" style="border-collapse:collapse;"><a href="{http_server}main.php?cmd=contact&referal_name=email01" style="margin:0; padding:0 3px 0 7px; color:#fff; font-family:verdana,arial; font-size:10px; font-weight:bold; text-decoration:none;">Contact Us</a></td>
+          </tr>
+        </table>
+
+      </td>
+      <td width="250" bgcolor="#FFFFFF" style="border-collapse:collapse;"></td>
+    </tr>
+  </table>
+<!-- end GLOBAL NAV TABLE -->
+</td>
+</tr>
+</table>
+<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" style="border:1px solid #B0C4CF; background:#FFF;">
+<tr>
+<td width="600" height="90" valign="middle" style="border-collapse:collapse; background:#fafaf3">
+<!-- start HEADER TABLE -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+    <tr>
+      <td width="200" height="90" align="left" style="border-collapse:collapse;"><a href="{http_server}main.php?referal_name=email01" style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none;"><img src="https://www.greatcollections.com/images/gc/logoBLUE_275px_x.gif" width="275" height="60" alt="GreatCollections Coin Auctions" title="GreatCollections Coin Auctions" border="0" style="display:block;" /></a></td>
+      <td width="400" height="90" style="text-align:center;">
+        <span style="border-collapse:collapse; text-align:center; font-family:verdana,arial; font-size:15px; color:#2c5987;">Auctions Ending Sunday!<br /><a href="http://www.greatcollections.com/main.php?referal_name=email01" style="color:#336699; font-family:verdana,arial; font-size:15px; text-decoration:none;">www.greatcollections.com</a></span></span><br />
+        <span style="border-collapse:collapse; text-align:center; font-family:verdana,arial; font-size:11px; color:#2c5987;">Coins from $1 to $25,000...</span><br />
+      </td>
+    </tr>
+
+  </table>
+<!-- end HEADER TABLE -->
+</td>
+</tr>
+<tr>
+<td width="600" height="20" valign="middle" style="border-collapse:collapse;">
+<!-- start NAV TABLE -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color:#2C5987; background:url('https://www.greatcollections.com/images/gc/nav-bg.jpg') center left repeat-x #2C5987;">
+    <tr>
+      <td width="600" height="21" align="center" style="background-color:#2C5987; background:url('https://www.greatcollections.com/images/gc/nav-bg.jpg') center left repeat-x #2C5987;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign="middle" style="background-color:#2C5987; background:url('https://www.greatcollections.com/images/gc/nav-bg.jpg') center left repeat-x #2C5987;">
+          <tr height="30">
+
+  <td align="center" style="border-collapse:collapse;"><a href="{http_server}merch.php?cmd=listings&referal_name=email01" style="padding:0 6px; font-family:verdana,arial; font-size:11px; color:#fff; text-decoration:none; text-transform:none;">Browse Coins</a></td>
+  <td align="center" style="border-left:1px solid #fff; border-collapse:collapse;"><a href="{http_server}search.php?mode=product&series=55&referal_name=email01" style="padding:0 6px; font-family:verdana,arial; font-size:11px; color:#fff; text-decoration:none; text-transform:none;">Silver Dollars</a></td>
+  <td align="center" style="border-left:1px solid #fff; border-collapse:collapse;"><a href="{http_server}24hours.php?referal_name=email01" style="padding:0 6px; font-family:verdana,arial; font-size:11px; color:#fff; text-decoration:none; text-transform:none;">24-Hour Deals</a></td>
+  <td align="center" style="border-left:1px solid #fff; border-collapse:collapse;"><a href="{http_server}search.php?mode=product&q=&series=&sort=12&referal_name=email01" style="padding:0 6px; font-family:verdana,arial; font-size:11px; color:#fff; text-decoration:none; text-transform:none;">$1,000+ Certified Coins</a></td>
+  <td align="center" style="border-left:1px solid #fff; border-collapse:collapse;"><a href="{http_server}search.php?mode=product&q=&series=&sort=11&referal_name=email01" style="padding:0 6px; font-family:verdana,arial; font-size:11px; color:#fff; text-decoration:none; text-transform:none;">$1-$100 Certifed Coins</a></td>
+
+</tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+<!-- end NAV TABLE --></td>
+    </tr>
+    <tr>
+      <td width="598" style="border-collapse:collapse; padding:14px;">
+      <table width="570" border="0" cellpadding="0" cellspacing="0">
+
+  <tr>
+    <td style="border-collapse:collapse;">
+      <table width="570" border="0" cellpadding="0" cellspacing="0" style="background:url('https://www.greatcollections.com/images/gc/bg_blue.jpg');">
+	 
+       <tr >
+	 
+       <td style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; font-weight:bold;">Featured Item ID:</td> 
+	   <td><input type="text" name="featured" id="feat_v"/>
+	   
+	    <td style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; font-weight:bold;">Referal Name:</td> 
+	   <td><input type="text" name="featured_ref" id="feat_r"/>
+       
+        <!--  <a href="" style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; line-height:16px; font-weight:bold; text-decoration:underline;">
+           <img width="114" height="150" border="0" style="display:block;" alt="" title="" src="" /><br />
+            <br />
+
+            <span style="font-weight:normal;"></span>
+          </a>-->
+        </td>
+        	<td align=left width="380">
+            
+            
+                       <p style="margin:0; padding:10px 0; font-family:verdana,arial; font-size:12px; color:#555555;" align="center">
+                       <strong>Browse Over 1,900 Coin Auctions
+                        <br />
+                        No Hidden Reserves - Items Bid from $1 to $25,000+
+                        </strong>
+
+                       <br /><Br />
+                       
+                       <strong>Great</strong>Collections offers:<br />
+                     	<strong>Value:</strong>  The lowest fees, whether buying or selling.
+           				<br />
+                        <strong>Selection:</strong>  Over 1,900 certified coins currently listed.
+                        <br />
+                        <strong>Service:</strong>  Fast, professional customer service.
+           				<br /><br />
+
+ <strong>All first-time U.S. auction winners receive free shipping.</strong>
+         <br /><br />
+         <a href="{https_server}registration.php?referal_name=email01" style="color:#0033FF;" ><strong>Register to Bid and Be Part of the Action</strong></a><br />
+         It's fast and free, and gives you instant access to bid, our auction archives, your personal watchlist and more.    
+         
+         <br /><br />
+
+           Ian Russell, Raeleen Endo & the <strong>Great</strong>Collections Team        
+            </td>
+
+            
+          
+      	</tr>
+        
+        
+      
+      </table>
+
+    </td>
+  </tr>
+<tr>
+  <td width="570" style="padding-top:10px; border-collapse:collapse;">
+    <table id="myTable" width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="padding-top:10px; padding-bottom:20px;">
+      <tr><td style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; font-weight:bold;">Subheading:</td>
+	  <td style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; font-weight:bold;">Item1:</td>
+	  <td style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; font-weight:bold;">Item2:</td>
+	  <td style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; font-weight:bold;">Item3:</td></tr>
+      
+                   <tr><TD width="190"><P style="color:#336699; font-family:verdana,arial; font-size:11px; text-decoration:none; font-weight:bold;">
+				   <input type="text" name="sub_heading[]" id="sub-0" /></P></TD>
+              <td><input type="text" name="item1[]" id="item1-0"/></td>
+		      <td><input type="text" name="item2[]" id="item2-0"/></td>
+		      <td><input type="text" name="item3[]" id="item3-0"/></td>
+		 </tr>
+		 
+		
+	 </tr><td>&nbsp;&nbsp;</td></tr>
+	  <table id="myTable" width="100">
+</table>
+	 <tr><td><span onClick="insRow();" style="cursor:pointer;">Add More Items</span></td>
+	  </tr>
+	  <tr><td>&nbsp;&nbsp;</td></tr>
+	 
+ <tr><td>&nbsp;&nbsp;</td></tr>
+<tr align="center"><td> 
+						<input type="submit" name="view" value="View" />
+                     </td></tr>
+
+
+      
+    </table>
+  </td>
+</tr>
+</table></td>
+    </tr>
+
+    <tr>
+      <td width="598" style="border-collapse:collapse;"><!-- start FOOTER TABLE -->    
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="border-top:1px dashed #929293; text-align:center; background:#E1E9F3;">
+  <tr>
+    <td width="600" height="20" valign="bottom" align="center" style="padding:0 15px; border-collapse:collapse;background:url('https://www.greatcollections.com/images/gc/footer_blue.jpg');">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background:url('https://www.greatcollections.com/images/gc/footer_blue.jpg');">
+        <tr>
+  <td align="center" style="border-collapse:collapse;"><a href="https://www.greatcollections.com/main.php?cmd=cp&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">MyGC</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;"><a href="http://www.greatcollections.com/watchlist.php?referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Watchlist</a></td>
+
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;"><a href="http://www.greatcollections.com/main.php?cmd=about&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">About Us</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;"><a href="http://www.greatcollections.com/kb/" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Help</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;"><a href="http://www.greatcollections.com/main.php?cmd=contact&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Contact Us</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;"><a href="http://www.greatcollections.com/main.php?cmd=promise&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Trust</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;"><a href="http://www.greatcollections.com/main.php?cmd=shows&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Coin Shows</a></td>
+</tr>
+      </table>
+
+    </td>
+  </tr>
+  <tr>
+    <td width="600" height="20" valign="middle" align="center" style="padding:0 10px; border-collapse:collapse; background:url('https://www.greatcollections.com/images/gc/footer_blue.jpg');">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background:url('https://www.greatcollections.com/images/gc/footer_blue.jpg');">
+        <tr>
+  <td align="center" style="border-collapse:collapse;"><a href="http://www.greatcollections.com/main.php?cmd=through&referal_name=email01" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Bidding/Buying Coins Through GreatCollections</a></td>
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;"><a href="http://www.facebook.com/GreatCollections" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Facebook</a></td>
+
+  <td align="center" style="border-left:1px solid #B0C4CF; border-collapse:collapse;"><a href="http://twitter.com/greatcollection" style="padding:0 4px; border-left:none; font-family:verdana,arial; font-size:10px; color:#fff; text-decoration:none; font-weight:bold;">Follow Us On Twitter</a></td>
+</tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="600" height="70" valign="top" align="center" style="border-collapse:collapse;">
+      <p style="margin:0; padding:10px 0; font-family:verdana,arial; font-size:10px; color:#000000;background:url('{https_server}images/gc/footer_green.jpg');">This message was sent to <a href="mailto:{EMAIL_ADDRESS}" style="font-family:verdana,arial; font-size:10px; color:#336699; color:#336699; text-decoration:none;">{EMAIL_ADDRESS}</a>.<br />Please add <a href="mailto:info@greatcollections.com" style="font-family:verdana,arial; font-size:10px; color:#336699; color:#336699; text-decoration:none;">info@greatcollections.com</a> to your address book to ensure our emails reach your inbox!</p>
+
+      <p style="margin:0; padding:10px 0; font-family:verdana,arial; font-size:10px; color:#555555;">&#169; 2010 - {year} <a href="http://www.greatcollections.com/main.php?referal_name=email01" style="font-family:verdana,arial; font-size:11px; color:#555555; text-decoration:none; font-size:10px; color:#336699;">GreatCollections.com</a>, LLC<br />17500 Red Hill Avenue, Suite 160, Irvine, CA 92614-7290<br />
+      Tel: 1.800.44.COINS (+1.949.679.4180)</p>
+
+    </td>
+    
+  </tr>
+</table>
+<!-- end FOOTER TABLE --></td>
+
+    </tr>
+  </table>
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>

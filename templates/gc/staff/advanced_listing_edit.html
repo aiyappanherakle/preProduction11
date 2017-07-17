@@ -1,0 +1,716 @@
+<script type="text/javascript">
+function validate()
+{
+	sear_val = document.getElementById("project_id").value;
+	if(sear_val == '')
+	{
+		alert('Please enter Project id/ coin id');
+		return false;
+	}
+	
+	else
+	{
+		return true;
+	}
+}
+
+function grade(u)
+{
+	var one     =   document.getElementById('cat_tit_p').value;
+	var two     =   document.getElementById('grade_service').value;
+	var three   =   document.getElementById('grad_pro').value;
+	var four    =   document.getElementById('Star').value;
+	var five    =   document.getElementById('Plus').value;
+	var six     =   document.getElementById('Cac').value;
+	//var eight   =   document.getElementById('other_information').value;
+	var nine    =   document.getElementById('suff').value;
+	var ten     =   document.getElementById('QA').value;
+	
+	//cac, star, plus
+	if(document.getElementById('Cac').checked == true)
+	{
+		var cac = ' CAC';
+	}
+	else
+	{
+		var cac = '';
+	}
+
+	if(document.getElementById('genuine_details_o').checked == true)
+	{
+		var genuine = ' Genuine';
+	}
+	else
+	{
+		var genuine = '';
+	}
+
+	if(document.getElementById('details_o').checked == true)
+	{
+		var details = ' Details';
+	}
+	else
+	{
+		var details = '';
+	}
+	if(document.getElementById('Plus').checked == true)
+	{
+		var plus = '+';
+	}
+	else
+	{
+		var plus = '';
+	}
+
+	if(document.getElementById('Star').checked == true)
+	{
+		var star = ' '+document.getElementById('sample').value;
+	}
+	else
+	{
+		var star = '';
+	}
+	if(document.getElementById('QA').checked == true)
+	{
+		var qa = ' (QA)';
+	}
+	else
+	{
+		var qa = '';
+	}
+
+	if(document.getElementById('Variety').checked == true)
+	{
+		var Variety = ' '+document.getElementById('Variety').value;
+	}
+	else
+	{
+		var Variety = '';
+	}
+
+	//condition attribute
+	if(document.getElementById('Condition_Attribute').value !='')
+	{
+	 	var firstLetter = document.getElementById('Condition_Attribute').value.substr(0, 1);
+		var seven   =   ' '+firstLetter.toUpperCase() + document.getElementById('Condition_Attribute').value.substr(1)+' ';
+	}
+	else
+	{
+		var seven   =   '';
+	}
+
+	//grade service
+	if(document.getElementById('grade_service').value !='')
+	{
+		var two   =   ' '+document.getElementById('grade_service').value;
+	}
+	else
+	{
+		var two   =   '';
+	}
+
+	//grade proof
+	if(document.getElementById('grad_pro').value !='')
+	{
+	   if(document.getElementById('nbgrade').value !='')
+	   {
+		   if(document.getElementById('nbgrade').value == document.getElementById('grad_pro').value)
+		   {
+		   
+		   var three   =   ' '+document.getElementById('nbgrade').value;
+		   }
+		   else
+		   {
+		   
+		   var three   =   ' '+document.getElementById('nbgrade').value;
+		   }
+	   }
+	   else
+	   {
+	   var three   =   ' '+document.getElementById('grad_pro').value;
+	   }
+
+	}
+	else
+	{
+	   if(document.getElementById('nbgrade').value !='')
+	   {
+	     var three   =   ' '+document.getElementById('nbgrade').value;
+	   }
+	   
+	   else
+	   {
+	   var three   =   '';
+	   }
+
+	}
+
+	//others
+	if(document.getElementById('other_information').value !='')
+	{
+
+		var selectedArray = new Array();
+
+		var selObj = document.getElementById('other_information');
+
+		var i;
+
+		var count = 0;
+
+		for (i=0; i<selObj.options.length; i++) {
+
+			if (selObj.options[i].selected) {
+
+			var firstLetter = selObj.options[i].value.substr(0, 1);
+
+			var te   =   firstLetter.toUpperCase() +  selObj.options[i].value.substr(1);
+
+			selectedArray[count] = ' '+te;
+
+			count++;
+
+			}
+
+		}
+
+	}
+	else
+  	{
+  		var selectedArray = '';
+  	}
+
+	//stes 
+	if(document.getElementById('Sets').value !='' && document.getElementById('nocoin').value !='')
+	{
+
+		var toto   =   ' '+'('+document.getElementById('Sets').value+' Sets, '+document.getElementById('nocoin').value+' Coins)';
+
+	}
+	else if(document.getElementById('Sets').value == '' && document.getElementById('nocoin').value == '')
+	{
+		var toto   = '';
+	}
+	else if(document.getElementById('Sets').value == '' || document.getElementById('nocoin').value == '')
+	{
+		if(document.getElementById('Sets').value == '')
+		{
+			var toto   =   ' '+'('+document.getElementById('nocoin').value+' Coins)';
+		}
+		else
+		{
+			var toto   =   ' '+'('+document.getElementById('Sets').value+' Sets)';
+		}
+	}
+	else
+	{
+		var toto   = '';
+	}
+
+	//suffix value
+	if(document.getElementById('suff').value !='')
+	{
+		var nine   =   ' '+document.getElementById('suff').value;
+	}
+	else
+	{
+		var nine   =   '';
+	}
+
+	//new grade changes
+	if(u == 'mynewgrade')
+	{
+		var threenew = ' '+document.getElementById('nbgrade').value;
+	}
+	else
+	{
+		var threenew = three;
+	}
+	
+	//coins number
+	var tes = one+''+two+''+threenew+''+plus+''+star+''+nine+''+cac+''+seven+''+qa+''+selectedArray+''+toto+''+genuine+''+details;
+
+
+	var ins = document.getElementById('title').value = tes;
+
+}
+
+function pcgs_year(pcg)
+{
+
+	if(pcg == '')
+	{
+		alert("Year is empty");
+	}
+	else
+	{
+		if (window.XMLHttpRequest)  // Mozilla & other compliant browsers
+		{ 
+			request = new XMLHttpRequest();
+		} 
+		else if (window.ActiveXObject)  // Internet Explorer
+		{ 
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+	
+
+		request.onreadystatechange = function ajaxResponse()
+		{
+
+			if (request.readyState==4)
+			{
+				jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();
+
+				document.getElementById('savemyid').innerHTML= request.responseText;
+
+			}
+			else
+			{
+				jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();
+				document.getElementById('savemyid').innerHTML= "<img src='images/default/wheel.gif'/>";	
+			}
+
+		}
+
+		url ='consignment_ajax.php?text=product&query=' +pcg;
+
+		request.open("GET", url,true);
+
+		request.send(null);
+
+	}	
+}
+
+function pcgs_select(pcg)
+{
+	document.getElementById('pcgs').value = pcg;
+	jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmHide();
+}
+
+function newgrade(n,p)
+{
+
+	if (window.XMLHttpRequest)   // Mozilla & other compliant browsers
+	{ 
+		request = new XMLHttpRequest();
+
+	} else if (window.ActiveXObject) { // Internet Explorer
+
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+
+	}
+
+	
+
+	request.onreadystatechange = function ajaxResponse(){
+
+		if (request.readyState==4){
+
+		 
+			
+			document.getElementById('nbgrade').value = request.responseText;
+			
+			grade('mynewgrade');
+
+			document.getElementById('ng').innerHTML= "";
+			
+
+		}
+
+		else{
+
+			document.getElementById('ng').innerHTML= "<img src='images/default/wheel.gif'/>";	
+
+		}
+
+	}
+
+	url ='consignment_ajax.php?grade_prsent=' +n+'&check_pcgs'+p;
+
+	request.open("GET", url,true);
+
+	request.send(null);
+
+}
+
+function pcgs_coin(pcg)
+{
+
+	if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+
+		request = new XMLHttpRequest();
+
+	} else if (window.ActiveXObject) { // Internet Explorer
+
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+
+	}
+
+	
+
+	request.onreadystatechange = function ajaxResponse(){
+
+		if (request.readyState==4){
+
+		 
+
+			document.getElementById('pcgdiv').innerHTML= request.responseText;
+
+			var ti = document.getElementById('tit_pro').value;
+
+			var cs = document.getElementById('coin_ser_val').value;
+
+			//var ds = document.getElementById('des_cval').value;
+
+			var gs = document.getElementById('grad_pro').value;
+
+			//var ca = document.getElementById('cat').value;
+
+			var ct = document.getElementById('cat_tit_pro').value;
+
+			//5244
+			var ctt = document.getElementById('cat_tit_proo').value;
+
+
+ 
+			var genuine;
+			if (ctt == "D") {
+				genuine = "<input type='radio' name='details_o' id='details_o' checked='checked' value='1' onclick='grade(\"Details\")'/>Yes<input type='radio' name='details_o' id='details_o' value='0'  onclick='grade(\"0\")'/>No";
+			} else {
+				genuine = "<input type='radio' name='details_o' id='details_o' value='1' onclick='grade(\"Details\")'/>Yes<input type='radio' name='details_o' id='details_o' value='0' checked='checked' onclick='grade(\"0\")'/>No";
+			}
+		
+			// document.getElementById("demo").innerHTML = genuine;
+			
+
+			document.getElementById('catvalmy').innerHTML = ct;
+
+			document.getElementById('title').value = ti;
+
+			document.getElementById('coin_series').value = cs;
+
+			document.getElementById('query').value = document.getElementById('coindtyear').value;
+
+			//document.getElementById('Description').value = ds;
+
+			//document.getElementById('Grade').value = gs;
+
+			//document.getElementById('Grade').value = Math.abs(document.getElementById('gra_id').value);
+			
+            //document.getElementById('grade_service').value = document.getElementById('mypert').value;
+			
+			newgrade(document.getElementById('Grade').value,document.getElementById('pcgs').value);
+			grade("0");
+
+		}
+
+		else{
+
+			document.getElementById('pcgdiv').innerHTML= "<img src='images/default/wheel.gif'/>";	
+
+		}
+
+	}
+
+	url ='consignment_ajax.php?check_pcgs=' +pcg;
+
+	request.open("GET", url,true);
+
+	request.send(null);
+	
+}
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4">
+
+
+<!-- begin content -->
+<div id="content">
+<!-- <div class="header">Edit the Title & Descriptions for All coins </div><br /> -->
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Edit coins</h2>
+			    
+				
+				
+                   
+					
+					<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Advanced Listing Edit</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can Search the Coins using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                            	<input type="hidden" name="sample" id="sample" value="&#9733" />
+                                <form method="post" action="advanced_listing_edit.php" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;" onsubmit="return validate();">	
+									<input type="hidden" name="cmd" value="update_coin_details"/>
+							
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Coin id:</span>
+                                  <td width="90%">
+								  <input type="text" name="project_id"  id ="project_id" value="{projec_id}" style="font-family: Verdana" maxlength="100" size="50">                                       
+										</td>
+                                </tr>
+								<tr>
+                                  <td colspan="2"><div id="sitvalue"><input type="submit" class="buttons" value=" {_search} "  style="font-size:15px" /></div></td> 
+                                  </tr>
+								</table>
+                               </form>
+                               							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				   
+					
+				
+		<if condition="isset($show_coin_search) and ($show_coin_search==1)">
+			
+			<div class="block-wrapper">
+			<div class="block3">
+			<div class="block3-top">
+			<div class="block3-right">
+			<div class="block3-left"></div>
+			</div>
+			</div>						
+			<div class="block3-header">Update Coin</div>
+
+				<div class="block3-content" style="padding:0px">
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+												
+				<if condition="isset($ifcoins) AND $ifcoins==true">	
+					<form method="post" action="advanced_listing_edit.php" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+
+				<input type="hidden" name="cmd" value="add_single_coin" />
+
+				<input type="hidden" name="subcmd" value="update_single_coin" />
+
+				<input type="hidden" name="return" value="advanced_listing_edit.php" />
+						
+
+					<div class="block3-content" style="padding:0px"><div id="pcgdiv"></div>
+
+					<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+
+						<tr>
+							<td nowrap="nowrap"  style="width: 190px;"><span class="gray">Year Of PCGS</span></td>
+
+							<td>
+								<input type="text" name="q" id="query" value="{coin_year}"  tabindex="6" autocomplete="off" style="width:200px" > <span style="cursor:pointer;" onclick="return pcgs_year(document.getElementById('query').value);"><strong>Go</strong></span> Enter only the year of pcgs
+								
+							</td>
+						</tr>
+
+						<tr> 
+
+							<td nowrap="nowrap"  style="width: 125px;">
+								<span class="gray">Pcgs</span>
+							</td>
+
+							<td>
+								<input type="hidden" name="randproid" id="randproid" value="{rand_value_edit}"/>
+								{upda_val}
+								<input type="text" name="pcgs" id="pcgs" value="{pcgs}" tabindex="1" style="width:200px" onblur="return pcgs_coin(this.value);"/> 
+								<span style="cursor:pointer;" onclick="return pcgs_coin(document.getElementById('pcgs').value);"><strong>Go</strong></span>
+							</td>
+
+						</tr>
+
+						<tr>
+							<td nowrap="nowrap" >
+								<span class="gray">Coin Series</span>
+							</td>
+
+							<td>
+								<input type="text" name="coin_series" id="coin_series" tabindex="7" value="{Coin_Series}" style="width:205px" />
+							</td>
+						</tr>
+
+						<tr> 
+							<td nowrap="nowrap" ><span class="gray">Category</span></td>
+
+							<td><strong><span id="catvalmy">{editcat}</span></strong></td>
+
+						</tr>
+
+						<tr >
+
+							<td nowrap="nowrap" ><span class="gray">Title</span></td>
+
+							<td>
+								<textarea id="title" name="title" tabindex="2" value="" style="width: 235px; height: 80px;">{Title}</textarea> 
+							</td>
+
+						</tr>
+
+						<tr> 
+
+							<td nowrap="nowrap" ><span class="gray">Grading Service</span></td>
+
+							<td>{grade_service_update}</td>
+
+						</tr>
+
+							
+
+						<tr> 
+
+							<td nowrap="nowrap" ><span class="gray">Grade</span></td>
+
+							<td>{pro_grade_edit}<span id="ng"></span></td>
+
+						</tr>
+							   
+							   <tr> 
+								<td colspan="2">
+								<table>
+							    <tr>
+									<td style="width:140px" nowrap="nowrap"><span class="gray">Genuine</span></td>
+								<td>{seleted_genuine} </td> 
+								</tr>
+							    <tr>
+									<td style="width:140px" nowrap="nowrap"><span class="gray">Details</span></td>
+								<td><span id="demo">{seleted_details}</span> </td> 
+								</tr>
+								<tr>
+									<td nowrap="nowrap"><span class="gray">Cac</span></td>
+								<td >{seleted} </td> 
+								</tr>
+
+								<tr>
+									<td ><span class="gray">Star</span></td>
+
+								<td>{seleted_star}</td>
+								</tr>
+								<tr> <td><span class="gray">QA</span> </td>
+		
+								<td>{seleted_qa}</td></tr>
+								<tr> <td><span class="gray">Plus</span> </td>
+
+								<td>{seleted_plus}</td>
+								</tr>
+								<tr> <td><span class="gray">Variety</span> </td>
+								
+								<td>{seleted_Variety}</td>
+
+								</tr>
+								</table>
+								</td>
+
+								</td>
+							</tr>
+
+							<tr>
+								<td nowrap="nowrap" ><span class="gray">Condition Attribute</span></td>
+								<td>{con_update}</td>
+							</tr>
+
+							<tr>
+								<td nowrap="nowrap"><span class="gray">Other information</span></td>
+								<td>{con_pedi_oth}</td>
+							</tr>
+
+							<tr>
+								<td nowrap="nowrap" ><span class="gray">Sets</span></td>
+								<td><input type="text" name="Sets" id="Sets"  maxlength="3" value="{Sets}" onblur="grade(this.value)"/></td>
+							</tr>
+
+							<tr>
+								<td nowrap="nowrap" ><span class="gray">Coins</span></td>
+
+								<td><input type="text" name="nocoin" id="nocoin" tabindex="5" maxlength="4" value="{nocoin}" onblur="grade(this.value)"/></td>
+							</tr>
+
+							<tr>
+							
+							<td style="display:none;">
+
+							<input type="hidden" name="user_id" id="user_id" value="{user_id}"/><input type="hidden" name="consignid" id="consignid" value="{consignid}"/><input type="hidden" name="coin_id" id="coin_id" value="{projec_id}"/>
+
+							<input type="hidden" name="cat_id" id="cat_id" value="{cat_id}"/>								
+
+							</td>
+							</tr>
+
+
+
+							<tr > 
+
+								<td nowrap="nowrap" ><input type="submit" name="submit" id="submit" value="submit" onclick="return check_value_coin();"/></td>
+
+							</tr>
+
+                            </table>
+
+            
+
+			</form>
+				</if>
+											<if condition="isset($ifcoins) AND $ifcoins==false">
+												<tr class="alt1">
+													<td  align="center" ><strong>You've no coins in this Coin id.</strong></td>
+												</tr>
+											</if>
+
+										
+										
+									</table>	 
+				</div>
+				<div class="block3-footer">
+				<div class="block3-right">
+				<div class="block3-left"></div>
+				</div>
+				</div>
+				</div>
+				</div>
+																
+			</if>        
+        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+         
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->
+
+
+<div style="display:none;cursor: default; width: 560px; height:300px; z-index: 1000; overflow:auto; " class="modal modal_window jqmID1" id="zipcode_nag_modal"> 
+ 
+	<div id="savemyid" >    
+ 
+    </div>
+		
+</div>

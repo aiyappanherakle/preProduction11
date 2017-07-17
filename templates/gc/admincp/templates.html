@@ -1,0 +1,997 @@
+<div id="colorpicker301" class="colorpicker301"></div>
+
+<div id="v3body4"> 
+<div id="sub">
+	<div id="subnav">
+		<loop name="subnav_settings"><a href="{url}" {class}><span>{name}</span></a> <span> | </span></loop name="subnav_settings">
+	</div>
+</div>
+	
+<div id="content">
+<div class="header">{_templates_css_manager}</div><br />
+		
+	<!-- templates -->
+	<div class="tab-pane" id="templates">
+	
+			<div class="tab-page">
+			
+				<h2 class="tab">{_edit_css}</h2>
+				
+				<form action="{ilpage[template]}" name="ilform" method="get" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="editcss" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_edit_css_elements}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_css_templates_control_the_fonts_colors_sizes_and_other_visual_elements_within_the_selected_style_group}</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr class="alt1">
+								<td width="31%"><span class="gray">{_choose_style}</span></td>
+								<td width="69%">{styles_pulldown}</td>
+							</tr>
+							<tr class="alt1">
+								<td><span class="gray">{_choose_style_group}</span></td>
+								<td><select name="action" style="font-family: verdana">
+									<optgroup label="{_manage_font_sizes_colors_etc}"> 
+									<option value="cssclient" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'cssclient'">selected="selected"</if>>{_edit_client_css}</option>
+									<option value="cssadmin" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'cssadmin'">selected="selected"</if>>{_edit_admin_css}</option>
+									<option value="csswysiwyg" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'csswysiwyg'">selected="selected"</if>>{_edit_wysiwyg_css}</option>
+									<option value="csstabs" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'csstabs'">selected="selected"</if>>{_edit_tab_pane_css}</option>
+									<option value="csscommon" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'csscommon'">selected="selected"</if>>{_edit_custom_userdefined_css}</option>
+									</optgroup>
+									</select><div class="smaller gray">{_if_you_would_like_to_view_all_css_elements_within_a_group_use_this_pulldown_menu}</div></td>
+							</tr>
+							<tr class="alt1">
+								<td width="31%"><span class="gray">{_choose_css_element}</span></td>
+								<td width="69%">{elements_pulldown} <div class="smaller gray">{_if_you_would_like_to_select_a_specific_css_element_to_view_or_update_use_this_pulldown_menu}</div></td>
+							</tr>
+                            <tr class="alt1"> 
+								<td width="31%" nowrap="nowrap"><span class="gray">{_product}</span></td>
+								<td width="69%">{products_pulldown}</td>
+						  	</tr>
+							<tr class="alt1">
+								<td><span class="gray">{_show}</span></td>
+								<td>
+								      <select name="pp" style="font-family: verdana">
+								        <option value="10" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '10'">selected="selected"</if>>10</option>
+								        <option value="50" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '50'">selected="selected"</if>>50</option>
+								        <option value="100" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '100'">selected="selected"</if>>100</option>
+								        <option value="500" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '500'">selected="selected"</if>>500</option>
+										<option value="1000" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '1000'">selected="selected"</if>>1000</option>
+										<option value="5000" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '5000'">selected="selected"</if>>5000</option>
+                                      </select></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="submit" class="buttons" value="  {_view_css}  " style="font-size:15px" /></td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+				</div>
+		    	</form>
+              
+				
+				<form action="{ilpage[template]}" name="ilform" method="post" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="updatecss" />
+				<input type="hidden" name="styleid" value="{styleid}" />
+				<input type="hidden" name="type" value="{type}" />
+				<input type="hidden" name="return" value="{ilpage[template]}" />
+				
+				<div style="padding-bottom:9px">{prevnext}</div>
+				
+				<loop name="cssedit">
+				<div class="block-wrapper22">
+				<div class="block322">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header"><span style="float:right">{_sort}: <input type="text" name="css[{tid}][sort]" value="{sort}" style="background-color:#fff; font-family: verdana; width:50px" class="smaller" /></span>{_css_element}: <input type="text" name="css[{tid}][name]" value="{name}" style="background-color:#fff; font-family: verdana; width:590px" class="smaller" /></div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller"><strong>{description}</strong></div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+                            <tr>
+                            	<td class="alt1" colspan="2"><div><strong>{_product}</strong></div><div style="padding-top:3px">{products_pulldown}</div></td>
+                            </tr>
+							<tr valign="top">
+								<td class="alt1" width="50%">
+								<fieldset title="{_standard_css}">
+									<legend>{_standard_css}</legend>
+									<table cellpadding="0" cellspacing="2" border="0" width="100%">
+									<tr>
+							
+										<td><span class="gray">{_background}</span></td>
+										<td align="right">
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[{tid}][background]" id="color_{count1}" value="{css_background}" onchange="preview_color_swatch({count1})" tabindex="1" size="22" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td>{css_1_div}</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+							
+									<tr>
+							
+										<td><span class="gray">{_font_color}</span></td>
+										<td align="right">
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[{tid}][color]" id="color_{count2}" value="{css_color}" tabindex="1" size="22" onchange="preview_color_swatch({count2})" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td>{css_2_div}</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+							
+									<tr>
+										<td><span class="gray">{_font_style}</span></td>
+										<td align="right"><input type="text" class="input" name="css[{tid}][font][style]" value="{css_font_style}" tabindex="1" size="30" dir="ltr" /></td>
+									</tr>
+								
+									<tr>
+										<td><span class="gray">{_font_size}</span></td>
+										<td align="right"><input type="text" class="input" name="css[{tid}][font][size]" value="{css_font_size}" tabindex="1" size="30" dir="ltr" /></td>
+									</tr>
+								
+									<tr>
+										<td><span class="gray">{_font_family}</span></td>
+										<td align="right"><input type="text" class="input" name="css[{tid}][font][family]" value="{css_font_family}" tabindex="1" size="30" dir="ltr" /></td>
+									</tr>
+								
+									</table>
+								  </fieldset>
+								</td>
+								<td class="alt1" width="50%">
+									<fieldset id="extra_a_1">
+									<legend>{_additional_css}</legend>
+									<div align="center" style="padding: 2px">
+									<nophraseparse><textarea name="css[{tid}][EXTRA]" rows="7" cols="50" class="input" style="padding: 2px; width: 98%" tabindex="1" dir="ltr">{css_EXTRA}</textarea></nophraseparse>
+									</div>
+									</fieldset>
+							</td>
+							</tr>
+							<tr valign="top">
+								<td class="alt1" style="padding: 0px" colspan="2">
+									<table cellpadding="4" cellspacing="0" border="0" width="100%">
+									<tr>
+									
+									<td>
+									<fieldset>
+									<legend>{_normal_links_css}</legend>
+									<table cellpadding="0" cellspacing="2" border="0" width="100%">
+									<col width="100%"></col>
+									
+									<tr>
+							
+										<td><span class="gray">{_background}</span></td>
+									  <td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[{tid}][LINK_NORMAL][background]" id="color_{count3}" value="{css_LINK_NORMAL_background}" tabindex="1" size="8" onchange="preview_color_swatch({count3})" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right">{css_3_div}</td>
+											</tr>
+											</table>
+									  </td>
+									</tr>
+							
+									
+									<tr>
+							
+										<td><span class="gray">{_font_color}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[{tid}][LINK_NORMAL][color]" id="color_{count4}" value="{css_LINK_NORMAL_color}" tabindex="1" size="8" onchange="preview_color_swatch({count4})" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right">{css_4_div}</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+							
+									
+									<tr>
+										<td><span class="gray">{_text_decoration}</span></td>
+										<td align="right"><input type="text" class="input" name="css[{tid}][LINK_NORMAL][text-decoration]" value="{css_LINK_NORMAL_textdecoration}" tabindex="1" size="16" dir="ltr" /></td>
+									</tr>
+								
+									</table>
+									</fieldset>
+									</td>
+								
+									
+									<td>
+									<fieldset>
+									<legend>{_visited_links_css}</legend>
+									<table cellpadding="0" cellspacing="2" border="0" width="100%">
+									<col width="100%"></col>
+									
+									<tr>
+							
+										<td><span class="gray">{_background}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[{tid}][LINK_VISITED][background]" id="color_{count5}" value="{css_LINK_VISITED_background}" tabindex="1" size="8" onchange="preview_color_swatch({count5})" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right">{css_5_div}</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+							
+									
+									<tr>
+							
+										<td><span class="gray">{_font_color}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[{tid}][LINK_VISITED][color]" id="color_{count6}" value="{css_LINK_VISITED_color}" tabindex="1" size="8" onchange="preview_color_swatch({count6})" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right">{css_6_div}</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+							
+									
+									<tr>
+										<td><span class="gray">{_text_decoration}</span></td>
+										<td align="right"><input type="text" class="input" name="css[{tid}][LINK_VISITED][text-decoration]" value="{css_LINK_VISITED_textdecoration}" tabindex="1" size="16" dir="ltr" /></td>
+									</tr>
+								
+									</table>
+									</fieldset>
+									</td>
+								
+									
+									<td>
+									<fieldset>
+									<legend>{_hover_links_css}</legend>
+									<table cellpadding="0" cellspacing="2" border="0" width="100%">
+									<col width="100%"></col>
+									
+									<tr>
+							
+										<td><span class="gray">{_background}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[{tid}][LINK_HOVER][background]" id="color_{count7}" value="{css_LINK_HOVER_background}" tabindex="1" size="8" onchange="preview_color_swatch({count7})" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right">{css_7_div}</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+							
+									
+									<tr>
+							
+										<td><span class="gray">{_font_color}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[{tid}][LINK_HOVER][color]" id="color_{count8}" value="{css_LINK_HOVER_color}" tabindex="1" size="8" onchange="preview_color_swatch({count8})" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right">{css_8_div}</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+							
+									
+									<tr>
+										<td><span class="gray">{_text_decoration}</span></td>
+										<td align="right"><input type="text" class="input" name="css[{tid}][LINK_HOVER][text-decoration]" value="{css_LINK_HOVER_textdecoration}" tabindex="1" size="16" dir="ltr" /></td>
+									</tr>
+								
+									</table>
+									</fieldset>
+									</td>
+								
+									</tr>
+									</table>
+							  </td>
+							</tr>
+							<tr class="alt2">
+								<td colspan="2"><div><label for="{type}_{name}"><input type="checkbox" id="{type}_{name}" name="revert[{tid}]" value="1" tabindex="1" /> {_to_revert_this_css_element_to_its_original_settings}</label></div></td>
+							</tr>
+							<tr class="alt2">
+								<td colspan="2"><div><label for="{type}_{name}_delete"><input type="checkbox" id="{type}_{name}_delete" name="delete[{tid}]" value="1" tabindex="1" /> {_to_physically_remove_this_css_element_please_tick_the_checkbox}</label></div></td>
+							</tr>
+							<tr valign="top">
+								<td colspan="2"><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" value="  {_save}  " style="font-size:15px" tabindex="1" disabled="disabled" /><else /><input type="submit" class="buttons" value="  {_save}  " style="font-size:15px" tabindex="1" /></if></td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+			</loop name="cssedit">
+			
+			<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'editcss'">
+			<div>
+			<input type="reset" class="buttons" value="  {_reset} " accesskey="r" tabindex="1" onclick="this.form.reset();" style="font-size:15px" />
+			<if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" value="  {_save} " accesskey="s" tabindex="1" style="font-size:15px" disabled="disabled" /><else /><input type="submit" class="buttons" value="  {_save} " accesskey="s" tabindex="1" style="font-size:15px" /></if>
+			</div>
+			</if>
+			</form>
+            
+            <div>{prevnext}</div>
+            
+			</div>
+
+			<div class="tab-page">
+			
+				<h2 class="tab">{_add_css}</h2>
+				
+				<form action="{ilpage[template]}" name="ilform" method="post" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="addcss" />
+				<input type="hidden" name="return" value="{ilpage[template]}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_add_new_css_element}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_a_new_css_element_to_the_selected_css_style_group}</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+							<tr class="alt1">
+								<td colspan="2"><div><strong>{_select_the_style_to_add_this_new_element}</strong></div><div style="padding-top:3px">{styles_pulldown}</div></td>
+							</tr>
+                            <tr class="alt1"> 
+								<td colspan="2"><div><strong>{_product}</strong></div><div style="padding-top:3px">{products_pulldown}</div></td>
+						  	</tr>
+                            <tr class="alt1">
+								<td colspan="2">
+                                	<div><strong>{_sort} / {_display_order}</strong></div>
+                                    
+                                    <div style="padding-top:3px"><input type="text" name="sort" value="100" style="background-color:#fff; font-family: verdana; font-size: 13px; width:50px" /></div></td>
+							</tr>
+							<tr class="alt1">
+								<td colspan="2">
+                                	<div><strong>{_css_group_to_assign_this_new_element}</strong></div>
+                                    
+                                    <div style="padding-top:3px">
+                                    <select name="action" style="font-family: verdana">
+									<optgroup label="{_manage_font_sizes_colors_etc}"> 
+									<option value="cssclient" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'cssclient'">selected="selected"</if>>{_client_css}</option>
+									<option value="cssadmin" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'cssadmin'">selected="selected"</if>>{_admin_css}</option>
+									<option value="csswysiwyg" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'csswysiwyg'">selected="selected"</if>>{_wysiwyg_css}</option>
+									<option value="csstabs" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'csstabs'">selected="selected"</if>>{_tab_pane_css}</option>
+									<option value="csscommon" <if condition="isset($ilance->GPC['action']) AND $ilance->GPC['action'] == 'csscommon'">selected="selected"</if>>{_common_css}</option>
+									</optgroup>
+									</select></div></td>
+							</tr>
+							<tr class="alt1">
+								<td><div><strong>{_css_class_name}</strong></div><div style="padding-top:3px"><select name="classorid" style="font-family: verdana"><option value=""></option><option value="." selected="selected">.</option><option value="#">#</option><option value="*">*</option><option value="@">@</option></select>&nbsp;<input type="text" name="name" class="input" /></div></td>
+								<td><div><strong>{_css_class_name_description}</strong> ({_describe_what_this_does})</div>
+                                <div style="padding-top:3px"><input type="text" name="description" class="input" size="45" /></div></td>
+							</tr>
+							<tr valign="top">
+								<td class="alt1" width="50%">
+								<fieldset>
+									<legend>{_standard_css}</legend>
+									<table cellpadding="0" cellspacing="2" border="0" width="100%">
+									<tr>
+							
+										<td><span class="gray">{_background}</span></td>
+										<td align="right">
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[background]" id="color_1" value="" onchange="preview_color_swatch(1)" tabindex="1" size="22" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td><div title="{_click_to_change_color}" id="preview_1" class="sample_swatch" style="background:#FFFFFF;" onclick="showColorGrid3('color_1','preview_1')"></div></td>
+											</tr>
+											</table></td>
+									</tr>
+							
+									<tr>
+							
+										<td><span class="gray">{_font_color}</span></td>
+										<td align="right">
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[color]" id="color_2" value="" tabindex="1" size="22" onchange="preview_color_swatch(2)" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td><div title="{_click_to_change_color}" id="preview_2" class="sample_swatch" style="background:#FFFFFF;" onclick="showColorGrid3('color_2','preview_2')"></div></td>
+											</tr>
+											</table></td>
+									</tr>
+							
+									<tr>
+										<td><span class="gray">{_font_style}</span></td>
+										<td align="right"><input type="text" class="input" name="css[font][style]" value="" tabindex="1" size="30" dir="ltr" /></td>
+									</tr>
+								
+									<tr>
+										<td><span class="gray">{_font_size}</span></td>
+										<td align="right"><input type="text" class="input" name="css[font][size]" value="" tabindex="1" size="30" dir="ltr" /></td>
+									</tr>
+								
+									<tr>
+										<td><span class="gray">{_font_family}</span></td>
+										<td align="right"><input type="text" class="input" name="css[font][family]" value="" tabindex="1" size="30" dir="ltr" /></td>
+									</tr>
+									</table>
+								  </fieldset></td>
+								<td class="alt1" width="50%">
+									<fieldset id="extra_a_1">
+									<legend>{_additional_css}</legend>
+									<div align="center" style="padding: 2px">
+									<nophraseparse><textarea name="css[EXTRA]" rows="7" cols="50" class="input" style="padding: 2px; width: 98%" tabindex="1" dir="ltr"></textarea></nophraseparse>
+									</div>
+									</fieldset></td>
+							</tr>
+							<tr valign="top">
+								<td class="alt1" style="padding: 0px" colspan="2">
+									<table cellpadding="4" cellspacing="0" border="0" width="100%">
+									<tr>
+									
+									<td>
+									<fieldset>
+									<legend>{_normal_links_css}</legend>
+									<table cellpadding="0" cellspacing="2" border="0" width="100%">
+									<col width="100%"></col>
+									
+									<tr>
+							
+										<td><span class="gray">{_background}</span></td>
+									  <td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[LINK_NORMAL][background]" id="color_3" value="" tabindex="1" size="8" onchange="preview_color_swatch(3)" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right"><div title="{_click_to_change_color}" id="preview_3" class="sample_swatch" style="background:#FFFFFF;" onclick="showColorGrid3('color_3','preview_3')"></td>
+											</tr>
+											</table></td>
+									</tr>
+							
+									
+									<tr>
+							
+										<td><span class="gray">{_font_color}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[LINK_NORMAL][color]" id="color_4" value="" tabindex="1" size="8" onchange="preview_color_swatch(4)" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right"><div title="{_click_to_change_color}" id="preview_4" class="sample_swatch" style="background:#FFFFFF;" onclick="showColorGrid3('color_4','preview_4')"></td>
+											</tr>
+											</table></td>
+									</tr>
+							
+									
+									<tr>
+										<td><span class="gray">{_text_decoration}</span></td>
+										<td align="right"><input type="text" class="input" name="css[LINK_NORMAL][text-decoration]" value="" tabindex="1" size="16" dir="ltr" /></td>
+									</tr>
+									</table>
+									</fieldset></td>
+								
+									
+									<td>
+									<fieldset>
+									<legend>{_visited_links_css}</legend>
+									<table cellpadding="0" cellspacing="2" border="0" width="100%">
+									<col width="100%"></col>
+									
+									<tr>
+							
+										<td><span class="gray">{_background}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[LINK_VISITED][background]" id="color_5" value="" tabindex="1" size="8" onchange="preview_color_swatch(5)" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right"><div title="{_click_to_change_color}" id="preview_5" class="sample_swatch" style="background:#FFFFFF;" onclick="showColorGrid3('color_5','preview_5')"></td>
+											</tr>
+											</table></td>
+									</tr>
+							
+									
+									<tr>
+							
+										<td><span class="gray">{_font_color}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[LINK_VISITED][color]" id="color_6" value="" tabindex="1" size="8" onchange="preview_color_swatch(6)" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right"><div title="{_click_to_change_color}" id="preview_6" class="sample_swatch" style="background:#FFFFFF;" onclick="showColorGrid3('color_6','preview_6')"></td>
+											</tr>
+											</table></td>
+									</tr>
+							
+									
+									<tr>
+										<td><span class="gray">{_text_decoration}</span></td>
+										<td align="right"><input type="text" class="input" name="css[LINK_VISITED][text-decoration]" value="" tabindex="1" size="16" dir="ltr" /></td>
+									</tr>
+									</table>
+									</fieldset></td>
+								
+									
+									<td>
+									<fieldset>
+									<legend>{_hover_links_css}</legend>
+									<table cellpadding="0" cellspacing="2" border="0" width="100%">
+									<col width="100%"></col>
+									
+									<tr>
+							
+										<td><span class="gray">{_background}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[LINK_HOVER][background]" id="color_7" value="" tabindex="1" size="8" onchange="preview_color_swatch(7)" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right"><div title="{_click_to_change_color}" id="preview_7" class="sample_swatch" style="background:#FFFFFF;" onclick="showColorGrid3('color_7','preview_7')"></td>
+											</tr>
+											</table></td>
+									</tr>
+							
+									
+									<tr>
+							
+										<td><span class="gray">{_font_color}</span></td>
+										<td>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td><nophraseparse><input type="text" class="input" name="css[LINK_HOVER][color]" id="color_8" value="" tabindex="1" size="8" onchange="preview_color_swatch(8)" dir="ltr" /></nophraseparse>&nbsp;</td>
+												<td align="right"><div title="{_click_to_change_color}" id="preview_8" class="sample_swatch" style="background:#FFFFFF;" onclick="showColorGrid3('color_8','preview_8')"></td>
+											</tr>
+											</table></td>
+									</tr>
+									<tr>
+										<td><span class="gray">{_text_decoration}</span></td>
+										<td align="right"><input type="text" class="input" name="css[LINK_HOVER][text-decoration]" value="" tabindex="1" size="16" dir="ltr" /></td>
+									</tr>
+									</table>
+									</fieldset></td>
+									</tr>
+									</table></td>
+							</tr>
+							<tr valign="top">
+								<td colspan="2"><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" value="  {_save}  " style="font-size:15px" tabindex="1" disabled="disabled" /><else /><input type="submit" class="buttons" value="  {_save}  " style="font-size:15px" tabindex="1" /></if></td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+			</form>
+				
+			</div>
+
+			<div class="tab-page">
+			
+				<h2 class="tab">{_variables}</h2>
+				
+				<if condition="empty($ilance->GPC['cmd']) OR isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] != 'templatevars'">
+				<form name="createtemplatevar" method="post" action="{ilpage[template]}" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="createtemplatevar" />
+				<input type="hidden" name="gid" value="-1" />
+				<input type="hidden" name="type" value="variable" />				
+				<input type="hidden" name="author" value="{user[username]}" />				
+				<input type="hidden" name="version" value="1.0" />				
+				<input type="hidden" name="return" value="{ilpage[template]}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_create_new_template_variable}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_template_variables_are_accessable_in_every_available_template}</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0">
+							<tr class="alt1">
+								<td width="31%" valign="top">{_template_variable}<div class="smaller gray">{_example}: my_variable</div></td>
+								<td width="69%"><input type="text" name="name" id="name" size="70" /><div class="smaller gray">{_replace_all_spaces_with_underscore_like_some_variable}</div></td>
+							</tr>
+							<tr class="alt1">
+								<td width="31%">{_description}<div class="smaller gray">{_describe_what_this_variable_does}</div></td>
+							  <td width="69%"><input type="text" name="description" id="description" size="70" /></td>
+							</tr>
+							<tr class="alt1">
+								<td valign="top">{_template_data}<div class="smaller gray">{_content_that_will_be_displayed}</div></td>
+								<td>
+									<textarea name="content" style="font-family: verdana; width: 450px; height: 80px;"></textarea></td>
+							</tr>
+							<tr>
+								<td colspan="2"><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" value=" {_save} " class="buttons" style="font-size:15px" disabled="disabled" /><else /><input type="submit" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" value=" {_save} " class="buttons" style="font-size:15px" /></if></td>
+							  </tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+			</form>
+			</if>
+				
+				<form action="{ilpage[template]}" name="ilform" method="get" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="templatevars" /> 
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_view_and_manage_existing_template_variables}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_select_a_style_below_and_click_continue_to_manage_existing_template_variables_within_the_marketplace}</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+							<tr class="alt1">
+								<td align="left">					
+									{styles_pulldown}
+									<select name="action" style="font-family: verdana">
+									<optgroup label="{_manage_doctype_fonts_colors_etc}"> 
+									<option value="edittemplates">{_edit_template_variables}</option>
+									</optgroup>
+									</select>
+									
+								</td>
+							</tr>
+							<tr>
+								<td align="left">					
+									<input type="submit" class="buttons" value=" {_view} " style="font-size:15px" />
+								</td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+			</form>
+				
+				<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'templatevars'">
+				<form action="{ilpage[template]}" name="ilform_return" method="post" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="_update-template-variables" />
+				<input type="hidden" name="return" value="{after_update_return_to_page}" />
+				<input type="hidden" name="styleid" value="{styleid}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_viewing_template_variables_for_style_id} <span class="blue">#{styleid}</span></div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_are_currently_viewing_all_template_variables_available_to_the_selected_style}</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr class="alt2">
+								<td>{_template_variable}</td>
+								<td>{_value}</td>
+								<td align="center">{_remove}</td>
+							</tr>
+							<loop name="templatevariables"> 
+							<tr class="alt1">
+								<td width="100%"><span style="float:right">{htmlicon} {phpicon}</span>{description}<div class="smaller" style="color:#aaa">{_variable}: <strong>{</strong>{name}<strong>}</strong></div></td>
+								<td><nophraseparse><input type="text" name="templatevariable[{tid}]" value="{content}" class="input" style="width:350px" /></nophraseparse></td>
+								<td align="center">{remove}</td>
+							</tr>
+							</loop name="templatevariables"> 
+							<tr>
+								<td colspan="3">
+							
+								<if condition="$show['no_templatevariables'] == false"><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" name="update" value=" {_save} " class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" style="font-size:15px" disabled="disabled" /><else /><input type="submit" name="update" value=" {_save} " class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" style="font-size:15px" /></if> &nbsp;&nbsp;&nbsp;<span class="blue"><a href="{ilpage[template]}">{_cancel}</a></span></if></td>
+						  </tr>
+						</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+            	
+				</form>
+				</if>
+				
+			</div>
+			
+			<div class="tab-page">
+			
+				
+              	<h2 class="tab">{_manage}</h2>
+				
+				<script language="javascript">
+				<!--
+				function validate_all()
+				{
+						if (fetch_js_object('styletitle').value == '')
+						{
+								alert('You did not specify a new style title to rename or be created from. Please try again.');
+								return(false);        
+						}
+						return(true);
+				}
+				//-->
+				</script>
+				
+				<form action="{ilpage[template]}" name="ilform" method="get" accept-charset="UTF-8" style="margin: 0px;" onsubmit="return validate_all();">
+				<input type="hidden" name="cmd" value="styles" /> 
+				<input type="hidden" name="return" value="{ilpage[template]}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_create_or_rename_styles}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_please_enter_a_new_style_name_and_select_the_base_style_to_create_your_new_template_styles_from}</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+							<tr class="alt1">
+								<td>
+								
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td><strong>{_new_style_name}</strong></td>
+										</tr>
+										<tr>
+											<td>
+													<input type="text" name="name" id="styletitle" size="35" />&nbsp;{styles_pulldown} 
+													&nbsp;<select name="action" style="font-family: verdana">
+													<option value="renamestyle">{_rename_selected_style}</option>
+													<option value="newstyle">{_create_new_style_from_selected_style}</option>
+													</select> 
+											</td>
+										</tr>
+										</table>
+								
+								</td>
+							</tr>
+							<tr>
+								<td><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" value="{_continue}" style="font-size:15px" disabled="disabled" /><else /><input type="submit" class="buttons" value="{_continue}" style="font-size:15px" /></if></td>
+							</tr>	
+						
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+			</form>
+
+              <form action="{ilpage[template]}" name="ilform" method="get" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="styles" /> 
+				<input type="hidden" name="return" value="{ilpage[template]}" /> 
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_remove_or_make_selected_styles_default}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_the_default_style_is_currently}: <strong>{defaultstyle}</strong></div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+							<tr class="alt1">
+								<td>
+								
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td>
+													{styles_pulldown}&nbsp;
+													<select name="action" style="font-family: verdana">
+													<option value="defaultstyle">{_make_selected_style_default}</option>
+													<option value="removestyle">{_remove_selected_style}</option>
+													</select> 
+											</td>
+										</tr>
+ 										</table>
+								
+								</td>
+							</tr>
+							<tr>
+								<td><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" disabled="disabled" /><else /><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></if></td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+   		    </form>
+				
+		  </div>
+			
+			<div class="tab-page">
+			
+				
+              <h2 class="tab">{_import}</h2>
+				
+              <form action="{ilpage[template]}" name="ilform" method="post" accept-charset="UTF-8" enctype="multipart/form-data" style="margin: 0px;">
+			  <input type="hidden" name="cmd" value="uploadcss" />
+			  <input type="hidden" name="action" value="importstyle" />			 
+			  <input type="hidden" name="return" value="{ilpage[template]}" />
+			  <div class="block-wrapper">
+			<div class="block3">
+			
+					<div class="block3-top">
+							<div class="block3-right">
+									<div class="block3-left"></div>
+							</div>
+					</div>
+					
+					<div class="block3-header">{_import} {_style}</div>
+					<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_please_select_your_desired_style_and_select_an_action_using_the_management_pulldown}</div></div>
+					<div class="block3-content" style="padding:0px">
+						
+						<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+						<tr class="alt1"> 
+						  <td align="left"><input type="file" name="xml_file" />
+						  <div style="padding-top:5px" class="gray">{_if_the_imported_xml_package_has_the_same_name_as_a_style_already}</div></td>
+						</tr>
+						  <tr class="alt2"> 
+						  <td align="left"><label>
+							  <input type="checkbox" name="makedefault" value="1" />
+							  {_yes_this_uploaded_style_will_be_the_default_marketplace_style}</label>
+							  </td>
+						</tr>
+						  <tr>
+						  	<td><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" value=" {_import} " style="font-size:15px" disabled="disabled" /><else /><input type="submit" class="buttons" value=" {_import} " style="font-size:15px" /></if>
+							</td>
+						  </tr>
+						</table>
+						
+					</div>
+					
+					<div class="block3-footer">
+							<div class="block3-right">
+									<div class="block3-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+  	    </form>
+				
+          
+				
+			</div>
+			
+			<div class="tab-page">
+			
+				
+              <h2 class="tab">{_export}</h2>
+				
+              <form action="{ilpage[template]}" name="ilform" method="get" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="downloadcss" />
+				<input type="hidden" name="action" value="exportstyle" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_export}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_please_select_your_desired_style_and_select_an_action_using_the_management_pulldown}</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+							<tr class="alt1">
+                            	<td width="17%" nowrap="nowrap"><span class="gray">{_style}</span></td>
+								<td>{styles_pulldown}</td>
+							</tr>
+                            <tr class="alt1"> 
+								<td width="17%" nowrap="nowrap"><span class="gray">{_product}</span></td>
+								<td width="83%">{products_pulldown}</td>
+						  	</tr>
+							<tr>
+								<td colspan="2"><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" value=" {_export} " style="font-size:15px" disabled="disabled" /><else /><input type="submit" class="buttons" value=" {_export} " style="font-size:15px" /></if></td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+		    </form>
+				
+			</div>
+			
+			<!-- client nav tab page -->
+			<div class="tab-page">
+				
+				<h2 class="tab">{_settings}</h2>
+			
+				{global_templatesettings}		
+	
+			</div>
+			<!-- / client nav tab page -->
+</div>
+	
+<!-- / templates -->

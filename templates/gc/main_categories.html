@@ -1,0 +1,274 @@
+<script src="jcarousellite_1.0.1c4.js" type="text/javascript"></script>
+<div class="bigtabs" style="padding-bottom:10px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class="on"><a href="javascript:void(0)">{_categories}</a></li>
+	<li title=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{seolistings}">{_listings}</a><else /><a href="{ilpage[main]}?cmd=listings">{_listings}</a></if></li>
+	<if condition="$ilconfig['globalauctionsettings_productauctionsenabled']"><li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}Denominations">{_product}</a><else /><a href="{ilpage[merch]}?cmd=listings">{_product}</a></if></li></if>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{seoservicecategories}">{_service}</a><else /><a href="{ilpage[rfp]}?cmd=listings">{_service}</a></if></li>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><li title="" class="highlight"><a href="{ilpage[search]}?mode=experts">{_experts}</a></li></if>
+	</if>
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+	<td valign="top" width="50%">
+	
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">     
+		<tr> 
+			<td>
+			
+				<div class="block-wrapper">
+
+					<div class="block4">
+					
+							<div class="block4-top">
+									<div class="block4-right">
+											<div class="block4-left"></div>
+									</div>
+							</div>
+							
+							<div class="block4-header"><!--<span style="float:right" class="smaller gray">{_view_popular_categories_calculated_by_traffic_to_listings}</span>-->{_high_traffic_categories}</div>
+							
+							<div class="block4-content" style="padding:0px">
+								
+								<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+								<tr class="alt2">
+									<td width="50%">{_by_traffic}</td>
+									<td width="50%">{_by_listings}</td>					
+								</tr>			
+								<tr>
+									<td valign="top">{popularcategories}</td>
+									<td valign="top" class="alt1_left">{popularlistingcategories}</td>
+								</tr>
+								</table>
+								
+								
+								
+							</div>
+							
+							<div class="block4-footer">
+									<div class="block4-right">
+											<div class="block4-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				
+				<if condition="$ilconfig['globalauctionsettings_productauctionsenabled'] AND isset($show['latestproductauctions']) AND $show['latestproductauctions']">
+				<!-- BEGIN latest scrolling items -->
+				<div class="block-wrapper">
+				
+					<div class="block5">
+					
+							<div class="block5-top">
+									<div class="block5-right">
+											<div class="block5-left"></div>
+									</div>
+							</div>
+							
+							<div class="block5-header"><span style="float:right; padding-top:3px" class="smaller gray"></span>{_recent} {_items}</div>
+							
+							<div class="block5-content" style="height:130px">
+							
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td width="100%" valign="top">
+										<div id="ScrollTicker">
+											<div class="ScrollVertical" style="width:390px; height:120px">
+											<ul id="TickerVertical" style="width:390px;">
+											<loop name="latestproductauctions">
+											<li>
+											<div style="padding-bottom:5px">
+											
+                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="5">
+                                            <tr>
+                                                <td align="left" valign="top" width="100%"><div><span class="blue">{title}</span><div class="smaller black" style="padding-top:3px; padding-bottom:6px">{description}</div></div>
+                                                <div style="width:100%; padding-top:5px"><span class="black"><strong>{price}</strong> &nbsp;
+												
+												<if condition="isset($show['hid']) AND $show['hid'] == 'hidbid'">
+												<else /><span class="smaller gray">({bids} {_bids_lower})</span></if></span></div>
+                                                            <div style="width:100%; padding-top:3px" class="black"><strong>{buynowtxt} {buynow}</strong></div>
+                                                            <div style="width:100%; padding-top:10px"><span style="font-size:15px" class="black"><strong>{timeleft}</strong></span></div></td>
+                                                <td align="center" valign="top" width="1%"><div style="width:100%; height:100px" align="center">{photo}</div></td>
+                                            </tr>			
+                                            </table>
+                                            
+											</div>
+											<div style="padding-bottom:20px;"></div>
+											<div style="clear:both;"></div>
+											</li>
+											</loop name="latestproductauctions">
+											</ul>
+											</div>
+										</div>
+										
+									</td>
+									 
+								</tr>
+								</table>
+							</div>
+				
+								
+							
+							<div class="block5-footer">
+									<div class="block5-right">
+											<div class="block5-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				
+				
+<script type="text/javascript">
+$(function() {
+	$(".ScrollVertical").jCarouselLite({
+		vertical: true,
+		hoverPause:true,
+		visible: 1,
+		auto:1000,
+		speed:5000
+	});
+});
+</script><!-- END latest scrolling items --></if>
+
+
+			</td>
+		</tr>
+		</table>
+</td>
+<td>&nbsp;&nbsp;&nbsp;</td>
+<td width="50%" valign="top">
+		
+<if condition="$ilconfig['showfeaturedlistings'] AND ($show['featuredserviceauctions'] OR $show['featuredproductauctions'])">		
+<!-- BEGIN featured blocks -->
+<if condition="$ilconfig['showfeaturedlistings']">
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled'] AND $show['featuredserviceauctions']">
+		<!-- BEGIN featured services -->
+		<div class="block-wrapper">
+
+			<div class="block5">
+			
+					<div class="block5-top">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+					<div class="block5-header">{_featured} {_service_auctions}</div>
+					<div class="block5-content" style="padding:0px">
+						
+						<table border="0" cellpadding="6" cellspacing="{table_cellspacing}" width="100%">
+                        <loop name="featuredserviceauctions">
+                        {separator_begin}
+                        <td width="{width}%" valign="top">
+                            <div style="padding:4px">
+                            	<div class="blue">{title}</div><div class="smaller gray" style="padding-top:3px; padding-bottom:6px">{_budget}: {budget}</div>
+                            	<div style="padding-top:10px" class="black"><strong>{_average_bid}: {average}</strong> &nbsp;<span class="smaller gray">({bids} {_bids_lower})</span></div>
+                            	<div style="width:100%; padding-top:10px"><span style="font-size:15px" class="black"><strong>{timeleft}</strong></span></div>
+                            </div>
+                        </td>
+                        {separator}
+                        {separator_end}
+                        </loop name="featuredserviceauctions">
+                    	</table>
+                        
+					</div>
+					
+					<div class="block5-footer">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div><!-- END featured services --></if>
+
+	<if condition="$ilconfig['globalauctionsettings_productauctionsenabled'] AND isset($show['featuredproductauctions']) AND $show['featuredproductauctions']">
+		<!-- BEGIN featured products -->
+		<div class="block-wrapper">
+
+			<div class="block5">
+			
+					<div class="block5-top">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+					<div class="block5-header">{_featured} {_items}</div>
+					<div class="block5-content" style="padding:0px">
+						
+						<table class="" border="0" cellpadding="6" cellspacing="{table_cellspacing}" width="100%">
+                        <loop name="featuredproductauctions">
+                        {separator_begin}
+                        <td width="{width}%" valign="top">
+                            <div style="padding:4px">
+                                <table border="0" cellspacing="0" cellpadding="0"><tr><td align="left"><div style="width:100%; height:100px" align="center">{photo}</div></td></tr></table>
+                                <div><span class="blue">{title}</span><div class="smaller black" style="padding-top:3px; padding-bottom:6px">{description}</div></div>
+                                <div style="width:100%; padding-top:15px"><span class="black"><strong>{price}</strong> &nbsp;<if condition="isset($show['hid']) AND $show['hid'] == 'hidbid'">
+												<else /><span class="smaller gray">({bids} {_bids_lower})</span></if></span></div>
+                                <div style="width:100%; padding-top:3px" class="black"><strong>{buynowtxt} {buynow}</strong></div>
+                                <div style="width:100%; padding-top:10px"><span style="font-size:15px" class="black"><strong>{timeleft}</strong></span></div>
+                            </div>			
+                        </td>
+                        {separator}
+                        {separator_end}
+                        </loop name="featuredproductauctions">	
+                    	</table>
+                        
+					</div>
+					
+					<div class="block5-footer">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div><!-- END featured products --></if>
+</if>
+</if>
+
+<!-- START other ways to search --><div class="block-wrapper">
+<div class="block5">
+
+        <div class="block5-top">
+                <div class="block5-right">
+                        <div class="block5-left"></div>
+                </div>
+        </div>
+        
+        <div class="block5-header">{_other_ways_to_search}</div>
+        
+        <div class="block5-content" style="padding:14px">
+                
+                {apihook[main_listings_otherways_start]}
+                
+                <div style="padding-bottom:4px"><span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}search" rel="nofollow">{_advanced_search}</a><else /><a href="{http_server}{ilpage[search]}" rel="nofollow">{_advanced_search}</a></if></span></div>
+                <div style="padding-bottom:4px"><span class="blue"><a href="{ilpage[preferences]}?cmd=favorites" rel="nofollow">{_favorite_searches}</a></span></div>
+                <div style="padding-bottom:4px"><span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}watchlist" rel="nofollow">{_watchlist_manager}</a><else /><a href="{http_server}{ilpage[watchlist]}" rel="nofollow">{_watchlist_manager}</a></if></span></div>
+                
+                {apihook[main_listings_otherways_end]}
+                
+                
+                
+        </div>
+        
+        <div class="block5-footer">
+                <div class="block5-right">
+                        <div class="block5-left"></div>
+                </div>
+        </div>
+    </div>
+</div><!-- END other ways to search -->
+</td>
+</tr>
+</table>

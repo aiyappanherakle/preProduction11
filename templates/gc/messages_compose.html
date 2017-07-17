@@ -1,0 +1,129 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+    
+	    {js_start}
+        
+        <form action="{ilpage[messages]}" method="post" name="ilform" accept-charset="UTF-8" onsubmit="return validate_all();">
+        <input type="hidden" name="cmd" value="compose" />
+        <input type="hidden" name="from_id" value="{user[userid]}" />
+        <input type="hidden" name="project_id" value="{project_id}" />
+        <if condition="$show['preview'] == 1">
+        <div class="block-wrapper">
+            <div class="block2">
+            
+                    <div class="block2-top">
+                            <div class="block2-right">
+                                    <div class="block2-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block2-header">{_preview}</div>
+                    <if condition="$show['subject'] == 1"><div class="block2-content-blue"><strong>{subjectpv}</strong></div></if>
+                    <div class="block2-content" style="padding:9px">
+                    
+                    {descriptionpv}
+                    
+                    </div>
+                    
+                    <div class="block2-footer">
+                            <div class="block2-right">
+                                    <div class="block2-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        </if>
+        
+        <if condition="$show['errorusername'] == 1">
+        <div class="grayborder" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_red_1x1000.gif) repeat-x;">
+            <div class="n">
+                <div class="e">
+                    <div class="w"></div>
+                </div>
+            </div>
+            
+            <div style="padding:6px"><span style="float:left; padding-right:10px; padding-left:10px"><img src="{template_relativeimagepath}{template_imagesfolder}infowarning3.gif" border="0" alt="" id="error" /></span><strong>{_the_username_you_supplied_does_not_exist_you_can_not_send_a_message_to_an_unknown_user_please_try_again}</strong></div>		
+            
+            <div class="s">
+                <div class="e">
+                    <div class="w"></div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-bottom:20px"></div>
+        </if>
+        
+        <if condition="$show['errorprojectid'] == 1">
+        <div class="grayborder" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_red_1x1000.gif) repeat-x;">
+            <div class="n">
+                <div class="e">
+                    <div class="w"></div>
+                </div>
+            </div>
+            
+            <div style="padding:6px"><span style="float:left; padding-right:10px; padding-left:10px"><img src="{template_relativeimagepath}{template_imagesfolder}infowarning3.gif" border="0" alt="" id="error" /></span><strong>{_the_auction_id_entered_is_no_longer_valid_please}</strong></div>		
+            
+            <div class="s">
+                <div class="e">
+                    <div class="w"></div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-bottom:20px"></div>
+        </if>
+        
+        <div class="block-wrapper">
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">{_compose_a_private_message}</div>
+                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_compose_your_message_using_the_form_below_when_you_are_done_click_compose}</div></div>
+                    <div class="block-content" style="padding:0px">
+                        
+                        <div>
+                                <table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">
+                                <tr class="alt1">
+                                    <td width="10%" nowrap="nowrap">{_username}</td>
+                                    <td width="90%"><input type="text" class="input" name="username" id="username" size="40" maxlength="30" value="{username}" tabindex="1" /></td>
+                                </tr>
+                                <tr class="alt1">
+                                    <td nowrap="nowrap">{_subject}</td>
+                                    <td><input type="text" class="input" name="subject" size="75" maxlength="85" value="{subject}" tabindex="1" /></td>
+                                </tr>
+                                <tr class="alt1">
+                                    <td nowrap="nowrap" valign="top">{_auction_id}</td>
+                                    <td valign="top"><input type="text" class="input" name="project_id" size="40" maxlength="85" value="{project_id}" tabindex="1" /><div class="smaller blue" style="padding-top:3px">{_if_this_pmb_will_be_associated_with_an_existing_auction_please_enter_the_auction_id}</div></td>
+                                </tr>
+                                <tr class="alt1">
+                                    <td colspan="2" valign="top">{wysiwyg_area}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" valign="top"><input type="submit" name="preview" value="{_preview}" style="font-size:15px" class="buttons" /> <input type="submit" name="submit" value="{_compose}" style="font-size:15px" class="buttons" /></td>
+                                </tr>
+                                </table>
+                                </div>
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        </form>
+        
+	</td>
+</tr>
+</table>

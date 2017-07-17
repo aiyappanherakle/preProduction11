@@ -1,0 +1,68 @@
+<div id="v3body4">
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="buyers.php"><span>{_buyers}</span></a> 
+		<a href="ar_report.php" class="sel"><span>A/R Report</span></a>
+	</div>
+</div>
+<!-- begin content -->
+<div id="content">
+<div class="header">A/R REPORT</div>
+<br />
+
+<div class="block-wrapper" style="margin-top:20px;">
+                    <div class="block3">
+
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                            <div class="block3-header">A/R Report Export</div>
+                            <div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Click on the specific button to get the requried A/R Report</div>
+                            </div>
+
+                            <div class="block3-content" style="padding:0px">
+						
+						
+							
+                           	<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                     <tr>
+					<td> Normal A/R report  without Ian as client representative</td>
+					<td><a href="ar.php"><input type="button" value="Click" style="width:100px;"/></a></td>
+					<td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					</tr>
+					<tr>
+					<td> A/R report  with Ian as client representative</td>
+					<td><a href="ian_clientrep_ar.php"><input type="button" value="Click" style="width:100px;"/></a></td>
+					<td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					</tr>
+							</table>
+							
+							</div>
+
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+						<!--	Listing of all invoices tab start-->
+						</div></div>
+<script>
+$(function() {
+$("#paymentdate").datepicker({
+dateFormat: 'yy-mm-dd',
+});
+});
+
+</script>

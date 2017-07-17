@@ -1,0 +1,109 @@
+			
+
+		
+
+		
+<script>
+function watchlist()
+{
+	
+		
+    if(document.getElementById("category").value=="")
+      {
+	    alert("select a user type");
+		return false;
+	  }
+	 else if(document.getElementById("filtervalue").value=="")
+      {
+	    alert("Please Enter Username or Email or Emailid ");
+		return false;
+	  }
+
+}	  
+
+</script>
+<div id="tr"></div>
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class=""><span>{_management}</span></a>
+		<a href="email_generator.php" class=""><span>Email Template</span></a> 
+		<a href="email_template.php" class=""><span>New Template</span></a> 
+		<a href="uhr_template.php" class=""><span>UHR Template</span></a>
+		<a href="email_export.php" class=""><span>Email Export</span></a> 
+		<a href="user_watchlist.php" class="sel"><span>watchlist Export</span></a> 
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">User Watchlist Report</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+									<h2 class="tab">Watchlist </h2>
+						<div class="block-wrapper">
+						<div class="block">		
+								<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+								</div>
+								<div class="block-header">User Id</div>
+								<div class="block-content" style="padding:0px">
+								<form name="ilform" action="user_watchlist.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+						  		<input type="hidden" name="cmd" value="user_watchlist" />
+								<table align="center" border="0" cellspacing="0" cellpadding="9">
+								<tr><td>
+								Select User</td><td>
+								 <select id="category" name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                        <option value="user_id">{_user_id}</option>
+                                        <option value="username">{_username}</option>
+                                        <option value="email">{_email}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" id ="filtervalue" name="filtervalue" size="18"  style="width: 75%;" />
+								</td>
+								<td>
+								<input type="submit" class="buttons" value=" {_go} " style="font-size:15px" onclick="return watchlist();" />
+								</td>
+								</tr>								
+
+								</table>
+								</form>
+									<form method="post" action="5279.php" enctype="multipart/form-data" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="add_sa_ban_banner_upload" />
+			 
+				 <input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /> 
+							  
+							</form>
+								</div>
+							<div class="block-footer">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+									<!--block-content-->
+								</div>					
+							<!--block-->
+							</div>
+							<!--block wrapper-->
+	  </div>
+		<!-- / grading tab page -->
+		
+		</div>
+		
+</div>
+<!-- / tab pane -->

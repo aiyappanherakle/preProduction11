@@ -1,0 +1,34 @@
+<?php 
+require_once('../../functions/config.php');
+$query="SELECT * FROM ilance_ebay_listing_rows where invoice_status='unpaid'";
+	$result=$ilance->db->query($query);
+	if($ilance->db->num_rows($result))
+	{
+		while($line=$ilance->db->fetch_array($result))
+		{
+		
+			$query1="SELECT * FROM " . DB_PREFIX . "invoices WHERE combine_project like '%".$line['invoice_id']."%' and status!='scheduled' ";
+			$result1=$ilance->db->query($query1);
+				if($ilance->db->num_rows($result1))
+				{
+					while($line1=$ilance->db->fetch_array($result1))
+					{
+						$list=explode(',',$line1['combine_project']);
+						if(count($list)==1)
+						{
+							echo "update ilance_invoices set status='scheduled', scheduled_date=createdate where invoiceid='".$line1['invoiceid']."';";
+							echo '<br>';
+							echo "update ilance_invoices set status='completed', scheduled_date=createdate where invoiceid='".$line['invoice_id']."';";
+							echo '<br>';
+						}else
+						{
+							echo '/* invoice '.$line1['invoiceid'].' is combined to some thing else*/<br>';
+						}
+						
+					}
+				}
+
+		}
+
+	}
+?>

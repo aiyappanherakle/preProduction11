@@ -1,0 +1,2364 @@
+	
+
+
+<!-- check all start -->
+
+<script type="text/javascript">
+var checkflag = "false";
+function check(field) {
+  if (checkflag == "false") {
+    for (i = 0; i < field.length; i++) {
+      field[i].checked = true;
+    }
+    checkflag = "true";
+    return "Uncheck All";
+  } else {
+    for (i = 0; i < field.length; i++) {
+      field[i].checked = false;
+    }
+    checkflag = "false";
+    return "Check All";
+  }
+}
+
+</script>
+
+<!-- check all end -->
+
+
+<style type ="text/css">
+#content {
+    font: 9pt arial,helvetica,verdana,sans-serif;
+    margin: auto;
+    max-width: 98%;
+    padding: 30px 1% 15px;
+    text-align: left;
+    width: 1050px;
+}
+</style>
+<script>
+
+ $(function() {
+$( "#datepicker" ).datepicker({
+dateFormat: 'yy-mm-dd' 
+}).val();
+});
+</script>
+<script>
+function user_note_validate()
+{
+
+   if(document.getElementById("note").value=="")
+      {
+	    alert("Please enter note");
+		return false;
+	  }
+
+
+}	  
+function checkupdata(v)
+{
+
+if(v == '')
+{
+alert('Enter Keyword');
+return false;
+}
+if(document.getElementById('titleid').value == '')
+{
+alert('Enter Title');
+return false;
+}
+var c = document.getElementById('titleid').value;
+var uid = document.getElementById('uid').value;
+url = 'users.php?cmd=favorites&subcmd=save&check=do&title='+c+'&fav='+v+'&uid='+uid;
+
+window.location = url;
+
+}
+$(document).ready(function()
+{
+	$('span.serch_s1').click(function()
+	{
+		keyword = $(this).parent().parent().children('td').eq(1).children().children('div').children('strong').eq(0).children('strong').html();
+		ids = $(this).parent().children('span').children('div').eq(0).attr('id');
+		id = ids.split('_');
+		$('input#get_id').val(id[2]);
+		$('input#keyword').val(keyword);
+		$('input#title').val($(this).parent().children('span').children('div').eq(0).html());
+		jQuery('#edit_saved_search').jqm({modal: false}).jqmShow();
+	});
+});
+function prompting()
+{
+var x;
+var r=confirm("Are you sure you want to delete all items from your watchlist? This cannot be undone.");
+if (r==true)
+  {
+ return true;
+  }
+else
+  {
+ return false
+  }
+}
+</script>
+
+<script type="text/javascript">
+<!--
+function checkform(formobj)
+{
+	if(document.getElementById("shipper_id").value == '-1')
+	{
+	   alert("Please select a shipping option before continuing.");
+	   return false;
+	 } 
+	return true;
+}
+//-->
+</script>
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class="sel"><span>{_management}</span></a>
+		<a href="email_generator.php" class=""><span>Email Template</span></a> 
+		<a href="email_template.php" class=""><span>New Template</span></a> 
+		<a href="uhr_template.php" class=""><span>UHR Template</span></a>
+		<a href="email_export.php" class=""><span>Email Export</span></a> 
+		<a href="saved_search.php" class=""><span>Search Options</span></a>
+		<a href="user_watchlist.php" class=""><span>watchlist Export</span></a> 
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+	<div class="header">{_subscriber_management} {customername}</div><br />
+	
+	<if condition="isset($show['show_search']) AND $show['show_search']">
+		<div class="tab-pane" id="userlistings">
+				
+		
+		
+		
+				<div class="tab-page">
+        			<h2 class="tab">{_listings}</h2>
+                    
+                    <form method="get" action="users.php" accept-charset="UTF-8" id="subscribers" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="search" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_search_and_filter_subscribers_of_the_marketplace_using_the_following_form_below}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">{_filter_by}</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                        <option value="user_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option value="username" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'username'">selected="selected"</if>>{_username}</option>
+                                        <option value="email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        <option value="first_name" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'first_name'">selected="selected"</if>>{_first_name}</option>
+                                        <option value="last_name" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'last_name'">selected="selected"</if>>{_last_name}</option>
+                                        <option value="phone" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'phone'">selected="selected"</if>>{_phone}</option>
+                                        <option value="city" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'city'">selected="selected"</if>>{_city}</option>
+                                        <option value="zip_code" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'zip_code'">selected="selected"</if>>{_zipcode}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18" value="{get_filtervalue}" style="width: 75%;" /></td>
+                                </tr>
+								<!--murugan jan 22-->
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Condition</span></td>
+                                  <td><label for="and"><input type="radio" id="and" name="cond" value="AND" <if condition="isset($ilance->GPC['cond']) AND $ilance->GPC['cond'] == 'AND'"> checked="checked"</if>/>AND</label>
+                                        <label for="or"><input type="radio" id="or" name="cond" value="OR" <if condition="isset($ilance->GPC['cond']) AND $ilance->GPC['cond'] == 'OR'"> checked="checked"</if>/>OR</label></td>
+                                  </tr>
+								  
+                                <tr>
+								
+								<tr class="alt1">
+                                  <td width="10%"><span class="gray">{_filter_by}</span>
+                                  <td width="90%">
+                                        <select name="filterby2" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                        <option value="user_id" <if condition="isset($ilance->GPC['filterby2']) AND $ilance->GPC['filterby2'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option value="username" <if condition="isset($ilance->GPC['filterby2']) AND $ilance->GPC['filterby2'] == 'username'">selected="selected"</if>>{_username}</option>
+                                        <option value="email" <if condition="isset($ilance->GPC['filterby2']) AND $ilance->GPC['filterby2'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        <option value="first_name" <if condition="isset($ilance->GPC['filterby2']) AND $ilance->GPC['filterby2'] == 'first_name'">selected="selected"</if>>{_first_name}</option>
+                                        <option value="last_name" <if condition="isset($ilance->GPC['filterby2']) AND $ilance->GPC['filterby2'] == 'last_name'">selected="selected"</if>>{_last_name}</option>
+                                        <option value="phone" <if condition="isset($ilance->GPC['filterby2']) AND $ilance->GPC['filterby2'] == 'phone'">selected="selected"</if>>{_phone}</option>
+                                        <option value="city" <if condition="isset($ilance->GPC['filterby2']) AND $ilance->GPC['filterby2'] == 'city'">selected="selected"</if>>{_city}</option>
+                                        <option value="zip_code" <if condition="isset($ilance->GPC['filterby2']) AND $ilance->GPC['filterby2'] == 'zip_code'">selected="selected"</if>>{_zipcode}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue2" size="18" value="{get_filtervalue1}" style="width: 75%;" /></td>
+                                </tr>
+								
+                                 <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_status}</span></td> 
+								   <td><label for="all_cust"><input type="radio" id="all_cust" name="status" value="all" <if condition="!($ilance->GPC['status']) OR $ilance->GPC['status'] == 'all'"> checked="checked"</if>/>All Customers</label>
+                                        <label for="active_cust"><input type="radio" id="active_cust" name="status" value="active" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'active'"> checked="checked"</if> />Active Customers</label>
+										<label for="inactive_cust"><input type="radio" id="inactive_cust" name="status" value="inactive" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'inactive'"> checked="checked"</if> />Inactive Customers</label>
+								   </td>
+                                   
+                                </tr>
+								
+                               <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_sort_results_by}</span></td>
+                                  <td><label for="orderbyasc"><input type="radio" id="orderbyasc" name="orderby" value="ASC" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'ASC'"> checked="checked"</if>/>{_ascending}</label>
+                                        <label for="orderbydesc"><input type="radio" id="orderbydesc" name="orderby" value="DESC" <if condition="!($ilance->GPC['orderby']) OR $ilance->GPC['orderby'] == 'DESC'"> checked="checked"</if> />{_descending}</label></td>
+                                  </tr>
+								  
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+                    
+      				<if condition="isset($show['showsearch']) AND $show['showsearch']">
+				<form id="subscriber_search" action="users.php" accept-charset="UTF-8" style="margin:0px">
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{number} {_customers_found}</div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td width="7%">ID</td>
+								  <td width="23%">{_username}</td>
+								  <td width="10%" >Lifetime {_bought}</td>
+								  <td width="10%" >Lifetime {_sold}</td>
+								  <td width="10%" >{_balance}</td>
+								  <td width="16%">{_subscription}</td>
+								  <td width="11%">{_role}</td>
+								  <td width="5%" align="center">{_status}</td>
+								  <td width="5%" align="center">Access BBcode</td>
+								  <td width="5%" align="center">ir_managed</td>
+								  <td width="5%" align="center">{_notify}</td>
+								  <td width="7%" align="center" nowrap="nowrap">{_is_admin}</td>
+								  <td align="center" nowrap="nowrap">{_actions}</td>
+								  <td width="5%" align="center">{_sel}</td>
+							</tr>
+							<loop name="searchcustomers"> 
+							<tr class="alt1" valign="top"> 
+								<td nowrap="nowrap"><span style="font-size:17px" class="gray">{user_id}</span></td>
+								<td nowrap="nowrap"><span class="blue">{username}</span>
+								<span  class="smaller gray" style="margin-left:10px;">Check Payable: {Check_Payable}</span>
+								  <div class="smaller gray" style="padding-top:3px">{first_name} {last_name}</div>
+							  <div class="smaller" style="padding-top:3px"><span class="blue"><a href="mailto:{email}">{email}</a></span></div></td>
+								<td nowrap="nowrap">{bought}</td>
+								<td nowrap="nowrap">{sold}</td>
+								
+								<td nowrap="nowrap"><div class="blue">{balance}</div></td>
+								<td><div class="smaller gray">{subscription}</div>
+								    <div class="smaller" style="padding-top:3px">Batch Biddings :</div><span class="blue">{enable_batch_bid}</span>
+								  </td>
+								<td><div class="smaller gray">{role}</div></td>
+								<td align="center">{status}</td>
+								<td align="center">{access_bb}</td>
+								<td align="center">{ir_managed}</td>
+								<td align="center">{notifyauction}</td>
+								<td align="center">{isadmin}</td>
+								<td align="center">{login}&nbsp;&nbsp;&nbsp;{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- {remove} --></td>
+								<td align="center" class="alt2">{action}</td>
+							</tr>
+							</loop name="searchcustomers">
+							<if condition="isset($show['no_searchcustomers']) AND $show['no_searchcustomers']"> 
+							<tr> 
+								<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+							</tr>
+                            <else />
+                            <tr>
+								<td colspan="11" class="alt1" align="right">
+								
+								<span style="float:left; padding-top:2px; font-size:14px" class="blue">
+							<a href="javascript:void(0)" onclick="inlineCB.check_all(true)" style="text-decoration:underline">{_select_all}</a>&nbsp;&nbsp; 
+							<a href="javascript:void(0)" onclick="inlineCB.check_all(false)" style="text-decoration:underline">{_deselect_all}</a>&nbsp;&nbsp;
+							<a href="javascript:void(0)" onclick="inlineCB.check_all('invert')" style="text-decoration:underline">{_invert}</a>&nbsp;&nbsp;
+							</span>
+                            <select name="subcmd" style="font-family: verdana">
+                            <optgroup label="{_select_action}">
+                            <option value="activateusers">Activate / Verify Users</option>
+                            <option value="suspendusers">Suspend Users</option>
+                            <option value="unverified">Unverify Users</option>
+                            <option value="banusers">Ban Users</option>
+                            <option value="cancelusers">Cancel User Accounts</option>
+                           <!--  <option value="deleteusers">Delete Users</option> -->
+                            </optgroup>
+                            </select>
+									<if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}" id="inlinebutton2" disabled="disabled" /><else /><input type="submit" class="buttons" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}" id="inlinebutton2" /></if>
+									<script type="text/javascript">
+									<!--
+									inlineCB = new iL_Inline('inlineCB', 'members', 'subscriber_search', '{_go}');
+									//-->
+									</script></td>
+							</tr>
+                            <tr>
+								<td colspan="11">{searchprevnext}</td>
+							</tr>
+							</if> 
+							
+							</table>
+							
+</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+      			
+				</form>
+                <else />
+		 		
+      
+      				<form id="subscribers" method="post" action="users.php" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number} {_customers_found}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="7%" nowrap="nowrap"><span class="blue"><a href="{scriptpage}&amp;orderby=user_id">{_id}</a></span></td>
+								<td width="23%" align="left"><span class="blue"><a href="{scriptpage}&amp;orderby=username">{_username}</a></span></td>
+								<td width="12%">Lifetime {_bought}</td>
+								<td width="12%">Lifetime {_sold}</td>
+								<td width="12%"><span class="blue"><a href="{scriptpage}&amp;orderby=total_balance">{_balance}</a></span></td>
+								<td width="17%">{_subscription}</td>
+								<td width="16%">{_role}</td>
+								<td width="5%" align="center">{_status}</td>
+								<td width="5%" align="center">Access BBcode</td>
+								<td width="5%" align="center">Irmanaged</td>
+								<td width="5%" align="center">{_notify}</td>
+								<td width="5%" align="center" nowrap="nowrap">{_is_admin}</td>
+								<td align="center" nowrap="nowrap">{_actions}</td>
+								<td width="5%" align="center">{_sel}</td>
+							  </tr>
+							  <loop name="customers">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top" align="center"><span style="font-size:17px" class="gray">{user_id}</span></td>
+								  <td nowrap="nowrap"><span class="blue">{username}</span>
+									<div class="smaller gray" style="padding-top:3px">{first_name} {last_name}</div>
+								  <div class="smaller" style="padding-top:3px"><span class="blue"><a href="mailto:{email}">{email}</a></span></div></td>
+								  <td>{bought}</td>
+								  <td>{sold}</td>
+								  <td><div class="blue">{balance}</div></td>
+								 <td><div class="smaller gray">{subscription}</div>
+								    <div class="smaller" style="padding-top:3px">Batch Biddings :</div><span class="blue">{enable_batch_bid}</span>
+								  </td>
+								  <td><div class="smaller gray">{role}</div></td>
+								  <td align="center">{status}</td>
+								   <td align="center">{access_bb}</td>
+								  <td align="center">{ir_managed}</td>
+								  <td align="center">{notifyauction}</td>
+								  <td align="center">{isadmin}</td>
+								 <td align="center">{login}&nbsp;&nbsp;&nbsp;{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- {remove} --></td>
+								  <td align="center" class="alt2">{action}</td>
+								</tr>
+							  </loop name="customers">
+							  <if condition="isset($show['no_customers']) AND $show['no_customers']">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  <if condition="isset($show['advancedsearch']) AND $show['advancedsearch']">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_currently_listing_accounts_via_advanced_search} - <span class="blue"><a href="users.php">{_return_to_regular_view}</a></span></td>
+								</tr>
+							  </if>
+							  <tr class="alt1">
+								<td colspan="11" align="right"><span style="float:left; padding-top:2px; font-size:14px" class="blue">
+							<a href="javascript:void(0)" onclick="inlineCB.check_all(true)" style="text-decoration:underline">{_select_all}</a>&nbsp;&nbsp; 
+							<a href="javascript:void(0)" onclick="inlineCB.check_all(false)" style="text-decoration:underline">{_deselect_all}</a>&nbsp;&nbsp;
+							<a href="javascript:void(0)" onclick="inlineCB.check_all('invert')" style="text-decoration:underline">{_invert}</a>&nbsp;&nbsp;
+							</span>
+                            
+							<select name="subcmd" style="font-family: verdana">
+                            <optgroup label="{_select_action}">
+                            <option value="activateusers">Activate/Verify Users</option>
+                            <option value="suspendusers">Suspend Users</option>
+                            <option value="unverified">Unverify Users</option>
+                            <option value="banusers">Ban Users</option>
+                            <option value="cancelusers">Cancel User Accounts</option>
+                            <!-- <option value="deleteusers">Delete Users</option> -->
+                            </optgroup>
+                            </select>
+
+									<if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}" id="inlinebutton" disabled="disabled" /><else /><input type="submit" class="buttons" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}" id="inlinebutton" /></if>
+									<script type="text/javascript">
+									<!--
+									inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+									//-->
+									</script>
+								</td>
+							  </tr>
+							  <tr>
+								<td colspan="11">{prevnext}</td>
+							</tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>
+				</if>
+			</div>
+			
+			<div class="tab-page">	
+          		<h2 class="tab">{_create}</h2>
+		 			
+				<form method="post" action="users.php" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				<input type="hidden" name="subcmd" value="_create-new-customer" />
+				<input type="hidden" name="return" value="users.php" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_create}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">{_first_name}</span></td>
+								<td><input type="text" name="firstname" id="firstname" style="width:275px" /></td>
+								<td width="5%" nowrap="nowrap" class="alt1"><span class="gray">{_last_name}</span></td>
+								<td><input type="text" name="lastname" id="lastname" style="width:275px" /></td>
+							</tr>
+							<tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_address}</span></td>
+								<td>
+								<input type="text" name="address" id="address" style="width:275px" /></td>
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_address} 2</span></td>
+								<td><input type="text" name="address2" id="address2" style="width:275px" /></td>
+							</tr>
+                            <tr class="alt1"> 
+								<td width="5%" nowrap="nowrap" class="alt1"><span class="gray">{_country}</span></td>
+								<td>{country_js_pulldown}</td>
+								<td width="5%" nowrap="nowrap" class="alt1"><span class="gray">{_state}</span></td>
+								<td>{state_js_pulldown}</td>
+							</tr>
+							<tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_city}</span></td>
+								<td><input type="text" name="city" id="city" style="width:275px" /></td>
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_zipcode}</span></td>
+								<td><input type="text" name="zipcode" id="zipcode" style="width:275px" /></td>
+							</tr>
+							<tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_username}</span></td>
+								<td><input type="text" name="username" id="username" style="width:275px" /></td>
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_email}</span></td>
+								<td><input type="text" name="email" id="email" style="width:275px" /></td>
+							</tr>
+                            <tr class="alt1">
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_phone}</span></td>
+								<td><input type="text" name="phone" id="phone" style="width:275px" /></td>
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_client_representative}</span></td>
+								<td><input type="text" name="client_representative" id="client_representative" style="width:275px" /></td>
+							  </tr>
+							<tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_password}</span></td>
+								<td><input type="password" name="password" id="password" style="width:275px" /></td>
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_verify_password}</span></td>
+								<td><input type="password" name="password2" id="password2" style="width:275px" /></td>
+							</tr>
+							<tr class="alt1"> 
+							<td nowrap="nowrap" class="alt1"><span class="gray">Check Payable</span></td>
+								<td><input type="text" name="Check_Payable" value="" class="input" maxlength="50" style="width:275px" /></td>
+							  </tr>
+                            </table>
+                            </div>
+                            
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Account Security</div></div>
+                            <div class="block3-content" style="padding:0px">
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                            
+							<tr class="alt1"> 
+								<td width="1%" nowrap="nowrap" class="alt1"><span class="gray">{_secret_question}</span></td>
+								<td width="34%"><input type="text" name="secretquestion" id="secretquestion" value="{_what_is_my_email_address}" style="width:275px; font-family: verdana" /></td>
+								<td width="1%" nowrap="nowrap" class="alt1"><span class="gray">{_secret_answer}</span></td>
+								<td width="35%"><input type="password" name="secretanswer" id="secretanswer" style="width:275px; font-family: verdana" /></td>
+							</tr>
+                            </table>
+                        </div>
+                        <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_subscription}</div></div>
+						<div class="block3-content" style="padding:0px">
+                            
+                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr class="alt1">
+							  <td width="13%" nowrap="nowrap" class="alt1"><span class="gray">{_subscription_plan}</span></td>
+							  <td width="87%" colspan="3">{subscription_plan_pulldown}</td>
+							</tr>
+							<tr class="alt1">
+							  <td nowrap="nowrap" class="alt1"><span class="gray">{_subscription_role}</span></td>
+							  <td colspan="3">{subscription_role_pulldown}</td>
+							</tr>
+                            </table>
+                        </div>
+                        
+                         <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_other}</div></div>
+						<div class="block3-content" style="padding:0px">
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                            <tr class="alt1"> 
+								<td colspan="4" class="alt1"><input name="notifyregister" type="checkbox" value="1" id="notifyregister" checked="checked" /> {_notify_customer_via_email_regarding_new_account_creation}</td>
+							</tr>
+							<if condition="$ilconfig['registrationupsell_bonusactive']"><tr class="alt1"> 
+								<td colspan="4" class="alt1"><input name="bonusdisable" type="checkbox" id="bonusdisable" value="1" /> {_if_new_account_bonuses_are_active_tick_this_checkbox_to_disable_new_registration_account_bonus_for_this_member_only}</td>
+							</tr></if>
+							<tr class="alt1">
+								<td colspan="4"><input name="isadmin" id="isadmin" type="checkbox"value="1" /> <label for="isadmin">{_tick_this_checkbox_to_give_admin_permissions_for_this_new_account_can_login_to_the_admin_cp}</label></td>
+							  </tr>
+							  <tr class="alt1">
+								<td colspan="4"><input name="isstaff" id="isstaff" type="checkbox"value="1" /> <label for="isstaff">{_tick_this_checkbox_to_give_staff_permissions_for_this_new_account_can_login_to_the_admin_stuff}</label></td>
+							  </tr>
+							<!--<tr> 
+								<td colspan="4"><input type="submit" value=" {_save} "  style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+							</tr>-->
+							</table>
+						</div>
+						
+					<!-- Karthik on sep06 for Sales Tax Reseller -->
+					
+						   <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_sales_tax_reseller}</div></div>
+						<div class="block3-content" style="padding:0px">
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                            <tr class="alt1"> 
+								<td colspan="4" class="alt1"><input name="issalestaxreseller" type="checkbox" value="1" id="issalestaxreseller" /> {_tick_this_checkbox_to_give_admin_permissions_to_enable_sales_tax_reseller}</td>
+							</tr>
+						
+							<tr> 
+								<td colspan="4"><input type="submit" value=" {_save} "  style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+							</tr>
+							</table>
+						</div>
+						
+					<!-- Sales Tax Reseller end -->	
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+            <if condition="$ilconfig['registrationupsell_bonusactive']"><else /><input name="bonusdisable" type="hidden" value="1" /></if>
+			</form>
+			
+		</div>
+		
+		<!-- audit log -->
+		<div class="tab-page">
+		
+				<h2 class="tab">{_upload}</h2>
+				
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">Bulk User</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">Bulk User Upload</div></div>
+						<div class="block3-content" style="padding:0px">
+							<form action="users.php" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="cmd" value="uploaduser" />
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+							<tr class="alt1">
+								<td width="34%">Upload CSV</td>
+								<td width="66%">
+									<input type="file" name="upload" id="upload" />
+								</td>
+							</tr>		
+							
+							<tr>
+								<td colspan="2"><input type="submit"  name="submit" class="buttons" tabindex="1" value=" {_go} " style="font-size:15px" accesskey="s" />
+							</td>
+							</tr>
+							</table>
+							</form>
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+				
+				<!--	<input type="hidden" name="do" value="view" />
+				</form>
+				
+				<if condition="isset($ilance->GPC['do']) AND $ilance->GPC['do'] == 'view'">
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+					<div class="block3-header">{_search_results}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_audit_log_viewer}</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+							<tr valign="top" class="alt2">
+								<td align="left">{_id}</td>
+								<td>{_user}</td>
+								<td>{_admin}</td>
+								<td>{_script}</td>
+								<td>{_action}</td>
+								<td>{_date}</td>
+								<td>{_details}</td>
+							</tr>
+							<loop name="auditlog">
+							<tr align="center" class="alt1">
+								<td align="left">{logid}</td>
+								<td align="left" nowrap="nowrap">{user}</td>
+								<td align="left" nowrap="nowrap">{admin}</td>
+								<td align="left" nowrap="nowrap">{script}</td>
+								<td align="left" nowrap="nowrap">{cmd}</td>
+								<td align="left" nowrap="nowrap">{datetime}</td>
+								<td align="left">{otherinfo}</td>
+							</tr>
+							</loop name="auditlog">
+							<tr>
+								<td colspan="7">{prevnext}</td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+				</if>
+	
+		</div>-->
+		<!-- / task log -->
+		
+		<!-- prune log -->
+		<!--<div class="tab-page">
+		
+				<h2 class="tab">{_prune_log}</h2>
+				<form action="users.php" name="auditlog" accept-charset="UTF-8" method="post" style="margin:0px">
+				<input type="hidden" name="cmd" value="auditlog" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_prune_audit_log}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">You can prune your audit log to remove old entries as you require</div></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+							<tr class="alt1">
+								<td width="35%">{_remove_logs_relating_to_script} </td>
+								<td width="65%">
+								  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+									<tr>
+									  <td>{scripts_pulldown}</td>
+								</tr>
+								</table></td>
+							</tr>
+							<tr class="alt1">
+								<td class="alt1">{_remove_logs_relating_to_user} ID</td>
+								<td>
+									<table cellpadding="0" cellspacing="0" border="0" width="100%">
+									<tr valign="top">
+										<td>{members_pulldown}</td>
+									</tr>
+									</table>
+								</td>
+							</tr>
+							<tr class="alt1">
+								<td class="alt1">{_remove_logs_relating_to_admin} </td>
+								<td>
+									<table cellpadding="0" cellspacing="0" border="0" width="100%">
+									<tr valign="top">
+										<td>{admins_pulldown}</td>
+									</tr>
+									</table>
+								</td>
+							</tr>
+							<tr class="alt1">
+								<td class="alt1">{_remove_logs_older_than_days}</td>
+								<td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><input type="text" class="input" name="days" id="days" value="30" size="10" dir="ltr" tabindex="1" /></td>
+								</tr>
+								</table></td>
+							</tr>
+							<tr>
+								<td colspan="2"><if condition="$show['ADMINCP_TEST_MODE']"><input type="submit" class="buttons" tabindex="1" value="{_prune}" style="font-size:15px" accesskey="s" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}');" disabled="disabled" /><else /><input type="submit" class="buttons" tabindex="1" value="{_prune}" style="font-size:15px" accesskey="s" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}');" /></if></td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+			<input type="hidden" name="do" value="prune" /><input type="hidden" name="return" value="users.php?cmd=auditlog" />
+			</form>
+	
+		</div>-->
+		<!-- / prune log -->
+						
+		</div>
+		</if>
+			
+		<if condition="isset($show['show_update']) AND $show['show_update']">
+			<div class="tab-pane">
+				<div class="tab-pane" id="updatesubscriber">
+					<div class="tab-page">
+						<h2 class="tab">{_profile}</h2>
+						<form name="updateprofile" action="users.php" method="post" accept-charset="UTF-8" style="margin: 0px;">
+						<input type="hidden" name="cmd" value="updateprofile" />
+						<input type="hidden" name="subcmd" value="_update-customer-profile" />
+						<input type="hidden" name="id" value="{id}" />
+						<loop name="profile"> 
+						<div class="block-wrapper">
+						<div class="block3">
+						
+								<div class="block3-top">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+								<div class="block3-header">{_update} {username}</div>
+								<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_update_personal_profile_information} {_for} {username}</div></div>
+								<div class="block3-content" style="padding:0px">
+									
+									<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+									
+									<tr class="alt1">
+										<td><span class="gray">{_registration_date}</span></td>
+										<td>{added}</td>
+									</tr>
+									<tr class="alt1">
+										<td><span class="gray">{_last_seen}</span></td>
+										<td><span class="blue">{lastseen}</span></td>
+									</tr>
+									<tr class="alt1">
+										<td><span class="gray">Last Modified Date</span></td>
+										<td><span class="blue">{last_update}</span></td>
+										
+									</tr>
+									<tr class="alt1">
+									<td><span class="gray">Modified By</span></td>
+										<td><span class="blue">{who}</span></td>
+									</tr>
+									<tr class="alt1">
+									<td><span class="gray">From Referral Code</span></td>
+										<td><span class="blue">{referfrom}</span></td>
+									</tr>
+                                    <tr class="alt2_top">
+                                    	<td colspan="2"><strong>{_personal}</strong></td>
+                                    </tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_username}</span></td>
+										<td><input type="text" name="username" value="{username}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1">
+										<td><span class="gray">{_password}</span></td>
+										<td><input type="password" name="password" value="" class="input" style="width:275px" /><div style="padding-top:3px"><label for="emailuser"><input type="checkbox" id="emailuser" name="emailuser" value="1" /> {_dispatch_email_to_customer_with_new_password}</label></div></td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_email}</span></td>
+										<td><input type="text" name="email" value="{email}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_first_name}</span></td>
+										<td><input type="text" name="first_name" value="{first_name}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_last_name}</span></td>
+										<td><input type="text" name="last_name" value="{last_name}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">Check Payable</span></td>
+										<td><input type="text" name="Check_Payable" value="{Check_Payable}" class="input" maxlength="50" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1">
+										<td><span class="gray">{_date_of_birth} (Y-M-D)</span></td>
+										<td><input type="text" name="dob" value="{dob}" class="input" style="width:275px" /></td>
+									</tr>
+                                    <if condition="$ilconfig['genderactive']"><tr class="alt1">
+                                    	<td><div style="padding-bottom:3px; padding-top:3px" class="black"><span class="gray">{_gender}</span></div></td>
+                                        <td>
+                                           <div style="width:250px"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                            <tr>
+                                                <td nowrap="nowrap"><div style="padding-bottom:3px"><label for=""><input type="radio" name="gender" value="" {cb_gender_undecided} /> {_undecided}</label></div></td>
+                                                <td nowrap="nowrap"><div style="padding-bottom:3px"><label for=""><input type="radio" name="gender" value="male" {cb_gender_male} /> {_male}</label></div></td>
+                                                <td nowrap="nowrap"><div style="padding-bottom:3px"><label for=""><input type="radio" name="gender" value="female" {cb_gender_female} /> {_female}</label></div></td>
+                                            </tr>
+                                            </table></div></td>
+                                    </tr></if>
+									<tr class="alt1"> 
+										<td width="25%"><span class="gray">{_phone_number}</span></td>
+										<td width="75%"> <input type="text" name="phone" value="{phone}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td width="25%"><span class="gray">{_client_representative}</span></td>
+										<td width="75%"> <input type="text" name="client_representative" value="{client_representative}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td width="25%"><span class="gray">House Account</span></td>
+										<td width="75%"> <input type="checkbox" name="house_account" value="1" {house_account} class="input" style="width:275px" /></td>
+									</tr>
+                                    <tr class="alt2_top">
+                                    	<td colspan="2"><strong>{_location}</strong></td>
+                                    </tr>
+									<tr class="alt1"> 
+										<td valign="top"><span class="gray">{_address}</span></td>
+										<td><input type="text" name="address" value="{address}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td valign="top"><span class="gray">{_address_two_optional}</span></td>
+										<td> <input type="text" name="address2" value="{address2}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_city_or_town}</span></td>
+										<td><input type="text" name="city" value="{city}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_state_or_province}</span></td>
+										<td>{state_js_pulldown}</td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_zip_or_postal_code}</span></td>
+										<td> <input type="text" name="zip_code" value="{zip_code}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_country}</span></td>
+										<td>{country_js_pulldown}</td>
+									</tr>
+								
+                                    <tr class="alt2_top">
+                                    	<td colspan="2"><strong>{_account_security_features}</strong></td>
+                                    </tr>
+                                    <tr class="alt1"> 
+										<td><span class="gray">{_secret_question}</span></td>
+										<td> <input type="text" name="secretquestion" value="{secretquestion}" class="input" style="width:275px" /></td>
+									</tr>
+                                    <tr class="alt1"> 
+										<td><span class="gray">{_secret_answer}</span></td>
+										<td> <input type="text" name="secretanswer" value="" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1"> 
+										<td><span class="gray">{_ip_address}</span></td>
+										<td class="alt1">
+					
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr> 
+												  <td><input type="text" name="ipaddress" value="{ipaddress}" class="input" style="width:275px" /> <div style="padding-top:3px"><label>{restrict}&nbsp;{_restrict_ip_address_to_customers_account}</label></div></td>
+											  </tr>
+										  </table>
+										</td>
+									</tr>
+                                    <tr class="alt1">
+										<td><span class="gray">{_referral_code}</span></td>
+										<td><input type="text" name="rid" value="{rid}" class="input" style="width:275px" /></td>
+									</tr>
+									<tr class="alt1">
+										<td><span class="gray">{_status}</span></td>
+										<td>{userstatus}</td>
+									</tr>
+<!-- 									<tr class="alt1">
+										<td><span class="gray">{_is_admin}</span></td>
+										<td><div class="blue">{isadministrator} <label for="isadmin">{_tick_checkbox_to_give_admin_permissions}</label></div></td>
+									</tr> -->
+									
+									<!--karthik on sep06 for Sales tax reseller-->
+									<tr class="alt1">
+										<td><span class="gray">{_is_salestax_reseller}</span></td>
+										<td><div class="blue"> {issalestaxreseller} <label for="issalestaxreseller">{_tick_this_checkbox_to_give_admin_permissions_to_enable_sales_tax_reseller}</label></div></td>
+									</tr>
+									<!-- sales tax reseller end-->
+									
+									<!--Changes on dec15 for Exclude from Prices Realized Exports-->
+									<tr class="alt1">
+										<td><span class="gray">Exclude from Prices Realized Exports?</span></td>
+										<td><div class="blue"> {isexclude_pricesrealized} <label for="isexclude_pricesrealized">Tick this checkbox to give Admin permission to enable Exclude from Prices Realized Exports</label></div></td>
+									</tr>
+									<!-- Exclude from Prices Realized Exports end-->
+									
+									<tr> 
+										<td colspan="2"><input name="submit" type="submit" value=" {_save} " style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+									</tr>
+									</table>
+									
+								</div>
+								
+								<div class="block3-footer">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+						</div>
+					</div>
+						</loop name="profile"> 
+						</form>
+
+						<form method="post" action="users.php" name="updateprofile1" accept-charset="UTF-8" id="updateprofile1" style="margin:0px">
+						<input type="hidden" name="cmd" value="_do-role-change" />
+						<input type="hidden" name="redirect" value="{redirect}" />
+						<input type="hidden" name="uid" value="{id}" />
+						<div class="block-wrapper">
+						<div class="block3">
+						
+								<div class="block3-top">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+								<div class="block3-header">{_role}</div>
+								<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_update_primary_role}</div></div>
+								<div class="block3-content" style="padding:0px">
+									
+									<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+									<tr class="alt1">
+										<td>{rolepulldown}</td>
+									</tr>
+									<tr>
+										<td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" accesskey="s" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" /></td>
+									</tr>
+									</table>
+									
+								</div>
+								
+								<div class="block3-footer">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+						</div>
+					</div>
+						</form>	  
+						
+						<!-- custom registration questions -->
+						<form name="registerquestions" action="users.php" method="post" accept-charset="UTF-8" style="margin: 0px;">
+						<input type="hidden" name="subcmd" value="_update-customer-register-questions" />
+						<input type="hidden" name="uid" value="{id}" />
+						<div class="block-wrapper">
+						<div class="block3">
+						
+								<div class="block3-top">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+								<div class="block3-header">{_registration_questions}</div>
+								<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_update_custom_questions_answered_via_registration}</div></div>
+								<div class="block3-content" style="padding:0px">
+									
+									<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+									<tr>
+										<td align="left">{customquestions}</td>
+									</tr>
+									<if condition="empty($customquestions)">
+									<tr>
+										<td align="center">{_no_questions_available}</td>
+									</tr>
+									</if>
+									<tr> 
+										<td colspan="2"><input type="submit" value=" {_save} " style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+									</tr>
+									</table>
+									
+								</div>
+								
+								<div class="block3-footer">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+						</div>
+					</div>
+					</form>
+					<form name="lower_minimum_bid" action="users.php" method="post" accept-charset="UTF-8" style="margin: 0px;">
+						<input type="hidden" name="subcmd" value="lower_minimum_bid" />
+						<input type="hidden" name="uid" value="{id}" />
+						<div class="block-wrapper">
+						<div class="block3">
+						
+								<div class="block3-top">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+								<div class="block3-header">Lowering Minimum Bid [Automatically]</div>
+								<div class="block3-content-gray" style="padding:9px"><div class="smaller">
+									Lowering Minimum Bid [Automatically] </div></div>
+								<div class="block3-content" style="padding:0px">
+									
+									<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+									<tr>
+										<td align="left">{customquestions}</td>
+									</tr>
+									<tr><td>Enable Auto - Lower Minimum Bid for this user?</td><td>
+										<input type="checkbox" name="lower_minimum_bid" value="1" {lower_minimum_bid}>
+									</td></tr>
+									<tr><td>Percentage to lower is not sold</td><td><input type="text" max="99" min="0" name="lower_minimum_bid_percentage" value="{lower_minimum_bid_percentage}"></td></tr>
+									<tr> 
+										<td colspan="2"><input type="submit" value=" {_save} " style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+									</tr>
+									</table>
+									
+								</div>
+								
+								<div class="block3-footer">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+						</div>
+					</div>
+					</form>
+						
+						<!-- custom profile questions -->
+						<!--<form name="profilequestions" action="users.php" method="post" accept-charset="UTF-8" style="margin: 0px;">
+						<input type="hidden" name="subcmd" value="_update-customer-profile-questions" />
+						<input type="hidden" name="uid" value="{id}" />
+						<div class="block-wrapper">
+						<div class="block">
+						
+								<div class="block-top">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+								<div class="block-header">{_profile_questions}</div>
+								<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_update_questions_answered_from_the_profile_menu}</div></div>
+								<div class="block-content" style="padding:0px">
+									
+									<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+									<tr>
+										<td align="left">{profilequestions}</td>
+									</tr>
+									<tr> 
+										<td colspan="2"><input type="submit" value=" {_save} " style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+									</tr>
+									</table>
+									
+								</div>
+								
+								<div class="block-footer">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+						</div>
+					</div>
+					</form>-->
+					<!-- / custom profile questions -->
+			</div>
+			<!--ebay seller start tab -->
+			
+			<div class="tab-page"> 
+			<h2 class="tab">Ebay</h2>
+			
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_summary}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">Seller Information</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<loop name="ebay_seller_percentage"> 
+						<tr> 
+							<td width="15%" rowspan="1" valign="top"><span class="gray">Ebay Seller Percentage:</span></td>
+							<td width="46%" rowspan="1" valign="top"><span style="font-size:14px">{ebay_seller_percentage}%</span></td>
+							
+						</tr>
+						
+						</loop name="ebay_seller_percentage"> 
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+		
+			<form method="post" action="users.php" accept-charset="UTF-8" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="_update_seller_percentage" />
+			<input type="hidden" name="id" value="{id}" />
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">Update Seller Information </div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">Edit Seller Information</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<tr class="alt1"> 
+						
+							<td><span class="gray">Enter the new Ebay Seller Percentage</span></td>
+							<td><span style="float:left; padding-right:4px; padding-top:4px"></span><input name="ebay_seller_percentage" type="text" value="" style="width:50%;" /></td>
+						</tr>
+						
+						
+						
+						<tr>
+							<td colspan="2"><input type="submit" value=" {_update} " style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+						</tr>
+						</table>
+
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+		</form>
+
+		  </div>
+			
+			<!--ebay seller end -->
+			
+			
+			
+			<div class="tab-page"> 
+			<h2 class="tab">{_account}</h2>
+			
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_summary}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_account_and_balance_information}</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<loop name="profileaccount"> 
+						<tr> 
+							<td width="15%" rowspan="2" valign="top"><span class="gray">{_account_number}</span></td>
+							<td width="46%" rowspan="2" valign="top"><span style="font-size:14px">{accountnumber}</span></td>
+							<td width="18%" class="alt1"><span class="gray">{_available_balance}</span></td>
+							<td width="21%" class="alt1"><span style="font-size:14px" class="blue">{availablebalance}</span></td>
+						</tr>
+						<tr> 
+							<td><span class="gray">{_total_balance}</span></td>
+							<td><span style="font-size:14px" class="gray">{totalbalance}</span></td>
+						</tr>
+						</loop name="profileaccount"> 
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+		
+			<form method="post" action="users.php" accept-charset="UTF-8" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="_create-transaction" />
+			<input type="hidden" name="id" value="{id}" />
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_account_functions}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_create_new_transaction}</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<tr class="alt1"> 
+							<td><span class="gray">{_amount}</span></td>
+							<td><span style="float:left; padding-right:4px; padding-top:4px">{currencysymbol}</span><input name="amount" type="text" style="width:50%;" /></td>
+						</tr>
+						<tr class="alt1"> 
+							<td width="24%"><span class="gray">{_transaction_type}</span></td>
+							<td width="76%">
+						
+							<select name="action" style="font-family: verdana">
+							<option value="credit" selected="selected">{_account_credit_add_funds_to_online_account}</option>
+							<option value="debit">{_account_debit_remove_funds_from_online_account}</option>
+						  </select></td>
+						</tr>
+						<tr class="alt1"> 
+							<td valign="top"><span class="gray">{_transaction_description}</span></td>
+							<td><textarea name="description" style="width: 98%; height: 54px; font-family: verdana" wrap="physical"></textarea></td>
+						</tr>
+						<tr class="alt1">
+							<td valign="top"><span class="gray">{_invoices_notes_or_custom_message}</span></td>
+							<td><textarea name="custom" style="width: 98%; height: 54px; font-family: verdana" wrap="physical"></textarea></td>
+						</tr>
+						<tr class="alt1">
+							<td><span class="gray">{_how_to_bill}</span></td>
+							<td><select name="invoicedate"><option value="particular">to particular date</option><option value="consignor">attach to next consignor statement</option></select>&nbsp;&nbsp;&nbsp;{daylist}&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;{yearlist}</td>
+						</tr>
+						<tr>
+							<td colspan="2"><input type="submit" value=" {_create} " style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+						</tr>
+						</table>
+
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+		</form>
+
+		  </div>
+			
+			<div class="tab-page"> 
+			<h2 class="tab">{_advance}</h2>
+			
+			
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_summary}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">Advance Transaction Summary</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<tr>
+							<td width="15%" align="center">Amount</td>
+							<td width="15%" align="center">Date Made</td>
+							<td width="15%" align="center">Interest Rate</td>
+							<td width="35%" align="center">Discription</td>
+							<td width="10%" align="center">Status</td>
+						</tr>
+						<loop name="advance"> 						
+						<tr> 
+						 	<td align="center">{amount}</td>
+							<td align="center">{date_made}</td>
+							<td align="center">{interest}</td>
+							<td align="center">{description}</td>
+							<td align="center">{statusnow}</td>
+						</tr>
+						</loop name="advance"> 
+						<if condition="isset($show['no_rows_advance']) AND $show['no_rows_advance']"> 
+						<tr> 
+							<td colspan="5" align="center">{_no_transactions_recorded}</td>
+						</tr>
+						</if>
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+			
+			<form method="post" action="users.php" accept-charset="UTF-8" style="margin: 0px;">
+			<input type="hidden" name="subcmd" value="_create-advance" />
+			<input type="hidden" name="id" value="{id}" />
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_account_functions}</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_create_new_transaction}</div></div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<tr class="alt1"> 
+							<td><span class="gray">{_advance_amount}</span></td>
+							<td><input name="amount" type="text" style="width: 50%;" /></td>
+						</tr>
+						<tr class="alt1"> 
+							<td width="24%"><span class="gray">{_entered_date}</span></td>
+							<td width="76%">{daylist}&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;{yearlist}</td>
+						</tr>
+						<tr class="alt1"> 
+							<td valign="top"><span class="gray">{_interest_rate}</span></td>
+							<td><input type="text" name="interestrate" style="width: 50%;" /></td>
+						</tr>
+						<tr class="alt1">
+							<td valign="top"><span class="gray">{_internal_notes}</span></td>
+							<td><textarea name="description" style="width: 98%; height: 54px; font-family: verdana" wrap="physical"></textarea></td>
+						</tr>
+						
+						<tr>
+							<td>&nbsp;</td>
+							<td align="left"><input type="submit" value=" {_save} " style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+						</tr>
+						</table>
+
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+		</form>
+			
+			</div>
+						
+	
+
+			
+			<div class="tab-page">
+
+				<h2 class="tab">{_infonote}</h2>
+
+				<div class="block-wrapper">
+				
+					<div class="block">
+						
+						<div class="block-top">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+
+							</div>
+						</div>
+						
+						<div class="block-header">{_infonote}</div>
+						
+						<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_info} </div></div>
+						
+						<div class="block-content" style="padding:0px">
+						
+							<form method="post" action="users.php" accept-charset="UTF-8" onsubmit="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" style="margin: 0px;">
+								<input type="hidden" name="subcmd" value="_create-note" />
+								<input type="hidden" name="id" value="{id}" />
+								<input type="hidden" name="note" value="{note}" />
+								<input type="hidden" name="note_id" id="note_id" value="{note_id}" />
+								<table width="100%" border="0" align="center" cellpadding="9" cellspacing="1">
+									<tr class="alt1"> 
+										<td width="19%" align="left" nowrap="nowrap"><span class="gray">Text </span></td>
+										<td width="81%"><textarea wrap="physical" style="width: 98%; height: 54px; font-family: verdana;" name="note" id="note"/></textarea></td>
+									</tr>
+									<tr><td>Follow up date</td><td><input type="text" name="follow_up_date" id="datepicker"></td></tr>
+									<tr>
+										<td colspan="2"><input type="submit" style="font-size:15px" value=" {_save} " class="buttons" onclick="return user_note_validate();"/></td>
+									</tr>                        
+								</table> 
+							</form> 
+
+							<table width="100%" border="0" align="center" cellpadding="9" cellspacing="1">
+								<tr class="alt2"> 
+									<td width="6%" align="center">{_id}</td>
+									<td width="10%">{_note}</td>
+									<td width="10%">Follow up date</td>
+									<td width="20%">{_created}</td>
+									<td width="20%">{_modified}</td>
+									<td width="5%">{_edit}</td>
+									<td width="5%">{_remove}</td>
+								</tr>
+								<loop name="notes"> 
+								<tr> 
+									<td align="center"><span class="blue">{noteid}</span></td>
+									<td>{note}</td>
+									<td>{follow_up_date}</td>
+									<td>{created}</td>
+									<td>{modified}</td>
+									<td>{edit}</td>
+									<td align="right">{remove}</td>
+								</tr>
+
+								</loop name="notes"> 
+								<if condition="isset($show['no_notes']) AND $show['no_notes']"> 
+									<tr> 
+										<td colspan="6">{_no_notes_exists}</td>
+									</tr>
+								</if>
+							</table>
+						</div>
+						
+						<div class="block-footer">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+								
+							</div>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+				
+			</div>              
+			<!--
+			<div class="tab-page">
+				<h2 class="tab">{_verifications}</h2>
+			</div>
+			//-->
+			
+			<!-- TAMIL for Bug id 2162 on 24/1/13 * Start -->
+			<div class="tab-page">
+
+				<h2 class="tab">Paymethod</h2>
+
+				<div class="block-wrapper">
+
+					<div class="block">
+						
+						<div class="block-top">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+
+							</div>
+						</div>
+						
+						<div class="block-header">Restricting Paymethods</div>
+						
+						<div class="block-content-yellow" style="padding:9px"><div class="smaller">The checked methods were allowed and unchecked were not allowed for Payment</div></div>
+						<form action="" method="post">
+          <input type="hidden" name="subcmd" value="save_user_paymethods"/>
+              <input type="hidden" name="uid" value="{id}" />
+						<div class="block-content" style="padding:0px">
+							<table width="100%" border="0" align="center" cellpadding="9" cellspacing="1">
+								<tr>
+									<td>
+										{paymethod_html}
+									</td>
+								</tr><tr>
+									<td>
+										<input type="submit" name="save" value="save"></input>
+									</td>
+								</tr>
+							</table>	
+						</div></form>
+						
+						<div class="block-footer">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+								
+							</div>
+							
+						</div>
+							
+					</div>
+					
+				</div>
+
+			</div>              
+			
+			<!-- TAMIL for Bug id 2162 on 24/1/13 * Ends -->
+			
+			
+			
+			
+			
+			
+			<!-- for Bug id 5204 Start -->
+			<!--  consignor statements -->
+			<div class="tab-page">
+
+				<h2 class="tab">Consignor Statements</h2>
+
+				<div class="block-wrapper">
+
+					<div class="block">
+						
+						<div class="block-top">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+
+							</div>
+						</div>
+						<loop name="profile"> 
+						<div class="block-header">Consignor Statements {_for} {username}</div>
+						
+						<div class="block-content-yellow" style="padding:9px"><div class="smaller"> </div></div>
+						</loop name="profile"> 
+						<div class="block-content" style="padding:0px">
+							<table width="100%" border="0" align="center" cellpadding="9" cellspacing="1">
+								<tr>
+									<td style="padding-left: 35px; padding-top: 25px;">
+										{date_down}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										{consignor_paginationn}
+									</td>
+								</tr>
+							</table>	
+						</div>
+						
+						<div class="block-footer">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+								
+							</div>
+							
+						</div>
+							
+					</div>
+					
+				</div>
+
+			</div>              
+			
+		<!-- invoices list -->	
+		<div class="tab-page">
+			
+			<h2 class="tab">Invoices</h2>
+			
+			<div class="block-wrapper" >
+                    <div class="block3">
+                    <br/>
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            						
+						 <div class="block3-header">Invoice Listing <span style="float:right; vertical-align:middle">
+						 <if condition="isset($show['all_invoices']) AND $show['all_invoices']=='true'">
+						 <a href="{scriptpageprevnext_all_invoices}">Back to All Invoices</a>
+						 </if>
+						 {invoice_type_drop_down}
+						 </span></div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td><a href="{scriptpageprevnext_invoices}&order=invoice">Invoice ID</a></td>								 
+								  <td>Buyer Name</td>
+								  <td>First Name</td>
+								  <td>Last Name</td>
+								  <td>Amount</td>
+								  <td>Date Paid</td>
+								  <td>Method</td>
+								  <td>Items</td>
+								  <td>Payment</td>
+								  <td>Ship</td>
+								  <td>Print</td>
+								  
+								
+							</tr>
+							<loop name="invoicelist"> 							
+							<tr class="alt1" valign="top">								
+								<td nowrap="nowrap"><span class="blue">{invoiceid}</span> </td>
+								<td nowrap="nowrap">{user_name}</td>
+								<td nowrap="nowrap">{first_name}</td>
+								<td nowrap="nowrap">{last_name}</td>
+								<td nowrap="nowrap">{totalamount}</td>								
+								<td nowrap="nowrap"><div class="blue">{paiddate}</div></td>
+								<td>{paymethod}</td>
+								<td><span class="blue">{details}</span></td>
+								
+								<td><span class="blue">{status}</span></td>
+								<td><span class="blue">{ship_status}</span></td>
+								<td><span class="blue">{print}</span></td>
+								
+							</tr>
+							</loop name="invoicelist">
+						
+                           <tr>
+								<td colspan="11">{series_prevnext}</td>
+							</tr>
+						
+							
+							</table>
+							
+</div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							<div>&nbsp;</div>
+							
+							</div></div>
+			 
+
+		</div>
+		
+		<!-- Pending Invoice -->
+		<div class="tab-page"> 
+			<h2 class="tab">Pending Invoice</h2>
+			
+			
+			<div class="block-wrapper" style="margin-top: 12px;">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">Pending Invoice</div>
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller">& </div></div>
+					<div class="block-content" style="padding:0px">
+								<table width="100%" border="0" align="center" cellpadding="9" cellspacing="1">
+									<tr>
+										<td>
+											
+										</td>
+									</tr>
+									<tr>
+										<td>
+										
+				<if condition="isset($show['pending_invoice']) AND $show['pending_invoice']">						
+				<div>
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+				<tr>
+				<td>
+				<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td style="padding-left:5px;" valign="top"></td>
+					<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+					<td style="padding-right:5px;"><if condition="$show['invoicecancelled']">
+				<div><div class="header" align="left" style="padding-bottom:3px">{_this_invoice_is_cancelled}</div></div>
+				<else />
+
+				  <if condition="$show['ispaid'] OR $show['iscomplete']">
+					<div>
+						<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice_checkmark.gif" border="0" alt="" id="invoicepaidicon" /></span> {_amount_paid}: <span class="blue">{amountpaid}</span></div>
+						<div class="smaller gray">{_this_invoice_has_been_paid_in_full} {_as_of} <span class="black">{paiddate}</span></div>
+					</div>
+				  </if>
+				  
+				 <!-- Karthik Changes on Oct-31 for Base Shipping amount --> 
+				 
+				  <if condition="$show['isunpaid'] OR $show['isscheduled']">
+					<div>
+						<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice.gif" border="0" alt="" id="invoiceunpaidicon" /></span> {_amount_due}: <span class="red" id="totalamt_area">{totalamount}</span></div>
+						<div class="smaller gray">{_this_invoice_is_pending} {_as_of} <span class="red">{createdate}</span></div>
+						<if condition="isset($show['subscriptionpayment']) AND $show['subscriptionpayment']"><hr size="1" width="100%" style="color:#cccccc" /><div><strong>{_this_is_a_subscription_transaction_once_you_settle_for_the_amount}</strong></div></if>
+					</div>
+				  </if>
+				  
+				 <!-- Changes End --> 
+				  
+				  <if condition="$show['iscancelled']">
+					<div>
+						<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice.gif" border="0" alt="" id="invoiceunpaidicon" /></span> {_amount_due}: <span class="red">{totalamount}</span></div>
+						<div class="smaller gray">{_this_invoice_is_cancelled}</div>
+					</div>
+				  </if>
+				  
+				</if></td>
+				</tr>
+				</table>
+				</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+				</td>
+				</tr>
+				</table>
+				</div>
+				
+				
+<div style="padding-top:6px"></div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td valign="top" width="50%">
+	
+		<div class="block-wrapper">
+		
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_customer_information}</div>
+					
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller"><div>{customername} <span class="gray">GC Username: {customer} </span> </div></div></div>
+					<div class="block-content" style="padding:12px">
+						
+						
+						
+						<!--Murugan For Customer Email-->
+						<div></div><b>{_shipping_address}</b>&nbsp;&nbsp;({_billing_address_information_will_be_asked_later})
+						<!--Murugan For Customer Email-->
+						<div><blockquote>
+						Name: {customername}<br />
+						Email: {customeremail}
+						{customerinfo}
+						
+						<div class="smaller gray" style="padding-top:6px">[ <span class="blue"><a href="{https_server}{ilpage[preferences]}?cmd=profile&amp;redirect={pageurl_urlencoded}">{_edit}</a></span> ]</div>						
+						</blockquote>
+						
+						</div>
+						
+					  
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+	</td>
+
+</tr>
+</table>
+
+
+
+
+<!--Murugan For Item Details-->
+<!--<if condition="isset($show['listing']) AND $show['listing']">-->
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_items_won_purchased}</div>
+			
+			
+			<div class="block-content" style="padding:0px">
+				
+				
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td align="left" nowrap="nowrap" class="alt2">Item</td> 
+					<td width="40%" align="left" class="alt2" nowrap="nowrap">Title</td>
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Site</td>
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Quantity</td> 
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Final Price</td> 
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Buyer Fee's</td>
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">{_total}</td>
+				</tr>
+				<loop name="regardlist"> 
+				<tr>
+					<td align="left" nowrap="nowrap" valign="top">{item_id}</td>
+					<td align="left" valign="top">{itemtitle}</td>
+					<td align="left" valign="top">{Site_Id}</td>
+					<td align="left" valign="top">{qty}</td>
+					<td align="left" nowrap="nowrap" valign="top">{finalprice}</td>
+					<td align="left" nowrap="nowrap" valign="top">{buyerfees}</td>
+					<td align="left" nowrap="nowrap" valign="top">{totallistamount}</td>
+				</tr>
+				</loop name="regardlist">
+				</table>
+				
+			  
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<!--</if>-->
+
+
+<form method="post" action="users_invoice.php" name="invoicepayment" onsubmit="return checkform(this);" accept-charset="UTF-8" style="margin:0px;">
+<input type="hidden" name="cmd" value="{cmd}" />
+<input type="hidden" name="uid" id="uid" value="{custmr_uid}" />
+<input type="hidden" name="shipping_cost" id="shipping_cost" value="0" />
+<input type="hidden" name="disount_val" id="disount_val" value="0" />
+<input type="hidden" name="checkpromo" id="checkpromo" value="0" />
+{securekey_hidden}
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_total_options_and_payments}</div>
+			{invidhidden}
+			{qtyhidden}
+			{totalhidden}
+			{taxamounthidden}
+			<!--<div class="block-content-yellow"><div class="smaller"></div></div>-->
+			<div class="block-content" style="padding:0px">
+			<table>
+			<tr>
+			<td>
+			<div align="left">
+			<table>
+			<tr>
+			<td>{_gift_code} </td>
+			<td><input type="text" name="promocode" id="promocode" /><input type="button" value="Go" name="go" onclick="return promocodecheck(document.getElementById('promocode').value,'{user_id}')" /></td>
+			</tr>
+			
+			<tr>
+			<td >
+			{_discount_from_gift_code}
+			</td>
+			<td>
+			<div id="promodiv"></div>
+			<div id="promodivvalue"></div>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>Shipping Method </td>
+			<td>{shipper_drop_down}</td>
+			</tr>
+			<tr>
+			<td>Payment Method </td>
+			<td>{payment_method_pulldown}</td>
+			</tr>
+			<tr>
+			<td>&nbsp;</td>
+			<td  style="padding-top: 20px;"><script type="text/javascript" data-ppmnid="48482894571498" src="//ad.where.com/jin/spotlight/ads?pubid=431bbbeb00&format=js&v=2.4&placementtype=234x60&ppmnid=48482894571498&rand=' + Math.round(Math.random() * 100000000000000) + '"></script>
+			</td>
+			</tr>
+			</table>
+			</div>
+			</td>
+			<td>
+			<div align="right">
+				
+				
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<!--<tr class="alt1">
+					<td colspan="2"><div style="padding-top:6px; padding-bottom:6px; font-size:13px" class="blue">{description}</div>
+					</td>
+				</tr>-->
+				<tr>
+					<td align="right"><span style="font-size:14px" class="gray">{_subtotal}</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray" id="sub_total_amount_div">{amount}</span></td> 
+				</tr>
+				<if condition="isset($show['taxes']) AND $show['taxes']">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{taxinfo}</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray" id="sales_tax_div">{taxamount}</span></td> 
+				</tr>
+				</if>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="green">Discounts</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" id="dicount_amount_div" class="green">(US$0.00)</span></td> 
+				</tr>
+				<!--<if condition="isset($show['buyer']) AND $show['buyer']">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">Buyer Fee</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray">{buyerfee}</span></td> 
+				</tr>
+				</if>-->
+				  
+				<TR >
+					<td align="right"><span style="font-size:14px" class="blue">Shipping/Handling Charges</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="gray"  id="ship_cost_div">US$0.00</span></td>
+				</TR>
+				 <if condition="isset($show['miscamount']) AND $show['miscamount']==true">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{_misc_amount}</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="green">({miscamount})</span></td>
+				</tr>
+				</if>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="green">{_payments}</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="green">({amountpaid})</span></td>
+				</tr>
+				
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{_total}</span></td>
+					<td colspan="-3" align="right"><span style="font-size:16px" class="blue" id="totalamount_area"><strong>{totalamount}</strong></span></td>
+				</tr>
+				</table>
+				
+			  
+			</div>
+			</td>
+			</tr>
+			</table>
+			</div>
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<if condition="isset($show['paymentpulldown']) AND $show['paymentpulldown']">
+	<td valign="top" width="50%">
+	
+	
+	
+	</td>
+	<else />
+	<td valign="top" width="50%">
+	
+	<div class="block-wrapper">
+
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header">{_action} / {_transaction_tools}</div>
+			
+			<!--<div class="block-content-yellow"><div class="smaller"></div></div>-->
+			<div class="block3-content" style="padding:9px">
+				
+				
+
+				<div>
+				<select name="invcmd" style="font-family: verdana">
+				<optgroup label="{_select_action}">
+				<option value="csv">{_download_as_csv}</option>
+				</optgroup>
+				</select> 
+				</div>
+				
+				<if condition="isset($show['viewingasprovider']) AND $show['viewingasprovider']">
+				<div style="padding-top:4px">
+				<hr size="1" width="100%" style="color:#ccc" />
+				<span style="font-size:13px"><if condition="$show['ispaid'] OR $show['iscomplete']"><else /><span class="blue"><a href="{markedaspaidurl}" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')"><strong>{_mark_as_paid}</strong></a></span> &nbsp;&nbsp;|&nbsp;&nbsp;</if> <if condition="$show['isunpaid']"><else /><span class="blue"><a href="{markedasunpaidurl}" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')"><strong>{_mark_as_unpaid}</strong></a></span> &nbsp;&nbsp;|&nbsp;&nbsp;</if> <if condition="$show['iscancelled']"><else /><span class="blue"><a href="{markedascancelledurl}" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')"><strong>{_mark_as_cancelled}</strong></a></span></if></span>
+				</div>
+				</if>
+				
+			  
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+		</div>
+	</div>	
+	</td>
+	</if>
+	
+</tr>
+</table>
+
+
+<div style="margin-top:3px"><if condition="isset($show['providerblock']) AND $show['providerblock'] AND isset($show['escrowblock']) AND $show['escrowblock'] == false"><input type="submit" value=" {_continue} " class="buttons" id="sub" style="font-size:15px"  /><else /><input type="submit" value=" {_continue} " class="buttons" id="sub"  style="font-size:15px"  /></if> &nbsp;&nbsp;&nbsp;&nbsp;</div>
+</form>
+
+
+<div align="center" style="padding-top:7px"></div>
+</if>
+<if condition="isset($show['invoice_not_found']) AND $show['invoice_not_found']">
+<strong>There are no unpaid invoices in this user account.</strong>
+</if>
+
+</td>
+									</tr>
+								</table>	
+							</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+						
+			</div>
+
+
+
+		<!-- currently consinged coins & return consignment start -->
+
+		<div class="tab-page">			
+			<h2 class="tab">Consign</h2>			
+			<div class="block-wrapper" >
+                <div class="block3">
+                    <br/>
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+<if condition="isset($show['showsearch_consign']) AND $show['showsearch_consign']">
+	<form id="current_consign_coins" name="current_consign_coins" action="current_consign_coins.php" 
+							accept-charset="UTF-8" style="margin:0px">
+			<div class="block3-header">{consing_number} Coins found 
+				<span style="float:right; vertical-align:middle"> 
+					<input type="button" value="Check All" onClick="this.value=check(this.form.my)"> 
+				</span>
+			</div>
+
+						<input type="hidden" name="cmd" value="allcheck_return_consign" />
+
+						<div class="block3-content" style="padding:0px">
+							
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+												<td >CoinID</td>
+												<td >Title</td>
+												<td >Listed</td>
+												<td >Bids</td>					
+												<td >Min Bid</td>
+												<td >BuyNow</td>
+												<td >Current Bid</td>
+												<td >Date Consigned</td>
+												<td >Times Listed</td>	
+												<td >Check</td>
+
+								
+							</tr>
+							<loop name="all_consing_coins_list"> 							
+							<tr class="alt1" valign="top">								
+											<td nowrap="nowrap">
+												{coin_id}
+											</td>
+											<td>
+												{Title}
+											</td>
+											<td>{listed_count}</td>
+											<td nowrap="nowrap">
+												{bids}
+											</td>															
+											<td nowrap="nowrap">
+												{minc}
+											</td>
+											<td nowrap="nowrap">
+												{buyc}
+											</td>
+											<td nowrap="nowrap">
+												{currentp}
+											</td>	
+											<td nowrap="nowrap">
+												{Create_Date}
+											</td>
+											<td nowrap="nowrap">
+												{End_Date}
+											</td>											
+											<td nowrap="nowrap">
+												{checkval}
+											</td>											
+
+								
+							</tr>
+							</loop name="all_consing_coins_list">
+                           	<tr>
+								<td colspan="11">{listing_pagnation}</td>
+							</tr>
+						
+						
+							
+							</table>
+							
+</div>
+						<div class="block3-header">								
+							<table>
+								<tr valign="top">
+									<td>
+										<input type="submit" value="Return Coins" 
+												onclick="return checkall(this.form);" name="return_consign"></td>
+								</tr>
+							</table>
+						</div>
+					</form>
+					</if>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							<div>&nbsp;</div>
+							
+							</div></div>
+			 
+
+		</div>
+
+		<!-- currently consinged coins & return consignment end -->
+		
+		<!-- returned consignments starts -->
+			
+			<div class="tab-page"> 
+			<h2 class="tab">Returned</h2>
+			
+			
+			<div class="block-wrapper">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">Returned Consignments</div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<tr class="alt2">
+							<td width="15%" align="center">Username</td>
+							<td width="15%" align="center">Date Made</td>
+							<td width="15%" align="center">No of Coins</td>
+						</tr>
+						<if condition="isset($show['returned_result']) AND $show['returned_result']">
+						<loop name="returned_list"> 						
+						<tr> 
+							<td align="center">{retnd_username}</td>
+							<td align="center">
+								<div class="blue">
+									<a href="users_returned.php?cmd=view&date={return_date}&uid={user_id}">{return_date}</a>
+								</div>	
+							</td>
+							<td align="center">{coin_count}</td>
+						</tr>
+						</loop name="returned_list"> 
+						</if>
+						<if condition="isset($show['returned_result_no']) AND $show['returned_result_no']">
+						<tr> 
+							<td align="center" colspan="4"><strong>Results Not Found</strong></td>
+						</tr>
+						</if>
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+						
+			</div>
+			
+			<!-- returned consignments ends -->
+			
+
+						
+			</div>
+			
+		
+			
+		
+
+
+			
+			<!-- for Bug id 5204 Ends -->
+			
+				
+			
+			
+			
+<script language="javascript">
+  function shownote(id,note,follow_update)
+    {
+	   document.getElementById('note_id').value=id;
+	   document.getElementById('note').value=note;
+	   document.getElementById('datepicker').value=follow_update;
+	   
+	}
+</script>
+
+		
+	</div>
+	</div>
+	</if>
+<br />
+<br />
+
+
+
+<!-- START Saved search add -->
+<div id="saved_search_modal" class="modal modal_window"  style="display:none; cursor: default; width: 570px; height: 230px;">
+            <div class="bigtabs" style="padding-bottom:5px; padding-top:5px">
+            <div class="bigtabsheader">
+            <span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+            <ul id="skilltabs">
+                <li title="" class="highlight"><a href="javascript:void(0)" rel="nofollow">{_save_this_search}</a></li>
+            </ul>
+            </div>
+            </div>
+            <div style="clear:both;"></div>            
+            <!--<div class="gray">{_you_can_now_save_this_search_into_an_orgainzed_folder}</div>-->
+            <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+            
+            <div style="padding-top:20px"><strong>{_title_of_this_saved_search}</strong></div>
+            <div style="padding-top:3px"><input type="hidden"  id ="uid" name="uid" value="{user_id}" /><input type="text" name="title" value="" id="titleid" class="input" style="font-family: verdana; width:300px" /></div>
+			 <div style="padding-top:20px"><strong>Keyword</strong></div>
+            <div style="padding-top:3px"><input type="text" name="keyword" value="" id="keyid" class="input" style="font-family: verdana; width:300px" /></div>
+            <div style="padding-top:9px"><input type="submit" value=" {_save} " class="buttons" style="font-size:15px" onclick="return checkupdata(document.getElementById('keyid').value);"/></div>
+            
+            
+            <else /><div style="padding-top:12px"><strong><span class="blue"><a href="{https_server}{ilpage[login]}">{_please_login_or_register_to_save_this_search}</a></span></strong></div>
+            <div class="smaller gray">{_note_when_you_register_or_login_you_may_need_to_reexecute_this_specific_search}</div></if>
+        </div>
+
+<!-- END Saved search Add -->

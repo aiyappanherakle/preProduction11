@@ -1,0 +1,105 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+  <tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+				
+				<div class="block-wrapper">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">List of Items in Consignment ID: {consignid}</div>
+							<div style="padding: 0px;" class="block3-content">
+						<!-- BEGIN service panel selling activity -->
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>
+										<tr class="alt2">
+											<td>Item Id</td>
+											<td>{_title}</td>
+											<td>{_status}</td>											
+											
+											
+										</tr>
+										<loop name="coins_list">
+										<tr>
+										 <td>{coin_id}</td>
+										 <td>{Title}</td>										 
+										 <td>{Status}</td>										
+										</tr>
+										</loop name="coins_list">	
+										<if condition="isset($show['no_statement']) AND $show['no_statement']">
+                                         <tr class="alt1">
+                                             <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                         </tr>
+                                         </if>							
+									</tbody>
+								</table>
+								
+							<!-- END service panel selling activity -->
+							</div>
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--Coins list end-->
+					<if condition="isset($show['show_message']) AND $show['show_message']">
+					<div class="block-wrapper">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">Consignment Note for Consignment ID: {consignid}</div>
+							<div style="padding: 0px;" class="block3-content">
+						<!-- BEGIN service panel selling activity -->
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>
+										<tr class="alt2">
+											<td colspan="2">{_messages_posted_by_greatcollections_team}</td>
+										</tr>
+										<loop name="message_list">
+										<tr>
+										 <td colspan="2">{message}
+										 	<p style="text-align: right;color:blue;">{created_on}</p>
+										 </td>
+										</tr>
+
+										</loop name="message_list">	
+																
+									</tbody>
+								</table>
+								
+							<!-- END service panel selling activity -->
+							</div>
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+                                        
+                    </if>	
+					
+				
+			
+			
+	</td>
+</tr>
+</table>

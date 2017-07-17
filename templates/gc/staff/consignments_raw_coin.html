@@ -1,0 +1,249 @@
+<script type="text/javascript">
+
+function gradeservice(gc)
+
+{
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+		
+		    
+			document.getElementById('service_ajax').innerHTML= request.responseText;
+			
+			
+		}
+		else{
+			document.getElementById('service_ajax').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='consignment_ajax.php?check_grade_service=' +gc;
+	request.open("GET", url,true);
+	request.send(null);
+}
+
+
+</script>
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="consignments.php" ><span>Listing</span></a>
+		<a href="consignments.php?cmd=create"><span>Create</span></a> 
+		<a href="consignments.php?cmd=list_raw_send" ><span>List Raw</span></a>
+		 <a href="consignments.php?cmd=search" ><span>Search</span></a>
+		 <a href="consignments.php?cmd=pen_con_list" ><span>Pending List</span></a>		
+		  <a href="consignments.php?cmd=quick_page" ><span>Edit Min/BN</span></a>
+		  <a href="minbids_change.php" ><span>Edit Min/BN(Inc.Live)</span></a>
+		  <a href="consignments.php?cmd=listing_page" class="sel" ><span>Editing Fvf</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Consignments</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Raw</h2>
+			       	 <if condition="isset($show['relist']) AND $show['relist'] == 'update_coin'">	   					
+				<form method="post" action="{ilpage[consignment]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="raw_coins" />
+				<input type="hidden" name="subcmd" value="raw_coins_update" />
+				<input type="hidden" name="return" value="{ilpage[consignment]}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">Update Consignment Relist</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+						<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                     <tr class="alt1">
+					<td width="25%" nowrap="nowrap"><span class="gray">Grading Service</span></td>
+					<td width="35%">
+								{grade_service}	</td>
+								<td>Referal id</td>	<td>{referal_id}</td>	
+					</tr>
+					<tr class="alt1">
+					<td width="5%" class="gray">Service Level</td>
+					<td width="5%">
+					<input type="hidden" name="user_id" id="user_id" value="{user_id}"/>
+					<input type="hidden" name="consignid" id="consignid" value="{consignid}"/>
+					<input type="hidden" name="coin_id" id="coin_id" value="{coin_id}"/>
+					{Service_Level}	</td>
+								<td></td>	<td></td>	
+					</tr>
+					<tr class="alt1">  
+					<td width="5%" nowrap="nowrap"><span class="gray">Final value fee</span></td>
+								<td width="5%" nowrap="nowrap">
+								<select name="present">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								</select>&nbsp;&nbsp;%with&nbsp;&nbsp;
+							
+								<select name="min">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								</select>&nbsp;&nbsp;$min&nbsp;&nbsp;
+					<td width="5%" nowrap="nowrap"><span class="gray">Listing Fee</span></td>
+								<td width="5%" nowrap="nowrap">	
+								<select name="listingfee">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="$5 for lessthen $100">$5 for lessthen $100</option>
+								<option value="$10 for $100 to $99">$10 for $100 to $99</option>
+								<option value="$20 for morethen $1000">$20 for morethen $1000</option>
+								</select>	
+								
+								<input type="hidden" name="user_id" id="user_id" value="{user_id}"/>
+								<input type="hidden" name="consignid" id="consignid" value="{consignid}"/>
+								</td>	
+								
+					</tr>
+					 <tr class="alt1">
+					 <td nowrap="nowrap" class="alt1">
+					<span class="gray"> End Date</span></td>
+								<td width="5%">{daylist}&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;{yearlist}</td></tr>
+					<tr class="alt1">
+					<td width="5%" nowrap="nowrap"><span class="gray">Notes</span></td></tr><tr>
+					<td><textarea style="width: 350px; height: 150px;" name="notes"></textarea></td>
+					</tr> 
+					<tr class="alt1">
+                                  <td colspan="4" ><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" onclick="return check_all_valmin();"/></td> 
+                                  </tr>                
+					</table>
+					</form>
+					<else />
+					<form method="post" action="{ilpage[consignment]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="raw_coins" />
+				<input type="hidden" name="subcmd" value="raw_coins_save" />
+				<input type="hidden" name="return" value="{ilpage[consignment]}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_create}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+						<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                     <tr class="alt1">
+					<td width="25%" nowrap="nowrap"><span class="gray">Grading Service</span></td>
+					<td width="35%">
+								{grade_service}	</td>
+								<td>Referal id</td>	<td>{referal_id}</td>	
+					</tr>
+					<tr class="alt1">
+					<td width="5%" class="gray">Service Level</td>
+					<td width="5%">
+					
+					{Service_Level}	</td>
+								<td></td>	<td></td>	
+					</tr>
+					<tr class="alt1">  
+					<td width="5%" nowrap="nowrap"><span class="gray">Final value fee</span></td>
+								<td width="5%" nowrap="nowrap">
+								<select name="present">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								</select>&nbsp;&nbsp;%with&nbsp;&nbsp;
+							
+								<select name="min">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								</select>&nbsp;&nbsp;$min&nbsp;&nbsp;
+					<td width="5%" nowrap="nowrap"><span class="gray">Listing Fee</span></td>
+								<td width="5%" nowrap="nowrap">	
+								<select name="listingfee">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="$5 for lessthen $100">$5 for lessthen $100</option>
+								<option value="$10 for $100 to $99">$10 for $100 to $99</option>
+								<option value="$20 for morethen $1000">$20 for morethen $1000</option>
+								</select>	
+								
+								<input type="hidden" name="user_id" id="user_id" value="{user_id}"/>
+								<input type="hidden" name="consignid" id="consignid" value="{consignid}"/>
+								</td>	
+								
+					</tr>
+					 <tr class="alt1">
+					 <td nowrap="nowrap" class="alt1">
+					<span class="gray"> End Date</span></td>
+								<td width="5%">{daylist}&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;{yearlist}</td></tr>
+					<tr class="alt1">
+					<td width="5%" nowrap="nowrap"><span class="gray">Notes</span></td></tr><tr>
+					<td><textarea style="width: 350px; height: 150px;" name="notes"></textarea></td>
+					</tr> 
+					<tr class="alt1">
+                                  <td colspan="4" ><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" onclick="return check_all_valmin();"/></td> 
+                                  </tr>                
+					</table>
+					</form>
+					</if>
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+            
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

@@ -1,0 +1,230 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- begin content -->
+<div id="content">
+<div class="header">Buyer</div>
+<br />
+
+<div class="block-wrapper">
+                    <div class="block3">
+
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                            <div class="block3-header">Detailed Invoice</div>
+                            <div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Buyer Details </div>
+                            </div>
+
+                            <div class="block3-content" style="padding:0px">
+                           	<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+ 							<loop name="buyerdetail">
+							<tr class="alt1" valign="top">
+								<td nowrap="nowrap">Name:	 {first_name} {last_name} </td><td nowrap="nowrap">Email:	 {email}</td>
+							</tr><tr class="alt1" valign="top">
+								<td nowrap="nowrap">Address:	{address}</td>	<td nowrap="nowrap">City:	{city}, {state}</td>
+							<tr class="alt1" valign="top">
+								<td nowrap="nowrap">Zip: 	{zip_code}</td>	 <td nowrap="nowrap">Country: 	{country}</td>
+							</tr>
+							<tr class="alt1" valign="top">
+								<td nowrap="nowrap">Phone: 	{phone}</td>
+							</tr>
+							</loop name="buyerdetail">
+							</table>
+							</div>
+							<div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Items included in Invoice- {invoice_id} </div>
+                            </div>
+
+                            <div class="block3-content" style="padding:0px">
+                           									<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2">
+								  <td>Invoice ID</td>
+								   <td>Item ID</td>
+								  <td>Item Title</td>
+								   <td>Type</td>
+								   <td>Qty</td>
+								   <td>Price</td>
+								   <td>Buyer Fee</td>
+								   <td>Total</td>
+
+
+
+							</tr>
+							<loop name="invoicelist">
+							<tr class="alt1" valign="top">
+								<td nowrap="nowrap"><span class="blue">{invoiceid}</span> </td>
+								<td nowrap="nowrap">{itemid}</td>
+								<td nowrap="nowrap">{item}</td>
+								<td nowrap="nowrap"><div class="blue">{type}</div></td>
+								<td>{qty}</td>
+								<td nowrap="nowrap">{amount}</td>
+								<td>{buyerfee}</td>
+								<td nowrap="nowrap">{newtotal}</td>
+
+
+
+
+							</tr>
+							</loop name="invoicelist">
+
+                           <tr>
+								<td colspan="11">{series_prevnext}</td>
+							</tr>
+
+
+							</table>
+							</div>
+
+
+							<div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Shipping and Tax Details </div>
+                            </div>
+
+                            <div class="block3-content" style="padding:0px">
+							<form action="buyers.php" method="post">
+							<input type="hidden" name="cmd" value="_do-invoice-mark-as-paid" />
+							<input type="hidden" name="invoice_id" value="{invoice_id}" />
+                           	<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+ 							<tr class="alt1" valign="top">
+								<td width="90%" align="right"><span class="blue">{shipper_title}</span> </td>
+								<td width="10%">{shippping_cost}</td>
+							</tr>
+
+
+							<tr class="alt1" valign="top">
+								<td width="90%"  align="right"><span class="blue">Buyers Fees</span> </td>
+								<td width="10%">{buyerfee}</td>
+							</tr>
+							<tr class="alt1" valign="top">
+								<td width="90%"  align="right"><span class="blue">{taxinfo}</span> </td>
+								<td width="10%">{taxamount}</td>
+							</tr>
+							<tr class="alt1" valign="top">
+								<td width="90%"  align="right"><span class="blue">Discounts</span> </td>
+								<td width="10%">({discount})</td>
+							</tr>
+							<tr class="alt1" valign="top">
+								<td width="90%"  align="right"><span class="blue">{_misc_amount}</span> </td>
+								<td width="10%">{miscamount_formatted}</td>
+							</tr>
+							<tr class="alt1" valign="top">
+								<td width="90%"  align="right" >
+								<if condition="isset($show['partial_payment_rows']) AND $show['partial_payment_rows'] == true">
+								<table><tr><td>&nbsp;
+								<table width="60%">
+								<tr><td  width="20%">Date</td>
+								<td width="10%">Amount</td>
+								<td width="10%">Method</td></tr>
+								<loop name="partial_payment_rows">
+								<tr><td>{payment_date}</td><td>{partial_amount}</td><td>{paymethod}</td><td  width="5%">{edit}</td></tr>
+								</loop name="partial_payment_rows">
+								</table></td><td  valign="top"><span class="blue"><strong>Paid amount</strong></span></td></tr></table>		
+								<else />
+								<span class="blue"><strong>Paid amount</strong></span>
+								</if>
+								</td>
+								<td width="10%"><span class="red">{paid}</span></td>
+							</tr>
+							<tr class="alt1" valign="top">
+								<td width="90%"  align="right"><span class="blue"><strong>Total Owing</strong></span> </td>
+								<td width="10%"><span class="red">{amount}</span></td>
+							</tr>
+							<tr class="alt1" valign="top">
+								<td width="90%"  align="right"><span class="blue"><strong>{_total}</strong></span> </td>
+								<td width="10%"><span class="red">{totalamount}</span></td>
+							</tr>
+							<if condition="isset($show['status_check']) AND $show['status_check'] == 'yes'">
+							<tr class="alt1" valign="middle">
+
+								<td width="90%"  align="right"><span class="blue"><strong>Status</strong></span> </td>
+								<td width="10%"><span class="red">Paid</span></td>
+							</tr>
+							<else />
+							<if condition="$show['partial_payment_rows'] ==false">
+							
+							<tr class="alt1" valign="middle">
+								<td width="90%"  align="right">{payment_methods} </td>
+								<td width="10%"><input type="submit" style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value=" Mark As Paid " class="buttons" /></td>
+							</tr>
+							</if>
+							
+							</form>
+							</if>
+							<tr class="alt1" valign="top">
+								<td width="90%" align="right"><span class="blue">Shipment Tracking No</span> </td>
+								<td width="10%">{track_no}</td>
+							</tr>
+							<tr class="alt1" valign="top">
+								<td width="90%" align="right"><span class="blue">Shipment Date</span> </td>
+								<td width="10%">{ship_date}</td>
+							</tr>
+							<if condition="isset($show['partial_payment']) AND $show['partial_payment'] == true">
+							<form action="buyers.php" method="post">
+							<input type="hidden" name="cmd" value="_do-invoice-mark-as-partially_paid" />
+							<input type="hidden" name="invoice_id" value="{invoice_id}" />
+
+							<tr class="alt1" valign="middle">
+								<td width="90%"  align="right">{payment_methods} <input type="text" name="partial_amount" value=""></td>
+								<td width="10%"><input type="submit" style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value=" Partial Payment " name="partial_payment" class="buttons" /></td>
+							</tr>
+							</form>
+							</if>
+							<if condition="isset($show['add_misc']) AND $show['add_misc'] == true">
+							<form action="buyers.php" method="post">
+							<input type="hidden" name="cmd" value="add_misc_to_invoice" />
+							<input type="hidden" name="invoice_id" value="{invoice_id}" />
+
+							<tr class="alt1" valign="middle">
+								<td width="90%"  align="right"><input type="text" name="misc_amount" value="{miscamount}"></td>
+								<td width="10%"><input type="submit" style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value=" Add Misc Amount " name="add_misc_amount" class="buttons" /></td>
+							</tr>
+							</form>
+							</if>
+							
+							<tr class="alt1" valign="top">
+							<td colspan="2">
+							<s<strong><a href="{link}">Print invoice</a>(date order)
+							&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;
+							<a href="{link2}">Print invoice</a>(id order)
+							&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;
+							<a href="buyers.php?cmd=edit_invoice_payment&invoice_id={invoice_id}">Edit payment method/date</a></strong>
+							</td>
+							</tr>
+							</table>
+							<table>
+							  <tr class="alt1" valign="top">
+							<form action="buyers.php" method="post">
+							<input type="hidden" name="cmd" value="change_shipping" />
+							<input type="hidden" name="invoice_id" value="{invoice_id}" />
+								<td><span class="blue"><strong>Change Shipping Cost </strong></span><span class="red"><input type="text" name="change_ship" id="namval"  value="{ship_cost_new}"/></span><input type="submit" name="save" value="SAVE" /></form> </td>
+							</tr>
+							 <tr>
+							 <td>&nbsp;
+							 </td>
+							  <td>&nbsp;
+							 </td>
+							 </tr>
+							 <tr>
+							  <td>Client has a pending invoice for {pending_inv} (including base shipping and tax)
+							 </td>
+							 </tr>
+							</table>
+
+
+							</div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+						<!--	Listing of all invoices tab start-->
+						</div></div>
+
+
+

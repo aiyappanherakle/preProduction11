@@ -1,0 +1,341 @@
+<div style="font-size:19px" class="gray">{category}</div>
+
+<if condition="!empty($categorydescription)"><div class="gray" style="padding-bottom:10px">{categorydescription}</div></if>
+
+<div class="bigtabs" style="padding-bottom:10px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class="on"><a href="javascript:void(0);">{_forum}</a></li>
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/search">{_search}</a><else /><a href="{ilpage[forum]}?cmd=search">{_search}</a></if></li>
+</ul>
+<div style="padding-top:6px"></div>
+<span style="padding-left:15px" id="forumoptions">
+    <span class="smaller blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/search/today">{_view_todays_topics}</a><else /><a href="{ilpage[forum]}?cmd=search&amp;view=today">{_view_todays_topics}</a></if>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/search/new">{_view_new_topics}</a><else /><a href="{ilpage[forum]}?cmd=search&amp;view=new">{_view_new_topics}</a></if>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/search/updated">{_view_updated_topics}</a><else /><a href="{ilpage[forum]}?cmd=search&amp;view=updated">{_view_updated_topics}</a></if>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/search/unanswered">{_view_unanswered_topics}</a><else /><a href="{ilpage[forum]}?cmd=search&amp;view=unanswered">{_view_unanswered_topics}</a></if></span>
+</span>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<loop name="forums">
+<if condition="isset($show['subforums']) AND $show['subforums']">
+<!-- subforums display -->
+<div class="block-wrapper">
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header"><span style="font-size:15px">{_sub_forums_in}: <span class="blue">{ftitle}</span></span></div>
+			<!--<div class="block2-content-blue" style="padding:9px"><div class="smaller">xxx</div></div>-->
+			<div class="block-content" style="padding:0px">
+				
+				<table cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr class="alt2">
+					<td width="72%">{_forum}</td>
+					<td width="3%" align="center">{_topics}</td>
+					<td width="4%" align="center">{_replies}</td>
+					<td width="21%">{_last_topic}</td>
+				</tr>
+				<loop name="subforums">
+				<tr class="alt1" valign="top">
+					<td><span class="blue" style="font-size:14px">{sforum}</span><div style="padding-top:3px" class="gray">{description}</div></td>
+					<td align="center"><span class="gray" style="font-size:15px">{topics}</span></td>
+					<td align="center"><span class="gray" style="font-size:15px">{replies}</span></td>
+					<td>{lastpost}</td>
+				</tr>
+				</loop name="subforums">
+				<tr>
+					<td colspan="4"><if condition="$ilconfig['globalauctionsettings_seourls']"><input type="button" class="buttons" style="font-size:15px" name="newtopic" value="{_create_new_topic}" onclick="location.href='{http_server}forum/{fid}/newtopic'" /><else /><input type="button" class="buttons" style="font-size:15px" name="newtopic" value="{_create_new_topic}" onclick="location.href='{ilpage[forum]}?cmd=newtopic&amp;cid={fid}'" /></if></td>
+				</tr>
+				</table>
+
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</if>
+
+<if condition="empty($ilance->GPC['fid']) AND !empty($ilance->GPC['cid']) AND $ilance->GPC['cid'] > 0">
+<!-- topics display -->
+<div class="block-wrapper">
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header"><span style="font-size:15px">{_viewing_topics_in}: <if condition="empty($ilance->GPC['cid'])"><span class="blue"><em>{ftitle}</em></span><else /><span style="text-decoration:none;" class="blue">{ftitle}</span></if></span></div>
+			<!--<div class="block-content-yellow" style="padding:9px"><div class="smaller">xxx</div></div>-->
+			<div class="block-content" style="padding:0px">
+				
+				<table cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr class="alt2">
+					<td colspan="2" align="center">{_icons}</td>
+					<td align="left">{_topic} / {_topic_starter}</td>
+					<td width="166" align="center">{_last_post}</td>
+					<td align="center">{_replies}</td>
+					<td align="center">{_views}</td>
+				</tr>
+				<if condition="$show['stickies']">
+				<loop name="stickies">
+				<tr class="alt1 featured_highlight" valign="top">
+					<td align="left"><if condition="$ilance->lancebb->config['enablexml']"><div style="padding-left:4px"><a href="{ilpage[forum]}?cmd=rss&amp;tid={tid}"><img src="{template_relativeimagepath}{template_imagesfolder}feed.png" border="0" alt="Syndicate This Topic" /></a></div><else />&nbsp;</if></td>
+					<td align="center">{icon}</td>
+					<td width="576" align="left"><span style="float:right">{issubscribed}</span><strong>{_sticky}</strong>: <span class="blue">{ttitle}</span> <if condition="$ilance->lancebb->config['enabledaysold']"><span class="smaller" style="color:#999999">{daysold}</span></if><div class="smaller">{tposter}</div></td>
+					<td nowrap="nowrap" width="166"><span style="float:right; padding-left:3px"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/{tid}/lastpost">{lastpostbulb}</a><else /><a href="{ilpage[forum]}?tid={tid}&amp;view=lastpost">{lastpostbulb}</a></if></span><div align="left" class="smaller gray">{lastpost}</div></td>
+					<td align="center"><span class="gray" style="font-size:15px">{replies}</span></td>
+					<td align="center"><span class="gray" style="font-size:15px">{views}</span></td>
+				</tr>
+				</loop name="stickies">
+				<tr align="center">
+					<td colspan="6" align="left" style="padding:5px; height:2px;"></td>
+				</tr>
+				</if>
+				<loop name="topics">
+				<tr class="alt1" valign="top">
+					<td align="left"><if condition="$ilance->lancebb->config['enablexml']"><div style="padding-left:4px"><a href="{ilpage[forum]}?cmd=rss&amp;tid={tid}"><img src="{template_relativeimagepath}{template_imagesfolder}feed.png" border="0" alt="Syndicate This Topic" /></a></div><else />&nbsp;</if></td>
+					<td align="center">{icon}</td>
+					<td width="576" align="left"><span style="float:right">{issubscribed}</span><span class="blue">{ttitle}</span> <if condition="$ilance->lancebb->config['enabledaysold'] == 1"><span class="smaller" style="color:#999999">{daysold}</span></if><div class="smaller">{tposter}</div></td>
+					<td nowrap="nowrap" width="166"><span style="float:right; padding-left:3px"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/{tid}/lastpost">{lastpostbulb}</a><else /><a href="{ilpage[forum]}?tid={tid}&amp;view=lastpost">{lastpostbulb}</a></if></span><div align="left" class="smaller gray">{lastpost}</div></td>
+					<td align="center"><span class="gray" style="font-size:15px">{replies}</span></td>
+					<td align="center"><span class="gray" style="font-size:15px">{views}</span></td>
+				</tr>
+				</loop name="topics">
+				<if condition="isset($notopics) AND $notopics">
+				<tr class="alt1">
+					<td colspan="6" align="center"><div style="padding-top:8px; padding-bottom:8px">{_no_topics_in_category}.  <span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/{cid}/newtopic">{_why_not_create_one}</a><else /><a href="{ilpage[forum]}?cmd=newtopic&amp;cid={cid}">{_why_not_create_one}</a></if></span></div></td>
+				</tr>
+				</if>
+				<tr class="alt1">
+					<td colspan="6"><if condition="$ilconfig['globalauctionsettings_seourls']"><input type="button" class="buttons" style="font-size:15px" name="newtopic" value="{_create_new_topic}" onclick="location.href='{http_server}forum/{fid}/newtopic'" /><else /><input type="button" class="buttons" style="font-size:15px" name="newtopic" value="{_create_new_topic}" onclick="location.href='{ilpage[forum]}?cmd=newtopic&amp;cid={fid}'" /></if></td>
+				</tr>
+				<tr>
+					<td colspan="6">{prevnext}</td>
+				</tr>
+				</table>
+
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<!-- / topics display -->
+
+<!-- forum posting permissions -->
+<div class="block-wrapper" style="width:280px">
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header"><span style="font-size:15px">{_forum_posting_rules}</span></div>
+			<div class="block3-content-gray" style="padding:9px"><div class="smaller">Learn your permissions from the chart below</div></div>
+			<div class="block3-content" style="padding:0px">
+			
+			<table cellpadding="9" cellspacing="1" border="0" width="100%">
+			<tr>
+				<td>
+				<div>
+					<div>{_you} <strong><if condition="($ilance->lancebb->config['guestposting'] AND empty($_SESSION['ilancedata']['user']['userid']) OR !empty($_SESSION['ilancedata']['user']['userid']))">{_can} <else />{_cannot}</if></strong> {_post_new_topics}</div>
+					<div>{_you} <strong><if condition="($ilance->lancebb->config['guestreplies'] AND empty($_SESSION['ilancedata']['user']['userid']) OR !empty($_SESSION['ilancedata']['user']['userid']))">{_can} <else />{_cannot}</if></strong> {_post_new_replies}</div>
+					<div>{_you} <strong><if condition="!empty($_SESSION['ilancedata']['user']['userid'])">{_can} <else />{_cannot}</if></strong> {_subscribe_to_topics}</div>
+					<div>{_you} <strong><if condition="($ilance->lancebb->config['guestposting'] AND empty($_SESSION['ilancedata']['user']['userid']) OR !empty($_SESSION['ilancedata']['user']['userid']))">{_can} <else />{_cannot}</if></strong> {_post_anonymously}</div>
+					<hr />
+					<div>{_bbcode_is} <strong><if condition="$ilance->lancebb->config['enablebbcode']">{_on}<else />{_off}</if></strong></div>
+					<div>{_html_code_is} <strong><if condition="$ilance->lancebb->config['enablehtmlcode']">{_on}<else />{_off}</if></strong></div>
+				</div>
+				</td>
+			</tr>
+			</table>
+			<!-- / forum posting permissions -->
+				
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</if>
+
+<if condition="empty($ilance->GPC['cid'])">
+<!-- forums display -->
+<div class="block-wrapper">
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header"><span style="font-size:15px" class="blue">{ftitleurl}</span></div>
+			<div class="block-content" style="padding:0px">
+				
+				<table cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr class="alt2">
+                	<td align="left"></td>
+					<td align="left">{_category}</td>
+					<td width="159">{_last_post}</td>
+					<td width="59">{_topics}</td>
+					<td width="62">{_replies}</td>
+				</tr>
+				<loop name="category{fid}">
+				<tr class="alt1" valign="top">
+					<td align="center" width="1">{pic}</td>
+					<td  align="left">
+						<div>
+							<span style="float:right"></span>
+							<span class="blue" style="font-size:15px">{ctitleurl}</span><!--&nbsp;&nbsp;&nbsp;<span class="smaller gray">({viewingfid} viewing)</span>-->
+						</div>
+						<div class="smaller gray" style="padding-top:3px">{cdescription}</div>
+						<div>{subforums}</div>
+				  </td>
+					<td align="left" width="159"><div>{lastposticon}</div><div class="smaller">{lastpost}</div></td>
+					<td><span class="gray" style="font-size:15px">{topics}</span></td>
+					<td><span class="gray" style="font-size:15px">{replies}</span></td>
+				</tr>
+				</loop name="category{fid}">
+				<tr>
+					<td colspan="5" align="right"><span class="smaller blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/markforumsread">{_mark_all_forums_as_read}</a><else /><a href="{ilpage[forum]}?cmd=markforumsread">{_mark_all_forums_as_read}</a></if></span></td>
+				</tr>
+				</table>
+
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<!-- / forums display -->
+</if>
+</loop name="forums">
+
+
+
+
+
+
+
+
+
+<loop name="forumstats">
+<if condition="empty($ilance->GPC['fid']) AND empty($ilance->GPC['cid'])">
+<!-- forum stats -->
+<div class="block-wrapper">
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header"><span style="font-size:15px">{_forum_statistics}</span></div>
+			<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_total_topics}: {totaltopics}, {_posts}: {totalreplies}</div></div>
+			<div class="block3-content" style="padding:0px">
+				
+				<table cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr>
+				  <td width="50%" valign="top">
+				  <div>{_your_last_visit}: <span class="gray">{cookielastvisit}</span></div>
+				  <div style="padding-top:3px">{_new_posts_since_last_visit}: <span class="gray">{newposts}</span></div>
+					<div style="padding-top:3px">{_new_topics_since_last_visit}: <span class="gray">{newtopics}</span></div>
+				  
+				  </td>
+				  <td width="50%" valign="top">
+				  
+				  <div>{_members}: <span class="gray">{livemembers}</span>, {_moderators}: <span class="gray">{livemods}</span>, {_admins}: <span class="gray">{liveadmins}</span>
+						{_guests}: <span class="gray">{liveguests}</span>, {_search_bots}: <span class="gray">{liverobots}</span></div>	
+				  
+				  
+				  </td>
+				</tr>
+				<!--<tr>
+					<td colspan="2"><div><strong>{_members_logged_in}:</strong>&nbsp; {whosloggedin}</div></td>
+				</tr>-->
+				</table>
+				
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<!-- / forum stats -->
+</if>
+
+<if condition="empty($ilance->GPC['cid'])">
+<!-- forum topic markers -->
+<!--
+<div class="block-wrapper">
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_forum_posting_legend}</div>
+			<div class="block-content" style="padding:0px">
+				
+			<table cellpadding="9" cellspacing="1" border="0">
+			<tr>
+				<td style="width:28px;" class="alt2" valign="middle" >{iconnew}</td>
+				<td valign="middle" style="width:110px;" class="alt1" nowrap="nowrap">{_new_forum_posts}</td>
+				<td style="width:28px;" class="alt2" valign="middle" >{iconold}</td>
+				<td valign="middle" style="width:120px;" class="alt1" nowrap="nowrap">{_no_new_forum_posts}</td>
+				<td style="width:28px;" class="alt2" valign="middle" >{iconlock}</td>
+				<td valign="middle" style="width:130px;" class="alt1" nowrap="nowrap">{_requires_login_to_post}</td>
+			</tr>
+			</table>
+
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+//-->
+<!-- / forum topic markers -->
+</if>
+</loop name="forumstats">

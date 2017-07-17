@@ -1,0 +1,102 @@
+<?php 
+require_once('../../functions/config.php');
+
+require_once(DIR_CORE.'../../ebay/get-common/keys.php');
+require_once(DIR_CORE.'../../ebay/get-common/eBaySession.php');
+
+define('SHOWNOTIFICATIONS',true);
+ error_reporting(E_ALL);
+
+ 
+$query1="SELECT coin_id,ebay_id,date(end_date) as end_date , DATE_ADD(end_date,INTERVAL 30 DAY) as  end_date_plus_thirty_days FROM " . DB_PREFIX . "ebay_listing  where coin_id=201332";
+ 
+
+$sql1 = $ilance->db->query($query1, 0, null, __FILE__, __LINE__);
+if($ilance->db->num_rows($sql1))
+{
+	while($line1 = $ilance->db->fetch_array($sql1))
+	{
+	/*
+	<ModTimeFrom>'.$line1['listedon'].'T18:28:52.799Z</ModTimeFrom>
+	<ModTimeTo>'.$line1['end_date_plus_thirty_days'].'T18:28:52.799Z</ModTimeTo>
+	*/
+		$siteID = 0;
+		$ebay_coin_id = $line1['ebay_id'];
+		$coin_id=$line1['coin_id'];
+		$verb = 'GetItemTransactions';
+		$requestXmlBody  = '<?xml version="1.0" encoding="utf-8" ?>';
+		$requestXmlBody .= '<'.$verb.'Request xmlns="urn:ebay:apis:eBLBaseComponents"> 
+							<ItemID>'.$ebay_coin_id.'</ItemID>';
+		$requestXmlBody .= "<RequesterCredentials><eBayAuthToken>$userToken</eBayAuthToken></RequesterCredentials>";
+		$requestXmlBody .= '<DetailLevel>ReturnAll</DetailLevel>';
+		$requestXmlBody .= '<ErrorLanguage>en_US</ErrorLanguage>';
+		$requestXmlBody .= "<Version>$compatabilityLevel</Version>"; 
+		 $requestXmlBody .= '</'.$verb.'Request>';
+ 
+		
+
+				
+		
+        $session = new eBaySession($userToken, $devID, $appID, $certID, $serverUrl, $compatabilityLevel, $siteID, $verb);
+		
+		$responseXml = $session->sendHttpRequest($requestXmlBody);
+		if(stristr($responseXml, 'HTTP 404') || $responseXml == '')
+			die('<P>Error sending request');
+			
+			
+		$responseDoc = new DomDocument();
+		$responseDoc->loadXML($responseXml);
+					
+		//get any error nodes
+		$errors = $responseDoc->getElementsByTagName('Errors');
+		
+		//if there are error nodes
+		if($errors->length > 0)
+		{
+			e ('<P><B>eBay returned the following error(s):</B>');
+			//display each error
+			//Get error code, ShortMesaage and LongMessage
+			$code     = $errors->item(0)->getElementsByTagName('ErrorCode');
+			$shortMsg = $errors->item(0)->getElementsByTagName('ShortMessage');
+			$longMsg  = $errors->item(0)->getElementsByTagName('LongMessage');
+			$classification  = $errors->item(0)->getElementsByTagName('ErrorClassification');
+			
+			
+			//Display code and shortmessage
+			e ('<P>', $code->item(0)->nodeValue, ' : ', str_replace(">", "&gt;", str_replace("<", "&lt;", $shortMsg->item(0)->nodeValue)));
+			e ('<BR>', str_replace(">", "&gt;", str_replace("<", "&lt;", $classification->item(0)->nodeValue)));
+			//if there is a long message (ie ErrorLevel=1), display it
+			if(count($longMsg) > 0)
+				e ('<BR>', str_replace(">", "&gt;", str_replace("<", "&lt;", $longMsg->item(0)->nodeValue)));
+				
+			
+				
+		} else { //no errors
+            
+			
+			//get results nodes
+            $responses = $responseDoc->getElementsByTagName($verb."Response");
+			$xml = $responseDoc->saveXML($responseDoc);
+			$responseDoc->saveXML($responseDoc);
+			 echo $xml;exit;
+			
+			
+			$xml = $responseDoc->saveXML($responseDoc);
+           
+		} // if $errors->length > 0
+	
+	
+	}
+	
+}
+
+		 
+		
+	
+//log_cron_action('The auction tasks were successfully executed' , '');
+function e($string)
+{
+if(SHOWNOTIFICATIONS==true)
+echo $string;
+}
+?>

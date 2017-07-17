@@ -1,0 +1,335 @@
+#/*==========================================================================*\
+#|| ######################################################################## ||
+#|| # ILance Marketplace Software 3.2.0 Build 1352
+#|| # -------------------------------------------------------------------- # ||
+#|| # Customer License # LuLTJTmo23V1ZvFIM-KH-jOYZjfUFODRG-mPkV-iVWhuOn-b=L
+#|| # -------------------------------------------------------------------- # ||
+#|| # Copyright ©2000–2010 ILance Inc. All Rights Reserved.                # ||
+#|| # This file may not be redistributed in whole or significant part.     # ||
+#|| # ----------------- ILANCE IS NOT FREE SOFTWARE ---------------------- # ||
+#|| # http://www.ilance.com | http://www.ilance.com/eula | info@ilance.com # ||
+#|| # -------------------------------------------------------------------- # ||
+#|| ######################################################################## ||
+#\*==========================================================================*/
+
+#### Configure Mime Types ######################################################
+AddType application/x-httpd-php asp jsp
+
+#### Try to force all Javascript's as UTF-8 ####################################
+AddCharset utf-8 .js
+
+#### Turn off mod_security just in case script.php?& url #######################
+<IfModule mod_security.c>
+
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+    
+</IfModule>
+
+### changes made by Murugan #############
+###AuthType Basic
+##AuthName "My Protected Area"
+###AuthUserFile /home/content/h/e/r/heraklec/html/greatcollection/.htpasswd
+##Require valid-user
+
+#### Above changes made by murugn ############
+
+#### Protect files and directories from prying eyes ############################
+<Files ~ "(\.(inc|pl|sh|sql|log|cache|sqlcache|svn)|.svn|templates|Entries|Repositories|Root|CVS|.dist|.new)$">
+
+    Order deny,allow
+    Deny from all
+    
+</Files>
+
+#### Check for mod_rewrite #####################################################
+<IfModule mod_rewrite.c>
+
+    #### Set some defaults #####################################################
+    Options -Indexes
+    Options +FollowSymLinks
+    DirectoryIndex main.php
+    ErrorDocument 404 http://www.greatcollections.com/main.php?cmd=404
+
+    #### Turn on mod_rewrite engine ############################################
+    RewriteEngine on
+    
+    #### Main Menu Handler #####################################################
+    RewriteRule ^([Bb]+)uy$ main.php?cmd=buying&sef=1 [L,QSA]
+    RewriteRule ^([Bb]+)uy/([Pp]+)roducts$ main.php?cmd=buying&mode=product&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)ell$ main.php?cmd=selling&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)ell/([Bb]+)ulk$ main.php?cmd=selling&mode=bulk&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)ell/([Ss]+)ervices$ main.php?cmd=selling&mode=service&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)ignin$ login.php?sef=1&%{QUERY_STRING} [L,QSA]
+    RewriteRule ^([Ss]+)ignout$ login.php?cmd=_logout&sef=1 [L,QSA]
+    RewriteRule ^([Nn]+)ews$ main.php?cmd=news&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories$ main.php?cmd=categories&sef=1 [L,QSA]
+    RewriteRule ^([Ll]+)istings$ main.php?cmd=listings&sef=1 [L,QSA]
+    RewriteRule ^mygc$ main.php?cmd=cp&sef=1 [L,QSA]
+    RewriteRule ^main-rss$ rss.php?sef=1 [L,QSA]
+    RewriteRule ^main-converter$ accounting.php?cmd=currency-converter&sef=1 [L,QSA]
+    RewriteRule ^main-([A-Za-z0-9\-]+)$ main.php?cmd=$1&sef=1 [L,QSA]
+    RewriteRule ^([Nn]+)onprofits$ nonprofits.php?sef=1 [L,QSA]
+    
+	#karthik on jun17 for new home page
+	
+	RewriteRule ^([Cc]+)oinAuctions$ CoinAuctions.php [L,QSA] 
+	RewriteRule ^([Cc]+)oinAuctions/([A-Za-z0-9_\-]+)$ CoinAuctions.php [L,QSA]
+ 
+    #### Auction Listings ######################################################
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Rr]+)([Ff]+)([Pp]+)([0-9]+)$ rfp.php?id=$5&sef=1&%{QUERY_STRING} [L,QSA]       ## 3.1.7 and eariler
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Ii]+)tem([0-9]+)$ merch.php?id=$3&sef=1&%{QUERY_STRING} [L,QSA]                ## 3.1.7 and eariler
+    
+    RewriteRule ^([Pp]+)roject/([0-9]+)/([Rr]+)etracted$ rfp.php?id=$2&view=retracted&sef=1&%{QUERY_STRING} [L,QSA] ## 3.1.8 Retracted Bids
+    RewriteRule ^([Pp]+)roject/([0-9]+)/([Dd]+)eclined$ rfp.php?id=$2&view=declined&sef=1&%{QUERY_STRING} [L,QSA]   ## 3.1.8 Declined Bids
+    RewriteRule ^([Pp]+)roject/([0-9]+)/([Ss]+)hortlist$ rfp.php?id=$2&view=shortlist&sef=1&%{QUERY_STRING} [L,QSA] ## 3.1.8 Shortlist Bids
+    RewriteRule ^([Pp]+)roject/([0-9]+)/([A-Za-z0-9_\-]+)$ rfp.php?id=$2&sef=1&%{QUERY_STRING} [L,QSA]              ## 3.1.8 Service listing with english title  
+    RewriteRule ^([Pp]+)roject/([0-9]+)/$ rfp.php?id=$2&sef=1&%{QUERY_STRING} [L,QSA]                               ## 3.1.8 Service listing with non-english title
+    
+    RewriteRule ^([Cc]+)oin/([0-9]+)/([A-Za-z0-9_\-]+)$ merch.php?id=$2&sef=1&%{QUERY_STRING} [L,QSA]               ## 3.1.8 Item with english title
+    RewriteRule ^([Cc]+)oin/([0-9]+)/$ merch.php?id=$2&sef=1&%{QUERY_STRING} [L,QSA]                                ## 3.1.8 Item with non-english title
+#suku
+	
+	RewriteRule ^([Cc]+)oins/([0-9]+)/([A-Za-z0-9_\-]+)$ search.php?mode=product&cid=$2&sef=1&%{QUERY_STRING} [L,QSA]               ## 3.1.8 Item with english title
+	 
+	RewriteRule ^([Ss]+)eries/([0-9]+)/([A-Za-z0-9_\-]+)$ search.php?mode=product&series=$2&sef=1&%{QUERY_STRING} [L,QSA]               ## 3.1.8 Item with english title
+
+#karthik on jun16
+
+    RewriteRule ^([Cc]+)oinPrices/SeriesCoin/([0-9]+)/([A-Za-z0-9_\-]+)$ search.php?mode=product&series=$2&ended=1&sef=1&%{QUERY_STRING} [L,QSA]         ## 3.1.8 Item with english title    
+	    
+	RewriteRule ^([Dd]+)enomination/([0-9]+)/([A-Za-z0-9_\-]+)$ denomination.php?denomination=$2&sef=1&%{QUERY_STRING} [L,QSA]          ## 3.1.8 Item with english title
+	
+	RewriteRule ^([Dd]+)enominations$ denomination.php?cmd=listings [L,QSA]  
+    
+	
+	#karthik on may31 june9
+  
+    RewriteRule ^([Cc]+)oinPrices$ denomination.php?cmd=CoinPrices [L,QSA]
+	
+	RewriteRule ^([Cc]+)oinPrices/([0-9]+)/([A-Za-z0-9_\-]+)$ denomination.php?denomination=$2&ended=1&sef=1&%{QUERY_STRING} [L,QSA] 	
+	
+	#########sekar kkk on aug 25 ########
+	RewriteRule ^([Dd]+)ailyDeal$ 24hours.php?sef=1 [L,QSA]
+	RewriteRule ^([Ww]+)atchlist/([Mm]+)anagement$ watchlist.php?cmd=management&sef=1 [L,QSA]
+	RewriteRule ^([Pp]+)references/([Ff]+)avorites$ preferences.php?cmd=favorites&sef=1 [L,QSA]
+	RewriteRule ^([Bb]+)uy/([Aa]+)ctive$ buy.php?cmd=active&sef=1 [L,QSA]
+	RewriteRule ^([Bb]+)uy/([Ww]+)on$ buy.php?cmd=won&sef=1 [L,QSA]
+	RewriteRule ^([Bb]+)uy/([Nn]+)otwon$ buy.php?cmd=notwon&sef=1 [L,QSA]
+	RewriteRule ^([Bb]+)uy/([Bb]+)uynow$ buy.php?cmd=buynow&sef=1 [L,QSA]
+	RewriteRule ^([Bb]+)uyerinvoice$ buyer_invoice.php?sef=1 [L,QSA]
+	RewriteRule ^([Aa]+)ccounting/([Cc]+)om-transactions$ accounting.php?cmd=com-transactions&sef=1 [L,QSA]
+	
+	#########sekar kkk on aug 25 ########
+	RewriteRule ^([Ss]+)ell/([Bb]+)uynowsold$ sell.php?cmd=buynowsold&sef=1 [L,QSA]
+	
+	
+    #### Portfolio Listings ####################################################
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Pp]+)ortfolio([0-9]+)$ portfolio.php?id=$3&sef=1&%{QUERY_STRING} [L,QSA]
+    
+
+    #### Category Map: No Keyword ##############################################
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Ss]+)ervice-([Cc]+)ategory-([Mm]+)ap-([0-9]+)$ rfp.php?cmd=listings&cid=$5&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories/([Pp]+)rojects/([0-9]+)/([A-Za-z0-9_\-]+)$ rfp.php?cmd=listings&cid=$3&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories/([Pp]+)rojects/([0-9]+)/$ rfp.php?cmd=listings&cid=$3&sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Pp]+)roduct-([Cc]+)ategory-([Mm]+)ap-([0-9]+)$ merch.php?cmd=listings&cid=$5&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories/([Ii]+)tems/([0-9]+)/([A-Za-z0-9_\-]+)$ merch.php?cmd=listings&cid=$3&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories/([Ii]+)tems/([0-9]+)/$ merch.php?cmd=listings&cid=$3&sef=1 [L,QSA]
+    
+
+    #### Category Map: With Keywords ###########################################
+    RewriteRule ^([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)-([Ss]+)ervice-([Cc]+)ategory-([Mm]+)ap-([0-9]+)$ search.php?mode=service&cid=$6&q=$1&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories/([Pp]+)rojects/([0-9]+)/([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)$ rfp.php?cmd=listings&cid=$3&q=$4&sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)-([Pp]+)roduct-([Cc]+)ategory-([Mm]+)ap-([0-9]+)$ search.php?mode=product&cid=$6&q=$1&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories/([Ii]+)tems/([0-9]+)/([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)$ search.php?mode=product&cid=$3&q=$4&sef=1 [L,QSA]
+    
+
+    #### Searching: No Keyword #################################################
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Pp]+)rojects-([0-9]+)$ search.php?mode=service&cid=$3&sef=1 [L,QSA]
+    RewriteRule ^([Pp]+)rojects/([0-9]+)/([A-Za-z0-9_\-]+)$ search.php?mode=service&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([Pp]+)rojects/([0-9]+)/$ search.php?mode=service&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Ii]+)tems-([0-9]+)$ search.php?mode=product&cid=$3&sef=1 [L,QSA]
+    RewriteRule ^([Ii]+)tems/([0-9]+)/([A-Za-z0-9_\-]+)$ search.php?mode=product&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ii]+)tems/([0-9]+)/$ search.php?mode=product&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Ee]+)xperts-([0-9]+)$ search.php?mode=experts&cid=$3&sef=1 [L,QSA]
+    RewriteRule ^([Ee]+)xperts/([0-9]+)/([A-Za-z0-9_\-]+)$ search.php?mode=experts&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ee]+)xperts/([0-9]+)/$ search.php?mode=experts&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Ss]+)kills-([0-9]+)$ search.php?mode=experts&sid=$3&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)kills/([0-9]+)/([A-Za-z0-9_\-]+)$ search.php?mode=experts&sid=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)kills/([0-9]+)/$ search.php?mode=experts&sid=$2&sef=1 [L,QSA]
+    
+
+    #### Searching: With Keyword ###############################################
+    RewriteRule ^([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)-([Pp]+)rojects-([0-9]+)$ search.php?mode=service&cid=$4&sef=1 [L,QSA]
+    RewriteRule ^([Pp]+)rojects/([0-9]+)/([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)$ search.php?mode=service&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)-([Ii]+)tems-([0-9]+)$ search.php?mode=product&cid=$4&sef=1 [L,QSA]
+    RewriteRule ^([Ii]+)tems/([0-9]+)/([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)$ search.php?mode=product&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)-([Ee]+)xperts-([0-9]+)$ search.php?mode=experts&cid=$4&sef=1 [L,QSA]
+    RewriteRule ^([Ee]+)xperts/([0-9]+)/([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)$ search.php?mode=experts&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)-([Ss]+)kills-([0-9]+)$ search.php?mode=experts&sid=$4&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)kills/([0-9]+)/([A-Za-z0-9_\-]+)_([A-Za-z0-9_\-]+)$ search.php?mode=experts&sid=$2&sef=1 [L,QSA]
+    
+    
+    #### Member Profile ########################################################
+    RewriteRule ^([Mm]+)embers/([A-Za-z0-9_\-]+)-([Ff]+)eedback-([2-4]+)$ members.php?id=$2&feedback=$4&sef=1 [L,QSA]
+    RewriteRule ^([Mm]+)embers/([A-Za-z0-9_\-]+)/([Pp]+)rofile$ members.php?id=$2&profile=1&sef=1 [L,QSA]
+    RewriteRule ^([Mm]+)embers/([A-Za-z0-9_\-]+)/([Jj]+)ob-([Hh]+)istory$ members.php?id=$2&jobhistory=1&sef=1 [L,QSA]
+    RewriteRule ^([Mm]+)embers/([A-Za-z0-9_\-]+)$ members.php?id=$2&sef=1&%{QUERY_STRING} [L,QSA]
+    
+
+    #### Category Map Areas: Old < 3.1.7 #######################################
+    RewriteRule ^([Aa]+)ll-([Ss]+)ervice-([Cc]+)ategories$ rfp.php?cmd=listings&sef=1 [L,QSA]
+    RewriteRule ^([Aa]+)ll-([Pp]+)roduct-([Cc]+)ategories$ merch.php?cmd=listings&sef=1 [L,QSA]
+    
+    
+    #### Category Map Areas: New in 3.1.7 + ####################################
+    RewriteRule ^([Ss]+)ervice-([Cc]+)ategory-([Mm]+)ap$ rfp.php?cmd=listings&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories/([Pp]+)rojects$ rfp.php?cmd=listings&sef=1 [L,QSA]
+    RewriteRule ^([Pp]+)roduct-([Cc]+)ategory-([Mm]+)ap$ merch.php?cmd=listings&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ategories/([Ii]+)tems$ merch.php?cmd=listings&sef=1 [L,QSA]
+    
+
+    #### Portfolio: No Keyword #################################################
+    RewriteRule ^([Pp]+)ortfolios/([0-9]+)/([A-Za-z0-9_\-]+)$ portfolio.php?cid=$2&sef=1 [L,QSA] # ILance 3.1.9
+    RewriteRule ^([A-Za-z0-9_\-]+)_([Pp]+)ortfolios/([0-9]+)/([A-Za-z0-9_\-]+)$ portfolio.php?cid=$3&q=$1&sef=1&%{QUERY_STRING} [L,QSA] # Ilance 3.1.9
+    
+    
+    #### Buying Activities #####################################################
+    RewriteRule ^([Bb]+)uying$ buying.php?sef=1 [L,QSA]
+    RewriteRule ^([Bb]+)uying/([Mm]+)anagement/rfps/([A-Za-z\-]+)$ buying.php?cmd=management&sub=$3&sef=1&%{QUERY_STRING} [L,QSA]
+    RewriteRule ^([Bb]+)uying/([Mm]+)anagement/bids/([A-Za-z\-]+)$ buying.php?cmd=management&bidsub=$3&sef=1&%{QUERY_STRING} [L,QSA]
+    
+
+    #### Header Links ##########################################################
+    RewriteRule ^([Pp]+)ortfolios$ portfolio.php?sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)earch$ search.php?sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)earch-([Ss]+)ervices$ search.php?tab=0&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)earch-([Pp]+)roducts$ search.php?tab=1&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)earch-([Ee]+)xperts$ search.php?tab=2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)earch-([Oo]+)ptions$ search.php?tab=3&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)earch-([Hh]+)elp$ search.php?cmd=help&sef=1 [L,QSA]
+    RewriteRule ^([Rr]+)egister$ registration.php?sef=1 [L,QSA]
+    RewriteRule ^([Pp]+)roviders$ search.php?mode=experts&sort=52&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)ervices$ search.php?mode=service&sort=01&sef=1 [L,QSA]
+    RewriteRule ^([Pp]+)roducts$ search.php?mode=product&sort=01&sef=1 [L,QSA]
+    RewriteRule ^([Ww]+)atchlist$ watchlist.php?sef=1 [L,QSA]
+    RewriteRule ^([Aa]+)ccounting$ accounting.php?sef=1 [L,QSA]
+    RewriteRule ^([Pp]+)references$ preferences.php?sef=1 [L,QSA]
+    RewriteRule ^([Mm]+)essages$ messages.php?sef=1 [L,QSA]
+    
+    
+    #### LanceAds ##############################################################
+    RewriteRule ^([Cc]+)ampaign$ campaign.php?sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ampaign/([Nn]+)ew$ campaign.php?cmd=create&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ampaign/([Nn]+)ew/ppi$ campaign.php?cmd=create&mode=ppi&sef=1 [L,QSA]
+    RewriteRule ^([Cc]+)ampaign/([Nn]+)ew/ppc$ campaign.php?cmd=create&mode=ppc&sef=1 [L,QSA]
+    
+    
+    #### LanceBB ###############################################################
+    RewriteRule ^([Ff]+)orum$ forum.php?sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Ss]+)earch$ forum.php?cmd=search&sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Ss]+)earch/$ forum.php?cmd=search&sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Ss]+)earch/([Tt]+)oday$ forum.php?cmd=search&view=today&sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Ss]+)earch/([Nn]+)ew$ forum.php?cmd=search&view=new&sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Ss]+)earch/([Uu]+)pdated$ forum.php?cmd=search&view=updated&sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Ss]+)earch/([Uu]+)nanswered$ forum.php?cmd=search&view=unanswered&sef=1 [L,QSA]
+    
+    RewriteRule ^([Ff]+)orum/([Mm]+)arkforumsread$ forum.php?cmd=markforumsread&sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([0-9]+)/([Nn]+)ewtopic$ forum.php?cmd=newtopic&cid=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([0-9]+)/([Ll]+)astpost$ forum.php?tid=$2&view=lastpost&sef=1 [L,QSA]
+    RewriteRule ^([Ff]+)orum/([0-9]+)/([Ll]+)astpost$ forum.php?tid=$2&view=lastpost&sef=1 [L,QSA]
+    
+    RewriteRule ^([Ff]+)orum/([Tt]+)opic/([0-9]+)/([Rr]+)eply$ forum.php?cmd=reply&tid=$3&sef=1&%{QUERY_STRING} [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Tt]+)opic/([0-9]+)/([A-Za-z0-9_\-]+)$ forum.php?tid=$3&sef=1&%{QUERY_STRING} [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Tt]+)opic/([0-9]+)/$ forum.php?tid=$3&sef=1&%{QUERY_STRING} [L,QSA]
+    
+    RewriteRule ^([Ff]+)orum/([Cc]+)ategories/([0-9]+)/([A-Za-z0-9_\-]+)$ forum.php?cid=$3&sef=1&%{QUERY_STRING} [L,QSA]
+    RewriteRule ^([Ff]+)orum/([Cc]+)ategories/([0-9]+)/$ forum.php?cid=$3&sef=1&%{QUERY_STRING} [L,QSA]
+    
+    RewriteRule ^([Ff]+)orum/([0-9]+)/([A-Za-z0-9_\-]+)$ forum.php?fid=$2&sef=1&%{QUERY_STRING} [L,QSA]
+    RewriteRule ^([Ff]+)orum/([0-9]+)/$ forum.php?fid=$2&sef=1&%{QUERY_STRING} [L,QSA]
+    
+    
+    #### WantAds ###############################################################
+    RewriteRule ^([Ww]+)antads$ wantads.php?sef=1 [L,QSA]
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Ww]+)antad-([0-9]+)$ wantads.php?id=$3&sef=1 [L,QSA]   ## older url style
+    RewriteRule ^([A-Za-z0-9_\-]+)-([Ww]+)antads-([0-9]+)$ wantads.php?cid=$3&sef=1 [L,QSA] ## orlder url style    
+    RewriteRule ^([Ww]+)antads/([0-9]+)/([A-Za-z0-9_\-]+)$ wantads.php?id=$2&sef=1 [L,QSA]   
+    RewriteRule ^([Ww]+)antads/([Cc]+)ategories/([0-9]+)/([A-Za-z0-9_\-]+)$ wantads.php?cid=$3&sef=1 [L,QSA]
+    RewriteRule ^([Ww]+)antads/([Nn]+)ew$ wantads.php?cmd=post&sef=1 [L,QSA]
+    RewriteRule ^([Ww]+)antads/([Pp]+)ostoffer/([0-9]+)/([A-Za-z0-9_\-]+)$ wantads.php?subcmd=postoffer&id=$3&sef=1 [L,QSA]
+    RewriteRule ^([Ww]+)antads/([Pp]+)ostoffer/([0-9]+)$ wantads.php?subcmd=postoffer&id=$3&sef=1 [L,QSA]
+    RewriteRule ^([Ww]+)antads/([Mm]+)yoffers$ wantads.php?subcmd=myoffers&sef=1 [L,QSA]
+    RewriteRule ^([Ww]+)antads/([Rr]+)emove/([0-9]+)$ wantads.php?subcmd=remove-wantad&id=$3&sef=1 [L,QSA]
+    RewriteRule ^([Ww]+)antads/([Rr]+)emove/([Oo]+)ffer/([0-9]+)$ wantads.php?subcmd=remove-offer&id=$4&sef=1 [L,QSA]
+    
+    
+    #### Stores Main ###########################################################
+    RewriteRule ^([Ss]+)tores$ stores.php?sef=1 [L,QSA]
+    
+    
+    #### Store Front Client ####################################################
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/viewcart$ stores.php?cmd=viewcart&id=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/trackorder$ stores.php?cmd=trackorder&id=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/home$ stores.php?cmd=homepage&id=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/about$ stores.php?cmd=about&id=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/terms$ stores.php?cmd=terms&id=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/paymentmethods$ stores.php?cmd=methods&id=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/contact$ stores.php?cmd=contact&id=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)$ stores.php?id=$2&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/$ stores.php?id=$2&sef=1 [L,QSA]
+    
+    
+    
+    #### Store Front Client View Item ##########################################
+    RewriteRule ^stores/([Ii]tem+)/([0-9]+)/([A-Za-z0-9_\-]+)$ stores.php?cmd=viewitem&itemid=$2&sef=1 [L,QSA]
+    RewriteRule ^stores/([Ii]tem+)/([0-9]+)/$ stores.php?cmd=viewitem&itemid=$2&sef=1 [L,QSA]
+    
+    
+    
+    #### Store Front Owner #####################################################
+    RewriteRule ^([Ss]+)tores/([Nn]+)ew$ stores.php?cmd=create-store&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement$ stores.php?cmd=management&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Ii]+)nventory$ stores.php?cmd=management&subcmd=inventory&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Ii]+)nventory/([Aa]+)dd$ stores.php?cmd=management&subcmd=inventory&action=new-item&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Cc]+)ategories$ stores.php?cmd=management&subcmd=categories&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Oo]+)rders$ stores.php?cmd=management&subcmd=orders&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Ss]+)hipping$ stores.php?cmd=management&subcmd=shipping&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Tt]+)axzones$ stores.php?cmd=management&subcmd=taxzones&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Ss]+)ubscription$ stores.php?cmd=management&subcmd=upgrade&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Ss]+)ubscription/([Cc]+)ancel$ stores.php?cmd=subscription&subcmd=cancel&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Ss]+)ubscription/([Cc]+)lose$ stores.php?cmd=subscription&subcmd=close&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Hh]+)omepage$ stores.php?cmd=management&subcmd=homepage&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Pp]+)aymethods$ stores.php?cmd=management&subcmd=paymentmethods&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Tt]+)erms$ stores.php?cmd=management&subcmd=terms&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Ee]+)mails$ stores.php?cmd=management&subcmd=emails&sef=1 [L,QSA]
+    
+    
+    
+    #### Store Front Owner Update Item #########################################
+    RewriteRule ^([Ss]+)tores/([Mm]+)anagement/([Ii]+)nventory/([Uu]+)pdate/([0-9]+)$ stores.php?cmd=management&subcmd=inventory&action=update-item&itemid=$5&sef=1 [L,QSA]
+    
+    
+    
+    #### Store Front Categories ################################################
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/([Cc]+)ategories/([0-9]+)/([A-Za-z0-9_\-]+)$ stores.php?id=$2&cid=$5sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([0-9]+)/([A-Za-z0-9_\-]+)/([Cc]+)ategories/([0-9]+)/$ stores.php?id=$2&cid=$5sef=1 [L,QSA]
+    
+    
+    #### Store Main Categories #################################################
+    RewriteRule ^([Ss]+)tores/([Cc]+)ategories/([0-9]+)/([A-Za-z0-9_\-]+)$ stores.php?cid=$3&sef=1 [L,QSA]
+    RewriteRule ^([Ss]+)tores/([Cc]+)ategories/([0-9]+)/$ stores.php?cid=$3&sef=1 [L,QSA]
+    
+    
+    
+    #### Warnings ##############################################################
+    RewriteRule ^([Ww]+)arnings$ warnings.php?sef=1 [L,QSA]
+    
+    
+</IfModule>
+
+#/*======================================================================*\
+#|| ####################################################################
+#|| # Downloaded: Wed, Jun 2nd, 2010
+#|| ####################################################################
+#\*======================================================================*/

@@ -1,0 +1,943 @@
+
+
+
+<script src="https://github.com/douglascrockford/JSON-js/raw/master/json2.js"></script>
+<script>
+$(function() {
+$("#managed_datepicker").datepicker({
+dateFormat: 'yy-mm-dd',
+});
+$("#non_managed_datepicker").datepicker({
+dateFormat: 'yy-mm-dd',
+});
+
+}); 
+
+function toggle(source,target) {
+	var cbs = source.elements[target];
+		for(var i=0; i<cbs.length; i++)
+		{
+		if(cbs[i].checked==false)
+		cbs[i].checked = true;
+		else
+		cbs[i].checked = false;
+		}
+}
+
+function autobuild(selectvalue,sourceform,checkboxlist,backfilldiv,lastrowid)
+{
+//selectvalue;
+var selectedusers='';
+var totalcoins=0;
+var cbs = sourceform.elements[checkboxlist];
+var selected_user_array = new Array();
+var html='';
+var j=0;
+		for(var i=0; i<cbs.length; i++)
+		{
+		if(cbs[i].checked==true)
+		{
+			selectedusers+=cbs[i].value+',';
+			selected_user_array[j]=cbs[i].value;
+			j++;
+		}
+		}
+
+
+
+
+if (window.XMLHttpRequest)
+	{ // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject)
+	{ // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	request.onreadystatechange = function ajaxResponse()
+	{
+		if (request.readyState==4)
+		{
+		var txt = request.responseText;
+		  myArray = JSON.parse(txt);
+		  
+		  for(var i=0;i<selected_user_array.length;i++)
+		  {
+			 if(myArray[selected_user_array[i]]!=undefined)
+			 {
+			  number=myArray[selected_user_array[i]].length;
+			  if(number>0)
+			  {
+			  document.getElementById(backfilldiv+selected_user_array[i]).innerHTML=number;
+				html+='<input name="checked_users[]" type="hidden" value="'+selected_user_array[i]+'">';
+				
+			  totalcoins+=number;
+			  }
+			 }
+		  }
+		  
+		  if(totalcoins>0)
+		  {
+		  document.getElementById(lastrowid).style.display='';
+		  
+		  document.getElementById(lastrowid+'_column').innerHTML=totalcoins+html+'<input name="total_number_autobuild" type="hidden" value="'+totalcoins+'">';
+		  
+		  }
+		  
+		}
+		else
+		{
+			//document.getElementById('listed_ajax').innerHTML= "<img src='images/default/wheel.gif'/>";
+		}
+
+	}
+	for(var i=0;i<cbs.length;i++)
+		{
+		  document.getElementById(backfilldiv+cbs[i].value).innerHTML=0;
+		}
+	if(selectedusers.length>0){
+	url ='pending_listing_ajax.php?pending_autobuild_con_new=' +selectvalue+'&pending_autobuild_user='+selectedusers;
+	request.open("GET", url,true);
+	request.send(null);
+	}
+}
+
+
+ function checkpending(lis, sea)
+{
+
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+
+			document.getElementById('listed_ajax').innerHTML= request.responseText;
+			//document.getElementById('sitvalue').innerHTML= '<input type="submit" class="buttons" value=" {_search} " onclick="return checklistedajax('+lis+',document.getElementById(\'serachid\').value);" style="font-size:15px" />';
+
+
+		}
+		else{
+			document.getElementById('listed_ajax').innerHTML= "<img src='images/default/wheel.gif'/>";
+		}
+	}
+	url ='consignment_ajax.php?pending_list_user=' +lis+'&pending_list_con='+sea;
+	request.open("GET", url,true);
+	request.send(null);
+}
+function checkautobuildnew(lis,sea)
+{
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+		var txt = request.responseText.split('|');
+		var len=txt.length;
+       for(var i=0; i<len; i++) {
+	           var value = txt[i];
+	           document.getElementById('coin_'+value+'').checked = true;
+	   }
+		}
+		else{
+			//document.getElementById('listed_ajax').innerHTML= "<img src='images/default/wheel.gif'/>";
+		}
+	}
+	url ='consignment_ajax.php?pending_autobuild_con_new=' +lis+'&pending_autobuild_user='+sea;
+	request.open("GET", url,true);
+	request.send(null);
+
+
+}
+
+function checkautobuildconsignor(lis,sea)
+{
+
+
+
+}
+function checkpending1(lis, sea)
+{
+
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+
+			document.getElementById('listed_ajax').innerHTML= request.responseText;
+			//document.getElementById('sitvalue').innerHTML= '<input type="submit" class="buttons" value=" {_search} " onclick="return checklistedajax('+lis+',document.getElementById(\'serachid\').value);" style="font-size:15px" />';
+
+
+		}
+		else{
+			document.getElementById('listed_ajax').innerHTML= "<img src='images/default/wheel.gif'/>";
+		}
+	}
+
+	url ='consignment_ajax_k.php?pending_list_user_new=' +lis+'&pending_list_con='+sea;
+	request.open("GET", url,true);
+	request.send(null);
+}
+
+function checkpending2(lis, sea)
+{
+
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+
+			document.getElementById('listed_ajax1').innerHTML= request.responseText;
+			//document.getElementById('sitvalue').innerHTML= '<input type="submit" class="buttons" value=" {_search} " onclick="return checklistedajax('+lis+',document.getElementById(\'serachid\').value);" style="font-size:15px" />';
+
+
+		}
+		else{
+			document.getElementById('listed_ajax1').innerHTML= "<img src='images/default/wheel.gif'/>";
+		}
+	}
+
+	url ='consignment_ajax.php?pending_list_user_new=' +lis+'&pending_list_con='+sea;
+	request.open("GET", url,true);
+	request.send(null);
+}
+
+function checkpending3(lis, sea)
+{
+
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+
+			document.getElementById('listed_ajax2').innerHTML= request.responseText;
+			//document.getElementById('sitvalue').innerHTML= '<input type="submit" class="buttons" value=" {_search} " onclick="return checklistedajax('+lis+',document.getElementById(\'serachid\').value);" style="font-size:15px" />';
+
+
+		}
+		else{
+			document.getElementById('listed_ajax2').innerHTML= "<img src='images/default/wheel.gif'/>";
+		}
+	}
+
+	url ='consignment_ajax.php?pending_list_user_new=' +lis+'&pending_list_con='+sea;
+	request.open("GET", url,true);
+	request.send(null);
+}
+
+</script>
+
+
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="pendings.php" class=""><span>Pending</span></a>
+		<a href="pendingsnew.php" class="sel"><span>Pending User</span></a>
+		<a href="rependings.php" class=""><span>Re-list</span></a>
+		<a href="auction_archive.php" class=""><span>Auction Archive</span></a>
+		<a href="auction_details_change.php" class=""><span>To Modify</span></a>
+
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+
+<div id="content">
+<div class="header">Pending listing</div><br />
+
+
+	<!-- tab pane -->
+	<div class="tab-pane">
+
+
+		<!-- grading tab page -->
+		<div class="tab-page">
+
+			<h2 class="tab">All Pendings</h2>
+
+				    <form method="get" action="pendingsnew.php" accept-charset="UTF-8" id="consignment" style="margin: 0px;">
+				    <input type="hidden" name="subcmd" value="search_list" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                        <option value="user_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option value="username" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'username'">selected="selected"</if>>{_username}</option>
+                                        <option value="email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        <option value="zip_code" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'zip_code'">selected="selected"</if>>{_zipcode}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18"  style="width: 75%;" /></td>
+                                </tr>
+                                <tr class="alt1" style="display:none;">
+                                  <td nowrap="nowrap"><span class="gray">{_filter_by} {_status}</span></td>
+                                    <td><input type="checkbox" name="searchstatus" value="1" <if condition="isset($ilance->GPC['searchstatus']) AND $ilance->GPC['searchstatus'] == '1'">checked="checked"</if> />
+                                        <select name="status" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by} {_status}">
+                                        <option value="active" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'active'">selected="selected"</if>>{_active}</option>
+                                        <option value="moderated" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'moderated'">selected="selected"</if>>Moderated</option>
+                                        <option value="suspended" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'suspended'">selected="selected"</if>>{_suspended}</option>
+                                        <option value="cancelled" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'cancelled'">selected="selected"</if>>{_cancelled}</option>
+                                        <option value="unverified" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'unverified'">selected="selected"</if>>{_unverified}</option>
+                                        <option value="banned" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'banned'">selected="selected"</if>>{_banned}</option>
+                                        </optgroup>
+                                        </select></td>
+                                </tr>
+                                <tr class="alt1" style="display:none;">
+                                  <td nowrap="nowrap"><span class="gray">{_sort_results_by}</span></td>
+                                  <td><label for="orderbyasc"><input type="radio" id="orderby" name="orderby" value="ASC" />{_ascending}</label>
+                                        <label for="orderbydesc"><input type="radio" name="orderby" value="DESC" checked="checked" />{_descending}</label></td>
+                                  </tr>
+                                <tr>
+
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td>
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>
+                            </div>
+
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                    </div>
+                </div>
+                    </form>
+				 <if condition="isset($show['search_list']) AND $show['search_list'] == 'search_list_pend'">
+					<div class="block-wrapper">
+					<div class="block3">
+
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+
+							<div class="block3-header">{numbers} List of pendings  </div>
+							<div class="block3-content" style="padding:0px">
+
+
+
+
+								<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="5%"><input type="checkbox" onClick="toggle(this,'autobuild_managed')" />
+								</td>
+								<td width="12%" align="left">Username</td>
+								<td width="12%">No.of.pending</td>
+								<td width="12%">Details</td>
+								<td width="12%">Return</td>
+
+							  </tr>
+							  <loop name="pending_list_search">
+								<tr class="alt1" valign="top">
+
+		<td width="12%" align="left">{username}</td>
+								<td width="12%"><strong>{posted}</strong></td>
+								<td width="12%">{View}</td>
+								<td width="12%">{return_con}</td>
+
+								</tr>
+							  </loop name="pending_list_search">
+							   <if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+
+							</table>
+
+
+</div>
+
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+
+					</div>
+				</div>
+
+						<div id="listed_ajax"></div>
+						<else />
+
+					<div class="block-wrapper">
+					<div class="block3">
+
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+
+							<div class="block3-header">{number} List of pendings </div>
+							<div class="block3-content" style="padding:0px">
+								<!--dec 15 1078 bug-->
+							 <form method="POST" action="pendingsnew.php" accept-charset="UTF-8" id="user_consignor" style="margin: 0px;">
+							<input type="hidden" name="subcmd" value="consignor_date_upadete" />
+
+
+								<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+
+								{usernamesort}
+								<td width="12%">No.of.pending</td>
+								<td width="12%">Details</td>
+								<td width="12%">Return</td>
+								{emailsort}
+							    <td width="12%">CheckBox</td>
+							  </tr>
+							  <loop name="pending_list">
+								<tr class="alt1" valign="top">
+
+								 <td width="12%" align="left">{username}</td>
+								<td width="12%"><strong>{posted}</strong></td>
+								<td width="12%">{View}</td>
+								<td width="12%">{return_con}</td>
+								<td width="12%">{email}</td>
+								<td width="12%">{checkbox}</td>
+
+								</tr>
+							  </loop name="pending_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'pending_list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+
+							</table>
+							 	EndDate &nbsp;<input type="text" name="date_consignor" />&nbsp; &nbsp;<input type="submit"  value="submit" /><br/> &nbsp; &nbsp;
+					               (Date format:YYYY-mm-dd)
+					</form>
+
+</div>
+
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+
+					</div>
+				</div>
+
+						<div id="listed_ajax"></div>
+
+					</if>
+                        </div>
+
+
+						<!--dec 03	-->
+
+
+
+
+						<!--dec 03 ir_managed =1 start-->
+								<div class="tab-page">
+						<h2 class="tab">Managed Pendings</h2>
+						<form method="post" action="pendingsnew.php" accept-charset="UTF-8" id="consignment" style="margin: 0px;" >
+				    <input type="hidden" name="subcmd" value="search_list_managed" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                        <option  value="user_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option  value="username" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'username'">selected="selected"</if>>{_username}</option>
+                                        <option  value="email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        <option  value="zip_code" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'zip_code'">selected="selected"</if>>{_zipcode}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18"  style="width: 75%;" /></td>
+                                </tr>
+                                <tr class="alt1" style="display:none;">
+                                  <td nowrap="nowrap"><span class="gray">{_filter_by} {_status}</span></td>
+                                    <td><input type="checkbox" name="searchstatus" value="1" <if condition="isset($ilance->GPC['searchstatus']) AND $ilance->GPC['searchstatus'] == '1'">checked="checked"</if> />
+                                        <select name="status" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by} {_status}">
+                                        <option value="active" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'active'">selected="selected"</if>>{_active}</option>
+                                        <option value="moderated" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'moderated'">selected="selected"</if>>Moderated</option>
+                                        <option value="suspended" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'suspended'">selected="selected"</if>>{_suspended}</option>
+                                        <option value="cancelled" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'cancelled'">selected="selected"</if>>{_cancelled}</option>
+                                        <option value="unverified" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'unverified'">selected="selected"</if>>{_unverified}</option>
+                                        <option value="banned" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'banned'">selected="selected"</if>>{_banned}</option>
+                                        </optgroup>
+                                        </select></td>
+                                </tr>
+                                <tr class="alt1" style="display:none;">
+                                  <td nowrap="nowrap"><span class="gray">{_sort_results_by}</span></td>
+                                  <td><label for="orderbyasc"><input type="radio" id="orderby" name="orderby" value="ASC" />{_ascending}</label>
+                                        <label for="orderbydesc"><input type="radio" name="orderby" value="DESC" checked="checked" />{_descending}</label></td>
+                                  </tr>
+                                <tr>
+
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td>
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>
+                            </div>
+
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                    </div>
+                </div>
+                    </form>
+
+
+					<if condition="isset($show['search_list1']) AND $show['search_list1'] == 'search_list_pend_managed'">
+
+					<div class="block-wrapper">
+					<div class="block3">
+
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+
+							<div class="block3-header">{numbers} List of pendings {autobuild_select1} </div>
+							<div class="block3-content" style="padding:0px">
+
+
+
+								<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+							  <td width="5%"><input type="checkbox" onClick="toggle(this,'autobuild_managed')" />
+							  </td>
+
+								<td width="12%" align="left">Username</td>
+								<td width="12%">No.of.pending</td>
+								<td width="12%">Details</td>
+								<td width="12%">Return</td>
+							  </tr>
+
+							  <loop name="pending_list_search_manage">
+								<tr class="alt1" valign="top">
+								<td>
+								<input type="checkbox" name="autobuild_managed"   value="{username}">
+								</td>
+
+								 <td width="12%" align="left">{username}</td>
+								<td width="12%"><strong>{posted}</strong></td>
+								<td width="12%">{View}</td>
+								<td width="12%">{return_con}</td>
+								</tr>
+							  </loop name="pending_list_search_manage">
+
+								<if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+								<tr class="alt1">
+								<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+								</if>
+							</table>
+							</div>
+
+
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+
+					</div>
+				</div>
+
+						<div id="listed_ajax2"></div>
+					 <else />
+
+						<div class="block-wrapper">
+
+						<div class="block">
+								<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+								</div>
+								<form name="managed_user" method="post" enctype="multipart/form-data" >
+								<div class="block-header">
+								Pending User
+								<select id="autobuilddrop" onchange="autobuild(this.value,document.managed_user,'autobuild_managed','managed_countbox','managed_last_row')" style="margin-left:550px;" name="autobuild_option">
+								<option>--select--</option>
+								<option name="autobuild_all" value="autobuild_all">Autobuild All</option>
+								<option value="autobuild_imaged">Autobuild Imaged</option>
+								<option value="autobuild_buynow">Autobuild Buynow Only</option>
+								</select>
+								</div>
+
+
+
+
+
+<input type="hidden" name="subcmd" value="autobuild_submit">
+					<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+							  <td width="5%"><input type="checkbox" onClick="toggle(document.managed_user,'autobuild_managed')" />
+							  </td>
+							  <td width="12%" align="left">Username</td>
+							  <td width="12%" align="left">Autobuild</td>
+							  <td width="12%">No.of.pending</td>
+							  <td width="12%">Details</td>
+							  <td width="12%">Return</td>
+							  </tr>
+							  
+							  <loop name="pending_list_managed">
+								<tr class="alt1" valign="top">
+								<td width="5%">
+								<input id="autobuild_managed{user_id}" type="checkbox" name="autobuild_managed"  value="{user_id}">
+								</td>
+
+								<td width="12%" align="left">{username}</td>
+								<td width="12%" name="managed_countbox" id="managed_countbox{user_id}" width="30%"></td>
+								<td width="12%"><strong>{posted}</strong></td>
+								<td width="12%">{View}</td>
+								<td width="12%">{return_con}</td>
+								</tr>
+							  </loop name="pending_list_managed">
+							  <tr id="managed_last_row" style="display:none">
+								  <td colspan="2">No of coins</td>
+								  <td id="managed_last_row_column">0</td>
+								  <td colspan="2">
+
+										<input id="managed_datepicker" type="text" name="datevalnew" ></td>
+								  <td ><input type="submit" name="sel_collective_end_date" value="Set End Date"></td>
+							  </tr>
+							  
+							   <if condition="isset($show['no']) AND $show['no'] == 'pending_list_unman'">
+								   <tr class="alt1">
+									 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								   </tr>
+						 		</if>
+							</table>
+</form>
+								<div class="block-footer">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+
+
+								<!--block-content-->
+								</div>
+
+							<!--block-->
+							</div>
+							<div id="listed_ajax2"></div>
+						</if>
+
+
+
+							<!--block wrapper-->
+						</div>
+
+
+
+
+
+						<!--dec o3 ir managed =1 finished-->
+
+						<div class="tab-page">
+						<h2 class="tab">NonManaged Pendings</h2>
+						<form method="post" action="pendingsnew.php" accept-charset="UTF-8" id="consignment" style="margin: 0px;">
+				    <input type="hidden" name="subcmd" value="search_list_unmanaged" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Consignment  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                        <option  value="user_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option  value="username" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'username'">selected="selected"</if>>{_username}</option>
+                                        <option  value="email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        <option  value="zip_code" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'zip_code'">selected="selected"</if>>{_zipcode}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18"  style="width: 75%;" /></td>
+                                </tr>
+                                <tr class="alt1" style="display:none;">
+                                  <td nowrap="nowrap"><span class="gray">{_filter_by} {_status}</span></td>
+                                    <td><input type="checkbox" name="searchstatus" value="1" <if condition="isset($ilance->GPC['searchstatus']) AND $ilance->GPC['searchstatus'] == '1'">checked="checked"</if> />
+                                        <select name="status" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by} {_status}">
+                                        <option value="active" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'active'">selected="selected"</if>>{_active}</option>
+                                        <option value="moderated" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'moderated'">selected="selected"</if>>Moderated</option>
+                                        <option value="suspended" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'suspended'">selected="selected"</if>>{_suspended}</option>
+                                        <option value="cancelled" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'cancelled'">selected="selected"</if>>{_cancelled}</option>
+                                        <option value="unverified" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'unverified'">selected="selected"</if>>{_unverified}</option>
+                                        <option value="banned" <if condition="isset($ilance->GPC['status']) AND $ilance->GPC['status'] == 'banned'">selected="selected"</if>>{_banned}</option>
+                                        </optgroup>
+                                        </select></td>
+                                </tr>
+                                <tr class="alt1" style="display:none;">
+                                  <td nowrap="nowrap"><span class="gray">{_sort_results_by}</span></td>
+                                  <td><label for="orderbyasc"><input type="radio" id="orderby" name="orderby" value="ASC" />{_ascending}</label>
+                                        <label for="orderbydesc"><input type="radio" name="orderby" value="DESC" checked="checked" />{_descending}</label></td>
+                                  </tr>
+                                <tr>
+
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td>
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>
+                            </div>
+
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                    </div>
+                </div>
+                    </form>
+
+
+					<if condition="isset($show['search_list1']) AND $show['search_list1'] == 'search_list_pend_unmanaged'">
+
+					<div class="block-wrapper">
+					<div class="block3">
+
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+
+							<div class="block3-header">{numbers} List of pendings {autobuild_select3} </div>
+							<div class="block3-content" style="padding:0px">
+
+
+
+								<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+						    <td width="5%"><input type="checkbox" onClick="toggle(this,'autobuild_non_managed')" />
+								</td>
+								<td width="12%" align="left">Username</td>
+								<td width="12%">No.of.pending</td>
+								<td width="12%">Details</td>
+								<td width="12%">Return</td>
+							  </tr>
+							  <loop name="pending_list_search_unmanage">
+								<tr class="alt1" valign="top">
+								<td width="5%">
+								<input type="checkbox" name="autobuild_non_managed" value="{username}">
+								</td>
+								<td width="12%" align="left">{username}</td>
+								<td width="12%"><strong>{posted}</strong></td>
+								<td width="12%">{View}</td>
+								<td width="12%">{return_con}</td>
+								</tr>
+							  </loop name="pending_list_search_unmanage">
+							  
+							  
+								<if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+								<tr class="alt1">
+								<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+								</if>
+							</table>
+							</div>
+
+
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+
+					</div>
+				</div>
+
+						<div id="listed_ajax1"></div>
+					 <else />
+
+						<div class="block-wrapper">
+<form name="non_managed_user" method="post" enctype="multipart/form-data">
+						<div class="block">
+								<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+								</div>
+								<div class="block-header">
+
+								Pending User
+								<select id="autobuilddrop" onchange="autobuild(this.value,document.non_managed_user,'autobuild_non_managed','non_managed_countbox','non_managed_last_row')" style="margin-left:550px;" name="autobuild_option">
+								<option>--select--</option>
+								<option name="autobuild_all" value="autobuild_all">Autobuild All</option>
+								<option value="autobuild_imaged">Autobuild Imaged</option>
+								<option value="autobuild_buynow">Autobuild Buynow Only</option>
+								</select>
+
+								</div>
+
+<input type="hidden" name="subcmd" value="autobuild_submit">
+								<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+                               <td width="5%"><input type="checkbox" onClick="toggle(document.non_managed_user,'autobuild_non_managed')" />
+								</td>
+							  <td width="12%" align="left">Username</td>
+							  <td width="12%" >	Autobuild</td>
+								<td width="12%">No.of.pending</td>
+								<td width="12%">Details</td>
+								<td width="12%">Return</td>
+							  </tr>
+							  <loop name="pending_list_unmanaged">
+								<tr class="alt1" valign="top">
+								<td width="5%">
+								<input type="checkbox" name="autobuild_non_managed" value="{user_id}">
+								</td>
+								
+								<td width="12%" align="left">{username}</td>
+								<td width="12%" name="non_managed_countbox" id="non_managed_countbox{user_id}" width="30%"></td>
+								<td width="12%"><strong>{posted}</strong></td>
+								<td width="12%">{View}</td>
+								<td width="12%">{return_con}</td>
+								</tr>
+							  </loop name="pending_list_unmanaged">
+							  <tr id="non_managed_last_row" style="display:none">
+								  <td colspan="2">No of coins</td>
+								  <td id="non_managed_last_row_column">0</td>
+								  <td colspan="2">
+
+										<input id="non_managed_datepicker" type="text" name="datevalnew" ></td>
+								  <td ><input type="submit" name="sel_collective_end_date" value="Set End Date"></td>
+							  </tr>
+							   <if condition="isset($show['no']) AND $show['no'] == 'pending_list_unman'">
+								   <tr class="alt1">
+									 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								   </tr>
+						 		</if>
+							</table>
+							</form>
+								<div class="block-footer">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+
+
+								<!--block-content-->
+								</div>
+
+							<!--block-->
+							</div>
+						<div id="listed_ajax1"></div>
+						</if>
+
+
+
+							<!--block wrapper-->
+						</div>
+
+						<!--dec 03 ir_managed =0 end-->
+
+
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+
+				</div>
+			</div>
+
+
+	  </div>
+		<!-- / grading tab page -->
+
+
+
+</div>
+<!-- / tab pane -->

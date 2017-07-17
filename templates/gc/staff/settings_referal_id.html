@@ -1,0 +1,150 @@
+
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid" class="sel"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline"><span>{_time_line}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+			
+		<!-- referal tab page -->
+		<div class="tab-page">
+			
+			<!--<h2 class="tab">{_referal_id}</h2>-->
+			
+			<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="referalid" />
+			<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdrefid}" />
+			{hiddendo}
+			{hiddenid}	
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_referal_id}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_referal_id}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_added_on}</span></td>
+                                  <td width="80%">{daylist}&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;{yearlist}</td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_referal_id}</span></td> 
+                                    <td><input type="text" name="referalid" size="18" value="{referalcode}" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">URL  Path</span></td> 
+                                    <td><input type="text" name="url_path" size="18" value="{url_path}" style="width: 50%;" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_short_description}</span></td> 
+                                    <td><textarea name="description" id="text" style="font-family: verdana; width: 490px; height: 80px;">{description}</textarea></td>
+                                </tr>
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_create} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				</form>
+				
+				<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%">
+							  <tr class="alt2">
+								<td width="10%" nowrap="nowrap">{_referal_code}</td>
+								<td width="23%" align="left">{_description}</td>
+								<td width="20%">Url</td>
+								<td width="7%">Register Count</td>
+								<td width="8%">{_date_added}</td>								
+								<td align="center" nowrap="nowrap">{_actions}</td>
+								
+							  </tr>
+							  <loop name="referallist">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top"><span style="font-size:17px" class="gray">{referalcode}</span></td>
+								  <td nowrap="nowrap">{description}</td>
+								   <td nowrap="nowrap">{urlpath}</td>
+								    <td nowrap="nowrap"><span style="font-size:17px" class="blue">{registercount}</span></td>
+								  <td nowrap="nowrap">{addeddate}</td>
+								  <td align="center">{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{remove}</td>
+								 
+								</tr>
+							  </loop name="referallist">
+							  <if condition="isset($show['no_referallist']) AND $show['no_referallist']">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  							  
+							  <tr>
+								<td colspan="11">{prevnext}</td>
+							</tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>
+				
+			
+	  </div>
+		<!-- / referal tab page -->
+			
+				
+</div>
+<!-- / tab pane -->

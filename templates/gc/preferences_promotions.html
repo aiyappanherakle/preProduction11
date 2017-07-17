@@ -1,0 +1,92 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+            <li title="" class=""><a href="{http_server}{ilpage[preferences]}?cmd=management">{_preferences}</a></li>
+            <li title="" class="on"><a href="{http_server}{ilpage[preferences]}?cmd=promotions">My Promotions </a></li>
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>       
+        
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">My Promotions</div>
+                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">list of promotions </div></div>
+                    <div class="block-content" style="padding:0px">
+                        
+                                <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+                               
+                                <tr>
+                                    <td>
+                                    <div>
+                                        
+                              <table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">								
+								<td width="20%" align="left">{_promocode}</td>
+								<td width="10%">Offer</td>								
+								<td width="10%">Purchase Amount</td>								
+								<td width="10%">Sales Type</td>
+								<td width="8%" align="center">Item ID</td>								
+								<td width="22%">{_description}</td>
+								
+								
+							  </tr>
+							  <loop name="promocode">							 
+								<tr class="alt1" valign="top">	
+															
+								  <td nowrap="nowrap">{promoCode}</td>
+								  <td>{offerType} {offerAmt}</td>
+								  <td>{conditionAmt}</td>								 
+								  <td>{salesType}</td>
+								  <td>{itemID}</td>								 
+								  <td align="center">{notes}</td>
+								 
+								
+								</tr>
+							  </loop name="promocode">
+								<if condition="isset($show['no_promocode']) AND $show['no_promocode'] == 'false'">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+								</if>
+								
+							  
+							 
+							</table>
+                                            
+                                        
+                                    </div>
+                                    
+                                    </td>
+                                </tr>
+                                </table>
+        
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+             
+
+	</td>
+</tr>
+</table>

@@ -1,0 +1,188 @@
+<div class="block-wrapper"><div class="block"><div class="block-top"><div class="block-right"><div class="block-left"></div></div></div>
+<div class="block-header">{_cac_non_cac_block_header}</div>
+<div style="padding:9px" class="block-content-yellow"><div class="smaller">{_cac_and_non_cac_block_content_yellow}</div></div>
+<div style="background:url(images/gc/icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:14px" class="block-content"><div>
+{_cac_and_non_cac_block_content}
+</div></div><div class="block-footer"><div class="block-right"><div class="block-left"></div></div></div></div></div>
+
+<style type="text/css">
+
+#boom select
+{
+width:210px;
+}
+
+#textim {
+    background-image: url("images/gc/coin_bg.jpg");
+	background-size: 100% 100%;
+    height: 160px;
+    width: 95%;
+}
+#auction_box {
+    border: 1px solid #CCCCCC;
+    min-height: 300px;
+    padding: 15px 50px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: auto;
+    margin-right: auto;
+   
+}
+#seperator {
+	height: 300px;
+	width:20%;
+}
+#abox01
+{
+	width:40%;
+}
+</style>
+
+<if condition="cac_noncac_list">
+<loop name="cac_noncac_list">
+	
+<div style=" padding: 10px; border: 1px solid #CCCCCC; margin: 30px auto; height: 260px;" id="">
+<div class="" style="border:none; width: 49%; margin:0px;  float: left; padding: 15px 0px;">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+<tbody>
+<tr>
+<td valign="top" style="width:43%;">
+<div style="margin-left: 10px; border:1px solid #DADFE2; width: 88%;">
+<div style="margin:10px;">
+{cac_image}
+</div>
+</div>
+</td>
+<td>&nbsp;</td>
+<td valign="top">
+<table width="100%" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td width="60%" valign="top" style="padding-top: 20px;">
+<span id="blockheadertext" style=" ;"></span>
+<div><span style="font-family: arial; font-size:19px">
+{cac_title}
+</span>
+</div>
+<div style="height:10px;">&nbsp;</div>
+<div id="placebid" style="width="70%"">
+<table width="100%" cellspacing="0" cellpadding="0" border="0"><tbody>
+<tr>
+<td width="100%" valign="top"><table width="100%" cellspacing="0" cellpadding="6" border="0" style="margin:0px">
+<tbody>
+<tr valign="top" id="currentpricerow" style=" ">
+<td>
+<span style="font-family: arial; font-size:16px; font-weight:bold" id="currentbidtext"><strong>
+Sold {cac_price}
+</strong>
+</span>
+</td>
+</tr>
+<tr valign="top" id="endsrow">
+<td>
+<span style="font-family: arial; font-size:16px; font-weight:bold;">
+{cac_enddate}
+</span>
+</td>
+</tr>
+<tr valign="top" id="itemidrow">
+<td>
+<div class="bolder">
+GC Item ID: {cac_id}
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+{cac_image_chk}
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="width: 2%; height: 260px;" id="seperator"></div>
+<div class="" style="border:none; width: 49%; margin:0px;  float: left; padding: 15px 0px;">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+<tbody>
+<tr>
+<td valign="top">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tbody>
+<tr>
+<td width="60%" valign="top" style="padding-top: 20px;">
+<span id="blockheadertext" style=" ;"></span>
+<div><span style="font-family: arial; font-size:19px">
+{noncac_title}
+</span>
+</div>
+<div style="height:10px;">&nbsp;</div>
+<div id="placebid" style=" ">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tbody>
+<tr>
+<td width="100%" valign="top">
+<table width="100%" cellspacing="0" cellpadding="6" border="0" style="margin:0px">
+<tbody>
+<tr valign="top" id="currentpricerow" style=" ">
+<td>
+<span style="font-family: arial; font-size:16px; font-weight:bold" id="currentbidtext">
+<strong>
+Sold {noncac_price}
+</strong>
+</span>
+</td>
+</tr>
+<tr valign="top" id="endsrow">
+<td><span style="font-family: arial; font-size:16px; font-weight:bold;">
+{noncac_enddate}
+</span>
+</td>
+</tr>
+<tr valign="top" id="itemidrow"><td><div class="bolder">
+GC Item ID: {noncac_id}
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+{non_cac_image_chk}
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>&nbsp;</td>
+<td valign="top" style="width:43%;">
+<div style="margin-left: 10px; border:1px solid #DADFE2; width: 88%;">
+<div style="margin:10px;">
+{noncac_image}
+</div>
+</div>
+</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+							
+</loop name="cac_noncac_list">	
+</if>							
+	
+		

@@ -1,0 +1,253 @@
+<style type="text/css">
+
+#title_text1
+{
+color:#333;
+height:30px;
+font-size:15px;
+font-weight:bold;
+padding:5px;
+border-bottom:#666 dotted thin;
+}
+
+#auction_box1
+{
+min-height:400px;
+min-width:660px;
+border:#CCC solid 1px;
+float:left;
+}
+
+#textim
+
+{
+
+background-image: url(images/gc/coin_bg.jpg);
+
+width:198px;
+
+height:160px;
+}
+
+#amo
+
+{
+
+background:none;
+
+color:#E16E19;
+
+font-size:14px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+
+text-transform:capitalize;
+
+}
+
+
+#fetit
+
+{
+
+background:none;
+
+color:#303030;
+
+font-size:12px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+
+text-transform:capitalize;
+
+}		
+
+#titl
+
+{
+
+background:none;
+
+color:#5B6C7E;
+
+font-size:12px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+
+text-transform:capitalize;
+
+}
+
+a:focus { outline:none }
+		
+		img { border: 0 }		
+
+
+  
+
+	</style>
+	<link rel="stylesheet" href="banner/style.css" type="text/css" media="all">
+	
+<!-- quick registration -->
+<script type="text/javascript" language="javascript">
+
+
+function verify_pass(first, last, regemail)
+{
+		if (first.value == '')
+		{
+				alert('Enter First Name');
+				return false;
+		}
+		else if (last.value == '')
+		{
+				alert('Enter Last Name');
+				return false;
+		}
+	    else if (regemail.value == '' || regemail.value.search("@") == -1 || regemail.value.search("[.*]") == -1)
+		{
+				alert('Enter Valid Email ID');
+				return false;
+		}
+	
+		else
+		{
+				
+				return true;
+		}
+		
+}
+</script>
+
+
+ <br class="clearfloat" />
+ 
+ <div style="height:50px;width:660px;border:0px; float:left;">
+ <strong>Great</strong>Collections Coin Auctions offers a wide selection of PCGS, NGC and ANACS Certified Coins at auction and for direct sale.  All coins have been professionally imaged and verified by GreatCollections. 
+ 
+ <!--
+	       <div id="abox01" align="center"><h3>Large Selection of Certified Coins</h3></div><div id="seperator2" style="visibility:hidden;"></div>
+		   <div id="abox01"align="center"><h3><a href="search.php?q=&mode=product&sort=01&completed=1">1000s of Completed Auctions</a></h3></div><div id="seperator2" style="visibility:hidden;"></div>
+		   <div id="abox01"align="center"><h3>Free US Shipping With 1st Win</h3></div>-->
+		</div>
+	<div style="height:450px;width:960px; padding-top:17px;">
+	<!---->
+		<div style="height:430px;width:650px;border:#CCC solid 1px; float:left; padding-left:7px;">
+		
+		<div id="title_text">{text}</div>
+		
+		{myfeat}
+		
+		</div>
+		
+		<if condition="empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] == 0">
+		<div style="height:240px;width:290px;border:#CCC solid 1px; float:right; margin-top:-60px;" >
+		
+			<div id="title_text" align="center">It's Free to Register</div>
+            <Br />
+            <center>* Bid on 1,000s of Certified Coins<br />
+            * Save Coin Searches and Wantlist Features<br />
+            * 100% Secure and Confidentiality Assured<br /></center>
+			
+			<form method="post" action="registration.php" name="quickregister" accept-charset="UTF-8" id="quickregister" style="margin:0px;padding-left:10px;">
+			<input type="hidden" name="cmd" value="register" />
+             <input type="hidden" name="step" value="1" />
+              <input type="hidden" name="agreement" value="1" />
+				<table width="100%" >
+				  <tr><td>First Name</td><td><input type="text" class="input" name="first_name" id="first" maxlength="15" value=""   /></td></tr>
+				   <tr></tr> <tr></tr> <tr></tr> <tr></tr> <tr></tr>
+				  <tr><td>Last Name</td><td><input type="text" class="input"  name="last_name" id="last"  maxlength="15" value=""  /></td></tr>
+				   <tr></tr> <tr></tr> <tr></tr> <tr></tr> <tr></tr>
+				  <tr><td>{_email}</td>  <td><input type="text" class="input"  name="email" id="regemail" maxlength="50" value=""   /></td></tr>
+				</tr>
+				
+				<tr>
+						<td colspan="2" align="center"><input type="submit" name="button" value="Register Now" accesskey="s" class="buttons" onclick="return verify_pass(first, last, regemail);"style="font-size: 16px; margin-top: 10px;" /></td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+				</table>
+				<input type="hidden" name="subscriptionid" id="subscriptionid" value="1" />
+				<input type="hidden" name="subscriptionpaymethod" id="subscriptionpaymethod" value="account" />
+				</form>
+				 <br class="clearfloat" />
+				<div  name="quickregisterresponse" id="quickregisterresponse">
+			</div>
+			</div>
+			</if>
+            <br />
+			<div  style="height:170px;width:290px;border:#CCC solid 1px; float:right; margin-top:10px;">
+			  
+			  
+              			<div id="title_text" align="center">Coins for Sale?</div>
+<br />
+          <center><strong>Sell Coins through GreatCollections</strong>
+          <br />
+           * Receive Top Dollar<br />
+           * Lowest Fees of all Major Auction Houses<br />
+           * Fast Payment<br />
+           
+		   <form action="main-sell" name="sell">
+			  <input type="submit" name="submit" value="Sell Coins through GreatCollections" accesskey="s" class="buttons"  style="font-size: 16px; margin-top: 20px; width:278px;" />
+			  </form>
+              
+              </center>
+			</div>
+			
+			
+			
+	</div>
+	<div>&nbsp;</div>
+	<div  style="height:30px;width:290px; float:right; margin-top:-60px;">
+	
+	<table style="margin-left:40px;">
+				  <tr><td>&nbsp;</td><td><a href="http://www.facebook.com/greatcollections"><img width="80" height="30" border="0" id="" src="http://www.greatcollections.com/images/gc/facebook_share_off.png"></a></td><td>&nbsp;</td><td><a href="http://twitter.com/greatcollection"><img width="80" height="30" border="0" id="" src="http://www.greatcollections.com/images/gc/twitter-share.png"></a></td></tr></table>
+				  </div>
+	
+	<div>&nbsp;</div>
+			
+	<div style="height:480px;width:960px;margin-top:30px;">
+	  <div id="auction_box"> 
+
+        		<div id="title_text">Featured Coin Auctions</div>
+
+                <div>&nbsp;</div>
+
+{myfeature}        
+
+        </div>
+</div>
+
+  <br class="clearfloat" />
+  
+  
+  
+  <!-- Google Code for Visited Homepage Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 972477887;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "2CxhCInb4gIQv6vbzwM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/972477887/?label=2CxhCInb4gIQv6vbzwM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

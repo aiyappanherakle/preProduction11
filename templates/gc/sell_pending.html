@@ -1,0 +1,442 @@
+
+	<link rel="stylesheet" type="text/css" href="css/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+ 	
+	<style type="text/css">
+	#content {
+		width: 400px;
+		margin: 40px auto 0 auto;
+		padding: 0 60px 30px 60px;
+		border: solid 1px #cbcbcb;
+		background: #fafafa;
+		-moz-box-shadow: 0px 0px 10px #cbcbcb;
+		-webkit-box-shadow: 0px 0px 10px #cbcbcb;
+	}
+	
+	#fancybox-coin_img {
+		border: medium none;
+		height: 100%;
+		line-height: 0;
+		margin: 0;
+		outline: medium none;
+		padding: 0;
+		vertical-align: top;
+	}
+	
+	</style>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$('img.img_libox').live('click', function() {
+			
+				coin_id = $(this).parent().parent().children('td').eq(1).children('a').html();
+				k = 0;
+				contnt = '';
+				
+				$('div#fancybox-content').empty();
+				$.getJSON("ajax.php",{do:'lighrbox_get', id:coin_id}, function(data){
+					
+					dis = '';
+					$.each(data, function (key, val) {
+						k++;
+						if(k>1)
+						dis = 'display: none;';
+						
+						contnt += '<img id="fancybox-img" class="image_'+k+'" src="	http://www.greatcollections.com/image.php?cmd=thumb&subcmd=itemphoto&id='+val.img_hash+'" style="width:'+parseInt(val.w)+'px; height:'+parseInt(val.h)+'px; '+dis+'"  alt="">';	
+					});
+					
+					if(k > 1)
+					{
+						$('a#fancybox-left').hide();
+						$('a#fancybox-right').show();
+					}
+					
+					
+					
+					
+
+					$('input#img_count').val(k);
+					$('div#fancybox-content').html(contnt);
+					
+					box_width = parseInt($("div#fancybox-content").children("img.image_1").width());
+					box_height = parseInt($("div#fancybox-content").children("img.image_1").height());
+					
+					$('div#fancybox-outer').width(parseInt(box_width));
+					$('div#fancybox-outer').height(parseInt(box_height));
+					
+					$('span#fancybox-title-over').html('Image 1 / '+k);
+					$('div#fancybox-outer').show();
+				});
+
+			return false;	
+			});
+			
+				$('img.img_liboxpend').live('click', function() {
+			
+				coin_id = $(this).parent().parent().children('td').eq(1).html();
+				k = 0;
+				contnt = '';
+				
+				$('div#fancybox-content').empty();
+				$.getJSON("ajax.php",{do:'lighrbox_get', id:coin_id}, function(data){
+					
+					dis = '';
+					$.each(data, function (key, val) {
+						k++;
+						if(k>1)
+						dis = 'display: none;';
+						
+						contnt += '<img id="fancybox-img" class="image_'+k+'" src="	http://www.greatcollections.com/image.php?cmd=thumb&subcmd=itemphoto&id='+val.img_hash+'" style="width:'+parseInt(val.w)+'px; height:'+parseInt(val.h)+'px; '+dis+'"  alt="">';	
+					});
+					
+					if(k > 1)
+					{
+						$('a#fancybox-left').hide();
+						$('a#fancybox-right').show();
+					}
+					
+					
+					
+					
+
+					$('input#img_count').val(k);
+					$('div#fancybox-content').html(contnt);
+					
+					box_width = parseInt($("div#fancybox-content").children("img.image_1").width());
+					box_height = parseInt($("div#fancybox-content").children("img.image_1").height());
+					
+					$('div#fancybox-outer').width(parseInt(box_width));
+					$('div#fancybox-outer').height(parseInt(box_height));
+					
+					$('span#fancybox-title-over').html('Image 1 / '+k);
+					$('div#fancybox-outer').show();
+				});
+
+			return false;	
+			});
+			$("span#fancybox-right-ico").click(function(){
+				imag_next();
+			});
+			
+			$("span#fancybox-left-ico").click(function(){
+				imag_previous();
+			});
+			
+			$('a#fancybox-close').click(function(){
+				$('div#fancybox-outer').hide();
+			});
+			
+			function imag_next()
+			{
+				img_count = $('input#img_count').val();
+				img_class = $("div#fancybox-content").children("img:visible").attr("class");
+				img_clas = img_class.split('_');
+				
+				if(img_clas[1] == img_count)
+				{
+					$("div#fancybox-content").children("img").hide();
+					$("div#fancybox-content").children("img.image_1").show();
+					$('span#fancybox-title-over').html('Image 1 / 3');
+				}
+				else
+				{
+					
+					$('a#fancybox-left').show();
+					img_visib = parseInt(img_clas[1])+1;
+					$("div#fancybox-content").children("img").hide();
+					$("div#fancybox-content").children("img.image_"+img_visib).show();
+					$('span#fancybox-title-over').html('Image '+img_visib+' / '+img_count);
+					
+					box_width = parseInt($("div#fancybox-content").children("img.image_"+img_visib).width());
+					
+					box_height = parseInt($("div#fancybox-content").children("img.image_"+img_visib).height());
+					
+					$('div#fancybox-outer').width(parseInt(box_width));
+					$('div#fancybox-outer').height(parseInt(box_height));
+					
+					if(img_count == img_visib)
+					{
+						$('a#fancybox-right').hide();
+						$('a#fancybox-left').show();
+						
+					}
+				}
+			}
+			
+			
+			function imag_previous()
+			{
+				img_count = $('input#img_count').val();
+				img_class = $("div#fancybox-content").children("img:visible").attr("class");
+				img_clas = img_class.split('_');
+				
+				if(img_clas[1] == 1)
+				{
+					$("div#fancybox-content").children("img").hide();
+					$("div#fancybox-content").children("img.image_"+img_count).show();
+					$('span#fancybox-title-over').html('Image '+img_count+' / 3');
+				}
+				else
+				{	
+					$('a#fancybox-right').show();
+					img_visib = parseInt(img_clas[1])-1;
+					$("div#fancybox-content").children("img").hide();
+					$("div#fancybox-content").children("img.image_"+img_visib).show();
+					$('span#fancybox-title-over').html('Image '+img_visib+' / '+img_count);
+					
+					box_width = parseInt($("div#fancybox-content").children("img.image_"+img_visib).width());
+					box_height = parseInt($("div#fancybox-content").children("img.image_"+img_visib).height());
+					
+					$('div#fancybox-outer').width(parseInt(box_width));
+					$('div#fancybox-outer').height(parseInt(box_height));
+					
+					if(img_visib == 1)
+					{
+						$('a#fancybox-right').show();
+						$('a#fancybox-left').hide();
+					}
+				}
+				
+			}
+			
+		});
+		
+		
+
+$(document).click(function(event) {
+	
+	var myArray = ["fancybox-outer", "fancybox-outer", "fancybox-bg-n", "fancybox-bg-ne", "fancybox-bg-e", "fancybox-bg-se",
+					"fancybox-bg-s", "fancybox-bg-sw", "fancybox-bg-w", "fancybox-bg-nw", "fancybox-content", "fancybox-img", "fancybox-close", "fancybox-left", "fancybox-left-ico", "fancybox-right", "fancybox-right-ico", "fancybox-title", "fancybox-title-over", "parag_wrapper"];
+
+		if( $.inArray(event.target.id, myArray) == -1 ){
+		 $('div#fancybox-outer').hide();
+		}
+
+	
+	
+	
+    
+});
+
+
+	</script>
+
+	
+	<input type="hidden" name="img_count" id="img_count" value="0" />
+	<div id="fancybox-outer" class="form_wrapper" style="width: 322px; padding:10px; position: fixed; left:25%; right:25%; margin: 0 auto 0; display: none;  height: 424px; z-index:1000; top: 10%;">
+	<div id="fancybox-bg-n" class="fancybox-bg"></div>
+	<div id="fancybox-bg-ne" class="fancybox-bg"></div>
+	<div id="fancybox-bg-e" class="fancybox-bg"></div>
+	<div id="fancybox-bg-se" class="fancybox-bg"></div>
+	<div id="fancybox-bg-s" class="fancybox-bg"></div>
+	<div id="fancybox-bg-sw" class="fancybox-bg"></div>
+	<div id="fancybox-bg-w" class="fancybox-bg"></div>
+	<div id="fancybox-bg-nw" class="fancybox-bg"></div>
+	<div id="fancybox-content" style="width: 100%; height: auto;  opacity: 1;">
+	
+	</div>
+	<a id="fancybox-close" style="display: none;"></a>
+	<a id="fancybox-left" style="left: -4%;" href="javascript:;" style="display: none;">
+	<span id="fancybox-left-ico"  class="fancy-ico"></span></a>
+	<a id="fancybox-right" href="javascript:;" style="display: none; right: -4%;">
+	<span id="fancybox-right-ico" class="fancy-ico"></span>
+	</a>
+<!-- 	<div id="fancybox-title" class="fancybox-title-over" style="display: block; margin-left: 10px; width: 96%; bottom: 10px;"><span id="fancybox-title-over"></span></div> -->
+	</div>
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+  <tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	<div class="block-wrapper">
+					<!--<div class="block">-->
+						<div class="block-top">
+						  <div class="block-right"></div>
+						</div>
+						<div class="block-content" id="collapseobj_recenthistory" style="{collapse[collapseobj_recenthistory]}; padding:0px">
+					
+							<div class="bigtabs" style="padding-bottom:10px; padding-top:10px">
+								<div class="bigtabsheader">
+									<ul id="homepagetabs2">
+									{apihook[main_template_top_bigtabs_start]}
+									<li id="currently_selling" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Current">{_currently_selling}</a><else /><a href="sell.php?cmd=current">{_currently_selling}</a></if></li>
+									<li id="_items_sold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Sold">{_items_sold}</a><else /><a href="sell.php?cmd=sold">{_items_sold}</a></if></li>
+									<li id="_items_unsold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Unsold">{_items_unsold}</a><else /><a href="sell.php?cmd=unsold">{_items_unsold}</a></if></li> 
+									<li id="_items_pending" title="" class="on"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Pending">{_items_pending}</a><else /><a href="sell.php?cmd=pending">{_items_pending}</a></if></li>
+									<li id="_items_returned" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Returned">{_items_returned}</a><else /><a href="sell.php?cmd=returned">{_items_returned}</a></if></li>
+									<li id="_buy_now_sold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Buynowsold">{_buy_now_sold}</a><else /><a href="sell.php?cmd=buynowsold">{_buy_now_sold}</a></if></li>
+									<li id="Buy_now_unsold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Buynowunsold">{_buy_now_unsold}</a><else /><a href="sell.php?cmd=buynowunsold">{_buy_now_unsold}</a></if></li>
+									
+									{apihook[main_template_top_bigtabs_end]}
+									</ul>
+								</div>
+							</div>
+						</div>
+								<div style="clear:both;"></div>
+
+		<div id="new3">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">{_unsold_items_to_be_relisted}</div>
+							<div style="padding: 0px;" class="block3-content">
+							
+							<!--<div style="background-color:#cd9c9c">
+							<div style="margin-left:700px;">
+							<form name="ilform" action="" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+											<input type="hidden" name="subcmd" value="pendingsearch" /> 
+												<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+													<tr>
+														<td>
+														{_select_date}
+														</td>
+														<td>
+														{drop_value}
+														<td>
+														<input type="submit" class="buttons" value=" {_search} " style="font-size:15px" />
+														</td>
+													</tr>
+												</table>
+											</form>
+											</div>
+							</div>-->
+								<!-- BEGIN service panel selling activity -->
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>
+										<tr class="alt2">
+											<td>{_thumbnail}</td>
+											<td>{_item_id}</td>
+											<td>{_auction_title}</td>											
+											<td>{_bids}</td> 
+											<td>{_min_bid_buy_now}</td>
+											<td>{_qty}</td>
+											<td>{_end_date}</td>
+											<td>{_status}</td>
+										</tr>
+										<loop name="res_gc_itempending">
+										<tr>
+										 <td>{thumbnail}</td>
+										 <td><a href="{item_path}">{item_id} </a></td>
+											<td><a href="{item_path}">{item_title} </a></td>
+											<td>{bids}</td>
+										 <td>{minbid}&nbsp;/&nbsp;{buynow}</td>
+										 <td>{buynow_qty}</td>
+										 <td>{timelef}</td>
+										 <td>{status}</td>
+										</tr>
+										</loop name="res_gc_itempending">
+										<if condition="isset($res_gc_itempending['mm']) AND $res_gc_itempending['mm'] == 'Nofound'">
+										<tr>
+											<td colspan="9" align="center">{_no_results_found}</td>
+										</tr>
+										<else />
+										<tr>
+											<td colspan="9">{prevnext1}</td>
+										</tr>	
+										</if>										
+									</tbody>
+								</table>
+								
+							<!-- END service panel selling activity -->
+							</div>
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div style="height:20px;">&nbsp;</div>
+					<div id="new3">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">
+							{_consignments_pending_to_be_listed} 
+							<div style="float: right; margin-right: 40%;">
+								<form name="ilform" action="sell.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+									<input type="hidden" name="subcmd" value="item_pending" />
+									<input type="submit" class="buttons" value=" Export PDF Report " style="font-size:15px" />
+								</form>
+							</div>
+						</div>
+							<div style="padding: 0px;" class="block3-content">					
+							
+								<!-- BEGIN service panel selling activity -->
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>
+										<tr class="alt2">
+											<td>{_thumbnail}</td>
+											<td>{_item_id}</td>
+											<td>Item Title</td>
+											<td>{_min_bid_buy_now}</td>
+											<td>{_end_date}</td>
+										</tr>
+										<loop name="res_gc_coin_pending">
+										<tr>
+										 <td>{thumbnail}</td>
+										 <td>{item_id}</td>
+										 <td>{item_title}
+										 </td>
+										 <td>{minbid_buynow}</td>
+										 <td>{timelef}</td>										
+										</tr>
+										</loop name="res_gc_coin_pending">
+										<if condition="isset($res_gc_coin_pending['mm']) AND $res_gc_coin_pending['mm'] == 'Nofound'">
+										<tr>
+											<td colspan="9" align="center">{_no_results_found}</td>
+										</tr>
+										<else />
+										<tr>
+											<td colspan="9">{prevnext}</td>
+										</tr>	
+										</if>
+
+										<form name="ilform" action="sell.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+										<input type="hidden" name="subcmd" value="item_pending" />
+										<tr>
+										<td colspan="9" align="center">
+										<input type="submit" class="buttons" value=" Export PDF Report " style="font-size:15px" />
+										</td>
+										</tr>
+
+										</form>
+
+
+									</tbody>
+								</table>
+								
+							<!-- END service panel selling activity -->
+
+
+							</div>
+						
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+	</div>
+	</td>
+  </tr>
+</table>

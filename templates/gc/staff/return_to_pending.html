@@ -1,0 +1,114 @@
+<script type="text/javascript">
+function valt()
+{ 
+    if(document.getElementById('filtervalue').value.trim() == '')
+    {
+	   alert('Enter Coin ID');
+	   return false;
+    }
+   return true;
+ 
+}
+
+
+</script>		
+<!-- begin v3body4 -->
+<div id="v3body4">
+	<div id="content">
+		<div class="header">Returned coin to Put back in Pending</div><br />	
+		<div class="tab-pane" id="userlistings">
+			<div class="tab-page">
+        		<h2 class="tab">Back pending </h2>
+                <form method="get" action="return_to_pending.php" accept-charset="UTF-8" id="issus_coin" 
+                		style="margin: 0px;">
+					<input type="hidden" name="subcmd" value="coin_details" />
+				<div class="block-wrapper">
+					<div class="block3">                   
+						<div class="block3-top">
+							<div class="block3-right">
+								<div class="block3-left"></div>
+							</div>
+						</div>                           
+						<div class="block3-header">Returned coin to Put back in Pending</div>
+						<div class="block3-content-gray" style="padding:9px">
+							<div class="smaller">
+								you can put back in pending for Returned coin.
+							</div>
+						</div>  
+						<div class="block3-content" style="padding:0px">
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" 
+									cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  	<td width="10%"><span class="gray">Coin ID</span>
+                                  		<td width="90%">
+                                        	<select name="filterby" style="font-family: Verdana">
+		                                        <option value="coin_id" 
+		                                        	<if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'coin_id'">selected="selected"</if>>Coin ID
+		                                        </option>
+                                       		</select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	<input type="text" name="filtervalue" id="filtervalue" size="18" 
+                                        			value="{get_filtervalue}" 
+                                        			style="width: 75%;" />
+                                        </td>
+                                </tr>
+								<tr>
+									<td colspan="2" align="center">
+										<input type="submit" class="buttons" value="Submit" 
+											name="print" onclick="return valt();" style="font-size:15px" />								 
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="block3-footer">
+							<div class="block3-right">
+								<div class="block3-left"></div>
+							</div>
+						</div>
+								
+					</div>
+				</div>
+				</form>
+
+			<if condition="isset($show['showsearch']) AND $show['showsearch']">
+			<form action="return_to_pending.php" accept-charset="UTF-8" style="margin:0px">
+				<input type="hidden" name="cmd" value="selected_return_coin" />
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td width="7%" align="left" class="alt2">Check</td>
+					<td align="left" nowrap="nowrap" class="alt2">Item</td> 
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Seller</td>
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">ConsignID</td> 
+				</tr>
+				<loop name="regardlist"> 
+				<tr>					
+					<td align="left" nowrap="nowrap" valign="top">{checkval}</td>
+					<td align="left" nowrap="nowrap" valign="top">{coin_id}</td>
+					<td align="left" nowrap="nowrap" valign="top">{user_id}</td>
+					<td align="left" nowrap="nowrap" valign="top">{consign_id}</td>
+				</tr>
+				</loop name="regardlist">
+				<if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                   	<tr class="alt1">
+                        <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                    </tr>
+                </if>	
+				</table>
+				</div> 
+				<div class="block3-header">								
+					<table>
+						<tr valign="top">
+							<td align='center'>
+								<input type="submit" value="Back Pending"  name="cancel_sales">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</form>
+			</if>
+
+
+
+	</div>
+</div>
+	
+

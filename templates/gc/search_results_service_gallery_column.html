@@ -1,0 +1,25 @@
+<div style="padding:6px">
+	<div style="height:85px">
+		<span style="float:right">{data[sel]}</span>
+		<span style="font-size:13px; font-weight:<if condition="$bold">strong</if>" class="blue">{data[title]}</span>
+		<div class="smaller gray" style="padding-top:3px">{data[additional_info]}</div>
+		<div style="padding-top:6px">{data[icons]}</div>
+	</div>
+	</div>
+	<div>
+	<if condition="isset($bids) AND ($bids > 0 OR $bids != '-')"><hr size="1" width="100%" style="color:#ccc" /><div style="padding:2px"><span style="float:right"><span class="gray">{_average_bid}</span> <strong>{data[averagebid]}</strong></span><strong>{data[bids]}</strong> <span class="gray">{_bids}</span></div></if>
+	<hr size="1" width="100%" style="color:#ccc" /></div>
+	<div style="padding:2px"><span style="float:right; font-size:14px"><strong>{data[timeleft]}</strong></span> <span class="gray">{_time_left}</span></div>
+	<hr size="1" width="100%" style="color:#ccc" /></div>
+	<div style="padding:2px"><span style="float:right">{data[budget]}</span> <span class="gray">{_budget}</span></div>
+	<hr size="1" width="100%" style="color:#ccc" /></div>
+	<div align="left" style="padding:2px"><span style="float:right">{data[country]}</span><span class="gray">{_country}</span></div>
+	<div align="left" style="padding:2px"><span style="float:right">{data[city]}</span><span class="gray">{_city}</span></div>
+	<div align="left" style="padding:2px"><span style="float:right">{data[state]}</span><span class="gray">{_state}</span></div>
+	<div align="left" style="padding:2px"><span style="float:right">{data[zipcode]}</span><span class="gray">{_zip_code}</span></div>
+	<hr size="1" width="100%" style="color:#ccc" /></div>
+	<div align="left" style="padding:2px"><span style="float:right">{data[distance]}</span><span class="gray">{_distance}</span></div>
+	<hr size="1" width="100%" style="color:#ccc" /></div>
+	<div align="left" style="padding:2px"><span style="float:right" class="blue">{data[category]}</span><span class="gray">{_category}</span></div>
+	<div align="left" style="padding:2px"><span style="float:right">{data[views]}</span><span class="gray">{_views}</span></div>
+</div>

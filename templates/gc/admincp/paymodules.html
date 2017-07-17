@@ -1,0 +1,355 @@
+<div id="v3body4"> 
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<loop name="subnav_settings">
+			<a href="{url}" {class}><span>{name}</span></a> <span> | </span> 
+		</loop name="subnav_settings">
+	</div>
+</div>
+<!-- /sub navigation -->
+<div id="content">
+<div class="header">{_payment_modules_management}</div><br />
+<div class="tab-pane">
+	<div class="tab-pane" id="paymodules">
+		<div class="tab-page">
+			<h2 class="tab">{_modules}</h2>
+			
+			{paymodules_authnet}
+			{paymodules_bluepay}
+			{paymodules_plugnpay} 
+			{paymodules_psigate}
+			{paymodules_eway}
+			{paymodules_paypal}
+			{paymodules_stormpay}
+			{paymodules_cashu}
+			{paymodules_moneybookers}
+			{paymodules_check}
+			{paymodules_bank}
+			{paymodules_platnosci}
+			
+		</div>
+		<div class="tab-page">
+      	<h2 class="tab">{_processing}</h2>
+   			
+			{paymodules_defaultgateway}
+			
+  </div>
+  <div class="tab-page">
+      	
+      <h2 class="tab">{_enckeys}</h2>
+	  
+   			{paymodules_keys}
+			
+  </div>
+  
+  <!-- invoice settings -->
+			<div class="tab-page">
+				
+		  		<h2 class="tab">{_tax_logic}</h2>
+				<!-- tab pane -->
+				<div class="tab-pane" id="invoicesettings">
+				
+					
+						
+							<div class="block-wrapper">
+
+								<div class="block">
+								
+										<div class="block-top">
+												<div class="block-right">
+														<div class="block-left"></div>
+												</div>
+										</div>
+										
+										<div class="block-header">{_tax_logic_integration}</div>
+										
+										<div class="block-content" style="padding:0px">
+											
+											<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+											<tr class="alt2"> 
+												<td align="center" width="9%">TID</td>
+												<td width="8%">{_title}</td>
+												<td>{_country}</td>
+												<td width="11%" nowrap>{_entire_country_taxable}</td>
+												<td width="11%" nowrap>{_state}</td>
+												<td width="8%">{_city}</td>
+												<td width="6%">{_amount}</td>
+												<td align="right" width="7%">{_action}</td>
+											</tr>							
+											<loop name="taxes"> 
+											<tr class="alt1" valign="top"> 
+												<td align="center">{taxid}</td>
+												<td><span class="blue">{taxlabel}</span></td>
+												<td><span class="black"><strong>{countryname}</strong></span><div class="smaller" style="padding-top:4px"><strong>{_tax}:</strong> {types}</div></td>
+												<td>{entire}</td>
+												<td>{state}</td>
+												<td>{city}</td>
+												<td><span class="blue">{amount}%</span></td>
+												<td align="right">{edit}&nbsp;&nbsp;{remove}</td>
+											</tr>
+											</loop name="taxes">
+                                            <tr>
+                                            	<td colspan="8"><span class="gray">Please define tax zones using the form below</span></td>
+                                            </tr> 
+											<if condition="isset($show['no_taxes']) AND $show['no_taxes']"> 
+											<tr> 
+												<td colspan="8" align="center"><div style="padding-top:8px; padding-bottom:8px">{_no_taxes_have_been_defined}</div></td>
+											</tr>
+											</if> 
+											</table>
+											
+										</div>
+										
+										<div class="block-footer">
+												<div class="block-right">
+														<div class="block-left"></div>
+												</div>
+										</div>
+										
+								</div>
+							</div>
+							<form method="post" action="{ilpage[settings]}" name="ilform" enctype="multipart/form-data" accept-charset="UTF-8" style="margin: 0px;">
+							<input type="hidden" name="cmd" value="paymodules" />
+							<input type="hidden" name="subcmd" value="upload_taxfile" />
+							<input type="hidden" name="return" value="{ilpage[settings]}?cmd=paymodules" />
+							 <div class="block-wrapper">
+
+								<div class="block">
+								
+										<div class="block-top">
+												<div class="block-right">
+														<div class="block-left"></div>
+												</div>
+										</div>
+										
+										<div class="block-header"><a name="editzone">Upload Tax File</a></div>
+										
+										<div class="block-content" style="padding:0px">
+											
+											<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+											<tr> 
+												<td colspan="2" class="alt2">
+												Upload the tax file
+												</td>
+											</tr>
+											 
+											<tr> 
+												<td  valign="left">
+												<input type="file" name="taxfilename"/>
+												</td>
+												<td  valign="left">
+												<input class="button" type="submit" name="upload_tax_file" />
+												</td>
+											</tr>
+											</table>
+											
+										</div>
+										
+										<div class="block-footer">
+												<div class="block-right">
+														<div class="block-left"></div>
+												</div>
+										</div>
+										
+								</div>
+							</div>
+							</form>
+							
+							<form method="post" action="{ilpage[settings]}" name="ilform" accept-charset="UTF-8" style="margin: 0px;">
+							<input type="hidden" name="cmd" value="paymodules" />
+							<input type="hidden" name="subcmd" value="{tax_subcmd}" />
+							<input type="hidden" name="return" value="{ilpage[settings]}?cmd=paymodules" />
+							{tax_id_hidden}
+							<div class="block-wrapper">
+
+								<div class="block">
+								
+										<div class="block-top">
+												<div class="block-right">
+														<div class="block-left"></div>
+												</div>
+										</div>
+										
+										<div class="block-header"><a name="editzone">{_create_update_tax_zones}</a></div>
+										
+										<div class="block-content" style="padding:0px">
+											
+											<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+											<tr> 
+												<td colspan="2" class="alt2">{_configure_city_state_and_country_tax_for_transactions_generated_through_the_marketplace_using_the_form_below}</td>
+											</tr>
+											<tr class="alt1"> 
+												<td>{_title}</td>
+												<td><input style="width:400px" name="taxlabel" value="{taxlabel}" class="input" /></td>
+											</tr>
+											<tr class="alt1"> 
+												<td>{_country}</td>
+												<td>{country_js_pulldown}</td>
+											</tr>
+											<tr class="alt1"> 
+												<td class="alt1" nowrap="nowrap">{_will_the_entire_country_be_taxable}</td>
+												<td><input type="checkbox" name="entirecountry" id="entirecountry" value="true" onclick="checkSelect(this)" {entirecountry_cb}  />
+												
+												<script language="Javascript">
+												function checkSelect(myCheck) 
+												{
+														if (myCheck.checked == false) 
+														{ 
+																fetch_js_object('state').disabled = false;
+																fetch_js_object('city').disabled = false;
+																fetch_js_object('state').focus();
+														}
+														else 
+														{
+																fetch_js_object('state').disabled = true;
+																fetch_js_object('city').disabled = true;
+														}
+												 }
+												</script></td>
+											</tr>
+											<tr class="alt1">
+											  <td class="alt1">{_state}</td>
+											  <td><div id="stateid" style="height:20px">{state_js_pulldown}</div></td>
+											  </tr>
+											<tr class="alt1">
+											  <td class="alt1">{_city}</td>
+											  <td><input style="width:150px" name="city" value="{city}" class="input" /></td>
+											  </tr>
+											<tr class="alt1"> 
+												<td class="alt1">{_amount} (value in percentage) </td>
+											  <td><input style="width:55px" name="amount" value="{amount}" class="input" /> <strong>%</strong></td>
+											</tr>
+											<tr class="alt1"> 
+												<td width="26%" valign="top">{_apply_this_tax_to_invoice_types}</td>
+											  <td width="74%" valign="top">{invoicetypetax}</td>
+											</tr>
+											<tr> 
+												<td colspan="2" valign="middle">{taxsubmit} <if condition="isset($ilance->GPC['subcmd']) AND $ilance->GPC['subcmd'] == '_update-taxzone'">&nbsp;&nbsp;&nbsp;<span class="blue"><a href="{ilpage[settings]}?cmd=paymodules">{_cancel}</a></span></if></td>
+											</tr>
+											</table>
+											
+										</div>
+										
+										<div class="block-footer">
+												<div class="block-right">
+														<div class="block-left"></div>
+												</div>
+										</div>
+										
+								</div>
+							</div>
+							</form>
+				 
+				</div>
+				<!-- / tab pane -->
+				
+			</div>
+			<!-- / invoice settings -->
+            
+            <!-- begin payment types settings -->
+			<div class="tab-page">
+				
+				<h2 class="tab">Pay Types</h2>
+				<form action="{ilpage[settings]}" name="ilform" method="post" accept-charset="UTF-8" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="paymodules" />
+				<input type="hidden" name="subcmd" value="update-paytypes" />
+				<input type="hidden" name="return" value="{ilpage[settings]}?cmd=paymodules" />
+				<div class="block-wrapper">
+				<div class="block">
+				
+						<div class="block-top">
+								<div class="block-right">
+										<div class="block-left"></div>
+								</div>
+						</div>
+						
+						<div class="block-header">Offline {_payment_types_methods}</div>
+						<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_manage_payment_types_and_methods_shown_when_users_post_listings_in_the_marketplace}</div></div>
+						<div class="block-content" style="padding:0px">
+							
+							<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+							<tr class="alt2"> 
+								<td width="95%">Phrase Variable</td>
+								<td width="5%" align="center">{_action}</td>
+							</tr>
+							<loop name="paytypes"> 
+							<tr class="alt1"> 
+								<td>{title}</td>
+								<td align="center">{action}</td>
+							</tr>
+							</loop name="paytypes">
+							<if condition="isset($show['no_paytypes_rows']) AND $show['no_paytypes_rows']"> 
+							<tr> 
+								<td colspan="2" align="center">{_no_results_found}</td>
+							</tr>
+							</if>
+							<tr>
+								<td colspan="2"><input type="submit" value=" {_save} " style="font-size:15px" class="buttons" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" /></td>
+							</tr>
+							</table>
+							
+						</div>
+						
+						<div class="block-footer">
+								<div class="block-right">
+										<div class="block-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+						
+						</form>
+						
+		
+						
+						<form action="{ilpage[settings]}" name="ilform" method="post" accept-charset="UTF-8" style="margin: 0px;">
+						<input type="hidden" name="cmd" value="paymodules" />
+						<input type="hidden" name="subcmd" value="insert-paytype" />
+						<input type="hidden" name="return" value="{ilpage[settings]}?cmd=paymodules" />
+						<div class="block-wrapper">
+						<div class="block">
+						
+								<div class="block-top">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+								<div class="block-header">{_add_new_payment_type}</div>
+								<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_use_the_form_below_to_create_a_new_payment_type}</div></div>
+								<div class="block-content" style="padding:0px">
+									<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+									<tr class="alt1"> 
+										<td width="8%" nowrap="nowrap">{_phrase_variable}</td>
+										<td width="92%"><input type="text" name="title" style="width:450px; font-family: verdana" /></td>
+									</tr>
+									<tr class="alt1">
+										<td colspan="2"><div class="gray">{_before_you_add_your_new_payment_type_please_create_your_new_payment_type_phrase}</div></td>
+									</tr>
+									<tr>
+										<td colspan="2"><div><input type="submit" name="save" value=" {_save} " class="buttons" style="font-size:15px" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action}')" /></div></td>
+									</tr>
+									</table>
+									
+									
+								</div>
+								
+								<div class="block-footer">
+										<div class="block-right">
+												<div class="block-left"></div>
+										</div>
+								</div>
+								
+						</div>
+						</div>
+						
+						</form>
+				
+			</div>
+			<!-- /begin payment types settings -->
+</div>
+</div>
+
+{dynamic_js_bodyend}

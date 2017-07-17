@@ -1,0 +1,210 @@
+			
+
+		
+
+		
+<script language="javascript">
+
+function combine_trigger(invoiceid)
+{
+
+ if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+		returned=request.responseText;
+ 			
+		}else
+		{
+			//document.getElementById("promodiv").innerHTML= "<img src=\"images/default/working.gif\"/>";	
+		}
+	}
+	url ="invoicepayment.php?cmd=combine&invoiceid=" +invoiceid;
+	request.open("GET", url,true);
+	request.send(null);
+
+	return false;
+}
+</script>
+<script type="text/javascript">
+//- Run this code when the DOM parsing has completed
+function onlaodtextchange()
+{
+
+document.getElementById('payment_text_id').value = 'Proceed to {payment_method}'; 
+
+}
+</script>
+
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class="sel"><span>{_management}</span></a>
+		<a href="email_generator.php" class=""><span>Email Template</span></a> 
+		<a href="email_template.php" class=""><span>New Template</span></a> 
+		<a href="uhr_template.php" class=""><span>UHR Template</span></a>
+		<a href="email_export.php" class=""><span>Email Export</span></a> 
+		<a href="saved_search.php" class=""><span>Search Options</span></a>
+		<a href="user_watchlist.php" class=""><span>watchlist Export</span></a> 
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+
+<!-- begin content -->
+<div id="content">
+	<div class="header">{_subscriber_management} {customername}</div><br />
+
+		<div class="tab-pane" id="userlistings">
+		<div class="tab-page">
+
+				<h2 class="tab">Invoice</h2>
+
+				<div class="block-wrapper">
+
+					<div class="block">
+						
+						<div class="block-top">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+
+							</div>
+						</div>
+						
+						<div class="block-header">Pending Invoice</div>
+						
+						<div class="block-content-yellow" style="padding:9px"><div class="smaller">&</div></div>
+							<div class="block-content" style="padding:0px">
+								<table width="100%" border="0" align="center" cellpadding="9" cellspacing="1">
+									<tr>
+										<td>
+											
+										</td>
+									</tr><tr>
+										<td>
+
+
+
+<if condition="isset($show['directpayment']) AND $show['directpayment']">
+{directpaymentform}
+<else />
+<form method="post" action="" name="invoicepreview"  onsubmit="combine_trigger({invoiceid})" accept-charset="UTF-8" style="margin: 0px;">
+<input type="hidden" name="cmd" value="_do-invoice-payment" />
+<input type="hidden" name="uid" value="{custmr_uid}" />
+<input type="hidden" name="id" value="{invoiceid}" />
+<input type="hidden" name="amount" value="{amount}" />
+<input type="hidden" name="invoicetype" value="{invoicetype}" />
+<input type="hidden" name="account_id" value="{account_id}" />
+<input type="hidden" name="description" value="{description}" />
+{txn_fee_hidden}
+</if>
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_secure_payment_preview}</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_please_review_your_payment_information_below}</div></div>
+			<div class="block-content" style="padding:0px">
+				
+				<div>
+				<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+				<tr class="alt1"> 
+				  <td width="27%" align="right" class="alt1"><span class="gray">{_invoice_id}:</span></td>
+				  <td align="left">{invoiceid}</td>
+				</tr>
+				<!--<tr class="alt1" valign="top"> 
+				  <td align="right" class="alt1"><span class="gray">{_description}:</span></td>
+				  <td align="left"><span class="blue">{description}</span></td>
+				</tr>-->
+				<tr class="alt1"> 
+				  <td align="right" class="alt1"><span class="gray">{_amount}:</span></td>
+				  <td align="left"><span class="blue">{previewamount}</span></td>
+				</tr>		
+				<if condition="$show['transactionfees']"> 
+				<tr class="alt1"> 
+				  <td align="right" class="alt1"><span class="gray">{_gateway_fee}:</span></td>
+				  <td align="left"><span class="gray">({transaction_fee_formatted})</span></td>
+				</tr>
+				</if> 
+				<if condition="$show['checkpayment']"> 
+				<tr class="alt1"> 
+				  <td align="right" class="alt1"><span class="gray">{_check_money_order}:</span></td>
+				  <td align="left"><span class="gray"><input type="text" name="checknum" /></span></td>
+				</tr>
+				</if> 
+				<!--{taxlogic}-->
+				<tr class="alt1"> 
+				  <td align="right" class="alt1"><span class="gray">{_due}:</span></td>
+				  <td align="left"><div>{duedate}</div></td>
+				</tr>
+				<tr class="alt1"> 
+				  <td align="right" class="alt1"><span class="gray">{_payment_method}:</span></td>
+				  <td align="left"><div><span id="paymentmethodtext">{payment_method}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller blue"><a href="javascript:history.go(-1)" style="text-decoration:underline">{_change}</a></span></div></td>
+				</tr>
+				<tr class="alt1"> 
+				  <td align="right" class="alt1"><span class="gray">{_total}:</span></td>
+				  <td align="left"><div style="font-size:15px" class="blue"><strong>{totalpreviewamount}</strong></div></td>
+				</tr>
+				<tr class="alt1">
+				  <td align="right" class="alt1"><strong>{_authorize}</strong>:</td>
+				  <td align="left"><label for="agree"> <input name="agreecheck" id="agree" type="checkbox" onclick="agreesubmit(this)" /> {_i_authorize_this_payment_from_my_preferred_payment_method_above}</label></td>
+				</tr>
+                <tr>
+				  <td colspan="2"><input type="submit" value=" {_pay_invoice} " disabled="disabled" class="buttons"  id="payment_text_id" style="font-size:15px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="blue"><a href="users.php?subcmd=_update-customer&id={custmr_uid}">{_back}</a></span></td>
+				</tr>
+			  </table>
+			  </div>
+			  
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</form>
+</td>
+									</tr>
+								</table>	
+							</div>
+						
+						<div class="block-footer">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+								
+							</div>
+							
+						</div>
+							
+					</div>
+					
+				</div>
+
+			</div>
+
+</div>
+	</div>
+<br />
+<br />			

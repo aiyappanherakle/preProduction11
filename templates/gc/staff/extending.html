@@ -1,0 +1,214 @@
+<html>
+	<head>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		$('#select-all').click(function(event) {   
+		    if(this.checked) {
+		        // Iterate each checkbox
+		        $(':checkbox').each(function() {
+		            this.checked = true;                        
+		        });
+		    }
+			else 
+			{
+			 $(':checkbox').each(function() {
+		            this.checked = false;                        
+		        });
+			
+			}
+		});
+	});
+</script>
+		<title></title>
+	</head>
+	<body>
+		<div id="v3body4">
+			<!-- sub navigation -->
+			<div id="sub">
+				<div id="subnav">
+					<!--<a href="reports.php" class="sel"><span>Reports</span></a>  -->
+				</div>
+			</div><!-- /sub navigation -->
+			<div id="content">
+				<div class="header">
+					Extend Coins End date
+				</div><br>
+				<div class="tab-pane">
+					<div class="tab-pane" id="reportlistings">
+
+						<div class="tab-page">
+							<h2 class="tab">
+								Search
+							</h2>
+							<div class="block-wrapper">
+								<div class="block">
+									<div class="block-top">
+										<div class="block-right">
+											<div class="block-left"></div>
+										</div>
+									</div>
+									<div class="block-header">
+										Search
+									</div>
+									<div class="block-content" style="padding:0px">
+										<form name="ilform" action="extend_end_dates.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+											<input type="hidden" name="cmd" value="coins_list">
+											<table align="center" border="0" cellspacing="0" cellpadding="9">
+												<tr class="alt1">
+													<td width="10%">
+														Select User
+													</td>
+													<td width="50%">
+														<select name="filterby" style="font-family: Verdana">
+															<optgroup label="Select by">
+																{filter_by}
+															</optgroup>
+														</select>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="filtervalue" size="18" style="width: 50%;" value="{filtervalue}" />
+													</td><br>
+												<if condition="$search_img =='1'">
+												<td width="5%" nowrap="nowrap">Imaged :<input type="radio" name="imgss" value="imaged" checked></td>
+												</if>
+												<if condition="$search_img == '0'">
+												<td width="5%" nowrap="nowrap">Imaged :<input type="radio" name="imgss" value="imaged" ></td>
+												</if>
+												
+												<if condition="$search_ntimg =='1'">									
+												<td width="5%" nowrap="nowrap">Not Imaged :<input type="radio" name="imgss" value="notimaged" checked></td>
+												</if>
+												<if condition="$search_ntimg =='0'">	
+												<td width="5%" nowrap="nowrap">Not Imaged :<input type="radio" name="imgss" value="notimaged" ></td>
+												</if>
+												
+												<if condition="$search_bthimg =='1'">
+												<td width="5%" nowrap="nowrap">Both :<input type="radio" name="imgss" value="both" checked></td>
+												</if> 
+												<if condition="$search_bthimg =='0'">
+												<td width="5%" nowrap="nowrap">Both :<input type="radio" name="imgss" value="both" ></td>
+												</if> 
+																							
+												
+												</tr>
+												<tr>
+													<td width="10%">
+														<input type="submit" class="buttons" value=" {_go} " style="font-size:15px">
+													</td>
+												</tr>
+											</table>
+										</form>
+									</div>
+									<div class="block-footer">
+										<div class="block-right">
+											<div class="block-left"></div>
+										</div>
+									</div><!--block-content-->
+								</div><!--block-->
+							</div><!--block wrapper-->
+
+									<br/>
+									<if condition="isset($show['showsearch_coins']) AND $show['showsearch_coins']">
+				<form id="subscriber_search" action="extend_end_dates.php" accept-charset="UTF-8" style="margin:0px" method="post" >
+					<input type="hidden" name="cmd" value="extend_enddate" />
+					<input type="hidden" name="userid" value="{user_id}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{username} - {coins_count} Coins Found </div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td width="13%">Coin ID</td>
+								  <td width="16%">Title</td>
+								  <td width="9%" >Min Bid</td>
+								  <td width="9%" >Bids</td>
+								  <td width="9%" nowrap="nowrap">Current Price</td>
+								  <td width="9%" >End Date</td>
+								  <td width="9%" >Imaged</td>								  
+								  <td width="9%" nowrap="nowrap"><input id="select-all" type="checkbox" name="select-all" /></td>
+							</tr>
+							<loop name="searchd_coins"> 
+							<tr class="alt1" valign="top"> 
+								<td nowrap="nowrap">{coin_id}</td>
+								<td style="max-width:150px;">{title}</td>
+								<td nowrap="nowrap">{min_bid}</td>
+								<td nowrap="nowrap">{bids}</td>
+								<td nowrap="nowrap">{max_bid}</td>
+								<td nowrap="nowrap">{end_date}</td>
+								<td nowrap="nowrap">{img}</td>
+								<td> 
+									<input type="checkbox" name="coin_ids[]" value="{coin_id}" />
+								</td>
+							</tr>
+							</loop name="searchd_coins">
+							
+                            
+                            <tr class="alt1">
+								<td nowrap="nowrap">
+									Extend By
+								</td>
+								<td width="90%">
+<script>
+	$(function() {
+
+		$("#datepicker").datepicker({
+
+			dateFormat: 'yy-mm-dd',
+			minDate: 0,
+			beforeShowDay: enableSUNDAYS
+
+		});
+			
+		
+		// Custom function to enable SUNDAY only in jquery calender
+		function enableSUNDAYS(date) {
+
+			var day = date.getDay();
+
+			return [(day == 0), ''];
+
+		}
+
+	});
+</script>
+									<input id="datepicker" type="text" name="end_date" />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="submit" class="buttons" value=" Change " style="font-size:15px">
+								</td>
+							</tr>
+						</table>
+							
+						</div>
+						</if> 				
+
+
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+      			
+				</form>
+
+									
+						</div>
+						
+						
+						
+						
+						
+					</div>
+				</div><br>
+				<br>
+			</div>
+		</div>
+	</body>
+</html>

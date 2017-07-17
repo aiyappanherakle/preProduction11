@@ -1,0 +1,143 @@
+<script type="text/javascript">
+function validate()
+{
+	var item = document.getElementById("search_buynow").value;
+	if(item =='' || isNaN(item))
+	{
+	 alert("Please enter valid BuyNow item");
+	 return false;
+	}
+	else
+	{
+	return true;
+	}
+
+}
+</script>
+
+<!-- begin v3body4 -->
+
+<div id="v3body4">
+
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+			<a href="listings.php"><span>Holding</span></a>
+			<a href="listings.php?cmd=all_listing" ><span>Affiliate listing</span></a> 
+			<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+			<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+			<a href="listings.php?cmd=search_coin" ><span>listed in gc</span></a> 
+			<a href="listings.php?cmd=itembold_list" ><span>Listing</span></a> 
+			<a href="listings.php?cmd=image_list"><span>Image List</span></a>
+			<a href="buynow_item.php" class="sel"><span>Item History</span></a>
+			<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+			
+	</div>
+</div>
+<div id="content">
+
+	<div class="dynamic-tab-pane-control tab-pane">
+		<div class="tab-row">
+			<h2 class="tab selected">
+				<a href="#">BuyNow Item</a>
+			</h2>
+		</div>
+		
+		<div class="tab-page" style="display: block;">
+		
+			<div class="block-wrapper">
+				<div class="block3">
+					<div class="block3-top">
+						<div class="block3-right">
+							<div class="block3-left"></div>
+						</div>
+					</div>
+					<div class="block3-header">History</div>
+					
+					<div class="block3-content-gray" style="padding:9px">
+						<div class="smaller">Invoice #, Bought Date, Quantity Bought, Customer Name, Invoice Total, Invoice Paid, Shipped Date (blank if not shipped) will be shown for searched item</div>
+					</div>
+					
+					<div class="block3-content" style="padding:0px">
+						<table width="100%" cellspacing="0" cellpadding="9" border="0">
+							
+							<tbody>
+							
+								<tr class="alt1">
+									<form name="buynow_search_frm" method="post" onsubmit="return validate();" >
+									
+										<td width="10%">
+											<span class="gray">Search Item</span>
+										</td>
+										
+										<td width="20%">
+											<input type="text" id="search_buynow" value="{search_buynow_text}" style="width: 75%;" size="18" name="search_buynow">
+										</td>
+										
+										<td width="70%">
+											<input class="buttons" type="submit" style="font-size:15px" value=" Search ">
+											<input type="hidden" name="buynow_item" value="buynow_item">
+										</td>
+										
+									</form>									
+								</tr>
+								
+							</tbody>
+						
+						</table>
+					</div>
+					
+					<div class="block3-footer">
+						<div class="block3-right">
+							<div class="block3-left"></div>
+						</div>
+					</div>
+					
+					<!-- Buynow item search results -->
+					
+					<if condition="isset($show['buynow_results']) AND $show['buynow_results']=='show_history'">
+						
+						<table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                            <tr class="alt2">
+                                <td width="7%" align="center">Invoice#</td>
+                                <td width="10%">Bought Date</td>
+								<td width="8%">Quantity Bought</td>
+                                <td width="45%">Customer Name</td>
+                                <td width="17%" nowrap="nowrap">Invoice Total</td>                                
+                                <td width="14%">Invoice Paid</td>
+                                <td width="20%" nowrap="nowrap">Shipped Date</td>                                
+                            </tr>
+							
+					
+                            <loop name="buynow_list"> 
+								<tr valign="top" class="alt1"> 
+									<td nowrap="nowrap">{invoice_id}</td>
+									<td nowrap="nowrap">{Bought_Date}</td>
+									<td nowrap="nowrap">{Quantity_Bought}</td>									
+									<td nowrap="nowrap"><div class="blue">{Customer_Name}</div></td>
+									<td nowrap="nowrap">{Invoice_Total}</div></td>
+									<td nowrap="nowrap">{Invoice_Paid}</td>								   
+									<td nowrap="nowrap">{Shipped_Date}</td>								
+								</tr>                            
+                            </loop name="buynow_list"> 
+							
+						</table>
+						
+					</if>
+					
+					<div class="block3-footer">
+						<div class="block3-right">
+							<div class="block3-left"></div>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		
+		</div>
+	
+	</div>
+
+</div>
+
+<!-- /sub navigation -->

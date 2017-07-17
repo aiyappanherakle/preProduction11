@@ -1,0 +1,179 @@
+<script type="text/javascript">
+
+function validate()
+{
+ var captcha_text = document.getElementById("captcha").value;
+var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+var err="";
+
+
+  if(document.getElementById("title").value == '')
+   {
+      document.getElementById("error_title").innerHTML= "Enter Your Title";
+	err=1;	
+    }
+  else
+  {
+     document.getElementById("error_title").innerHTML= "";
+  }
+ 
+  if(document.getElementById("description").value == '')
+   {
+   document.getElementById("error_desc").innerHTML= "Enter Your Description";
+		err=1;
+ }
+    else
+  {
+     document.getElementById("error_desc").innerHTML= "";
+  }
+ 
+  
+ if(document.getElementById("firstname").value == '')
+ {
+ 
+     document.getElementById("error_firstnam").innerHTML= "Enter Your firstname";
+	err=1;
+	
+ }
+  else
+  {
+     document.getElementById("error_firstnam").innerHTML= "";
+  }
+   
+	 
+	 
+  if(document.getElementById("lastname").value == '')
+ {
+ document.getElementById("error_lastname").innerHTML= "Enter Your Lastname";
+  err=1;
+ }
+    
+  else
+  {
+     document.getElementById("error_lastname").innerHTML= "";
+  }
+ 
+
+   
+ if(document.getElementById("location").value == '')
+ {
+    document.getElementById("error_location").innerHTML= "Enter your Location";
+	err=1;
+   }
+    else
+  {
+     document.getElementById("error_location").innerHTML= "";
+  }
+   
+   
+        if (document.form_id.email.value.search(emailRegEx) == -1) 
+        {
+        document.getElementById("error_email").innerHTML= "Inavalid email address";
+        err=1;
+        }
+		else
+		{
+		  document.getElementById("error_email").innerHTML= "";
+		}
+		
+   if(captcha_text=='')
+	 {
+	   document.getElementById("error_captcha").innerHTML= "Please Enter the Security Code Shown on the Image";
+		  err=1;
+	 }	
+	 else
+		{
+		  document.getElementById("error_captcha").innerHTML= "";
+		}
+	
+	 if(captcha_text !='')
+	 {
+	
+			if (window.XMLHttpRequest)
+	        {// code for IE7+, Firefox, Chrome, Opera, Safari
+	           xmlhttp=new XMLHttpRequest();
+	        }
+	        else
+	        {// code for IE6, IE5
+	          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	        }
+	        xmlhttp.onreadystatechange=function()
+	       {
+	         if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		     {
+			  
+				if(xmlhttp.responseText =='error')
+				{
+				document.getElementById("error_captcha").innerHTML='Invalid Security Code.Try Again';
+				err = 1;
+				}
+				 else
+			   {
+				document.getElementById("error_captcha").innerHTML= "";
+				
+			  }
+		    }
+		    else
+		   {
+		     document.getElementById('error_captcha').innerHTML= "<img src='images/gc/default/wheel.gif'/>";  
+		    }
+	     }
+	     xmlhttp.open("GET","ajax.php?do=validate_captcha&value="+captcha_text,false);
+	     xmlhttp.send();
+		 
+		 
+		
+	 }
+			
+   
+ if(err == 1)
+  {
+  return false;
+  }
+  else
+  {
+  return true;
+  }
+ 
+ 
+ 
+}
+
+</script>
+
+
+<div class="block-wrapper">        
+<div class="block">
+
+        <div class="block-top">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+        <div class="block-header">Don't take our word for it - read reviews from real clients of GreatCollections</div>
+        
+        <div class="block-content" style="padding:0px 0px 0px 0px;">
+        <div class="block-content-yellow">    
+        Our clients depend on us to provide reliable and exceptional customer service. We do our best to meet and exceed their high standards. Here is what our clients say about GreatCollections. Already a client and want to leave a testimonial? E-mail it to us at <a href="mailto:info@greatcollections.com">info@greatcollections.com</a>.
+          
+            
+        </div>
+		<div><br></div>
+		<div style="padding-left:3px;">
+		{raw_testimonial}
+		{prof}
+		
+       	</div>
+             </div>   
+        <div class="block-footer">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+		
+</div>
+</div>
+
+
+
+

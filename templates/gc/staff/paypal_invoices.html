@@ -1,0 +1,123 @@
+	<link type="text/css" href="{https_server}/css/jquery.datetimepicker.css" rel="stylesheet" />	
+
+		
+
+		<script type="text/javascript" src="{https_server}/functions/javascript/jquery.datetimepicker.js"></script>
+		
+		
+<div id="v3body4">
+
+	<!-- begin v3body4 -->
+	<div id="v3body4" style="width: 952px;"><!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="buyers.php"><span>{_buyers}</span></a>
+		<a href="paypal_invoices.php"><span>Paypal Invoices</span></a>
+		<a href="ar_report.php"><span>A/R Report</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+
+<!-- begin content -->
+		<div id="content">
+			<div class="header">Paypal Invoice</div>
+				<br />
+	
+	<!-- tab pane -->
+			<div class="tab-pane">
+	
+		<!-- shipping tab page for search -->
+				<div class="tab-page">
+			
+					<h2 class="tab">Print Statement</h2>
+			
+					<div class="block-wrapper">
+                  		  	<div class="block3">
+                    
+	                            <div class="block3-top">
+	                                    <div class="block3-right">
+	                                            <div class="block3-left"></div>
+	                                    </div>
+	                            </div>
+                            
+                           		<div class="block3-header">Search</div>
+                            	<div class="block3-content-gray" style="padding:9px">
+                             		<div class="smaller">Search Paypal Payment Invoice </div>
+                            	</div>
+                            	<div class="block3-content" style="padding:0px">
+                         			 <form name="ilform" action="paypal_invoices.php" method="post" accept-charset="UTF-8" 
+                         			 		style="margin: 0px;" enctype="multipart/form-data">
+
+											<input type="hidden" name="cmd" value="paypal_invoice" />   
+ 
+												<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+													<tr>
+														<td>
+															Starting Date
+														</td>
+														<td>
+															<input id="datepicker" name="start_date" type="text">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															End Date
+														</td>
+														<td>
+															<input id="datepicker1" name="end_date" type="text">
+														</td>
+													</tr>
+
+			                               		<tr>
+													<td align="left" colspan="2">
+														<input type="submit" class="buttons" 
+														value="Print" name="print"
+														style="font-size:15px" />		
+													</td> <br />
+												</tr>                        
+
+												</table>
+
+
+
+                           			</form>				
+                           		</div>
+								<div class="block3-footer">
+	                                    <div class="block3-right">
+	                                            <div class="block3-left"></div>
+	                                    </div>
+	                            </div>
+							</div>
+					</div>			 
+
+				</div>
+		
+		
+		
+		 <script>
+$('#datepicker').datetimepicker({
+dayOfWeekStart : 1,
+lang:'en', 
+formatTime:'H:i:s',
+formatDate:'d.m.Y',
+format:'Y-m-d H:i:s',
+value:'',
+step:10
+}); 
+$('#datepicker').mousedown(function() {
+   $('#ui-datepicker-div').toggle();
+});
+$('#datepicker1').datetimepicker({
+dayOfWeekStart : 1,
+lang:'en', 
+formatTime:'H:i:s',
+formatDate:'d.m.Y',
+format:'Y-m-d H:i:s',
+value:'',
+step:10
+}); 
+$('#datepicker1').mousedown(function() {
+   $('#ui-datepicker-div').toggle();
+});
+</script>

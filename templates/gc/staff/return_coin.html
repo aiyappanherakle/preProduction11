@@ -1,0 +1,212 @@
+<script type="text/javascript">
+
+function valt()
+{
+  
+   if(document.getElementById('fees').value == '')
+   {
+   alert('Enter charge fees');
+   return false;
+   }
+   if(document.getElementById('shipper').value == '-1')
+   {
+   alert('Select shipping');
+   return false;
+   }
+   return true;
+ 
+}
+
+
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php"><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing"><span>Affiliate listing</span></a> 
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Return Sale </div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Return</h2>
+			    
+				
+				
+				
+				
+				<form method="post" action="{form_action}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="insert_return_user" />
+			    <input type="hidden" name="return" value="{form_action}" />
+			  
+				
+			
+					<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+					   <if condition="isset($show['return']) AND $show['return'] == 'all_coin'">
+					     <div class="block3-header">Return sale </div>
+					   <else />
+						<div class="block3-header">Return sale for  Coin Id - {coin_id}</div>
+					   </if>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_return_the_coins_to_consignor_using_the_form_below}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+						       <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							  <if condition="$show['return'] == ''">
+							   <tr>
+								<td width="12%">Coin Id</td>
+								<td width="12%"><strong>{coin_id}</strong></td>
+								 </tr>
+								 <else />
+								    <tr>
+								<td width="12%">Coin Id</td>
+								<td width="12%"><textarea rows="3" cols="30" name="coin_list">{coinid}</textarea></td>
+								 </tr>
+								</if>
+								
+                                <tr>
+								<td width="12%">Seller</td>
+								<td width="12%"><strong>{seller_name}</strong></td>
+								 </tr>
+								
+								<td width="12%">Shipping</td>
+								<td width="12%">{html}</td>
+								 </tr>
+								 
+								 <tr>
+								<td>Return Method
+								</td>
+								<td>
+								<select name="return_opt">
+								<option value="">-Select-</option>
+								<option value="show">Deliver at Show</option>
+								<option value="pickup">Pick-up</option>
+								</select>
+								</td>
+								</tr>
+								
+								  <tr>
+								<td width="12%">Charge Fee</td>
+								<td width="12%"><input type="text" name="feesc" id="fees"/>
+								<input type="hidden" name="consignid" value="{consignid}" />
+								<input type="hidden" name="user_id" value="{user_id}" />
+								<input type="hidden" name="coin_id" value="{coin_id}" />
+								
+								</td>
+								 </tr>
+								 
+								  <tr>
+								 <td width="12%">{_notes}</td>
+								  <td width="12%"><textarea name="notes" rows="3" cols="20" ></textarea>
+								  </td>
+								  </tr>
+								
+							    <tr>
+								<td width="12%"><input type="submit" value="Return sale" onclick="return valt();"/></td>
+								</tr>
+							   </table>
+								                           			
+                            	
+								
+					</form>
+                        </div>
+                        
+                       
+						   <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+	  
+		<!-- / grading tab page -->
+		
+		<div class="tab-page">
+			
+			<h2 class="tab">List</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <!--This Items are Removed From here and Pasted Above Set of Code-->
+								
+								
+                            <div class="block3-header">({newnumber}) List of Return Coin</div>
+                            <div class="block3-content" style="padding:0px">
+                         
+                           <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt2">
+								<td width="12%">Coin ID</td>
+								<td width="12%">ConsignID</td>
+								<td width="12%">Seller</td>
+								<td width="12%">Date of Return</td>
+								<td width="12%">Shipping Fees</td>
+								<td width="12%">Charge Fees</td>
+								
+							    </tr>
+							    <loop name="return_sale_list">
+							    <tr class="alt1" valign="top">
+								<td width="12%">{coin_id}</td>
+								<td width="12%">{consign_id}</td>
+								<td width="12%">{sel}</td>
+								<td width="12%">{return_date}</td>
+								<td width="12%">{shipamt}</td>
+								<td width="12%">{chargeamt}</td>
+								</tr>
+							   </loop name="return_sale_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'return_list'">
+							   <tr class="alt1">
+								 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+							   </tr>
+							   </if>
+							   </table>
+							</div>	
+								
+                           							
+                          
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+					{return_pagination}
+                </div>
+
+		</div>
+		
+</div>
+<!-- / tab pane -->

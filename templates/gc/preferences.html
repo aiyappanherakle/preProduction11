@@ -1,0 +1,93 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+            <li title="" class="on"><a href="javascript:void(0)">{_preferences}</a></li>
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">{_my_preferences}</div>
+                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_overview}</div></div>
+                    <div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x;">
+                        
+                       	<div>
+                       	<!--<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+                        <tr> 
+                            <td width="25%"><div align="left" class="blue"><a href="{https_server}{ilpage[preferences]}?cmd=profile">{_my_profile}</a></div></td>
+                            <td width="25%"><div class="blue"><a href="{ilpage[preferences]}?cmd=currency">{_currency_preference}</a></div></td>
+                            <td width="25%"><div class="blue"><a href="{ilpage[preferences]}?cmd=language">{_language_preference}</a></div></td>
+                            <td width="25%"><div class="blue"><a href="{ilpage[preferences]}?cmd=timezone">{_time_zone_management}</a></div></td>
+                        </tr>
+                        <tr> 
+                            <td width="25%"><div align="left" class="blue"><a href="{ilpage[preferences]}?cmd=notifications">{_category_notifications}</a></div></td>
+                            <td width="25%"><div class="blue"><a href="{ilpage[preferences]}?cmd=login">{_start_page_management}</a></div></td>
+                            <td width="25%"><div align="left" class="blue"><a href="{https_server}{ilpage[preferences]}?cmd=ip-restrict">{_ip_restrict_management}</a></div></td>
+                            <td width="25%"><if condition="$ilconfig['globalserver_enabledistanceradius']"><div class="blue"><a href="{ilpage[preferences]}?cmd=distance">{_distance_management}</a></div></if></td>
+                        </tr>
+                        <tr>
+                            <td width="25%"><div class="blue"><a href="{ilpage[preferences]}?cmd=email">{_email_preferences}</a></div></td>
+                            <td width="25%"><div class="blue"><a href="{ilpage[preferences]}?cmd=attachments">{_attachment_manager}</a></div></td>
+                            <td width="25%"><div align="left" class="blue"><a href="{https_server}{ilpage[preferences]}?cmd=password-renewal">{_request_new_password}</a></div></td>
+                            <td width="25%"><div class="blue"><a href="consigner_statement.php">{_consigner_statement}</a></div></td>
+                        </tr>
+                        </table>-->
+						<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+						<tr>
+							<td width="25%"><div align="left" class="blue">
+							     <if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Profile">{_my_profile}</a>
+								 <else /><a href="{https_server}{ilpage[preferences]}?cmd=profile">{_my_profile}</a></if></div></td>
+								 
+							<td width="25%"><div align="left" class="blue">
+							  <if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Notifications">{_category_notifications}</a>
+							  <else /><a href="{ilpage[preferences]}?cmd=notifications">{_category_notifications}</a></if></div></td>
+							
+                            <td width="25%"><div class="blue">
+							 <if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Login">{_start_page_management}</a>
+							  <else /><a href="{ilpage[preferences]}?cmd=login">{_start_page_management}</a></if></div></td>
+							
+							<td width="25%"><if condition="$ilconfig['globalserver_enabledistanceradius']"><div class="blue"><a href="{ilpage[preferences]}?cmd=distance">{_distance_management}</a></div></if></td>
+							
+						</tr>
+						 <tr>
+                            <td width="25%"><div class="blue">
+							  <if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Email">{_email_preferences}</a>
+							  <else /><a href="{ilpage[preferences]}?cmd=email">{_email_preferences}</a></if></div></td>
+                            <!--<td width="25%"><div class="blue"><a href="{ilpage[preferences]}?cmd=attachments">{_attachment_manager}</a></div></td>-->
+                            <td width="25%"><div align="left" class="blue">
+							   <if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Passwordchange">{_request_new_password}</a>
+							  <else /><a href="{https_server}{ilpage[preferences]}?cmd=password-change">{_request_new_password}</a></if></div></td>
+							
+                           <!-- <td width="25%"><div class="blue"><a href="consigner_statement.php">{_consigner_statement}</a></div></td>-->
+                        </tr>
+						</table>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+	</td>
+</tr>
+</table>

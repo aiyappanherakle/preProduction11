@@ -1,0 +1,357 @@
+{apihook[leftnav_searchoptions_product_start]}
+
+
+
+
+
+
+<!-- Tamil for 2389 STARTS-->
+
+<!-- START Advanced Filters grading sevice,year range,denomination,grading company, bid range, keyword search -->
+
+
+
+
+<!--Validating year
+ <script type="text/javascript">
+function year_validator(){
+	var tex1 = document.getElementById('fromyearrange').value;
+	var tex2 = document.getElementById('toyearrange').value;
+	var minYear = '1652';
+	var maxYear = '2100';
+	if((tex1 != '') || (tex2 !='')){
+			if(isNaN(tex1) || tex1.length != '4' || tex1 == '0' || tex1 < minYear || tex1 > maxYear){
+				alert("Enter valid starting Year to Search");
+				return false;
+			}
+			else if(isNaN(tex2) || tex2.length != '4' || tex2 == '0' || tex2 < minYear || tex2 > maxYear){
+				alert("Enter valid Ending Year to Search");
+				return false;
+			}
+			else if((tex1 != '') && (tex2 !='') ){
+				if(tex1 > tex2){
+					alert("Enter valid Year Range");
+					return false;
+				}
+				else{
+					return true;
+				}
+				
+			}
+			else{
+				return true;
+			}
+	}
+
+	
+}
+</script> -->
+
+
+<form name="minisearchprice_1" method="get" id="searchformleftprice_1" action="collections.php" accept-charset="UTF-8" style="margin:0px" onsubmit="return year_validator();">	
+	
+	{key_cmd}
+											<!-- Year range -->
+	
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_1')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_1" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_1]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Year Range</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_1" style="{collapse[collapseobj_leftnav_advanced_filter_1]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="38%">
+						<span class="gray">Year Range</span>
+					</td>
+					<td width="25%">
+						<input type="text" id="fromyearrange" name="fromyear" value="{fromyear}" size="4" class="input" />
+					</td>
+					<td width="8%"  >
+						<span class="black">&nbsp;&nbsp;{_to}&nbsp;&nbsp;</span>
+					</td>
+					<td width="29%"  >					
+						<input type="text" id="toyearrange" name="toyear" value="{toyear}" size="4" class="input" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	
+											<!-- Grade range -->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_2')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_2" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_2]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Grade Range</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_2" style="{collapse[collapseobj_leftnav_advanced_filter_2]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td  width="37%">
+						<span class="gray">Grade Range</span>
+					</td>
+					<td  width="20%">
+						{grade_range_dropdown_1}
+					</td>
+					<td width="8%"  >
+						<span class="black">{_to}&nbsp;</span>
+					</td>
+					<td  width="25%">
+						{grade_range_dropdown_2}
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	
+											<!-- Grading companies -->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_3')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_3" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_3]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Grading Companies</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_3" style="{collapse[collapseobj_leftnav_advanced_filter_3]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td  width="50%">
+						<span class="gray">Grading Org</span>
+					</td>
+					<td colspan="3" width="50%">
+					{grading_service_dropdown}
+					</td>				
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	
+											<!-- Coin Filter -->
+<!-- 	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_4')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_4" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_4]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Coin Filter</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_4" style="{collapse[collapseobj_leftnav_advanced_filter_4]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			
+		</div>
+	</div> -->
+	
+	
+											<!-- Bid range -->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_5')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_5" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_5]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Bid Count</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_5" style="{collapse[collapseobj_leftnav_advanced_filter_5]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="38%">
+						<span class="gray">Range</span>
+					</td>
+					<td width="25%">
+						<input type="text" id="frombidrange" name="frombid" value="{frombid}" size="4" class="input" />
+					</td>
+					<td width="8%"  >
+						<span class="black">&nbsp;&nbsp;{_to}&nbsp;&nbsp;</span>
+					</td>
+					<td width="29%"  >					
+						<input type="text" id="tobidrange" name="tobid" value="{tobid}" size="4" class="input" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	
+	
+											<!-- Keyword -->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_6')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_6" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_6]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Keyword</strong></span>
+	</div>
+	
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_6" style="{collapse[collapseobj_leftnav_advanced_filter_6]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="25%">
+						<span class="gray">Search for </span>
+					</td>
+					<td width="75%">
+						<input type="text" id="search_keyword" name="q" value="{q}" style="width:150px;" class="input" />
+					</td>					
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript">
+	function toggle_denom_edit(obj) {
+
+		var el = document.getElementById(obj);
+
+		if ( el.style.display != 'none' ) {
+
+			el.style.display = 'none';
+			document.getElementById("denom_check").checked=true;			
+			document.getElementById("denom_check").disabled=false;
+			document.getElementById("denom_edit").innerHTML="(Edit)";
+			$(function(){ $('select#denom_dropdown option').removeAttr("selected"); });
+
+		}
+
+		else {
+		
+			
+			el.style.display = '';
+			document.getElementById("denom_check").checked=false;
+			document.getElementById("denom_check").disabled=true;			
+			document.getElementById("denom_edit").innerHTML="&nbsp;(Select All)";
+			
+
+		}
+
+	}
+	
+	</script>
+	
+											<!-- Denomination -->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_7')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_7" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_7]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Denomination</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_7" style="{collapse[collapseobj_leftnav_advanced_filter_7]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">			
+				<tr>
+					<td >
+					
+					<input type="checkbox" id="denom_check" name="denom_all" value="1" {denom_checkbox}><span class="gray" >&nbsp;All Denomination</span><span id="denom_edit" class="blue" onClick="toggle_denom_edit('denom_drop')">&nbsp;{checkbox_denom_value_all}</span>
+					</td >
+					
+				</tr>
+				<tr id="denom_drop" {denom_drop_is_sel}>
+					<td >
+					{product_denom_selection}
+					</td >					
+				</tr>
+				
+			</table>
+		</div>
+	</div>
+	
+ 
+											<!-- Listing Type-->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_8')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_8" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_8]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Listing Type</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_8" style="{collapse[collapseobj_leftnav_advanced_filter_8]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">			
+				<tr>
+					<td width="40%">
+					<span class="gray">Listing Type</span>
+					</td >
+					<td width="60%"></td >
+				</tr>
+				<tr>
+					<td width="40%"></td >
+					<td width="60%">
+						<input type="radio" name="listing_type" value="1" {checkbox_lt_1}>Auction
+					</td >
+				</tr>
+				<tr>
+					<td width="40%"></td >
+					<td width="60%">
+						<input type="radio" name="listing_type" value="2" {checkbox_lt_2}>Buy Now
+					</td >
+				</tr>
+				<tr>
+					<td width="40%"></td >
+					<td width="60%">
+						<input type="radio" name="listing_type" value="3" {checkbox_lt_3}>Multi Coin Lots
+					</td >
+				</tr>
+				<tr>
+					<td width="40%"></td >
+					<td width="60%">
+						<input type="radio" name="listing_type" value="4" {checkbox_lt_4}>Completed Items
+					</td >
+				</tr>			
+				
+			</table>
+			
+			
+			
+		</div>
+
+	</div>
+	
+	
+	
+											<!-- Price range-->
+	<div class="block-content-yellow" style="padding-top:9px; padding-bottom:9px" onClick="toggle('leftnav_advanced_filter_9')" onMouseOver="this.style.cursor='pointer'" onMouseOut="this.style.cursor=''">
+		<span style="float:left; padding-top:5px; padding-right:10px"><img id="collapseimg_leftnav_advanced_filter_9" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_leftnav_advanced_filter_9]}.gif" border="0" alt="" /></span>
+		<span class="gray"><strong>Price Range</strong></span>
+	</div>
+	
+	<div class="block-content alt1" id="collapseobj_leftnav_advanced_filter_9" style="{collapse[collapseobj_leftnav_advanced_filter_9]} padding:6px">
+		<div style="padding-top:6px; padding-bottom:6px">
+				
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="38%">
+						<span class="gray">Range </span>
+					</td>
+					<td width="25%">
+						<input type="text" id="frompricerange" name="fromprice" value="{fromprice}" size="5" class="input" >
+					</td>
+					<td width="8%"  >
+						<span class="black">&nbsp;&nbsp;{_to}&nbsp;&nbsp;</span>
+					</td>
+					<td width="29%"  >					
+						<input type="text" id="topricerange" name="toprice" value="{toprice}" size="5" class="input" />
+					</td>
+				</tr>
+			</table>
+			<input type="hidden" value="product" name="mode">
+			<input type="hidden" value="{sort_value}" name="sort">
+			{action_field_hidden}
+			{series_hidden_fld}
+			
+		</div>
+
+	</div>
+	
+	
+	<div class="block-header" >
+		<input id="submit_advanced_filter" class="buttons_smaller" type="submit" style="" value=" GO " style="margin-left: 20px;padding-left: 10px; padding-right: 10px; ">
+	</div>
+</form>
+
+
+
+
+
+
+<!-- END Advanced Filters grading sevice,year range -->
+
+
+<!-- Tamil for 2389 ENDS-->
+
+
+{apihook[leftnav_searchoptions_product_end]}

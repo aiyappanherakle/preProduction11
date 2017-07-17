@@ -1,0 +1,212 @@
+<div id="tr"></div>
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php" class="sel"><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+		<a href="listings.php?cmd=search_coin" ><span>listed in gc</span></a> 
+		<a href="listings.php?cmd=itembold_list" ><span>Listing</span></a> 
+		<a href="listings.php?cmd=image_list"><span>Image List</span></a> 
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Holding</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Area</h2>
+			    
+
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						<if condition="isset($show['holding_first_page']) AND $show['holding_first_page'] == '1'"> 
+						<form method="post" action="{ilpage[listedarea]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+						<input type="hidden" name="cmd" value="holder_area" />
+						<input type="hidden" name="return" value="{ilpage[listedarea]}" />
+						
+						<div class="block3-header">{number}&nbsp;&nbsp;List of all coins sent to projects</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+						        <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt2">
+								<td width="1%"></td>
+								<td width="14%">Consignment ID</td>
+								<td width="12%" align="left">Coin ID</td>
+								<td width="5%">Imaged</td>
+								<td width="12%">Seller Name</td>
+								<td width="12%">User ID</td>
+								<td width="12%">Coin Title</td>
+								<td width="12%">Pcgs No</td>
+								<td width="12%">End Date</td>
+								<td width="12%">To List In</td>
+								<td width="12%" nowrap="nowrap">24-Hour Deals</td>
+								<td width="12%" nowrap="nowrap">Return</td>
+							    </tr>
+							    <loop name="holding_area_list">
+							    <tr class="alt1" valign="top">
+								  <td>{checkval}</td>
+								  <td>{consignid}</td>
+								  <td>{coin_id}</td>
+								   <td>{gcimg}</td>
+								  <td width="12%">{user}</td>
+								  <td width="12%">{userid}</td>
+								  <td width="12%">{cointitle}</td>
+								  <td width="12%">{pcgsno}</td>
+								  <td>{date_sent}</td>
+								  <td width="12%">{listin}</td>
+								  <td width="12%">{deld}</td>
+								   <td width="12%">{return_con}</td>
+								</tr>
+							  </loop name="holding_area_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'holding'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							  </table>
+					
+					            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt2">
+								<td>
+								{site_id}
+								</td>
+								<td>
+								pending bulk {date_down}
+								</td>
+									<td><input type="submit" value="GO" onclick="return checkall(this.form);"/>
+								</td>
+								
+								</tr>
+								</table>
+					
+                        </div>
+						</form>
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+
+			
+		{prof1}	
+	  </div>
+							<else /> 
+		<div class="tab-page">
+
+		<h2 class="tab">Area</h2>
+
+
+		<div class="block-wrapper">
+				<div class="block3">
+
+						<div class="block3-top">
+						<div class="block3-right">
+						<div class="block3-left"></div>
+						</div>
+						</div>
+							<form method="post" action="listings.php" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+							<input type="hidden" name="cmd" value="Submit_ebay" />
+							<div class="block3-header">&nbsp;&nbsp;List of coins selected for Ebay Listing</div>
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">you can manually edit Ebay Title and also create Ebay SubTitle using this form</div></div>
+							<div class="block3-content" style="padding:0px">
+
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+								<tr class="alt2">
+								<td width="5%" align="left">Coin ID</td>
+								<td>Coin Title</td>
+								<td>End Date</td>
+								<td>To List In</td>
+								<td>Pcgs No</td> <td>  </td></tr>
+
+
+
+
+
+								<loop name="ebaycoincot">
+								<tr class="alt1" valign="top">
+								<td width="5%">{coin_id}{ebay_coin_id}</td>
+								<td>{cointitle}</td>
+								<td>{End_Date}</td>
+								<td>{Site_Id}</td>
+								<td>{pcgsno}</td>
+								<td>ebay Title : {ebay_title} ebay SubTitle : {ebay_subtitle} ebay Category ID   : {ebay_Categories_id} </td></tr>
+
+
+
+
+
+								</loop name="ebaycoincot">
+								<if condition="isset($show['no']) AND $show['no'] == 'holding'">
+								<tr class="alt1">
+								<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+								</if>
+								</table>
+
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+								<tr class="alt2">
+
+								<td> <input type="submit" name="Submit_ebay" Value="Submitebay" style="margin-left:720px;">
+								</td>
+
+								</tr>
+								</table>
+
+							</div>
+							</form>
+				
+					<div class="block3-footer">
+					<div class="block3-right">
+					<div class="block3-left"></div>
+					</div>
+					</div>
+
+				</div>
+		</div>
+
+
+	
+		</div>
+		</if>
+		<!-- / grading tab page -->
+		
+</div>
+<!-- / tab pane -->
+<div style="display:none;cursor: default; width: 560px; height:300px; z-index: 1000; overflow:auto; " class="modal modal_window jqmID1" id="zipcode_nag_modal"> 
+ 
+   <div id="savemyid" >    
+ 
+            </div>
+		
+           </div>
+		   <script type="text/javascript">
+      $( document ).ready(function() {
+       
+      });
+    </script>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Official Client CP Top Navigation Menu Structure for ILance 3.1.7
+
+Parameters:
+
+phrase          = $phrase['_xxx']
+link            = url to link - Note: do not include forward slash at front of normal url
+seo link        = url to search engine optimized link (if enabled in admincp) - Note: do not include forward slash at front of seo url
+guests          = true/false (can guest view link)
+members         = true/false (can members view link)
+admins          = true/false (can admin view link)
+show            = $show['xxx'] permissions you'd like to call (separated by comma with no spaces) - expects value to be true (to view link), default is blank
+permissions     = $ilconfig['xxx'] permissions you'd like to call (separated by comma with no spaces) - expects value to be true (to view link), default is blank
+locations       = $topnavlink['xxx'] for making top nav menu link highlighted for current section / area
+//-->
+
+<topnav version="3.1.9">
+        <option phrase="_categories" link="main.php?cmd=categories" seolink="categories" guests="true" members="true" admins="true" show="" permissions="" locations="main_categories" linkextra='onmouseover="show_category_popup();" onmouseout="hide_category_popup();"'></option>
+        <option phrase="_my_cp" link="main.php?cmd=cp" seolink="mycp" guests="true" members="true" admins="true" show="" permissions="" locations="dashboard,mycp,preferences,attachments,portfolio_manage,watchlist,messages,subscription,accounting,saved_searches,deposit,withdraw" linkextra=""></option>
+        <option phrase="_register" link="registration.php" seolink="register" guests="true" members="false" admins="false" show="" permissions="" locations="registration" linkextra=""></option>
+        {apihook[topnav_start]}
+        <!--
+        <option phrase="_providers" link="search.php?mode=experts&amp;sort=52" seolink="providers" guests="true" members="true" admins="true" show="" permissions="globalauctionsettings_serviceauctionsenabled" locations="search_experts,vendors" linkextra=""></option>
+        <option phrase="_services" link="search.php?mode=service&amp;sort=01" seolink="services" guests="true" members="true" admins="true" show="" permissions="globalauctionsettings_serviceauctionsenabled" locations="search_service,rfp" linkextra=""></option>
+        <option phrase="_products" link="search.php?mode=product&amp;sort=01" seolink="products" guests="true" members="true" admins="true" show="" permissions="globalauctionsettings_productauctionsenabled" locations="search_product,merch" linkextra=""></option>
+        //-->
+        <option phrase="_listings" link="main.php?cmd=listings" seolink="listings" guests="true" members="true" admins="true" show="" permissions="" locations="main_listings" linkextra=""></option>
+        <option phrase="_portfolios" link="portfolio.php" seolink="portfolios" guests="true" members="true" admins="true" show="" permissions="portfoliodisplay_enabled,globalauctionsettings_serviceauctionsenabled" locations="portfolio" linkextra=""></option>
+        <option phrase="_buy" link="merch.php?cmd=listings" seolink="buy" guests="true" members="true" admins="true" show="" permissions="" locations="main_buying,compare" linkextra=""></option>
+      <!--  <option phrase="_sell" link="main.php?cmd=selling" seolink="sell" guests="true" members="true" admins="true" show="" permissions="" locations="main_selling" linkextra=""></option>-->
+        <option phrase="_nonprofits" link="nonprofits.php" seolink="nonprofits" guests="true" members="true" admins="true" show="" permissions="enablenonprofits" locations="nonprofits" linkextra=""></option>
+        {apihook[topnav_end]}
+</topnav>

@@ -1,0 +1,221 @@
+<script type="text/javascript">
+$(document).ready( function(){
+$(".cb-enable").click(function(){
+var parent = $(this).parents('.switch');
+$('.cb-disable',parent).removeClass('selected');
+$(this).addClass('selected');
+$('.checkbox',parent).attr('checked', true);
+});
+$(".cb-disable").click(function(){
+var parent = $(this).parents('.switch');
+$('.cb-enable',parent).removeClass('selected');
+$(this).addClass('selected');
+$('.checkbox',parent).attr('checked', false);
+});
+});
+</script>
+
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+        $('input[id="myonoffswitch"]').live('click',function(){
+            if($(this).prop("checked") == true){
+              cronchange(1);
+               
+            }
+            if($(this).prop("checked") == false){
+             cronchange(0);
+              
+            }
+        });
+    });
+
+
+function cronchange(chkval)
+{
+  var ajaxRequest;  // The variable that makes Ajax possible!
+    
+    try{
+        // Opera 8.0+, Firefox, Safari
+        ajaxRequest = new XMLHttpRequest();
+    } catch (e){
+        // Internet Explorer Browsers
+        try{
+            ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try{
+                ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e){
+                // Something went wrong
+                alert("Your browser broke!");
+                return false;
+            }
+        }
+    }
+
+    ajaxRequest.onreadystatechange = function(){
+  
+        if(ajaxRequest.readyState == 4){
+            var ajaxDisplay = document.getElementById('myonoffswitch');
+            
+            var sub = ajaxDisplay.innerHTML = ajaxRequest.responseText;
+ 
+            if (sub == 1) 
+            {
+            	//alert("Are you sure to Cron ON");
+            }
+            else if(sub == 0)
+            {
+            	//alert("Are you sure to Cron OFF");
+            }
+
+
+            //alert(sub);
+        }
+    }
+    
+    var queryString = '?cmd=change&change=cronchange&checkvalue=' + chkval ;
+     ajaxRequest.open("GET", "/staff/ajaxs.php" + queryString, true);    
+    ajaxRequest.send(null);
+
+}
+ 
+ </script> 
+
+<style type="text/css">
+.onoffswitch {
+position: relative; width: 90px;
+-webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+display: none;
+}
+.onoffswitch-label {
+display: block; overflow: hidden; cursor: pointer;
+border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+width: 200%; margin-left: -100%;
+-moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+-o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+float: left; width: 50%; height: 16px; padding: 0; line-height: 16px;
+font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+content: "OFF";
+padding-left: 10px;
+background-color: #2FCCFF; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+content: "ON";
+padding-right: 10px;
+background-color: #EEEEEE; color: #999999;
+text-align: right;
+}
+.onoffswitch-switch {
+width: 18px; margin: 6px;
+background: #FFFFFF;
+border: 2px solid #999999; border-radius: 20px;
+position: absolute; top: 0; bottom: 0; right: 56px;
+-moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+-o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+right: 0px;
+}
+</style>
+
+<div id="v3body4">
+	<div id="content">
+	
+		<div class="header">Place Bid</div><br />
+
+		<!-- tab pane -->
+		<div class="tab-pane">
+
+		<div class="tab-page">
+				<form method="post" action="place_bid.php" 	accept-charset="UTF-8" name="ilform_place_bid">
+				
+					<input type="hidden" name="cmd" value="place_bids">
+					<div class="block-wrapper">
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							 <div class="block3-header">Place Bid on Items</div> 
+							
+			
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">You can place a fixed bid/price for the items. On the next page you will be show a text box to fill the amount you want to bid in each item </div></div>
+							
+							<div class="block3-content" style="padding: 0px 0px 0px 10px;">
+								<br>
+								<table width="100%" border="0" >
+									<tr><td style="padding-left: 20px;">
+								<table width="100%" border="0" >
+									<tr><td>Paste here the item ids seperated each other by <strong>comma</strong> <br>
+										OR you can you use a range my mentioning x <strong>to</strong> y, for ex., 23330 to 23340<br>
+										OR <strong>$n</strong> to bid on all coins which current price is less then n, example $3</td></tr>
+									<tr><td><textarea id="coin_list" name="coin_list" cols="50" rows="5">{coin_list}</textarea></td></tr>
+									<tr>
+									<td><br/>Bidder ID {inhousebidders_drop_down}
+									</td>
+									</tr>	
+								</table>
+								</td>
+								<td style="width: 45%;">
+									<table width="100%" border="0" >
+									<tr><td style="text-align:left;padding-bottom: 10px;"><div style="float:left;font-weight: bold;
+font-size: larger;">Cron :&nbsp;&nbsp;<div class="onoffswitch" style="float:right;">
+<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" {condition} >
+<label class="onoffswitch-label" for="myonoffswitch">
+<div class="onoffswitch-inner"></div>
+<div class="onoffswitch-switch"></div>
+</label>
+</div></div>
+<div id="ajaxDiv"></div></td></tr>
+									<tr><td><div style="float:left;padding-bottom: 10px;font-weight: bold;
+font-size: larger;">Place Bid Count: {place_bid}</div></td></tr>
+ 
+									<tr>
+									<td> <div style="float:left;font-weight: bold;
+font-size: larger;padding-bottom: 10px;">Not Listed Count: {not_place_bid}</div>
+									</td>
+									</tr>		
+									</table>
+								</td>
+									</tr>	
+								</table>
+								
+								<br>
+								<input type="submit" name="Submit_Fixed" Value="Submit"  style="margin-left: 183px;">
+							</div>
+							
+							 
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</form>
+			</div>
+
+	
+		</div>
+		<!-- / tab pane -->
+		
+	</div>
+	
+</div>	

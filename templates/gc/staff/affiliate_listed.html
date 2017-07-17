@@ -1,0 +1,111 @@
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php"><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing" class="sel"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+		<a href="listings.php?cmd=search_coin" ><span>listed in gc</span></a> 
+		<a href="listings.php?cmd=ebaylisting" ><span>listed in Ebay</span></a> 
+		<a href="listings.php?cmd=itembold_list" ><span>Listing</span></a> 
+		<a href="listings.php?cmd=image_list"><span>Image List</span></a> 
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Affiliate listing</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Ebay</h2>
+			    
+				
+					
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							 
+				<form method="post" action="{ilpage[listedarea]}?cmd=all_listing" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="holder_area" />
+				<input type="hidden" name="return" value="{ilpage[listedarea]}?cmd=all_listing" />
+				<input type="hidden" name="site_id" value="1" />
+				
+							<div class="block3-header">{number} Items that are Listed in Ebay </div>
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">List of item that are listed in ebay with status</div></div>
+							<div class="block3-content" style="padding:0px">
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt2">
+								<td width="1%"></td>
+								<td width="14%">Consignment ID</td>
+								<td width="12%" align="left">Coin ID</td>
+								<td width="12%">Seller Name</td>
+								<td width="12%">User ID</td>
+								<td width="12%">Coin Title</td>
+								<td width="12%">Pcgs No</td>
+								<td width="12%">End Date</td>
+								<td width="12%">Listed On</td>
+								<td width="12%">Live</td>
+							    </tr>
+							    <loop name="ebay_list">
+							    <tr class="alt1" valign="top">
+								  <td>{checkval}</td>
+								  <td>{consignid}</td>
+								  <td>{coin_id}</td>
+								  <td width="12%">{username}</td>
+								  <td width="12%">{user_id}</td>
+								  <td width="12%">{title}</td>
+								  <td width="12%">{pcgs}</td>
+								  <td>{end_date}</td>
+								  <td width="12%">{listedon}</td>
+								  <td width="12%">{link}</td>
+								</tr>
+							  </loop name="ebay_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'holding'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							  </table>
+					
+					             
+					
+							</div>
+						</form>
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+					</div>
+				
+								
+								
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+         
+			
+	  </div>

@@ -1,0 +1,146 @@
+<script type="text/javascript">
+function valt()
+{ 
+   if(document.getElementById('filtervalue').value == '')
+   {
+	   alert('Enter Buyer ID');
+	   return false;
+   }
+   if(document.getElementById('filtervaluec').value == '')
+   {
+	   alert('Enter Changed Buyer ID');
+	   return false;
+   }  
+   return true;
+ 
+}
+
+
+</script>		
+<!-- begin v3body4 -->
+<div id="v3body4">
+	<div id="content">
+		<div class="header">Changed Buyer - Moved Invoices</div><br />	
+		<div class="tab-pane" id="userlistings">
+			<div class="tab-page">
+        		<h2 class="tab">Pending </h2>
+                <form method="get" action="change_buyer.php" accept-charset="UTF-8" id="issus_coin" style="margin: 0px;">
+					<input type="hidden" name="subcmd" value="all_pending_invoices" />
+				<div class="block-wrapper">
+					<div class="block3">                   
+						<div class="block3-top">
+							<div class="block3-right">
+								<div class="block3-left"></div>
+							</div>
+						</div>                           
+						<div class="block3-header">Pending Invoices - Moved</div>
+						<div class="block3-content-gray" style="padding:9px">
+							<div class="smaller">
+								you can change pending invoice from one buyer to another buyer.
+							</div>
+						</div>  
+						<div class="block3-content" style="padding:0px">
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" 
+									cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  	<td width="10%"><span class="gray">Buyer ID</span>
+                                  		<td width="90%">
+                                        	<select name="filterby" style="font-family: Verdana">
+		                                        <option value="user_id" 
+		                                        	<if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                       		</select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	<input type="text" name="filtervalue" id="filtervalue" size="18" 
+                                        			value="{get_filtervalue}" 
+                                        			style="width: 75%;" />
+                                        </td>
+                                </tr>
+                                <tr class="alt1">
+                                  	<td width="10%"><span class="gray">Changed Buyer ID</span>
+                                  		<td width="90%">
+                                        	<select name="filterbyc" style="font-family: Verdana">
+		                                        <option value="user_idc" 
+		                                        	<if condition="isset($ilance->GPC['filterbyc']) AND $ilance->GPC['filterbyc'] == 'user_idc'">selected="selected"</if>>{_user_id}</option>
+                                       		</select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	<input type="text" name="filtervaluec" id="filtervaluec" size="18" 
+                                        			value="{get_filtervaluec}" 
+                                        			style="width: 75%;" />
+                                        </td>
+                                </tr>
+
+
+								<tr>
+									<td colspan="2" align="center">
+										<input type="submit" class="buttons" value="Submit" 
+											name="print" onclick="return valt();" style="font-size:15px" />								 
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="block3-footer">
+							<div class="block3-right">
+								<div class="block3-left"></div>
+							</div>
+						</div>
+								
+					</div>
+				</div>
+				</form>
+
+			<if condition="isset($show['showsearch']) AND $show['showsearch']">
+			<form id="current_consign_coins" action="change_buyer.php" accept-charset="UTF-8" 
+						style="margin:0px">
+				<input type="hidden" name="cmd" value="selected_invoices_list" />
+
+				<input type="hidden" name="old_buyer_id" value="{buyer_id}" />
+				<input type="hidden" name="change_buyer_id" value="{changed_buyer_id}" />
+
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td width="7%" align="left" class="alt2">Check</td>
+					<td align="left" nowrap="nowrap" class="alt2">Item</td> 
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Invoice</td>
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Seller</td>
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Buyer</td> 
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Amount</td> 
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Total</td>
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Tax</td>
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Status</td>
+				</tr>
+				<loop name="regardlist"> 
+				<tr>					
+					<td align="left" nowrap="nowrap" valign="top">{checkval}</td>
+					<td align="left" nowrap="nowrap" valign="top">{projectid}</td>
+					<td align="left" nowrap="nowrap" valign="top">{invoiceid}</td>
+					<td align="left" nowrap="nowrap" valign="top">{p2b_user_id}</td>
+					<td align="left" nowrap="nowrap" valign="top">{user_id}</td>
+					<td align="left" nowrap="nowrap" valign="top">{amount}</td>
+					<td align="left" nowrap="nowrap" valign="top">{totalamount}</td>
+					<td align="left" nowrap="nowrap" valign="top">{taxamount}</td>
+					<td align="left" nowrap="nowrap" valign="top">{status}</td>
+				</tr>
+				</loop name="regardlist">
+				<if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                   	<tr class="alt1">
+                        <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                    </tr>
+                </if>	
+				</table>
+				</div> 
+				<div class="block3-header">								
+					<table>
+						<tr valign="top">
+							<td align='center'>
+								<input type="submit" value="Change Buyer"  name="change_buyer">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</form>
+			</if>
+
+
+
+	</div>
+</div>
+	
+

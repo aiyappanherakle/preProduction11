@@ -1,0 +1,431 @@
+
+<script type="text/javascript">
+function show_items_in_invoice(invoiceid)
+{
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){	 
+        document.getElementById('invoice_items').innerHTML= request.responseText;
+		}
+		else{
+			document.getElementById('invoice_items').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='shipping.php?cmd=ajax_invoice_items&invoice_id='+invoiceid;
+	request.open("GET", url,true);
+	request.send(null);
+	
+	}
+	
+</script>
+
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- begin content -->
+<div id="content">
+<div class="header">Shipping</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- shipping tab page for search -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Shipping Central</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Shipping Central</div></div>
+                            <div class="block3-content" style="padding:0px">
+                          <form name="ilform" action="{ilpage[shipping]}" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+						  <input type="hidden" name="cmd" value="shipping" />   
+						  <input type="hidden" name="subcmd" value="search" />
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Search by</span></td>
+								
+								<td><select name="searchby" style="width:150px" >							
+								<option value="item_id">Item ID</option>								
+								<option value="track_no">Track No</option>
+								<option value="cust_id">Seller ID</option>
+								<option value="buyer_id">Buyer ID</option>
+								<option value="shipper_id">Service ID</option>
+								</select>
+								<input type="text" name="searchkey" size="18" value="" style="width:150px" /></td>			
+								<td align="left"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> <br />
+							    </tr>					                                
+                                                            
+                                </table>
+                       		  </form>				
+                            </div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+						<!--	Listing of all invoices tab start-->
+						 <div class="block3-header">Shipping  Listing</div>
+						 <div class="block3-content" style="padding:0px">
+							
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td width="7%">ID</td>								 
+								  <td width="20%" >Reciver Name</td>
+								  <td width="20%" >Date of Shipment</td>
+								  <td width="15%" >Seller Name</td>
+								  <td width="16%">Tracking No</td>
+								  <td width="11%">Service</td>
+								   <td width="11%">Email</td>
+								    <td width="11%">Print</td>
+								  <td width="11%">Edit</td>
+								
+							</tr>
+							<loop name="shippinglist"> 							
+							<tr class="alt1" valign="top">								
+								<td nowrap="nowrap"><span class="blue">{ship_id}</span> </td>
+								<td nowrap="nowrap">{buyer_id}</td>
+								<td nowrap="nowrap">{shipment_date}</td>								
+								<td nowrap="nowrap"><div class="blue">{seller_id}</div></td>
+								<td>{track_no}</td>
+								<td>{shipper_id}</td>
+								<td nowrap="nowrap">{email}</td>
+								<td nowrap="nowrap">{print}</td>
+								<td nowrap="nowrap">{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{remove}</td>	
+								
+							</tr>
+							</loop name="shippinglist">
+							
+                           <tr>
+								<td colspan="11">{searchprevnext}</td>
+							</tr>
+						
+							
+							</table>
+							
+</div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							<div>&nbsp;</div>
+						<div class="block3-header">Shipping New</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Enter new shipment</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                <form name="ilform" action="{ilpage[shipping]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+								<input type="hidden" name="cmd" value="shipping" />
+								<input type="hidden" name="subcmd" value="{hiddenfieldsubcmd}" />
+								{hiddendo}
+								{hiddenid}
+                                 <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">Date of Shipment</span>
+                                  <td width="80%">{daylist}&nbsp;&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;&nbsp;{yearlist}</td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Item id</span></td> 
+                                    <td><input type="text" name="itemid" size="18" value="{itemid}" /></td>
+                                </tr>
+								 <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Coin id</span></td> 
+                                    <td><input type="text" name="coinid" size="18" value="{coinid}" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap">Seller ID </td> 
+                                    <td><input type="text" name="sellerid" size="18" value="{sellerid}" /></td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap">Buyer ID </td> 
+                                    <td><input type="text" name="buyerid" size="18" value="{buyerid}" /></td>
+                                </tr>
+															<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Shipping Service</span></td> 
+                                    <td>{shipper}
+									</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Tracking No</span></td> 
+                                    <td><input type="text" name="track_no" size="18" value="{track_no}" /></td>
+                                </tr>
+							       
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Email</span></td> 
+                                    <td>{emailcheck}
+									</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray"></span></td> 
+                                    <td><input type="submit" class="buttons" value="save" style="font-size:15px" />
+									</td>
+                                </tr>
+							      </table>	
+						      </form>					
+		              </div>
+			
+						<!--	Listing of all invoices end-->				
+							
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		
+		
+		
+		<!-- / shipping tab page shipping new  -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Upload</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <!--This Items are Removed From here and Pasted Above Set of Code-->
+								
+								
+                            <div class="block3-header">Upload Shipping Details</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Upload csv</div></div>
+                            <div class="block3-content" style="padding:0px">
+                          <form name="ilform" action="{ilpage[shipping]}" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+						   <input type="hidden" name="cmd" value="shipping" />   
+						   <input type="hidden" name="subcmd" value="uploadcsv" />
+                           <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							  <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Upload</span></td> 
+                                    <td><input type="file" name="upload" value="Browse" />
+									</td>
+                                </tr>             
+                                <tr>
+								<td></td>
+								 <td colspan="2"><input type="submit" class="buttons" value="save" style="font-size:15px" />
+								 </td>  
+                                  </tr>
+                             
+								
+							</table>
+							</form>
+							</div>	
+								
+                           							
+                          
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		<!--A/R Report tab-->
+		
+		<div class="tab-page">
+			
+			<h2 class="tab">To ship</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">To ship</div>                            
+                            <div class="block3-content" style="padding:0px">
+                                <table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td width="7%">Item ID</td>
+								  <td width="23%">Shipper</td>
+								  <td width="20%" >Coin ID</td>
+								  <td width="20%" >Seller</td>
+								  <td width="15%" >Buyer</td>
+								  <td width="16%">Update</td>
+								
+								
+							</tr>
+							<loop name="toship"> 
+							<tr class="alt1" valign="top"> 
+								<td nowrap="nowrap"><span style="font-size:17px" class="gray">{coin_id}</span></td>
+								<td nowrap="nowrap">{shipper_id}</td>
+								<td nowrap="nowrap">{coin_id}</td>
+								<td nowrap="nowrap">{cust_id}</td>								
+								<td nowrap="nowrap">{buyer}</td>
+								<td><div class="smaller blue">{update}</div></td>								
+							</tr>
+							</loop name="toship">
+							
+                           <tr>
+								<td colspan="11">{toshiprevnext}</td>
+							</tr>
+							
+							
+							</table>
+                               
+                           							
+                            </div>
+								
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							
+							
+							<div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <!--This Items are Removed From here and Pasted Above Set of Code-->
+								
+								
+                            <div class="block3-header">Tracking Number Update</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Update Tracking Number</div></div>
+                            <div class="block3-content" style="padding:0px">
+                         	<form name="ilform" action="{ilpage[shipping]}" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+						   <input type="hidden" name="cmd" value="shipping" />   
+						   <input type="hidden" name="subcmd" value="{hiddenfieldsubcmd}" />
+						   {hiddendo}
+							{hiddenid}
+                           <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							  <tr>
+							  <td>Item Id</td>
+							  <td>{upitemid}</td>
+							  </tr>
+							  <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Tracking Number</span></td> 
+                                    <td><input type="text" name="uptrack_no" />
+									</td>
+                                </tr>             
+                                <tr>
+								<td></td>
+								 <td colspan="2"><input type="submit" class="buttons" value="save" style="font-size:15px" />
+								 </td>  
+                                  </tr>
+                             
+								
+							</table>
+							</form>
+							</div>	
+								
+                           							
+                          
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                            
+                    </div>
+                </div>
+
+		</div>
+		<!--Shipping list-->
+	
+	<!-- shipping tab page for search -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Ship Invoices</h2>
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Shipping Central</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Shipping Central</div></div>
+                            <div class="block3-content" style="padding:0px">
+                          <form name="ilform" action="{ilpage[shipping]}" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+						  <input type="hidden" name="cmd" value="shipping_by_invoice" />   
+						  
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap" valign="top"><span class="gray">Invoice No</span></td>
+								<td> 
+								<input type="text" name="invoice_id" size="18" value="" onblur="show_items_in_invoice(this.value)" style="width:150px" />
+								<div id="invoice_items"></div>
+								</td>
+								
+							    </tr>					                                
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Shipping Method</span></td>
+								<td> 
+								{shipper}</td>
+							    </tr>
+								
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Shipping Method</span></td>
+								<td width="70%">{daylist}&nbsp;&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;&nbsp;{yearlist}</td>
+								                         
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Tracking No</span></td>
+								<td> 
+								<input type="text" name="tracking_no" size="18" value="" style="width:150px" /></td>
+							    </tr>					                                
+								                         
+                                <tr class="alt1">
+								<td width="5%" nowrap="nowrap"><span class="gray">Send Email</span></td>
+								<td> 
+								<label for="shipping_email_yes"><input type="radio" name="shipping_email" id="shipping_email_yes" value="YES" checked="checked">Yes</label>
+								<label for="shipping_email_no"><input type="radio" name="shipping_email" id="shipping_email_no" value="NO">No</label>
+								
+								</td>
+							    </tr>					                                
+                                
+								<tr>
+								<td align="left"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> <br />
+								</tr>                            
+                                </table>
+                       		  </form>				
+                            </div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+				             
+                    </div>
+                </div>
+
+		</div>
+		
+		

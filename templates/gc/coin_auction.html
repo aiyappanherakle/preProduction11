@@ -1,0 +1,1306 @@
+<link rel="stylesheet" href="{https_server}css/styles.css" type="text/css"/>
+
+<style type="text/css">
+#startpricerow, #currentpricerow, #placebidrow, #buynowactionrow, #highbidderrow
+{
+background-color:#E9E9E9;
+}
+#intl
+{
+background:none;
+color:#5B6C7E;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+}
+#intla
+{line-height:20px;
+background:none;
+color:#111215;
+font-size:12px;
+text-decoration:none;
+font-weight:normal;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+}
+span.blue, #timelefttext, #endstext
+{
+background:none;
+color:#111215;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+}
+.bolder{
+background:none;
+		color:#111215;
+		font-size:12px;
+		text-decoration:none;
+		font-weight:bold;
+		font-family:Tahoma, Arial, "Times New Roman", Verdana;
+
+}
+span.gray, div.gray{
+background:none;
+color:#76A2C8;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+}
+span#blockheadertext
+{
+background:none;
+color:#131C45;
+font-size:15px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+}
+.alt1, tr
+{
+background:none;
+color:#000000;
+font-size:12px;
+text-decoration:none;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+}
+div.black
+{
+color:#10272E;
+font-size:12px;
+font-weight:bold;
+line-height:14px;
+text-decoration:none;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+}
+#totaltit
+{
+padding:10px;
+color:#D9EAFE;
+font-size:12px;
+font-weight:bold;
+line-height:14px;
+text-decoration:none;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+background-color:#5B5F68;
+-webkit-border-radius:10px;
+border-radius:10px;
+-moz-border-radius:10px;
+}
+td form #placeid
+{
+margin:-50px 0px 0px 75px;
+}
+ 
+.imgborder {
+	-webkit-border-radius: 10px; /* Safari prototype */
+	-moz-border-radius: 10px; /* Gecko browsers */
+	border-radius: 10px;
+	border-color:#FFF;
+	background-color:#FFF;
+}
+</style>
+	<script language="javascript" type="text/javascript">
+function registertobid()
+{
+
+    var min_amt=parseFloat(document.getElementById("min_amt").value);	
+	var bid_amount=document.getElementById("bidamount_temp").value;	
+	var proxy=document.getElementById("isproxy").value;	
+	var reserve=document.getElementById("hiddenfieldreserve").value;	
+	var reservemet=document.getElementById("hiddenfieldreservemet").value;	
+	bid_amount_temp = bid_amount.split('.');
+	bid_amount = bid_amount_temp[0].replace(/[^0-9]+/g,'');
+	if( document.getElementById("bidamount_temp").value !='')
+		{		
+		  var url='{http_server}{ilpage[rfp]}?cmd=_do-bid-preview&subcmd=product-bid&id={project_id}&state=product&totalvalue=&minimum='+min_amt+'&isproxy='+proxy+'&reserve='+reserve+'&reservemet='+reservemet+'&buynow=0&buynowprice=0.00&bidamount='+bid_amount+'&qty=1';
+		  window.location='{http_server}{ilpage[login]}?redirect='+encodeURIComponent(url);		 
+		}
+		else
+		{
+		
+		  window.location='{https_server}{ilpage[login]}?redirect={pageurl_urlencoded}';
+		}
+}
+</script>
+
+<!-- New Changes on Dec-05 -->
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("Please note, you have already purchased one of these. If you wish to purchase another, please click OK. To go to your pending invoice without purchasing another, please click Cancel.");
+if (r==true)
+  {
+  
+   var aa = document.getElementById('check_id').value;
+  
+   window.location = "https://www.greatcollections.com/merch.php?cmd=purchase-confirm&pid={project_id}&qty="+aa;
+
+   
+  }
+else
+  {
+  
+   window.location = "https://www.greatcollections.com/buyer_invoice.php";  
+	return false;
+ 
+   
+  }
+  //
+}
+</script>
+
+<script language="javascript" type="text/javascript">
+function url_check()
+{
+	var min_amt=parseFloat(document.getElementById("min_amt").value);
+	var bid_amount=document.getElementById("bidamount_temp").value;
+	var proxy=document.getElementById("isproxy").value;
+	var reserve=document.getElementById("hiddenfieldreserve").value; 
+	var reservemet=document.getElementById("hiddenfieldreservemet").value;
+    bid_amount_temp = bid_amount.split('.');
+	
+	
+	bid_amount = bid_amount_temp[0].replace(/[^0-9]+/g,'');
+	
+	if(bid_amount_temp[1])
+	{
+	
+		bid_amt = '.'.concat(bid_amount_temp[1]);
+	}
+	else
+	{
+	
+		bid_amt = '.'.concat('00');
+	}
+	bid_amount = bid_amount.concat(bid_amt);
+	if(bid_amount == '' || bid_amount < min_amt)
+	{
+	
+		  alert('Your bidamount must be greater than the minimum bidamount');
+	      return false;
+	
+	}
+	
+}
+</script>
+<script type="text/javascript">
+function check(cur,sd)
+{
+var pur_count = document.getElementById('cou_val').value;
+var max_count = document.getElementById('max_val').value;
+var count = parseFloat(pur_count) + parseFloat(cur);
+if(max_count < count)
+{
+alert('The maximum quantity available to order per registered member of GreatCollections is ('+max_count+').  You have already purchased ('+pur_count+') of this item.  Please revise your quantity.');
+return false;
+}
+
+if(sd == '1')
+{
+
+   show_confirm();
+   return false;
+}
+return true;
+}
+</script>
+	<script type="text/javascript" src="{https_server}js/main.js"></script>
+	
+     <script type="text/javascript" src="{https_server}highslide/highslide.js"></script>
+<link rel="stylesheet" type="text/css" href="{https_server}highslide/highslide.css" />
+<!--
+    2) Optionally override the settings defined at the top
+    of the highslide.js file. The parameter hs.graphicsDir is important!
+-->
+<script type="text/javascript">
+    hs.graphicsDir = 'highslide/graphics/';
+    hs.outlineType = 'rounded-white';
+</script>
+
+<script language="javascript" type="text/javascript">
+function login_watch()
+{
+window.location='{https_server}{ilpage[login]}?redirect={pageurl_urlencoded}&watchlist_id={project_id}';
+} 
+</script>
+
+
+<if condition="isset($show['daily']) AND $show['daily'] == '1'">
+{tt_est}
+</if>
+{list}
+<if condition="isset($show['ended']) AND $show['ended']" >
+<div id="topendedrow">
+</div>
+<else />
+ 
+<if condition="isset($show['is_high_bidder']) AND $show['is_high_bidder']==1">
+<div id="topcongratsrow">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+<td>
+<div class="grayborder">
+<div class="n">
+<div class="e">
+<div class="w"></div>
+</div>
+</div>
+<div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td valign="top"></td>
+	<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1" border="0" alt="" id="" /></td>
+	<td style="padding-right:5px; padding-left:3px">
+	<if condition="isset($bids) AND $bids == '1'">
+	<div><img src="{template_relativeimagepath}{template_imagesfolder}icons/checkmark.gif" border="0" alt="" id="" /> <strong>{_congratulations} {user[username]}, {_youre_the_first_bidder_good_luck}</strong></div>
+	<else />
+	<div><img src="{template_relativeimagepath}{template_imagesfolder}icons/checkmark.gif" border="0" alt="" id="" /> <strong>{_congratulations_you_are_currently_the_highest_bidder_for_this_auction}</strong></div>
+	</if>
+	<div class="black" style="padding-top:4px">{_however_another_bidder_might_place_a_higher_bid}</div></td>
+</tr>
+</table>
+</div>
+<div class="s">
+<div class="e">
+<div class="w"></div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+
+</if></if>
+<if condition="isset($show['is_winner']) AND $show['is_winner']"><div id="youwoncongrats">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+<td>
+<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td valign="top"></td>
+	<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1" id="" alt="" /></td>
+	<td style="padding-right:5px; padding-left:3px"><div><strong>{_congratulations_this_item_is_yours}</strong>
+	</div></td>
+</tr>
+<if condition="isset($show['directpay']) AND $show['directpay']">
+<tr>
+  <td valign="top"></td>
+  <td>&nbsp;</td>
+ 
+</tr><else />
+<tr>
+  <td valign="top"></td>
+  <td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1" id="" alt="" /></td>
+  <td style="padding-right:5px; padding-left:3px" valign="top">
+  	<if condition="isset($show['markpaidcompleted']) AND $show['markpaidcompleted'] == false">
+    	<div style="padding-top:6px" class="black">{transactionstatus}</div>
+		<!--<div style="padding-top:9px"><input type="button" value=" {_pay_now} " onclick="location.href='{https_server}{ilpage[merch]}?cmd=directpay&amp;subcmd=choose&amp;id={project_id}'" class="buttons" style="font-size:15px" /></div>-->
+	<else />
+	<!--murugan changes on feb 26-->
+		<div style="padding-top:6px" class="black">{transactionstatus}</div>
+        <div style="padding-top:6px" class="black">{_visit}: <span class="blue"><a href="{http_server}buy.php?cmd=won" style="text-decoration:underline">{_items_i_won}</a>&nbsp;&nbsp;&nbsp;<span class="smaller gray">|</span>&nbsp;&nbsp;&nbsp;<a href="{http_server}buy.php?cmd=buynow" style="text-decoration:underline">{_items_i_bought}</a></span></div>
+	</if>
+	</td>
+</tr></if>
+</table>
+</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+</td>
+</tr>
+</table>
+</div></if>
+ 
+ 
+<if condition="isset($show['is_owner']) AND $show['is_owner'] AND (isset($show['soldbypurchase']) AND $show['soldbypurchase'] > 0 OR isset($show['soldbyauction']) AND $show['soldbyauction'] > 0)">
+<div id="yousoldcongrats">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+<td>
+<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td valign="top"></td>
+	<!--murugan changes on feb 26-->
+	<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+	<td style="padding-right:5px; padding-left:3px"><div><img src="{template_relativeimagepath}{template_imagesfolder}icons/checkmark.gif" border="0" alt="" id="" /> <strong>{_congratulations_youve_sold_this_item}</strong></div><div class="black" style="padding-top:6px">{transactionstatus}</div>
+    <div style="padding-top:6px" class="black">{_visit}: <span class="blue"><a href="{http_server}sell.php?cmd=sold" style="text-decoration:underline">{_items_ive_sold}</a><if condition="isset($ilconfig['escrowsystem_enabled']) AND $ilconfig['escrowsystem_enabled']">&nbsp;&nbsp;&nbsp;<span class="smaller gray"><!--|--></span>&nbsp;&nbsp;&nbsp;<!--<a href="{http_server}sell.php?cmd=sold" style="text-decoration:underline">{_product_escrow_payments_in}</a>--></if></span></div></td>
+</tr>
+</table>
+</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+</td>
+</tr>
+</table>
+</div>
+</if>
+<if condition="isset($show['is_outbid']) AND $show['is_outbid'] AND $show['is_owner'] == false AND is_bid_placed(intval($ilance->GPC['id']), $_SESSION['ilancedata']['user']['userid'])">
+<div id="outbidnotice">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+	<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td valign="top"></td>
+			<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1" border="0" id="" alt="" /></td>
+			<td style="padding-right:5px; padding-left:3px"><div><strong>{_you_were_outbid_by_another_bidder_place_a_new_maximum_bid}</strong></div>
+			<div class="black" style="padding-top:4px">{_it_appears_another_bidder_has_placed_a_higher_bid_than_your_last_one}</div></td>
+		</tr>
+		</table>
+		</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+</tr>
+</table>
+</div>
+</if>
+ 
+ <div class="smaller gray" style="padding-bottom:15px">{additional_info}</div>
+<if condition="isset($show['ended']) AND $show['ended'] == false AND isset($show['is_owner']) AND $show['is_owner']">
+ <div id="tile_st"><strong>{user[username]}, {_promote_and_enhance_this_listing} {mesa}</strong></div>
+    <!-- START seller tools content -->
+    <div id="tools">
+<table width="100%" border="0" cellpadding="5">
+  <tr>
+    <td><div style="padding-right:5px">
+                            
+	<div style="font-size:13px; padding-bottom:6px; padding-top:6px; padding-left:6px" class="black">{_promote}</div>
+	
+	<form action="{http_server}{ilpage[merch]}" method="get" name="toolsenhancement" style="margin:0px">
+	<input type="hidden" name="cmd" value="sellertools" />
+	<input type="hidden" name="subcmd" value="enhancements" />                               
+	<input type="hidden" name="pid" value="{project_id}" />
+	
+	<div>{enhancements}</div>
+	<div style="padding-left:5px; padding-top:4px; padding-bottom:6px"><input type="submit" value=" {_go} " class="buttons" style="font-size:15px" onclick="return confirm_js('{_i_understand_an_invoice_will_be_generated_to_my_account_for_the_enhancement}');" /></div>
+	<input type="hidden" name="old[featured]" value="{featured}" />
+	<input type="hidden" name="old[featured_date]" value="{featured_date}" />                               
+	<input type="hidden" name="old[highlite]" value="{highlite}" />
+	<input type="hidden" name="old[bold]" value="{bold}" />
+	<input type="hidden" name="old[autorelist]" value="{autorelist}" />                               
+	</form>
+                            
+   </div> </td>
+    <td>
+	<div style="font-size:13px; padding-bottom:6px; padding-top:6px; padding-left:6px" class="black">Statistics</div>
+	<table cellpadding="9" cellspacing="0" border="0" width="100%" dir="ltr">
+			<tbody><tr class="alt1">
+				<td width="3%" valign="top" align="center"></td>
+				<td width="97%"><label for="bold">{views} Page Views</td>
+			</tr>
+			<tr class="alt1">
+				<td valign="top" align="center"> </td>
+				<td>{no_tracking_users} GC Members Tracking</td>
+			</tr>
+			<tr class="alt1">
+				<td valign="top" align="center"> </td>
+				<td>{bids} of Bids</td>
+			</tr></tbody></table>
+	
+	
+	
+<br />
+<br />
+	</td>
+  </tr>
+</table>
+    
+                            
+  {apihook[merch_detailed_left_tabs_content_tools]}
+   </div><!-- END seller tools content -->
+   </if>
+ {daily}
+<div>
+   <if condition="isset($show['ended']) AND $show['ended'] == false AND !empty($_SESSION['ilancedata']['user']['userid'])">
+                            	<if condition="isset($show['addedtowatchlist']) AND $show['addedtowatchlist']">
+                                	<span style="float:right; font-size:13px" id="itemwatchlistresponse" class="gray">{_you_are_watching_this_item}&nbsp;&nbsp;&nbsp;<span class="smaller gray">[ <span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}watchlist">{_watchlist}</a><else /><a href="{http_server}{ilpage[watchlist]}">{_watchlist}</a></if></span> ]</span></span>
+                                <else />
+                            		<span style="float:right; font-size:13px" id="itemwatchlistresponse" class="blue"><a href="javascript:void(0)" onclick="javascript:jQuery('#watch_list_modal').jqm({modal: false}).jqmShow();" style="text-decoration:underline">{_watch_this_item}</a></span>
+                                </if>
+	<else />			
+	   <span style="float:right; font-size:13px" id="itemwatchlistresponse" class="blue"><a href="javascript:void(0)" onclick="login_watch();" style="text-decoration:underline">{_watch_this_item}</a></span>				
+                            </if></div>
+							<div style="height:30px;">&nbsp;</div>
+<if condition="isset($show['is_owner']) AND $show['is_owner']">
+<div id="totaltit" style="width: 350px;">Alternate Inventory Number: {alt_no} </div>
+<div style="height:10px;">&nbsp;</div>	
+</if>			
+<div class="grayborder" style="border:none;">
+<div class="n">
+<div class="e" style="background:none;">
+<div class="w" style="background:none;"></div>
+</div></div>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top">
+	<div style="margin-left: 10px; border:1px solid #DADFE2;">
+	<div style="width:270px;margin:10px;">{newhead}
+	</div></div>
+	
+	 <div id="mediaviewtext" style="display:inline"></div>
+                <div id="pictures" style="display:none">
+                               {apihook[merch_detailed_left_tabs_content_haspicture]}
+                                
+         
+                                
+                                {apihook[merch_detailed_left_tabs_content_nopicture]}
+                                
+                       
+                            
+                        </div></td>
+						<td>&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td><td>&nbsp;</td>
+						<td valign="top"> 
+					
+			
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+   
+    <td width="80%" valign="top">
+	<span id="blockheadertext" style="display:none;"></span>
+                         
+							<!--this api added for facebook login murugan changes on feb 19-->
+                           <!--{apihook[project_title_start]}-->
+					<div><span style="font-family: arial; font-size:19px">{project_title} <!--<span>{icons}</span>--></span></div>
+<!--<div style="padding-top:3px; font-size:10px; font-family: verdana">{_item_id}: <span class="blue">#{project_id}</span></div>-->
+					
+					<div style="height:10px;">&nbsp;</div>
+                                
+                                <div id="mediaviewtext2" style="display:inline"></div>
+                                
+							    <div id="placebid">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                	<td width="100%" valign="top">
+                                    
+                                        <table width="100%" border="0" cellpadding="6" cellspacing="{table_cellspacing}" style="margin:0px">
+                                        <if condition="isset($auctiontype) AND ($auctiontype != 'fixed')">
+										<tr id="bidsrow" valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{_bid_history_lc}:</span></td>
+                                           <td> 
+										  <span class="blue"  style="font-family: arial; cursor:pointer; text-decoration:underline;" onclick="javascript:jQuery('#bidhistory').jqm({modal: false}).jqmShow();"><span style="font-family: arial; cursor:pointer; text-decoration:underline;" class="blue" id="bidstext" onclick="javascript:jQuery('#bidhistory').jqm({modal: false}).jqmShow();">{bids}</span> {_bids_lower}  (view)</span>  <input type="hidden" value="{bids}" id="bidval" /></td>
+                                        </tr></if> 
+                                        <tr id="endsrow" valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray" id="timeleftphrase">{_time_left}:</span></td>
+                                            <td><span style="font-family: arial; font-size:16px; font-weight:bold;" id="timelefttext" class="blueonly">{timeleft}</span><br /><span class="black" id="endstext">({ends} Pacific Time)</span> 
+											</td>
+                                        </tr>
+										
+										<if condition="isset($auctiontype) AND ($auctiontype != 'fixed')">
+										
+										<if condition="isset($show['startprice']) AND ($show['startprice']==1)">
+                                        <tr id="startpricerow"  valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray" id="startbidphrase">{_starting_bid}:</span></td>
+                                            <td><span style="font-family: arial; font-size:16px; font-weight:bold" id="startbidtext">{startprice}</span></td>
+                                        </tr>
+										<else />
+                                        <tr id="currentpricerow" valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray" id="currentbidphrase">{_current_bid}:</span></td>
+                                            <td><span style="font-family: arial; font-size:16px; font-weight:bold" id="currentbidtext">{currentbid}</span> 
+				<if condition="isset($show['reserve_auction']) AND $show['reserve_auction'] AND $auctiontype != 'unique'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="reservemettext" class="gray">{reserve_met}</span></if><div class="smaller gray" id="proxy_id_my">{proxybit}</div></td>
+                                        </tr>
+										</if>
+										 
+
+                                        <tr id="highbidderrow"  valign="top">
+ 
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{_high_bidder}:</span></td>
+                                            <td><span class="blue" style="font-family: arial; font-size:13px;" id="highbiddertext">{highbidder}</span></td>
+                                        </tr>
+                                        <tr id="winningbidderrow" style="display:none" valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{_winning_bidder}:</span></td>
+                                            <td><span class="blue" style="font-family: arial; font-size:13px;" id="winningbiddertext">{winningbidder}</span></td>
+                                        </tr>
+                                                                    
+                                        <tr id="winningbidrow" style="display:none" valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{_winning_bid}:</span></td>
+                                            <td><span style="font-family: arial; font-size:16px; font-weight:bold" id="winningbidamounttext" class="blue">{winningbid}</span></td>
+                                        </tr>
+										</if>
+										
+					 
+	{hidden_val}
+                             <if condition="isset($auctiontype) AND ($auctiontype != 'fixed')">
+                                        <tr id="placebidrow">
+                                            <td align="right" nowrap="nowrap" valign="top" width="100"><div class="gray" style="padding-top:4px">{_enter_max_bid}:</div></td>
+                                            <td valign="top">
+											<span style="float:left; padding-right:4px; padding-top:4px; font-family: arial; font-size:13px;">{currency}</span>
+											<input type="text" size="10" id="bidamount_temp" name="bidamount_temp" value="" style="font-family: verdana" onkeypress="return update_bid_amount()" /> &nbsp;&nbsp;
+											<if condition="isset($show['is_owner']) AND $show['is_owner'] == false AND $auction_start >= 0">
+											<if condition="isset($show['itemcanshiptouser']) AND $show['itemcanshiptouser'] == true AND !empty($_SESSION['ilancedata']['user']['userid'])">
+											<span title="{_this_item_does_not_ship_to} {user[country]}">
+											<input type="button" value=" {_place_bid} " class="buttons" style="font-size:14px" disabled="disabled" />
+											</span>
+											<else />
+											
+											<if condition="empty($_SESSION['ilancedata']['user']['userid'])">
+											<input type="button" value=" {_register_to_bid} " class="buttons" style="font-size:14px" onclick="return registertobid();"/>
+											<else />
+											
+										
+											<form method="get" action="{http_server}{ilpage[rfp]}" name="placebid" accept-charset="UTF-8" >
+	<input type="hidden" name="cmd" value="_do-bid-preview" />
+	<input type="hidden" name="subcmd" value="product-bid" />
+	<input type="hidden" name="id" value="{project_id}" />
+	<input type="hidden" name="state" value="product" />
+	<input type="hidden" name="totalvalue" id="totalvalue" value="{totalvalue}" />
+	<input type="hidden" name="minimum" value="{min_bidamount}" id="hiddenfieldminimum" />
+	<if condition="$ilconfig['productbid_enableproxybid'] AND isset($show['categoryuseproxybid']) AND $show['categoryuseproxybid']"><input type="hidden" name="isproxy" value="1" /><else /><input type="hidden" name="isproxy" value="0" /></if>
+	<if condition="isset($show['reserve_auction']) AND $show['reserve_auction']">
+	<input type="hidden" name="reserve" value="1" id="hiddenfieldreserve" />
+	<if condition="isset($show['reserve_met']) AND $show['reserve_met']"><input type="hidden" name="reservemet" value="1" id="hiddenfieldreservemet" /><else /><input type="hidden" name="reservemet" value="0" id="hiddenfieldreservemet" /></if>
+	<else />
+	<input type="hidden" name="reserve" value="0" id="hiddenfieldreserve" />
+	<input type="hidden" name="reservemet" value="1" id="hiddenfieldreservemet" />
+	</if>
+	<if condition="isset($show['buynow']) AND $show['buynow']"><input type="hidden" name="buynow" value="1" id="hiddenfieldbuynow" /><input type="hidden" name="buynowprice" value="{buynow_price_plain}" id="hiddenfieldbuynowprice" /><else /><input type="hidden" name="buynow" value="0" id="hiddenfieldbuynow" /><input type="hidden" name="buynowprice" value="0.00" id="hiddenfieldbuynowprice" /></if>
+    <if condition="isset($show['localpickuponly']) AND $show['localpickuponly'] == false AND isset($shippercount) AND $shippercount == 1"><input type="hidden" name="shipperid" value="{shipperid}" id="hiddenfieldshipperid" /></if>
+	<div id="placeid"><table border="0" cellpadding="5" cellspacing="{table_cellspacing}" width="100%">
+
+   
+   
+	
+	
+    <if condition="isset($buynow_qty) AND $buynow_qty > 0">
+    <tr style="display:none;"> 
+		<td align="right">{_quantity}:</td>
+		<td nowrap="nowrap"><input type="text" name="qty" value="1" onKeyPress="return noenter()" style="width:30px" /> &nbsp;&nbsp;&nbsp;<span class="smaller black">({buynow_qty} {_available})</span></td>
+	</tr> 
+    </if>
+	<tr valign="top"> 
+		
+		<td style="float:left; margin-top:26px;"><span style="float:left; padding-top:7px; padding-right:4px" class="black">{currency}</span> <input type="text" class="input" id="bidamount_modal" name="bidamount" value="" onKeyPress="return noenter()" size="10" style="display:none;"/> <img name="bidamounterror" src="{template_relativeimagepath}{template_imagesfolder}icons/blankimage.gif" width="21" height="13" border="0" alt="{_this_form_field_is_required}" />
+		<!--sekar works on norder on aug 26-->
+		<if condition="isset($show['norder_list']) AND $show['norder_list'] == 1">
+<span style="color:#FF0000;">&nbsp;You cannot bid this item</span>
+         <else />
+		<input type="submit" value="{_place_bid} " class="buttons" style="font-size:14px; margin-top:-2px;"  {dismsg} onclick="return url_check();" />
+		
+		{vel}</if></td>
+<!--sekar finished works on norder on aug 26-->
+	</tr>
+	</table></div>
+	
+    <if condition="isset($buynow_qty) AND $buynow_qty > 0"><else /><input type="hidden" name="qty" value="1" /></if>
+	</form>
+	<!--//end	-->									
+											</if>
+											</if>
+											<else />
+										<input type="button" value=" {_place_bid} " class="buttons" style="font-size:14px" onclick="javascript:jQuery('#place_bid_modal').jqm({modal: false}).jqmShow();" disabled="disabled" />
+											</if>
+											<div class="smaller black" style="padding-top:3px">({_enter} <span id="minimumbidtext">{min_bidamountformatted}</span> <strong> {_or_more}</strong>)
+											<input type="hidden" name="min_amt" id="min_amt" value="{min_bidamount}" />
+                                            <br /><br />
+									<small><i>A 10% buyer's fee (min $5) applies to this auction.</i></small>
+                                            
+                                            </div></td>
+                                          </tr>
+										  
+										  </if>
+                           <if condition="isset($auctiontype) AND ($auctiontype == 'fixed')">
+                                        <tbody id="buynowrow" >
+                                        <tr id="buynowactionrow"  width="100">
+                                            <td align="right" nowrap="nowrap"><span class="gray">{_purchase_now_price}</span></td>
+                                            <td>
+                                            
+                                            <div style="padding-bottom:6px; width:400px">
+                                                    <div class="bubble_container" style="background:none;">
+                                                        <div class="bubble_bl" style="background:none;"><div class="bubble_br" style="background:none;"><div class="bubble_tl" style="background:none;"><div class="bubble_tr" style="background:none;"><div style="padding-left:12px; padding-right:12px; padding-top:6px; padding-bottom:6px">
+                                                            <span style="font-family: arial; font-size:17px; float:left; padding-right:45px; padding-top:4px" class="black"><strong>{buynow_price}</strong> </span>
+                                                            <form name="ilform_buynow" method="get" action="{https_server}{ilpage[merch]}" accept-charset="UTF-8" style="margin:0px;">
+											 {apihook[merch_buynow_form_start]}
+											<input type="hidden" name="cmd" value="purchase-confirm" />
+											<input type="hidden" name="pid" value="{project_id}" />
+											<div>{qty_pulldown}&nbsp;&nbsp;&nbsp;
+											<if condition="isset($show['bidderuninvited']) AND $show['bidderuninvited']">
+															
+												<input type="submit" value=" {_purchase_now} " class="buttons" disabled="disabled" style="font-size:14px" />
+											<else />
+												<if condition="isset($show['is_owner']) AND $show['is_owner'] == false AND $auction_start >= 0">
+															
+													<if condition="isset($show['itemcanshiptouser']) AND $show['itemcanshiptouser'] == true AND !empty($_SESSION['ilancedata']['user']['userid'])"><span title="{_this_item_does_not_ship_to} {user[country]}">
+															
+													<input type="submit" value=" {_purchase_now} " class="buttons" style="font-size:14px" disabled="disabled" onclick="show_confirm()"/></span>
+													
+													<else />
+															
+														<if condition="isset($show['buynow_check']) AND $show['buynow_check'] == '1'">
+															<input type="submit" value=" {_purchase_now} " class="buttons" style="font-size:14px" {disab} {dismsg} onclick="return check(document.getElementById('check_id').value,1);"/><br />{vel}{mess}
+															
+														<else />
+															
+									<input type="submit" value=" {_purchase_now} " class="buttons" style="font-size:14px" {disab} {dismsg} onclick="return check(document.getElementById('check_id').value,0);"/><br />{vel}{mess}
+									                           
+									                       </if>
+													  </if>
+												 <else />
+															<input type="submit" value=" {_purchase_now} " class="buttons" style="font-size:14px" disabled="disabled" />
+													</if>
+											</if></div>
+                                                            </form>
+                                                            <!--<div class="smaller gray">{_quantity}: {buynow_qty} {_left}</div>--><br />
+                                                            	<div class="smaller black" style="padding-top:3px"><small><i>No buyer's fee applies to Buy Now items.</i></small>
+                                            
+                                            </div>
+                                                            
+                                                            
+                                                            
+                                                        </div></div></div></div></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+							</if>
+										<tr valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">GC Item ID:</span></td>
+                                            <td><div class="bolder">{project_id}</div></td>
+                                        </tr>
+										<!--murugan changes on apr 01 for show the sold price-->
+										<!--new change on Dec-04-->
+										<if condition="isset($show['ended']) AND $show['ended'] == true">
+										<tr valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{sold_text}</span></td>
+                                            <td><div class="bolder">{soldprice}</div></td>
+                                        </tr>
+										</if>
+                                        <tr valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{_prefered_payment_methods}:</span></td>
+                                            <td><div class="bolder"><!--{paymentmethods}-->PayPal, Credit Card (Visa, MasterCard, Discover, American Express), Check/Money Order, Wire</div></td>
+                                        </tr>
+                                        <if condition="isset($filter_permissions) AND !empty($filter_permissions)">
+                                        <tr valign="top">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{_buyer_requirements}:</span></td>
+                                            <td>{filter_permissions}</td>
+                                        </tr></if>
+                                        <if condition="isset($show['revision']) AND $show['revision']">
+                                        <tr valign="top" style="display:none">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{_listing_revision}:</span></td>
+                                            <td><span class="blue" style="font-family: arial; font-size:13px;">{updateid}</span></td>
+                                        </tr></if>
+                                        
+                                        
+                                        
+										<tr valign="top" id="shippinginforow">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">{_shipping}:</span></td>
+                                            <td><div id="shippinginfobit_1" class="bolder">U.S. and International <a href="/kb/Shipping-Fees-and-Methods-t86-4.html" style="text-decoration:underline">(view rates)</a></div></td>
+                                        </tr>
+                                        <tr valign="top" id="viewscountinforow">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">Item activity:</span></td>
+                                            <td><div id="shippinginfobit_1" class="bolder"> {views} page views<br />
+											{no_tracking_users} GC members tracking</div></td>
+                                        </tr>
+										<if condition="!empty($_SESSION['ilancedata']['user']['userid']) and $_SESSION['ilancedata']['user']['userid']>0 and $show['personalnote']">
+                                        <tr valign="top" id="shippinginforow">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">Your personal note:</span></td>
+                                            <td><div id="shippinginfobit_1">{watch_list_note}</div><span ><a href="javascript:void(0)" onclick="javascript:jQuery('#watch_list_edit').jqm({modal: false}).jqmShow();" style="text-decoration:underline">Edit personal note</a></span></td>
+                                        </tr>
+										</if>
+										<if condition="!empty($_SESSION['ilancedata']['user']['userid']) and $_SESSION['ilancedata']['user']['userid']>0 and $show['personalnote']==false">
+                                        <tr valign="top" id="shippinginforow">
+                                            <td align="right" nowrap="nowrap" width="100"><span class="gray">Your personal note:</span></td>
+                                            <td><div id="shippinginfobit_1"><a href="javascript:void(0)" onclick="javascript:jQuery('#watch_list_modal').jqm({modal: false}).jqmShow();" style="text-decoration:underline">Click here to add a personal note</a></div></td>
+                                        </tr>
+										</if>
+                                        </table>
+                                        
+                                    </td>
+                                    <if condition="isset($auctiontype) AND $auctiontype == 'unique'">
+                                    <td>&nbsp;</td>
+                                	<td valign="top"><div style="padding-right:12px; padding-top:9px"><img src="{template_relativeimagepath}{template_imagesfolder}how_to_lub.jpg" border="0" alt="" id="" /></div></td>
+                                    </if>
+                                </tr>
+                                </table>
+								
+								{apihook[merch_detailed_right_nav]}
+                                </div>
+							<!-- START bid history -->
+							  
+                               <div style="display:none;cursor: default; width: 560px; height:350px; z-index: 1000; overflow:auto; " class="modal modal_window jqmID1" id="bidhistory" >  
+                                <div style="padding-left:10px"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_bid_history}</span><span style="padding-left:440px;"><a href="javascript:void(0)" onclick="javascript:jQuery('#bidhistory').jqm({modal: false}).jqmHide();"><img src="{template_relativeimagepath}{template_imagesfolder}icons/select_items_compare_remove.gif" width="20"></a></span></div>
+                                <div style="padding-left:10px; padding-top:4px"><span class="gray" style="font-family: arial; font-size:13px"><span style="float:right; padding-right:12px" class="blue"><a href="javascript:void(0)" onclick="Attach('{http_server}{ilpage[rfp]}?msg=bid-increments&amp;c={cid}')">{_bid_increments}</a></span>{_bids}: <span class="blue" id="bidstext_tab">{bids}</span>, {_time_left}: <span class="blue" id="timelefttext_tab">{timeleft}</span></span></div>
+                                <div style="padding:10px" id="refreshbidders">
+                                <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                                <tr class="alt2">
+                                      <td width="43%" nowrap="nowrap"><strong>{_bidder}</strong></td>
+                                      <td width="33%" nowrap="nowrap"><strong>{_bid_amount}</strong></td>
+                                      <td nowrap="nowrap"><strong>{_bid_placed}</strong></td>
+                                </tr>
+                                {refreshbidders}
+                                <tr>
+                                      <td valign="middle" nowrap="nowrap"><div><span style="font-family: arial; font-size:13px"><span class="gray">{_starting_bid}</span></span></div></td>
+                                      <td valign="middle" nowrap="nowrap"><span class="gray">{startprice}</span></td>
+                                      <td valign="middle" nowrap="nowrap"><span class="gray">{date_starts}</span></td>
+                                </tr>
+                                </table>
+                                </div>
+                                </div>
+							 
+								<!-- END bid history -->
+                                
+                                <!-- START purchase history -->
+                                <div id="buyhistory" style="display:none">
+                                 
+                                <div style="padding:10px">
+                                 
+                                <div id="purchasesrow" style="display: none; padding-left:10px; padding-top:9px"><span class="gray" style="font-family: arial; font-size:13px">{_purchases}: <span class="blue" id="purchasestext">{purchases}</span></span></div>
+                                </div>
+                                </div><!-- END purchase history -->
+                                
+                              
+		
+	
+	</td>
+</tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+    <td width="80%" valign="top"><div id="listingtabtext" style=""></div></td>
+	<td width="20%" valign="top">
+	<div id="rightsidemodule">
+	
+		
+		
+	</div></td>
+</tr>
+</table>
+<!-- place bid modal -->
+<div id="place_bid_modal" class="modal modal_window" style="display: none; cursor: default; width:570px; height:375px">
+	<div class="bigtabs" style="padding-bottom:5px; padding-top:12px">
+	<div class="bigtabsheader">
+	<span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+	<ul id="bidtabs">
+		<li title="" class="highlight"><a href="javascript:void(0)">{_confirm_your_bid}</a></li>
+	</ul>
+	</div>
+	</div>
+	<div style="clear:both;"></div>
+	
+	<if condition="isset($show['is_owner']) AND $show['is_owner'] == false">
+	<div>
+	<form method="get" action="{http_server}{ilpage[rfp]}" name="placebid" accept-charset="UTF-8" onsubmit="return validate_place_bid(this);" style="margin:0px">
+	<input type="hidden" name="cmd" value="_do-bid-preview" />
+	<input type="hidden" name="subcmd" value="product-bid" />
+	<input type="hidden" name="id" value="{project_id}" />
+	<input type="hidden" name="state" value="product" />
+	<input type="hidden" name="totalvalue" id="totalvalue" value="{totalvalue}" />
+	<input type="hidden" name="minimum" value="{min_bidamount}" id="hiddenfieldminimum" />
+	<if condition="$ilconfig['productbid_enableproxybid'] AND isset($show['categoryuseproxybid']) AND $show['categoryuseproxybid']"><input type="hidden" name="isproxy" value="1" id="isproxy" /><else /><input type="hidden" name="isproxy" value="0"  id="isproxy" /></if>
+	<if condition="isset($show['reserve_auction']) AND $show['reserve_auction']">
+	<input type="hidden" name="reserve" value="1" id="hiddenfieldreserve" />
+	<if condition="isset($show['reserve_met']) AND $show['reserve_met']"><input type="hidden" name="reservemet" value="1" id="hiddenfieldreservemet" /><else /><input type="hidden" name="reservemet" value="0" id="hiddenfieldreservemet" /></if>
+	<else />
+	<input type="hidden" name="reserve" value="0" id="hiddenfieldreserve" />
+	<input type="hidden" name="reservemet" value="1" id="hiddenfieldreservemet" />
+	</if>
+	<if condition="isset($show['buynow']) AND $show['buynow']"><input type="hidden" name="buynow" value="1" id="hiddenfieldbuynow" /><input type="hidden" name="buynowprice" value="{buynow_price_plain}" id="hiddenfieldbuynowprice" /><else /><input type="hidden" name="buynow" value="0" id="hiddenfieldbuynow" /><input type="hidden" name="buynowprice" value="0.00" id="hiddenfieldbuynowprice" /></if>
+    <if condition="isset($show['localpickuponly']) AND $show['localpickuponly'] == false AND isset($shippercount) AND $shippercount == 1"><input type="hidden" name="shipperid" value="{shipperid}" id="hiddenfieldshipperid" /></if>
+	<table border="0" cellpadding="5" cellspacing="{table_cellspacing}" width="100%">
+	<tr>
+		<td align="right">{_time_left}:</td>
+		<td nowrap="nowrap"><span class="blueonly" style="font-family: arial; font-size:16px; font-weight:bold" id="timelefttext_modal">{timeleft}</span></td>
+	</tr>
+	<tr>
+		<td align="right">{_bid_history}:</td>
+		<td nowrap="nowrap"><span class="blue" style="font-family: arial; font-size:13px" id="bidstext_modal">{bids}</span> <span class="blue">{_bids_lower}</span> </td>
+	</tr>
+    <if condition="!empty($proxybit)">
+    <tr> 
+        <td align="right" nowrap="nowrap"><span class="gray">{_your_maximum_bid}: </span></td>
+        <td colspan="3" nowrap="nowrap"><span class="gray">{proxybit2}</span></td>
+    </tr>
+    </if>
+	<if condition="isset($show['currentbid']) AND $show['currentbid']">
+	<tr id="currentpricerow_modal" style="">
+		<td align="right">{_current_bid}:</td>
+		<td nowrap="nowrap"><span style="font-family: arial; font-size:16px; font-weight:bold" id="currentbidtext_modal">{currentbid}</span></td>
+	</tr>
+
+	<else />
+	<tr id="startpricerow_modal" style="">
+		<td align="right">{_starting_bid}:</td>
+		<td nowrap="nowrap"><span style="font-family: arial; font-size:16px; font-weight:bold" id="startbidtext_modal">{startprice}</span></td>
+	</tr>
+	</if>
+    <tr> 
+        <td align="right" nowrap="nowrap"><span class="black">{_minimum_bid_amount}:</span></td>
+        <td nowrap="nowrap"><span class="black">{min_bidamountformatted}</span></td>
+    </tr>
+	 
+	<if condition="isset($show['reserve_auction']) AND $show['reserve_auction'] AND $auctiontype != 'unique'">
+	<tr>
+	  <td colspan="2" align="left"><hr size="1" width="100%" style="color:#ccc" /></td>
+	</tr>
+	<tr>
+		<td align="right">{_reserve_price}:</td>
+		<td><span id="reservemettext_modal">{reserve_met}</span></td>
+	</tr>
+	</if>
+	<tr>
+	  <td colspan="2" align="left"><hr size="1" width="100%" style="color:#ccc" /></td>
+	</tr>
+    <if condition="isset($buynow_qty) AND $buynow_qty > 0">
+    <tr> 
+		<td align="right">{_quantity}:</td>
+		<td nowrap="nowrap"><input type="text" name="qty" value="1" onkeypress="return noenter()" style="width:30px" /> &nbsp;&nbsp;&nbsp;<span class="smaller black">({buynow_qty} {_available})</span></td>
+	</tr> 
+    </if>
+	<tr valign="top"> 
+		<td align="right"><div style="padding-top:7px">{_enter_max_bid}:</div></td>
+		<td style="float:left; margin-top:28px;"><span style="float:left; padding-top:7px; padding-right:4px" class="black">{currency}</span> <input type="text" class="input" id="bidamount_modal" name="bidamount" value="" onkeypress="return noenter()" size="10" /> <img name="bidamounterror" src="{template_relativeimagepath}{template_imagesfolder}icons/blankimage.gif" width="21" height="13" border="0" alt="{_this_form_field_is_required}" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value=" {_confirm} " class="buttons" style="font-size:15px" /><div style="padding-top:3px" class="smaller"><span class="litegray">{_enter} <span id="minimumbidtext_modal">{min_bidamountformatted}</span> <strong> {_or_more}</strong></span></div></td>
+	</tr>
+	</table>
+    <if condition="isset($buynow_qty) AND $buynow_qty > 0"><else /><input type="hidden" name="qty" value="1" /></if>
+	</form>
+	</div><else /><div>{_it_appears_you_are_the_seller_of_this_listing_in_this_case_you_cannot_bid_or_purchase_items_from_your_own_listing}</div>
+	<input type="hidden" name="minimum" value="{min_bidamount}" id="hiddenfieldminimum" />
+	<input type="hidden" name="minimum" value="" id="bidamount_modal" /></if>
+    	
+</div>
+<!-- edit watch list modal -->
+<div id="watch_list_edit" class="modal modal_window" style="display: none; cursor: default; width:570px; height:275px">
+	<div class="bigtabs" style="padding-bottom:5px; padding-top:12px">
+	<div class="bigtabsheader">
+	<span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+	<ul id="bidtabs">
+		<li title="" class="highlight"><a href="javascript:void(0)">Edit watch list item</a></li>
+	</ul>
+	</div>
+	</div>
+	<div style="clear:both;"></div>
+<div  >
+<textarea name="comment" cols="50" rows="8" id="watchlist_edit">{watch_list_note}</textarea>
+  <br />
+<input type="button" style="font-size: 15px;" class="buttons" value=" Save " onclick="myedit('{project_id}', '{user[userid]}', document.getElementById('watchlist_edit').value); jQuery('#watch_list_edit').jqm({modal: false}).jqmHide();"/> 
+</div>
+   	
+</div>
+<!-- watch list modal -->
+<div id="watch_list_modal" class="modal modal_window" style="display: none; cursor: default; width:570px; height:275px">
+	<div class="bigtabs" style="padding-bottom:5px; padding-top:12px">
+	<div class="bigtabsheader">
+	<span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+	<ul id="bidtabs">
+		<li title="" class="highlight"><a href="javascript:void(0)">Add a comment to your watch list item</a></li>
+	</ul>
+	</div>
+	</div>
+	<div style="clear:both;"></div>
+<div  >
+<textarea name="comment" cols="50" rows="8" id="watchlist_comment"></textarea>
+  <br />
+<input type="button" style="font-size: 15px;" class="buttons" value=" Save " onclick="add_item_to_watchlist_comment('{project_id}', '{user[userid]}', document.getElementById('watchlist_comment').value); jQuery('#watch_list_modal').jqm({modal: false}).jqmHide();"/> 
+</div>
+	
+    	
+</div>
+<!--ask question-->
+<div id="ask_que" class="modal modal_window" style="display: none; cursor: default; width:570px; height:275px">
+	<div class="bigtabs" style="padding-bottom:5px; padding-top:12px">
+	<div class="bigtabsheader">
+	<span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+	<ul id="bidtabs">
+		<li title="" class="highlight"><a href="javascript:void(0)">Ask a Question </a></li>
+	</ul>
+	</div>
+	</div>
+	<div style="clear:both;"></div>
+<div  >
+<textarea name="comment" cols="50" rows="8" id="ask_com"></textarea>
+  <br /><br />
+Your Name : <input type="text" name="askname" id="ask_name" value="{user[username]}" />
+Your E-mail : <input type="text" name="askmail" id="ask_mail" value="{user[email]}" /><br /><br />
+<if condition="empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] == 0">
+<input type="button" style="font-size: 15px;" class="buttons" value=" Send " onclick=" ask_que_admin('{project_id}', document.getElementById('ask_mail').value, document.getElementById('ask_name').value, document.getElementById('ask_com').value); jQuery('#ask_que').jqm({modal: false}).jqmHide();
+"/> 
+<else />
+<input type="button" style="font-size: 15px;" class="buttons" value=" Send " onclick=" ask_que_admin1('{project_id}','{user[userid]}', document.getElementById('ask_com').value); jQuery('#ask_que').jqm({modal: false}).jqmHide();"/> 
+</if>
+</div>    	
+</div>
+ 
+ <!--teller friend start-->
+	<div id="telfir_que" class="modal modal_window" style="display: none; cursor: default; width: 517px; height: 405px; top: 55px;">
+		<div class="bigtabs" style="padding-bottom:5px; padding-top:12px">
+			<div class="bigtabsheader">
+				<span class="smaller gray" style="padding-top:6px; float:right">{_click_away_to_close_and_cancel_this_menu}</span>
+				<ul id="bidtabs">
+				<li title="" class="highlight"><a href="javascript:void(0)">Send an e-mail to your friend</a></li>
+				</ul>
+			</div>
+		</div>
+	<div style="clear:both;"></div>
+	<div>
+	<table width="468" border="0">
+	<!--work by karthik-->
+	<if condition="empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] == 0">
+	<tr>
+	<td width="122" align="center" style="padding-top:100px;"><b>Your should login to send email to your friend</b></td>
+	
+	</tr>
+	<else />
+	<tr>
+	<td width="122" align="right"><b>To (E-mail)</b></td>
+	<td width="13"></td>
+	<td width="319" align="left"><input type="text" name="to" id="to" /> </td>
+	</tr>
+	<tr>
+	<td colspan="3" align="center">
+	
+	</td>
+	</tr>
+	<tr>
+	<td align="right"><b>Subject</b></td>
+	<td></td>
+	<td align="left"><input type="text" name="subject" id="subject"  value="Check out this coin from GreatCollections"/> </td>
+	</tr>
+	<tr>
+	<td align="right"><b>Message</b></td>
+	<td></td>
+	<td align="left"><textarea name="message" rows="10" id="message">{project_title}    {pageurlpath}</textarea> </td>
+	</tr>
+	<tr>
+	<td colspan="3" align="center">
+	<!--<input type="submit"  name="submit" value="submit" onclick="return check();"/> &nbsp;<input type="reset" name="reset" value="reset" />-->
+	
+	
+	<input type="button" style="font-size: 15px;" class="buttons" value=" Send " onclick="return tellerfriend('{project_id}', '{user[userid]}', document.getElementById('message').value,document.getElementById('to').value,document.getElementById('subject').value);"/> 
+	</if>
+	</td>
+	</tr>
+	</table>
+	</div>
+	</div>
+	
+ 
+</td>
+  <td>&nbsp;</td> <td valign="top">
+<div style="margin-left: 10px; border: 1px solid #DADFE2; background-color:#DADFE2; height:auto;">
+  <table cellspacing="8" cellpadding="6">
+  <tr><td>Bid & buy with confidence:<br />
+  <br />- Never a hidden reserve
+  <br /><br />- <a href="{http_server}main.php?cmd=return" style="text-decoration:underline;">This item qualifies for the GC Return Policy</a>
+  <br /><br />- <a href="{http_server}main.php?cmd=allitem" style="text-decoration:underline;">All items are sold by GreatCollections</a></td></tr>
+  <tr><td><a href="javascript:void(0)" onclick="javascript:jQuery('#ask_que').jqm({modal: false}).jqmShow();" style="text-decoration:underline;">Ask GC a question about this item</a>  <span id="ask_open"></td></tr>
+  
+  <!--teller friend-->
+   <tr><td><a href="javascript:void(0)" onclick="javascript:jQuery('#telfir_que').jqm({modal: false}).jqmShow();" style="text-decoration:underline;">Email this item to a friend</a>  <span id="fri_open"></span></td></tr>
+  <tr><td><a href="{facepath}" target="_blank"><img src="{template_relativeimagepath}{template_imagesfolder}facebook_share_off.png" width="50" height="20" border="0" id="" /></a>&nbsp;&nbsp;
+  <a href="{twitpath}" target="_blank"><img src="{template_relativeimagepath}{template_imagesfolder}twitter-share.png" width="55" height="20" border="0" id="" /></a>
+  &nbsp;&nbsp;
+  <a href="{http_server}rss.php"><img src="{template_relativeimagepath}{template_imagesfolder}rss.gif" width="55" height="20" border="0" id="" /></a></td></tr>
+  <tr><td><span style="cursor:pointer;" onclick="printpage()" style="text-decoration:underline;">Print</span></td></tr>
+  <tr><td><a href="{http_server}main.php?cmd=sell" style="text-decoration:underline;">I have one of these to sell</a></td></tr>
+  <tr><td><a href="{http_server}main.php?cmd=paymonth" style="text-decoration:underline;">Take three months to pay</a></td></tr>
+  <tr><td><a href="javascript:void(0)" onclick="Attach('{http_server}{ilpage[rfp]}?msg=bid-increments&amp;c={cid}')" style="text-decoration:underline;">{_bid_increments}</a></td></tr>
+  </table>
+  </div>
+  </td>
+    
+  </tr>
+</table>
+</div><div class="s"><div class="e"><div class="w"></div></div></div>
+ 
+<div style="height:20px;"> </div>
+<div  id="totaltit">Additional Images (Click to enlarge)</div>
+<div>
+{newthumb}
+</div>
+<div style="height:20px;"> </div>
+<div id="totaltit">Item Information </div>
+<div>
+ <loop name="info_val">  
+ 
+ 
+ <table width="100%" border="0" cellpadding="5">
+  <tr>
+    <td>GC Item ID:</td>
+    <td>{project_id}</td>
+	    <td>Grading Service:</td>
+    <td>{Grading_Service} {grv}{Grade} {pro_tes1}<!-- <img src="{template_relativeimagepath}images/gradinglogo/{logoname}"  width="20" >--></td>
+  </tr>
+  <tr>
+    <td>GC Item Title:</td>
+    <td>{project_title}</td>
+     <!-- Karthik  start on may 12 for displaying PEDIGEE-->
+	<if condition="isset($show['pedigee']) AND $show['pedigee'] == true" >
+	<td>Pedigree:</td>
+    <td>{Pedigee}</td>
+  </tr>  
+  <tr>
+<td>&nbsp;</td>
+    <td>&nbsp;</td>    <td>Certification Number:</td>
+    <td>{Certification_No}</td>
+    
+  </tr>
+   <tr>
+<td>&nbsp;</td>
+    <td>&nbsp;</td>    <td>Catalog Number</td>
+    <td>{cid}</td>
+    
+  </tr>
+	</if>
+	<if condition="isset($show['pedigee']) AND $show['pedigee'] == false" >
+    <td>Certification Number:</td>
+    <td>{Certification_No}</td>
+  </tr>  
+  <tr>
+<td>&nbsp;</td>
+    <td>&nbsp;</td>    <td>Catalog Number</td>
+    <td>{cid}</td>
+    
+  </tr>
+  </if> 
+  <!-- Karthik may12 end-->
+  <if condition="$show['nodescription'] == 'true'"> 
+  <tr>
+    <td>Description:</td>
+    <td colspan="3">{description}</td>
+  </tr> 
+</if>
+</table>
+ </loop name="info_val"> </div>
+ 
+ 
+ <div style="height:20px;"> </div>
+  
+ <div id="totaltit">Coin Information</div>
+<div><loop name="info_cid">
+ <table  cellspacing="5" cellpadding="6" ><tr><td id="intl">Coin Series:</td><td id="intla">{coin_detail_coin_series}</td><td id="intl">Coin Designer:</td><td id="intla">{coin_detail_designer}</td></tr>
+ <if condition="isset($show['coin_detail_mintage']) AND ($show['coin_detail_mintage'] == '1')">
+ <tr><td id="intl">Mintage:</td><td id="intla">{coin_detail_mintage}</td>
+ </tr></if></table> </loop name="info_cid">
+ </div>
+  <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $show['statetax'] == true">
+  <div id="totaltit">Sales Tax</div>
+<div>
+ <table  cellspacing="5" cellpadding="6" ><tr><td id="intl">Sales tax:</td><td id="intla">Sales Tax is only charged on this item for residents of California if your invoice total of numismatic/bullion items is less than $1,500.</td></tr>
+</table> 
+ </div>  
+</if>
+ <if condition="empty($_SESSION['ilancedata']['user']['userid'])">
+ <div id="totaltit">Sales Tax</div>
+<div>
+ <table  cellspacing="5" cellpadding="6" ><tr><td id="intl">Sales tax:</td><td id="intla">Sales Tax is only charged on this item for residents of California if your invoice total of numismatic/bullion items is less than $1,500.</td></tr>
+</table> 
+ </div>  
+ </if>
+ 
+ <if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $show['statetax'] == false">
+  <div id="totaltit">Sales Tax</div>
+<div>
+ <table  cellspacing="5" cellpadding="6" ><tr><td id="intl">Sales tax:</td><td id="intla">Since you don't reside in California, no Sales Tax will be collected by <strong>Great</strong>Collections. <strong>Great</strong>Collections only collects Sales Tax on certain sales for residents of California.</td></tr>
+</table> 
+ </div>  
+ </if>
+ <div id="totaltit">About GreatCollections</div>
+<div>
+ <table  cellspacing="5" cellpadding="6" ><tr><td id="intla"><strong>Great</strong>Collections was founded by Ian Russell as a marketplace to serve the rare coin and bullion community. The idea is that there are many places to buy and sell coins, though very few ensure that the transaction is conducted in a safe and secure manner while keeping both parties confidential. 
+<br /><br />
+<strong>Great</strong>Collections offers collectors an extensive selection of certified coins ranging in price from $25 up to $10,000s. All coins have been professionally listed and imaged by <strong>Great</strong>Collections expert staff and most are certified by the leading third-party grading companies.  If you have any questions, please do not hesitate to contact us at +1-949-679-4180 or via e-mail to <a href="mailto:info@greatcollections.com">info@greatcollections.com</a>.</td> </tr>
+</table> 
+<br />
+ </div>
+<script type="text/javascript">
+ 
+function printpage()
+  {
+   window.print();
+  }
+  
+function ask_que_admin()
+	{
+	if(document.getElementById('ask_com').value =='')
+	
+		{
+		alert('Enter Your Question');
+		
+		return false;
+		}
+	askqueadmin('{project_id}',document.getElementById('ask_mail').value, document.getElementById('ask_name').value, document.getElementById('ask_com').value,document.getElementById('ask_mail').value); jQuery('#ask_que').jqm({modal: false}).jqmHide();
+	return true;
+	
+}
+//work by karthik
+function ask_que_admin1()
+	{
+	if(document.getElementById('ask_com').value =='')
+	
+		{
+		alert('Enter Your Question');
+		
+		return false;
+		}
+	askqueadmin1('{project_id}', '{user[userid]}', document.getElementById('ask_com').value); jQuery('#ask_que').jqm({modal: false}).jqmHide();
+	return true;
+	
+}
+function tellerfriend(pro,uid,msm,to,subj)
+{
+var len=to.length;
+var at=to.indexOf("@");
+var dot=to.lastIndexOf(".");
+if(to=='')
+{
+alert("please Enter To (E-mail)");
+return false;
+}
+if(at==-1)
+{
+alert("invalid emailid");
+return false;
+}
+if(dot==-1)
+{
+alert("invalid emailid");
+return false;
+}
+if((dot-at)<2)
+{
+alert("invalid emailid");
+return false;
+}
+if(len-dot<=2)
+{
+alert("invalid emailid");
+return false;
+}
+if(subj=='')
+{
+alert("please fill the subject field");
+return false;
+}
+if(msm=='')
+{
+alert("please fill the message field");
+return false;
+}
+teller_friend(pro,uid,msm,to,subj); 
+jQuery('#telfir_que').jqm({modal: false}).jqmHide();
+ return true;
+}
+//work by karthik
+function tellerfriend1()
+{
+var ymail=document.getElementById("ymail").value;
+var to=document.getElementById("to").value;
+var subj=document.getElementById("subject").value;
+var mess=document.getElementById("message").value;
+var cc=document.getElementById("Cc").value;
+//var len2=ymail.length;
+var len=to.length;
+//var at2=ymail.indexOf("@");
+//var dot2=ymail.lastIndexOf(".");
+var at=to.indexOf("@");
+var dot=to.lastIndexOf(".");
+var at1=cc.indexOf("@");
+var dot1=cc.lastIndexOf(".");
+var len1=cc.length;
+if(ymail=='')
+{
+alert("please fill your mail address");
+return false;
+}
+else if(to=='')
+{
+alert("please fill the to mail address");
+return false;
+}
+//else if(at2==-1)
+//{
+//alert("invalid emailid");
+//return false;
+//}
+//else if(dot2==-1)
+//{
+//alert("invalid emailid");
+//return false;
+//}
+else if(at==-1)
+{
+alert("invalid emailid");
+return false;
+}
+else if(dot==-1)
+{
+alert("invalid emailid");
+return false;
+}
+else if((dot-at)<2)
+{
+alert("invalid emailid");
+return false;
+}
+else if(len-dot<=2)
+{
+alert("invalid emailid");
+return false;
+}
+else if(subj=='')
+{
+alert("please fill the subject field");
+return false;
+}
+else if(mess=='')
+{
+alert("please fill the message field");
+return false;
+}
+else if(cc)
+{
+if(at1==-1)
+{
+alert("invalid Cc emailid ");
+return false;
+}
+else if(dot1==-1)
+{
+alert("invalid Cc emailid");
+return false;
+}
+else if((dot1-at1)<2)
+{
+alert("invalid Cc emailid");
+return false;
+}
+else if(len1-dot1<=2)
+{
+alert("invalid emailid");
+return false;
+}
+}
+else
+{
+teller_friend1('{project_id}', document.getElementById('ymail').value, document.getElementById('message').value,document.getElementById('to').value,document.getElementById('subject').value); jQuery('#telfir_que').jqm({modal: false}).jqmHide();
+return true;
+}
+}
+ 
+function forceNumber(event)
+{
+  var keyCode = event.keyCode ? event.keyCode : event.charCode;
+  // backspace keyCode = 8
+  // tab keyCode = 9 
+  // left arrow keyCode = 37 
+  // right arrow keyCode = 39   
+  // delete keyCode = 46     
+  // refresh(F5) keyCode = 116
+ 
+  if((keyCode < 48 || keyCode > 58) && keyCode != 8 && keyCode != 9 && keyCode != 37 && keyCode != 39 && keyCode != 46)
+  return false;
+} 
+function addcc()
+{
+document.getElementById("add").style.display="none";
+document.getElementById("removecc").style.display="block";
+document.getElementById("cc").style.display="block";
+}
+function remcc()
+{
+document.getElementById("removecc").style.display="none";
+document.getElementById("cc").style.display="none";
+document.getElementById("add").style.display="block";
+}  
+</script>

@@ -1,0 +1,55 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- begin content -->
+<div id="content">
+<div class="header">Edit Partial Payment</div>
+<br />
+
+<div class="block-wrapper">
+                    <div class="block3">
+
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+
+                            <div class="block3-header">Edit Invoice</div>
+                            <div class="block3-content-gray" style="padding:9px">
+                              <div class="smaller">Editing Partial Payment</div>
+                            </div>
+
+                            <div class="block3-content" style="padding:0px">
+							<form action="buyers.php" method="post">
+							<input type="hidden" name="cmd" value="update_partial_payment" />
+							<input type="hidden" name="payment_id" value="{payment_id}" />
+							
+                           	<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+								<tr class="alt1" valign="top">
+									<td nowrap="nowrap">Payment date</td><td nowrap="nowrap"><input id="paymentdate" type="text" name="paymentdate" value="{paymentdate}"</td>
+								</tr><tr class="alt1" valign="top">
+									<td nowrap="nowrap">Amount</td><td nowrap="nowrap"> {partial_amount} 
+								<tr class="alt1" valign="top">
+									<td nowrap="nowrap">Payment Method</td><td nowrap="nowrap">{paymethod}</td>
+								</tr><tr class="alt1" valign="top">
+									<td nowrap="nowrap"> </td><td nowrap="nowrap"><input type="submit" name="Save" value=" Save "</td>
+								</tr>
+							</table>
+							</form>
+							</div>
+
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+						<!--	Listing of all invoices tab start-->
+						</div></div>
+<script>
+$(function() {
+$("#paymentdate").datepicker({
+dateFormat: 'yy-mm-dd',
+});
+});
+
+</script>

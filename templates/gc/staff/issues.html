@@ -1,0 +1,408 @@
+<script> 
+function coin_create_validate()
+{
+
+	if((document.getElementById("title").value==""))
+	{
+			alert("Please enter title");
+			return false;
+	}
+	else if((document.getElementById("description").value==""))
+	{
+			alert("Please enter description");
+			return false;
+	}
+	else if((document.getElementById("releasedate").value==""))
+	{
+			alert("Please enter releasedate");
+			return false;
+	}
+		else if((document.getElementById("excepteddate").value==""))
+	{
+			alert("Please enter excepteddate");
+			return false;
+	}
+
+	else if((document.getElementById("link").value==""))
+	{
+			alert("Please enter link");
+			return false;
+	}
+	else if((document.getElementById("catissues").value==""))
+	{
+			alert("Please enter catissues");
+			return false;
+	}
+	
+	else
+	{
+		return true;
+	}
+
+}		  
+
+
+</script>
+
+
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation 
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class="sel"><span>{_management}</span></a>
+		<a href="email_generator.php" class=""><span>Email Template</span></a> 
+		<a href="email_template.php" class=""><span>New Template</span></a> 
+		<a href="uhr_template.php" class=""><span>UHR Template</span></a>
+		<a href="email_export.php" class=""><span>Email Export</span></a> 
+		<a href="saved_search.php" class=""><span>Search Options</span></a>
+		<a href="user_watchlist.php" class=""><span>watchlist Export</span></a> 
+		
+	</div>
+</div>
+ sub navigation -->
+
+<!-- begin content -->
+
+	<div id="content">
+		<div class="header">Issues Management </div><br />
+	
+		<!-------issues coin  update start -------->
+		
+		<if condition="isset($show['show_update']) AND $show['show_update']">
+		
+			
+					<div class="tab-page">
+						<h2 class="tab">{_profile}</h2>
+						<form name="updateprofile" action="issues.php" method="post" accept-charset="UTF-8" style="margin: 0px;">
+
+						<loop name="profile_coin"> 
+							<input type="hidden" name="subcmd" value="_update-issues-coin" />
+							<input type="hidden" name="id" value="{id}" />						
+							<div class="block-wrapper">
+								<div class="block3">
+						
+									<div class="block3-top">
+											<div class="block3-right">
+													<div class="block3-left"></div>
+											</div>
+									</div>
+								
+									<div class="block3-header">Update issues Coin</div>
+										<div class="block3-content-gray" style="padding:9px">
+										<div class="smaller">manually update this issues coin id {id}</div>
+									</div>
+									<div class="block3-content" style="padding:0px">
+									
+										<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+									
+											
+											<tr class="alt2_top">
+												<td colspan="2"><strong>UPDATE</strong></td>
+											</tr>
+												<tr class="alt1"> 
+													<td><span class="gray">Title</span></td>
+													<td><input type="text" name="title" value="{title}" class="input" style="width:275px" /></td>
+												</tr>
+												<tr class="alt1">
+													<td><span class="gray">Description</span></td>
+													<td><input type="text" name="description" value="{description}" class="input" style="width:275px" /></td>
+												</tr>
+												<tr class="alt1"> 
+													<td><span class="gray">Release Date ( YYYY-MM-DD ):</span></td>
+													<td><input type="text" name="releasedate" value="{releasedate}" class="input" style="width:275px" /></td>
+												</tr>
+												<tr class="alt1"> 
+													<td><span class="gray">Excepected Date ( YYYY-MM-DD ):</span></td>
+													<td><input type="text" name="excepteddate" value="{excepteddate}" class="input" style="width:275px" /></td>
+												</tr>
+												<tr class="alt1"> 
+													<td><span class="gray">GC Link</span></td>
+													<td><input type="text" name="link" value="{link}" class="input" style="width:275px" /></td>
+												</tr>
+												<tr class="alt1"> 
+													<td><span class="gray">GC Categories Link</span></td>
+													<td><input type="text" name="categorieslink" value="{categorieslink}" class="input" maxlength="50" style="width:275px" /></td>
+												</tr>
+												<tr class="alt1">
+													<td><span class="gray">Coin Issues Type</span></td>
+													<td>			
+														{cointype_html}																											
+													</td>
+												</tr>
+
+												<tr> 
+													<td colspan="2">
+													<input name="submit" type="submit" value=" {_save} " style="font-size:15px" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" class="buttons" /></td>
+												</tr>
+										</table>
+									
+									</div>
+								
+									<div class="block3-footer">
+											<div class="block3-right">
+													<div class="block3-left"></div>
+											</div>
+									</div>
+								
+								</div>
+							</div>
+						</loop name="profile_coin"> 
+						</form>
+
+		</if>
+
+					</div>
+		<!-------issues coin  update end -------->
+	
+	
+		<div class="tab-pane" id="userlistings">
+		
+			<!--shows on issues coins start -->
+			
+				<div class="tab-page">
+        			<h2 class="tab">{_listings}</h2>
+                    
+                    <form method="get" action="issues.php" accept-charset="UTF-8" id="issus_coin" style="margin: 0px;">
+						<input type="hidden" name="cmd" value="search" />
+						<div class="block-wrapper">
+							<div class="block3">
+                    
+								<div class="block3-top">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+                            
+								<div class="block3-header">{_search}</div>
+								<div class="block3-content-gray" style="padding:9px">
+									<div class="smaller">
+										you can search and filter coins of the current selling or upcoming at Greatcollections.
+									</div>
+								</div>
+								<div class="block3-content" style="padding:0px">
+									
+									<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+										<tr class="alt1">
+											<td width="10%">
+												<span class="gray">{_filter_by}</span>
+											<td width="90%">
+												<select name="filterby" style="font-family: Verdana">
+													<option value="1" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == '1'">selected="selected"</if>>Current Selling Coins</option>
+													<option value="0" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == '0'">selected="selected"</if>>Upcoming Coins</option>                                     
+												</select>
+											</td>
+										</tr>
+
+										<tr>
+											<td colspan="2">
+												<input type="submit" class="buttons" value=" {_search} " style="font-size:15px" />
+											</td> 
+										</tr>
+									</table>
+							
+								</div>
+                            
+								<div class="block3-footer">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+							</div>
+						</div>
+					</form>
+                    
+      				<if condition="isset($show['showsearch']) AND $show['showsearch']">
+					<form id="subscriber_search" action="issues.php" accept-charset="UTF-8" style="margin:0px">
+						<div class="block-wrapper">
+							<div class="block3">
+				
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+						
+							<div class="block3-header">{number} Coins found</div>
+								<div class="block3-content" style="padding:0px">
+							
+									<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+										<tr class="alt2"> 
+											  <td width="7%">ID</td>
+											  <td width="23%">Title</td>
+											  <td width="10%" >Description</td>
+											  <td width="10%" >U.S. Mint Release Date</td>
+											  <td width="10%" >Expected GC Sell Date</td>
+											  <td align="center" nowrap="nowrap">EDIT</td>
+											  <td align="center" nowrap="nowrap">REMOVE</td>
+										</tr>
+							<loop name="searchissues_coin"> 
+										<tr class="alt1" valign="top"> 
+											<td nowrap="nowrap">
+												{id}
+											</td>
+											<td nowrap="nowrap">
+												{title}
+											</td>
+											<td nowrap="nowrap">
+												{description}
+											</td>
+											<td nowrap="nowrap">
+												{releasedate}
+											</td>
+											<td nowrap="nowrap">
+												{excepteddate}
+											</td>											
+											<td nowrap="nowrap" align="center">
+												{edit}
+											</td>
+											<td nowrap="nowrap" align="center">
+												{remove}
+											</td>											
+										</tr>
+							</loop name="searchissues_coin">
+						
+									</table>
+							
+								</div>
+						
+								<div class="block3-footer">
+										<div class="block3-right">
+												<div class="block3-left"></div>
+										</div>
+								</div>
+								
+							</div>
+						</div>
+      			
+					</form>
+               
+					</if>
+				</div>
+			<!--shows on issues coins end -->
+			
+			<!------create  coin issues start -------->
+			<div class="tab-page">	
+          		<h2 class="tab">{_create}</h2>
+					 			
+				<form method="post" action="issues.php" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+					<input type="hidden" name="subcmd" value="_create-new-issues" />
+					<input type="hidden" name="return" value="issues.php" />
+					<div class="block-wrapper">
+						<div class="block3">
+				
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+							<div class="block3-header">{_create}</div>
+							<div class="block3-content-gray" style="padding:9px">
+								<div class="smaller">you can manually create the issues coin using the quick form</div>
+							</div>
+							<div class="block3-content" style="padding:0px">
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+									<tr class="alt1">
+										<td width="5%" nowrap="nowrap">
+											<span class="gray">Title</span>
+										</td>
+										<td>
+											<input type="text" name="title" id="title" />
+										</td>
+										<td width="5%" nowrap="nowrap" class="alt1">
+											<span class="gray">Description</span>
+										</td>
+										<td>
+											<input type="text" name="description" id="description" />
+										</td>
+									</tr>
+									
+									<tr class="alt1">
+										<td width="5%" nowrap="nowrap">
+											<span class="gray">U.S. Mint Release Date ( YYYY-MM-DD ):</span>
+										</td>
+										<td>
+											<input type="text" name="releasedate" id="releasedate"  />
+										</td>
+										<td width="5%" nowrap="nowrap" class="alt1">
+											<span class="gray">Expected GC Sell Date ( YYYY-MM-DD ):</span>
+										</td>
+										<td>
+											<input type="text" name="excepteddate" id="excepteddate"  />
+										</td>
+									</tr>									
+		
+
+									<tr class="alt1">
+										<td width="5%" nowrap="nowrap">
+											<span class="gray">Link to GC Item ID</span>
+										</td>
+										<td>
+											<input type="text" name="link" id="link"  />
+										</td>
+										<td width="5%" nowrap="nowrap" class="alt1">
+											<span class="gray">Link to GC Back Issue Categories</span>
+										</td>
+										<td>
+											<input type="text" name="catissues" id="catissues"  />
+										</td>
+									</tr>							
+
+								</table>
+                            </div>
+                            
+                          
+  
+                        
+							<div class="block3-content-gray" style="padding:9px">
+								<div class="smaller">Current Selling or Upcoming Coins</div>
+							</div>
+							<div class="block3-content" style="padding:0px">
+								
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+									<tr class="alt1">
+										<td width="13%" nowrap="nowrap" class="alt1">
+											<span class="gray">Current Selling or Upcoming</span>
+										</td>
+										<td width="87%" colspan="3">
+											<select name="formCoin">
+												<option value="1">Current Selling coin</option>
+												<option value="0">Upcoming coin</option>
+											</select>
+										</td>
+									</tr>
+								</table>
+							</div>
+						
+					
+					
+
+						
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+						
+							<tr> 
+								<td colspan="4">
+									<input type="submit" value=" {_save} "  style="font-size:15px" onclick="return coin_create_validate();"  class="buttons" />
+								</td>
+							</tr>
+							</table>
+						
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+						
+						</div>
+					</div>
+				</form>
+				
+			</div>
+			
+		
+		<!------create  coin issues end -------->
+	
+

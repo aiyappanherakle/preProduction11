@@ -1,0 +1,140 @@
+<if condition="isset($show['is_bidplaced']) AND $show['is_bidplaced']">
+		<div id="topcongratsrow">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+		<tr>
+		<td>
+		<div class="grayborder">
+		<div class="n">
+		<div class="e">
+		<div class="w"></div>
+		</div>
+		</div>
+		<div>
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+		<td valign="top"></td>
+		<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1" border="0" alt="" id="" /></td>
+		<td style="padding-right:5px; padding-left:3px"><div><img src="{template_relativeimagepath}{template_imagesfolder}icons/checkmark.gif" border="0" alt="" id="" /> <strong>Thank you for bidding with GreatCollections.</strong></div><div class="black" style="padding-top:4px">Please see details below for the status of your bids.</div></td>
+		</tr>
+		</table>
+		</div>
+		<div class="s">
+		<div class="e">
+		<div class="w"></div>
+		</div>
+		</div>
+		</div>
+		</td>
+		</tr>
+		</table>
+		</div>
+	</if>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	    <div class="bigtabs" style="padding-bottom:5px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+		
+			<li title="" class="on"><a href="javascript:void(0)">Bid Results</a></li>
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        
+        {apihook[watchlist_start_html]}
+   
+        
+        <div class="tab-pane" id="search" style="padding-top:10px">
+        
+            <div class="tab-page">
+                <h2 class="tab" id="3">Bid Summary</h2>
+            
+                <div class="block-wrapper">
+        
+                <div class="block5">
+                
+                        <div class="block5-top">
+                                <div class="block5-right">
+                                        <div class="block5-left"></div>
+                                </div>
+                        </div>
+						
+						                        
+                        <div class="block5-header">Summary</div>
+                        
+                        <div class="block5-content" style="padding:0px">
+                            
+							
+                            <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                            <tr class="alt2">
+                                <td width="6%">{_sample}</td>
+								<td width="6%">Item ID</td>
+                                <td width="43%">{_auction_title}</td>
+                                <td width="15%" nowrap="nowrap">{_current_bid}</td>
+                                
+                                <td width="12%">{_bids}</td>
+                                <td width="15%" nowrap="nowrap">{_time_left}</td>
+                                <td width="19%" nowrap="nowrap">{_status}</td>
+                            </tr>
+							
+					
+                            <loop name="watchlist_summary"> 
+						
+                            <tr valign="top" class="alt1"> 
+                               
+                                <td align="center">{sample}</td>
+								<td align="center">{watching_project_id}</td>
+								
+                                <td valign="top"><span style="float:right">{attach}</span><span class="blue" style="font-size:13px">{title}</span>
+                                <div class="smaller gray" style="padding-top:3px">{description}</div></td>
+                                <td nowrap="nowrap"><div class="blue">{currentbid}</div></td>
+                               
+                                <td nowrap="nowrap"><div class="blue">{bids}</div></td>
+								
+								</div></td>
+                                <td nowrap="nowrap"><strong>{timeleft}&nbsp;</strong></td>
+                                <td nowrap="nowrap"><div class="green">{status}</div></td>
+							
+                            </tr>
+
+                            </loop name="watchlist_summary"> 
+							
+
+						</table>
+
+                           
+				</div>
+						
+						
+						
+                            
+				</div>
+                        
+                        <div class="block5-footer">
+                                <div class="block5-right">
+                                        <div class="block5-left"></div>
+                                </div>
+                        </div>
+                        
+                </div>
+                  </form>
+				</div>
+				
+				<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="2">
+				<tr>
+				<td colspan="2"><strong>{_whats_next}</strong></td>
+				</tr>
+				<tr> 
+				<td width="9%" align="center"><img src="{template_relativeimagepath}{template_imagesfolder}arrow_right.gif" width="18" height="18"></td>
+				<td width="91%"><span class="blue"><a href="{ilpage[watchlist]}"><strong>{_watchlist}</strong></a></span> &nbsp;&nbsp;</td>
+				</tr>
+				</table>
+
+              
+          
+</tr>
+</table>     
+ 

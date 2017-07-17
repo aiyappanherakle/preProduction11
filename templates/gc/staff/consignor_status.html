@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<div id="v3body4">
+			<!-- sub navigation -->
+			<div id="sub">
+				<div id="subnav">
+					<a href="reports.php" class="sel"><span>Reports</span></a> <a href="exports.php"><span>Export</span></a> <a href="payments_report.php"><span>Payments</span></a>
+				</div>
+			</div><!-- /sub navigation -->
+			<div id="content">
+				<div class="header">
+					Consignor Status Report
+				</div><br>
+				<div class="tab-pane">
+					<div class="tab-pane" id="reportlistings">
+	 
+						
+ 
+						<div class="tab-page">
+							<h2 class="tab">
+								consignor
+							</h2>
+							<div class="block-wrapper">
+								<div class="block">
+									<div class="block-top">
+										<div class="block-right">
+											<div class="block-left"></div>
+										</div>
+									</div>
+									<div class="block-header">
+										 Consignor Status Report
+									</div>
+									<div class="block-content" style="padding:0px">
+										<form name="ilform" action="consignor_status.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+											<input type="hidden" name="cmd" value="consignorstatus">
+											<table align="center" border="0" cellspacing="0" cellpadding="9">
+												<tr class="alt1">
+													<td width="20%">
+														Enter username
+													</td>
+													<td width="90%">
+														<select name="filterby" style="font-family: Verdana">
+															<optgroup label="{_filter_by}">
+																 
+																<option value="username">
+																	{_username}
+																</option>
+															 
+															</optgroup>
+														</select>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="filtervalue" size="18" style="width: 50%;">
+													</td>
+												</tr>
+<tr>
+													<td>
+														Enter End Date
+													</td>
+													<td>
+														<script type="text/javascript">
+
+														$(function() {
+
+															$("#datepicker").datepicker({
+
+															dateFormat: 'yy-mm-dd',
+
+															});													 
+
+														});
+
+														</script> <input id="datepicker" name="end_date" type="text"> <!--{daylist}&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;{yearlist}-->
+													</td>
+												</tr> 
+ 
+												<tr>
+													<td width="10%">
+														<input type="submit" class="buttons" value=" {_go} " style="font-size:15px">
+													</td>
+												</tr>
+											</table>
+										</form>
+									</div>
+									<div class="block-footer">
+										<div class="block-right">
+											<div class="block-left"></div>
+										</div>
+									</div> 
+								</div> 
+							</div> 
+						</div> 
+						 
+						 
+					</div>
+				</div><br>
+				<br>
+			</div>
+		</div>
+	</body>
+</html>

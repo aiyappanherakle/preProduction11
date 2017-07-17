@@ -1,0 +1,115 @@
+
+<script type="text/javascript">
+
+function checkform(formobj)
+{
+    //(formobj.email.value.search("@") == -1 || formobj.email.value.search("[.*]") == -1)
+    var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    var str=formobj.email.value;
+    if(!pattern.test(str))
+    {
+        document.getElementById("e").innerHTML="Enter Valid Email ID";
+        return false;
+    }
+    
+}
+</script>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	        <div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+        <div class="bigtabsheader">
+        <ul>
+            <li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Management">{_preferences}</a><else /><a href="{ilpage[preferences]}?cmd=management">{_preferences}</a></if></li>
+            <li title="" class="on"><a href="javascript:void(0)">{_email}</a></li>
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        
+        <form method="post" action="{ilpage[preferences]}" name="emailupdate" accept-charset="UTF-8" onsubmit="return checkform(this); form(this); " style="margin:0px">
+        <input type="hidden" name="cmd" value="_do-email-change" />
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header">{_email_preferences}</div>
+                    <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_our_interactive_reverse_auction_platform_actively_sends_email_based_on_a_wide_variety_of_events_that_may_occur}</div></div>
+                    <div class="block-content" style="padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+                        <tr>
+                            <td align="center">
+                            <div>
+                                <div align="left">
+                                    
+                                    
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                      <tr> 
+                                        <td><div class="gray" style="padding-bottom:3px">{_master_email_address}</div><div><input type="text" name="email" value="{session_email}" maxlength="49" size="30" class="input" /></div><div id="e" style="font-weight:bold;  color:#FF0000;"></div></td>
+                                        <td><div class="gray" style="padding-bottom:3px">{_enable_email_notification}</div><div>{email_pulldown}</div></td>
+                                      </tr>
+									  <!--Herakle Murugan Changes For Email Preferences-->
+									  <tr>
+									  <td>&nbsp;  </td>
+									  <td>&nbsp;  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td> {related} </td>
+									  <td> {bidconfirm}	  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td> {outbid} </td>
+									  <td> {wantlist} </td>
+									  </tr>
+									  
+									  <tr>
+									  <td>  {recommend}  </td>
+									  <td>  {dailydeal} </td>
+									  </tr>
+									  
+									   <tr>
+									  <td> {gccollection} </td>
+									  <td>  {itemtracked}  </td>
+									  </tr>
+									  
+									  <tr>
+									  <td>  {gcoffer}  </td>
+									  <td>&nbsp;  </td>
+									  </tr>
+									   <!--Herakle Murugan Changes For Email Preferences END here-->
+                                    </table>
+                                    
+                                </div>
+                            </div>
+                            </td>
+                        </tr>
+                        </table>
+        
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        
+        <div><input type="submit" class="buttons" value=" {_save} " accesskey="s" style="font-size:15px" /></div>
+        </form>
+	</td>
+</tr>
+</table>

@@ -1,0 +1,83 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class="sel"><span>{_watchlist}</span></a>
+			
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<h1>BUG #5204</h1>
+	<div class="header">{_saved} {_search} {customername}</div><br />
+	
+	
+	<!--<div class="tab-pane" id="userlistings">
+	
+		<div class="tab-page">
+			<h2 class="tab">{_saved} {_search}</h2>-->
+		
+		<!--	<div class="subtab-pane" id="userlistings"> -->
+
+<div class="header">{_compare_items}</div>
+
+
+
+<form name="compare" id="compareform" method="post" action="{ilpage[rfp]}" accept-charset="UTF-8">
+<input type="hidden" name="cmd" value="auctioncmd" />
+{hidden_input_fields}
+<div class="block-wrapper">
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header">{_comparing_selected_items}</div>
+			<div class="block3-content" style="padding:0px">
+				
+				<table border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}" width="100%">
+				{compare_html}
+				<tr>
+					<td colspan="{comparecount}" class="alt2_top">
+					<span style="float:left; padding-top:4px;">
+                            <span class="blue" style="font-size:14px"><a href="javascript:void(0)" onclick="inlineCB.check_all(true)" style="text-decoration:underline">{_select_all}</a></span>&nbsp;&nbsp; 
+                            <span class="blue" style="font-size:14px"><a href="javascript:void(0)" onclick="inlineCB.check_all(false)" style="text-decoration:underline">{_deselect_all}</a></span>&nbsp;&nbsp;
+                            <span class="blue" style="font-size:14px"><a href="javascript:void(0)" onclick="inlineCB.check_all('invert')" style="text-decoration:underline">{_invert}</a></span>&nbsp;&nbsp;
+                    </span>
+					<span style="float:right"><select name="action" style="font-family: verdana">
+					<optgroup label="{_select_action}">
+					<option value="watchlist"  selected="selected" >{_add_to_watchlist}</option>
+					</optgroup>
+  					</select> 
+					<input type="submit" class="buttons" value="{_go}"  />
+					<script type="text/javascript"><!--
+					inlineCB = new iL_Inline('inlineCB', '{mode}', 'compareform', '{_go}');
+					//--></script></span>
+					
+					</td>
+				</tr>
+				</table>
+				
+			</div>
+			
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+</div></div></form>
+
+</form>
+		<!--</div>
+	</div>
+		
+</div>-->
+</div>
+

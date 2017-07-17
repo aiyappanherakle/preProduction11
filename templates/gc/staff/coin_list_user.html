@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>List Of Coin</title>
+</head>
+
+<body>
+<form action="coin_list_user.php" method="post">
+<table align="center">
+<tr>
+<td>
+Select the User
+</td>
+<td>
+<input type="text" name="user_id" />
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="submit" name="submit" value="Submit" />
+</td>
+</tr>
+</table>
+</form>
+
+
+<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="7%" align="left">S.No</td>
+								<td width="10%">Coin Id</td>
+								<td width="10%">Coin Title</td>
+								<td width="5%">Coin Qty</td>
+								<td width="5%">Project Qty</td>
+								<td width="5%">Auction/Buynow</td>
+								<td width="5%">Status</td>
+								<td width="5%">Buynow Sold Qty</td>
+								<td width="5%">Sold Qty</td>
+								<td width="5%">Winner User Id</td>
+								<td width="5%">Current Price</td>								
+								<td width="12%">Total Amount In Invoice</td>
+							
+							  </tr>
+							  <loop name="coin_list">
+								<td width="7%" align="left">{sno}</td>
+								<td width="10%">{coin_id}</td>
+								<td width="10%">{coin_title}</td>
+								<td width="5%">{coinqty}</td>
+								<td width="5%">{pjtqty}</td>
+								<td width="5%">{auction}/{buynow}</td>
+								<td width="5%">{curr_status}</td>
+								<td width="5%">{buynow_qty}</td>
+								<td width="5%">{sold_qty}</td>
+								<td width="5%">{Winner_user_id}</td>
+								<td width="5%">{amount}</td>								
+								<td width="12%">{total_amount}</td>
+								 
+								</tr>
+							  </loop name="coin_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							 
+</table>
+</body>
+</html>

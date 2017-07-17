@@ -1,0 +1,503 @@
+<style>
+/* Quotes */
+.quotereply {
+    border: 1px #eee solid;
+    border-left: 3px #ccc solid;
+    background-color: #fff;
+    background-repeat: repeat;
+    margin: 10px 15px;
+    padding: 10px;
+}
+
+* html .quotereply {
+    height: 1%;
+}
+
+* html .quotereply {
+    padding-bottom: 15px;
+}
+
+.quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-1.gif');
+    overflow: auto;
+}
+
+.quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-2.gif');
+    border-color: #eef;
+    border-left-color: #ccf;
+}
+
+.quotereply .quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-3.gif');
+    border-color: #efe;
+    border-left-color: #cfc;
+}
+
+.quotereply .quotereply .quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-4.gif');
+    border-color: #fee;
+    border-left-color: #fcc;
+}
+
+/* Threaded Mode Indentss */
+.topic-reply-indent3 {
+	margin-left: 20px;
+	}
+.topic-reply-indent4 {
+	margin-left: 40px;
+	}
+.topic-reply-indent5 {
+	margin-left: 60px;
+	}
+.topic-reply-indent6 {
+	margin-left: 80px;
+	}
+.topic-reply-indent7 {
+	margin-left: 100px;
+	}
+.topic-reply-indent8 {
+	margin-left: 120px;
+	}
+.topic-reply-indent9 {
+	margin-left: 140px;
+	}
+.topic-reply-indent10 {
+	margin-left: 160px;
+	}
+.topic-reply-indent11 {
+	margin-left: 180px;
+	}
+.topic-reply-indent12 {
+	margin-left: 200px;
+	}
+.topic-reply-indent-max {
+	margin-left: 220px;
+	}
+.topic-reply-indent2,
+.topic-reply-indent3,
+.topic-reply-indent4,
+.topic-reply-indent5,
+.topic-reply-indent6,
+.topic-reply-indent7,
+.topic-reply-indent8,
+.topic-reply-indent9,
+.topic-reply-indent10,
+.topic-reply-indent11,
+.topic-reply-indent12,
+.topic-reply-indent-max 
+{
+	background: transparent url('{template_relativeimagepath}{template_imagesfolder}topic-indent-left.gif') no-repeat left top;
+	padding-left: 18px;
+}
+</style>
+{js_start}
+
+<div class="bigtabs" style="padding-bottom:10px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum">{_forum}</a><else /><a href="{ilpage[forum]}">{_forum}</a></if></li>
+	<li title="" class="on"><a href="javascript:void(0)"><if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'newtopic'">{_create_new_topic}</if>
+	<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'reply'">{_reply_to_topic}</if>
+	<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'edit'">{_edit_my_post}</if></a></li>
+</ul>
+<if condition="isset($ilance->GPC['cmd']) AND ($ilance->GPC['cmd'] == 'newtopic')">
+<span style="float:right; font-size:14px; padding-top:8px" class="gray"><span id="ajaxtopics" class="blue">No</span> new topics posted in this category since you began this post</span>
+<else />
+	<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'edit'">
+		<span style="float:right; font-size:14px; padding-top:8px" class="gray"><span id="ajaxviews" class="blue">No</span> new views since you began editing this post</span>
+	<else />
+		<span style="float:right; font-size:14px; padding-top:8px" class="gray"><span id="ajaxreplies" class="blue">No</span> new replies since you began this post</span>
+	</if>
+</if>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<form action="{ilpage[forum]}" name="ilform" method="post" accept-charset="UTF-8" style="margin:0px;" onsubmit="return validate_all();">
+<input type="hidden" name="cmd" value="{cmd}" />
+<if condition="isset($ilance->GPC['cmd']) AND ($ilance->GPC['cmd'] == 'reply' OR $ilance->GPC['cmd'] == 'newtopic' OR $ilance->GPC['cmd'] == 'edit')">
+
+<if condition="isset($ilance->GPC['cmd']) AND ($ilance->GPC['cmd'] != 'edit' AND $ilance->GPC['cmd'] != 'newtopic')">
+<div class="block-wrapper">
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header">{subject}&nbsp;</div>
+			<div class="block3-content" style="padding:0px">
+				
+				<table id="pid{pid}" cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr>
+					<td class="alt1" style="padding:0px; margin:0px;">
+						
+						<!-- user info -->
+						<table cellpadding="0" cellspacing="6" border="0" width="100%">
+						<tr>
+							<td nowrap="nowrap">
+								<div class="blue" style="font-size:18px"><strong>{replytousername}</strong></div>
+							</td>
+							<td width="100%">&nbsp;</td>
+							<td valign="top" nowrap="nowrap">
+								
+							</td>
+						</tr>
+						</table>
+						<!-- / user info -->
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+					
+						<span style="float:right">{icon}</span>
+						<!-- message -->
+						<div style="padding-bottom:8px; font-family: verdana">{message}</div>
+						<!-- / message -->
+					</td>
+				</tr>
+                <tr>
+                	<td>
+                    	<!-- last poster editing notes -->
+						<div class="smaller gray">{lasteditnotes}</div>
+						<!-- / last poster editing notes --></td>
+                </tr>
+				</table>
+				
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</if>
+
+<if condition="!empty($ilance->GPC['preview'])">
+<if condition="isset($ilance->GPC['cmd']) AND ($ilance->GPC['cmd'] != 'edit' AND $ilance->GPC['cmd'] != 'newtopic')">
+<div class="topic-reply-indent2">
+<else />
+<div>
+</if>
+<div class="block-wrapper">
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header">{_preview}</div>
+			<if condition="!empty($titlebb)"><div class="block3-content-gray" style="padding:9px"><div class="smaller"><strong>{titlepv}</strong></div></div></if>
+			<div class="block3-content" style="padding:9px">
+				<div><div style="padding-bottom:8px; font-family: verdana">{descriptionpv}</div></div>
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</div>
+</if>
+
+<if condition="isset($ilance->GPC['cmd']) AND ($ilance->GPC['cmd'] != 'edit' AND $ilance->GPC['cmd'] != 'newtopic')">
+<if condition="!empty($ilance->GPC['preview'])"><div class="topic-reply-indent1"><else /><div class="topic-reply-indent2"></if>
+<else />
+<div>
+</if>
+
+</if>
+<div class="block-wrapper">
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">
+			
+				<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'newtopic'">{_create_new_topic}</if>
+				<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'reply' AND (!isset($ilance->GPC['pid']) OR $ilance->GPC['pid'] == 0)">{_reply_to_topic}</if>
+                <if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'reply' AND isset($ilance->GPC['pid']) AND $ilance->GPC['pid'] > 0">Reply to Post</if>
+				<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'edit'">Edit Post</if>
+				
+			</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller">
+			
+				<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'newtopic'">{_when_creating_a_new_topic}</if>
+				<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'reply'">{_when_replying_to_an_existing_topic}</if>
+				<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'edit'">{_when_editing_your_message}</if>
+			
+			</div></div>
+			<div class="block-content" style="padding:0px">
+				
+				<table cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr class="alt1">
+					<td align="center">
+						<div>
+						<div style="width:610px" align="left">
+						
+							<!-- user is logged in -->
+							<div class="smaller" style="float:right">{_logged_in_as} <span class="blue"><strong>{username}</strong></span></div>
+				
+				
+							<!-- subject field -->
+							<table cellpadding="0" cellspacing="0" border="0" class="fieldset">
+                            <if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'edit'">
+                            <tr>
+								<td colspan="3">Reason for editing:</td>
+							</tr>
+                            <tr>
+								<td colspan="3"><div style="padding-top:3px; padding-bottom:7px"><input type="text" class="input" name="notes" value="{notes}" size="83" maxlength="85" tabindex="1" title="Explain the reason for editing this post" /></div></td>
+							</tr>
+                            </if>
+							<tr>
+								<td colspan="3">
+									<if condition="isset($ilance->GPC['cmd']) AND ($ilance->GPC['cmd'] == 'newtopic' OR $ilance->GPC['cmd'] == 'edit')">{_title}:</if>
+									<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'reply'">{_subject}:</if>
+								</td>
+							</tr>
+							<tr>
+								<td><div style="padding-top:3px"><input type="text" class="input" name="title" value="{titlebb}" size="83" maxlength="85" tabindex="1" title="{_title}" /></div></td>
+								<td>&nbsp;&nbsp;</td>
+								<td></td>
+							</tr>
+							</table>
+							<!-- / subject field -->
+						
+							<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><div style="padding-top:8px; padding-bottom:3px">{_message}:</div></td>
+							</tr>
+							<tr>
+								<td valign="top">{wysiwyg_area}</td>
+							</tr>
+							</table>
+				
+							<fieldset class="fieldset" style="margin:10px 0px 0px 0px"> 
+							<legend>{_message_icons}</legend> 
+							<div style="padding:3px"> 
+								<table cellpadding="0" cellspacing="1" border="0" width="95%">
+								<tr>
+									<td colspan="15">
+										<div style="margin-bottom:3px">{_your_may_choose_an_icon_for_your_message}:</div><hr size="1" width="100%" style="color:#cccccc; margin-top:6px; margin-bottom:6px" />
+									</td>
+								</tr>
+								<tr>
+									<td width="14%" nowrap="nowrap">
+									  <label for="iconid_0">
+											<input type="radio" name="iconid" value="0" id="iconid_0" tabindex="1" <if condition="!isset($ilance->GPC['iconid'])">checked="checked"</if> /><strong>{_no_icon}</strong> &nbsp; &nbsp;</label>				  </td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="1" id="iconid_1" tabindex="1" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 1">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_1">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon1.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="2" id="iconid_2" tabindex="2" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 2">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_2">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon2.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="3" id="iconid_3" tabindex="3" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 3">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_3">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon3.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="4" id="iconid_4" tabindex="4" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 4">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_4">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon4.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="5" id="iconid_5" tabindex="5" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 5">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_5">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon5.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="6" id="iconid_6" tabindex="6" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 6">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_6">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon6.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="7" id="iconid_7" tabindex="7" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 7">checked="checked"</if> />
+									</td>
+									<td width="22%" valign="bottom">
+										<label for="iconid_7">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon7.gif" />
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<td width="14%" nowrap="nowrap"></td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="8" id="iconid_8" tabindex="8" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 8">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_8">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon8.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="9" id="iconid_9" tabindex="9" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 9">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_9">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon9.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="10" id="iconid_10" tabindex="10" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 10">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_10">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon10.gif" />
+										</label>
+									</td>
+									<td width="4%">
+										<input type="radio" name="iconid" value="11" id="iconid_11" tabindex="11" <if condition="isset($ilance->GPC['iconid']) AND $ilance->GPC['iconid'] == 11">checked="checked"</if> />
+									</td>
+									<td width="6%" valign="bottom">
+										<label for="iconid_11">
+											<img src="{template_relativeimagepath}{template_imagesfolder}posticons/icon11.gif" />
+										</label>
+									</td>
+								  
+								</tr>
+								</table>
+							</div>
+						</fieldset>
+							
+						  </div>
+					  </div>
+							<div style="margin-top:6px">
+							
+							</div>
+				
+				
+						<!-- / message area -->
+						
+					</td>
+				  </tr>
+				  <tr>
+				  	<td align="center"><input type="hidden" name="tid" value="{tid}" />
+							<input type="hidden" name="pid" value="{pid}" />
+							<input type="hidden" name="cid" value="{cid}" />
+							<input type="hidden" name="username" value="{username}" />
+							<input type="submit" class="buttons" name="preview" value=" {_preview} " id="preview" tabindex="4" style="font-size:15px" />
+							<input type="submit" class="buttons" name="submit" value=" {_submit} " id="save" tabindex="3" style="font-size:15px" /> &nbsp;&nbsp;&nbsp;<span class="blue"><a href="javascript:history.back(1)">{_cancel}</a></span></td>
+				  </tr>
+				</table>
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'reply' AND isset($ilance->GPC['pid']) AND $ilance->GPC['pid'] > 0"></div></if>
+
+
+<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0">
+<div class="block-wrapper">
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header">{_additional_options}</div>
+			<!--<div class="block3-content-gray" style="padding:9px"><div class="smaller">Additional Notification Preferences</div></div>-->
+			<div class="block3-content" style="padding:0px">
+				
+				<table cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tbody>	
+				<tr valign="top" class="alt1">
+					<td>
+					<div>
+						<div style="width:610px" align="left">
+										
+							<div><strong>{_topic_notification}</strong></div>
+								<div style="padding-top:3px; padding-bottom:12px"><select name="subscribe" tabindex="5" style="font-family: verdana">
+										<option value="0" <if condition="(isset($ilance->GPC['subscribe']) AND $ilance->GPC['subscribe'] == '0')">selected="selected"</if>>{_no_email_notification}</option>
+										<option value="1" <if condition="(isset($ilance->GPC['subscribe']) AND $ilance->GPC['subscribe'] == '1')">selected="selected"</if>>{_instant_email_notification}</option>
+									</select></div>
+							
+							
+							
+							<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['isadmin'] == '1'">
+							<div><strong>{_topic_management}</strong></div>
+							<div style="padding-top:3px">
+								<div>
+									<label for="close"><input type="checkbox" name="close" value="1" id="close" tabindex="7" <if condition="(isset($ilance->GPC['close']) AND $ilance->GPC['close'])">checked="checked"</if> />
+									<span class="gray">{_close_this_topic_after_submit}</span>.</label>
+								</div>
+					
+								<div style="padding-top:3px">
+									<label for="sticky"><input type="checkbox" name="sticky" value="1" id="sticky" tabindex="8" <if condition="(isset($ilance->GPC['sticky']) AND $ilance->GPC['sticky'])">checked="checked"</if> />
+										<span class="gray">{_make_this_topic_sticky}</span>.
+									</label>
+								</div>
+							</div>
+							
+							</if>
+							
+						</div>
+					</div>
+					</td>
+				</tr>
+				</tbody>
+				<tr>
+					<td><input type="submit" id="preview" class="buttons" name="preview" value=" {_preview} " accesskey="p" tabindex="10" style="font-size:15px" />			
+						<input type="submit" id="save" class="buttons" name="submit" value=" {_submit} " accesskey="s" tabindex="9" style="font-size:15px" /> &nbsp;&nbsp;&nbsp;<span class="blue"><a href="javascript:history.back(1)">{_cancel}</a></span></td>
+				</tr>
+				</table>
+				
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</if>
+</form>

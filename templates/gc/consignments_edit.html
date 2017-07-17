@@ -1,0 +1,147 @@
+<script type="text/javascript">
+function check_consignment_value()
+{
+
+if(document.getElementById('coins').value =='')
+
+{
+alert('Enter coins ');
+return false;
+}
+return true;
+}
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="consignments.php" ><span>Listing</span></a>
+		<a href="consignments.php?cmd=create" class="sel"><span>Create</span></a> 
+		<a href="consignments.php?cmd=list_raw_send" ><span>List Raw</span></a> 
+		 <a href="consignments.php?cmd=search" ><span>Search</span></a>
+		  <a href="consignments.php?cmd=pen_con_list" ><span>Pending List</span></a>
+	
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Consignments</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Edit</h2>
+			
+			
+			     
+					
+				<form method="post" action="{ilpage[consignment]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="update_consignment" />
+				
+				<input type="hidden" name="return" value="{ilpage[consignment]}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">{_edit}</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+						      <tr class="alt1"> 
+						       <td style="display:none;"><input type="hidden" name="user_id" id="user_id" value="{user_id}"/>
+							   <input type="hidden" name="consignid" id="consignid" value="{consignid}"/>
+							   </td>
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_username}</span></td>
+								<td>{username}</td>
+								<td nowrap="nowrap" class="alt1"><span class="gray">{_email}</span></td>
+								<td>{email}</td>
+							</tr>
+                            
+						
+							
+						
+                            </table>
+							
+                            </div>
+                            
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Consignment Details</div></div>
+                            <div class="block3-content" style="padding:0px" >
+							
+							  <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                               <tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">No.of.coins</span></td>
+								<td><input type="text" name="coins" id="coins" style="width:275px" value="{coins}"/></td>
+								<td nowrap="nowrap" class="alt1"><span class="gray">Final Vlaue Fee</span></td>
+								<td>
+								<select name="feewith" style="font-family: Verdana">
+								{final_per}
+								</select></td><td>% with</td>
+								<td>
+								<select name="feemin" style="font-family: Verdana">
+								{final_min}
+								</select></td><td> $ min</td>
+							   </tr>
+							   <tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">Site Id</span></td>
+								<td>{site_id_up}</td><td></td><td></td><td></td><td></td><td></td>
+							</tr>
+							<tr class="alt1">
+							<td nowrap="nowrap" class="alt1"><span class="gray">End date</span></td>
+								<td>{daylist}{monthlist}{yearlist}
+								</td><td></td><td></td><td></td><td></td><td></td>
+							</tr>
+							<tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">Referal id</span></td>
+								<td>{referal_id_up}</td><td></td><td></td><td></td><td></td><td></td>
+							</tr>
+							<tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">Listing Fee</span></td>
+								<td><select name="listingfee" style="font-family: Verdana">
+								<option value="UBC10">UBC10</option>
+								<option value="UBC9">UBC9</option>
+								<option value="CBN1">CBN1</option>
+								</select></td><td></td><td></td><td></td><td></td><td></td>
+							</tr>
+							<tr class="alt1"> 
+								<td nowrap="nowrap" class="alt1"><span class="gray">Notes</span></td>
+								<td><textarea name="notes" style="width: 300px; height: 150px;">{notes}</textarea></td>
+							</tr>
+							<tr class="alt1"> 
+								
+								<td><input type="submit" value="submit" onclick="return check_consignment_value();"/></td>
+							</tr>
+                            </table>
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+            
+			</form>
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

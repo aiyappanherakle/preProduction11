@@ -1,0 +1,593 @@
+<style type="text/css">
+#buttonsc {
+	background: #007cc7;
+	background-image: -webkit-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -moz-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -ms-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -o-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: linear-gradient(to bottom, #007cc7, #1d4aa6);
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	text-shadow: 1px 1px 1px #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 17px;
+	color: #ffffff;
+	text-decoration: none;
+	width: 130px;
+	height: 30px;
+	border: medium none;
+	cursor: pointer;
+	border-radius: 6px;
+}
+#buttonsc:hover {
+	background: #1d4aa6;
+	font-size: 17px;
+	background-image: -webkit-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -moz-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -ms-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -o-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: linear-gradient(to bottom, #1d4aa6, #007cc7);
+	text-decoration: none;
+}
+</style>
+<script type="text/javascript">
+function make_buynow(item_id)
+{
+	var qty=$("#qty_dropdown_"+item_id).val();
+	if(typeof qty === "undefined" ) qty=1;
+	
+	window.location="{http_server}merch.php?cmd=purchase-confirm&pid="+item_id+"&qty="+qty;
+}
+function prompting()
+{
+var x;
+var r=confirm("Are you sure you want to delete all items from your watchlist? This cannot be undone.");
+if (r==true)
+{
+return true;
+}
+else
+{
+return false
+}
+}
+	function isFloat(n) 
+	{
+     return parseFloat(n.match(/^-?\d*(\.\d+)?$/))>0;
+    }
+	
+	function setAction (element, page)
+	{
+	var bidbox_count=$(".bid_amount").length;
+	var er=0;
+	
+	var emp = 0;	
+	for(var i=1;i<=bidbox_count;i++)
+	{
+		var minimum_bid=parseFloat($("#min_bid_amount_"+i).val());
+		var bidded_amount=parseFloat($("#bid_amount_"+i).val());
+		var bid_amt_str=$("#bid_amount_"+i).val();
+		
+		
+		if($("#bid_amount_"+i).val() == '')
+		{
+			emp++;
+		}
+		
+		if(bidded_amount>0)
+		{
+		
+		//alert(bidded_amount+' == '+$("#bid_amount_"+i).val());
+		if(bidded_amount<minimum_bid)
+			{
+				alert("Bid amount must exceed Minimum bid amount mentioned below the bid box");
+				$("#bid_amount_"+i).focus();
+				$("#bid_amount_"+i).select();
+				return false;
+			}
+			
+		}
+		
+		if(bidded_amount <= 0  || (isNaN(bidded_amount)== true && bid_amt_str !=''))
+		{
+			er=1;
+			alert("Enter the valid amount");
+			$("#bid_amount_"+i).focus();
+			$("#bid_amount_"+i).select();
+			return false;
+		}
+
+
+		if(isFloat(bid_amt_str)== false && bid_amt_str !='' )
+		{
+			er=1;
+			alert("Enter the valid amount");
+			$("#bid_amount_"+i).focus();
+			$("#bid_amount_"+i).select();
+			return false;
+			
+		}
+		//er=1;
+		
+	}
+		if(emp==bidbox_count)
+		{
+			alert("Fill atleast one bid box to make a bid");
+			return false;
+		}
+		if(er==1)
+		{
+			alert("Enter the valid amount");
+			return false;
+		}
+		
+		if(er==0)
+		{
+		element.form.action =  page;
+		//element.form.submit();
+		return true;
+		}
+			return true;
+	}
+</script>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr valign="top">
+		<td>{v3left_nav}</td>
+		<td><div style="width:10px"></div></td>
+		<td width="100%">
+			<div class="bigtabs" style="padding-bottom:5px; padding-top:0px">
+				<div class="bigtabsheader">
+					<ul>
+						<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="mygc">{_dashboard}</a><else /><a href="{ilpage[main]}?cmd=cp">{_dashboard}</a></if></li>
+						<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Favorites">{_favorite_searches}</a><else /><a href="{ilpage[preferences]}?cmd=favorites">{_favorite_searches}</a></if></li>
+						<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Preferences/Notifications">{_notifications}</a><else /><a href="{ilpage[preferences]}?cmd=notifications">{_notifications}</a></if></li>
+						<li title="" class="on"><a href="javascript:void(0)">{_watchlist}</a></li>
+					</ul>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+			
+			{apihook[watchlist_start_html]}
+			
+			<form name="formtab" style="margin:0px;" accept-charset="UTF-8">
+				<input type="hidden" name="viewtab" value="{tab}" />
+			</form>
+			<if condition="$_SESSION['ilancedata']['user']['enable_batch_bid']=='1'">
+			<div style="float: right;">Multi-Bid Enabled - Bid Directly From Your Watchlist
+				<img src="{template_relativeimagepath}{template_imagesfolder}new.gif" border="0">
+			</div>
+			</if>
+			<div class="bigtabs" style="padding-bottom:5px; padding-top:0px">
+				<div class="bigtabsheader">
+					<ul>
+						<if condition="isset($show['active_list']) AND $show['active_list']=='1'">
+						<li class="on" title=""><a href="{ilpage[watchlist]}?cmd=active">Active Listings</a></li>
+						<li class="" title="">
+							<a href="{ilpage[watchlist]}?cmd=recently_ended">Recently Ended</a></li>
+							<li class="" title="">
+								<a href="{ilpage[watchlist]}?cmd=ended">All Ended Items</a></li></ul>
+								</if>
+								<if condition="isset($show['recently_ended']) AND $show['recently_ended']=='1'">
+								<li class="" title=""><a href="{ilpage[watchlist]}?cmd=active">Active Listings</a></li>
+								<li class="on" title="">
+									<a href="{ilpage[watchlist]}?cmd=recently_ended">Recently Ended</a></li>
+									<li class="" title="">
+										<a href="{ilpage[watchlist]}?cmd=ended">All Ended Items</a></li></ul>
+										</if>
+										<if condition="isset($show['ended_list']) AND $show['ended_list']=='1'">
+										
+										<li class="" title=""><a href="{ilpage[watchlist]}?cmd=active">Active Listings</a></li>
+										<li class="" title="">
+											<a href="{ilpage[watchlist]}?cmd=recently_ended">Recently Ended</a></li>
+											<li class="on" title="">
+												<a href="{ilpage[watchlist]}?cmd=ended">All Ended Items</a></li></ul>
+											</span>
+											</if>
+											
+										</div>
+										
+										<form method="post" action="" accept-charset="UTF-8" style="margin: 0px;">
+											<input type="hidden" name="cmd" value="_do-watch-cmd" />
+											<input type="hidden" name="state" value="auction" />
+											<div class="block-wrapper">
+												
+												<div class="block5">
+													<if condition="isset($show['active_list']) AND $show['active_list']=='1'">
+													{active_prevnext}
+													<div class="block5-content" style="padding:0px">
+															
+														<table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+															<tr class="alt2">
+																<td width="5%" align="center">{_sel}</td>
+																<td width="6%">{_sample}</td>
+																<td width="6%">Item ID</td>
+																<td width="43%">{_auction_title}</td>
+																<td width="15%" nowrap="nowrap">{_current_bid}</td>
+																
+																<td width="12%">{_bids}</td>
+																<if condition="$_SESSION['ilancedata']['user']['enable_batch_bid']=='1'">
+																<td width="12%" nowrap="nowrap">Place Bid / Buy Now</td>
+																</if>
+																<td width="15%" nowrap="nowrap">{_time_left}</td>
+																<td width="19%" nowrap="nowrap">{_status}</td>
+															</tr>
+															
+															
+															<loop name="watchlist_rfp">
+															<input type="hidden" name="rfp_id[]" value="{watching_project_id}">
+															<input type="hidden" name="project_title[]" value="{project_title}">
+															
+															<input type="hidden" name="project_user_id[]" value="{project_user_id}">
+															<tr valign="top" class="alt1">
+																<td valign="top" >{action}</td>
+																<td align="center">{sample}</td>
+																<td align="center">{watching_project_id}</td>
+																
+																<td valign="top"><span style="float:right">{attach}</span><span class="blue" style="font-size:13px">{title}</span>
+																<div class="smaller gray" style="padding-top:3px">{description}</div></td>
+																<td nowrap="nowrap"><div class="blue">{currentbid}</div></td>
+																
+																<td nowrap="nowrap"><div class="blue">{bids}</div></td>
+																<if condition="$_SESSION['ilancedata']['user']['enable_batch_bid']=='1'">
+																<if condition="{buy_now} > '0' "><if condition="{is_owner} > '0'"><if condition="{ended} > '0'">
+																<td nowrap="nowrap">
+																	<div class="blue">
+																		
+																		US$
+																		
+																		{bid_amount}
+																		{hidden_min_bid}
+																		{projectlist_id}
+																		<div class="smaller black" style="padding-top:3px">
+																			({_enter} <span id="minimumbidtext">US{min_bidamountformatted}</span> <strong> {_or_more}</strong>)
+																			<input type="hidden" name="min_amt[]" id="min_amt" value="{min_bidamount}" />
+																			<br /><br />
+																			<small><i>A 10% buyer's fee (min $5) </br> applies to this auction.</i></small>
+																		</div>
+																	</div></td>
+																	</if></if></if>
+																	<if condition="{buy_now} == '0'">
+																	<td nowrap="nowrap">
+																		<div class="blue">{qty_pulldown}<br><br><input type="button" name="buynow" id="buttonsc"  onclick="make_buynow({watching_project_id})"  value="Buy Now" />
+																	</div></td>
+																	</if>
+																	<if condition="{is_owner} == '0'">
+																	<td nowrap="nowrap">
+																		<div class="blue">-
+																		</div></td>
+																		</if>
+																		<if condition="{ended} == '0'">
+																		<td nowrap="nowrap">
+																			<div class="blue">-
+																			</div></td>
+																			</if>
+																			</if>
+																			
+																			<td nowrap="nowrap"><strong>{timeleft}&nbsp;</strong></td>
+																			<td nowrap="nowrap"><div class="green">{status}</div></td>
+																			<tr valign="top" class="alt1">
+																				<td colspan="8" valign="top">
+																					
+																					<table width="100%" border="0" cellspacing="0" cellpadding="3">
+																						<tr>
+																							<td valign="top" width="50%"><strong>{_notes}</strong> <span class="smaller">[ <span class="blue"><a href="javascript:void(0)" onclick=Attach("{ilpage[watchlist]}?cmd=upd&amp;wtype=rfp&amp;id={watching_project_id}") class="gray">{_edit}</a></span> ]</span>
+																							<div style="padding-top:6px">{comment}</div>
+																							<div style="padding-top:5px; padding-bottom:5px"></div></td>
+																							<td valign="top" width="50%"><div id="inline_watchlist_{watchlistid}">
+																								
+																							</td>
+																						</tr>
+																					</table></td>
+																				</tr>
+																			</tr>
+																			<tr class="alt2_top">
+																				<if condition="$_SESSION['ilancedata']['user']['enable_batch_bid']=='1'">
+																				<td colspan="9" valign="top" class="alt2_top">
+																					<else />
+																					<td colspan="8" valign="top" class="alt2_top">
+																						</if>
+																						<table width="100%" border="0" cellspacing="0" cellpadding="3">
+																							<tr>
+																								<td valign="top" width="50%"></td>
+																								<td valign="top" width="50%"><div id="inline_watchlist_{watchlistid}">
+																									
+																									
+																								</td>
+																							</tr>
+																						</table></td>
+																					</tr>
+																					</loop name="watchlist_rfp">
+																					<if condition="$_SESSION['ilancedata']['user']['enable_batch_bid']=='1'">
+																					<tr>
+																						<td>&nbsp;</td>
+																						<td>&nbsp;</td>
+																						<td>&nbsp;</td>
+																						<td>&nbsp;</td>
+																						<td>&nbsp;</td>
+																						<td>&nbsp;</td>
+																						<if condition="isset($show['no_watchlist_active']) AND $show['no_watchlist_active'] == false">
+																						<td><input type="submit" name="place_bid_w" id="buttonsc"  onclick="return setAction(this,'{http_server}rfp1.php')"  value="Place bid" class="submit_form" /></td></if></tr>
+																						<tr>
+																							<td valign="top" class="alt2_top" colspan="9"><table width="100%" cellspacing="0" cellpadding="3" border="0"><tbody><tr><td width="50%" valign="top"></td><td width="50%" valign="top"><div id="inline_watchlist_{watchlistid}"></div></td></tr></tbody></table></td></tr>
+																							</if>
+																							
+																						</table>
+																						
+																					</div>
+																					</if>
+																					
+																					<if condition="isset($show['recently_ended']) AND $show['recently_ended']=='1'">
+																					{recently_ended_prevnext}
+																					<div class="block5-content" style="padding:0px">
+																						
+																						<table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+																							<tr class="alt2">
+																								<td colspan="9"width="5%" ><strong>This tab shows any items that ended today that were on your watchlist.</strong>
+																							</td>
+																						   </tr>
+																							<tr class="alt2">
+																								<td width="5%" align="center">{_sel}</td>
+																								<td width="6%">{_sample}</td>
+																								<td width="6%">Item ID</td>
+																								<td width="43%">{_auction_title}</td>
+																								<td width="15%" nowrap="nowrap">{_current_bid}</td>
+																								
+																								<td width="12%">{_bids}</td>
+																								<td width="15%" nowrap="nowrap">{_ended}</td>
+																								<td width="19%" nowrap="nowrap">{_status}</td>
+																							</tr>
+																							
+																							
+																							<loop name="watchlist_rfp2">
+																							<tr valign="top" class="alt1">
+																								<td valign="top" >{action}</td>
+																								<td align="center">{sample}</td>
+																								<td align="center">{watching_project_id}</td>
+																								
+																								<td valign="top"><span style="float:right">{attach}</span><span class="blue" style="font-size:13px">{title}</span>
+																								<div class="smaller gray" style="padding-top:3px">{description}</div></td>
+																								<td nowrap="nowrap"><div class="blue">{currentbid}</div></td>
+																								
+																								<td nowrap="nowrap"><div class="blue">{bids}</div></td>
+																								<td nowrap="nowrap"><strong>{ended_date}&nbsp;</strong></td>
+																								<td nowrap="nowrap"><div class="green">{status}</div></td>
+																								<tr valign="top" class="alt1">
+																									<td colspan="8" valign="top">
+																										
+																										<table width="100%" border="0" cellspacing="0" cellpadding="3">
+																											<tr>
+																												<td valign="top" width="50%"><strong>{_notes}</strong> <span class="smaller">[ <span class="blue"><a href="javascript:void(0)" onclick=Attach("{ilpage[watchlist]}?cmd=upd&amp;wtype=rfp&amp;id={watching_project_id}") class="gray">{_edit}</a></span> ]</span>
+																												<div style="padding-top:6px">{comment}</div>
+																												<div style="padding-top:5px; padding-bottom:5px"></div></td>
+																												<td  width="10%">
+																													{invoice_status}
+																												</td>
+																											</tr>
+																										</table></td>
+																									</tr>
+																								</tr>
+																								<tr class="alt2_top">
+																									<td colspan="8" valign="top" class="alt2_top">
+																										
+																										<table width="100%" border="0" cellspacing="0" cellpadding="3">
+																											<tr>
+																												<td valign="top" width="50%"></td>
+																												<td valign="top" width="50%"><div id="inline_watchlist_{watchlistid}">
+																													
+																													
+																												</td>
+																											</tr>
+																										</table></td>
+																									</tr>
+																									</loop name="watchlist_rfp2">
+																									
+																																													
+																									
+																								</table>
+																								
+																								
+																							</div>
+																							</if>
+																							<if condition="isset($show['ended_list']) AND $show['ended_list']=='1'">
+																							{ended_prevnext}
+																							<div class="block5-content" style="padding:0px">
+																								
+																								<table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+																									<tr class="alt2">
+																										<td width="5%" align="center">{_sel}</td>
+																										<td width="6%">{_sample}</td>
+																										<td width="6%">Item ID</td>
+																										<td width="43%">{_auction_title}</td>
+																										<td width="15%" nowrap="nowrap">{_current_bid}</td>
+																										
+																										<td width="12%">{_bids}</td>
+																										<td width="15%" nowrap="nowrap">{_ended}</td>
+																										<td width="19%" nowrap="nowrap">{_status}</td>
+																									</tr>
+																									
+																									
+																									<loop name="watchlist_rfp1">
+																									<tr valign="top" class="alt1">
+																										<td valign="top" >{action}</td>
+																										<td align="center">{sample}</td>
+																										<td align="center">{watching_project_id}</td>
+																										
+																										<td valign="top"><span style="float:right">{attach}</span><span class="blue" style="font-size:13px">{title}</span>
+																										<div class="smaller gray" style="padding-top:3px">{description}</div></td>
+																										<td nowrap="nowrap"><div class="blue">{currentbid}</div></td>
+																										
+																										<td nowrap="nowrap"><div class="blue">{bids}</div></td>
+																										<td nowrap="nowrap"><strong>{ended_date}&nbsp;</strong></td>
+																										<td nowrap="nowrap"><div class="green">{status}</div></td>
+																										<tr valign="top" class="alt1">
+																											<td colspan="8" valign="top">
+																												
+																												<table width="100%" border="0" cellspacing="0" cellpadding="3">
+																													<tr>
+																														<td valign="top" width="50%"><strong>{_notes}</strong> <span class="smaller">[ <span class="blue"><a href="javascript:void(0)" onclick=Attach("{ilpage[watchlist]}?cmd=upd&amp;wtype=rfp&amp;id={watching_project_id}") class="gray">{_edit}</a></span> ]</span>
+																														<div style="padding-top:6px">{comment}</div>
+																														<div style="padding-top:5px; padding-bottom:5px"></div></td>
+																														<td  width="10%">
+																															{invoice_status}
+																														</td>
+																													</tr>
+																												</table></td>
+																											</tr>
+																										</tr>
+																										<tr class="alt2_top">
+																											<td colspan="8" valign="top" class="alt2_top">
+																												
+																												<table width="100%" border="0" cellspacing="0" cellpadding="3">
+																													<tr>
+																														<td valign="top" width="50%"></td>
+																														<td valign="top" width="50%"><div id="inline_watchlist_{watchlistid}">
+																															
+																															
+																														</td>
+																													</tr>
+																												</table></td>
+																											</tr>
+																											</loop name="watchlist_rfp1">
+																											
+																										</table>
+																										
+																									</div>
+																									</if>
+																									
+																									<div class="block5-content" style="padding:0px">
+																										<table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+																											
+																											<if condition="isset($show['no_watchlist_active']) AND $show['no_watchlist_active']">
+																											<tr>
+																												<td colspan="9" nowrap="nowrap" align="center"><div style="padding-top:8px; padding-bottom:8px">{_you_are_not_watching_any_coins_or_currency_click_here_to_browse_current_auctions_and_buy_now_items}</div></td>
+																											</tr>
+																											</if>
+																											<if condition="isset($show['no_watchlist_ended']) AND $show['no_watchlist_ended']">
+																											<tr>
+																												<td colspan="9" nowrap="nowrap" align="center"><div style="padding-top:8px; padding-bottom:8px">{_you_are_not_watching_any_coins_or_currency_click_here_to_browse_current_auctions_and_buy_now_items_ended}</div></td>
+																											</tr>
+																											</if>
+																											<if condition="isset($show['no_watchlist_recently_ended']) AND $show['no_watchlist_recently_ended']">
+																											<tr>
+																												<td colspan="9" nowrap="nowrap" align="center"><div style="padding-top:8px; padding-bottom:8px">{_you_are_not_watching_any_coins_or_currency_click_here_to_browse_current_auctions_and_buy_now_items_recently_ended}</div></td>
+																											</tr>
+																											</if>
+																											<if condition="isset($show['no_watchlist_active']) AND $show['no_watchlist_active'] 
+																											== false">
+																											<tr>
+																												<td colspan="4" class="alt2_top">
+																													<select name="rfpcmd" style="font-family: verdana">
+																														<optgroup label="{_select_action}">
+																															<option value="delete">{_remove}</option>
+																														</optgroup>
+																													</select>
+																													<input type="submit" class="buttons" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}" />
+																												</td>
+																												<if condition="isset($show['active_list']) AND $show['active_list']=='1'">
+																												<td colspan="2" class="alt2_top">
+																													<a href="watchlist.php?cmd=removeend"><b onclick="return prompting();">Remove all ended items</b></a>
+																												</td>
+																												</if>
+																												<td colspan="2" class="alt2_top">
+																													<a href="watchlist.php?cmd=removeall"><b onclick="return prompting();">Remove all active/ended items</b></a>
+																												</td>
+																												
+																											</tr>
+																											</if>
+																											<if condition="isset($show['no_watchlist_recently_ended']) AND $show['no_watchlist_recently_ended'] 
+																											== false">
+																											<tr>
+																												<td colspan="4" class="alt2_top">
+																													<select name="rfpcmd" style="font-family: verdana">
+																														<optgroup label="{_select_action}">
+																															<option value="delete">{_remove}</option>
+																														</optgroup>
+																													</select>
+																													<input type="submit" class="buttons" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}" />
+																												</td>
+																												<if condition="isset($show['recently_ended']) AND $show['recently_ended']=='1'">
+																												<td colspan="2" class="alt2_top">
+																													<a href="watchlist.php?cmd=removeend"><b onclick="return prompting();">Remove all ended items</b></a>
+																												</td>
+																												</if>
+																												<td colspan="2" class="alt2_top">
+																													<a href="watchlist.php?cmd=removeall"><b onclick="return prompting();">Remove all active/ended items</b></a>
+																												</td>
+																												
+																											</tr>
+																											</if>
+																											<if condition="isset($show['no_watchlist_ended']) AND $show['no_watchlist_ended'] 
+																											== false">
+																											<tr>
+																												<td colspan="4" class="alt2_top">
+																													<select name="rfpcmd" style="font-family: verdana">
+																														<optgroup label="{_select_action}">
+																															<option value="delete">{_remove}</option>
+																														</optgroup>
+																													</select>
+																													<input type="submit" class="buttons" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')" value="{_go}" />
+																												</td>
+																												<if condition="isset($show['ended_list']) AND $show['ended_list']=='1'">
+																												<td colspan="2" class="alt2_top">
+																													<a href="watchlist.php?cmd=removeend"><b onclick="return prompting();">Remove all ended items</b></a>
+																												</td>
+																												</if>
+																												<td colspan="2" class="alt2_top">
+																													<a href="watchlist.php?cmd=removeall"><b onclick="return prompting();">Remove all active/ended items</b></a>
+																												</td>
+																												
+																											</tr>
+																											</if>
+																										</table>
+																										<if condition="isset($show['active_list']) AND $show['active_list']=='1'">
+																										{active_prevnext}
+																										</if>
+																										<if condition="isset($show['recently_ended']) AND $show['recently_ended']=='1'">
+																										{recently_ended_prevnext}
+																										</if>
+																										<if condition="isset($show['ended_list']) AND $show['ended_list']=='1'">
+																										{ended_prevnext}
+																										</if>
+																										
+																										
+																										<div class="block5-footer">
+																											<div class="block5-right">
+																												<div class="block5-left"></div>
+																											</div>
+																										</div>
+																										
+																									</div>
+																								</div>
+																							</form>
+																							
+																							{apihook[watchlist_end]}
+																							
+																						</div>
+																						
+																						<script type="text/javascript">
+																						<!--
+																						setupAllTabs();
+																						-->
+																						</script>
+																						
+																						
+																						<br />
+																						
+																						<table width="100%" border="0" cellspacing="0" cellpadding="4">
+																							<tr>
+																								<td><strong>{_where_to}</strong></td>
+																							</tr>
+																							<tr>
+																								<td>
+																									<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="2">
+																										<tr>
+																											<td width="7%" align="center"><img src="{template_relativeimagepath}{template_imagesfolder}arrow_right.gif" width="18" height="18" /></td>
+																											<td><a href="{ilpage[preferences]}">{_preferences}</a>&nbsp;&nbsp;&nbsp;<a href="{ilpage[main]}">{_main_menu}</a></td>
+																										</tr>
+																									</table>
+																								</td>
+																							</tr>
+																						</table>
+																					</td>
+																				</tr>
+																			</table>

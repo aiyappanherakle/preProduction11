@@ -1,0 +1,249 @@
+<style>
+#v3body3
+{
+background:#FFFFFF;
+}
+</style>
+<div class="bigtabs" style="padding-bottom:5px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>	
+	<li title="" class="on"><a href="javascript:void(0)">{_preview}</a></li>	
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<div style="padding-top:12px">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+<td>
+<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td style="padding-left:5px;" valign="top"></td>
+	<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+	<td style="padding-right:5px;"><if condition="$show['invoicecancelled']">
+<div><div class="header" align="left" style="padding-bottom:3px">{_this_invoice_is_cancelled}</div></div>
+<else />
+
+  <if condition="$show['ispaid'] OR $show['iscomplete']">
+	<div>
+		<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice_checkmark.gif" border="0" alt="" id="invoicepaidicon" /></span> {_amount_paid}: <span class="blue">{amountpaid}</span></div>
+		<div class="smaller gray">{_this_invoice_has_been_paid_in_full} {_as_of} <span class="black">{paiddate}</span></div>
+	</div>
+  </if>
+  
+  <if condition="$show['isunpaid'] OR $show['isscheduled']">
+	<div>
+		<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice.gif" border="0" alt="" id="invoiceunpaidicon" /></span> {_amount_due}: <span class="red">{totalamount}</span></div>
+		<div class="smaller gray">{_this_invoice_is_pending_payment} {_as_of} <span class="red">{createdate}</span></div>
+        <if condition="isset($show['subscriptionpayment']) AND $show['subscriptionpayment']"><hr size="1" width="100%" style="color:#cccccc" /><div><strong>{_this_is_a_subscription_transaction_once_you_settle_for_the_amount}</strong></div></if>
+	</div>
+  </if>
+  
+  <if condition="$show['iscancelled']">
+	<div>
+		<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice.gif" border="0" alt="" id="invoiceunpaidicon" /></span> {_amount_due}: <span class="red">{totalamount}</span></div>
+		<div class="smaller gray">{_this_invoice_is_cancelled}</div>
+	</div>
+  </if>
+  
+</if></td>
+</tr>
+</table>
+</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+</td>
+</tr>
+</table>
+</div>
+
+<div style="padding-top:6px"></div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td valign="top" width="50%">
+	
+		<div class="block-wrapper">
+		
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_customer_billing_information}</div>
+					
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller"><div>{customername} <span class="gray">" {customer} "</span></div></div></div>
+					<div class="block-content" style="padding:12px">
+						
+						
+						
+						<div><blockquote>{customerinfo}
+						
+						<div class="smaller gray" style="padding-top:6px">[ <span class="blue"><a href="{https_server}{ilpage[preferences]}?cmd=profile&amp;redirect={pageurl_urlencoded}">{_edit}</a></span> ]</div>
+						</blockquote>
+						
+						</div>
+						
+					  
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+	</td>
+<if condition="isset($show['providerblock']) AND $show['providerblock']">
+	<td width="3%"></td>
+	<td valign="top" width="47%">
+	
+		<div class="block-wrapper">
+		
+			<div class="block2">
+			
+					<div class="block2-top">
+							<div class="block2-right">
+									<div class="block2-left"></div>
+							</div>
+					</div>
+					
+					<div class="block2-header">{_transaction_trading_partner}</div>
+					
+					<div class="block2-content-blue" style="padding:9px"><div class="smaller"><div>{providername} <span class="gray">" {provider} "</span></div></div></div>
+					<div class="block2-content" style="padding:12px">
+						
+						
+						
+						<blockquote><div>{providerinfo}</div>
+						<if condition="$ilance->subscription->check_access($_SESSION['ilancedata']['user']['userid'], 'pmbcompose') == 'yes'">
+						<div style="padding-top:12px">
+							<span class="blue">
+								
+									<div class="blue"><a href="{https_server}{ilpage[messages]}?cmd=compose&amp;username={provider}&amp;project_id={project_id}&amp;subject=Question+re:+Transaction+ID:+{transactionid}&amp;s={s}" target="_blank"><strong>{_contact_via_private_message}</strong></a></div>
+								
+							</span>
+						</div>
+						</if>
+						</blockquote>
+						
+					</div>
+					
+					<div class="block2-footer">
+							<div class="block2-right">
+									<div class="block2-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+	
+	</td>
+</if>
+</tr>
+</table>
+
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_transaction_details}</div>
+			
+			<!--<div class="block-content-yellow"><div class="smaller"></div></div>-->
+			<div class="block-content" style="padding:0px">
+				
+				
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td align="left" nowrap="nowrap" class="alt2">{_transaction_id}</td> 
+					<td width="23%" align="left" class="alt2" nowrap="nowrap">{_transaction_type}</td> 
+					<td width="30%" align="left" class="alt2" nowrap="nowrap">{_generated_by}</td> 
+					<td width="29%" align="left" class="alt2" nowrap="nowrap">{_to_upper}</td>
+				</tr>
+				<tr>
+					<td align="left" nowrap="nowrap" valign="top">{transactionid}<div class="smaller gray" style="padding-top:2px">{_created}: {createdate}</div></td>
+					<td align="left" valign="top">{invoicetype}<div class="smaller gray" style="padding-top:2px">{_invoice_status}: <span style="color:#000"><strong>{paystatus}</strong></span></div></td>
+					<td align="left" nowrap="nowrap" valign="top"><if condition="$show['escrowblock']">{site_name} <span class="gray">" {_billing_and_payments} "</span><else />{providername} <span class="gray">" {provider} "</span></if><div class="smaller gray" style="padding-top:2px">{_due_date}: {duedate}</div></td>
+					<td align="left" nowrap="nowrap" valign="top">{customername} <span class="gray">" {customer} "</span><div class="smaller gray" style="padding-top:2px">{_paid_date}: {paiddate}</div></td>
+				</tr>
+				</table>
+				
+			  
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+
+<form method="post" action="{ilpage[invoicepayment]}" name="invoicepayment" accept-charset="UTF-8" style="margin:0px;">
+<input type="hidden" name="cmd" value="{cmd}" />
+{securekey_hidden}
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_order_details}</div>
+			
+			<!--<div class="block-content-yellow"><div class="smaller"></div></div>-->
+			<div class="block-content" style="padding:0px">
+				
+				
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr class="alt1">
+					<td colspan="2"><div style="padding-top:6px; padding-bottom:6px; font-size:13px" class="blue">{description}</div>
+					<if condition="isset($show['comments']) AND $show['comments']"><div class="gray" style="padding-bottom:4px">{comments}</div></if></td>
+				</tr>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="gray">{_amount}</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray">{amount}</span></td> 
+				</tr>
+				<if condition="isset($show['taxes']) AND $show['taxes']">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{taxinfo}</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray">{taxamount}</span></td> 
+				</tr>
+				</if>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="green">{_payments}</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="green">({amountpaid})</span></td>
+				</tr>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{_total}</span></td>
+					<td colspan="-3" align="right"><span style="font-size:16px" class="blue"><strong>{totalamount}</strong></span></td>
+				</tr>
+				</table>
+				
+			  
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+

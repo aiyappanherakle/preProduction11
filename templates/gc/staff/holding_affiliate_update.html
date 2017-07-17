@@ -1,0 +1,303 @@
+<script type="text/javascript">
+function checkallvalue()
+{
+if(document.getElementById('email').value =='')
+
+{
+alert('Enter buyer email');
+return false;
+}
+if(document.getElementById('Amount').value =='')
+
+{
+alert('Enter Amount');
+return false;
+}
+if(document.getElementById('enumber').value =='')
+
+{
+alert('Enter ebay number');
+return false;
+}
+if(document.getElementById('lvf').value =='')
+
+{
+alert('Enter Listing fee');
+return false;
+}
+if(document.getElementById('fvf').value =='')
+
+{
+alert('Enter final value fee');
+return false;
+}
+if(document.getElementById('pemail').value =='')
+
+{
+alert('Enter payment email');
+return false;
+}
+return true;
+}
+function email_check(lis)
+{
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+		
+		    if(request.responseText == 'exit')
+			{
+			document.getElementById('user_not_exit').style.display = 'none';
+			new_email(lis);
+			}
+			else if(request.responseText == 'email_not_valid')
+			{
+			document.getElementById('email_dis').innerHTML= request.responseText;
+			}
+			else
+			{
+			document.getElementById('user_not_exit').style.display = 'block';
+			}
+   }
+		else{
+			document.getElementById('email_dis').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='consignment_ajax.php?email_check=' +lis;
+	request.open("GET", url,true);
+	request.send(null);
+}
+
+function new_email(lis)
+{
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+		
+			document.getElementById('email_dis').innerHTML= request.responseText;
+			document.getElementById('testid').innerHTML = '<input type="hidden" name="allready" id="allready" value="1" />';
+			
+		}
+		else{
+			document.getElementById('email_dis').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='consignment_ajax.php?email_details_user='+lis;
+	request.open("GET", url,true);
+	request.send(null);
+}
+
+function amount_calc(lis, fv)
+{
+
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+		
+			document.getElementById('fvf').value= request.responseText;
+			
+			
+		}
+		else{
+			//document.getElementById('email_dis').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='consignment_ajax.php?amount_calc='+lis+'&fvfvalue='+fv;
+	request.open("GET", url,true);
+	request.send(null);
+}
+
+</script>
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php" ><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing" class="sel"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+		<a href="listings.php?cmd=search_coin" ><span>listed in gc</span></a> 
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Affiliate listing</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Coins</h2>
+			
+			    
+				<form method="post" action="{ilpage[listedarea]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="affiliate_update" />
+				<input type="hidden" name="subcmd" value="update_affiliate_update" />
+				<input type="hidden" name="coin_id" value="{coin_id}" />
+				<input type="hidden" name="site_id" value="{site_id}" />
+				<input type="hidden" name="seller_id" value="{seller_id}" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">All Affiliate listing coins in other sites</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>
+						<div class="block3-content" style="padding:0px">
+						
+						     	<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							
+						      <tr > 
+						       
+								<td nowrap="nowrap"  style="width: 125px;"><span class="gray">Buyer Email</span></td>
+								<td><input type="text" name="email" id="email"  style="width:275px" onblur="return email_check(this.value);"/></td>
+								<td nowrap="nowrap" ><span class="gray">Amount</span></td>
+								<td><input type="text" name="Amount" id="Amount"  style="width:275px" onblur="return amount_calc(this.value,'{fvf}');"/></td>
+							  </tr>
+							 <tr >
+								<td nowrap="nowrap" ><span class="gray">Ebay listing number</span></td>
+								<td> <input type="text" name="enumber" id="enumber"  style="width:275px" /></td>
+								<td nowrap="nowrap" ></td>
+								<td ></td>
+							  </tr>
+							  </table>
+							  
+							<div id="testid"></div> 
+                              <div id="email_dis"></div>
+							  <div id="user_not_exit" style="display:none;">
+							   <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							   
+							   <tr > 
+								  
+									<td nowrap="nowrap" ><span class="gray">First name</span></td>
+									<td><input type="text" name="firstname" id="firstname" value="" style="width:275px" /></td>
+									<td nowrap="nowrap" ><span class="gray">Last name</span></td>
+									<td><input type="text" name="lastname" id="lastname" value=""   style="width:275px" /></td>
+								</tr>
+								  <tr > 
+								  
+									<td nowrap="nowrap" ><span class="gray">Username</span></td>
+									<td><input type="text" name="username" id="username" value=""  style="width:275px" /></td>
+									<td nowrap="nowrap" ><span class="gray">Password</span></td>
+									<td colspan="3"><input type="password" name="password" id="password" value=""  style="width:275px" /></td>
+								</tr>
+								
+								<tr > 
+									<td nowrap="nowrap" ><span class="gray">Address</span></td>
+									<td>
+									<input type="text" name="address" id="address"  value=""  style="width:275px" /></td>
+									<td nowrap="nowrap" ><span class="gray">Address 2</span></td>
+									<td><input type="text" name="address2" id="address2" value=""  style="width:275px" /></td>
+								</tr>
+								
+								 <tr > 
+									<td width="5%" nowrap="nowrap" ><span class="gray">Country</span></td>
+									<td>{country_js_pulldown}</td>
+									<td width="5%" nowrap="nowrap" ><span class="gray">State</span></td>
+									<td>{state_js_pulldown}</td>
+								</tr>
+								 <tr > 
+									<td width="5%" nowrap="nowrap" ><span class="gray">Subscription plan</span></td>
+									
+									<td>{subscription_plan_pulldown}</td>
+									<td nowrap="nowrap" ><span class="gray">Phone</span></td>
+									<td colspan="3"><input type="text" name="phone" id="phone" value=""  style="width:275px" /></td>
+								</tr>
+								
+							   
+								<tr > 
+									<td nowrap="nowrap" ><span class="gray">City</span></td>
+									<td><input type="text" name="city" id="city" value=""  style="width:275px" /></td>
+									<td nowrap="nowrap" ><span class="gray">Zipcode</span></td>
+									<td><input type="text" name="zipcode" id="zipcode" value=""  style="width:275px" /></td>
+								</tr>
+								
+							  </table></div>
+							
+						   <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr > 
+								<td nowrap="nowrap" ><span class="gray">Listing Fee</span></td>
+								<td><input type="text" name="lvf" id="lvf" value="{lvf}" style="width:275px" /></td>
+								
+							</tr>
+							<tr > 
+								<td nowrap="nowrap" ><span class="gray">Final Value Fee</span></td>
+								<td><input type="text" name="fvf" id="fvf" value="" style="width:275px" /></td>
+							
+							</tr>
+							<!--<tr > 
+								<td nowrap="nowrap" ><span class="gray">Payment Email</span></td>
+								<td><input type="text" name="pemail" id="pemail" value="" style="width:275px" /></td>
+								
+							</tr>
+						      <tr > 
+								<td nowrap="nowrap" ><span class="gray">Email Description</span></td>
+								<td><textarea name="howtopay" style="width: 275px; height: 80px;">ddddddddd</textarea></td>
+								
+							</tr>-->
+							<tr > 
+								
+								<td><input type="submit" value="save" onclick="return checkallvalue();"/></td>
+								
+							</tr>
+                            </table>
+								                           			
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                  </div>
+                    </form>
+					
+				 	
+                        </div>
+                        
+                       
+						
+						
+				</div>
+			</div>
+         
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

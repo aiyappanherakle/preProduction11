@@ -1,0 +1,660 @@
+<style type="text/css">
+.new_inner
+	{
+	font-size: 14px;
+	position: absolute;
+	top: 265px;
+	width: 630px;
+	margin-left:5px;
+	margin-right:5px;
+	
+	left: 10px;
+	} 
+  
+div.sc_menu_wrapper {
+  position: relative;   
+  height: 560px;
+  width: 195px;
+  margin-top: 0px;
+  overflow: auto;
+}
+div.sc_menu {
+  padding: 15px 0;
+  width: 195px;
+}
+#open
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#imgs
+{
+background-image: url(images/gc/w2.jpg);
+width:198px;
+height:145px;
+}
+#textim
+{
+background-image: url(images/gc/coin_bg.jpg);
+width:198px;
+height:160px;
+}
+#amo
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#fetit
+{
+background:none;
+color:#303030;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}		
+#titl
+{
+background:none;
+color:#5B6C7E;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+		
+		a:focus { outline:none }
+		
+		img { border: 0 }
+		
+	
+	  
+		.slider-wrap { /* This div isn't entirely necessary but good for getting the side arrows vertically centered */
+			
+			position: relative;
+			width: 100%;
+		}
+		.stripViewer { /* This is the viewing window */
+			position: relative;
+			overflow: hidden; 
+			/*border: 5px solid #000;*/ /* this is the border. should have the same value for the links */
+			margin: auto;
+			
+		}
+		
+		.stripViewer .panelContainer { /* This is the big long container used to house your end-to-end divs. Width is calculated and specified by the JS  */
+			position: relative;
+			left: 0; top: 0;
+			
+			list-style-type: none;
+			/* -moz-user-select: none; // This breaks CSS validation but stops accidental (and intentional - beware) panel highlighting in Firefox. Some people might find this useful, crazy fools. */
+		}
+		
+		.stripViewer .panelContainer .panel { /* Each panel is arranged end-to-end */
+			float:left;
+			height: 100%;
+			position: relative;
+			width: 700px; /* Also specified in  .stripViewer  above */
+		}
+		
+		.stripViewer .panelContainer .panel .wrapper { /* Wrapper to give some padding in the panels, without messing with existing panel width */
+			padding: 10px;
+		}
+		
+		
+		
+		.stripNavL, .stripNavR { /* The left and right arrows */
+			position: absolute;
+			top: 80px;
+			text-indent: -9000em;
+		}
+		
+		.stripNavL a, .stripNavR a {
+			display: block;
+			height: 40px;
+			width: 40px;
+		}
+		
+		.stripNavL {
+			left: 0;
+		}
+		
+		.stripNavR {
+			right: 0;
+		}
+		
+		.stripNavL {
+			background: url("images/arrow-left.gif") no-repeat center;
+		}
+		
+		.stripNavR {
+			background: url("images/arrow-right.gif") no-repeat center;
+		}
+		 .stripNav ul
+		{
+		display:none;
+		}
+.stepcarousel{
+position: relative; /*leave this value alone*/
+overflow: scroll; /*leave this value alone*/
+width: 270px; /*Width of Carousel Viewer itself*/
+height: 200px; /*Height should enough to fit largest content's height*/
+}
+.stepcarousel .belt{
+position: absolute; /*leave this value alone*/
+left: 0;
+top: 0;
+}
+#leftimgc
+{
+margin-left:40px;
+}
+#rightimgc
+{
+margin-left:-75px;
+}
+.stepcarousel .panel{
+float: left; /*leave this value alone*/
+overflow: hidden; /*clip content that go outside dimensions of holding panel DIV*/
+/*margin around each panel*/
+width: 250px; /*Width of each panel holding each content. If removed, widths should be individually defined on each content DIV then. */
+}
+	
+.inner
+{
+  position: absolute;
+   top: 255px;
+   left: 150px;
+   width: 100%;
+   font-size:14px;   
+  }
+
+a.sprouses_coin
+{
+	color: #00AEEF; 
+	font-size: 14px; 
+	font-weight: bold;
+	text-decoration: underline;
+	line-height:175%;
+} 
+
+table.spouse_series thead tr th
+{
+	font-family: Arial,Helvetica,sans-serif;
+    font-size: medium;
+    font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+
+table.spouse_series tbody tr td
+{
+	font-size: 14px;
+    font-weight: bold;
+	padding: 5px;
+}
+
+table.spouse_series tbody tr:nth-child(even) 
+{
+	background: #FCF7D9;
+}
+
+table.spouse_series tbody tr:nth-child(odd) 
+{
+	background: #FAFAFA;
+}
+
+table.spouse_series tbody tr td:first-child {
+    padding-left: 10px;
+}
+
+table.spouse_series tbody tr td:last-child {
+    font-size: 16px;
+}
+
+table.spouse tr td
+{
+	font-size: 14px;
+    font-weight: bold;
+	padding: 5px;
+}
+
+
+
+	</style>
+ 
+<script src="{https_server}banner/jquery.js" type="text/javascript"></script>
+<script src="{https_server}banner/jquery-func.js" type="text/javascript"></script>
+<script type="text/javascript" src="{https_server}jquery.min.js"></script>
+<script type="text/javascript" src="{https_server}stepcarousel.js">
+/***********************************************
+* Step Carousel Viewer script- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
+* This notice must stay intact for legal use
+***********************************************/
+</script>
+<script type="text/javascript">
+stepcarousel.setup({
+	galleryid: 'mygallery', //id of carousel DIV
+	beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
+	panelclass: 'panel', //class of panel DIVs each holding content
+	autostep: {enable:true, moveby:1, pause:3000},
+	panelbehavior: {speed:500, wraparound:false, wrapbehavior:'slide', persist:true},
+	defaultbuttons: {enable: true, moveby: 1, leftnav: ['{template_relativeimagepath}{template_imagesfolder}left.gif', -5, 80], rightnav: ['{template_relativeimagepath}{template_imagesfolder}right.gif', -20, 80]},
+	statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
+	contenttype: ['inline'] //content setting ['inline'] or ['ajax', 'path_to_external_file']
+})
+</script>   
+	
+<!--	End of the script-->
+<link rel="stylesheet" href="{https_server}banner/style.css" type="text/css" media="all">
+ 
+<script type="text/javascript">
+function makeScrollable(wrapper, scrollable){
+}
+$(function(){   
+  makeScrollable("div.sc_menu_wrapper", "div.sc_menu");
+});
+function makeScrollable(wrapper, scrollable){
+  // Get jQuery elements
+  var wrapper = $(wrapper), scrollable = $(scrollable);
+  // Hide images until they are not loaded
+  scrollable.hide();
+  var loading = $("<div class='loading'></div>").appendTo(wrapper);
+  // Set function that will check if all images are loaded
+  var interval = setInterval(function(){
+    var images = scrollable.find("img");
+    var completed = 0;
+    // Counts number of images that are succesfully loaded
+    images.each(function(){
+      if (this.complete) completed++;   
+    });
+    if (completed == images.length){
+      clearInterval(interval);
+      // Timeout added to fix problem with Chrome
+      setTimeout(function(){
+        loading.hide();
+        // Remove scrollbars    
+        wrapper.css({overflow: "hidden"});
+        scrollable.slideDown("slow", function(){
+          enable(); 
+        });                 
+      }, 1000); 
+    }
+  }, 100);
+  function enable(){    
+    // height of area at the top at bottom, that don't respond to mousemove
+  var inactiveMargin = 100;         
+  // Cache for performance
+  var wrapperWidth = wrapper.width();
+  var wrapperHeight = wrapper.height();
+  // Using outer height to include padding too
+  var scrollableHeight = scrollable.outerHeight() + 2*inactiveMargin;
+  // Do not cache wrapperOffset, because it can change when user resizes window
+  // We could use onresize event, but it&#39;s just not worth doing that 
+  // var wrapperOffset = wrapper.offset();
+  //When user move mouse over menu          
+  wrapper.mousemove(function(e){
+    var wrapperOffset = wrapper.offset();
+    // Scroll menu
+    var top = (e.pageY -  wrapperOffset.top) * (scrollableHeight - wrapperHeight) / wrapperHeight  - inactiveMargin;
+    if (top < 0){
+      top = 0;
+    }
+    wrapper.scrollTop(top);
+  });  }
+}
+</script>
+         	
+  
+	</div><!--width end-->		
+</div><!--header end-->		
+   </div>
+
+   
+   <!-- nataraj start -->
+<div id="topcontent" align="center">
+	<div class="page" style="width:960px; text-align:left">
+		<a name="top"></a>
+		
+		
+			<div class="block-wrapper">
+				<div class="block">
+					<div class="block-top">
+						<div class="block-right">
+							<div class="block-left"></div>
+						</div>
+					</div>
+					
+					<div class="block-header">&nbsp;The U.S Gold First Spouse Series (2007 - Present)</div>
+					<div class="block-content" style="padding: 6px 0px 0px 6px;">
+						<div style="padding: 10px; font-weight: bold;">
+						In 2007, the U.S. Mint released the first coins in the First Spouse series. Each coin, issued in proof and business strike (Mint State) weighs half an oz. of gold with a denomination of $10.
+						<br/><br/>
+						When the coins were released in 2007, large quantities were sold-as evidenced by the final mintages listed below. Then by 2008 and more recent years (such as 2011) the amount of coins sold make these coins some of the lowest mintages of any U.S. coin.
+						<br/><br/>
+						Coins graded First Strike MS-70 or First Strike Proof-70 by PCGS sell for varying premiums-in some cases coins can be worth double with the First Strike designation 
+						(First Strike denotes that PCGS graded coins within the first 30 days of issue, or they were sent to PCGS in U.S. Mint shipping packages dated within 30 days of issue).
+						<br/><br/>
+						Gold Spouse coins are regularly featured in GreatCollections coin auctions and for direct sale in our Buy Now section.
+						<br/><br/>
+						<a href="http://www.greatcollections.com/CoinPrices/SeriesCoin/102/First-Spouse-10-Gold" class="sprouses_coin" style="text-decoration: none;">View the Gold Spouse Coins at GreatCollections</a>
+			
+
+<br><br>
+The First Spouse Gold Coin obverses (heads sides) feature portraits of the first spouses, their names, the order and years of their term as first spouse, the year of minting or issuance, IN GOD WE TRUST and LIBERTY. Each coin has a unique reverse (tails) design featuring an image emblematic of that spouse's life and work, as well as the inscriptions UNITED STATES of AMERICA, E PLURIBUS UNUM, $10, 1/2 OZ. and .9999 FINE GOLD.
+<br><br>
+When a President served without a first spouse, a gold coin is issued bearing an obverse image emblematic of Liberty as depicted on a circulating coin of that era and a reverse image emblematic of a theme of that President's life. The coin is inscribed with the years and order of that President's term.
+			</div>
+
+							<table class="" width="100%" cellspacing="0" cellpadding="6" border="0">
+							<tbody>
+								<tr>
+									<td align="center" colspan="9">
+										<div style="padding: 20px 0px;">
+										<img class="rounded" src="images/gc_spouses/coin_1.png" alt="First Spouse Julia Tyler at GreatCollections Coin Auctions" title="First Spouse Julia Tyler at GreatCollections Coin Auctions">
+										<div style="padding: 10px 0px;">
+											2009-W First Spouse $10 Gold<br>Julia TylerFirst Strike PCGS MS-70 </a>
+										
+										</div>
+									</td>
+								
+									<td align="center" colspan="9">
+										<div style="padding: 20px 0px;">
+										<img class="rounded" src="images/gc_spouses/coin_2.png" alt="First Spouse Lucy Hayes at GreatCollections Coin Auctions" title="First Spouse Lucy Hayes at GreatCollections Coin Auctions">
+										<div style="padding: 10px 0px;">
+											2011-W First Spouse $10 Gold<br/>Lucy Hayes PCGS MS-70 </a>
+										
+										</div>
+									</td>
+								
+									<td align="center" colspan="9">
+										<div style="padding: 20px 0px;">
+										<img class="rounded" src="images/gc_spouses/coin_3.png" alt="First Spouse Lucretia Garfield at GreatCollections Coin Auctions" title="First Spouse Lucretia Garfield at GreatCollections Coin Auctions">
+										<div style="padding: 10px 0px;">
+											2011-W First Spouse $10 Gold<br>Lucretia Garfield PCGS Proof-70 DCAM </a>
+										
+										</div>
+									</td>
+								</tr>
+							</tbody>
+							</table>
+					</div>
+							
+					<div class="block-footer" style="border-left-width: 1px; left: 1px; border-right-width: 1px;">
+						<div class="block-right">
+							<div class="block-left" style="height: 0px; border-top: 1px solid #000000;"></div>
+						</div>
+					</div>
+					
+					
+					
+					
+					<div class="block-content" style="padding: 10px 20px; border-bottom-width: 1px;">
+					<div class="block-top">
+						<div class="block-right">
+							<div class="block-left"></div>
+						</div>
+					</div>
+					<div class="block-header">Final Mintages of the Gold Spouse Series</div>
+					<div class="block-content" style="padding: 0px; border-bottom-width: 1px;">
+							<table class="spouse_series" width="100%" cellspacing="0" cellpadding="6" border="0">
+							<thead>
+								<tr>
+									<th>&nbsp;</th>
+									<th>Uncirculated</th>
+									<th>Proof</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>2007 Martha Washington</td>
+									<td align="center">17,661</td>
+									<td align="center">19,167</td>
+									<td align="center">36,828</td>
+								</tr>
+								<tr>
+									<td>2007 Abigali Adams</td>
+									<td align="center">17,142</td>
+									<td align="center">17,149</td>
+									<td align="center">34,291</td>
+								</tr>
+								<tr>
+									<td>2007 Thomas Jefferson's Liberty</td>
+									<td align="center">19,823</td>
+									<td align="center">19,815</td>
+									<td align="center">39,638</td>
+								</tr>
+								<tr>
+									<td>2007 Dolley Madison</td>
+									<td align="center">12,340</td>
+									<td align="center">17,943</td>
+									<td align="center">30,283</td>
+								</tr>
+								<tr>
+									<td>2008 Elizabeth Monroe</td>
+									<td align="center">4,462</td>
+									<td align="center">7,800</td>
+									<td align="center">12,262</td>
+								</tr>
+								<tr>
+									<td>2008 Louisa Adams</td>
+									<td align="center">3,885</td>
+									<td align="center">6,581</td>
+									<td align="center">10,466</td>
+								</tr>
+								<tr>
+									<td>2008 Andrew Jackson's Liberty</td>
+									<td align="center">4,609</td>
+									<td align="center">7,684</td>
+									<td align="center">12,293</td>
+								</tr>
+								<tr>
+									<td>2008 Martin Van Buren's Liberty</td>
+									<td align="center">3,826</td>
+									<td align="center">6,807</td>
+									<td align="center">10,633</td>
+								</tr>
+								<tr>
+									<td>2009 Anna Harrison</td>
+									<td align="center">3,645</td>
+									<td align="center">6,251</td>
+									<td align="center">9,896</td>
+								</tr>
+								<tr>
+									<td>2009 Letitia Tyler</td>
+									<td align="center">3,240</td>
+									<td align="center">5,296</td>
+									<td align="center">8,536</td>
+								</tr>
+								<tr>
+									<td>2009 Julia Tyler</td>
+									<td align="center">3,143</td>
+									<td align="center">4,844</td>
+									<td align="center">7,987</td>
+								</tr>
+								<tr>
+									<td>2009 Sarah Polk</td>
+									<td align="center">3,489</td>
+									<td align="center">5,151</td>
+									<td align="center">8,640</td>
+								</tr>
+								<tr>
+									<td>2009 Margaret Taylor</td>
+									<td align="center">3,430</td>
+									<td align="center">4,787</td>
+									<td align="center">8,024</td>
+								</tr>
+								<tr>
+									<td>2010 Abigail Fillmore</td>
+									<td align="center">3,489</td>
+									<td align="center">6,140</td>
+									<td align="center">9,629</td>
+								</tr>
+								<tr>
+									<td>2010 Jane Pierce</td>
+									<td align="center">3,333</td>
+									<td align="center">4,843</td>
+									<td align="center">8,176</td>
+								</tr>
+								<tr>
+									<td>2010 James Buchanan's Liberty</td>
+									<td align="center">5,348</td>
+									<td align="center">7,304</td>
+									<td align="center">12,652</td>
+								</tr>
+								<tr>
+									<td>2010 Mary Todd Lincoln</td>
+									<td align="center">3,760</td>
+									<td align="center">6,904</td>
+									<td align="center">10,664</td>
+								</tr>
+								<tr>
+									<td>2011 Eliza Johnson</td>
+									<td align="center">2,905</td>
+									<td align="center">3,907</td>
+									<td align="center">6,812</td>
+								</tr>
+								<tr>
+									<td>2011 Julia Grant</td>
+									<td align="center">2,961</td>
+									<td align="center">3,969</td>
+									<td align="center">6,930</td>
+								</tr>
+								<tr>
+									<td>2011 Lucy Hayes</td>
+									<td align="center">2,263</td>
+									<td align="center">3,850</td>
+									<td align="center">6,113</td>
+								</tr>
+								<tr>
+									<td>2011 Lucretia Garfield</td>
+									<td align="center">2,498</td>
+									<td align="center">3,542</td>
+									<td align="center">6,040</td>
+								</tr>
+								<tr>
+									<td>2012 Alice Paul</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+								<tr>
+									<td>2012 Francis Cleveland (1st Term)</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+								<tr>
+									<td>2012 Caroline Harrison</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+								<tr>
+									<td>2012 Francis Cleveland (2nd Term)</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+								<tr>
+									<td>2013 Ida McKinley</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+								<tr>
+									<td>2013 Edith Roosevelt</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+								<tr>
+									<td>2013 Helen Taft</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+								<tr>
+									<td>2013 Ellen Wilson</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+								<tr>
+									<td>2013 Edith Wilson</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+									<td align="center">TBA</td>
+								</tr>
+
+							</tbody>
+							</table>
+						
+						<div>
+						</div>
+					</div>
+					
+				
+					
+					</div>
+					
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>   
+   <!-- nataraj end -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+<!-- Google Code for Visited Homepage Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 972477887;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "2CxhCInb4gIQv6vbzwM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/972477887/?label=2CxhCInb4gIQv6vbzwM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

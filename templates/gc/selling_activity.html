@@ -1,0 +1,539 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+	
+            <if condition="$ilconfig['globalauctionsettings_productauctionsenabled']">
+        {producttabs}
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header"><span style="float:left; padding-top:3px; padding-right:10px"><a href="javascript:void(0)" onclick="toggle('product_selling_activity');"><img id="collapseimg_product_selling_activity" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_product_selling_activity]}.gif" border="0" alt="" /></a></span>{_product_auction_selling_activity}</div>
+                    <div class="block-content-yellow" style="padding:9px"><div><span style="max-height:0px">
+                    <form name="sortswitch" method="get" action="{ilpage[selling]}" accept-charset="UTF-8" style="margin:0px">
+                    <input type="hidden" name="cmd" value="management" />
+                    <input type="hidden" name="sub" value="{sub}" />
+                    
+                    <table border="0" cellspacing="0" cellpadding="0" class="smaller">
+                      <tr>
+                        <td>{_listing_period}:&nbsp;</td>
+                        <td>
+                        <select name="period" class="smaller" style="font-family: verdana">
+                            <option value="-1" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == -1">selected="selected"</if>>{_any_date}</option>
+                            <option value="1" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 1">selected="selected"</if>>{_last_hour}</option>
+                            <option value="6" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 6">selected="selected"</if>>{_last_12_hours}</option>
+                            <option value="7" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 7">selected="selected"</if>>{_last_24_hours}</option>
+                            <option value="7" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 7">selected="selected"</if>>{_last_24_hours}</option>
+                            <option value="13" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 13">selected="selected"</if>>{_last_7_days}</option>
+                            <option value="14" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 14">selected="selected"</if>>{_last_14_days}</option>
+                            <option value="15" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 15">selected="selected"</if>>{_last_30_days}</option>
+                            <option value="16" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 16">selected="selected"</if>>{_last_60_days}</option>
+                            <option value="17" <if condition="isset($ilance->GPC['period']) AND $ilance->GPC['period'] == 17">selected="selected"</if>>{_last_90_days}</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>{_order_by}:&nbsp;</td>
+                        <td>
+                        <select name="orderby" class="smaller" style="font-family: verdana">
+                            <option value="project_title" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'project_title'">selected="selected"</if>>{_title}</option>
+                            <option value="date_added" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'date_added'">selected="selected"</if>>{_date_added}</option>
+                            <option value="date_end" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'date_end'">selected="selected"</if>>{_date_ending}</option>
+                            <option value="bids" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'bids'">selected="selected"</if>>{_bids}</option>
+                            <option value="insertionfee" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'insertionfee'">selected="selected"</if>>{_insertion_fee}</option>
+                            <option value="buynow_purchases" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'buynow_purchases'">selected="selected"</if>>{_purchases}</option>
+                            <option value="buynow_qty" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'buynow_qty'">selected="selected"</if>>{_qty}</option>
+                            <option value="bids,buynow_purchases" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'bids,buynow_purchases'">selected="selected"</if>>{_bids}, {_purchases}</option>
+                            <option value="buynow_purchases,bids" <if condition="isset($ilance->GPC['orderby']) AND $ilance->GPC['orderby'] == 'buynow_purchases,bids'">selected="selected"</if>>{_purchases}, {_bids}</option>
+                        </select></td>
+                        <td>&nbsp;&nbsp;<span class="smaller gray">|</span>&nbsp;&nbsp;</td>
+                        <td>
+                        <select name="pics" class="smaller" style="font-family: verdana">
+                            <option value="1" <if condition="isset($ilance->GPC['pics']) AND $ilance->GPC['pics'] == '1'">selected="selected"</if>>{_include_pictures}</option>
+                            <option value="0" <if condition="isset($ilance->GPC['pics']) AND $ilance->GPC['pics'] == '0'">selected="selected"</if>>{_exclude_pictures}</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>{_display_order}:&nbsp;</td>
+                        <td>
+                        <select name="displayorder" class="smaller" style="font-family: verdana">
+                            <option value="desc" <if condition="isset($ilance->GPC['displayorder']) AND $ilance->GPC['displayorder'] == 'desc'">selected="selected"</if>>{_descending}</option>
+                            <option value="asc" <if condition="isset($ilance->GPC['displayorder']) AND $ilance->GPC['displayorder'] == 'asc'">selected="selected"</if>>{_ascending}</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>{_per_page}:&nbsp;</td>
+                        <td>
+                        <select name="pp" class="smaller" style="font-family: verdana">
+                            <option value="10" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '10'">selected="selected"</if>>10</option>
+                            <option value="50" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '50'">selected="selected"</if>>50</option>
+                            <option value="100" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '100'">selected="selected"</if>>100</option>
+                            <option value="500" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '500'">selected="selected"</if>>500</option>
+                            <option value="1000" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '1000'">selected="selected"</if>>1000</option>
+                        </select>&nbsp;</td>
+                        <td><input type="submit" value="{_go}" class="buttons_smaller" /></td>
+                      </tr>
+                    </table>
+                    </form>
+                    </span></div></div>
+                    <div class="block-content" style="padding:0px">
+                        
+                        <form name="productauctions" method="get" action="{ilpage[selling]}" id="searchproducts" accept-charset="UTF-8" style="margin:0px">
+                        <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                        <tbody id="collapseobj_product_selling_activity" style="{collapse[collapseobj_product_selling_activity]}">
+                        <tr> 
+                            <td width="5%" class="alt2" align="center" nowrap="nowrap">{_more} <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_more}</strong></div><div>{_when_someone_purchases_or_places_a_bid_on_your_listing_an_icon}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                            <td class="alt2"><span class="blue"><a href="{php_self}&amp;orderby=project_title">{_item}</a></span></td>
+                            <td width="9%" class="alt2"><span class="blue"><a href="{php_self}&amp;orderby=buynow_qty">{_qty_left}</a></td>
+                            <td width="9%" class="alt2"><span class="blue"><a href="{php_self}&amp;orderby=bids">{_bids}</a></span></td>
+                            <td width="9%" class="alt2" nowrap="nowrap"><span class="blue"><a href="{php_self}&amp;orderby=buynow_purchases">{_sold}</a></span> <a href="javascript:void(0)" onmouseover="Tip(phrase['_this_column_represents_how_many_items_have_been_sold_via_buy_now'], BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                            <td width="9%" class="alt2" nowrap="nowrap"><span class="blue"><a href="{php_self}&amp;orderby=insertionfee">{_if_short}</a></span> <a href="javascript:void(0)" onmouseover="Tip(phrase['_if_stands_for_insertion_fee_and_is_a_fee_that_is_applied_when_you_list'], BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                            <td width="9%" nowrap="nowrap" class="alt2">{_fvf} <a href="javascript:void(0)" onmouseover="Tip(phrase['_fvf_stands_for_final_value_fee_and_is_a_fee_that_is_applied_when_one_or_more_of_your_items_have_been_sold_via_auction_format_or_buy_now_feature'], BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                            <if condition="isset($ilance->GPC['sub']) AND $ilance->GPC['sub'] == 'expired'">
+                            <td colspan="14" class="alt2" nowrap="nowrap"><span class="blue">{_edit_and_relist}</span></td>
+                            <else />
+                            <td colspan="14" class="alt2" nowrap="nowrap"><span class="blue"><a href="{php_self}&amp;orderby=date_end">{_time_left}</a></span></td>
+                            </if>
+                        </tr>
+                        <loop name="product_selling_activity"> 
+                        <tr class="alt1" id="{project_id}" valign="top"> 
+                            <td align="center"><if condition="(isset($show_regular_bid{project_id}) AND $show_regular_bid{project_id} OR isset($show_unique_bid{project_id}) AND $show_unique_bid{project_id} OR isset($show_realtime_bid{project_id}) AND $show_realtime_bid{project_id}) OR isset($show_purchase_now{project_id}) AND $show_purchase_now{project_id}"><a href="#top" onclick="return toggle('sellactivity_pid{project_id}');"><img src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_sellactivity_pid{project_id}]}.gif" alt="" border="0" id="collapseimg_sellactivity_pid{project_id}" /></a>&nbsp;</if></td>
+                            <td align="left" width="29%">
+                            
+                              	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              	<tr>
+                                	<td valign="top"><div class="blue"><span style="float:right" class="smaller gray">{icons}</span><a href="{ilpage[selling]}?cmd=product-management&amp;state=product&amp;id={project_id}" title="{_edit}">{item_title}</a> <span style="float:right"><!--{icons}--></span>  <a href="{ilpage[merch]}?id={project_id}"><img src="{template_relativeimagepath}{template_imagesfolder}icons/zoom.gif" border="0" /></a></div></td>
+                              	</tr>
+                              	<if condition="isset($ilance->GPC['pics']) AND $ilance->GPC['pics'] == '0'"><else /><tr>
+                                	<td valign="top"><div style="padding-right:6px; padding-top:9px" align="center"><span style="float:left">{photo}</span></div></td>
+                              	</tr></if>
+                              	</table>
+                                
+                            </td>
+                            <td nowrap="nowrap" valign="top"><span class="smaller blue">{buynow_qty} {_qty_lower}</span></td>
+                            <td nowrap="nowrap" valign="top"><span class="smaller blue">{bids} {_bids_lower}{winningbidsbit}</span></td>
+                            <td nowrap="nowrap" valign="top"><span class="smaller blue">{sales} {_sold_lower}</span></td>
+                            <td nowrap="nowrap" valign="top"><span class="smaller">{insfee}</span></td>
+                            <td valign="top" nowrap="nowrap"><span class="smaller">{fvf}</span></td>
+                            <if condition="isset($ilance->GPC['sub']) AND $ilance->GPC['sub'] == 'expired'">
+                            <td width="15%" valign="top"><span class="smaller blue"><a href="{ilpage[selling]}?cmd=product-management&amp;subcmd=relist&amp;state=product&amp;id={project_id}&amp;cid={cid}" title="{_edit_and_relist}">{_edit_and_relist}</a></span></td>
+                            <else />
+                            <td width="15%" valign="top"><span class="smaller">{timeleft}</span></td>
+                            </if>
+                            <td width="1%" colspan="13" align="right" valign="top" class="alt2"><span class="smaller">{actions}</span></td>
+                        </tr>
+                        <if condition="(isset($show_regular_bid{project_id}) AND $show_regular_bid{project_id} OR isset($show_unique_bid{project_id}) AND $show_unique_bid{project_id}) OR isset($show_realtime_bid{project_id}) AND $show_realtime_bid{project_id} OR isset($show_purchase_now{project_id}) AND $show_purchase_now{project_id}">
+                        <tr valign="middle" id="collapseobj_sellactivity_pid{project_id}" style="{collapse[collapseobj_sellactivity_pid{project_id}]}"> 
+                            <td colspan="21" class="alt2_top"> 
+                            
+                                <div class="tab-pane" id="expandrfp{project_id}" style="padding-top:10px">
+                                
+                                <if condition="(isset($show_regular_bid{project_id}) AND $show_regular_bid{project_id} OR isset($show_unique_bid{project_id}) AND $show_unique_bid{project_id})">
+                                <div class="tab-page">
+                                
+                                    <h2 class="tab" id="0">{_bids} ({bids})</h2>
+                                    
+                                    <div style="padding-top:12px">
+                                    <if condition="isset($show_regular_bid{project_id}) AND $show_regular_bid{project_id}"><table width="100%" border="0" cellspacing="0" cellpadding="{table_cellpadding}">
+                                    <tr class="alt3"> 
+                                        <td nowrap="nowrap" width="11%"><span class="smaller" style="float:left">{_more} &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp; {_bidder}</span><span style="float:right" class="smaller">{_bid} #</span></td>
+                                        <td width="4%" class="smaller">{_contact}</td>
+                                        <td width="5%" nowrap="nowrap" class="smaller">{_share}</td>
+                                        <td width="6%" class="smaller">{_feedback}</td>
+                                        <td width="5%" nowrap="nowrap" class="smaller">{_qty}</td>
+                                        <td width="5%" nowrap="nowrap" class="smaller">{_bid_amount}</td>
+                                        <td width="4%" class="smaller">{_shipping}</td>
+                                        <td width="4%" class="smaller">{_total}</td>
+                    					<if condition="$ilconfig['enablenonprofits'] AND isset($show['show_donation_row{project_id}']) AND $show['show_donation_row{project_id}']">
+                                        <td width="8%" nowrap="nowrap" class="smaller">{_nonprofit} <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_nonprofit}</strong></div>{_this_column_represents_the_selected_nonprofit_organization_you_selected}', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+                                  		<td width="1%" class="smaller">{_donation}</td></if>
+                                        <td width="4%" nowrap="nowrap" class="smaller">{_fvf}</td>
+                                        <td width="1%" align="right" class="smaller">{_winner}</td>
+                                    </tr>
+                                    <loop name="product_selling_bidding_activity{project_id}"> 
+                                    <tr class="alt1" valign="top"> 
+                                        <td><span class="blue" style="font-size:14px; float:right">{bid_id}</span>
+                                        <div class="smaller gray" style="padding-bottom:6px">{_bidder}: <span class="blue">{bidder}</span></div>
+                                        <if condition="isset($show['show_isawarded{project_id}_{bid_id}']) AND $show['show_isawarded{project_id}_{bid_id}']"><a href="#top" onclick="return toggle('regularbid_{bid_id}')"><img src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_regularbid_{bid_id}]}.gif" alt="" border="0" id="collapseimg_regularbid_{bid_id}" /></a></if>
+                                        
+                                      	</td>
+                                        <td align="center">{pmb2}</td>
+                                        <td align="center">{work2}</td>
+                                        <td align="center">{feedback2}</td>
+                                        <td><div class="smaller blue">{qty} {_qty_lower}</div></td>
+                                        <td nowrap="nowrap"><div class="smaller blue">{bidamount}</div></td>
+                                        <td nowrap="nowrap"><div class="smaller blue">{shipping}</div></td>
+                                        <td nowrap="nowrap"><div class="smaller blue">{total}</div></td>
+                       		 			<if condition="$ilconfig['enablenonprofits'] AND isset($show['show_donation_row{project_id}_{bid}']) AND $show['show_donation_row{project_id}_{bid}']">
+                                        <td nowrap="nowrap"><span class="smaller">{donationto} <span style="font-size:14px" class="green">({donationpercent})</span></span></td>
+                                        <td nowrap="nowrap"><span class="smaller">{donationpayment}</span></td></if>
+                                        <td><div class="smaller">{sellerfvf}</div></td>
+                                        <td align="right"><div align="right">{award}</div></td>
+                                    </tr>
+									<if condition="isset($show['show_isawarded{project_id}_{bid_id}']) AND $show['show_isawarded{project_id}_{bid_id}']"><tbody id="collapseobj_regularbid_{bid_id}" style="{collapse[collapseobj_regularbid_{bid_id}]}">
+                                	<tr>
+                                        <td colspan="2" class="alt2" valign="top" align="right"><span class="gray">{_payment}:</span></td>
+                                        <td colspan="10" class="alt1" valign="top"><div class="blue">{payment}</div></td>
+                                    </tr>
+                                    <!--<tr class="alt1">
+                                        <td colspan="2" class="alt2" align="right">{_tax}:</td>
+                                        <td colspan="10"><span class="blue">{taxinfo}</span></td>
+                                    </tr>-->
+                                    <tr class="alt1">
+                                        <td colspan="2" class="alt2" align="right"><span class="gray">{_award_date}:</span></td>
+                                        <td colspan="10"><span class="black">{windate}</span></td>
+                                    </tr>
+                                    <tr class="alt1">
+                                        <td colspan="2" class="alt2" align="right" valign="top"><span class="gray">{_ships_to}:</span></td>
+                                        <td colspan="10"><div class="black">{orderlocation}</div>{apihook[selling_activity_won_bids_row_shipping]}</td>
+                                    </tr>
+                                    <tr class="alt1" valign="top">
+                                        <td colspan="2" class="alt2" align="right"><span class="gray">{_ship_service}:</span></td>
+                                        <td colspan="10" class="alt1"><div class="blue">{shipservice}</div><div style="padding-top:5px">{delivery}</div></td>
+                                    </tr>
+                                    </tbody></if>
+                                    </loop name="product_selling_bidding_activity{project_id}"> 
+                                    <if condition="isset($no_product_selling_bidding_activity{project_id}) AND $no_product_selling_bidding_activity{project_id}">
+                                    <tr>
+                                        <td colspan="12" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px">{_no_bids_placed}</div></td>
+                                    </tr>
+                                    </if>
+                                    <tr>
+                                        <td colspan="12">{bidprevnext}</td>
+                                    </tr>
+                                    </table></if>
+                                    
+                                    <if condition="isset($show_unique_bid{project_id}) AND $show_unique_bid{project_id}"><table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                    <tr class="alt3"> 
+                                        <td nowrap="nowrap" width="23%"><span class="smaller" style="float:left">{_more} &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp; {_bidder}</span><span style="float:right" class="smaller">{_bid} #</span></td>
+                                        <td width="1%"><div class="smaller">{_contact}</div></td>
+                                        <td width="1%"><div class="smaller">{_feedback}</div></td>
+                                        <td width="15%" nowrap="nowrap"><div class="smaller">{_status}</div></td>
+                                        <td width="11%" nowrap="nowrap"><div class="smaller">{_qty}</div></td>
+                                        <td width="11%" nowrap="nowrap"><div class="smaller">{_bid_amount}</div></td>
+                                        <td width="11%" nowrap="nowrap"><div class="smaller">{_shipping}</div></td>
+                                        <td width="11%" nowrap="nowrap"><div class="smaller">{_total}</div></td>
+                                        <td nowrap="nowrap"><div class="smaller">{_nonprofit} <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_nonprofit}</strong></div>{_this_column_represents_the_selected_nonprofit_organization_you_selected}', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></div></td>
+                                        <td width="1%" align="right"><div class="smaller">{_winner}</div></td>
+                                    </tr>
+                                    <loop name="product_selling_unique_bidding_activity{project_id}"> 
+                                    <tr class="alt1" valign="top"> 
+                                        <td><span class="blue" style="font-size:14px; float:right">{uid}</span>
+                                        <div class="smaller gray" style="padding-bottom:6px">{_bidder}: <span class="blue">{bidder}</span></div>
+                                        <div><a href="#top" onclick="return toggle('uniquebid_{uid}')"><img src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_uniquebid_{uid}]}.gif" alt="" border="0" id="collapseimg_uniquebid_{uid}" /></a></div>
+                                        </td>
+                                        <td nowrap="nowrap" align="center"><div>{pmb2}</div></td>
+                                      <td align="center"><div>{feedback2}</div></td>
+                                        <td><div class="smaller">{bidstatus}</div></td>
+                                        <td><div class="smaller blue">1 {_qty_lower}</div></td>
+                                        <td><div class="smaller blue">{bidamount}</div></td>
+                                      <td><div class="smaller blue">{shipping}</div></td>
+                                      <td><div class="smaller blue">{total}</div></td>
+                                        <td nowrap="nowrap"><div class="smaller">{donationto} <span class="green">({donationpercent})</span></div></td>
+                                        <td align="right">{award}</td>
+                                    </tr>
+                                    <tbody id="collapseobj_uniquebid_{uid}" style="{collapse[collapseobj_uniquebid_{uid}]}">
+                                	<tr>
+                                        <td colspan="2" class="alt2" valign="top" align="right"><span class="gray">{_payment}:</span></td>
+                                        <td colspan="9" class="alt1" valign="top"><div class="blue">{payment}</div></td>
+                                    </tr>
+                                    <!--<tr class="alt1">
+                                        <td colspan="2" class="alt2" align="right">{_tax}:</td>
+                                        <td colspan="10"><span class="blue">{taxinfo}</span></td>
+                                    </tr>-->
+                                    <tr class="alt1">
+                                        <td colspan="2" class="alt2" align="right"><span class="gray">{_award_date}:</span></td>
+                                        <td colspan="9"><span class="black">{date}</span></td>
+                                    </tr>
+                                    <tr class="alt1">
+                                        <td colspan="2" class="alt2" align="right" valign="top"><span class="gray">{_ships_to}:</span></td>
+                                        <td colspan="9"><div class="black">{orderlocation}</div>
+                                          {apihook[selling_activity_won_unique_bids_row_shipping]}</td>
+                                    </tr>
+                                    <tr class="alt1" valign="top">
+                                        <td colspan="2" class="alt2" align="right"><span class="gray">{_ship_service}:</span></td>
+                                        <td colspan="9" class="alt1"><div class="blue">{shipservice}</div><div style="padding-top:5px">{delivery}</div></td>
+                                    </tr>
+                                    </tbody>
+                                    </loop name="product_selling_unique_bidding_activity{project_id}"> 
+                                    <if condition="isset($no_product_selling_unique_bidding_activity{project_id}) AND $no_product_selling_unique_bidding_activity{project_id}"><tr>
+                                        <td colspan="10" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px">{_no_bids_placed}</div></td>
+                                    </tr></if>
+                                    <tr>
+                                        <td colspan="10">{uniquebidprevnext}</td>
+                                    </tr>
+                                    </table></if>
+                                    </div>
+                                </div></if>
+                                
+                                <if condition="isset($show_realtime_bid{project_id}) AND $show_realtime_bid{project_id}"><div class="tab-page">
+                                    <h2 class="tab" id="0">{_realtime}</h2>
+                                    
+                                    <div style="padding:6px" align="center">{livebid}</div>
+                                </div></if>
+                                
+                                	<if condition="isset($show_purchase_now{project_id}) AND $show_purchase_now{project_id}"><div class="tab-page">
+                                    <h2 class="tab" id="0">{_orders} ({sales})</h2>
+                                    <div style="padding-top:12px">
+                                    <if condition="isset($show_purchase_now{project_id}) AND $show_purchase_now{project_id}"><table width="100%" border="0" cellspacing="0" cellpadding="{table_cellpadding}">
+                                    <tr class="alt3"> 
+                                        <td align="left" nowrap="nowrap"><span class="smaller" style="float:left">{_more} &nbsp;&nbsp;&nbsp;/</span><span style="float:right" class="smaller">{_order_id} #</span></td>
+                                        <td><span class="smaller">{_contact}</span></td>
+                                        <td nowrap="nowrap"><span class="smaller">{_share}</span></td>
+                                        <td nowrap="nowrap"><span class="smaller">{_feedback}</span></td>
+                                        <td nowrap="nowrap"><span class="smaller">{_qty}</span></td>
+                                        <td><span class="smaller">{_fvf}</span></td>
+                                        <td nowrap="nowrap"><span class="smaller">{_shipping}</span></td>
+                                        <td nowrap="nowrap"><span class="smaller">{_price}</span></td>
+                                        <if condition="$ilconfig['escrowsystem_enabled'] AND isset($show_escrow{project_id}) AND $show_escrow{project_id}"><td nowrap="nowrap"><span class="smaller">{_escrow_fee}</span> <a href="javascript:void(0)" onmouseover="Tip(phrase['_this_is_the_escrow_fee_amount_that_will_be_applied_directly_when_your_buyer_releases_funds_into_your_online_account'], BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td></if>
+                                        <td nowrap="nowrap"><span class="smaller">{_total}</span></td>
+                                        <if condition="$ilconfig['escrowsystem_enabled'] AND isset($show_escrow{project_id}) AND $show_escrow{project_id}"><td width="12%"><span class="smaller">{_in_escrow}</span></td></if>
+                                        <td align="right"><span class="smaller">{_action}</span></td>
+                                    </tr>
+                                    <loop name="purchase_now_activity{project_id}"> 
+                                    <tr valign="top" class="alt1"> 
+                                        <td align="left" valign="top"><span class="blue" style="font-size:14px; float:right">{orderid}</span>
+                                        <div><a href="#top" onclick="return toggle('sellingbuynow{orderid}')"><img src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_sellingbuynow{orderid}]}.gif" alt="" border="0" id="collapseimg_sellingbuynow{orderid}" /></a></div><div style="padding-top:5px;" class="smaller gray">{_buyer}: <span class="blue">{orderbuyer}</span></div></td>
+                                        <td align="center"><span class="blue"><a href="mailto:{orderemail}" title="{orderemail}"></a></span><span class="blue">{pmb2}</span></td>
+                                        <td align="center"><span class="blue">{work2}</span></td>
+                                        <td align="center">{feedback2}</td>
+                                        <td><span class="smaller blue">{orderqty} {_qty_lower}</span></td>
+                                        <td><span class="smaller gray">{sellerfvf}</span></td>
+                                        <td><div class="smaller blue">{shipping}</div></td>
+                                        <td><span class="smaller blue">{orderamount}</span></td>
+                                        <if condition="$ilconfig['escrowsystem_enabled'] AND isset($show_escrow{project_id}) AND $show_escrow{project_id}"><td><div class="smaller">{escrowfee}</div></td></if>
+                                        <td><span class="smaller blue">{total}</span></td>
+                                        <if condition="$ilconfig['escrowsystem_enabled'] AND isset($show_escrow{project_id}) AND $show_escrow{project_id}"><td><div class="smaller blue">{escrowamount}</div></td></if>
+                                        <td align="right" class="{bgcolclass}" valign="top"><span class="smaller">{orderactions}</span></td>
+                                    </tr>
+                                    <tbody id="collapseobj_sellingbuynow{orderid}" style="{collapse[collapseobj_sellingbuynow{orderid}]}">
+                                	<tr>
+                                        <td colspan="2" class="alt2" valign="top" align="right"><span class="gray">{_payment}:</span></td>
+                                        <td colspan="10" class="alt1" valign="top"><span><span class="blue">{payment}</span> {_using} <span class="blue">{buyerpaymethod}</span></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="alt2" align="right"><span class="gray">{_order_date}:</span></td>
+                                        <td colspan="10" class="alt1"><span>{orderdate}</span></td>
+                                    </tr>
+                                    <tr valign="top">
+                                        <td colspan="2" class="alt2" align="right"><span class="gray">{_ships_to}:</span></td>
+                                        <td colspan="10" class="alt1"><div class="black">{orderlocation}</div>{apihook[selling_activity_buynow_order_row_shipping]}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="alt2" valign="top" align="right"><span class="gray">{_ship_service}:</span></td>
+                                        <td colspan="10" class="alt1"><div class="blue">{shippingpartner}</div><div style="padding-top:3px">{delivery}</div></td>
+                                    </tr>
+                                    </tbody>
+                                    </loop name="purchase_now_activity{project_id}">								  
+                                    <if condition="isset($no_purchase_now_activity{project_id}) AND $no_purchase_now_activity{project_id}"><tr>
+                                        <td colspan="12" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px">{_no_purchase_now_orders_found}</div></td>
+                                    </tr></if>
+                                    </table>
+                                    <if condition="!isset($ilance->GPC['cancelled'])"><div class="smaller litegray" style="padding-left:4px; padding-bottom:12px; padding-top:14px">{_please_note_cancelled_buy_now_orders_will_not_appear_by_default}  <span class="blue"><a href="{ilpage[selling]}?cmd=management&amp;sub={sub}&amp;cancelled=1&amp;page={page}">{_to_view_cancelled_order_listings_please_use_this_link}</a></span></div><else /><div style="padding-top:9px; padding-bottom:5px" class="blue"><a href="{ilpage[selling]}?cmd=management&amp;sub={sub}&amp;page={page}">{_hide_cancelled_orders}</a></div></if></if>
+                                    </div>
+                                </div></if>
+                                </div>
+                                <script type="text/javascript">
+                                <!--
+                                setupAllTabs();
+                                -->
+                                </script></td>
+                        </tr>
+                        </if>
+                        </loop name="product_selling_activity">
+                        <if condition="isset($show['no_product_selling_activity']) AND $show['no_product_selling_activity']"><tr>
+                            <td colspan="21" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px;">{_no_results_found}: <span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell">{_start_selling_your_items_now}</a><else /><a href="{http_server}{ilpage[main]}?cmd=selling">{_start_selling_your_items_now}</a></if></span></div></td>
+                        </tr></if> 
+                        <if condition="isset($show['itempulldownmenu']) AND $show['itempulldownmenu']"><tr class="alt2_top"> 
+                            <td colspan="21"> 
+                                <span style="float:left; padding-top:2px; font-size:14px" class="blue">
+                                    <input type="hidden" name="cmd" value="_do-item-action" />
+                                    <a href="javascript:void(0)" onclick="inlineCB.check_all(true)" style="text-decoration:underline">{_select_all}</a>&nbsp;&nbsp; 
+                                    <a href="javascript:void(0)" onclick="inlineCB.check_all(false)" style="text-decoration:underline">{_deselect_all}</a>&nbsp;&nbsp;
+                                    <a href="javascript:void(0)" onclick="inlineCB.check_all('invert')" style="text-decoration:underline">{_invert}</a>&nbsp;&nbsp;
+                                </span>
+                                <span style="float:right">
+                                        <select name="itemcmd" style="font-family: verdana">
+                                        <optgroup label="{_select_action}">
+                                        {apihook[selling_activity_product_option_start]}
+                                        <if condition="isset($ilance->GPC['sub']) AND $ilance->GPC['sub'] == 'expired'"><option value="relist">{_relist_selected}</option></if>
+                                        <if condition="isset($ilance->GPC['sub']) AND $ilance->GPC['sub'] == 'expired'"><option value="relist_all">{_relist_all}</option></if>
+                                        <if condition="isset($ilance->GPC['sub']) AND $ilance->GPC['sub'] != 'archived' OR !isset($ilance->GPC['sub'])"><option value="archive">{_archive_auctions}</option></if>
+                                        <if condition="isset($ilance->GPC['sub']) AND ($ilance->GPC['sub'] != 'expired' AND $ilance->GPC['sub'] != 'sold') OR !isset($ilance->GPC['sub'])"><option value="cancel">{_cancel_auctions}</option></if>
+                                        {apihook[selling_activity_product_option_end]}
+                                        </optgroup>
+                                        </select> 
+                                        <input type="submit" class="buttons" value="{_go}" />
+                                        <script type="text/javascript">
+                                        <!--
+                                        inlineCB = new iL_Inline('inlineCB', 'product', 'searchproducts', '{_go}');
+                                        //-->
+                                        </script>			
+                                </span></td>
+                        </tr></if> 
+                        <tr>
+                            <td colspan="21">{prevnext}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        </form>
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div></if>
+        
+        <if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']">
+        <if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled'] AND $ilconfig['globalauctionsettings_productauctionsenabled']"><div style="padding-bottom:12px"></div></if>
+        <a name="servicebidding"></a>
+        
+        {servicetabs}
+        <div class="block-wrapper">
+        
+            <div class="block2">
+            
+                    <div class="block2-top">
+                            <div class="block2-right">
+                                    <div class="block2-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block2-header"><span style="float:left; padding-top:3px; padding-right:10px"><a href="javascript:void(0)" onclick="toggle('service_selling_activity');"><img id="collapseimg_service_selling_activity" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_service_selling_activity]}.gif" border="0" alt="" /></a></span>{_service_auctions_selling_activity}</div>
+                    <div class="block2-content-blue" style="padding:9px"><div><span style=" max-height:0px">
+        <form name="sortswitch" method="get" action="{ilpage[selling]}" accept-charset="UTF-8" style="margin:0px">
+        <input type="hidden" name="cmd" value="management" />
+        <input type="hidden" name="bidsub" value="{bidsub}" />
+        
+        <table border="0" cellspacing="0" cellpadding="0" class="smaller">
+          <tr>
+            <td>{_bid_period}:&nbsp;</td>
+            <td>
+            <select name="period2" class="smaller" style="font-family: verdana">
+                <option value="-1" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == -1">selected="selected"</if>>{_any_date}</option>
+                <option value="7" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 7">selected="selected"</if>>{_last_24_hours}</option>
+                <option value="13" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 13">selected="selected"</if>>{_last_7_days}</option>
+                <option value="14" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 14">selected="selected"</if>>{_last_14_days}</option>
+                <option value="15" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 15">selected="selected"</if>>{_last_30_days}</option>
+                <option value="16" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 16">selected="selected"</if>>{_last_60_days}</option>
+                <option value="17" <if condition="isset($ilance->GPC['period2']) AND $ilance->GPC['period2'] == 17">selected="selected"</if>>{_last_90_days}</option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>{_order_by}:&nbsp;</td>
+                        <td>
+                        <select name="orderby2" class="smaller" style="font-family: verdana">
+                            <option value="date_end" <if condition="isset($ilance->GPC['orderby2']) AND $ilance->GPC['orderby2'] == 'date_end'">selected="selected"</if>>{_date_ending}</option>
+                            <option value="bids" <if condition="isset($ilance->GPC['orderby2']) AND $ilance->GPC['orderby2'] == 'bids'">selected="selected"</if>>{_bids}</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>{_display_order}:&nbsp;</td>
+            <td>
+            <select name="displayorder2" class="smaller" style="font-family: verdana">
+                <option value="desc" <if condition="isset($ilance->GPC['displayorder2']) AND $ilance->GPC['displayorder2'] == 'desc'">selected="selected"</if>>{_descending}</option>
+                <option value="asc" <if condition="isset($ilance->GPC['displayorder2']) AND $ilance->GPC['displayorder2'] == 'asc'">selected="selected"</if>>{_ascending}</option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>{_per_page}:&nbsp;</td>
+                        <td>
+                        <select name="pp2" class="smaller" style="font-family: verdana">
+                            <option value="10" <if condition="isset($ilance->GPC['pp2']) AND $ilance->GPC['pp2'] == '10'">selected="selected"</if>>10</option>
+                            <option value="50" <if condition="isset($ilance->GPC['pp2']) AND $ilance->GPC['pp2'] == '50'">selected="selected"</if>>50</option>
+                            <option value="100" <if condition="isset($ilance->GPC['pp2']) AND $ilance->GPC['pp2'] == '100'">selected="selected"</if>>100</option>
+                            <option value="500" <if condition="isset($ilance->GPC['pp2']) AND $ilance->GPC['pp2'] == '500'">selected="selected"</if>>500</option>
+                            <option value="1000" <if condition="isset($ilance->GPC['pp2']) AND $ilance->GPC['pp2'] == '1000'">selected="selected"</if>>1000</option>
+                        </select>&nbsp;</td>
+                        <td><input type="submit" value="{_go}" class="buttons_smaller" /></td>
+          </tr>
+        </table>
+        </form>
+        </span></div></div>
+                    <div class="block2-content" style="padding:0px">
+                        
+                        
+                        <form name="servicebids" method="post" action="{ilpage[selling]}" accept-charset="UTF-8" style="margin:0px;">
+                        <table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+                        <tbody id="collapseobj_service_selling_activity" style="{collapse[collapseobj_service_selling_activity]}">
+                        <tr class="alt2"> 
+                            <td nowrap="nowrap" align="center">{_id} <if condition="!isset($ilance->GPC['bidsub']) OR isset($ilance->GPC['bidsub']) AND $ilance->GPC['bidsub'] != 'invited'"><a href="javascript:void(0)" onmouseover="Tip('{_this_bid_id_number_represents_the_latest_bid_proposal_identification_number}', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></if></td>
+                            <td>{_title}</td>
+                            <td width="20%">{_amount}</td>
+                            <if condition="isset($ilance->GPC['bidsub']) AND $ilance->GPC['bidsub'] == 'awarded'"><td width="17%" nowrap="nowrap"><div>{_payment}</div></td></if>
+                            <td width="20%" nowrap="nowrap">{_next_step}</td>
+                            <td width="117"><span class="blue"><a href="{php_self}&amp;bidsub={bidsub}&amp;orderby2=bids">{_bids}</a></span></td>
+                            <if condition="isset($ilance->GPC['bidsub']) AND $ilance->GPC['bidsub'] == 'awarded'"><td nowrap="nowrap">{_fvf} <a href="javascript:void(0)" onmouseover="Tip(phrase['_fvf_stands_for_final_value_fee_and_is_a_fee_that_is_charged_to_service_providers_for_awarded_projects_final_value_fees_are_calculated'], BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td></if>
+                            <td width="5%" nowrap="nowrap">{_contact}</td>
+                            <td width="5%" nowrap="nowrap">{_share}</td>
+                            <td width="5%">{_invoice}</td>
+                            <td width="5%" nowrap="nowrap">{_feedback}</td>
+                            <td nowrap="nowrap"><span class="blue"><a href="{php_self}&amp;bidsub={bidsub}&amp;orderby2=date_end">{_time_left}</a></span></td>
+                            <td nowrap="nowrap" align="center">{_sel}</td>
+                        </tr>
+                        <loop name="service_bidding_activity"> 
+                        <tr class="alt1" valign="top"> 
+                            <td width="1%" align="center" valign="top"><if condition="isset($ilance->GPC['bidsub']) AND $ilance->GPC['bidsub'] == 'invited'">{_rfp}</if> <span style="font-size:14px" class="gray">{bid_id}</span></td>
+                            <td width="40%" valign="top"> 
+                        
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr> 
+                                    <td width="97%"><!--<span style="float:right">{icons}</span>--><span class="blue">{job_title}</span><div class="smaller gray" style="padding-top:3px">{_buyer}: <span class="blue">{buyer}</span></div></td>
+                                </tr>
+                                </table></td>
+                            <td valign="top"><div style="font-size:15px" class="black"><strong>{bidamount}</strong></div><div class="smaller gray" style="padding-top:3px">{bidamounttype}</div><div class="smaller blue" style="padding-top:3px">{estimate_days} {measure}</div></td>
+                            <if condition="isset($ilance->GPC['bidsub']) AND $ilance->GPC['bidsub'] == 'awarded'"><td valign="top"><div class="smaller">{paymethod}</div></td></if>
+                            <td valign="top">{nextstep}</td>
+                            <td valign="top" nowrap="nowrap"><div class="smaller blue">{bids} {_bids_lower}</div></td>
+                            <if condition="isset($ilance->GPC['bidsub']) AND $ilance->GPC['bidsub'] == 'awarded'"><td valign="top"><div class="smaller blue">{fvf}</div></td></if>
+                            <td valign="top"><span class="smaller blue">{pmb}</span></td>
+                            <td valign="top"><span class="smaller blue">{work}</span></td>
+                            <td align="center" valign="top">{invoice}</td>
+                            <td valign="top">{feedback}</td>
+                            <td valign="top" nowrap="nowrap">{timeleft}</td>
+                            <td width="1%" align="center" valign="top" class="alt2">{actions}</td>
+                        </tr>
+                        </loop name="service_bidding_activity"> 
+                        <if condition="isset($show['no_service_bidding_activity']) AND $show['no_service_bidding_activity']"> 
+                        <tr> 
+                            <td colspan="13" align="center" class="alt1"><div style="padding-top:8px; padding-bottom:8px;">{_no_results_found}: <span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell/services">{_find_work}</a><else /><a href="{http_server}{ilpage[rfp]}?cmd=listings">{_find_work}</a></if></span></div></td>
+                        </tr>
+                        </if> 
+                        <if condition="isset($show['bidpulldownmenu']) AND $show['bidpulldownmenu']"> 
+                        <tr class="alt2_top"> 
+                            <td colspan="13" align="right"> 
+                                <input type="hidden" name="cmd" value="_do-bid-action" />
+                                <input type="hidden" name="bidretractreason" id="bidretractreason" />
+                                <select name="bidcmd" style="font-family: verdana" id="servicebidcmd">
+                                <optgroup label="{_select_action}">
+                                {apihook[selling_activity_service_option_start]}
+                                <option value="archive">{_archive} {_bids}</option>
+                                <if condition="(empty($ilance->GPC['bidsub']) OR isset($ilance->GPC['bidsub']) AND ($ilance->GPC['bidsub'] != 'retracted' AND $ilance->GPC['bidsub'] != 'expired' AND $ilance->GPC['bidsub'] != 'archived')) AND $ilconfig['servicebid_bidretract']"> 
+                                <option value="retract">{_retract} {_bids}</option>
+                                </if>
+                                {apihook[selling_activity_service_option_end]}
+                                </optgroup>
+                                </select>
+                                <input type="submit" class="buttons" onclick="return showPrompt(); confirm_js('{_please_take_a_moment_to_confirm_your_action}');" value="{_go}" /></td>
+                        </tr>
+                        </if> 
+                        <tr>
+                            <td colspan="13">{prevnext2}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        </form>
+                    </div>
+                    
+                    <div class="block2-footer">
+                            <div class="block2-right">
+                                    <div class="block2-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        </if>
+    
+	</td>
+</tr>
+</table>

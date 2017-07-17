@@ -1,0 +1,183 @@
+<link type="text/css" href="{https_server}/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="{https_server}/functions/javascript/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{https_server}/functions/javascript/jquery-ui-1.8.17.custom.min.js"></script>
+
+<script>
+	$(function() {
+	    $("#datepicker").datepicker({
+	      dateFormat: 'yy-mm-dd',
+	    });
+		 $("#datepicker1").datepicker({
+	      dateFormat: 'yy-mm-dd',
+	    });
+	});
+</script>
+
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- Coin Shows -->
+		
+		<div class="tab-page">
+			
+			<h2 class="tab">coin shows</h2>
+			
+			
+			
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Coin Shows We Attend </div>
+							
+							<if condition="isset($show['edit_coin_show'])">	
+							 <div class="block3-content-gray" style="padding:9px"><div class="smaller">Edit your coin shows detail</div></div>
+                            <div class="block3-content" style="padding:0px">
+                               <form name="show" method="post">
+							   <input type="hidden" name="subcmd" value="edit_coin_show" />
+							   {hiddenid}
+                              <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							   <tr class="alt1" valign="top">
+							   <td>Enter the Show Start Date</td>
+							   <td><input type="text" name="show_start_date" value="{coin_date}" id="datepicker"/></td>
+							   </tr>
+							   <tr class="alt1" valign="top">
+							   <td>Enter the Show End date</td>
+							   <td><input type="text" name="show_end_date" value="{coin_end_date}" id="datepicker1"/></td>
+							   </tr>
+							   
+							<tr class="alt1" valign="top">
+							   <td>Enter the Description</td>
+							   <td><textarea name="show_desc" rows="5" cols="30">{coin_desc}</textarea></td>
+							   </tr>
+							   
+							   <tr class="alt1" valign="top">
+							   <td>Representatives</td>
+							   <td>{show_representatives}</td>
+							   </tr>
+							   
+							   <tr class="alt1" valign="top">
+							   <td>&nbsp;</td>
+							    <td><input type="submit"  name="submit" value="{_update}" />&nbsp;&nbsp;
+							    <input type="button" class="buttons" value="{_cancel}" style="font-size:15px" onClick="location.href='{ilpage[staffsettings]}'" /></td>
+							   </tr>
+							</table>
+							 </form>
+                               </div> 	
+							  <else /> 	
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Enter your coin shows detail</div></div>
+                            <div class="block3-content" style="padding:0px">
+                               <form name="show" method="post">
+							   <input type="hidden" name="cmd" value="coin_show" />
+                              <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							   <tr class="alt1" valign="top">
+							   <td>Enter the Show Start Date</td>
+							   <td><input type="text" name="show_start_date" id="datepicker"/></td>
+							   </tr>
+							   <tr class="alt1" valign="top">
+							   <td>Enter the Show End date</td>
+							   <td><input type="text" name="show_end_date" id="datepicker1"/></td>
+							   </tr>
+							   
+							<tr class="alt1" valign="top">
+							   <td>Enter the Description</td>
+							   <td><textarea name="show_desc" rows="5" cols="30"></textarea></td>
+							   </tr>
+							   
+							<tr class="alt1" valign="top">
+							   <td>Representatives</td>
+							   <td>{show_representatives}</td>
+							   </tr>   
+							   
+							   <tr class="alt1" valign="top">
+							   <td>&nbsp;</td>
+							    <td><input type="submit" name="submit" value="{_save}" />
+							   </td>
+							   </tr>
+							</table>
+							 </form>
+                               </div> 							
+                           
+						   </if>
+						   
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                             </div>
+                    </div>
+					
+					<br />
+					<br />
+					
+					<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">List of the shows <div class="smaller" align="right"><a href="{http_server}main-shows">View Coin Shows</a></div></div>
+                            <div class="block3-content-gray" style="padding:9px;"><div class="smaller">List of the Shows </div></div>
+                            <div class="block3-content" style="padding:9px;">
+                             <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<tr class="alt1">
+							<td width="10%">S.No</td>
+							<td width="15%">Show Start Date</td>
+							<td width="15%">Show End Date</td>
+							<td width="40%">Description</td>
+							<td width="10%">Edit</td>
+							<td width="10%">Delete</td>
+							</tr>
+							
+							 <loop name="coin_shows_list">
+							  <tr class="alt1">
+								<td width="10%">{id}</td>
+								<td width="10%">{start_date}</td>
+								<td width="10%">{end_date}</td>
+								<td width="40%">{description}</td>
+								<td width="10%">{edit}</td>
+								<td width="10%">{delete}</td>
+								</tr>
+							  </loop name="coin_shows_list">
+							
+							</table>
+							 {coin_show_pagnation}
+                              	</div>						
+                          
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							
+                              </div>
+                           
+                    </div>
+                </div>
+				
+				<!-- Coin Shows -->
+		
+	</div>
+	
+		
+</div>
+
+

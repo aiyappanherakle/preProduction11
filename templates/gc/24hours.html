@@ -1,0 +1,201 @@
+<head>
+<meta name="description" content="GreatCollections offers 24-Hour Coin Deals including Modern 70 grades, Classics, Rare Coins, Early Gold and more updated each day.">
+</head>
+<style type="text/css">
+div.sc_menu_wrapper {
+  position: relative;   
+  height: 533px;
+  width: 195px;
+  margin-top: 0px;
+  overflow: auto;
+}
+div.sc_menu {
+  padding: 15px 0;
+  width: 195px;
+}
+#open
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#imgs
+{
+background-image: url(images/gc/w2.jpg);
+width:198px;
+height:151px;
+}
+#textim
+{
+background-image: url(images/gc/coin_bg.jpg);
+width:198px;
+height:160px;
+
+}
+#amo
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#fetit
+{
+background:none;
+color:#303030;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}		
+#titl
+{
+background:none;
+color:#5B6C7E;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+		
+		a:focus { outline:none }
+		
+		img { border: 0 }
+		
+	
+	  
+		.slider-wrap { /* This div isn't entirely necessary but good for getting the side arrows vertically centered */
+			
+			position: relative;
+			width: 100%;
+		}
+
+
+
+		.stripViewer { /* This is the viewing window */
+			position: relative;
+			overflow: hidden; 
+			/*border: 5px solid #000;*/ /* this is the border. should have the same value for the links */
+			margin: auto;
+			
+		}
+		
+		.stripViewer .panelContainer { /* This is the big long container used to house your end-to-end divs. Width is calculated and specified by the JS  */
+			position: relative;
+			left: 0; top: 0;
+			
+			list-style-type: none;
+			/* -moz-user-select: none; // This breaks CSS validation but stops accidental (and intentional - beware) panel highlighting in Firefox. Some people might find this useful, crazy fools. */
+		}
+		
+		.stripViewer .panelContainer .panel { /* Each panel is arranged end-to-end */
+			float:left;
+			height: 100%;
+			position: relative;
+			width: 700px; /* Also specified in  .stripViewer  above */
+		}
+		
+		.stripViewer .panelContainer .panel .wrapper { /* Wrapper to give some padding in the panels, without messing with existing panel width */
+			padding: 10px;
+		}
+		
+		
+		
+		.stripNavL, .stripNavR { /* The left and right arrows */
+			position: absolute;
+			top: 80px;
+			text-indent: -9000em;
+		}
+		
+		.stripNavL a, .stripNavR a {
+			display: block;
+			height: 40px;
+			width: 40px;
+		}
+		
+		.stripNavL {
+			left: 0;
+		}
+		
+		.stripNavR {
+			right: 0;
+		}
+		
+		.stripNavL {
+			background: url("images/arrow-left.gif") no-repeat center;
+		}
+		
+		.stripNavR {
+			background: url("images/arrow-right.gif") no-repeat center;
+		}
+		 .stripNav ul
+		{
+		display:none;
+		} 
+	</style>
+<div class="block-wrapper">                
+                            <div class="block">                            
+                                    <div class="block-top">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>                                    
+                                    <div class="block-header">24-Hour Deals by GreatCollections</div>                                    
+                                    <div class="block-content" style="padding: 6px 0px 0px 6px">
+                                    
+                                    <div>Great coin deals, for one day only. These coins are for direct sale at a fixed (discounted) price. No Buyer's Fee applies to Buy Now and 24-Hour Coin Deals. Check back each day for our exclusive 24-hour deals.
+                                    </div>
+                                    
+                                                                            
+									<table class="" border="0" cellpadding="6" cellspacing="{table_cellspacing}" width="100%">
+									
+										<loop name="res_gcdealing">
+										  {separator_begin}
+											<td valign="top" style="width: 200px;">
+												<div style="padding:4px; width:200px;">
+												<div id="fetit" style="height:45px; width:200px;">{item_title}</div>
+												<div id="textimo" style="height: 240px;">
+													<div id="textim"><div align="center">{thumbnail}</div></div>
+													
+													<div style=" padding-top: 6px;">
+													<div style="float: left; width: 190px; text-decoration:line-through;" id="fetit">Current<br><span id="amo">$&nbsp;{coin_amount}</span></div>
+													
+													<div style=" padding-top: 6px;">
+													</div>
+													<div style="float: left; width: 99px;" id="fetit">24-Hours<br><span id="amo" style="text-decoration:blink;">$&nbsp;{current_bid}</span></div>
+													<div style="float: left;">
+													{image}
+													
+													<if condition="isset($res_gcdeal['thum']) AND $res_gcdeal['thum'] == 1">
+													<a href="{ilpage[merch]}?id={project_id}"><img src="{template_relativeimagepath}{template_imagesfolder}sold.jpg"></a>
+													</if>
+													
+													</div> 
+													</div>
+										</div>		 
+										</td> 
+										{separator_end}
+										</loop name="res_gcdealing">
+										<if condition="isset($res_gc_daily_deal['deal']) AND $res_gc_daily_deal['deal'] == 'no'">
+										<tr>
+											<td colspan="9" align="center">All 24-Hour Deals Are Sold Out</td>
+										</tr>									
+										</if>																		
+									</table>
+                                    </div>                                    
+                                    <div class="block-footer">
+                                            <div class="block-right">
+                                                    <div class="block-left"></div>
+                                            </div>
+                                    </div>                                    
+                            </div>
+                        </div>

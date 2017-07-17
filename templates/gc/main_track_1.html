@@ -1,0 +1,250 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+  <tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+ 				<div class="block-wrapper">
+					<!--<div class="block">-->
+						<div class="block-top">
+						  <div class="block-right"></div>
+						</div>
+						<div class="block-content" id="collapseobj_recenthistory" style="{collapse[collapseobj_recenthistory]}; padding:0px">
+					
+							<div class="bigtabs" style="padding-bottom:10px; padding-top:10px">
+								<div class="bigtabsheader">
+									<ul id="homepagetabs2">
+									{apihook[main_template_top_bigtabs_start]}
+									<li id="Purchases_Shipped" title="" {hv1}><a href="javascript:void(0)" onclick="toggle_tab('homepagetabs2', 'Purchases_Shipped', 'purchases_ship', 'new3')">{_purchases_shipped}</a></li>
+									<li id="Consignments_Received" title="" {hv2}><a href="javascript:void(0)" onclick="toggle_tab('homepagetabs2', 'Consignments_Received', 'received', 'new3')">{_consignments_received}</a></li>
+									<li id="Items_Returned" title="" {hv3}><a href="javascript:void(0)" onclick="toggle_tab('homepagetabs2', 'Items_Returned', 'returned', 'new3')">{_items_returned}</a></li>   								
+									
+									{apihook[main_template_top_bigtabs_end]}
+									</ul>
+								</div>
+							</div>
+								<div style="clear:both;"></div>
+								<!-- BEGIN tab 2 container -->
+								<div id="new3">
+								<div class="block3">
+									<div class="block3-top">
+										<div class="block3-right">
+											<div class="block3-left"></div>
+										</div>
+									</div>
+								<div class="block3-header">
+								<span style="float: right;">
+								</span>{_purchases_shipped}
+								</div>
+									<div style="padding: 0px;" class="block3-content">
+								<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>									
+										<tr class="alt2">
+											<td>{_invoice}</td>
+											<td>{_invoice_date}</td>
+											<td>{_paiddate}</td>											
+											<td>{_no_of_coins}</td> 
+											<td>{_date_shipped}</td>
+											<td>{_shipment_service}</td>
+											<td>{_tracking_number}</td>
+											
+										</tr>
+										
+										<loop name="purchase_ship">
+										<tr>
+										 <td>{invoiceid}</td>
+										 <td>{createdate}</td>										 
+										 <td>{paiddate}</td>										
+										 <td>{coincount}</td>
+										 <td>{shipdate}</td>
+										 <td>{shipservice}</td>		
+										 <td>{trackno}</td>
+										</tr>
+										</loop name="purchase_ship">	
+										<if condition="isset($show['no_statement']) AND $show['no_statement']">
+                                         <tr class="alt1">
+                                             <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                         </tr>
+                                         </if>
+										
+									</tbody>
+								</table>
+									</div>
+								<div class="block3-footer">
+									<div class="block3-right">
+										<div class="block3-left"></div>
+									</div>
+								</div>
+								</div></div>
+								<!-- END tab 2 container -->
+								<!-- BEGIN tab 2 container -->
+							<div id="listingtabtext2"></div>
+							<!-- END tab 2 container -->
+						</div>
+							<div class="block-footer">
+								<div class="block-right">
+									<div class="block-left"></div>
+								</div>
+							</div>
+					</div>
+				<!--Currently Sellingtab end-->
+				<div class="block-wrapper" id="purchases_ship" style="display:none">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">{_purchases_shipped} </div>
+							<div style="padding: 0px;" class="block3-content">
+						<!-- BEGIN service panel selling activity -->
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>
+										<tr class="alt2">
+											<td>{_invoice}</td>
+											<td>{_invoice_date}</td>
+											<td>{_paiddate}</td>											
+											<td>{_no_of_coins}</td> 
+											<td>{_date_shipped}</td>
+											<td>{_shipment_service}</td>
+											<td>{_tracking_number}</td>
+											
+										</tr>
+										<loop name="purchase_ship">
+										<tr>
+										 <td>{invoiceid}</td>
+										 <td>{createdate}</td>										 
+										 <td>{paiddate}</td>										
+										 <td>{coincount}</td>
+										 <td>{shipdate}</td>
+										 <td>{shipservice}</td>		
+										 <td>{trackno}</td>
+										</tr>
+										</loop name="purchase_ship">	
+										<if condition="isset($show['no_statement']) AND $show['no_statement']">
+                                         <tr class="alt1">
+                                             <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                         </tr>
+                                         </if>							
+									</tbody>
+								</table>
+								
+							<!-- END service panel selling activity -->
+							</div>
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+						<!--Currently Sellingtab end-->
+					
+					
+				<div class="block-wrapper" id="received" style="display:none">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">{_consignments_received}</div>
+							<div style="padding: 0px;" class="block3-content">
+							
+							<!-- BEGIN service panel sellingactivity -->
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>									
+										<tr class="alt2">											
+											<td>{_consignment_id}</td>
+											<td>{_date_received}</td>											
+											<td>{_num_of_coins}</td> 											
+										</tr>
+										<loop name="consign_receive">
+										<tr>										 
+										 <td>{consignid}</td>																				
+										 <td>{end_date}</td>
+										 <td>{coins}</td>
+										</tr>
+										</loop name="consign_receive">	
+										<if condition="isset($showreceive['no']) AND $showreceive['no']">
+                                         <tr class="alt1">
+                                             <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                         </tr>
+                                         </if>										
+									</tbody>
+								</table>
+								
+							<!-- END service panel selling activity -->
+							</div>
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+		  	<!-- Items Sold tab end-->
+			
+			
+			<div class="block-wrapper" id="returned" style="display:none">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">{_items_returned}</div>
+							<div style="padding: 0px;" class="block3-content">					
+							
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>
+										<tr class="alt2">
+											<td>{_packing_id}</td>
+											<td>{_date}</td>
+											<td>{_num_of_coins}</td>											
+											<td>{_date_shipped}</td> 
+											<td>{_shipment_service}</td>
+											<td>{_tracking_number}</td>
+											
+										</tr>
+										<loop name="item_return">
+									<tr>
+										 <td>{pack_id}</td>
+										 <td>{date}</td>										
+										 <td>{coincount}</td>
+										 <td>{ship_date}</td>
+										 <td>{ship_service}</td>
+										 <td>{track_no}</td>
+										</tr>
+										</loop name="item_return">
+										<if condition="isset($showreturn['no']) AND $showreturn['no']">
+                                         <tr class="alt1">
+                                             <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                         </tr>
+                                         </if>										
+									</tbody>
+								</table>
+								
+							<!-- END service panel selling activity -->
+							</div>
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>		
+	</td>
+</tr>
+</table>

@@ -1,0 +1,89 @@
+	
+
+
+
+<div id="v3body4">
+
+	<!-- sub navigation -->
+
+	<div id="sub">
+		<div id="subnav">
+			<a href="reports.php" class="sel"><span>Notify Win</span></a>
+		</div>
+	</div>
+
+	<!-- /sub navigation -->
+
+
+
+	<div id="content" style ="width: 1000px;">
+	
+		<div class="header">Notify Win Auction Details</div><br />
+		<div class="tab-pane">
+
+			<div class="tab-pane" id="reportlistings">
+				<div class="tab-page">
+					<h2 class="tab">Email</h2>
+
+					<div class="block-wrapper">
+						<div class="block">		
+							<div class="block-top">
+								<div class="block-right">
+									<div class="block-left"></div>
+								</div>
+							</div>
+							
+							<div class="block-header">Notify Win Auction Details</div>
+								<div class="block-content" style="padding:0px">
+									<form name="ilform" action="notifywin_details.php" method="post" accept-charset="UTF-8" style="margin: 0px;" >
+									<input type="hidden" name="cmd" value="send_email" />
+									<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+										<tr>
+											<td width="10%">Auction Date</td>
+											<td>
+												<script>
+													$(function() 
+													{
+														$("#datepicker").datepicker({
+															dateFormat: 'mm-dd-yy',
+															beforeShowDay: enableSUNDAYS
+														});
+						
+														// Custom function to enable SUNDAY only in jquery calender
+														function enableSUNDAYS(date) {
+															var day = date.getDay();
+															return [(day == 0), ''];
+														}
+													});
+												</script>
+
+												<input id="datepicker" name="end_date" type="text">
+											</td>
+										</tr>
+
+										<tr>
+											<td colspan="2" align="left">
+												<input type="submit" class="buttons" value=" Send " name="send" style="font-size:15px" />
+											</td>
+										</tr>
+									</table>
+								</form>
+							</div>
+
+							<div class="block-footer">
+								<div class="block-right">
+									<div class="block-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	<br />
+
+<br />
+

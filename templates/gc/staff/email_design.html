@@ -1,0 +1,156 @@
+<script type="text/javascript">    
+       function PrintDiv() 
+	   {  
+  
+          var r = document.getElementById('new');
+	         
+                  var y = r.innerHTML;
+				  
+				  
+				 
+         /* var t = window.open('', '_blank', 'width=300,height=300');
+          t.document.open();
+                 
+          t.document.write('<html><body >' + r.innerHTML + '</html>');
+                 
+           t.document.close();*/
+                       
+                         y = y.replace(/\s+/g," ");
+						 
+						// alert(y);
+					
+                      
+							          
+         if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+               request = new XMLHttpRequest();
+             }
+		 else if (window.ActiveXObject) { // Internet Explorer
+               request = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+       
+	   
+       request.onreadystatechange = function ajaxResponse(){
+               if (request.readyState==4){
+			   
+			 //  alert(request.responseText);
+			   
+          window.open('{https_server}/staff/email_design.php?var=template', '_blank', 'width=300,height=300');
+               
+               
+               //window.location.href= 'http://localhost/phpfiles/ian/new.html';
+                       //document.getElementById('listed_ajax').innerHTML= request.responseText;
+                       //document.getElementById('sitvalue').innerHTML= '<input type="submit" class="buttons" value=" {_search} " onclick="return checklistedajax('+lis+',document.getElementById(\'serachid\').value);" style="font-size:15px" />';
+                       
+                       
+               }
+               else{
+			   
+			 
+                      // document.getElementById('txt').innerHTML= "<img src='images/default/wheel.gif'/>";        
+               }
+       }
+	   
+	   
+       // http_request.onreadystatechange = alertContents;
+	   
+	    url = 'https://www.greatcollections.com/staff/email_design.php';
+	    var parameter = 'temp=new_temp';
+        request.open('POST', url, true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.setRequestHeader("Content-length", parameter.length);
+        request.setRequestHeader("Connection", "close");
+        request.send(parameter);
+    
+	   
+      /* <!--url ="email_generator.php?user=" +y;
+       request.open("POST", url,true);
+       request.send(null);-->*/
+	 
+               }  
+</script><script language="JavaScript">
+	<!--
+	function validate_all()
+	{	
+		fetch_bbeditor_data();
+		return(true);
+	}
+	//-->
+	</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body style="font-family: Helvetica, sans-serif;  color:#FFF; text-align:center; background-color:#FFFFFF;" >
+<form action="email_design.php" method="post" onSubmit="return validate_all();" accept-charset="UTF-8" style="margin:0px">
+<input type="hidden" name="cmd" value="area" />
+
+<div style="" align="center" id="new">
+  <table width="890"   border="0" cellpadding="3" cellspacing="0">
+  <tr></tr>
+  
+  <tr>
+    <td height="71" colspan="10" style="text-align:center; font-size:40px; padding-top:20px;background-image: url({https_server}staff/images/top_bg.jpg); background-repeat:repeat-x;">
+    <div align="left" style="margin-left:10px; margin-bottom:10px;"><img src="{https_server}staff/images/logo_gc.png" width="354" height="70" /></div>
+    </td>
+  </tr>
+   
+  <tr>
+  <if condition="isset($show['content']) AND $show['content']=='ture'">
+	  <td bgcolor="#FFFFFF" style="color: #000000; padding-left:150px; padding-right:150px;">
+	  {message}
+	  </td>
+  <else />
+	  <td>
+	   <if condition="isset($show['edit']) AND $show['edit']=='ture'">
+	    {wysiwyg_area1}
+	   <else />
+	  {wysiwyg_area}
+	   </if>
+	  </td>
+  </if>
+
+  </tr>
+  
+  
+  <tr >
+    <td  colspan="10" bgcolor="#5B5F68" valign="top" height="120"><div align="center">
+      <table width="912" border="0" cellpadding="0" cellspacing="0">
+  
+       <tr>
+<td style="padding:10px 0; font-size:10px; color:#FFFFFF; text-align:center; font-family:verdana,arial;">
+<p style="margin:0; padding:10px 0; font-family:verdana,arial; font-size:10px; color:#FFFFFF;">This message was sent to <a href="mailto:{EMAIL_ADDRESS}" style="font-family:verdana,arial; font-size:10px; color:#FFFFFF; color:#FFFFFF; text-decoration:none;">{EMAIL_ADDRESS}</a>.<br />Please add <a href="mailto:info@greatcollections.com" style="font-family:verdana,arial; font-size:10px; color:#FFFFFF; color:#FFFFFF; text-decoration:none;">info@greatcollections.com</a> to your address book to ensure our emails reach your inbox!</p>
+
+      <p style="margin:0; padding:10px 0; font-family:verdana,arial; font-size:10px; color:#FFFFFF;">&#169; 2010 - {year} <a href="http://www.greatcollections.com/main.php?referal_name=email01" style="font-family:verdana,arial; font-size:11px; color:#FFFFFF; text-decoration:none; font-size:10px; color:#FFFFFF;">GreatCollections.com</a>, LLC<br />17500 Red Hill Avenue, Suite 160, Irvine, CA 92614-7290<br />
+      Tel: 1.800.44.COINS (+1.949.679.4180)</p>
+</td>
+</tr>
+        
+        
+      </table>
+    </div></td>
+  </tr>
+  
+  </table>
+  <center>
+  
+          <if condition="isset($show['content']) AND $show['content']=='ture'">
+		  <input type="button" value="Download HTML" onClick="PrintDiv();" >
+		 <input type="submit" name="back" value="Back">
+		 <input type="hidden" name="subcmd" value="back">
+		  <else />
+		    <input type="submit" name="submit" value="View" > 
+		  </if>
+         
+          </center>
+</div>
+</form>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!--  vijay -->
+<div id="v3body4">
+
+	<!-- sub navigation -->
+
+	<div id="sub">
+
+		<div id="subnav">
+			
+		</div>
+
+	</div>
+
+	<!-- /sub navigation -->
+	<div id="content">
+		<div class="header">Placed Bid</div><br />
+		<div class="tab-pane">
+			
+			<div class="tab-page">
+				<h2 class="tab">List</h2>
+			
+					
+					<div class="block-wrapper">
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+							
+							
+						
+							<!--	Listing of all invoices tab start-->
+						 <div class="block3-header">Bid Not placed Listing</div>
+						 <div class="block3-content" style="padding:0px">
+							
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<tr class="alt2"> 
+								  <td width="7%">Coin id</td>								 
+								  <td width="20%" >Amount</td>
+								  <td width="20%" >Bug details</td>
+								  <td width="15%" >Date of bug</td>
+								  <td width="16%">Bid placed</td>
+								  <td width="11%">Username</td>
+								 
+								
+							</tr>
+							<loop name="place_bidlist"> 							
+							<tr class="alt1" valign="top">								
+								<td nowrap="nowrap"><span class="blue">{Coin_id}</span> </td>
+								<td nowrap="nowrap">{Amount}</td>
+								<td nowrap="nowrap">{bug_details}</td>								
+								<td nowrap="nowrap"><div class="blue">{date_of_bug}</div></td>
+								<td>{bidplaced}</td>
+								<td nowrap="nowrap">{username}</td>
+							
+								
+							</tr>
+							</loop name="place_bidlist">
+							
+                        
+							
+							</table>
+							
+							</div>
+							 <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+							<div>&nbsp;</div>
+								
+							
+							
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+			
+			</div>
+			
+				<div class="tab-page">
+				<h2 class="tab">Import </h2>
+				<form method="post" action="place_bid_record.php" 	enctype="multipart/form-data" accept-charset="UTF-8" name="place_bid_record">
+				
+					<input type="hidden" name="cmd" value="place_bid">
+					<input type="hidden" name="subcmd" value="place_bid_record">
+					<div class="block-wrapper">
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+							<div class="block3-header">Import the records of csv, the bids placed Bid bug under the 2222 user</div>
+							<div class="block3-content-gray" style="padding:9px"><div class="smaller">Import the records of csv  placed bid bug under the 2222  user account (if the projects is not Listed.)</div></div>
+							
+							<div class="block3-content" style="padding: 0px 0px 0px 10px;">
+								<br>
+								<table width="100%" border="0" >
+									<tr>
+										<td><strong>Upload CSV :</strong></td>
+										<td>  <td><input type="file" name="upload" value="Browse" /></td>
+									</tr>
+																		
+								</table>
+								
+								<input type="submit" name="submit" Value="submit" style="margin-left: 300px;">
+								
+								
+							</div>
+							
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  vijay-->

@@ -1,0 +1,151 @@
+
+
+<!-- begin v3body4 -->
+
+<div id="v3body4">
+
+<!-- sub navigation -->
+
+<div id="sub">
+
+	<div id="subnav">
+<input type="hidden" name="sample" id="sample" value="&#9733" />
+<a href="consignments.php"><span>Listing</span></a>
+<a href="consignments.php?cmd=create" ><span>Create</span></a> 
+<a href="consignments.php?cmd=list_raw_send" ><span>List Raw</span></a>
+<a href="consignments.php?cmd=search" ><span>Search</span></a>
+<a href="consignments.php?cmd=pen_con_list"  ><span>Pending List</span></a>
+<a href="consignments.php?cmd=quick_page" class="sel" ><span>Edit Min/BN</span></a>
+<a href="minbids_change.php" ><span>Edit Min/BN(Inc. Live)</span></a>
+<a href="consignments.php?cmd=listing_page"><span>Editing Fvf</span></a>
+
+	</div>
+
+</div>
+
+<!-- /sub navigation -->
+
+
+
+<!-- begin content -->
+
+<div id="content">
+
+<div class="header">Edit Min/BN Page</div><br />
+
+	
+
+	
+
+	<!-- tab pane -->
+
+	<div class="tab-pane">
+
+	
+
+			
+
+		<!-- grading tab page -->
+
+		<div class="tab-page">
+
+			
+
+			<h2 class="tab">Quick</h2>
+
+			
+
+                    
+
+                  
+
+				 
+
+			<form method="post" action="{ilpage[consignment]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+
+				<input type="hidden" name="cmd" value="quick_page" />
+
+				<input type="hidden" name="subcmd" value="update_quick_page" />
+
+				<input type="hidden" name="return" value="{ilpage[consignment]}" />
+
+				<div class="block-wrapper">
+
+				<div class="block3">
+
+				
+
+						<div class="block3-top">
+
+								<div class="block3-right">
+
+										<div class="block3-left"></div>
+
+								</div>
+
+						</div>
+
+						
+
+						<div class="block3-header">Change Min Bid and/or Buy Now prices by Item ID</div>
+
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">This page will overwrite Minimum Bids and/or Buy Now prices by Item ID. If you leave an Minimum Bid or Buy Now field blank, it will disable that option for the Item.</div></div>
+
+						<div class="block3-content" style="padding:0px">
+
+						<div id="pcgdiv"></div>
+
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							{inner_loop}
+							
+							<tr>
+							
+							<td><input type="submit" name="submit" value="submit" /></td>
+							</tr>
+
+							</table>
+
+                            </div>
+
+                            
+
+                       
+
+						<div class="block3-footer">
+
+								<div class="block3-right">
+
+										<div class="block3-left"></div>
+
+								</div>
+
+						</div>
+
+						
+
+				</div>
+
+			</div>
+
+            </form>
+
+	
+
+			
+
+			
+
+	  </div>
+
+		<!-- / grading tab page -->
+
+		
+
+		
+
+		
+
+</div>
+
+<!-- / tab pane -->
+

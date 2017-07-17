@@ -1,0 +1,113 @@
+{template_htmldoctype}
+<html dir="{template_textdirection}" lang="{template_languagecode}">
+<head>
+<title>{page_title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={template_charset}">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="revisit-after" content="0">
+<meta name="robots" content="noindex, nofollow">
+{headinclude}
+
+<style type="text/css">
+li ul li {
+position:relative;
+z-index: 100;
+}
+
+#align{
+text-align:left; 
+padding-left:10px;
+background-color:#FFFFFF;
+border:solid 1px;
+font-size:11px;
+}
+
+#v3menu ul li.active a 
+{
+background-color:#ff9f9c;
+}
+
+
+</style>
+</head>
+
+<body onLoad="{onload}">
+
+<script language="javascript" type="text/javascript" src="{template_relativeimagepath}functions/javascript/tooltip.js" charset="utf-8"></script>
+
+<div id="v3body1"><div id="v3body2"><div id="v3body3">
+
+<div id="top"><span style="float:left; padding-top:6px" class="smaller gray">{official_time}</span>
+<div id="version">
+	<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0 AND $_SESSION['ilancedata']['user']['isstaff'] == '2'">
+	<span class="smaller gray">{ilanceversion}&nbsp;&nbsp;|&nbsp;&nbsp;Build <strong>{buildversion}</strong></span>
+	<else />&nbsp;</if>
+</div>
+
+<div id="logo">
+<div style="padding-bottom:25px"></div>
+
+<span class="blue"><a href="{https_server}asst1/users.php" style="text-decoration:none; font-family: Georgia, Times New Roman, Times, serif; font-size: 21px; line-height: 25px; letter-spacing: -1px; font-weight: normal;">{site_name}</a></span>
+
+	<div class="smaller" style="padding-top:6px;">
+		<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0 AND $_SESSION['ilancedata']['user']['isstaff'] == '2'">
+			<span class="blue" style="float:right">
+				<a href="{http_server}" target="_blank">{_client_cp}</a>
+			</span>	
+			<span>{login_include}</span>
+		<else />
+			<span>{login_include}</span>
+		</if>
+	</div>
+
+</div></div>
+ 
+<div id="v3menu" style="">
+
+<ul id="treemenu1">
+	<loop name="v3nav">
+	<li id="1" onMouseOver="dropdown('setting');" onMouseOut="dropdownb('setting');"><a href="{https_server}asst1/users.php" style="" accesskey="{key}" {class}><span id="head_span"><strong>User</strong></span></a>    
+    </li>
+	
+	
+	<li onmouseout="dropdownb('buyers');" onmouseover="dropdown('buyers'); " id="7"><a {class}="" accesskey="{key}" href="buyers.php"><span><strong>Buyers</strong></span></a><ul style="position: relative; display: none;" id="buyers"><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " href="ar.php" style="color: black;"><span id="align">Ar Report</span></a></li></ul></li>
+	
+	
+	<li onmouseout="dropdownb('consignsd');" onmouseover="dropdown('consignsd');" id="3">
+	<a {class}="" accesskey="{key}" href="consignments.php">
+	<span><strong>Consignments</strong></span></a><ul style="position: relative; display: none;" id="consignsd"><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width: 120px; color: black;" href="consignments.php"><span id="align">Listing</span></a></li><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width: 120px; color: black;" href="consignments.php?cmd=create"><span id="align">Create</span></a></li><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width:120px;" href="consignments.php?cmd=list_raw_send"><span id="align">List Raw</span></a></li><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width: 120px; color: black;" href="consignments.php?cmd=search"><span id="align">Search</span></a></li><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width:120px;" href="consignments.php?cmd=pen_con_list"><span id="align">Pending List</span></a></li><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width: 120px; color: black;" href="consignments.php?cmd=quick_page"><span id="align">Edit Min / BN</span></a></li><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width: 120px; color: black;" href="{https_server}asst1/minbids_change.php"><span id="align">Change Min-Bid(Inc Live)</span></a>
+	</li><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width:120px;" href="consignments.php?cmd=listing_page"><span id="align">Editing Fvf</span></a></li><li><a onmouseout="this.style.color = 'black'" onmouseover="this.style.color = 'red'; " style="width: 120px; color: black;" href="consignments.php?cmd=consignments.php"><span id="align">Consignor statement.</span></a></li></ul></li>
+	
+	<li id="1"><a href="{https_server}asst1/coins_search.php" accesskey="{key}" {class}><span id="head_span"><strong>Sold Item Info</strong></span></a>
+	</li>
+	
+	<if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] == '13662' AND $_SESSION['ilancedata']['user']['isstaff'] == '2'">
+		<li id="1"><a href="{https_server}asst1/settings.php" accesskey="{key}" {class}><span id="head_span"><strong>Settings</strong></span></a>
+		</li>
+	</if>
+	
+	</loop name="v3nav">
+</ul>
+
+
+
+</div><!-- / main header links --> 
+<script>
+
+    function dropdown(a)
+	{
+	
+		  $("#"+a).show();
+		 
+		
+   }
+   
+   function dropdownb(a)
+	{
+		  $("#"+a).hide();
+		
+   }	
+</script>

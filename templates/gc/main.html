@@ -1,0 +1,471 @@
+<style type="text/css">
+
+#sidebar1{
+width: 250px;
+}
+#list ul
+{
+width: 230px;
+}
+#list ul li {
+    width: 215px;
+}
+#mainContent{
+margin-left: 275px;
+padding-top: 1px;
+}
+.new_inner
+	{
+	font-size: 14px;
+	position: absolute;
+	top: 265px;
+	width: 630px;
+	margin-left:5px;
+	margin-right:5px;
+	
+	left: 10px;
+	} 
+  
+div.sc_menu_wrapper {
+  position: relative;   
+  height: 560px;
+  width: 195px;
+  margin-top: 0px;
+  overflow: auto;
+}
+div.sc_menu {
+  padding: 15px 0;
+  width: 195px;
+}
+#open
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#imgs
+{
+background-image: url(images/gc/w2.jpg);
+width:198px;
+height:145px;
+}
+#textim
+{
+background-image: url(images/gc/coin_bg.jpg);
+width:198px;
+height:160px;
+}
+#amo
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#fetit
+{
+background:none;
+color:#303030;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}		
+#titl
+{
+background:none;
+color:#5B6C7E;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+		
+		a:focus { outline:none }
+		
+		img { border: 0 }
+		
+	
+	  
+		.slider-wrap { /* This div isn't entirely necessary but good for getting the side arrows vertically centered */
+			
+			position: relative;
+			width: 100%;
+		}
+		.stripViewer { /* This is the viewing window */
+			position: relative;
+			overflow: hidden; 
+			/*border: 5px solid #000;*/ /* this is the border. should have the same value for the links */
+			margin: auto;
+			
+		}
+		
+		.stripViewer .panelContainer { /* This is the big long container used to house your end-to-end divs. Width is calculated and specified by the JS  */
+			position: relative;
+			left: 0; top: 0;
+			
+			list-style-type: none;
+			/* -moz-user-select: none; // This breaks CSS validation but stops accidental (and intentional - beware) panel highlighting in Firefox. Some people might find this useful, crazy fools. */
+		}
+		
+		.stripViewer .panelContainer .panel { /* Each panel is arranged end-to-end */
+			float:left;
+			height: 100%;
+			position: relative;
+			width: 700px; /* Also specified in  .stripViewer  above */
+		}
+		
+		.stripViewer .panelContainer .panel .wrapper { /* Wrapper to give some padding in the panels, without messing with existing panel width */
+			padding: 10px;
+		}
+		
+		
+		
+		.stripNavL, .stripNavR { /* The left and right arrows */
+			position: absolute;
+			top: 80px;
+			text-indent: -9000em;
+		}
+		
+		.stripNavL a, .stripNavR a {
+			display: block;
+			height: 40px;
+			width: 40px;
+		}
+		
+		.stripNavL {
+			left: 0;
+		}
+		
+		.stripNavR {
+			right: 0;
+		}
+		
+		.stripNavL {
+			background: url("images/arrow-left.gif") no-repeat center;
+		}
+		
+		.stripNavR {
+			background: url("images/arrow-right.gif") no-repeat center;
+		}
+		 .stripNav ul
+		{
+		display:none;
+		}
+.stepcarousel{
+position: relative; /*leave this value alone*/
+overflow: scroll; /*leave this value alone*/
+width: 270px; /*Width of Carousel Viewer itself*/
+height: 200px; /*Height should enough to fit largest content's height*/
+}
+.stepcarousel .belt{
+position: absolute; /*leave this value alone*/
+left: 0;
+top: 0;
+}
+#leftimgc
+{
+margin-left:40px;
+}
+#rightimgc
+{
+margin-left:-75px;
+}
+.stepcarousel .panel{
+float: left; /*leave this value alone*/
+overflow: hidden; /*clip content that go outside dimensions of holding panel DIV*/
+/*margin around each panel*/
+width: 250px; /*Width of each panel holding each content. If removed, widths should be individually defined on each content DIV then. */
+}
+	
+.inner
+{
+  position: absolute;
+   top: 255px;
+   left: 150px;
+   width: 100%;
+   font-size:14px;   
+  }
+  
+  .link1{
+  color:#ffffff !important;
+  text-decoration: none;
+  }
+  .link1:hover {
+    color: #E7971E !important;
+	text-decoration: none;
+}
+  
+	</style>
+ 
+<script src="{https_server}banner/jquery.js" type="text/javascript"></script>
+<script src="{https_server}banner/jquery-func.js" type="text/javascript"></script>
+<script type="text/javascript" src="{https_server}jquery.min.js"></script>
+<script type="text/javascript" src="{https_server}stepcarousel.js">
+/***********************************************
+* Step Carousel Viewer script- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
+* This notice must stay intact for legal use
+***********************************************/
+</script>
+<script type="text/javascript">
+stepcarousel.setup({
+	galleryid: 'mygallery', //id of carousel DIV
+	beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
+	panelclass: 'panel', //class of panel DIVs each holding content
+	autostep: {enable:true, moveby:1, pause:3000},
+	panelbehavior: {speed:500, wraparound:false, wrapbehavior:'slide', persist:true},
+	defaultbuttons: {enable: true, moveby: 1, leftnav: ['{template_relativeimagepath}{template_imagesfolder}left.gif', -5, 80], rightnav: ['{template_relativeimagepath}{template_imagesfolder}right.gif', -20, 80]},
+	statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
+	contenttype: ['inline'] //content setting ['inline'] or ['ajax', 'path_to_external_file']
+})
+</script>   
+	
+<!--	End of the script-->
+<link rel="stylesheet" href="{https_server}banner/style.css" type="text/css" media="all">
+ 
+<script type="text/javascript">
+function makeScrollable(wrapper, scrollable){
+}
+$(function(){   
+  makeScrollable("div.sc_menu_wrapper", "div.sc_menu");
+});
+function makeScrollable(wrapper, scrollable){
+  // Get jQuery elements
+  var wrapper = $(wrapper), scrollable = $(scrollable);
+  // Hide images until they are not loaded
+  scrollable.hide();
+  var loading = $("<div class='loading'></div>").appendTo(wrapper);
+  // Set function that will check if all images are loaded
+  var interval = setInterval(function(){
+    var images = scrollable.find("img");
+    var completed = 0;
+    // Counts number of images that are succesfully loaded
+    images.each(function(){
+      if (this.complete) completed++;   
+    });
+    if (completed == images.length){
+      clearInterval(interval);
+      // Timeout added to fix problem with Chrome
+      setTimeout(function(){
+        loading.hide();
+        // Remove scrollbars    
+        wrapper.css({overflow: "hidden"});
+        scrollable.slideDown("slow", function(){
+          enable(); 
+        });                 
+      }, 1000); 
+    }
+  }, 100);
+  function enable(){    
+    // height of area at the top at bottom, that don't respond to mousemove
+  var inactiveMargin = 100;         
+  // Cache for performance
+  var wrapperWidth = wrapper.width();
+  var wrapperHeight = wrapper.height();
+  // Using outer height to include padding too
+  var scrollableHeight = scrollable.outerHeight() + 2*inactiveMargin;
+  // Do not cache wrapperOffset, because it can change when user resizes window
+  // We could use onresize event, but it&#39;s just not worth doing that 
+  // var wrapperOffset = wrapper.offset();
+  //When user move mouse over menu          
+  wrapper.mousemove(function(e){
+    var wrapperOffset = wrapper.offset();
+    // Scroll menu
+    var top = (e.pageY -  wrapperOffset.top) * (scrollableHeight - wrapperHeight) / wrapperHeight  - inactiveMargin;
+    if (top < 0){
+      top = 0;
+    }
+    wrapper.scrollTop(top);
+  });  }
+}
+</script>
+         	
+  
+	</div><!--width end-->		
+</div><!--header end-->		
+   </div>
+<!-- karthik on sep-02 for categories scrolling changes -->
+<div id="container">
+                      <!-- height:565px; to auto -->
+                    <div id="sidebar1" style="height:auto;">
+                        <div id="list">
+						  <div class="">
+ 							 <div class="">
+                        	<ul>{product_cat}</ul>
+							</div>
+                          </div>
+                	    </div><!--sidebar end-->	
+					</div>
+	  <div id="mainContent">
+        	
+            <div id="table"> 
+                <div id="banner" >
+              			 <div class="shell">
+						 <if condition="$ilconfig['staffsettings_urgent message']">
+						 <p><b style="padding:5px; color:red;">
+						{_urgent_message}</b></p>
+						 <br>
+						  </if>
+		<!-- Slider -->
+		<div id="slider">
+			<div id="slider-holder">
+				<div class="jcarousel-container jcarousel-container-horizontal" style="display: block;"><div class="jcarousel-clip jcarousel-clip-horizontal">
+				<ul class="jcarousel-list jcarousel-list-horizontal" style="width: 4890px; left: 0px;">
+			 		<loop name="banner_loop">
+					
+					   {list}
+					   
+					 </loop name="banner_loop">		
+				</ul></div></div>
+			</div>
+			<div class="slider-controls" style="top:2px;">
+				<loop name="dots_loop">
+					
+					   {dots}
+					   
+				</loop name="dots_loop">
+		  </div>
+			<div class="slider-nav">
+				<a class="prev" href="#" style="left:-16px;">previous</a>
+				<a class="next" href="#" style="left:645px;">next</a>			</div>
+	</div>
+		<!-- End Slider -->
+			
+	</div>
+    <!-- End Shell -->
+           		</div><!--banner end-->		
+      		</div><!--table end-->
+            
+            <div id="table2"> 
+            	<div id="box1" style="width: 445px; height:auto;">
+<!--nov 21 on bug id 995 Center Block on Home Page... -->
+                	<div id="title_bg"><h1 style="font-size:20px; font-weight:bold; height:20px; color: #FFFFFF;">Popular Coin Auctions <a class ='link1' href="http://www.greatcollections.com/search.php?q=&mode=product&sort=22&action=Type">(View All)</a></h1></div>
+                	<!--titlebg end-->
+                     <div id="box1_cont" style="padding:5px; background-color:#FFFFFF; height:auto;">
+                    	 <loop name="info_val">
+						 <div style="width:430px; margin-bottom:5px;">{titi}</div>
+						 </loop name="info_val">
+					 
+					  <if condition="isset($show['no']) AND $show['no'] == 'total'">
+					      <div style="width:410px;">{_no_results_found}</div>
+					   </if>
+					   	  	 
+                     </div><!--box1_cont end-->
+              </div><!--box1 end-->
+                
+                <div id="box2" style="width: 240px; height:295px;">
+                	                <div id="title_bg"><h2 style="font-size:20px; font-weight:bold; height:20px; color: #FFFFFF;">24-Hour Coin Deals</h2></div>	
+                	                <!--titlebg end-->
+									
+									 <!--Meern herakle script start -->
+									 <div class="slider-wrap" style="width: 240px;">
+	<div style="width: 240px;" class="stripViewer" id="slider1">
+		<div id="mygallery" class="stepcarousel" style="height:280px;">
+<div class="belt">
+		
+			{mydaily}
+			
+			<!-- .panelContainer -->
+	</div><!-- #slider1 -->	
+		
+			
+		</div><!-- .panelContainer -->
+	</div><!-- #slider1 -->
+</div><!-- .slider-wrap -->
+									  
+									 
+									<!-- Meeran herakle script End-->
+									
+									
+									
+                </div> <!--box2 end-->           
+            </div><!--table2 end-->		
+    
+		</div><!--mainContent end-->
+    
+<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats -->
+<br class="clearfloat" />
+    	<div>&nbsp;</div>
+        <div id="auction_box"> 
+        		<div id="title_text"><h2 style="font-size: 20px; font-weight: bold;height: 20px;color: #333333;">New Coin Auctions</h2></div>
+                <div>&nbsp;</div>
+{myfeat}        
+        </div>
+        <!--auction_box end-->
+        
+        
+        		
+<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats -->
+        <br class="clearfloat" />
+		
+		<br class="clearfloat" />    	
+        <div id="auction_box"> 
+        		<div id="title_text"><h2 style="font-size: 20px; font-weight: bold;height: 20px;color: #333333;">Featured Coin Auctions&nbsp;<span style="font-size:16px; font-family:Arial, Helvetica, sans-serif;"><a href="featured-coin-auction.php">(View All)</a></span></h2></div>
+				
+				 <div>&nbsp;</div>
+{myfeature}        
+        </div>
+        <!--auction_box end-->
+        <if condition="$botblurb_title">
+                            <br class="clearfloat" />
+                          
+                            <br class="clearfloat" />
+                            <div id="auction_box" style="min-height: initial;">
+                              <div id="title_text"><h2 style="font-size: 20px; font-weight: bold;height: 20px;color: #333333;">{botblurb_title}</h2></div>
+                            
+                            <div>&nbsp;</div>
+                            {botblurb_desc}
+                            </div>
+                          </if>
+
+ <!-- Google Code for Visited Homepage Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 978185347;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "rCuSCMXMsAIQg9m30gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/978185347/?label=rCuSCMXMsAIQg9m30gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>       
+        		
+<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats -->
+        <br class="clearfloat" />
+	
+</div><!--container end-->	
+<!-- Google Code for Visited Homepage Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 972477887;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "2CxhCInb4gIQv6vbzwM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/972477887/?label=2CxhCInb4gIQv6vbzwM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

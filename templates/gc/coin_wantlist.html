@@ -1,0 +1,223 @@
+
+<head>
+<meta name="description" content="Find out what your coins are worth by filling out this coin appraisal form. GreatCollections will give you an estimate within 24 hours of what your coins are worth">
+<script type="text/javascript">
+
+function selgallery()
+{
+	 var email = document.getElementById("email").value;
+	 var email1 = document.getElementById("email1").value;
+	 var name = document.getElementById("name").value;
+	 var captcha_text = document.getElementById("captcha").value;
+	
+	 var emailRegEx =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+	 
+	 var nameRegEx =/^[a-zA-Z0-9]/;
+	 
+	if (name.search(nameRegEx) == -1)
+	  {
+	
+         document.getElementById("error_name").innerHTML= "Enter Your Name";
+		 return false;
+     }
+	 else
+	 {
+	  document.getElementById("error_name").innerHTML= "";
+	 }
+ 	  if(email1.search(emailRegEx) == -1) 
+	  {
+	
+         document.getElementById("error_email").innerHTML= "Enter Valid Email ID";
+		 return false;
+     }
+	 
+	 
+	else if( email != email1)
+	 {
+	     document.getElementById("error_email").innerHTML= "Enter same Email ID";
+		 return false;
+	 }
+	 
+	 else
+	 {
+	  document.getElementById("error_email").innerHTML= "";
+	 }
+	 
+	  if(captcha_text=='')
+	 {
+	   document.getElementById("error_captcha").innerHTML= "Please Enter the Security Code Shown on the Image";
+		 return false;
+	 }
+	else
+	{
+	
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+		   xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			  
+				if(xmlhttp.responseText =='error')
+				{
+					document.getElementById("error_captcha").innerHTML='Invalid Security Code.Try Again';
+					er = 1;
+				}
+				 else
+				{
+					document.getElementById("error_captcha").innerHTML= "";
+					er = 0;
+				}
+			}
+			else
+			{
+				document.getElementById('error_captcha').innerHTML= "<img src='{https_server}images/gc/wheel.gif'/>";  
+			}
+		}
+		
+		xmlhttp.open("GET","coin_wantlist.php?do=validate_captcha&value="+captcha_text,false);
+		xmlhttp.send();
+
+		if(er=='1')
+		{
+			return false; 
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+  }
+
+function insRow()
+{
+
+var len=document.getElementById('myTable').rows.length;
+//alert(ss);
+var x=document.getElementById('myTable').insertRow(len);
+var a=x.insertCell(0);
+
+
+a.innerHTML='<input type="file" name="item3[]" />&nbsp;<span onclick="deleteRow(this)" style="cursor:pointer;">Remove</span>';
+
+}
+
+function deleteRow(r)
+{
+var i=r.parentNode.parentNode.rowIndex;
+document.getElementById('myTable').deleteRow(i);
+}
+
+
+</script>
+
+<style>
+.left_column{
+float:right;
+}
+</style>
+
+</head>
+<body>
+<div class="block-wrapper">        
+<div class="block">
+
+        <div class="block-top">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+        <div class="block-header">Tell us your WantList</div>
+        
+         <div class="block-content" style="padding:0px 0px 0px 0px;">
+         <div class="block-content-yellow">    
+		 
+         Use this exclusive online form to send information about your WantList from <strong>Great</strong>Collections.  We'll make a recommendation of the best way to buy them.  Of course, if you would prefer just to talk to us - please give us a call at 1.800.44.COINS (+1.949.679.4180) - we'd be pleased to give you our opinion either by e-mail, phone or fax.   
+          
+            
+        </div>
+		<div><br></div>
+		<div style="padding-left:10px;">
+            <form action="coin_wantlist.php"  enctype="multipart/form-data"  method="post" onSubmit="return selgallery(this);" >
+<input type="hidden" name="cmd" value="newsell_coin" />
+<table border="0" cellpadding="5">
+        <tr>
+		     <td class="left_column"><strong>Name</strong></td>
+			 <td><input type="text" name="name" value="{name}" id="name"/>&nbsp;&nbsp;<span  id="error_name" style="font-weight:bold; color:#FF0000;"> </span></td>
+		</tr>
+		<tr>
+		     <td class="left_column"><strong>E-mail</strong></td>
+			 <td><input type="text" name="email" value="{email}" id="email" />
+			 &nbsp;&nbsp;
+			 <strong >Enter E-mail Again</strong>&nbsp;
+			<input type="text" name="email1" value="{email}" id="email1" />&nbsp;&nbsp;<span id="error_email" style="font-weight:bold; color:#FF0000;"> </span></td>
+		</tr>
+		<tr>
+		   <td class="left_column"><strong>Telephone</strong></td>
+		   <td><input type="text" name="tel" value="{telephone}" /></td>
+		</tr>
+		<tr>
+		    <td class="left_column"><strong>Coins Looking for</strong></td>
+			<td><TEXTAREA name="comments" rows="4" cols="60" ></TEXTAREA></td>
+                 
+		</tr>
+		<tr>
+		    <td class="left_column"><strong>Grading Services</strong></td>
+			<td>
+			<input type="checkbox" name="pcgs" value="1" id="pcgs" />&nbsp;<label for="pcgs">PCGS</label>&nbsp;
+			<input type="checkbox" name="ngc" value="1" id="ngc"/>&nbsp;<label for="ngc">NGC</label>&nbsp;
+			<input type="checkbox" name="anacs" value="1" id="anacs" />&nbsp;<label for="anacs">ANACS</label>&nbsp;
+			<input type="checkbox" name="ogp/raw" value="1"  id="show"/>&nbsp;<label for="ogp/raw">OGP/RAW</label>&nbsp;
+			</td>
+			
+		</tr>
+		
+		<tr>
+		    <td class="left_column"><strong>Upload SpreadSheet/Document of Coins Wanted</strong></td>
+			<td><input type="file" name="inventory"/></td>
+		</tr>		
+		
+		<tr>
+		    <td class="left_column"><strong>Enter the Code Shown on the Image<strong></td>
+			<td><input type="text" name="captcha" id="captcha"/>&nbsp;&nbsp;<span id="error_captcha" style="font-weight:bold; color:#FF0000;"></span></td>
+		</tr>
+		
+		<tr>
+		    <td>&nbsp;</td>
+			<td><div style="padding-left:3px; padding-top:6px">{captcha}</div></td>
+		</tr>
+		
+		<!--<table id="myTable" width="100"> </table>
+		<tr><td colspan="2"><span onClick="insRow();" style="cursor:pointer;"><strong>Additional Images - Click Here</strong></span></td>
+	  </tr>	  -->
+	  <tr><td>&nbsp;&nbsp;<br><br></td></tr>
+	  
+	     <tr>
+		 <td>&nbsp;</td>
+		   <td><input type="submit" name="submit" value="Submit" /></td>
+		</tr>
+		
+		
+   
+</table>
+</form>
+       	</div>
+             </div>   
+        <div class="block-footer">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+		
+</div>
+</div>
+
+</body>
+

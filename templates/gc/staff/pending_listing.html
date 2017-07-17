@@ -1,0 +1,213 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+ 
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Pending Invoice</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+						     <form method="get" action="pendinginvoice.php" accept-charset="UTF-8" id="pendinginvoice" style="margin: 0px;">
+				    <input type="hidden" name="subcmd" value="search_list" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter pending invoice using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value="user_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option value="username" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'username'">selected="selected"</if>>{_username}</option>
+                                        <option value="email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18" value="{filtervalue}"  style="width: 75%;" />
+                                  </td>
+                                </tr>
+                               
+                               
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                           							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+			 
+					
+				   <if condition="isset($show['search_list']) AND $show['search_list'] == 'search_list'">
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">List of Pending Invoice</div>
+							<div class="block3-content" style="padding:0px">						 
+ 										 
+												<div class="block3-content" style="padding: 0px 0px 0px 0px;">
+												<br>
+												<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+														<form method="post" action="pendinginvoice.php" 	accept-charset="UTF-8" name="changed_invoice_update">
+															<input type="hidden" name="cmd" value="changed_invoice_update">
+																<tr class="alt2">
+																	<td>Item ID</td>
+																	<td width="34%" align="left">Title </td>
+																	<td>Site</td>
+																	<td>Quantity</td>
+																	<td>Final Price</td>
+																	<td>Buyer Fee's</td>
+																	<td>Total</td>
+ 																	<td><input type="checkbox" name="select-all" id="select-all" /></td>
+																</tr>
+															
+																<loop name="pending_listing_search">
+																	<tr class="alt1">
+																		<td>{project_id}</td>
+																		<td>{project_title}</td>
+																		<td>{Site_Id}</td>
+																		<td>{qty}</td>
+																		<td>{finalprice}</td>
+																		<td>{buyerfees}</td>
+																		<td>{totallistamount}</td>
+ 																		<td><input type="checkbox" name="change_pending_project_id[{invoiceid}]" id="checkbox-1" value ="{project_id}" />
+                                                                         
+ 																		</td>
+ 																		
+
+
+																	</tr>
+																	
+																	
+																</loop name="pending_listing_search"> 
+
+																<if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="7" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+
+
+
+																					
+																					
+												</table>	 
+												
+												<br>
+													&nbsp;&nbsp;Moved User Id : <input type="text" name="changed_user_id" Value=""><br>
+ 													<br>
+ 													<input type="hidden" name="user_id" Value="{user_id}" style="margin-left: 420px;">
+													<input type="submit" name="changed_user_id_submit" Value="Change to Invoice" style="margin-left: 420px;">
+																		</form>
+ 											 
+											<div class="block3-footer">
+												<div class="block3-right">
+													<div class="block3-left"></div>
+												</div>
+											</div>
+											
+ 									</div>
+ 
+                         
+							
+
+								
+</div>
+							
+							 
+							
+					</div>
+				</div>
+				 
+											 
+						<!-- / tab pane -->
+						
+					</div>
+					
+				</div>
+								  </if>
+				      				
+					  </div>
+						<!-- / grading tab page -->
+						
+						
+						
+</div>
+<!-- / tab pane -->
+
+<script type="text/javascript">
+function validate()
+{
+	var sear_val = document.getElementById("coin_list_Next").value;
+	var sear_vals = document.getElementById("bidder_id").value;
+	if(sear_val == '')
+	{
+		alert('Please enter Project id/ coin id');
+		return false;
+	}
+	
+	else if(sear_vals == '')
+	{
+		alert('Please Enter Bidder User ID');
+		return false;
+	}
+	
+	else
+	{
+		return true;
+	}
+}
+$( document ).ready(function() {
+$('#select-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;                        
+        });
+    }
+	else 
+	{
+	 $(':checkbox').each(function() {
+            this.checked = false;                        
+        });
+	
+	}
+});
+});
+
+</script>

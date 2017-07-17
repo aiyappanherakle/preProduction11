@@ -1,0 +1,159 @@
+<form name="ilform" method="post" action="{ilpage[rfp]}" accept-charset="UTF-8" onsubmit="return validate_all();" style="margin: 0px;">
+<input type="hidden" name="cmd" value="_do-bid-preview" />
+<input type="hidden" name="subcmd" value="service-bid" />
+<input type="hidden" name="id" value="{project_id}" />
+<input type="hidden" name="cid" value="{cid}" />
+<div class="block-wrapper">
+<div class="block2">
+
+		<div class="block2-top">
+				<div class="block2-right">
+						<div class="block2-left"></div>
+				</div>
+		</div>
+		
+		<div class="block2-header">{_payment_method}</div>
+		<div class="block2-content-blue" style="padding:9px"><div class="smaller">{_based_on_the_payment_methods_offered_by_the_purchaser_decide}</div></div>
+		<div class="block2-content">
+				<div>{paymethodsradios}</div>
+		</div>
+		
+		<div class="block2-footer">
+				<div class="block2-right">
+						<div class="block2-left"></div>
+				</div>
+		</div>
+		
+</div>
+</div>
+
+<div class="block-wrapper">
+	<div class="block2">
+	
+			<div class="block2-top">
+					<div class="block2-right">
+							<div class="block2-left"></div>
+					</div>
+			</div>
+			
+			<div class="block2-header">{_place_a_bid_for} {title}</div>
+			<div class="block2-content-blue" style="padding:9px"><div class="smaller">{_please_enter_your_best_bid_proposal_for_this_project}</div></div>
+			<div class="block2-content" style="padding:0px">
+				
+				<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+				<tr class="alt1"> 
+					<td>
+						<div>
+						
+							<table border="0" cellspacing="{table_cellspacing}" cellpadding="6" width="100%">
+								<tr>
+									<td width="50%" valign="top">
+										<div style="padding-bottom:3px"><strong>{_budget}</strong></div>
+											<div class="gray">{budget} <if condition="isset($show['filter_bidtype']) AND $show['filter_bidtype']">{_with_bids_only_being_accepted_on_a} <strong>{bidamounttype}</strong> {_rate_lc}</if></div>
+										
+									</td>
+									<td width="50%" valign="top">
+										<div style="padding-bottom:3px"><strong>{_prefered_bidding_type}</strong></div>
+											<div class="gray">{bidtypefilter}</div>
+									</td>
+								</tr>
+							</table>
+							
+						</div>
+						
+						<hr size="1" width="100%" style="color:#cccccc" />
+						
+						<div>
+							<table border="0" cellspacing="{table_cellspacing}" cellpadding="6" width="100%">
+								<tr valign="top">
+									<td width="50%">
+									
+										<table border="0" cellspacing="{table_cellspacing}" cellpadding="0">
+										<tr>
+											<td><div style="padding-bottom:3px"><strong>{_bid_amount}: </strong><span class="gray">{bidamounttype}</span></div></td>
+										</tr>
+										<tr> 
+										  <td><span style="float:left; padding-right:4px; padding-top:4px">{currencysymbol}</span><input type="text" name="bidamount" id="bidamount" value="{current_bidamount}" onkeypress="return noenter()" style="width:85px; font-family: verdana" /></td>
+											<td align="left">{bidamounttype_pulldown} 
+												<span id="custom" style="display:none">
+													<input type="text" name="bidcustom" onkeypress="return noenter()" style="width:145px" /> {filtered_bidtypecustom}
+												</span><a href="{ilpage[accounting]}?cmd=feecalculator&amp;c={cid}&amp;fvf=1&amp;t=serviceprovider" onclick="popUP(this.href,'feecalculator','600','450','yes','yes'); return false;"><img src="{template_relativeimagepath}{template_imagesfolder}icons/calculator.gif" border="0" alt="{_fee_calculator}" id="feecalculator" /></a>
+										  </td>
+										</tr>
+										</table>
+										
+										
+									</td>
+									<td width="50%">
+										<table border="0" cellspacing="{table_cellspacing}" cellpadding="0">
+										<tr>
+											<td colspan="2"><div style="padding-bottom:3px"><strong>{_delivery}</strong></div></td>
+										</tr>
+										<tr> 
+										   <td><input type="text" name="estimate_days" id="estimate_days" value="{current_estimate_days}" onkeypress="return noenter()" style="width:55px; font-family: verdana" />&nbsp;</td>
+										   <td><div id="measure" style="padding:0px; margin:0px" class="gray">{method}</div></td>
+										   
+										</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+						
+						<hr size="1" width="100%" style="color:#cccccc" />
+						
+						<if condition="isset($show['bidfieldstable']) AND $show['bidfieldstable']">
+						<div>{custom_bid_fields}</div>
+						</if>
+											
+						<div style="padding:6px">
+						
+							<div style="padding-bottom:3px"><strong>{_bid_proposal}</strong></div>
+								{wysiwyg_area}
+							
+								<hr size="1" width="100%" style="color:#cccccc; margin-top:6px" />
+							<div style="padding-top:10px"><strong>{_upload_attachments}</strong></div>
+							
+							
+								<div style="padding-top:6px">{uploadbutton}</div>
+								<div id="attachmentlist" style="margin:0px;"></div>
+							
+						</div>
+						
+						<hr size="1" width="100%" style="color:#cccccc" />
+						
+						<div style="padding:6px">
+							<div><strong>{_realtime_bid_management}</strong></div>
+								<table width="100%" border="0" align="center" cellpadding="1" cellspacing="{table_cellspacing}">
+								<tr> 
+									<td height="1" colspan="2" align="left" valign="middle"> {lowerbid}
+										<label for="lowbidnotify">{_notify_me_via_email_when_a_lower_bid_is_placed}</label>
+									</td>
+								</tr>
+								<tr> 
+									<td height="1" colspan="2" align="left" valign="middle"> {lasthour}
+										<label for="lasthournotify">{_notify_me_via_email_when_project_has_one_hour_left}</label>
+									</td>
+								</tr>
+								</table>
+							
+				
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="submit" value=" {_preview} " class="buttons" style="font-size:15px" /> &nbsp;&nbsp;&nbsp;<span class="blue"><a href="{ilpage[rfp]}?id={project_id}">{_cancel}</a></span></td>
+				</tr>
+				</table>
+				
+			</div>
+			
+			<div class="block2-footer">
+					<div class="block2-right">
+							<div class="block2-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</form>

@@ -1,0 +1,205 @@
+<div id="v3body4">
+	<!-- sub navigation -->
+	<div id="sub">
+		<div id="subnav">
+			<loop name="subnav_settings">
+				<a href="{url}" {class}><span>{name}</span></a> <span> | </span> 
+			</loop name="subnav_settings">
+		</div>
+	</div>
+	<!-- /sub navigation -->
+
+	<div id="content">
+	<div class="header">Nonprofit Manager</div>
+	<br />
+		
+		<div class="tab-pane" id="abusereportsmain">
+
+			<!-- begin tab page -->
+			<div class="tab-page">
+	
+				<h2 class="tab">{_charities}</h2>
+				
+				<!-- begin tab pane -->
+				<div class="tab-pane">
+				
+					<!-- categories view -->
+					<div class="block-wrapper">
+					<div class="block">
+					
+							<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+							</div>
+							
+							<div class="block-header">{_nonprofits}</div>
+							<div class="block-content-yellow" style="padding:9px"><div class="smaller">Nonprofits below are ready to accept donations.  At least one nonprofit should be added to the system before using the Lowest Unique Bid Auction event type as all winning bidder proceeds should go to at least one nonprofit you've added below.</div></div>
+							<div class="block-content" style="padding:0px">
+								
+								<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+								<tr class="alt2">
+									<td width="30%" align="left">{_title}</td>
+									<td width="33%" align="left">URL </td>
+									<td width="7%" align="left">{_donations}</td>
+									<td width="14%" align="left" nowrap="nowrap">{_earnings}</td>
+									<td width="16%" align="right" nowrap="nowrap">{_action}</td>
+								  </tr>
+								<loop name="nonprofits">
+								<tr align="center" class="alt1" valign="top">
+									<td align="left">{title}<!--<div class="smaller gray">{description}</div>--></td>
+								  <td align="left" nowrap="nowrap"><div class="blue"><a href="{url}" target="_blank">{url}</a></div></td>
+									<td align="left" nowrap="nowrap"><span class="green">{donations}</span></td>
+									<td align="left" nowrap="nowrap"><span class="blue">{earnings}</span></td>
+									<td align="right">{action}</td>
+								  </tr>
+								</loop name="nonprofits">
+								<if condition="isset($show['charities']) AND $show['charities'] == false">
+								<tr>
+									<td colspan="5" align="center">{_no_results_found}</td>
+								</tr>
+								<else />
+								<tr>
+									<td><span style="font-size:15px" class="blue">{_donation} {_totals}</span></td>
+									<td></td>
+									<td><span style="font-size:15px" class="green"><strong>{total1}</strong></span></td>
+									<td><span style="font-size:15px" class="blue"><strong>{total2}</strong></span></td>
+									<td></td>
+								</tr>
+								</if>
+								</table>
+								
+							</div>
+							
+							<div class="block-footer">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+					
+					<a name="updatenonprofit"></a>
+					<form name="ilform" action="{ilpage[subscribers]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+					<input type="hidden" name="cmd" value="nonprofits" />
+					<input type="hidden" name="subcmd" value="{hiddenfieldsubcmd}" />
+					{hiddendo}
+					{hiddenid}
+					<div class="block-wrapper">
+					<div class="block">
+					
+							<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+							</div>
+							
+							<div class="block-header">Add / Update Nonprofit</div>
+							<div class="block-content-yellow" style="padding:9px"><div class="smaller">Adding a new nonprofit orgainzation allows sellers to choose one or more nonprofits during the posting of their new listing if they wish to donate</div></div>
+							<div class="block-content" style="padding:0px">
+								
+								<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+								<tr class="alt1">
+									<td width="27%" align="left"><span class="gray">{_title}</span></td>
+							  	  <td width="73%" align="left" nowrap="nowrap"><input type="text" name="title" class="input" size="35" value="{title}" /></td>
+								</tr>
+								<tr class="alt1">
+									<td align="left"><span class="gray">{_description}</span></td>
+								  	<td align="left" nowrap="nowrap"><input type="text" name="description" class="input" size="35" value="{description}" /></td>
+								</tr>
+								<tr class="alt1">
+									<td align="left"><span class="gray">{_website} URL (include http://)</span></td>
+								  	<td align="left" nowrap="nowrap"><input type="text" name="url" class="input" size="45" value="{url}" /></td>
+								</tr>
+								<tr>
+									<td align="left" colspan="2"><input type="submit" value=" {_save} " class="buttons" style="font-size:15px" /></td>
+								</tr>
+								</table>
+								
+							</div>
+							
+							<div class="block-footer">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				</form>
+				<!-- /categories view -->
+									
+				</div>
+				<!-- /begin tab pane -->
+				
+			</div>
+			<!-- /begin tab page -->
+			
+			<!--
+				<div class="tab-page">
+				<h2 class="tab">{_balance}</h2>
+				
+				<div class="tab-pane" id="escrowbalance" style="width:740px">
+				
+					<div>
+					<loop name="escrowbalance">
+					<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+					
+				  <tr class="alt2 smaller">
+					<td>{_listing_type}</td>
+					<td>{_total_donation_earnings_collected}</td>
+					<td>{_total_donations}</td>
+					<td>{_total_unpaid_by_sellers}</td>
+					<td>{_total_paid_by_sellers}</td>
+				  </tr>
+				  <tr>
+					<td><span class="gray">Product Auction</span></td>
+					<td><span class="blue" style="font-size:14px">{donation1}</span></td>
+					<td><span class="gray" style="font-size:14px">{donation3}</span></td>
+					<td><span class="red" style="font-size:14px">{donation5}</span></td>
+					<td><span class="green" style="font-size:14px">{donation7}</span></td>
+				  </tr>
+				  <tr class="alt1">
+					<td><span class="gray">Buy Now</span></td>
+					<td><span class="blue" style="font-size:14px">{donation2}</span></td>
+					<td><span class="gray" style="font-size:14px">{donation4}</span></td>
+					<td><span class="red" style="font-size:14px">{donation6}</span></td>
+					<td><span class="green" style="font-size:14px">{donation8}</span></td>
+				  </tr>
+				  <tr>
+					<td><span class="gray" style="font-size:14px"><strong>{_totals}</strong></span></td>
+					<td><span class="blue" style="font-size:14px"><strong>{totals1}</strong></span></td>
+					<td><span class="gray" style="font-size:14px"><strong>{totals2}</strong></span></td>
+					<td><span class="red" style="font-size:14px"><strong>{totals3}</strong></span></td>
+					<td><span class="green" style="font-size:14px"><strong>{totals4}</strong></span></td>
+				  </tr>
+				  <tr>
+				    <td>&nbsp;</td>
+				    <td colspan="4" valign="top"><img src="{template_relativeimagepath}{template_imagesfolder}trail.gif" border="0" alt="" /> <span class="blue">You should have at least this amount within a seperate business account to pay charities yearly </span></td>
+				    </tr>
+				</table>
+				</loop name="escrowbalance">
+					</div>
+	
+				</div>
+				
+				</div>-->
+			
+			<!-- begin tab page -->
+			<div class="tab-page">
+	
+				<h2 class="tab">{_settings}</h2>
+				
+				<!-- begin tab pane -->
+				<div class="tab-pane">
+				
+					{configuration_nonprofits}
+									
+				</div>
+				<!-- /begin tab pane -->
+				
+			</div>
+			<!-- /begin tab page -->
+			
+		</div>

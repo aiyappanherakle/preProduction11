@@ -1,0 +1,325 @@
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode" class="sel"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline"><span>{_time_line}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_promocode}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- Promocode -->
+			<div class="tab-page">
+			
+			<h2 class="tab">{_invoice}</h2>
+			
+			<!--block wrapper-->
+				<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            <div class="block3-header">Invoice Promo List</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Invoice Promo List</div></div>
+							
+							<div class="block3-content" style="padding:0px">
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">								
+								<td width="20%" align="left">{_promocode}</td>
+								<td width="10%">Offer</td>								
+								<td width="10%">Purchase Amount</td>
+								<td width="17%">Expiration</td>
+								<td width="10%">Category</td>
+								<td width="10%">Sales Type</td>
+								<td width="8%" align="center">Item ID</td>
+								<td width="8%" align="center" nowrap="nowrap">{_user_id}</td>
+								<td width="22%">{_description}</td>
+								<td align="center" nowrap="nowrap">{_actions}</td>
+								
+							  </tr>
+							  <loop name="promocode">							 
+								<tr class="alt1" valign="top">	
+															
+								  <td nowrap="nowrap">{promoCode}</td>
+								  <td>{offerType} {offerAmt}</td>
+								  <td>{conditionAmt}</td>
+								  <td>{validDate}</td>
+								  <td width="20%" height="auto">{categoryID}</td>
+								  <td>{salesType}</td>
+								  <td>{itemID}</td>
+								  <td align="center">{userID}</td>
+								  <td align="center">{notes}</td>
+								  <td align="center">{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{remove}</td>
+								
+								</tr>
+							  </loop name="promocode">
+								<if condition="isset($show['no_promocode']) AND $show['no_promocode'] == 'false'">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+								</if>
+								
+							  
+							 
+							</table>
+							</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+			</div>
+			<!--block wrapper-->
+						
+				<div class="block-wrapper">
+					<div class="block3">
+                            <div class="block3-header">{_invoice}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Add new invoice promocode</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                <form name="ilform" action="{ilpage[settings]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+								<input type="hidden" name="cmd" value="promocode" />
+								<input type="hidden" name="subcmd" value="{hiddenfieldsubcmd}" />
+								{hiddendo}
+								{hiddenid}
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_promocode}</span>
+                                  <td width="80%"><input type="text" name="promocode" value="{promoCode}" /></td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_offer_type}</span></td> 
+                                    <td>{Type}</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_offer_amount}</span></td> 
+                                    <td><input type="text" name="offeramount" value="{offerAmt}"  /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Min Purchase Amount</span></td> 
+                                    <td><input type="text" name="condamt" value="{conditionAmt}" /></td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Expiration</span></td> 
+                                    <td>
+									<if condition="isset($showdate['show']) AND $showdate['show'] == 'datedisp'">
+									{daylist}&nbsp;&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;&nbsp;{yearlist}
+									<else />
+									{daylist}&nbsp;&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;&nbsp;{yearlist}									
+									</if></td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_category}</span></td> 
+                                    <td>
+				    				{product_category}
+									</td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_sales_type}</span></td> 
+                                    <td>{salestype}
+									</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_free_item_id}</span></td> 
+                                    <td><input type="text" name="freeitem" value="{itemID}" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_user_id}</span></td> 
+                                    <td><input type="text" name="userid" value="{userID}" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">{_description}</span></td> 
+                                    <td><textarea name="description">{notes}</textarea></td>
+                                </tr>
+								
+								<!--<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray"></span></td> 
+                                    <td>* {_when_a_coin_is_made_as_deal_of_the_day_it_will_be_posted_or_modified_as_buy_now_posting}</td>
+                                </tr>-->
+								
+                                
+                                <tr>
+                                  <td colspan="2" align="center"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+								</form>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+             </div>	
+			 <!--block wrapper-->								
+				
+		</div>
+					
+		<!-- / Promocode -->
+		
+		
+		<!--Shipping Promo code-->
+	    	<div class="tab-page">
+			
+			<h2 class="tab">{_shipping}</h2>
+			<!--block wrapper-->
+				<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+							<div class="block3-header">Shipping Promo List</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Shipping Promo List</div></div>
+								<div class="block3-content" style="padding:0px">
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">								
+								<td width="20%" align="left">{_promocode}</td>
+								<td width="10%">Count</td>								
+								<td width="10%">Available</td>
+								<td width="17%">Upgrade</td>
+								<td width="10%">Expiration</td>								
+								<td width="8%" align="center" nowrap="nowrap">{_user_id}</td>
+								<td width="22%">{_description}</td>
+								<td align="center" nowrap="nowrap">{_actions}</td>
+								
+							  </tr>
+							  <loop name="promocodeship">							 
+								<tr class="alt1" valign="top">	
+													
+								  <td nowrap="nowrap">{promoCode}</td>
+								  <td>{promoCount}</td>
+								  <td>{available}</td>
+								  <td>{upgradeLevel}</td>
+								  <td>{validDate}</td>								 
+								  <td align="center">{userID}</td>
+								  <td align="center">{notes}</td>
+								  <td align="center">{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{remove}</td>
+								
+								</tr>
+							  </loop name="promocodeship">
+							 <if condition="isset($show['no_shippingpromo']) AND $show['no_shippingpromo'] == 'false'">
+								<tr class="alt1">
+								  <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							 
+							</table>
+							</div>
+							
+								<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+			</div>
+			<!--block wrapper-->
+							
+							
+			<div class="block-wrapper">
+					<div class="block3">
+                            <div class="block3-header">{_shipping}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">Add New Shipping Promo Code</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                <form name="ilform" action="{ilpage[settings]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+								<input type="hidden" name="cmd" value="promocode" />
+								<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdship}" />
+								{hiddendo}
+								{hiddenid}
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_promocode}</span>
+                                  <td width="80%"><input type="text" name="shippromocode" value="{shippromoCode}" /></td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Count</span></td> 
+                                    <td><input type="text" name="shipcounts" value="{promoCount}" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Available</span></td> 
+                                    <td>{available}</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Upgrade</span></td> 
+                                    <td>{upgradelevel}</td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Expiration</span></td> 
+                                    <td>{shipdaylist}&nbsp;&nbsp;&nbsp;&nbsp;{shipmonthlist}&nbsp;&nbsp;&nbsp;&nbsp;{shipyearlist}</td>
+                                </tr>
+								
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">User Specific</span></td> 
+                                    <td><input type="text" name="shipuserid" value="{shipuserID}" /></td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Description</span></td> 
+                                    <td><textarea name="shipdescription">{shipnotes}</textarea></td>
+                                </tr>
+								
+								
+								
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+								</form>
+                               						
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+           </div>
+		   <!--block wrapper-->
+			
+	   </div>
+		<!--Shipping Promo code-->
+	</div>
+		<!-- / tab pane -->
+</div>
+<!--Content-->
+</div>
+<!--v3body4-->

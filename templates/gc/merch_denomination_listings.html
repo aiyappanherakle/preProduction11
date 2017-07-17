@@ -1,0 +1,488 @@
+<style type="text/css">
+div.sc_menu_wrapper {
+  position: relative;   
+  height: 533px;
+  width: 195px;
+  margin-top: 0px;
+  overflow: auto;
+}
+div.sc_menu {
+  padding: 15px 0;
+  width: 195px;
+}
+#open
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#imgs
+{
+background-image: url("{http_server}images/gc/w2.jpg");
+width:198px;
+height:151px;
+}
+#textim
+{
+background-image: url("{http_server}images/gc/coin_bg.jpg");
+width:198px;
+height:160px;
+
+}
+#amo
+{
+background:none;
+color:#E16E19;
+font-size:14px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+#fetit
+{
+background:none;
+color:#303030;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}		
+#titl
+{
+background:none;
+color:#5B6C7E;
+font-size:12px;
+text-decoration:none;
+font-weight:bold;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+}
+		
+		a:focus { outline:none }
+		
+		img { border: 0 }
+		
+	
+	  
+		.slider-wrap { /* This div isn't entirely necessary but good for getting the side arrows vertically centered */
+			
+			position: relative;
+			width: 100%;
+		}
+
+
+
+		.stripViewer { /* This is the viewing window */
+			position: relative;
+			overflow: hidden; 
+			/*border: 5px solid #000;*/ /* this is the border. should have the same value for the links */
+			margin: auto;
+			
+		}
+		
+		.stripViewer .panelContainer { /* This is the big long container used to house your end-to-end divs. Width is calculated and specified by the JS  */
+			position: relative;
+			left: 0; top: 0;
+			
+			list-style-type: none;
+			/* -moz-user-select: none; // This breaks CSS validation but stops accidental (and intentional - beware) panel highlighting in Firefox. Some people might find this useful, crazy fools. */
+		}
+		
+		.stripViewer .panelContainer .panel { /* Each panel is arranged end-to-end */
+			float:left;
+			height: 100%;
+			position: relative;
+			width: 700px; /* Also specified in  .stripViewer  above */
+		}
+		
+		.stripViewer .panelContainer .panel .wrapper { /* Wrapper to give some padding in the panels, without messing with existing panel width */
+			padding: 10px;
+		}
+		
+		
+		
+		.stripNavL, .stripNavR { /* The left and right arrows */
+			position: absolute;
+			top: 80px;
+			text-indent: -9000em;
+		}
+		
+		.stripNavL a, .stripNavR a {
+			display: block;
+			height: 40px;
+			width: 40px;
+		}
+		
+		.stripNavL {
+			left: 0;
+		}
+		
+		.stripNavR {
+			right: 0;
+		}
+		
+		.stripNavL {
+			background: url("{http_server}images/arrow-left.gif") no-repeat center;
+		}
+		
+		.stripNavR {
+			background: url("{http_server}images/arrow-right.gif") no-repeat center;
+		}
+		 .stripNav ul
+		{
+		display:none;
+		} 
+		
+h2{
+margin:0px;
+color: #FFFFFF;
+font-family: Arial,Helvetica,sans-serif;
+font-size: medium;
+font-weight: bold;
+}
+.link1{
+  color:#ffffff !important;
+  text-decoration: none;
+}
+.link1:hover{
+    color: #E7971E !important;
+	text-decoration: none;
+}
+	</style>
+<script type="text/javascript">
+function denomination_drop_down_change(select)
+{
+	drop_down_value=select.value;
+	if(drop_down_value>0)
+	{
+		drop_down_option=select.options[select.selectedIndex].text;
+		drop_down_option=drop_down_option.replace(/ /g, '-')
+		drop_down_option=drop_down_option.replace("/", '');
+		drop_down_option=encodeURIComponent(drop_down_option);
+		if(drop_down_value == parseInt(drop_down_value, 10))
+		{
+			var dat = "{https_server}"+"Denomination/"+drop_down_value+"/"+drop_down_option;
+		}else
+		{
+			var dat = "{https_server}"+drop_down_value;
+		}
+	}else{
+		var dat = "{https_server}"+"search.php?q=&mode=product&sort=01";
+	}
+	window.location = dat;
+}
+$(document).ready(function(){
+  $('.gallery-thumbs-image-cluster').error(function(){
+	 $(this).parent().next().hide();
+     $(this).attr('src', '{https_server}/images/gc/sold_item.gif');
+  });
+});
+</script>
+
+<if condition="!empty($category)"><div class="header">{category}</div><!--<div class="gray" style="padding-bottom:10px">{description}</div>--></if>
+					
+<div class="bigtabs" style="padding-bottom:10px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{seocategories}">{_categories}</a><else /><a href="{http_server}{ilpage[main]}?cmd=categories">{_categories}</a></if></li>
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{seolistings}">{_listings}</a><else /><a href="{http_server}{ilpage[main]}?cmd=listings">{_listings}</a></if></li>
+	<if condition="$ilconfig['globalauctionsettings_productauctionsenabled']">
+	<li title="" class="on"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="javascript:void(0)">{_product}</a><else /><a href="javascript:void(0)">{_product}</a></if></li>
+	</if>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']">
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{seoservicecategories}">{_service}</a><else /><a href="{http_server}{ilpage[rfp]}?cmd=listings">{_service}</a></if></li>
+	<li title="" class="highlight"><a href="{ilpage[search]}?mode=experts">{_experts}</a></li>
+	</if>
+<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}CoinPrices">Coin Auction Archive</a><else /><a href="{http_server}{ilpage[denomination]}?cmd=CoinPrices">Coin Auction Archive</a></if></li>
+
+
+	
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+	<td valign="top">
+	
+	<div class="bigtabs" style="padding-bottom:10px; padding-top:5px">
+     <div class="bigtabsheader">
+       <ul>
+	   
+	{tab}
+	
+     </ul>
+    </div>
+</div>
+<div style="clear:both;"></div>
+
+  <if condition="isset($show['daily_deal']) and $show['daily_deal']=='true'">
+  
+    <div class="block-wrapper">
+
+		<div class="block">
+		
+				<div class="block-top">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+				
+				<div class="block-header">
+				<span style="float:right; padding-top:3px" class="smaller gray"></span>24-Hour Deals by GreatCollections</div>
+				
+				 
+				<div class="block-content-yellow">
+				Great coin deals, for one day only. Check back each day for our exclusive 24-hour deals. 
+				
+				</div>
+				                   <div class="block-content" style="padding: 6px 0px 0px 6px">                            
+									<table class="" border="0" cellpadding="6" cellspacing="{table_cellspacing}" width="100%">
+									
+										<loop name="res_gcdealing">
+										  {separator_begin}
+											<td valign="top" style="width: 200px;">
+												<div style="padding:4px; width:200px;">
+												<div id="fetit" style="height:45px; width:200px;">{item_title}</div>
+												<div id="textimo" style="height: 240px;">
+													<div id="textim"><div align="center">{thumbnail}</div></div>
+													
+													<div style=" padding-top: 6px;">
+													<div style="float: left; width: 190px; text-decoration:line-through;" id="fetit">Current<br><span id="amo">$&nbsp;{coin_amount}</span></div>
+													
+													<div style=" padding-top: 6px;">
+													</div>
+													<div style="float: left; width: 99px;" id="fetit">24-Hours<br><span id="amo" style="text-decoration:blink;">$&nbsp;{current_bid}</span></div>
+													<div style="float: left;">
+													{image}
+													
+													<if condition="isset($res_gcdeal['thum']) AND $res_gcdeal['thum'] == 1">
+													<a href="{ilpage[merch]}?id={project_id}"><img src="{template_relativeimagepath}{template_imagesfolder}sold.jpg"></a>
+													</if>
+													
+													</div> 
+													</div>
+										</div>		 
+										</td> 
+										{separator_end}
+										</loop name="res_gcdealing">
+										</table>
+		</div>
+				<div class="block-footer">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+				
+		</div>
+	</div>
+  
+
+<else />	
+	<div class="block-wrapper">
+
+		<div class="block">
+		
+				<div class="block-top">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+				
+				<div class="block-header">
+				<span style="float:right; padding-top:3px" class="smaller gray"></span>{text}</div>
+				
+				<div class="block-content-yellow">
+					<!--<form method="get" action="{ilpage[search]}" name="ilform" accept-charset="UTF-8" style="margin:0px; padding-bottom:6px; padding-left:8px">-->
+					<table width="100%" border="0" cellspacing="2" cellpadding="0">
+					<tr>
+						<!--<td nowrap="nowrap"><strong>{_keywords}</strong></td>-->
+						<td nowrap="nowrap"><strong>{_category}</strong></td>
+						<td align="left">&nbsp;</td>
+					</tr>
+					<tr> 
+						<!--<td width="7%" nowrap="nowrap"><input type="text" name="q" value="{q}" maxlength="150" size="30" class="input" />&nbsp;&nbsp;</td>-->
+						<td width="19%" nowrap="nowrap">{search_category_pulldown}</td>
+						<if condition="isset($show['date_end_search']) and $show['date_end_search']=='true'">
+						<td width="59%" align="left">&nbsp;&nbsp;<input type="hidden"  value="{check}" id="seovar"/><span style="cursor:pointer;" onclick="denomination_drop_down_change(document.getElementById('denominationid'));">Search</span></td>
+						<else />
+						<td width="59%" align="left">&nbsp;&nbsp;<input type="hidden"  value="{check}" id="seovar"/><span style="cursor:pointer;" onclick="denomination_drop_down_change(document.getElementById('denominationid'));">Search</span></td>
+						</if>
+						
+					</tr>
+					</table>
+					<!--<input type="hidden" name="mode" value="product" />
+					</form>-->
+				</div>
+				
+				<!--<div class="block-content">
+					<div>{categoryresults}</div>
+					    <if condition="!(isset($show['no_featured']))">
+						 <div><b>Featured Coin Auctions</b><br /><br />
+							<table border="0">
+							{table_featured}
+							</table>
+						 </div>						 
+					  </if>	
+
+				</div>-->
+				
+					<div class="block-content">
+					<div>{categoryresults}</div>
+					    
+					<if condition="isset($show['featuredproductauctions']) and $show['featuredproductauctions']">
+					<div style="margin-top:10px;"><h2>Featured Coin Auctions&nbsp;<a class ='link1' href="{https_server}/featured-coin-auction.php">(View All)</a></h2></div>
+                        <table border="0" cellpadding="6" cellspacing="{table_cellspacing}" width="100%">
+                        <tr>
+                            <loop name="featuredproductauctions">
+                          {separator_begin}
+                            <td width="{width}%" valign="top">
+                                <div style="padding:4px">
+                                    <table border="0" cellspacing="0" cellpadding="0"><tr><td align="left"><div style="width:100%; height:100px" align="center">{photo}</div></td></tr></table>
+                                    <div style="height:70px;"><span class="blue">{title}</span></div>
+									<!-- karthik may 03 -->
+                                    <div style="width:100%; padding-top:15px"><span class="black"><strong>{price}</strong>
+									</span></div>
+                                   <div style="width:100%; padding-top:3px"><strong>{buynowtxt} {buynow}</strong></div>
+								   <div style="width:100%; padding-top:3px">{bids}</div>
+                                    <div style="width:100%; padding-top:10px"><span class="blue">Time Left: </span> <span style="font-size:15px" class="black"><strong>{timeleft}</strong></span></div>
+                                </div>			
+                            </td>
+                         {separator_end}
+                            </loop name="featuredproductauctions">	
+                        </tr>
+                        </table>
+                        </if>
+						
+				</div>
+				
+				<div class="block-footer">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+				
+		</div>
+	</div>
+</if>	
+
+
+    <if condition="isset($description) AND !empty($description)"><div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+    <td>
+        <div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="padding-right:10px; padding-left:10px"><div class="gray">{description}</div></td>
+        </tr>
+        </table>
+        </div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+    </td>
+</tr>
+</table>
+</div></if>
+    
+	</td>
+<if condition="isset($ilance->GPC['cid']) AND $ilance->GPC['cid'] > 0 AND $show['latestproductauctions'] AND $ilconfig['globalauctionsettings_productauctionsenabled'] AND $ilconfig['showlatestlistings']">
+<td>&nbsp;&nbsp;&nbsp;</td>
+<td width="410" valign="top">
+		
+		<!-- latest scrolling items -->
+		<div class="block-wrapper">
+
+		 
+				
+				<script language="javascript" type="text/javascript">
+				
+					var Ticker2 = new Class({
+						setOptions: function(options) {
+							this.options = Object.extend({
+								speed: 1000,
+								delay: 3500,
+								direction: 'vertical',
+								onComplete: Class.empty,
+								onStart: Class.empty
+							}, options || {});
+						},
+						initialize: function(el,options){
+							this.setOptions(options);
+							this.el = $(el);
+							this.items = this.el.getElements('li');
+							var w = 0;
+							var h = 0;
+							if(this.options.direction.toLowerCase()=='horizontal') {
+								h = this.el.getSize().y;
+								this.items.each(function(li,index) {
+									w += li.getSize().x;
+								});
+							} else {
+								w = this.el.getSize().x;
+								this.items.each(function(li,index) {
+									h += li.getSize().y;
+								});
+							}
+							this.el.setStyles({
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								width: w,
+								height: h
+							});
+							this.fx = new Fx.Morph(this.el,{duration:this.options.speed,onComplete:function() {
+								var i = (this.current==0)?this.items.length:this.current;
+								this.items[i-1].injectInside(this.el);
+								this.el.setStyles({
+									left:0,
+									top:0
+								});
+							}.bind(this)});
+							this.current = 0;
+							this.next();
+						},
+						pause: function() {
+							$clear(mytimer2);
+							mytimer2 = null;
+						},
+						resume: function() {
+							if (mytimer2 == null) {
+							this.next();
+							}
+						},
+						next: function() {
+							this.current++;
+							if (this.current >= this.items.length) this.current = 0;
+							var pos = this.items[this.current];
+							this.fx.start({
+								top: -pos.offsetTop,
+								left: -pos.offsetLeft
+							});
+							mytimer2 = this.next.bind(this).delay(this.options.delay+this.options.speed);
+						}
+					});
+				
+					var mytimer2 = null;
+				
+					window.addEvent('domready', function() 
+					{
+						var hor2 = new Ticker2('TickerVertical', {speed : 750, delay : 2500, direction : 'vertical'});
+						$('ScrollTicker').addEvent('mouseenter', function() {hor2.pause();});
+						$('ScrollTicker').addEvent('mouseleave', function() {hor2.resume();});
+					});
+				</script>
+				<!-- END latest scrolling items -->
+					
+			</div>
+		</div>
+		
+	</td>
+	</if>
+</tr>
+</table>

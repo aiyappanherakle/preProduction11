@@ -1,0 +1,128 @@
+<script type="text/javascript">
+function validate()
+{
+	var q=document.getElementById("pcgs_no").value;	
+	
+	
+	if(isNaN(q))
+	{
+		alert('Please enter valid PCGSNO');
+		return false;
+	}
+	else if(document.getElementById("pcgs").checked==false && document.getElementById("ngc").checked==false)
+	{
+		alert('You must choose atleast one Grading service');
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+	<td valign="top">
+
+		<div class="block-wrapper">
+
+			<div class="block">
+
+				<div class="block-top">
+					<div class="block-right">
+						<div class="block-left"></div>
+					</div>
+				</div>
+
+				<div class="block-header">
+				<span style="float:right; padding-top:3px" class="smaller gray"></span>PCGS Coin Auction Archive</div>
+
+				<div class="block-content-yellow">				
+					<!-- <div style="margin:6px 0 6px 0;">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td>
+									<span class="gray">Search {count} Coins in GreatCollections</span>
+								</td>
+							</tr>
+						</table>
+					</div> -->
+					<div style="margin-top:6px">
+						<form method="post" action="pcgs_coin_auction_archive_search.php" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;" onsubmit="return validate();">	
+							<input type="hidden" name="cmd" value="pcgs_coin_search"/>
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr> 
+									<td width="8%" nowrap="nowrap"><strong>PCGS NO :</strong>&nbsp;&nbsp;<input type="text" id="pcgs_no" name="pcgs_no" value="{pcgs_no}" maxlength="100" size="50" style="width: 100px;" class="input" />&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td width="16%" nowrap="nowrap"><strong>Grading Range :</strong>&nbsp;&nbsp;&nbsp;&nbsp;{grade_range1}&nbsp;&nbsp;{grade_range2}</td>									
+									<td width="10%" nowrap="nowrap">&nbsp;{grading_service1}&nbsp;&nbsp;{grading_service2}</td>
+									<td width="66%" nowrap="nowrap"><input type="submit" class="buttons" value=" {_search} " /></td>
+								</tr>
+							</table>
+						</form>	
+					</div>
+				</div>
+
+				<div class="block-content">
+					<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+						<tr>
+							<td>{prof}</td>
+						</tr>
+					</table>
+					
+					<div style="border:1px solid #E8E8E8;">
+					<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+						<tbody>
+						
+							<if condition="isset($total_num) AND $total_num==true">	
+								<tr class="alt2">
+									<td>Image</td>
+									<td>Title</td>
+									{listing}	
+									<td>Date</td> 
+								</tr>
+							
+								<loop name="listpage">
+									<tr class="alt1">
+										<td valign="top" align="center" class="">{imgval}</td>
+										<td>{project_title}<br>{description}<br> <if condition="isset($show['proxy']) AND $show['proxy']==true">
+										
+										 {proxybit}
+										
+										</if></td>
+										<td>{currentprice}</td>										
+										<td class="smaller blue">{bids}</td>
+										<td>{date_end}</td>
+									</tr>
+								</loop name="listpage">
+							</if>
+							
+							<if condition="isset($total_num) AND $total_num==false">
+								<tr class="alt1">
+									<td  align="center" ><strong>We've not had any of these since GC was founded.  To consign, please call 1-800-442-6467.</strong></td>
+								</tr>
+							</if>
+
+						</tbody>
+					</table>
+					
+					
+					</div>
+					
+					<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+						<tr>
+							<td>{prof}</td>
+						</tr>
+					</table>								
+				</div>
+
+				<div class="block-footer">
+				<div class="block-right">
+					<div class="block-left"></div>
+				</div>
+				</div>
+
+			</div>
+		</div>
+	</td>
+</tr>
+</table>	

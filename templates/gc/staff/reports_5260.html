@@ -1,0 +1,1770 @@
+			
+
+		
+
+	
+
+<div id="v3body4">
+
+	<!-- sub navigation -->
+
+	<div id="sub">
+		<div id="subnav">
+			<a href="reports.php" class="sel"><span>Reports</span></a>
+			<a href="exports.php"><span>Export</span></a> 
+			<a href="payments_report.php"><span>Payments</span></a>
+		</div>
+	</div>
+
+	<!-- /sub navigation -->
+
+
+
+	<div id="content">
+
+	<div class="header">{_report_management}</div><br />
+
+
+
+		
+
+		<div class="tab-pane">
+
+		
+
+			<div class="tab-pane" id="reportlistings">
+
+		
+
+				<div class="tab-page">
+
+      				
+
+        			
+
+      <h2 class="tab">{_reports}</h2>
+
+	  
+
+	  <if condition="empty($ilance->GPC['subcmd'])">
+
+      <form name="generatereports" method="post" action="reports.php" accept-charset="UTF-8" style="margin: 0px;">
+
+	  <input type="hidden" name="cmd" value="reports" />
+
+	  <input type="hidden" name="subcmd" value="_do-reports" />
+
+	  <div class="block-wrapper">
+
+		<div class="block">
+
+		
+
+				<div class="block-top">
+
+						<div class="block-right">
+
+								<div class="block-left"></div>
+
+						</div>
+
+				</div>
+
+				
+
+				<div class="block-header">{_report_management}</div>
+
+				<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_report_management_gives_you_direct_access_of_accounting_overview_based_on_the_reporting_you_wish_to_formulate}</div></div>
+
+				<div class="block-content" style="padding:0px">
+
+					
+
+					<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+
+				  <tr class="alt1"> 
+
+					<td align="right"><span class="gray">{_action}</span></td>
+
+					<td width="83%">{reportaction}</td>
+
+				  </tr>
+
+				  <tr class="alt1"> 
+
+					<td align="right"><span class="gray">{_report}</span></td>
+
+					<td><select name="doshow" style="font-family: verdana">
+
+						<option value="">{_select_report_to_generate}</option>
+
+						
+
+								
+
+								<option value="consignmentsummary" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'credential'">selected="selected"</if>>Consignment Summary Report</option>
+
+								<option value="consignmentdetail" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'portfolio'">selected="selected"</if>>Consignment Detail Report</option>
+
+								<option value="advance" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'advance'">selected="selected"</if>>Advance / Credits Report</option>
+
+
+
+								<option value="ebay" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'ebay'">selected="selected"</if>>Affiliate Sales Report</option>
+
+								<option value="consignorstatement" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'consignorstatement'">selected="selected"</if>>Consignor Statement Report</option>
+
+								<option value="unsold" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'unsold'">selected="selected"</if>>Unsold Item Report</option>
+
+								<option value="return" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'return'">selected="selected"</if>>Return to consignor report</option>
+
+								<option value="rawcoin" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'rawcoin'">selected="selected"</if>>Raw Coin Report</option>
+
+								<option value="referal" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'referal'">selected="selected"</if>>Refferal Report</option>
+
+                               <option value="activity" <if condition="isset($ilance->GPC['doshow']) AND $ilance->GPC['doshow'] == 'activity'">selected="selected"</if>>Activity Report</option>
+
+						
+
+						
+
+						
+
+						</select></td>
+
+				  </tr>
+
+				 <!-- <tr class="alt2">
+
+					<td colspan="2">{_customize_your_report_by_viewing_only_desired_transaction_columns}</td>
+
+				 </tr>-->
+
+				  <!--<tr class="alt1"> 
+
+					<td valign="top" align="right"><span class="gray">{_fields}</span></td>
+
+					<td>{reportcolumns}</td>
+
+				  </tr>
+
+				  <tr class="alt1"> 
+
+					<td valign="top" align="right"><span class="gray">Tools</span></td>
+
+					<td><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>
+
+					  <td width="3%"><input type="checkbox" name="useridconvert" value="generate" /></td>
+
+					  <td width="97%"><div align="left"><strong>&nbsp;</strong>{_if_you_would_like_to_convert_the_user_id_field_into_the_actual_username_please_tick_this_checkbox}</div></td>
+
+					  </tr><tr><td nowrap class="smaller"><input type="checkbox" name="projectidconvert" value="generate" /></td>
+
+					<td><div align="left"><strong>&nbsp;</strong>{_if_you_would_like_to_convert_the_project_id_field_into_the_actual_listing}</div></td>
+
+					</tr></table></td>
+
+				  </tr>-->
+
+				  <tr class="alt2">
+
+					<td colspan="2">{_customize_your_report_using_a_wide_variety_of_date_range_options}</td>
+
+				 </tr>
+
+				  <tr class="alt1"> 
+
+					<td width="17%" align="right"> 
+
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+						  <tr> 
+
+							<td width="74%" align="right"><span class="gray">{_within}</span></td>
+
+							<td width="26%" align="right">{radiopast}</td>
+
+						  </tr>
+
+						</table></td>
+
+					<td>{reportrange}</td>
+
+				  </tr>
+
+				  <tr class="alt1"> 
+
+					<td valign="top" align="right">
+
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+						  <tr> 
+
+							<td width="74%"><div align="right"><span class="gray">{_from} {_range}</span></div></td>
+
+							<td width="26%"><div align="right">{radioexact}</div></td>
+
+						  </tr>
+
+						</table></td>
+
+					<td>{reportfromrange}</td>
+
+				  </tr>
+
+				  <tr class="alt2">
+
+					<td colspan="2">{_order_your_results_based_on_ascending_or_descending_below}</td>
+
+				 </tr>
+
+				  <tr class="alt1"> 
+
+					<td align="right"><span class="gray">{_order_results}</span></td>
+
+					<td>{reportorderby}</td>
+
+				  </tr>
+
+				  <tr class="alt1">
+
+					<td align="right"><span class="gray">{_limit} {_results}</span></td>
+
+					<td><input type="text" name="limit" value="100" style="font-family:verdana; width:35px"  /></td>
+
+				  </tr>
+
+				  
+
+				  <tr> 
+
+					<td colspan="2"><input type="submit" value=" {_create_report} " style="font-size:15px" class="buttons" /></td>
+
+				  </tr>
+
+				</table>
+
+					
+
+				</div>
+
+				
+
+				<div class="block-footer">
+
+						<div class="block-right">
+
+								<div class="block-left"></div>
+
+						</div>
+
+				</div>
+
+				
+
+		</div>
+
+	  </div>
+
+    </form>
+
+	</if>
+
+	  
+
+	<if condition="isset($show['showreportoutput']) AND $show['showreportoutput']">
+
+	<div>{reportoutput}</div>
+
+	<div>{customprevnext}</div>
+
+	</if>
+
+
+
+    </div>
+
+	
+
+				<div class="tab-page">
+
+						<h2 class="tab">{_consignor_statement}</h2>
+
+						<div class="block-wrapper">
+
+						
+
+						<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">Select User</div>
+
+								<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+
+						  		<input type="hidden" name="cmd" value="statement" />
+
+								<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+
+								<tr>
+
+								<td>
+
+								Select User
+
+								</td>
+
+								<td>
+
+								{user_down}
+
+								</td>
+
+								<td>
+
+								<input type="submit" class="buttons" value=" {_go} " style="font-size:15px" />
+
+								</td>
+
+								</tr>
+
+								</table>
+
+								</form>
+
+								</div>
+
+								<div class="block-footer">
+
+									<div class="block-right">
+
+										<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+						
+
+							<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">{_consignor_statement} GC - {user_id}</div>
+
+								<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_my_statement_on} {date1} {statecount}</div></div>
+
+								<div class="block-content" style="padding:0px">
+
+								
+
+								 <div>
+
+						 <form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+
+						  <input type="hidden" name="subcmd" value="search" />
+
+						  <input type="hidden" name="userstatementid" value="{user_id}" />  
+
+						  
+
+						<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+
+						<tr>
+
+						<td>
+
+						{_select_date}
+
+						</td>
+
+						<td>
+
+						<!--{daylist}&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;{yearlist}-->{date_down}
+
+						</td>
+
+						<td>
+
+						<input type="submit" class="buttons" value=" {_search} " style="font-size:15px" />
+
+						</td>
+
+						</tr>
+
+						</table>
+
+						</form>
+
+						</div>
+
+                       		 	 <div>
+
+                       			<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+
+                        <tr class="" bgcolor="#CD9C9C"> 
+
+								  <td width="4%">{_id}</td>								 
+
+								  <td width="12%">{_auction_title}</td>								  
+
+								  <td width="8%">{_certified_number}</td>
+
+								  <td width="8%">{_alt_inventory}</td>								 
+
+								  <td width="5%" >{_listed}</td>	
+
+								  <td width="5%">{_bids}</td>
+
+								  <td width="7%">{_min_bid_buy_now}</td>
+
+								  <td width="7%">{_final_price}</td>
+
+								  <td width="7%">{_listing_fees}</td>
+
+								  <td width="7%">{_sellers_fees}</td>								 
+
+								  <td width="8%">{_net_to_consignor}</td>
+
+							
+
+							</tr>
+
+							<loop name="statement"> 							
+
+							<tr class="alt1" valign="top">								
+
+								<td nowrap="nowrap"><span class="blue">{stateid}</span> </td>
+
+								<td nowrap="nowrap">{Title}</td>															
+
+								<td nowrap="nowrap"><div class="blue">{Certification_No}</div></td>
+
+								<td>{Alternate_inventory_No}</td>
+
+								<td>{Site_Id}</td>
+
+								<td nowrap="nowrap">{bids}</td>
+
+								<td nowrap="nowrap"><span class="blue">{bidamount}</span>&nbsp;/&nbsp;<b> {binamount}</b></td>
+
+								<td nowrap="nowrap">{fvf}&nbsp;{qty}</td>
+
+								<td nowrap="nowrap">{listing_fee}</td>
+
+								<td nowrap="nowrap">{seller_fee}</td>
+
+								<td nowrap="nowrap">{net_consignor}</td>
+
+							</tr>
+
+							</loop name="statement">
+
+							<if condition="isset($show['statement']) AND $show['statement']">
+
+							<tr>
+
+								<td nowrap="nowrap"><strong>{_gross_total}</strong></td>
+
+								<td nowrap="nowrap"></td>															
+
+								<td nowrap="nowrap"></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td nowrap="nowrap"><strong>{totbids}</strong></td>
+
+								<td nowrap="nowrap"><strong>{totbidamount}&nbsp;/&nbsp;{totbinamount}</strong></td>
+
+								<td nowrap="nowrap"><strong>{totfvf}</strong></td>
+
+								<td nowrap="nowrap"><strong>{totlisting_fee}</strong></td>
+
+								<td nowrap="nowrap"><strong>{totseller_fee}</strong></td>
+
+								<td nowrap="nowrap"><strong>{totnet_consignor}</strong></td>
+
+							</tr>
+
+							<tr>
+
+								<td nowrap="nowrap"><strong>{_advance} </strong></td>
+
+								<td></td>															
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></strong></td>
+
+								<td></strong></td>
+
+								<td nowrap="nowrap"><strong>{total_advance}</strong></td>
+
+							</tr>
+
+							<tr>
+
+								<td nowrap="nowrap"><strong>Miscellaneous </strong></td>
+
+								<td></td>															
+
+								<td></td>								
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></strong></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></strong></td>
+
+								<td nowrap="nowrap"><strong>{tot_mis}</strong></td>
+
+							</tr>
+
+							<tr>
+
+								<td nowrap="nowrap"><strong>{_net_total}</strong></td>
+
+								<td></td>															
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></td>
+
+								<td></strong></td>
+
+								<td></strong></td>
+
+								<td nowrap="nowrap"><strong>{lastamount}</strong></td>
+
+							</tr>
+
+							</if>
+
+                    	   <if condition="isset($show['no_statement']) AND $show['no_statement']"> 
+
+							<tr> 
+
+								<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+
+							</tr>
+
+							</if>
+
+                        </table>
+
+                        		</div>
+
+								<!--block-content-->
+
+								</div>
+
+								<div class="block-footer">
+
+									<div class="block-right">
+
+										<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+							<!--block-->
+
+							</div>
+
+							<!--block wrapper-->
+
+						</div>
+
+
+
+				</div>
+
+		
+
+					
+
+	</div>
+
+	
+
+	<div class="tab-page">
+
+						<h2 class="tab">A/C Report</h2>
+
+						<div class="block-wrapper">
+
+						
+
+						<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">Select Date</div>
+
+								<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+
+						  		<input type="hidden" name="cmd" value="account" />
+
+								<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+
+								<tr>
+
+								<td>
+
+								Starting Date
+
+								</td>
+
+								<td>
+
+								{daylist}&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;{yearlist}
+
+								</td>
+
+								</tr>
+
+								<tr>
+
+								<td>
+
+								End Date
+
+								</td>
+
+								<td>
+
+								{daylist1}&nbsp;&nbsp;&nbsp;{monthlist1}&nbsp;&nbsp;&nbsp;{yearlist1}
+
+								</td>
+
+								</tr>
+
+								<tr>
+
+								<td colspan="2" align="center">
+
+								<input type="submit" class="buttons" value=" {_go} " style="font-size:15px" />
+
+								</td>
+
+								</tr>
+
+								</table>
+
+								</form>
+
+								</div>
+
+								<div class="block-footer">
+
+									<div class="block-right">
+
+										<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							
+
+							<if condition="isset($show['showoutput']) AND $show['showoutput']">
+
+								<div class="block-content">
+
+									<div><br /></div>
+
+									<div>{showoutput}</div>
+
+									<div>{customprevnext}</div>
+
+								</div>
+
+							</if>
+
+							</div>
+
+						</div>
+
+<!-- Karthik start may04-->
+
+			<div class="tab-page">
+
+						<h2 class="tab">Print Statement</h2>
+
+						<div class="block-wrapper">
+
+						
+
+						<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">Select Date</div>
+
+								<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" >
+
+						  		<input type="hidden" name="cmd" value="statement_print" />
+
+								<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+
+								<tr>
+
+								<td>
+
+								Starting Date
+
+								</td>
+
+								<td>
+
+								{daylist}&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;{yearlist}
+
+								</td>
+
+								</tr>
+
+								<tr>
+
+								<td>
+
+								End Date
+
+								</td>
+
+								<td>
+
+								{daylist1}&nbsp;&nbsp;&nbsp;{monthlist1}&nbsp;&nbsp;&nbsp;{yearlist1}
+
+								</td>
+
+								</tr>
+
+								<tr>
+
+								<td>
+
+						        Select Display *
+
+						        </td>
+
+								<td>
+
+								  <select name="display">
+
+								   <option value="" selected="selected">Select</option>
+
+								  <option value="display">Display <font color="#FF0000">*</font></option>
+
+								  <option value="no_display">No Display <font color="#FF0000">*</font></option>
+
+								  </select>
+
+						        </td>
+
+								</tr>
+								
+								<tr>
+								
+								<td> Any Specific User ID:</td><td><input type="text" name="user_id" /></td>
+								
+								</tr>
+
+								<tr>
+
+								<td colspan="2" align="center">
+
+								<input type="submit" class="buttons" value=" {_print} " name="print" style="font-size:15px" />
+								<input type="submit" class="buttons" value=" Summary " name="summary" style="font-size:15px" />
+
+								</td>
+
+								</tr>
+
+								</table>
+
+								</form>
+
+								</div>
+
+								<div class="block-footer">
+
+									<div class="block-right">
+
+										<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							
+
+							<if condition="isset($show['showoutput']) AND $show['showoutput']">
+
+								<div class="block-content">
+
+									<div><br /></div>
+
+									<div>{showoutput}</div>
+
+									<div>{customprevnext}</div>
+
+								</div>
+
+							</if>
+
+							</div>
+
+						</div>
+
+		
+
+			
+
+			<!-- Karthik end may04-->
+
+			
+
+				<div class="tab-page">
+
+						<h2 class="tab">Print Statement New</h2>
+
+						<div class="block-wrapper">
+
+						
+
+						<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">Select Date</div>
+
+								<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" >
+
+						  		<input type="hidden" name="cmd" value="statement_print_new" />
+
+								<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+
+								<tr>
+
+								<td>
+
+								Starting Date
+
+								</td>
+
+								<td>
+
+								<script>
+
+								$(function() {
+
+									$("#datepicker").datepicker({
+
+											dateFormat: 'mm-dd-yy',
+
+											beforeShowDay: enableSUNDAYS
+
+										});
+										
+									$("#datepicker1").datepicker({
+
+											dateFormat: 'yy-mm-dd'
+										});
+									$("#datepicker2").datepicker({
+
+											dateFormat: 'yy-mm-dd'
+										});
+
+										// Custom function to enable SUNDAY only in jquery calender
+
+										function enableSUNDAYS(date) {
+
+											var day = date.getDay();
+
+											return [(day == 0), ''];
+
+										}
+
+
+
+									
+
+								});
+
+								</script>
+
+								<input id="datepicker" name="start_date" type="text">
+
+								<!--{daylist}&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;{yearlist}-->
+
+								</td>
+
+								</tr>
+
+								
+
+								<!--<tr>
+
+								<td>
+
+								End Date
+
+								</td>
+
+								<td>
+
+								{daylist1}&nbsp;&nbsp;&nbsp;{monthlist1}&nbsp;&nbsp;&nbsp;{yearlist1}
+
+								</td>
+
+								</tr>-->
+
+								<tr>
+
+								<td>
+
+						        Select Display *
+
+						        </td>
+
+								<td>
+
+								  <select name="display">
+
+								   <option value="" selected="selected">Select</option>
+
+								  <option value="display">Display <font color="#FF0000">*</font></option>
+
+								  <option value="no_display">No Display <font color="#FF0000">*</font></option>
+
+								  </select>
+
+						        </td>
+
+								</tr><tr>
+
+								<td>
+
+								Any Specific User id
+
+								</td>
+
+								<td>
+
+<input type="text" name="user_id" />
+
+								</td>
+
+								</tr>
+
+								<tr>
+
+								<td colspan="2" align="center">
+
+								<input type="submit" class="buttons" value=" {_print} " name="print" style="font-size:15px" />
+								<input type="submit" class="buttons" value=" Summary " name="summary" style="font-size:15px" />
+
+								</td>
+
+								</tr>
+
+								</table>
+
+								</form>
+
+								</div>
+
+								<div class="block-footer">
+
+									<div class="block-right">
+
+										<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							
+
+							<if condition="isset($show['showoutput']) AND $show['showoutput']">
+
+								<div class="block-content">
+
+									<div><br /></div>
+
+									<div>{showoutput}</div>
+
+									<div>{customprevnext}</div>
+
+								</div>
+
+							</if>
+
+							</div>
+
+						</div>
+
+		
+
+		<!--//sekar start here: working on june 10-->
+
+	
+
+	<div class="tab-page">
+
+						<h2 class="tab">consignor list</h2>
+
+						<div class="block-wrapper">
+
+						
+
+						<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">User Id</div>
+
+								<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="reports_5260.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+
+						  		<input type="hidden" name="cmd" value="consignorlist" />
+
+								<table align="center" border="0" cellspacing="0" cellpadding="9">
+
+								<tr class="alt1">
+
+								<td width="10%">Select User</td>
+
+								<td width="90%">
+
+								 <select name="filterby" style="font-family: Verdana">
+
+                                        <optgroup label="{_filter_by}">
+
+                                        <option value=""></option>
+
+                                        <option value="user_id">{_user_id}</option>
+
+                                        <option value="username">{_username}</option>
+
+                                        <option value="email">{_email}</option>
+
+                                        </optgroup>
+
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                        <input type="text" name="filtervalue" size="18"  style="width: 50%;" />
+
+								</td>
+
+								</tr>
+								<!-- for bug #5260 -->
+								<tr class="alt1">
+								<td width="10%">Order By</td>
+
+								<td width="90%">
+									<select name="order_by" style="font-family: Verdana; width: 100px;">
+                                        <optgroup label="Order by">
+                                        <option value=""></option>
+                                        <option value="coin_id">Coin ID</option>
+                                        </optgroup>
+                                     </select>
+								</td>
+								</tr>
+								<!-- for bug #5260 -->
+								
+								 <tr class="alt1">
+								    <td width="10%">&nbsp;</td>
+									<td width="90%"><input type="radio" name="excsold" value="sold" id="sold"/><label for="sold">Exclude sold/returned items.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="excsold"  value="old" id="old"/><label for="old">Exclude old sold/returned items.</label></td>
+								</tr>
+								
+								<tr>
+									<td width="10%">
+										<input type="submit" class="buttons" value=" {_go} " style="font-size:15px" />
+									</td>
+								</tr>
+								</table>
+
+								</form>
+
+								</div>
+
+								
+
+								<div class="block-footer">
+
+						<div class="block-right">
+
+								<div class="block-left"></div>
+
+						</div>
+
+				</div>
+
+						
+
+						
+
+								<!--block-content-->
+
+								</div>
+
+								
+
+							<!--block-->
+
+							</div>
+
+							<!--block wrapper-->
+
+						</div>
+
+						
+
+	<!--//sekar End Here:  working on june 10-->	
+
+			
+
+				<!-- Prices Realized tab -->
+
+	
+
+	<div class="tab-page">
+
+			
+
+			<h2 class="tab">Prices Realized</h2>
+
+			
+
+			<div class="block-wrapper">
+
+                    <div class="block3">
+
+                    
+
+                            <div class="block3-top">
+
+                                    <div class="block3-right">
+
+                                            <div class="block3-left"></div>
+
+                                    </div>
+
+                            </div>
+
+                            
+
+                            <div class="block3-header">Prices Realized List</div>                            
+
+                            <div class="block3-content" style="padding:0px">
+
+							 <form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;">
+
+							 <input type="hidden" name="cmd" value="prices_realized" />
+
+							
+
+							
+
+							<table align="center">
+
+							 <tr class="alt1">
+
+                                  <td width="40%"><span class="gray">Click the Button</span>
+
+								  <td>Here we get Prices Realized list  in Excel Format</td>                                  
+
+                              </tr>
+
+							<tr><td>&nbsp;</td></tr>
+
+								<tr>
+
+								<td>
+
+								EndDate Range
+
+								</td>
+
+								<td>
+
+								From &nbsp;&nbsp;&nbsp;<input id="datepicker1" type="text" name="from_date" value="">
+
+								</td>
+
+								</tr>
+
+								<tr><td>&nbsp;</td></tr>
+
+							    <tr>
+
+								<td>&nbsp;</td>
+
+								<td>
+
+								To &nbsp;&nbsp; &nbsp;<input id="datepicker2" type="text" name="to_date" value="">
+
+								</td>
+
+								</tr>
+
+								<tr><td>&nbsp;</td></tr>
+
+								<tr>
+
+								<td>
+
+						       Include Buynow
+
+						        </td>
+
+								<td>
+
+								  <select name="display">
+
+								   <option value="" selected="selected">Select</option>
+
+								  <option value="buynow">Include Buynow</option>
+
+								  <option value="auctions">Only Auctions </option>
+
+								  </select>
+
+						        </td>
+
+								</tr>
+
+							<tr><td>&nbsp;</td></tr>
+
+							 <tr class="alt1">
+
+							<td colspan="3" align="center">
+
+							<input type="submit" name="generate" value="Generate" />
+
+							</td>
+
+							</tr>
+
+							</table>
+
+                               <!-- This Only for Shipping List-->	
+
+							   </form>	
+
+                            </div>
+
+								
+
+                            
+
+                            <div class="block3-footer">
+
+                                    <div class="block3-right">
+
+                                            <div class="block3-left"></div>
+
+                                    </div>
+
+                            </div>
+
+                            
+
+                    </div>
+
+                </div>
+
+
+
+		</div>
+
+	<!-- Prices Realized tab -->
+
+	
+
+			<!--karthik works on pending report on aug18-->
+
+						
+
+						<div class="tab-page">
+
+						<h2 class="tab">Pending Invoices</h2>
+
+						<div class="block-wrapper">
+
+						
+
+						<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">Pending Invoices List</div>
+
+								<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+
+						  		<input type="hidden" name="cmd" value="pending_invoices" />
+
+								<table align="center" border="0" cellspacing="0" cellpadding="9">
+
+								<tr>
+
+								<td>
+
+								<input type="submit" class="buttons" value="{_print} " style="font-size:15px" />
+
+								</td>
+
+								</tr>
+
+								</table>
+
+								</form>
+
+								</div>
+
+								
+
+								<div class="block-footer">
+
+						<div class="block-right">
+
+								<div class="block-left"></div>
+
+						</div>
+
+				</div>
+
+						
+
+						
+
+								<!--block-content-->
+
+								</div>
+
+								
+
+							<!--block-->
+
+							</div>
+
+							<!--block wrapper-->
+
+						</div>
+
+						
+
+						
+
+						<!--karthik finished works on pending  report on aug 18-->
+
+						
+
+						
+
+							<!--karthik works on Sales Tax report on Dec04-->
+
+						
+
+						<div class="tab-page">
+
+						<h2 class="tab">Sales Tax</h2>
+
+						<div class="block-wrapper">
+
+						
+
+						<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">Sales Tax Report</div>
+
+								<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+
+						  		<input type="hidden" name="cmd" value="sales_tax" />
+
+								<table align="center" border="0" cellspacing="0" cellpadding="9">
+
+								
+
+								<tr><td>&nbsp;</td></tr>
+
+								<tr>
+
+								<td>
+
+								Date Range
+
+								</td>
+
+								<td>
+
+								From &nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;{daylist}&nbsp;&nbsp;&nbsp;{yearlist}
+
+								</td>
+
+								</tr>
+
+								<tr><td>&nbsp;</td></tr>
+
+							    <tr>
+
+								<td>&nbsp;</td>
+
+								<td>
+
+								To &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{monthlist1}&nbsp;&nbsp;&nbsp;{daylist1}&nbsp;&nbsp;&nbsp;{yearlist1}
+
+								</td>
+
+								</tr>
+
+								<tr>
+
+								<td colspan="2" align="center">
+
+								<input type="submit" class="buttons" value="{_print} " style="font-size:15px" />
+
+								</td>
+
+								</tr>
+
+								</table>
+
+								</form>
+
+								</div>
+
+								
+
+								<div class="block-footer">
+
+						<div class="block-right">
+
+								<div class="block-left"></div>
+
+						</div>
+
+				</div>
+
+						
+
+						
+
+								<!--block-content-->
+
+								</div>
+
+								
+
+							<!--block-->
+
+							</div>
+
+							<!--block wrapper-->
+
+						</div>
+
+						
+
+						
+
+						<!--karthik finished works on Sales Tax report on Dec04-->
+
+						
+
+							<!--karthik works on All Sales Tax report on Dec05-->
+
+						
+
+						<div class="tab-page">
+
+						<h2 class="tab">All Sales Tax</h2>
+
+						<div class="block-wrapper">
+
+						
+
+						<div class="block">		
+
+								<div class="block-top">
+
+									<div class="block-right">
+
+											<div class="block-left"></div>
+
+									</div>
+
+								</div>
+
+								<div class="block-header">All Sales Tax Report</div>
+
+								<div class="block-content" style="padding:0px">
+
+								<form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+
+						  		<input type="hidden" name="cmd" value="all_sales_tax" />
+
+								<table align="center" border="0" cellspacing="0" cellpadding="9">
+
+								
+
+								<tr><td>&nbsp;</td></tr>
+
+								<tr>
+
+								<td>
+
+								Date Range
+
+								</td>
+
+								<td>
+
+								From &nbsp;&nbsp;&nbsp;{daylist}&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;{yearlist}
+
+								</td>
+
+								</tr>
+
+								<tr><td>&nbsp;</td></tr>
+
+							    <tr>
+
+								<td>&nbsp;</td>
+
+								<td>
+
+								To &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{daylist1}&nbsp;&nbsp;&nbsp;{monthlist1}&nbsp;&nbsp;&nbsp;{yearlist1}
+
+								</td>
+
+								</tr>
+
+								<tr>
+
+								<td colspan="2" align="center">
+
+								<input type="submit" class="buttons" value="{_print} " style="font-size:15px" />
+
+								</td>
+
+								</tr>
+
+								</table>
+
+								</form>
+
+								</div>
+
+								
+
+								<div class="block-footer">
+
+						<div class="block-right">
+
+								<div class="block-left"></div>
+
+						</div>
+
+				</div>
+
+						
+
+						
+
+								<!--block-content-->
+
+								</div>
+
+								
+
+							<!--block-->
+
+							</div>
+
+							<!--block wrapper-->
+
+						</div>
+
+						
+
+						
+
+						<!--karthik finished works on All Sales Tax report on Dec05-->
+						
+						
+								<!--Multi-Item Buynow-->
+						
+						<div class="tab-page">
+						<h2 class="tab">Buynow</h2>
+						<div class="block-wrapper">
+						
+						<div class="block">		
+								<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+								</div>
+								<div class="block-header">Multi-Item Buynow List</div>
+								<div class="block-content" style="padding:0px">
+								<form name="ilform" action="reports.php" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+						  		<input type="hidden" name="cmd" value="multi_buynow" />
+								<table align="center" border="0" cellspacing="0" cellpadding="9">
+								 <tr class="alt1">
+                                  <td width="40%"><span class="gray">Click the Button</span>
+								  <td><span class="gray">Here we get Multi-Item Buynow list  in PDF Format</span></td>                                  
+                              </tr>
+								<tr>
+								<td>&nbsp;</td>
+								<td><input type="submit" class="buttons" value="{_print} " style="font-size:15px" />
+								</td>
+								</tr>
+								</table>
+								</form>
+								</div>
+								
+								<div class="block-footer">
+						<div class="block-right">
+								<div class="block-left"></div>
+						</div>
+				</div>
+						
+						
+								<!--block-content-->
+								</div>
+								
+							<!--block-->
+							</div>
+							<!--block wrapper-->
+						</div>
+						
+						
+						<!--Multi-item buynow ends-->
+
+	
+
+ </div>
+
+</div>
+
+
+
+	<br />
+
+<br />
+

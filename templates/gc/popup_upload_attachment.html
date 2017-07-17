@@ -1,0 +1,175 @@
+<div style="padding:9px">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+	<td>
+        
+        {js}
+        
+        <form enctype="multipart/form-data" action="{http_server}{ilpage[upload]}" name="attachment" accept-charset="UTF-8" method="post" style="margin: 0px;">
+        <input name="crypted" type="hidden" value="{crypted}" />
+        <if condition="isset($ilance->GPC['refresh']) AND $ilance->GPC['refresh']"><input name="refresh" value="1" type="hidden" /></if>
+        <input name="cmd" value="_do-upload-now" type="hidden" />
+        <if condition="isset($show['error']) AND $show['error'] OR isset($show['notice']) AND $show['notice']">
+        <div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+            <div class="grayborder" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_red_1x1000.gif) repeat-x;">
+                <div class="n">
+                    <div class="e">
+                        <div class="w"></div>
+                    </div>
+                </div>
+            
+                <div style="padding:6px"><span style="float:left; padding-right:10px; padding-left:10px"><img src="{template_relativeimagepath}{template_imagesfolder}infowarning3.gif" border="0" alt="" id="error" /></span>
+                <if condition="isset($show['error']) AND $show['error']">{error_message}</if>
+                <if condition="isset($show['notice']) AND $show['notice']">{notice_message}</if>		
+                </div>
+            
+                <div class="s">
+                    <div class="e">
+                        <div class="w"></div>
+                    </div>
+                </div>
+            </div>
+        
+        </td>
+        </tr>
+        </table>
+        </div>
+        <div style="padding-bottom:12px"></div>
+        </if>
+        
+        <if condition="isset($show['portfolio_manage']) AND $show['portfolio_manage']">
+        <div class="block-wrapper">
+            <div class="block2">
+            
+                    <div class="block2-top">
+                            <div class="block2-right">
+                                    <div class="block2-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block2-header">{_portfolio_information} <font color="red" size="3">*</font></div>
+                    <div class="block2-content-blue" style="padding:9px"><div class="smaller">{_please_select_the_appropriate_category_caption_and_description}</div></div>
+                    <div class="block2-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_blue_1x1000.gif) repeat-x; padding:9px">
+                        
+                        <div style="padding-bottom:3px">{_category}</div><div style="padding-bottom:6px">{search_category_pulldown}</div>
+                        <hr size="1" width="100%" style="color:#cccccc; margin-top:0px; padding-bottom:8px" />
+                        <div style="padding-bottom:3px">{_title}</div><div style="padding-bottom:6px"><input type="text" name="caption" value="" class="input" style="width: 325px; font-family: Verdana" /> <img name="captionerror" src="{template_relativeimagepath}{template_imagesfolder}icons/blankimage.gif" border="0" alt="{_this_form_field_is_required}" /></div>
+                        <hr size="1" width="100%" style="color:#cccccc; margin-top:0px; padding-bottom:8px" />
+                        <div style="padding-bottom:3px">{_description}</div><div><input type="text" name="description" value="" class="input" style="width: 325px; font-family: Verdana" /> <img name="descriptionerror" src="{template_relativeimagepath}{template_imagesfolder}icons/blankimage.gif" border="0" alt="{_this_form_field_is_required}" /></div>
+                        <div style="padding-bottom:9px"></div>
+                        
+                        
+                    </div>
+                    
+                    <div class="block2-footer">
+                            <div class="block2-right">
+                                    <div class="block2-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        </if>
+        
+        <div class="block-wrapper">
+        
+            <div class="block">
+            
+                    <div class="block-top">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block-header"><span id="uploading" style="display:none; float:right; padding-right:7px; font-size:13px"><strong>{_uploading_dot_dot}</strong></span>{_upload_attachments} <font color="red" size="3">*</font></div>
+                    
+                    <div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:0px">
+                        
+                        <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+                        <tr> 
+                            <td> 
+                                
+                                <div><strong>{_find_attachment}</strong></div>
+                                <table cellpadding="0" cellspacing="0" border="0" width=100%>
+                                <tr valign="bottom"> 
+                                    <td><input type="file" name="upload" style="width:300px" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="gray">{_and}</span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="upload" value="{_upload}" onclick="return check_upload(this.form);" class="buttons" {upload_style} style="font-size:15px" /></td>
+                                    <td align="right"></td>
+                                </tr>
+                                </table>
+                                <div style="padding-bottom:9px"></div>
+                    
+                                <if condition="isset($show['ifextensions']) AND $show['ifextensions']">
+                                
+                                <div><strong>{_file_extensions_supported}&nbsp;</strong></div>
+                                <div style="word-spacing:-1px; padding-top:4px; padding-bottom:4px">{extensions}</div>
+                                <div style="padding-bottom:9px"></div>
+                                </if>
+                                
+                                <hr size="1" width="100%" style="color:#cccccc; margin-top:0px; padding-bottom:8px" />
+                                <table cellpadding="2" cellspacing="{table_cellspacing}" border="0" width=100%>
+                                <tr valign="bottom"> 
+                                  <td valign="top" nowrap="nowrap"><div><span class="gray">{_maximum_files_can_attach}</span> <span class="smaller blue">{maximum_files}</span></div></td>
+                                  <td valign="top" nowrap="nowrap"><div>&nbsp;&nbsp;&nbsp;<span class="gray">{_allowed}:</span> <span class="smaller blue">{attach_user_max}</span></div></td>
+                                    <td valign="top" nowrap="nowrap"><div>&nbsp;&nbsp;&nbsp;<span class="gray">{_used}: </span><span class="smaller blue">{attach_usage_total}</span></div></td>
+                                    <td valign="top" nowrap="nowrap"><div>&nbsp;&nbsp;&nbsp;<span class="gray">{_left}: </span><span class="smaller blue">{attach_usage_left}</span></div></td>
+                                </tr>
+                                <tr valign="bottom"> 
+                                    <td valign="middle"><div><span class="gray">{_maximum_width}</span> <span class="smaller blue">{max_width} px</span></div></td>
+                                    <td valign="middle"><div><span class="gray">{_maximum_height}</span> <span class="smaller blue">{max_height} px</span></div></td>
+                                    <td colspan="2" valign="middle"><div><span class="gray">{_maximum_filesize}:</span> <span class="smaller blue">{max_size}</span></div></td>
+                                  </tr>
+                                </table>
+                                
+                          </td>
+                        
+                        </tr>
+                        </table>
+                        
+                    </div>
+                    
+                    <div class="block-footer">
+                            <div class="block-right">
+                                    <div class="block-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        
+        <div class="block-wrapper">
+        
+            <div class="block3">
+            
+                    <div class="block3-top">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block3-header">{_manage_attachments}</div>
+                    <div class="block3-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_gray_1x1000.gif) repeat-x; padding:9px">
+                    	<div class="gray" style="padding-bottom:3px">{_use_ctrl_on_your_keyboard_to_select_multiple_items_for_removal}</div>
+                        <div align="left">{attachment_list}</div><div align="left" style="padding-top:9px"><input type="submit" name="removeattachments" value="{_remove}" class="buttons" style="font-size:15px" /></div>
+                    </div>
+                    
+                    <div class="block3-footer">
+                            <div class="block3-right">
+                                    <div class="block3-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+        
+        
+        <div align="right"><input type="button" class="buttons" value="{_close}" style="font-size:15px" onclick="{closeonclick}" /></div>
+        </form>
+        
+        
+	</td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,76 @@
+			
+		
+		
+<div id="v3body4">
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Consignor Report</div>
+<br />
+	
+ 				
+				 
+						<div class="block">		
+								<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+								</div>
+								<div class="block-header">consignor sales/fees report</div>
+								<div class="block-content" style="padding:0px">
+								<form name="ilform" action="" method="post" accept-charset="UTF-8" style="margin: 0px;" >
+						  		<input type="hidden" name="subcmd" value="consignor_sales_fees_report_generate" />
+								<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+					
+								<tr>
+								<td>
+								End Date
+								</td>
+								<td>
+								<script>
+								$(function() {
+
+									$("#datepicker").datepicker({
+
+											dateFormat: 'mm-dd-yy',
+
+											beforeShowDay: enableSUNDAYS
+
+										});
+										
+										// Custom function to enable SUNDAY only in jquery calender
+
+										function enableSUNDAYS(date) {
+
+											var day = date.getDay();
+
+											return [(day == 0), ''];
+
+										}
+								});
+
+								</script>
+
+								<input id="datepicker" name="end_date" type="text">
+								</td>								
+								</tr>
+								
+								<tr>
+								<td colspan="2" align="center">
+								<input type="submit" class="buttons" value="Generate" name="print" style="font-size:15px" />
+								 
+								</td>
+								</tr>
+								</table>
+								</form>
+								</div>
+								<div class="block-footer">
+									<div class="block-right">
+										<div class="block-left"></div>
+									</div>
+								</div>
+							</div>
+					 
+ 
+</div>
+</div>								

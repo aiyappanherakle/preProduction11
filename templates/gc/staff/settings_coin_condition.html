@@ -1,0 +1,334 @@
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition" class="sel"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline"><span>{_time_line}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+		<!-- coin condition -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_condition}</h2>
+			
+			<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="coincondition" />
+			<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdcondition}" />
+			{hiddendo}
+			{hiddenid}
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_coin_condition}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_condition_or_edit_condition}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_condition}</span></td>
+                                  <td width="80%"><input type="text" name="coincondition" size="18" value="{coincondition}" style="width: 50%;" />
+                                       </td>
+                                </tr>                       
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                               						
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+			</div>	
+			</form>
+			
+			<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="20%" nowrap="nowrap">{_coin_condition}</td>
+								<td width="15%" align="left">{_edit}</td>
+								<td width="65%">{_delete}</td>
+							  </tr>
+							  <loop name="coinconditionlist">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top"><span style="font-size:17px" class="gray">{coincondition}</span></td>
+								  <td nowrap="nowrap">{edit}</td>
+								 <td nowrap="nowrap">{remove}</td>
+								 							 
+								</tr>
+							  </loop name="coinconditionlist">
+							  <if condition="isset($show['no_coinconditionlist']) AND $show['no_coinconditionlist']">
+								<tr class="alt1">
+								  <td colspan="3" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  							  
+							  <tr>
+								<td colspan="11">{prevnext}</td>
+							</tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>	
+					
+									
+					
+		</div>
+				
+		<!-- / coin condition -->
+		
+		<!-- coin pedigree -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_pedigree}</h2>
+			
+			<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="coincondition" />
+			<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdpedigree}" />
+			{hiddendo}
+			{hiddenid}
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_pedigree}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_pedigree_or_edit_pedigree}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_pedigree}</span></td>
+                                  <td width="80%"><input type="text" name="pedigree" size="18" value="{pedigree}" style="width: 50%;" />
+                                       </td>
+                                </tr>                       
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+			</div>	
+			</form>
+			
+			<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="20%" nowrap="nowrap">{_pedigree}</td>
+								<td width="15%" align="left">{_edit}</td>
+								<td width="65%">{_delete}</td>
+							  </tr>
+							  <loop name="pedigreelist">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top"><span style="font-size:17px" class="gray">{pedigree}</span></td>
+								  <td nowrap="nowrap">{edit}</td>
+								 <td nowrap="nowrap">{remove}</td>
+								 							 
+								</tr>
+							  </loop name="pedigreelist">
+							  <if condition="isset($show['no_pedigreelist']) AND $show['no_pedigreelist']">
+								<tr class="alt1">
+								  <td colspan="3" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  							  
+							  <tr>
+								<td colspan="11">{prevnext1}</td>
+							</tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>	
+			
+		</div>
+				
+		<!-- / coin pedigree -->	
+		
+		<!-- coin pedigree -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_other}</h2>
+			
+			<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="coincondition" />
+			<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdother}" />
+			{hiddendo}
+			{hiddenid}
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_other_details}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_other_details}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_pedigree}</span></td>
+                                  <td width="80%"><input type="text" name="otherdetail" size="18" value="{otherdetail}" style="width: 50%;" />
+                                       </td>
+                                </tr>                       
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                						
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+			</div>	
+			</form>
+			
+			<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="20%" nowrap="nowrap">{_pedigree}</td>
+								<td width="15%" align="left">{_edit}</td>
+								<td width="65%">{_delete}</td>
+							  </tr>
+							  <loop name="otherdetailslist">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top"><span style="font-size:17px" class="gray">{otherdetails}</span></td>
+								  <td nowrap="nowrap">{edit}</td>
+								 <td nowrap="nowrap">{remove}</td>
+								 							 
+								</tr>
+							  </loop name="otherdetailslist">
+							  <if condition="isset($show['no_otherdetailslist']) AND $show['no_otherdetailslist']">
+								<tr class="alt1">
+								  <td colspan="3" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  							  
+							  <tr>
+								<td colspan="11">{prevnext2}</td>
+							</tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>	
+			
+		</div>
+				
+		<!-- / coin pedigree -->	
+		
+		
+</div>
+<!-- / tab pane -->

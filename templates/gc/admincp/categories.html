@@ -1,0 +1,335 @@
+<div id="v3body4">
+	<!-- sub navigation -->
+	<div id="sub">
+		<div id="subnav">
+			<loop name="subnav_settings">
+				<a href="{url}" {class}><span>{name}</span></a> <span> | </span> 
+			</loop name="subnav_settings">
+		</div>
+	</div>
+	<!-- /sub navigation -->
+
+	<div id="content">
+	<div class="header">{_category_configuration}<if condition="isset($ilance->GPC['subcmd']) AND ($ilance->GPC['subcmd'] == '_edit-service-questions' OR $ilance->GPC['subcmd'] == '_edit-product-questions')">: {_question_management}</if></div><br />
+		
+		<div class="tab-pane">
+
+			<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']">		
+			<!-- begin tab page -->
+			<div class="tab-page">
+	
+				<h2 class="tab">{_service}</h2>
+				
+				<!-- begin tab pane -->
+				<div class="tab-pane">
+                
+                
+                	<!-- categories search -->
+                    <form name="invoicesearch" method="get" action="{ilpage[distribution]}" accept-charset="UTF-8" style="margin: 0px;">
+					<input type="hidden" name="cmd" value="categories" />
+					<div class="block-wrapper">
+					<div class="block2">
+					
+							<div class="block2-top">
+									<div class="block2-right">
+											<div class="block2-left"></div>
+									</div>
+							</div>
+							
+							<div class="block2-header">{_search}</div>
+							<div class="block2-content-blue" style="padding:9px"><div class="smaller">Search categories using numerous methods below</div></div>
+							<div class="block2-content" style="padding:0px">
+								
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+								  <tr class="alt1">
+									<td nowrap="nowrap"><span class="gray">{_category_id}</span></td>
+									<td width="17%"><input type="text" name="cid" style="font-family: verdana" value="{cid}" class="input"  size="8" /></td>
+								    <td width="15%" nowrap="nowrap"><span class="gray">{_category} {_title}</span></td>
+								    <td width="32%"><input type="text" name="title" value="{title}" style="font-family: verdana" size="25" class="input" /></td>
+								    <td width="9%"><span class="gray">{_page}</span></td>
+								    <td width="9%"><input type="text" name="page" style="font-family: verdana" value="{page}" class="input"  size="4" /></td>
+								  </tr>
+								  <tr class="alt1"> 
+									<td width="18%" nowrap="nowrap"><span class="gray">{_category} {_level} Depth</span></td>
+									<td><select name="level" style="font-family: verdana">
+                                                    <option value="10" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '10' OR (!isset($ilance->GPC['level']) OR empty($ilance->GPC['level']))">selected="selected"</if>>10</option>
+                                                    <option value="9" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '9'">selected="selected"</if>>9</option>
+                                                    <option value="8" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '8'">selected="selected"</if>>8</option>
+                                                    <option value="7" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '7'">selected="selected"</if>>7</option>
+                                                    <option value="6" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '6'">selected="selected"</if>>6</option>
+                                                    <option value="5" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '5'">selected="selected"</if>>5</option>
+                                                    <option value="4" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '4'">selected="selected"</if>>4</option>
+                                                    <option value="3" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '3'">selected="selected"</if>>3</option>
+                                                    <option value="2" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '2'">selected="selected"</if>>2</option>
+                                                    <option value="1" <if condition="isset($ilance->GPC['level']) AND $ilance->GPC['level'] == '1'">selected="selected"</if>>1</option>
+                                                  </select></td>
+									<td><span class="gray">{_category} {_status}</span></td>
+									<td><select name="visible" style="font-family: verdana">
+                    <option value="1" <if condition="!isset($ilance->GPC['visible']) OR empty($ilance->GPC['visible'])">selected="selected"</if>>{_active}</option>
+                    <option value="0" <if condition="isset($ilance->GPC['visible']) AND $ilance->GPC['visible'] == 'inactive'">selected="selected"</if>>{_inactive}</option>
+                </select></td>
+									<td><span class="gray">Per page</span></td>
+									<td><select name="pp" style="font-family: verdana">
+                                                    <option value="10" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '10'">selected="selected"</if>>10</option>
+                                                    <option value="50" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '50'">selected="selected"</if>>50</option>
+                                                    <option value="100" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '100'">selected="selected"</if>>100</option>
+                                                    <option value="250" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '250'">selected="selected"</if>>250</option>
+                                                  </select></td>
+                                              </tr>
+                                              <tr> 
+                                                <td colspan="6"><input type="submit" value="{_search}" style="font-size:15px" class="buttons" /></td>
+                                              </tr>
+                                            </table>
+                                            
+</div>
+                                        
+                                        <div class="block2-footer">
+                                                <div class="block2-right">
+                                                        <div class="block2-left"></div>
+                                                </div>
+                                        </div>
+                                        
+                                </div>
+                            </div>
+                    </form>
+                    <!-- end categories search -->
+                
+				
+					<!-- categories view -->
+					<form name="ilform" action="{ilpage[distribution]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="categories" />
+					<div class="block-wrapper">
+					<div class="block2">
+					
+							<div class="block2-top">
+									<div class="block2-right">
+											<div class="block2-left"></div>
+									</div>
+							</div>
+							
+							<div class="block2-header"><span style="float:right" class="blue"><a href="{ilpage[distribution]}?cmd=categories&amp;subcmd=addservicecat&amp;cid=0">{_add_new_category}</a></span>{_category_manager}</div>
+							<div class="block2-content-blue" style="padding:9px"><div class="smaller">{_category_names_in_bold_represent_categories_that_do_not_allow_auctions_to_be_directly_posted_in_them}</div></div>
+							<div class="block2-content" style="padding:0px">
+								
+								<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+								<tr class="alt2">
+									<td width="52%" align="left">{_category}</td>
+									<td align="left">{_actions}</td>
+									<td width="17%" nowrap="nowrap">BG <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Budget Groups</strong></div><div>This column represents which budget group is currently assigned to a particular category</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="17%" nowrap="nowrap">IF <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Insertion Fees</strong></div><div>{_if_stands_for_insertion_fee_and_this_column_represents_which_insertion_fee_group_is_currently_assigned_to_that_category_insertion_fees_in_a_service}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="17%" nowrap="nowrap">FVF <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Final Value Fees</strong></div><div>{_fvf_stands_for_final_value_fee_and_this_column_represents_which_final_value_fee_group_is_currently_assigned_to_that_category_final_values_fees_in_a_service}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="8%" nowrap="nowrap">Q <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Category Questions</strong></div><div>This column represents how many pre-defined questions exist within a particular category.  Questions are presented during the posting of an auction and answers are specified by the purchaser.  For example, Web Design might have a question called Needs Logo? and buyers answer either Yes or No.</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="8%" nowrap="nowrap">BF <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Bid Field Questions</strong></div><div>This column represents how many pre-defined bid fields exist.  Bid Fields are presented during the bid proposal posting process and answers completed by bidders.  For example, PHP might have a bid field called Years Experience in PHP? and bidders answer 2, 3, 4 years, etc.</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="9%" nowrap="nowrap">{_views}</td>
+                                    <td width="1%" align="left"><input type="checkbox" name="checkall" onclick="check_uncheck_all('ilform');" /></td>
+								</tr>
+								<loop name="servicecategories">
+								<tr class="alt1" valign="top">
+									<td align="left"><span style="float:right">{apihook[admincp_service_categories_loop_column]}</span><a name="category{cid}">&nbsp;</a><span class="blue">{title}</span> <span class="smaller gray">({auctioncount})</span></td>
+									<td align="left" nowrap="nowrap">
+									<select name="cid{cid}" onchange="category_jump({cid}, {parentid}, {level}, {lft}, {rgt});" style="font-family: verdana" class="smaller">
+										<option value="edit">{_edit_category} #{cid}</option>
+										<option value="questions">Edit category questions</option>
+                                        <option value="add">Add child category</option>
+										<if condition="$show['ADMINCP_TEST_MODE']"><else /><option value="remove">Delete category &amp; children</option></if>
+                                        <if condition="$show['ADMINCP_TEST_MODE']"><else /><!--<option value="removepromote">Delete &amp; promote children</option>--></if>
+									</select>
+									
+									<input type="button" class="buttons_smaller" value="{_go}" onclick="category_jump({cid}, {parentid}, {level}, {lft}, {rgt});" /></td>
+									<td><div class="smaller gray">{budgetgroup}</div></td>
+									<td><div class="smaller gray">{insertiongroup}</div></td>
+									<td><div class="smaller gray">{finalvaluegroup}</div></td>
+									<td><div class="smaller blue">{questions}</div></td>
+									<td><div class="smaller blue">{bfields}</div></td>
+									<td><div class="smaller gray">{views}</div></td>
+                                    <td class="alt2"><input type="checkbox" name="cids[]" value="{cid}" /></td>
+								</tr>
+								</loop name="servicecategories">
+								<tr class="alt2_top">
+									<td colspan="9"><input type="hidden" name="subcmd" value="removeservicecats" /><input type="submit" class="buttons" style="font-size:15px" tabindex="1" value="{_delete}" accesskey="s" /></td>
+								</tr>
+								<tr>
+									<td colspan="9">{prevnext}</td>
+								</tr>
+								</table>
+								
+</div>
+							
+							<div class="block2-footer">
+									<div class="block2-right">
+											<div class="block2-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				</form>
+					<!-- /categories view -->
+									
+				</div>
+				<!-- /begin tab pane -->
+				
+			</div>
+			<!-- /begin tab page -->
+			</if>
+			
+			<if condition="$ilconfig['globalauctionsettings_productauctionsenabled']">
+			<!-- begin marketplace product settings tab -->
+			<div class="tab-page"> 
+				<h2 class="tab">{_product}</h2>
+				
+				<!-- begin tab pane -->
+				<div class="tab-pane">
+				
+					
+                    <!-- categories search -->
+                    <form name="invoicesearch" method="get" action="{ilpage[distribution]}" accept-charset="UTF-8" style="margin: 0px;">
+					<input type="hidden" name="cmd" value="categories" />
+					<div class="block-wrapper">
+					<div class="block">
+					
+							<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+							</div>
+							
+							<div class="block-header">{_search}</div>
+							<div class="block-content-yellow" style="padding:9px"><div class="smaller">Search categories using numerous methods below</div></div>
+							<div class="block-content" style="padding:0px">
+								
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+								  <tr class="alt1">
+									<td nowrap="nowrap"><span class="gray">{_category_id}</span></td>
+									<td width="17%"><input type="text" name="cid2" style="font-family: verdana" value="{cid2}" class="input"  size="8" /></td>
+								    <td width="15%" nowrap="nowrap"><span class="gray">{_category} {_title}</span></td>
+								    <td width="32%"><input type="text" name="title2" value="{title2}" style="font-family: verdana" size="25" class="input" /></td>
+								    <td width="9%"><span class="gray">Page</span></td>
+								    <td width="9%"><input type="text" name="page2" style="font-family: verdana" value="{page2}" class="input"  size="4" /></td>
+								  </tr>
+								  <tr class="alt1"> 
+									<td width="18%" nowrap="nowrap"><span class="gray">{_category} {_level} Depth</span></td>
+									<td><select name="level2" style="font-family: verdana">
+                                        <option value="1" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '1'">selected="selected"</if>>1</option>
+                                        <option value="2" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '2'">selected="selected"</if>>2</option>
+                                        <option value="3" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '3'">selected="selected"</if>>3</option>
+                                        <option value="4" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '4'">selected="selected"</if>>4</option>
+                                        <option value="5" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '5'">selected="selected"</if>>5</option>
+                                        <option value="6" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '6'">selected="selected"</if>>6</option>
+                                        <option value="7" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '7'">selected="selected"</if>>7</option>
+                                        <option value="8" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '8'">selected="selected"</if>>8</option>
+                                        <option value="9" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '9'">selected="selected"</if>>9</option>
+                                        <option value="10" <if condition="isset($ilance->GPC['level2']) AND $ilance->GPC['level2'] == '10' OR (!isset($ilance->GPC['level2']) OR empty($ilance->GPC['level2']))">selected="selected"</if>>10</option>
+                                        </select></td>
+									<td><span class="gray">{_category} {_status}</span></td>
+									<td><select name="visible2" style="font-family: verdana">
+                    <option value="1" <if condition="$ilance->GPC['visible2'] == '1'">selected="selected"</if>>{_active}</option>
+                    <option value="0" <if condition="$ilance->GPC['visible2'] == '0'">selected="selected"</if>>{_inactive}</option>
+                </select></td>
+									<td><span class="gray">Per page</span></td>
+									<td><select name="pp" style="font-family: verdana">
+                                                    <option value="10" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '10'">selected="selected"</if>>10</option>
+                                                    <option value="25" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '25'">selected="selected"</if>>25</option>
+                                                    <option value="50" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '50'">selected="selected"</if>>50</option>
+                                                    <option value="100" <if condition="isset($ilance->GPC['pp']) AND $ilance->GPC['pp'] == '100'">selected="selected"</if>>100</option>
+                                                  </select></td>
+                                              </tr>
+                                              <tr> 
+                                                <td colspan="6"><input type="submit" value="{_search}" style="font-size:15px" class="buttons" /></td>
+                                              </tr>
+                                            </table>
+                                            
+</div>
+                                        
+                                        <div class="block-footer">
+                                                <div class="block-right">
+                                                        <div class="block-left"></div>
+                                                </div>
+                                        </div>
+                                        
+                                </div>
+                            </div>
+                    </form>
+                    <!-- end categories search -->
+                    
+                    <!-- START product categories --><form name="ilform2" action="{ilpage[distribution]}" method="post" accept-charset="UTF-8" style="margin: 0px;">
+                    <input type="hidden" name="cmd" value="categories" />
+					<div class="block-wrapper">
+					<div class="block">
+					
+							<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+							</div>
+							
+							<div class="block-header"><span style="float:right" class="blue"><a href="{ilpage[distribution]}?cmd=categories&amp;subcmd=addproductcat&amp;cid=0">{_add_new_category}</a></span>{_category_manager}</div>
+							<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_category_names_in_bold_represent_categories_that_do_not_allow_auctions_to_be_directly_posted_in_them}</div></div>
+							<div class="block-content" style="padding:0px">
+								
+								<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" align="center" width="100%">
+								<tr class="alt2">
+									<td width="52%">{_category}</td>
+									<td>{_actions}</td>
+									<td width="17%" nowrap="nowrap">IF <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Insertion Fees</strong></div><div>{_if_stands_for_insertion_fee_and_this_column_represents_which_insertion_fee_group_is_currently_assigned_to_that_category_insertion_fees_in_a_product}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="17%" nowrap="nowrap">FVF <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Final Value Fees</strong></div><div>{_fvf_stands_for_final_value_fee_and_this_column_represents_which_final_value_fee_group_is_currently_assigned_to_that_category_final_values_fees_in_a_product_auction_environment_applies_to_the_seller}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="17%" nowrap="nowrap">IG <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Bid Increment Group</strong></div><div>This column represents the currently assigned Bid Increment Group for a particular category.  For example, if you have already setup bid range increments of 5.00 (assigned to the selected increment group) and the current bid up for auction is 20.00, the next minimum bid amount (+ increment) would be 25.00</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="8%" nowrap="nowrap">Q <a href="javascript:void(0)" onmouseover="Tip('<div><strong>Questions</strong></div><div>This column represents how many pre-defined category questions exist.  Questions are presented during the posting of an auction and answers are specified by auction owner.  For example, Computers might have a question called Condition and the seller answers with (New, Used or Damaged).  Once this occurs, the left nav category results can also give users a question finder (if you enable) to narrow down their search results.</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a></td>
+									<td width="9%" nowrap="nowrap">{_views}</td>
+                                    <td width="1%"><input type="checkbox" name="checkall" onclick="check_uncheck_all('ilform2');" /></td>
+								</tr>
+								<loop name="productcategories">
+								<tr class="alt1" valign="top">
+									<td><span style="float:right">{apihook[admincp_product_categories_loop_column]} {usereserveprice} {useproxybid} {useantisnipe}</span><a name="category{cid}">&nbsp;</a><span class="blue">{title}</span> <span class="smaller gray">({auctioncount})</span></td>
+									<td nowrap="nowrap">
+									<select name="cid{cid}" onchange="category_jump2({cid}, {parentid}, {level}, {lft}, {rgt});" style="font-family: verdana" class="smaller">
+										<option value="edit">{_edit_category} #{cid}</option>
+										<option value="questions">Edit category questions</option>
+                                        <option value="add">Add child category</option>
+										<if condition="$show['ADMINCP_TEST_MODE']"><else /><option value="remove">Delete category &amp; children</option></if>
+                                        <if condition="$show['ADMINCP_TEST_MODE']"><else /><!--<option value="removepromote">Delete &amp; promote children</option>--></if>
+									</select> <input type="button" class="buttons_smaller" value="{_go}" onclick="category_jump2({cid}, {parentid}, {level}, {lft}, {rgt});" /></td>
+									<td><div class="smaller gray">{insertiongroup}</div></td>
+									<td><div class="smaller gray">{finalvaluegroup}</div></td>
+									<td><div class="smaller gray">{incrementgroup}</div></td>
+									<td><div class="smaller blue">{questions}</div></td>
+									<td><div class="smaller gray">{views}</div></td>
+                                    <td class="alt2"><input type="checkbox" name="cids[]" value="{cid}" /></td>
+								</tr>
+								</loop name="productcategories">
+								<tr class="alt2_top">
+									<td colspan="8"><input type="hidden" name="subcmd" value="removeproductcats" /><input type="submit" class="buttons" tabindex="1" style="font-size:15px" value=" {_delete} " accesskey="s" /></td>
+								</tr>
+								<tr>
+									<td colspan="8">{prevnext2}</td>
+								</tr>
+								</table></div>
+							
+							<div class="block-footer">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				</form><!-- END product categories -->
+                
+				</div>
+				<!-- /begin tab pane -->
+				
+			</div>
+			<!-- /begin marketplace product settings tab -->
+			</if>
+            
+            <!-- begin marketplace moderation settings tab -->
+            <div class="tab-page">
+                
+                <h2 class="tab">{_settings}</h2>
+                
+                {global_categoryoptions}	
+                
+            </div>
+            <!-- /begin marketplace moderation settings tab -->
+            
+</div>

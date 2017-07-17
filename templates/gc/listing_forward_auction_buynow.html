@@ -1,0 +1,214 @@
+<style type="text/css">
+.buttonsbuy {
+	background: #007cc7;
+	background-image: -webkit-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -moz-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -ms-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: -o-linear-gradient(top, #007cc7, #1d4aa6);
+	background-image: linear-gradient(to bottom, #007cc7, #1d4aa6);
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	text-shadow: 1px 1px 1px #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #ffffff;
+	text-decoration: none;
+	width: 160px;
+	height: 33px;
+	border: medium none;
+	cursor: pointer;
+	border-radius: 6px;
+}
+.buttonsbuy:hover {
+	background: #1d4aa6;
+	background-image: -webkit-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -moz-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -ms-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: -o-linear-gradient(top, #1d4aa6, #007cc7);
+	background-image: linear-gradient(to bottom, #1d4aa6, #007cc7);
+	text-decoration: none;
+}
+</style>
+
+
+
+<script type="text/javascript">
+
+
+function check(cur)
+{
+
+
+var pur_count = document.getElementById('cou_val').value;
+var max_count = document.getElementById('max_val').value;
+
+var count = parseFloat(pur_count) + parseFloat(cur);
+
+
+
+if(max_count < count)
+{
+
+document.getElementById('sub_mit').disabled = true;
+
+alert('Maximum quantity of this Item is ('+max_count+').You have  purchased the maximum quantity ('+pur_count+' ) of this item.So Not more than ('+max_count+') Maximum quantity per member at GreatCollections');
+
+
+url = "merch.php?id="+{project_id};
+
+
+window.location = url;
+
+}
+
+
+
+
+}
+
+</script>
+
+
+<!--Murugan Script For Promo Code -->
+
+<script type="text/javascript">
+function promocodecheck(val,projectid)
+{
+ if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+			document.getElementById('promodiv').innerHTML= request.responseText;
+			document.getElementById('promodivvalue').innerHTML= '<input type="hidden" name="checkpromo" value="'+request.responseText+'">';			
+		}else{
+			document.getElementById('promodiv').innerHTML= "<img src='images/default/working.gif'/>";	
+		}
+	}
+	url ='ajax.php?promocode=' +val+'&projectid='+projectid;
+	request.open("GET", url,true);
+	request.send(null);
+}
+</script>
+
+<!--Murugan Script For Promo Code End Here -->
+<form name="ilform" action="{ilpage[merch]}" method="post" accept-charset="UTF-8" style="margin:0px">
+<input type="hidden" name="crypted" value="{encrypted}" />
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_purchase_now_payment_details}</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_you_are_skipping_the_bid_process_to_continue_please_enter_the_required_information_below}</div></div>
+			<div class="block-content" style="padding:0px">
+				
+			<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+			<tr class="alt2"> 
+				<td>{_photo}</td>
+				<td>{_product_item_name}</td>
+				<!--<td nowrap="nowrap">{_pay_to}</td>
+				<td nowrap="nowrap">{_target}</td>-->
+				<td nowrap="nowrap">{_quantity}</td>
+				<!--<if condition="$ilconfig['escrowsystem_enabled'] AND $show['filter_escrow']"><td align="center" nowrap="nowrap">{_escrow} {_fee} <a href="javascript:void(0)" onmouseover="Tip('<div><strong>{_escrow} {_fee}</strong></div><div>{_this_is_the_escrow_fee_associated_with_securing_your_funds_for_this_item_within_escrow} {site_name}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" id="" /></a></td></if>-->
+                <if condition="isset($show['taxbit']) AND $show['taxbit']"><td align="center" nowrap="nowrap"> {_tax}</td></if>
+				<td width="14%" nowrap="nowrap">{_price}&nbsp;<sup class="smaller"><em>{_per_item_lower}</em></sup></td>
+				<if condition="isset($show['noshipping']) AND $show['noshipping'] == false"><td align="center" width="11%" nowrap="nowrap">{_shipping_and_handling}</td></if>
+				<td width="10%">{_total}</td>
+			</tr>
+			<tr>
+			<td>{hidden_val}</td>
+			</tr>
+			<tr class="alt1" valign="top"> 
+				<td width="7%" class="alt1" align="center">{attachment}</td>
+				<td width="40%" class="alt1"><span class="blue"><a href="{ilpage[merch]}?id={project_id}">{project_title}</a></span></td>
+				<!--<td width="14%" nowrap="nowrap" class="alt1"><span class="blue">{seller}</span></td>
+				<td width="14%" nowrap="nowrap" class="alt1"><if condition="$ilconfig['escrowsystem_enabled'] AND isset($show['sellerusingescrow']) AND $show['sellerusingescrow']">{site_name} {_escrow}<else />{_outside_payment}</if></td>-->
+				<td width="5%" class="alt1" nowrap="nowrap">{qty} {_qty_lower}</td>
+				<!--<if condition="$ilconfig['escrowsystem_enabled'] AND $show['filter_escrow']"><td width="5%" class="alt1">{fees} <if condition="isset($show['taxbit']) AND $show['taxbit']"><div class="smaller gray">{tax} {_tax}</div></if></td></if>-->
+                <if condition="isset($show['taxbit']) AND $show['taxbit']"><td width="5%" class="alt1"><div>{tax} {_tax}</div></td></if>
+				<td width="14%" class="alt1">{amount_formatted}</td>
+				<if condition="isset($show['noshipping']) AND $show['noshipping'] == false"><td width="11%" class="alt1">{samount}</td></if>
+				<td width="10%" class="alt1" nowrap="nowrap"><span class="black"><strong>{topay}</strong></span></td>
+			</tr>
+			<!--murugan for invoice promo code-->
+			<!--<tr class="alt2">
+			<td colspan="2">
+			Enter Your Promo Code for Price Reduction
+			</td>
+			<td colspan="2">
+			<input type="text" name="promocode" id="promocode" /><input type="button" value="Go" name="go" onclick="return promocodecheck(document.getElementById('promocode').value,'{project_id}')" />
+			</td>
+			
+			</tr>
+			<tr class="alt2">
+			<td colspan="2">
+			Discount From Promo Code
+			</td>
+			<td colspan="2">
+			<div id="promodiv"></div>
+			<div id="promodivvalue"></div>
+			</td>
+			</tr>-->
+			<!--murugan for invoice promo code-->
+			<if condition="isset($show['digitaldownload']) AND $show['digitaldownload']">
+			<tr class="alt2">
+				<td colspan="10">{_digital_download_vault}</td>
+			</tr>
+			<tr class="alt1"> 
+				<td width="100%" class="alt1" align="left" colspan="10"><strong>{digitalfile}</strong>
+				<div class="smaller">{_this_digital_item_will_become_downloadable_once_merchant_confirms_delivery_of_funds}</div></td>
+			</tr>
+			</if>
+			<if condition="isset($show['makepayment']) AND $show['makepayment']">
+			<!--<tr class="alt1"> 
+				<td width="100%" class="alt1" align="left" colspan="10">
+				
+				<if condition="isset($show['noshipping']) AND $show['noshipping']"><div style="padding-bottom:10px; padding-top:5px;"><strong>{_ship_to_location}</strong></div><else /><div style="padding-bottom:10px; padding-top:5px;"><strong>{_change_shipping_address_here}</strong>: <span class="smaller blue"><a href="{ilpage[preferences]}?cmd=profile&amp;returnurl={returnurl}" style="text-decoration:underline">{_edit_address}</a></span></div></if>
+				<table width="100%" border="0" cellspacing="0" cellpadding="2">
+				<if condition="isset($show['noshipping']) AND $show['noshipping']">
+				<tr> 
+					<td width="1%" align="right"><input type="radio" id="shipping_address_required0" name="shipping_address_required" value="0" checked="checked" /></td>
+					<td width="91%" align="left"><label for="shipping_address_required0">{_no_shipping_address_required}</label></td>
+				</tr><else /><tr> 
+					<td width="1%" align="right"><input type="radio" id="shipping_address_required1"  name="shipping_address_required" value="1" {cb_shipping_address_required1} /></td>
+					<td width="91%" align="left" nowrap="nowrap"><label for="shipping_address_required1">{_ship_to_address}:</label> {shipping_address_pulldown}</td>
+				</tr>
+				<tr> 
+					<td align="right"><input type="radio" id="shipping_address_required0" name="shipping_address_required" value="0" {cb_shipping_address_required0} /></td>
+					<td align="left"><label for="shipping_address_required0">{_no_shipping_address_required}</label></td>
+				</tr></if>
+				</table>
+				
+				</td>
+			</tr>-->
+			<!--<tr class="alt1"> 
+				<td width="100%" align="left" colspan="10"><div style="padding-top:5px;"><strong>{_change_shipping_service}</strong>: <span class="smaller blue"><a href="{https_server}{ilpage[merch]}?cmd=purchase-confirm&amp;pid={project_id}&amp;qty={qty}&amp;paymethod={paymethod}&amp;shipperid=" style="text-decoration:underline">{_edit_service}</a></span></div><div style="padding-bottom:3px; padding-top:10px;">
+				  <div style="padding-bottom:3px; padding-left:2px"> {shippingservice}</div></div></td>
+			</tr>-->
+         <tr style="display:none;"> 
+				<td width="100%" align="left" colspan="10"><if condition="isset($show['hidepaymethodchange']) AND $show['hidepaymethodchange']"><else /><div style="padding-top:5px;"><strong>{_change_payment_method}</strong>: <span class="smaller blue"><a href="{https_server}{ilpage[merch]}?cmd=purchase-confirm&amp;pid={project_id}&amp;qty={qty}&amp;shipperid={shipperid}&amp;paymethod=" style="text-decoration:underline">{_edit_method}</a></span><if condition="$show['depositlink']">&nbsp;&nbsp;<span class="smaller gray">|</span>&nbsp;&nbsp;<span class="smaller blue"><a href="{https_server}{ilpage[accounting]}?cmd=deposit&amp;returnurl={returnurl}" style="text-decoration:underline">{_if_you_would_like_to_deposit_funds_into_your_online_account_click_here}</a></span></if></div></if><div style="padding-bottom:3px; padding-top:10px;"><div style="padding-bottom:3px; padding-left:2px"><if condition="$ilconfig['escrowsystem_enabled'] AND $show['filter_escrow']">{_escrow_funding_method}<else />{_payment_method}</if>:&nbsp;&nbsp;{payment_method_pulldown}</div></div></td>
+			</tr>
+			</if>
+			</table>
+            
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<div><if condition="isset($show['sellerusingescrow']) AND $show['sellerusingescrow']"><input type="submit" id="sub_mit" value="{_confirm__purchase}" style="font-size:17px" class="buttonsbuy" /><else /><input type="submit" value="{_commit_to_purchase}" style="font-size:17px" class="buttonsbuy" id="sub_mit" /></if>&nbsp;&nbsp;&nbsp;&nbsp;<span class="blue"><a href="{ilpage[merch]}?id={project_id}">{_back}</a></span></div>
+<div>&nbsp;</div>
+</form>

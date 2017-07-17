@@ -1,0 +1,54 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class=""><span>{_management}</span></a>
+		<a href="items_returned.php" class=""><span>Returned Items</span></a> 
+		<a href="email_generator.php" class=""><span>Email Template</span></a> 
+		<a href="email_template.php" class=""><span>New Template</span></a> 
+		<a href="uhr_template.php" class=""><span>UHR Template</span></a>
+		<a href="email_export.php" class="sel"><span>Email Export</span></a> 
+		
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+
+<form id="subscriber_search" action="email_export.php" accept-charset="UTF-8" style="margin:0px">
+<input type="hidden" name="cmd" value="email_expotrt" />
+				<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">Email Export</div>
+						<div class="block3-content" style="padding:0px">
+							
+							<table>
+   <tr>
+       <td>&nbsp;&nbsp;&nbsp;DATE
+	   <input type="text" name="date"/> dateformat:(yyyy-mm-dd)
+	   <input type="submit" name="submit" value="submit"/></td>
+   </tr>
+   
+
+</table>
+							
+</div>
+						
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+      			
+				</form>

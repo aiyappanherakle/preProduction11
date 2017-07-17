@@ -1,0 +1,213 @@
+<if condition="isset($ilance->GPC['id']) AND $ilance->GPC['id'] > 0">
+<div style="font-family: arial; font-size:18px; padding-bottom:12px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/nonprofits.gif" border="0" alt="" id="" /> <strong>{_about_this_nonprofit}</strong></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+    <td width="60%" valign="top">
+	
+		
+		<div style="width:545px">
+		
+		<loop name="nonprofit">
+		<div><div class="block-wrapper">
+
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header"><span style="float:left; padding-right:4px"></span> <span class="blue">{title}</span></div>
+					
+					<div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x">
+							<div id="nonprofits">
+							
+							
+							<div style="padding-bottom:9px; font-size:13px"><div class="gray" style="padding-bottom:4px">{_overview}</div>{description}</div>
+							
+							<hr size="1" width="100%" style="color:#cccccc" />
+							
+							<div style="padding-top:4px; padding-bottom:4px"><span class="gray">{_learn_more}:</span> <span class="blue"><a href="{url}" target="_blank">{url}</a></span></div>
+							
+							</div>
+					</div>
+					
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div></div>
+		</loop name="nonprofit">
+		
+		
+		
+		</div>
+		
+		
+	
+	</td>
+    <td width="60%" valign="top">
+	
+		
+	
+		<div class="block-wrapper">
+
+			<div class="block5">
+			
+					<div class="block5-top">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+					<div class="block5-header">{_support_this_nonprofit}</div>
+					
+					<div class="block5-content">
+							<div id="meetseller">
+							
+							<div style="padding-bottom:4px"><span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="sell?donation=1&amp;charityid={charityid}">{_sell_an_item_and_select_your_donation_percentage}</a><else /><a href="{ilpage[main]}?cmd=selling&amp;donation=1&amp;charityid={charityid}">{_sell_an_item_and_select_your_donation_percentage}</a></if></span></div>
+							<div style="padding-bottom:4px"><span class="blue"><strong><a href="{ilpage[search]}?mode=product&amp;donation=1&amp;charityid={charityid}&amp;sort=10">{_find_items_that_contain_this_nonprofit}</a></strong></span></div>
+							
+							
+							</div>
+					</div>
+					
+					<div class="block5-footer">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div>
+		
+		<div class="bubble_container">
+			<div class="bubble_bl"><div class="bubble_br"><div class="bubble_tl"><div class="bubble_tr"><div style="padding-left:6px; padding-right:6px; padding-top:6px; padding-bottom:6px">
+				
+				
+				<div><strong>{_sellers_supporting_this_nonprofit}</strong></div>
+				<div style="padding-top:6px" class="blue">{activesellers}</div>
+				
+				
+			</div></div></div></div></div>
+			
+		</div>
+		
+
+	</td>
+</tr>
+</table>
+
+<div style="padding-top:9px" class="blue"><a href="{ilpage[nonprofits]}">{_back}</a></div>
+<else />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+    <td width="60%" valign="top">
+	
+		<div style="width:525px">
+		<div style="font-family: arial; font-size:18px; padding-bottom:6px"><strong>{_make_a_difference_and_donate_to_your_favourite_cause_today}</strong></div>
+		<div><span style="float:left; padding-right:12px"><img src="{template_relativeimagepath}{template_imagesfolder}handsup.jpg" border="0" alt="" id="" /></span><span style="font-size:13px" class="black">{_help_save_animals_educate_children}</span>
+		<div style="padding-top:9px"><span class="blue" style="font-size:14px"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell?donation=1">{_sell_an_item_and_select_your_donation_percentage}</a><else /><a href="{ilpage[main]}?cmd=selling&amp;donation=1">{_sell_an_item_and_select_your_donation_percentage}</a></if></span></div>
+		</div></div>
+		
+		<div style="padding-bottom:17px"></div>
+	
+		<div class="block-wrapper">
+
+			<div class="block3">
+			
+					<div class="block3-top">
+							<div class="block3-right">
+									<div class="block3-left"></div>
+							</div>
+					</div>
+					
+					<div class="block3-header">{_find_a_cause_and_support_your_favourite_charity}</div>
+					
+					<div class="block3-content">
+							<div id="meetdoners">
+							
+							<div style="padding-bottom:3px"><span class="blue"><a href="{ilpage[search]}?mode=product&amp;donation=1&amp;sort=10">{_find_all_items_that_are_donation_friendly__of}</a></span></div>
+							
+							
+							</div>
+					</div>
+					
+					<div class="block3-footer">
+							<div class="block3-right">
+									<div class="block3-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div>
+		</div>
+		
+		<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="2">
+		<tr>
+			<td align="center"><span class="gray" style="font-size:19px">{_grand_nonprofit_earnings}</span></td>
+			<td align="center"><span class="gray" style="font-size:19px">{_sellers_supporting_a_cause}</span></td>
+		</tr>
+		<tr>
+			<td align="center"><span class="black" style="font-size:21px"><strong>{totalsnonprofit}</strong></span></td>
+			<td align="center"><span class="black" style="font-size:21px"><strong>{totalsellers}</strong></span></td>
+		</tr>
+		<tr>
+		  <td colspan="2" align="center"><div class="smaller litegray" style="padding-top:9px">{_stats_based_on_donation_history_since_inception}</div></td>
+		  </tr>
+		</table>
+
+		
+		
+	
+	</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="60%" valign="top">
+	
+		
+	
+		<div class="block-wrapper">
+
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">
+					 {_random_nonprofits}</div>
+					
+					<div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x">
+							<div id="nonprofits">
+							
+							<loop name="randomnonprofits">
+							<div><span style="font-family: arial; font-size:14px;" class="blue"><a href="{ilpage[nonprofits]}?id={charityid}"><strong>{title}</strong></a><div class="smaller black" style="padding-top:3px">{url}</div></span><div class="gray" style="padding-left:6px; padding-right:6px; padding-top:9px; padding-bottom:9px">{description}</div></div>
+							<hr size="1" width="100%" style="color:#cccccc" />
+							</loop name="randomnonprofits">
+							<div class="blue" style="padding-top:6px"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="main-contact">{_contact_us_to_become_a_nonprofit_in_the_marketplace}</a><else /><a href="{ilpage[main]}?cmd=contact">{_contact_us_to_become_a_nonprofit_in_the_marketplace}</a></if></div>
+							</div>
+					</div>
+					
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div>
+	</td>
+</tr>
+</table></if>

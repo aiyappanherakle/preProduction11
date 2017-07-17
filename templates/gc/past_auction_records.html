@@ -1,0 +1,231 @@
+<style type="text/css">
+
+table.pastauctions_list
+{
+	width:100%;
+	height: auto;
+	margin: 5px 0;
+	padding: 0;
+}
+table.pastauctions_list tr td
+{
+	left:49%;
+	margin: 1%;
+	line-height: 1.4;
+}
+
+table.pastauctions_list tr td a
+{
+	background: #F7F7F7;
+	margin-bottom: 1%;
+    padding: 2%;
+	border: 1px solid #E4E5DF;
+	display: block;
+	color: #00AFD1;
+	text-decoration: none;
+	width: 95%;
+}
+
+table.pastauctions_list tr td a:hover
+{
+	background: #EEEEEB;
+	text-decoration: none;
+}
+
+table.pastauctions_list tr td a span
+{
+	color: #414A4E;
+	display: block;
+}
+
+table.pastauctions_list tr td span
+{
+	float: right;
+}
+
+div.content-past
+{
+	padding: 10px 20px; 
+	background: #444547; 
+	font-size: 25px; 
+	color:#FFFFFF;
+}
+
+div.content-past span
+{
+	border-left: 1px solid #FFFFFF;
+	float: right;
+	padding: 18px 0 17px 15px;
+	font-weight: bold;
+	text-align: center;
+	font-size: 12px; 
+	margin-top: -10px;
+}
+
+table.auction-records
+{
+	margin: 5px 0;
+	padding: 0;
+	width: 80%;
+}
+
+table.auction-records tr th
+{
+	padding: 8px 25px 8px 15px;
+	font-size: 12px;
+	white-space: nowrap;
+	background: #F7F7F7;
+	color: #000000;
+}
+
+table.auction-records tr td a
+{
+	margin-bottom: 1%;
+	display: block;
+	color: #00AFD1;
+	text-decoration: none;
+	width: 95%;
+	line-height: 1.5;
+}
+
+table.auction-records tr td a:hover
+{
+	text-decoration: underline;
+}
+
+table.auction-records tr td
+{
+	padding: 5px 15px;
+	border: 0;
+}
+
+table.auction-records tr:nth-child(even)
+{
+	background: #FFFFFF;
+}
+
+table.auction-records tr:nth-child(odd)
+{
+	background: #EEEEEE;
+}
+
+table.auction-records tr.foot td
+{
+	border-bottom: 1px solid #EEEEEE;
+	border-top: 1px solid #EEEEEE;
+	font-size: 14px;
+	background: #FFFFFF;
+}
+</style>
+
+
+<if condition="isset($show['records']) AND $show['records']">
+<div>
+	<br/>
+<!-- header -->
+	<div class="content-past">
+		Past Auction Records
+	</div>
+
+<!-- list -->
+	<if condition="isset($show['past_records']) AND $show['past_records']">
+		<div style="padding: 10px; background: #FFFFFF; border: 1px solid #CCCCCC;">
+			<table class="pastauctions_list">
+			{past_records}
+			</table>
+			{prevnext}	
+		</div>
+	<else />
+		<div style="padding: 10px; background: #FFFFFF; border: 1px solid #CCCCCC;">
+			<table class="pastauctions_list">
+			<tr><td align="center">Results Not Found.</td></tr>
+			</table>
+		</div>
+	</if>
+
+</div>
+<br/>
+</if>
+						
+
+
+<if condition="isset($show['details']) AND $show['details']">
+<div>
+	<br/>
+<!-- header -->
+	<div class="content-past">
+		Internet Auction #{auction_id}
+		<span>{auction_date}</span>
+	</div>
+	
+<!-- <div style="background: #444547; font-size: 25px; color:#FFFFFF; width: 100%;">
+		<div style="padding: 10px 20px; width: 65%; float: left;">Internet Auction #{auction_id}</div>
+		<div style="width: 25%; font-size: 13px; float: left; border-left: 2px solid #ffffff;"><strong>{auction_date}</strong></div>
+	</div>
+	list -->
+	
+		<div style="padding: 10px; background: #FFFFFF; border: 1px solid #CCCCCC;">
+				<div style="font-size: 20px;">
+					Past Auction Records
+				</div><br/>
+			<table class="auction-records" cellspacing="0">
+				<tr>
+					<th>
+						<a title="Sort by Coin #" style="text-decoration:underline" href="{sort_coin}">
+						COIN #
+						<span>
+						<img style="margin-bottom:-4px;" src="images/gc/{icon_coin}" alt="desc">
+						</span>
+						</a>
+					</th>
+					<th>
+						<a title="Sort by Title" style="text-decoration:underline" href="{sort_title}">
+						TITLE
+						<span>
+						<img style="margin-bottom:-4px;" src="images/gc/{icon_title}" alt="desc">
+						</span>
+						</a>
+					</th>
+					<th align="right" style="text-align:right">
+						<a title="Sort by Realized" style="text-decoration:underline" href="{sort_realized}">
+						REALIZED
+						<span>
+						<img style="margin-bottom:-4px;" src="images/gc/{icon_realized}" alt="desc">
+						</span>
+						</a>
+					</th>
+				</tr>
+			<if condition="isset($show['past_details']) AND $show['past_details']">	
+				<loop name="auction_records">
+					<tr>
+					<td width="7%">
+					<a href="{url}">{project_id}</a>
+					</td>
+					<td width="60%">
+					<a href="{url}">{project_title}</a>
+					</td>
+					<td  width="7%" align="right">
+					{coin_price}
+					</td>
+					</tr>
+				</loop name="auction_records">
+				<tr class="foot">
+					<td align="right" colspan="2"><strong>Total Realized</strong></td>
+					<td align="right">
+						{total_realized}
+					</td>
+				</tr>
+			<else />
+				<tr>
+					<td width="40%" align="center" colspan="3">Results Not Found.</td>
+				</tr>
+			</if>
+			</table>	
+		</div>
+
+
+</div>
+<br/><br/>
+</if>	
+	
+		

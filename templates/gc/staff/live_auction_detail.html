@@ -1,0 +1,122 @@
+<script type="text/javascript">
+
+
+
+</script>
+
+<style>
+
+#amo {
+    background: none repeat scroll 0 0 transparent;
+    color: #E16E19;
+    font-family: Tahoma,Arial,"Times New Roman",Verdana;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+</style>
+<div id="tr"></div>
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php" ><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+		<a href="listings.php?cmd=search_coin" ><span>listed in gc</span></a> 
+		<a href="listings.php?cmd=itembold_list" ><span>Listing</span></a> 
+		<a href="listings.php?cmd=image_list"><span>Image List</span></a> 
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" class="sel"><span>Live Auctions</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+
+	<div class="header">Live Auction Review</div><br />	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">List</h2>			    
+			
+			<div class="block-wrapper">
+				
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<div class="block3-header">Details of&nbsp;{number}&nbsp; Live Auctions</div>
+						
+						<div class="block3-content" style="padding:0px">
+							
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+								<tr class="alt1" valign="top"><td>
+                                {prof1}</td>
+								</tr>
+							    <loop name="holding_area_list">
+								<tr class="alt1" valign="top">
+									<td>
+										<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+											<tr  valign="top">
+											  <td><span id="amo">{item_id}</span>&nbsp;{item_title}&nbsp;(PCGS:{item_pcgs})</td>								  						 
+											</tr>
+											<tr valign="top">
+											  <td><div class="black"><strong>Min Bid:&nbsp;{item_startprice}</strong>&nbsp;{item_views} Views</div></td>	
+								  
+											</tr>
+											<tr  valign="top">
+											  <td><div class="black"><strong>Current Bid:&nbsp;{item_currentprice}</strong>&nbsp;({item_bid_count} bids) &nbsp; {item_watch_count} Watchers</td>								  						 
+											</tr>
+											<tr  valign="top">
+											  <td>{item_secret_max_bid_user}</td>							  						 
+											</tr>
+										</table>
+									</td>
+								</tr>
+							  </loop name="holding_area_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'no_live_auctions'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+								<tr  valign="top"><td>
+								{prof1}</td>
+								</tr>
+							</table>				           
+					
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+           
+			
+			
+		</div>
+		<!-- / grading tab page -->
+		
+	</div>	
+	<!-- / tab pane -->
+	
+</div>
+<!-- end content -->

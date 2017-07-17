@@ -1,0 +1,214 @@
+			
+
+		
+
+		
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('form').submit(function () {
+		track_no = $('input[name=tracking_no]').val();
+		shiprsrvc = $('select[name=shippserviece]').val();
+		if(track_no.trim() == '')
+		{
+			alert('Please Enter Tracking Number');
+			return false;
+		}
+		
+		if(shiprsrvc == '')
+		{
+			alert('Please Select Shipper service');
+			return false;
+		}
+		
+		var checkedNum = $('input[name="coin_id[]"]:checked').length;
+		if (!checkedNum) {
+			alert('Please Check Coin ID');
+			//return false;
+		}
+	});
+});
+</script>
+<style type ="text/css">
+#content {
+    font: 9pt arial,helvetica,verdana,sans-serif;
+    margin: auto;
+    max-width: 98%;
+    padding: 30px 1% 15px;
+    text-align: left;
+    width: 1050px;
+}
+</style>		
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+
+<!-- begin content -->
+<div id="content">
+	<div class="header">Returned Consignments - {retnd_username}</div><br />
+	
+	
+		<div class="tab-pane" id="userlistings">
+				
+		
+		<div class="tab-page"> 
+			<h2 class="tab">Returned</h2>
+			
+			<br/>
+			<div class="block-wrapper" style="padding-bottom: 0px;">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">Coins List</div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<tr class="alt2">
+							<td width="5%" align="center">Add</td>
+							<td width="15%" align="center">Coin ID</td>
+							<td width="15%" align="center">Consign ID</td>
+							<!-- <td width="15%" align="center">Username</td> -->
+							
+							<td width="15%" align="center">Returned Date</td>
+							<td width="15%" align="center">Service</td>
+							<td width="15%" align="center">Tracking No</td>
+							<td width="15%" align="center">Shipped Date</td>
+							<td width="15%" align="center">Shipped Y/N</td>
+							
+						</tr>
+						<loop name="returned_list"> 		
+						<form name="ilform" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+							<input type="hidden" name="cmd" value="add-tracking_no" />
+							<input type="hidden" name="uid" value="{retnd_uid}" />
+						<tr> 
+							<td align="center"><input type="checkbox" name="coin_id[]" value="{coin_id}" /></td>
+							<td align="center">{coin_id}</td>
+							<td align="center">{consign_id}</td>
+							<!-- <td align="center"><div class="blue">{retnd_username}</div></td> -->
+							<td align="center">{return_date}</td>
+							<td align="center">{title}</td>
+							<td align="center">{track_no}</td>
+							<td align="center">{shipped_date}</td>
+							<td align="center">{yes_no}</td>
+						</tr>
+						</loop name="returned_list"> 
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					
+					<br/>
+			<div class="block-wrapper" style="padding-bottom: 0px;">
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">Shipment New</div>
+					<div class="block-content" style="padding:0px">
+						
+						<table border="0" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" width="100%" align="center">
+						<tr> 
+							<td colspan="9" style="padding-top: 10px;">
+							
+							<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">Date of Shipment</span>
+                                  <td width="80%">{daylist}&nbsp;&nbsp;&nbsp;&nbsp;{monthlist}&nbsp;&nbsp;&nbsp;&nbsp;{yearlist}</td>
+                                </tr>
+                                <tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Shipping Service</span></td> 
+                                    <td>{shipper}
+									</td>
+                                </tr>
+								<tr class="alt1">
+                                  <td nowrap="nowrap"><span class="gray">Tracking No</span></td> 
+                                    <td><input type="text" name="tracking_no" value="" /></td>
+                                </tr>
+								<tr class="">
+                                    <td><input type="submit" class="buttons" value="save" style="font-size:15px" />
+									</td>
+                                </tr>
+							      </table>	
+							
+							
+							
+							
+									<!--<span class="blue">
+										<strong>Tracking Number</strong>
+									</span>
+									<span class="red">
+										
+										{shipper} 
+									</span>
+									<input type="submit" value="SAVE" name="save" style="margin-left: 10px;" /> -->
+								</form>
+							</td>
+						</tr>
+						</table>
+						
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					<br/>
+					<a href="users.php?subcmd=_update-customer&id={retnd_uid}" style="color: blue; font-size: 16px; margin-left: 5px;"><strong>Back</strong></a>
+			</div>
+		</div>
+					
+
+			</div>
+		</div>
+						
+			</div>
+
+		
+							
+			</div>
+
+						
+						
+			<!--ebay seller start tab -->
+			
+
+			<!-- returned consignments ends -->
+		
+			<!-- for Bug id 5204 Ends -->
+			
+			
+			
+			
+			
+<script language="javascript">
+  function shownote(id,note,follow_update)
+    {
+	   document.getElementById('note_id').value=id;
+	   document.getElementById('note').value=note;
+	   document.getElementById('datepicker').value=follow_update;
+	   
+	}
+</script>
+
+		
+	</div>
+	</div>
+
+<br />
+<br />

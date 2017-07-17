@@ -1,0 +1,692 @@
+<if condition="$ilconfig['globalauctionsettings_productauctionsenabled'] AND empty($ilance->GPC['mode'])">
+<div class="bigtabs" style="padding-bottom:15px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class="on"><a href="javascript:void(0)">{_sell_single_item}</a></li>
+	<if condition="$ilconfig['globalfilters_bulkupload']"><li title="" class="highlight"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell/bulk">{_sell_bulk_items}</a><else /><a href="{ilpage[main]}?cmd=selling&amp;mode=bulk">{_sell_bulk_items}</a></if></li></if>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell/services">{_sell_services}</a><else /><a href="{ilpage[main]}?cmd=selling&amp;mode=service">{_sell_services}</a></if></li></if>
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+    <td><div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+            <div style="padding-left:18px; padding-top:6px; padding-bottom:3px; font-size:23px">{_sell_single_item}<if condition="isset($ilance->GPC['donation']) AND $ilance->GPC['donation']"> : <span class="blue">{_thanks_for_your_contribution}</span></if></div>
+            
+            <div style="padding-left:18px">
+              <if condition="isset($ilance->GPC['donation']) AND $ilance->GPC['donation']"><div style="padding-top:6px; padding-bottom:5px" class="blue">{_it_appears_you_will_be_listing_an_item_for_sale_and_a_percentage_of_your_winning_sale_price}</div></if>
+            
+            </div>
+            </div>
+            <div class="s"><div class="e"><div class="w"></div></div></div></div>
+        </td>
+</tr>
+</table>
+
+<div class="block-wrapper">
+	<div class="block">
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>			
+			<div class="block-header">{_category}</div>			
+			<div class="block-content">
+            			
+				<form name="ilform" action="{ilpage[selling]}" method="get" accept-charset="UTF-8" style="margin:0px">
+				<input type="hidden" name="cmd" value="new-item" />
+				<table cellpadding="3" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td>
+				    	<iframe name="category_iframe" id="category_iframe" width="100%" scrolling-bottom="yes" border="0" frameborder="0" class="" style="height:230px; border-top:1px solid #ebebeb; border-left:1px solid #ebebeb; border-right:1px solid #bdbdbd; border-bottom:1px solid #bdbdbd" src="{template_relativeimagepath}ajax.php?do=categories&mode=product&showcheckmarkafterstring=1"></iframe>
+						<span style="float:right; font-family: Arial; font-size: 13px; padding-top:5px">{_category_number}: <input type="text" id="cid" name="cid" style="font-family: verdana" size="6" /></span>	
+						<div><span id="selectedcategory"></span><span id="cidstringcb"></span></div>
+					</td>
+				</tr>
+				</table>
+				<div id="categorybutton"></div>
+                <if condition="isset($ilance->GPC['scheduled']) AND $ilance->GPC['scheduled']"><input type="hidden" name="scheduled" value="1" /></if>
+				<if condition="isset($ilance->GPC['donation']) AND $ilance->GPC['donation']"><input type="hidden" name="donation" value="1" /></if>
+				<if condition="isset($ilance->GPC['charityid']) AND $ilance->GPC['charityid']"><input type="hidden" name="charityid" value="{charityid}" /></if>
+				</form>
+			
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+
+{apihook[selling_end]}
+</if>
+
+<if condition="$ilconfig['globalauctionsettings_productauctionsenabled'] AND !empty($ilance->GPC['mode']) AND $ilance->GPC['mode'] == 'bulk'">
+<div class="bigtabs" style="padding-bottom:15px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<if condition="$ilconfig['globalauctionsettings_productauctionsenabled']"><li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell">{_sell_single_item}</a><else /><a href="{ilpage[main]}?cmd=selling">{_sell_single_item}</a></if></li></if>
+	<if condition="$ilconfig['globalauctionsettings_productauctionsenabled'] AND $ilconfig['globalfilters_bulkupload']"><li title="" class="on"><a href="javascript:void(0)">{_sell_bulk_items}</a></li></if>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell/services">{_sell_services}</a><else /><a href="{ilpage[main]}?cmd=selling&amp;mode=service">{_sell_services}</a></if></li></if>
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<if condition="!empty($ilance->GPC['do']) AND $ilance->GPC['do'] == 'assign-preview'">
+{js_start}
+<form name="ilform" method="post" action="{ilpage[main]}" accept-charset="UTF-8" style="margin:0px" onsubmit="return validate_all_bulk(this);">
+<input type="hidden" name="cmd" value="selling" />
+<input type="hidden" name="mode" value="bulk" />
+<input type="hidden" name="do" value="assign-import" />
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+    <td><div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+            <div style="padding-left:18px; padding-top:6px; padding-bottom:3px; font-size:23px">{_sell_bulk_items}</div>
+            
+            <div style="padding-left:18px">
+
+            </div>
+            </div>
+            <div class="s"><div class="e"><div class="w"></div></div></div></div>
+        </td>
+</tr>
+</table>
+
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_auction_event_duration}</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_decide_how_long_items_uploaded_will_remain_active_on_the_marketplace}</div></div>
+			<div class="block-content" style="padding:0px">
+
+				<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+				<tr> 
+					<td width="1%" nowrap="nowrap">{duration}</td>
+					<td width="77%">{durationbits}</td>
+				</tr>
+				</table>
+				<div id="durationverbose"></div>
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+
+<div class="block-wrapper">
+<div class="block">
+
+		<div class="block-top">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+		<div class="block-header">{_payment_method}</div>
+		<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_please_enter_your_accepted_payment_method_and_or_payment_instructions_bidders_will_see_in_the_listing}</div></div>
+		<div class="block-content">
+				<div>{escrowfilter}</div>
+		</div>
+		
+		<div class="block-footer">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+</div>
+</div>
+
+<div class="block-wrapper">
+<div class="block">
+
+		<div class="block-top">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+		<div class="block-header">{_shipping_information}</div>
+        <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_item_location}</div></div>
+        <div class="block-content" style="padding:12px">
+				<div>Item location will be handled by the information within the bulk uploaded csv file.</div>
+        </div>
+		<div class="block-content-yellow-top" style="padding:9px"><div class="smaller">{_decide_how_you_will_ship_this_item_domestically_and_or_internationally}</div></div>
+		<div class="block-content" style="padding:12px">
+			{shipping}
+        </div>
+        <div class="block-content-yellow-top" style="padding:9px" id="handlingfeeheader"><div class="smaller">{_enter_your_ship_handling_fee_if_applicable}</div></div>
+		<div class="block-content" style="padding:12px" id="handlingfeerow">
+        	{shipping_handling}
+        </div>
+		
+		<div class="block-footer">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+</div>
+</div>
+
+<div class="block-wrapper">
+<div class="block">
+
+		<div class="block-top">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+		<div class="block-header">
+		<span style="float:right; padding-top:3px" class="smaller gray"></span>{_return_policy}</div>
+		<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_describe_your_return_policy_for_bidders_and_buyers_to_review_before_they_purchase}</div></div>
+		<div class="block-content">
+				<div id="">
+				
+				{returnpolicy}
+				
+				
+				</div>
+		</div>
+		
+		<div class="block-footer">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+</div>
+</div>
+
+<div class="block-wrapper">
+<div class="block">
+
+		<div class="block-top">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+		<div class="block-header"><span style="float:right; padding-top:3px" class="smaller gray"></span>{_bidding_privacy}</div>
+		<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_if_you_would_like_to_allow_buyers_to_ask_public_questions_about_this_item}</div></div>
+		<div class="block-content">
+				<div id="">
+				
+				{publicboard}
+				
+				
+				</div>
+		</div>
+		
+		<div class="block-footer">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+</div>
+</div>
+
+<div class="block-wrapper">
+<div class="block">
+
+		<div class="block-top">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+		<div class="block-header">{_bid_filtering_permissions}</div>
+		<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_please_ensure_that_the_coresponding_checkbox_for_the_bid_filter}</div></div>
+		<div class="block-content">
+				<div id="">
+				
+				{bidfilters}
+				
+				
+				</div>
+		</div>
+		
+		<div class="block-footer">
+				<div class="block-right">
+						<div class="block-left"></div>
+				</div>
+		</div>
+		
+</div>
+</div>
+
+<div class="block-wrapper">
+<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_draft}</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_saving_as_draft_allows_you_to_edit_and_modify_this_listing_before_its_posted_live_to_the_marketplace}</div></div>
+			<div class="block-content">
+				{saveasdraft}
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+</div>
+</div>
+
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_preview} {response}</div>
+			
+			<div class="block-content" style="padding:0px">
+				
+				<div>{col}</div>
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+
+{hidden}
+<input type="hidden" name="fees[buynow]" value="{feesbuynow}" />
+<input type="hidden" name="fees[reserve]" value="{feesreserve}" />
+<input type="hidden" name="fees[insertion]" value="{feesinsertion}" />
+<input type="hidden" name="fees[total]" value="{feestotal}" />
+<div style="clear:both"></div><div style="padding-top:9px"><span><input type="submit" value=" {_continue} " style="font-size:15px" class="buttons" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="blue"><a href="{ilpage[main]}?cmd=selling&amp;mode=bulk">{_back}</a></span></div>
+</form>
+
+<else />
+<if condition="!empty($ilance->GPC['do']) AND $ilance->GPC['do'] == 'assign'">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+    <td><div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+            <div style="padding-left:18px; padding-top:6px; padding-bottom:3px; font-size:23px">{_bulk_import_assignment_preview}</div>
+            
+            <div style="padding-left:18px">
+              <div style="padding-top:2px; padding-bottom:12px" class="gray">{response}</div>
+              <div><span class="blue">{_showing_only_5_results_for_this_preview}  {_use_the_pulldown_menus_to_assign_your_content_to_the_appropriate_columns}:</span></div>
+            </div>
+            </div>
+            <div class="s"><div class="e"><div class="w"></div></div></div></div>
+        </td>
+</tr>
+</table>
+<hr size="1" width="100%" style="color:#cccccc" />
+<div>{col}</div>
+<!--
+<div style="padding-top:12px; padding-bottom:12px; padding-left:9px; background-color:#ebebeb">
+<strong>Fees to post this bulk item list:</strong> &nbsp;&nbsp;<a href="javascript:void(0)" onmouseover="Tip('<div>{_this_value_represents_the_listing_fees_you_have_selected_so_far}</div>', BALLOON, true, ABOVE, true, OFFSETX, -17, FADEIN, 600, FADEOUT, 600, PADDING, 8)" onmouseout="UnTip()"><img src="{template_relativeimagepath}{template_imagesfolder}icons/tip.gif" border="0" alt="" /></a> &nbsp;&nbsp;<span id="feetotal">{feetotal}</span>
+</div>-->
+<else />
+<form enctype="multipart/form-data" action="{ilpage[main]}" name="ilform" accept-charset="UTF-8" method="post" style="margin: 0px;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+    <td><div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+            <div style="padding-left:18px; padding-top:6px; padding-bottom:3px; font-size:23px">{_sell_bulk_items}</div>
+            
+            <div style="padding-left:18px">
+              <div style="padding-top:6px; padding-bottom:5px; font-size:16px" class="blue"></div>
+            
+            </div>
+            </div>
+            <div class="s"><div class="e"><div class="w"></div></div></div></div>
+        </td>
+</tr>
+</table>
+
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_find_attachment}</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_csv_comma_separated_values_document_format_only}</div></div>
+			<div class="block-content" style="padding:0px">
+				
+            <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%">
+            <tr class="alt1"> 
+	            <td> 
+                    <table width="100%" border="0">
+                    <tr>
+                    	<td width="50%" valign="top">
+                        
+                        	<div>
+                    		<table cellpadding="0" cellspacing="3" border="0" width=100%>
+                    		<tr valign="bottom"> 
+                    			<td><input type="file" name="csv_file" style="width:250px; font-family: verdana" /></td>
+                    		</tr>
+                    		</table>
+                   		    </div>
+                            
+                         </td>
+            		</tr>
+            		</table>
+                </td>
+            </tr>
+            <tr>
+            	<td><input type="submit" value=" {_next_step} " class="buttons" {upload_style} style="font-size:14px" /></td>
+            </tr>
+            </table>
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<input name="cmd" value="selling" type="hidden" />
+<input name="subcmd" value="bulkupload" type="hidden" />
+<input name="mode" value="bulk" type="hidden" />
+<input name="do" value="assign" type="hidden" />
+</form>
+<div class="block-wrapper">
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header" onclick="return toggle('bulkapi');" onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor=''"><span style="float:left; padding-top:5px; padding-right:10px"><a href="javascript:void(0)" onclick="return toggle('bulkapi');"><div style="padding-right:5px"><img id="collapseimg_bulkapi" src="{template_relativeimagepath}{template_imagesfolder}expand{collapse[collapseimg_bulkapi]}.gif" border="0" alt="" /></div></a></span>{_bulk_items_api}</div>
+			<div class="block3-content" style="padding:0px">
+				
+                <table border="0" cellspacing="0" cellpadding="0">
+                
+                <tbody id="collapseobj_bulkapi" style="{collapse[collapseobj_bulkapi]}">
+                <tr>
+                    <td>
+                            
+                            <div> 
+                            
+                                <div class="smaller" style="padding:9px">{_column_separator}: <strong>,</strong> <span class="gray">(comma)</span></div>
+                                <div style="padding-left:9px; padding-bottom:9px" class="smaller">{_column_encapsulation}: <strong>'</strong> <span class="gray">(single quote)</span></div>
+                                
+                                  <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="14">
+                                  <tr class="alt2_top">
+                                    <td width="6%" class="smaller">Col</td>
+                                    <td width="13%" class="smaller">{_description}</td>
+                                    <td width="7%" class="smaller">{_required}</td>
+                                    <td width="11%" class="smaller">{_example}</td>
+                                    <td width="15%" class="smaller">{_accepted_input}</td>
+                                    <td width="7%" class="smaller" nowrap="nowrap">{_max_input}</td>
+                                    <td width="41%" class="smaller">{_information}</td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:blue">1</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:blue">{_item_title}</span></td>
+                                    <td class="smaller"><span style="color:blue">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:blue">Some title</span></td>
+                                    <td class="smaller"><span style="color:blue">String and Integer</span></td>
+                                    <td class="smaller"><span style="color:blue">75</span></td>
+                                    <td class="smaller"><span style="color:blue">The title or name of the item</span></td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:green">2</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:green">{_item_description}</span></td>
+                                    <td class="smaller"><span style="color:green">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:green">Some description</span></td>
+                                    <td class="smaller"><span style="color:green">String and Integer</span></td>
+                                    <td class="smaller"><span style="color:green">1000</span></td>
+                                    <td class="smaller"><span style="color:green">The description of the item</span></td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:red">3</span></td>
+                                    <td class="smaller"><span style="color:red">{_starting_price}</span></td>
+                                    <td class="smaller"><span style="color:red">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:red"> (i.e.: 25.99) or 0.01</span></td>
+                                    <td class="smaller"><span style="color:red">Integer</span></td>
+                                    <td class="smaller"><span style="color:red">15</span></td>
+                                    <td class="smaller"><span style="color:red">If this item will be sold in auction-bidding format, enter a starting price otherwise leave this field as <strong>0.00</strong>.</span></td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:navy">4</span></td>
+                                    <td class="smaller"><span style="color:navy">{_buy_now_price}</span></td>
+                                    <td class="smaller"><span style="color:navy">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:navy">(i.e.: 44.99) or 0.00</span></td>
+                                    <td class="smaller"><span style="color:navy">Integer</span></td>
+                                    <td class="smaller"><span style="color:navy">15</span></td>
+                                    <td class="smaller"><span style="color:navy">If this item can be purchased outright through the use of Buy Now from the listing enter a buy now price otherwise leave this field as <strong>0.00</strong>.</span></td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:orange">5</span></td>
+                                    <td class="smaller"><span style="color:orange">{_reserve_price}</span></td>
+                                    <td class="smaller"><span style="color:orange">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:orange">(i.e.: 50.00) or 0.00</span></td>
+                                    <td class="smaller"><span style="color:orange">Integer</span></td>
+                                    <td class="smaller"><span style="color:orange">15</span></td>
+                                    <td class="smaller"><span style="color:orange">If you want to set a reserve price for your item enter the reserve price you wish to set otherwise leave this field as <strong>0.00</strong>.</span></td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:purple">6</span></td>
+                                    <td class="smaller"><span style="color:purple">{_qty}</span></td>
+                                    <td class="smaller"><span style="color:purple">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:purple"> (i.e.: 1)</span></td>
+                                    <td class="smaller"><span style="color:purple">Integer</span></td>
+                                    <td class="smaller"><span style="color:purple">5</span></td>
+                                    <td class="smaller"><span style="color:purple">Enter the amount of quantity you are selling for this item. For example, if you have 10 of the same items you are selling then you would enter 10 otherwise enter <strong>1</strong> into this field if you are selling a single item.</span></td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller">7</td>
+                                    <td class="smaller">{_event_type}</td>
+                                    <td class="smaller">{_yes}</td>
+                                    <td class="smaller" nowrap="nowrap"><strong>public</strong> or <strong>realtime</strong></td>
+                                    <td class="smaller">String and Integer</td>
+                                    <td class="smaller">30</td>
+                                    <td class="smaller">If this item will be scheduled to start on a specific future date enter <strong>realtime|YYYY-MM-DD HH:MM:SS </strong>as the value (realtime separated by a pipe delimiter following a future start date) otherwise if this item is a regular fixed price listing or auction style event which will start immediately enter <strong>public </strong>into this field.  </td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:brown">8</span></td>
+                                    <td class="smaller"><span style="color:brown">{_bid_type}</span></td>
+                                    <td class="smaller"><span style="color:brown">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:brown"><strong>regular</strong> or <strong>fixed</strong></span></td>
+                                    <td class="smaller"><span style="color:brown">String</span></td>
+                                    <td class="smaller"><span style="color:brown">10</span></td>
+                                    <td class="smaller"><span style="color:brown">If you want to sell this item by letting people bid and / or choose to buy this item via buy now (if you entered a buy now price in column 4) then it is recommended that you enter <strong>regular</strong> into this field otherwise if you wish to sell this item via buy now only (no bidding)  enter <strong>fixed</strong> into this field.</span></td>
+                                    </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:gray">9</span></td>
+                                    <td class="smaller"><span style="color:gray">{_category_id}</span></td>
+                                    <td class="smaller"><span style="color:gray">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:gray"> (i.e.: 100)</span></td>
+                                    <td class="smaller"><span style="color:gray">Integer</span></td>
+                                    <td class="smaller"><span style="color:gray">10</span></td>
+                                    <td class="smaller"><span style="color:gray">In order to assign this item to a specific category in the marketplace you must already know the category id number of the category you wish to assign this item to.</span></td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:#ff6699">10</span></td>
+                                    <td class="smaller"><span style="color:#ff6699">{_sample}</span></td>
+                                    <td class="smaller"><span style="color:#ff6699">{_yes}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:#ff6699">(i.e.: http://domain/image.gif)</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:#ff6699">String and Integer</span></td>
+                                    <td class="smaller"><span style="color:#ff6699">250</span></td>
+                                    <td class="smaller"><span style="color:#ff6699">You can assign a picture to your item by entering a valid url to a location on the internet where the picture exists. For example: http://domain.com/image.gif, otherwise leave this field blank if no picture will be assigned.</span></td>
+                                  </tr>
+                                  <if condition="$ilconfig['globalserverlocale_currencyselector']"><tr class="alt1" valign="top">
+                                    <td class="smaller"><span style="color:#ff6600">11</span></td>
+                                    <td class="smaller"><span style="color:#ff6600">Currency code</span></td>
+                                    <td class="smaller"><span style="color:#ff6600">{_no}</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:#ff6600"> (i.e.: USD, CAD, etc)</span></td>
+                                    <td class="smaller" nowrap="nowrap"><span style="color:#ff6600">String</span></td>
+                                    <td class="smaller"><span style="color:#ff6600">5</span></td>
+                                    <td class="smaller"><span style="color:#ff6600">Bid amounts and fixed price payment details will be sold within this currency.  By default, if no currency is defined the currency chosen will be that of the site.</span></td>
+                                  </tr></if>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller">12</td>
+                                    <td class="smaller">Item City</td>
+                                    <td class="smaller">{_no}</td>
+                                    <td class="smaller" nowrap="nowrap">(i.e.: Toronto)</td>
+                                    <td class="smaller">String  </td>
+                                    <td class="smaller">50</td>
+                                    <td class="smaller">The city name of where the item is located. If no city is present, the city will be that of the person's session who is uploading the bulk csv file.</td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller">13</td>
+                                    <td class="smaller">Item State</td>
+                                    <td class="smaller">{_no}</td>
+                                    <td class="smaller" nowrap="nowrap">(i.e.: Ontario)</td>
+                                    <td class="smaller">String </td>
+                                    <td class="smaller">50</td>
+                                    <td class="smaller">The state or province of where the item is located. If no state is present, the state will be that of the person's session who is uploading the bulk csv file.</td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller">14</td>
+                                    <td class="smaller">Item Zip / Postal code</td>
+                                    <td class="smaller">{_no}</td>
+                                    <td class="smaller" nowrap="nowrap">(i.e.: M3N2J9 or 90210)</td> 
+                                    <td class="smaller">String and Integer</td>
+                                    <td class="smaller">25</td>
+                                    <td class="smaller">The zip or postal code of where the item is located. If no zip or postal code is present, the zip or postal code will be that of the person's session who is uploading the bulk csv file.</td>
+                                  </tr>
+                                  <tr class="alt1" valign="top">
+                                    <td class="smaller">15</td>
+                                    <td class="smaller">Item Country</td>
+                                    <td class="smaller">{_no}</td>
+                                    <td class="smaller" nowrap="nowrap">(i.e.: Canada)</td>
+                                    <td class="smaller">String </td>
+                                    <td class="smaller">50</td>
+                                    <td class="smaller">The country name of where the item is located. If no country name is present, the country name will be that of the person's session who is uploading the bulk csv file.</td>
+                                  </tr>
+                                  {apihook[bulk_csv_api_table_end]}
+                                </table>
+                
+                                <div style="padding:9px"><div style="padding-top:12px"><strong><em>{_example_csv_file}:</em></strong></div>
+                                  <div class="smaller" style="padding-top:6px">'<span style="color:blue">Camera</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:green">New Camera</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:red">1.99</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:navy">25.00</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:orange">20.00</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:purple">5</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:black">public</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:brown">regular</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:gray">10</span>'<strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:#ff6699">http://url.com/img.jpg</span>'<if condition="$ilconfig['globalserverlocale_currencyselector']"><strong>&nbsp;&nbsp;,&nbsp;&nbsp;</strong>'<span style="color:#ff6600">CAD</span>'</if><strong>,&nbsp;&nbsp;</strong>'<span style="color:#000">Toronto</span>'<strong>,&nbsp;&nbsp;</strong>'Ontario'<strong>,&nbsp;&nbsp;</strong>'M3N2J9'<strong>,&nbsp;&nbsp;</strong>'Canada'</div>                               
+                                
+                              </div>
+                      </div>
+                            
+                                
+                
+                  </td>
+                </tr>
+                </tbody>
+                </table>
+                
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</if>
+</if>
+</if>
+
+<if condition="($ilconfig['globalauctionsettings_serviceauctionsenabled'] AND !empty($ilance->GPC['mode']) AND $ilance->GPC['mode'] == 'service' OR $ilconfig['globalauctionsettings_serviceauctionsenabled'] AND empty($ilance->GPC['mode']) AND $ilconfig['globalauctionsettings_productauctionsenabled'] == false)">
+
+<div class="bigtabs" style="padding-bottom:15px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<if condition="$ilconfig['globalauctionsettings_productauctionsenabled']"><li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell">{_sell_single_item}</a><else /><a href="{ilpage[main]}?cmd=selling">{_sell_single_item}</a></if></li></if>
+	<if condition="$ilconfig['globalauctionsettings_productauctionsenabled'] AND $ilconfig['globalfilters_bulkupload']"><li title="" class="highlight"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}sell/bulk">{_sell_bulk_items}</a><else /><a href="{ilpage[main]}?cmd=selling&amp;mode=bulk">{_sell_bulk_items}</a></if></li></if>
+	<if condition="$ilconfig['globalauctionsettings_serviceauctionsenabled']"><li title="" class="on"><a href="javascript:void(0)">{_sell_services}</a></li></if>
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+    <td><div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+            <div style="padding-left:18px; padding-top:6px; padding-bottom:3px; font-size:23px">{_buying_leads_by_category}</div>
+            
+            <div style="padding-left:18px">
+              <div style="padding-top:6px; padding-bottom:5px; font-size:16px" class="blue"></div>
+            
+            </div>
+            </div>
+            <div class="s"><div class="e"><div class="w"></div></div></div></div>
+        </td>
+</tr>
+</table>
+
+<div class="block-wrapper">
+
+	<div class="block2">
+	
+			<div class="block2-top">
+					<div class="block2-right">
+							<div class="block2-left"></div>
+					</div>
+			</div>
+			
+			<div class="block2-header">
+			<span style="float:right; padding-top:3px" class="smaller gray"></span>{_categories}</div>
+			
+			<div class="block2-content-blue">
+				<form method="get" action="{ilpage[search]}" name="ilform" accept-charset="UTF-8" style="margin:0px; padding-bottom:6px; padding-left:8px; padding-top:6px">
+				<table width="100%" border="0" cellspacing="2" cellpadding="0">
+				<tr> 
+					<td width="7%" nowrap="nowrap"><input type="text" name="q" value="{q}" maxlength="49" size="30" class="input" />&nbsp;&nbsp;</td>
+					<td width="1%" nowrap="nowrap"></td>
+					<td width="64%" align="left"><input type="submit" class="buttons" value="{_search}" /></td>
+				</tr>
+				</table>
+				<input type="hidden" name="mode" value="service" />
+				</form>
+			</div>
+			
+			<div class="block2-content">
+				<div class="gray" style="padding-left:5px; padding-top:6px; font-size:16px;"><strong>{_search_for_jobs_via_categories}</strong></div>
+				<div>{categoryresults}</div>
+			</div>
+			
+			<div class="block2-footer">
+					<div class="block2-right">
+							<div class="block2-left"></div>
+					</div>
+			</div>
+			</div></div></if>

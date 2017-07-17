@@ -1,0 +1,489 @@
+<style type="text/css">
+
+a.tooltip {outline:none; }
+a.tooltip strong {line-height:5px;}
+a.tooltip:hover {text-decoration:none;} 
+a.tooltip span {
+    z-index:10;display:none; padding:5px 5px;
+    margin-top:-5px; margin-left:10px;
+    width:125px; line-height:16px;
+}
+a.tooltip:hover span{
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;}
+.callout {z-index:20;position:absolute;top:2px;border:0;left:-12px;}
+    
+/*CSS3 extras*/
+a.tooltip span
+{
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
+
+.callout {
+    border: 0 none;
+    left: -12px;
+    position: absolute;
+    top: 2px;
+    z-index: 20;
+}
+
+</style>
+<script language="javascript" type="text/javascript">
+var project_id = 0;
+var value = '';
+var imgtag = '';
+var favoriteicon = '';
+var status = '';
+function reset_image()
+{
+        imgtag.src = favoriteicon;
+}
+function fetch_response_bold()
+{
+        if (xmldata.handler.readyState == 4 && xmldata.handler.status == 200 && xmldata.handler.responseXML)
+        {
+                response = fetch_tags(xmldata.handler.responseXML, 'status')[0];
+                phpstatus = xmldata.fetch_data(response);
+
+                favoriteiconsrc = fetch_js_object('favourite_' + xmldata.project_id).src;
+                status = favoriteiconsrc.match(/\/unchecked.gif/gi);
+                if (status == '/unchecked.gif')
+                {
+                       status = 'off';
+                }
+                else
+                {
+                       status = 'on';
+                }                                
+                if (status == 'off')
+                {
+                        if (phpstatus == 'added' || phpstatus == 'removed')
+                        {
+                                favoriteiconsrc = fetch_js_object('favourite_' + xmldata.project_id).src;
+                                imgtag = fetch_js_object('favourite_' + xmldata.project_id);
+                                
+                                favoriteicon2 = favoriteiconsrc.replace(/unchecked.gif/gi, 'working.gif');
+                                imgtag.src = favoriteicon2;
+                                
+                                favoriteicon = favoriteiconsrc.replace(/unchecked.gif/gi, 'checked.gif');
+                                var t = window.setTimeout('reset_image()', 700);
+                        }
+                        else
+                        {
+                                alert(phpstatus);
+                        }
+                }
+                else if (status == 'on')
+                {
+                        if (phpstatus == 'added' || phpstatus == 'removed')
+                        {
+                                favoriteiconsrc = fetch_js_object('favourite_' + xmldata.project_id).src;
+                                imgtag = fetch_js_object('favourite_' + xmldata.project_id);
+                                
+                                favoriteicon2 = favoriteiconsrc.replace(/checked.gif/gi, 'working.gif');
+                                imgtag.src = favoriteicon2;
+        
+                                favoriteicon = favoriteiconsrc.replace(/checked.gif/gi, 'unchecked.gif');
+                                var t = window.setTimeout('reset_image()', 700);
+                        }
+                        else
+                        {
+                                alert(phpstatus); 
+                        }
+                }
+                xmldata.handler.abort();
+        }
+}
+
+function fetch_response_highlite()
+{
+        if (xmldata.handler.readyState == 4 && xmldata.handler.status == 200 && xmldata.handler.responseXML)
+        {
+                response = fetch_tags(xmldata.handler.responseXML, 'status')[0];
+                phpstatus = xmldata.fetch_data(response);
+
+                favoriteiconsrc = fetch_js_object('highlite_' + xmldata.project_id).src;
+                status = favoriteiconsrc.match(/\/unchecked.gif/gi);
+                if (status == '/unchecked.gif')
+                {
+                       status = 'off';
+                }
+                else
+                {
+                       status = 'on';
+                }                                
+                if (status == 'off')
+                {
+                        if (phpstatus == 'added' || phpstatus == 'removed')
+                        {
+                                favoriteiconsrc = fetch_js_object('highlite_' + xmldata.project_id).src;
+                                imgtag = fetch_js_object('highlite_' + xmldata.project_id);
+                                
+                                favoriteicon2 = favoriteiconsrc.replace(/unchecked.gif/gi, 'working.gif');
+                                imgtag.src = favoriteicon2;
+                                
+                                favoriteicon = favoriteiconsrc.replace(/unchecked.gif/gi, 'checked.gif');
+                                var t = window.setTimeout('reset_image()', 700);
+                        }
+                        else
+                        {
+                                alert(phpstatus);
+                        }
+                }
+                else if (status == 'on')
+                {
+                        if (phpstatus == 'added' || phpstatus == 'removed')
+                        {
+                                favoriteiconsrc = fetch_js_object('highlite_' + xmldata.project_id).src;
+                                imgtag = fetch_js_object('highlite_' + xmldata.project_id);
+                                
+                                favoriteicon2 = favoriteiconsrc.replace(/checked.gif/gi, 'working.gif');
+                                imgtag.src = favoriteicon2;
+        
+                                favoriteicon = favoriteiconsrc.replace(/checked.gif/gi, 'unchecked.gif');
+                                var t = window.setTimeout('reset_image()', 700);
+                        }
+                        else
+                        {
+                                alert(phpstatus); 
+                        }
+                }
+                xmldata.handler.abort();
+        }
+}
+
+function fetch_response_featured()
+{
+        if (xmldata.handler.readyState == 4 && xmldata.handler.status == 200 && xmldata.handler.responseXML)
+        {
+                response = fetch_tags(xmldata.handler.responseXML, 'status')[0];
+                phpstatus = xmldata.fetch_data(response);
+
+                favoriteiconsrc = fetch_js_object('featured_' + xmldata.project_id).src;
+                status = favoriteiconsrc.match(/\/unchecked.gif/gi);
+                if (status == '/unchecked.gif')
+                {
+                       status = 'off';
+                }
+                else
+                {
+                       status = 'on';
+                }                                
+                if (status == 'off')
+                {
+                        if (phpstatus == 'added' || phpstatus == 'removed')
+                        {
+                                favoriteiconsrc = fetch_js_object('featured_' + xmldata.project_id).src;
+                                imgtag = fetch_js_object('featured_' + xmldata.project_id);
+                                
+                                favoriteicon2 = favoriteiconsrc.replace(/unchecked.gif/gi, 'working.gif');
+                                imgtag.src = favoriteicon2;
+                                
+                                favoriteicon = favoriteiconsrc.replace(/unchecked.gif/gi, 'checked.gif');
+                                var t = window.setTimeout('reset_image()', 700);
+                        }
+                        else
+                        {
+                                alert(phpstatus);
+                        }
+                }
+                else if (status == 'on')
+                {
+                        if (phpstatus == 'added' || phpstatus == 'removed')
+                        {
+                                favoriteiconsrc = fetch_js_object('featured_' + xmldata.project_id).src;
+                                imgtag = fetch_js_object('featured_' + xmldata.project_id);
+                                
+                                favoriteicon2 = favoriteiconsrc.replace(/checked.gif/gi, 'working.gif');
+                                imgtag.src = favoriteicon2;
+        
+                                favoriteicon = favoriteiconsrc.replace(/checked.gif/gi, 'unchecked.gif');
+                                var t = window.setTimeout('reset_image()', 700);
+                        }
+                        else
+                        {
+                                alert(phpstatus); 
+                        }
+                }
+                xmldata.handler.abort();
+        }
+}
+
+function fetch_response_hotlist()
+{
+        if (xmldata.handler.readyState == 4 && xmldata.handler.status == 200 && xmldata.handler.responseXML)
+        {
+                response = fetch_tags(xmldata.handler.responseXML, 'status')[0];
+                phpstatus = xmldata.fetch_data(response);
+
+                favoriteiconsrc = fetch_js_object('hotlist_' + xmldata.project_id).src;
+                status = favoriteiconsrc.match(/\/unchecked.gif/gi);
+                if (status == '/unchecked.gif')
+                {
+                       status = 'off';
+                }
+                else
+                {
+                       status = 'on';
+                }                                
+                if (status == 'off')
+                {
+                        if (phpstatus == 'added' || phpstatus == 'removed')
+                        {
+                                favoriteiconsrc = fetch_js_object('hotlist_' + xmldata.project_id).src;
+                                imgtag = fetch_js_object('hotlist_' + xmldata.project_id);
+                                
+                                favoriteicon2 = favoriteiconsrc.replace(/unchecked.gif/gi, 'working.gif');
+                                imgtag.src = favoriteicon2;
+                                
+                                favoriteicon = favoriteiconsrc.replace(/unchecked.gif/gi, 'checked.gif');
+                                var t = window.setTimeout('reset_image()', 700);
+                        }
+                        else
+                        {
+                                alert(phpstatus);
+                        }
+                }
+                else if (status == 'on')
+                {
+                        if (phpstatus == 'added' || phpstatus == 'removed')
+                        {
+                                favoriteiconsrc = fetch_js_object('hotlist_' + xmldata.project_id).src;
+                                imgtag = fetch_js_object('hotlist_' + xmldata.project_id);
+                                
+                                favoriteicon2 = favoriteiconsrc.replace(/checked.gif/gi, 'working.gif');
+                                imgtag.src = favoriteicon2;
+        
+                                favoriteicon = favoriteiconsrc.replace(/checked.gif/gi, 'unchecked.gif');
+                                var t = window.setTimeout('reset_image()', 700);
+                        }
+                        else
+                        {
+                                alert(phpstatus); 
+                        }
+                }
+                xmldata.handler.abort();
+        }
+}
+function showfav_bold(project_id)
+{                        
+        xmldata = new AJAX_Handler(true);
+        
+        project_id = urlencode(project_id);
+        xmldata.project_id = project_id;
+
+              
+        searchiconsrc = fetch_js_object('favourite_' + project_id).src;
+        status = searchiconsrc.match(/\/unchecked.gif/gi);
+        if (status == '/unchecked.gif')
+        {
+               value = 'on';
+        }
+        else
+        {
+               value = 'off';
+        }
+        xmldata.onreadystatechange(fetch_response_bold);
+
+        xmldata.send('consignment_ajax.php', 'do=add_fav_bold&value=' + value + '&project_id=' +project_id);                        
+}
+
+
+//-->
+
+	
+	
+<!--highlite func-->
+
+function show_highlite(project_id)
+{                        
+        xmldata = new AJAX_Handler(true);
+        
+        project_id = urlencode(project_id);
+        xmldata.project_id = project_id;
+
+              
+        searchiconsrc = fetch_js_object('highlite_' + project_id).src;
+        status = searchiconsrc.match(/\/unchecked.gif/gi);
+        if (status == '/unchecked.gif')
+        {
+               value = 'on';
+        }
+        else
+        {
+               value = 'off';
+        }
+        xmldata.onreadystatechange(fetch_response_highlite);
+
+        xmldata.send('consignment_ajax.php', 'do=add_highlite&value=' + value + '&project_id=' +project_id);                        
+}
+	
+	
+<!--featured-->	
+	function show_featured(project_id)
+{                        
+        xmldata = new AJAX_Handler(true);
+        
+        project_id = urlencode(project_id);
+        xmldata.project_id = project_id;
+
+              
+        searchiconsrc = fetch_js_object('featured_' + project_id).src;
+        status = searchiconsrc.match(/\/unchecked.gif/gi);
+        if (status == '/unchecked.gif')
+        {
+               value = 'on';
+        }
+        else
+        {
+               value = 'off';
+        }
+        xmldata.onreadystatechange(fetch_response_featured);
+
+        xmldata.send('consignment_ajax.php', 'do=add_featured&value=' + value + '&project_id=' +project_id);                        
+}
+	
+
+<!--hotlists-->	
+	function show_hotlist(project_id)
+{                        
+        xmldata = new AJAX_Handler(true);
+        
+        project_id = urlencode(project_id);
+        xmldata.project_id = project_id;
+
+              
+        searchiconsrc = fetch_js_object('hotlist_' + project_id).src;
+        status = searchiconsrc.match(/\/unchecked.gif/gi);
+        if (status == '/unchecked.gif')
+        {
+               value = 'on';
+        }
+        else
+        {
+               value = 'off';
+        }
+        xmldata.onreadystatechange(fetch_response_hotlist);
+
+        xmldata.send('consignment_ajax.php', 'do=add_hotlist&value=' + value + '&project_id=' +project_id);                        
+}
+</script>
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="listings.php"><span>Holding</span></a>
+		<a href="listings.php?cmd=all_listing"><span>Affiliate listing</span></a> 
+		<a href="listings.php?cmd=item_won"><span>Item Won</span></a> 
+		<a href="listings.php?cmd=all_list_can" ><span>All Cancel Sale</span></a> 
+		<a href="listings.php?cmd=search_coin"  ><span>listed in gc</span></a> 
+		<a href="buynow_item.php" ><span>Item History</span></a>
+		<a href="live_auction_detail.php" ><span>Live Auctions</span></a>
+		<a href="listings.php?cmd=itembold_list" class="sel"><span>Enhancements</span></a> 
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<div id="content">
+<div class="header">Enhancement Options</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Enhancements</h2>
+			        
+			
+						<div class="block-wrapper">
+				<div class="block3">
+				
+						<div class="block3-top">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+						<!--<div class="block3-header">List of all items  in GC</div>
+						<div class="block3-content-gray" style="padding:9px"><div class="smaller">{_you_can_manually_create_a_subscribers_account_using_the_quick_form}</div></div>-->
+				<form method="get" action="{ilpage[listedarea]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+				<input type="hidden" name="cmd" value="bold_hit" />
+						<div class="block3-content" style="padding:0px">
+						
+						       <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt2">
+								
+								<td width="14%">Item ID</td><td width="12%">Seller Name</td>
+								<td width="12%">Title</td>
+								<td width="5%">End Date</td>
+								<td width="5%">Current Price</td>
+								<span class="blue">{listing}</span>
+								<td width="5%">Auction type</td>
+								<td width="5%">Bold</td>
+								<td width="5%" nowrap="nowrap">Highlight</td>
+								<td width="5%" nowrap="nowrap">Home Page</td>
+								<td width="5%" nowrap="nowrap">Hot List</td>
+								<!--<td width="12%" nowrap="nowrap">Cancel Sale</td>-->
+								<td width="15%">Check Box</td></tr>
+							    
+							    <loop name="highlitedlist">
+							    <tr class="alt1" valign="top">
+								
+								<td width="14%">{itemid}</td><td width="12%">{seller_name}</td>
+								<td width="12%">{title}</td>
+								<td width="5%">{dt1}</td>
+								<td width="5%">{currentprice}</td>
+								<!--<td width="12%">{SoldDate}</td>-->
+								<td width="5%">{noofbids}</td>
+								<td width="5%">{auctiontype}</td>
+								<td width="5%" nowrap="nowrap">{bold}</td>
+								<td width="5%" nowrap="nowrap">{highlite}</td>
+								<td width="5%" nowrap="nowrap">{featured}</td>
+								<td width="5%" nowrap="nowrap">{hotlists}</td>
+								<!--<td width="12%">{CancelSale}</td></tr>-->
+								<td width="12%">{check}</td></tr>
+							   </loop name="highlitedlist">
+							   <if condition="isset($show['no']) AND $show['no'] == 'won_aff_list'">
+							   <tr class="alt1">
+								 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+							   </tr>
+							   </if>
+							   </table>
+<table>
+							      <tr>
+								    <td align="right">Select List: &nbsp;&nbsp;{drop_bold}</td>
+									<td><input type="submit" value="submit"/></td>
+								</tr>
+							   </table>
+								                           			
+                            </div>
+</form>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>		
+								
+					
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>

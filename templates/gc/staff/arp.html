@@ -1,0 +1,189 @@
+<script type="text/javascript">
+function validate()
+{
+	sear_val = document.getElementById("project_id").value;
+	if(sear_val == '')
+	{
+		alert('Please enter Project id/ coin id');
+		return false;
+	}
+	
+	else
+	{
+		return true;
+	}
+}
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4">
+
+
+<!-- begin content -->
+<div id="content">
+
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">APR</h2>
+			    
+				
+				
+                   
+					
+					<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">Auction Prices Realized</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can Search the Coin's Auction Prices Realized using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                <form method="post" action="arp.php" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;" onsubmit="return validate();">	
+									<input type="hidden" name="cmd" value="coins_search"/>
+							
+								<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Coin id:</span>
+                                  <td width="90%">
+								  <input type="text" name="project_id"  id ="project_id" value="{projec_id}" style="font-family: Verdana" maxlength="100" size="50">                                       
+										</td>
+                                </tr>
+								<tr>
+                                  <td colspan="2"><div id="sitvalue"><input type="submit" class="buttons" value=" {_search} "  style="font-size:15px" /></div></td> 
+                                  </tr>
+								</table>
+                               </form>
+                               							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+				   
+					
+				
+						      <if condition="isset($show_certificationnumber_search) and ($show_certificationnumber_search==1)">
+									
+									
+									
+											<div class="block-wrapper">
+											<div class="block3">
+											<div class="block3-top">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>						
+											<div class="block3-header">List</div>
+
+											<div class="block3-content" style="padding:0px">
+											<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+																	
+																			
+																	
+																		<if condition="isset($total_n) AND $total_n==true">	
+																			<tr class="alt2">
+																				<td> </td>
+																			
+																				<td>Certification No</td>
+																				<td>Alt Inven No</td>
+																				<td>Pcgs No</td>
+																				<td>Hammer Price</td>
+																				<td>Type</td>
+																				<td>Invoice number</td>
+																				<td>Minbid/Buy</td>
+																				<td>Listing Fees</td>
+																				<td>Buyer Fee</td>
+																				<td>Price</td>
+																				<td>ARP</td>
+																				
+																				
+																			</tr>
+																		
+																			<loop name="listpagesld">
+																				<tr class="alt1">
+																					<td>GC Item ID:{pro_project_id}<br/><br/>
+																					Consignment ID:{consignid}<br/><br/>
+																					Title:{project_title}
+																					<br/><br/>Seller Name:{seller_name1}
+																					<br/><br/>Seller email:{seller_email}
+																					<br/><br/>Create Date:{Create_Date}
+																					
+																					</td>
+																					
+																					<td>{Certification_No}</td>
+																					<td>{Alternate_inventory_No}</td>
+																					<td>{pcgs}</td>
+																					<td>{hammerprice}</td>
+																					<td class="smaller blue">{bids}</td>
+																					<td>{invoiceid}</td>
+																					<td>{startprice}</td>
+																					<td>{insertionfee}</td>
+																					<td>{buyer_fee}</td>
+																					<td>{currentprice}</td>
+																					<td>{arp}</td>
+																					
+																					
+																				</tr>
+																			</loop name="listpagesld"> 
+																		</if>
+																		<if condition="isset($total_n) AND $total_n==false">
+																			<tr class="alt1">
+																				<td  align="center" ><strong>You've no coins in this Coin id.</strong></td>
+																			</tr>
+																		</if>
+
+																	
+																	
+																</table>	 
+											</div>
+											<div class="block3-footer">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>
+											</div>
+											</div>
+									
+										
+										
+									
+										
+												
+									</if>
+								                           			
+                  			
+					{prof2}	
+                        </div>
+                        
+                       
+						<div class="block3-footer">
+								<div class="block3-right">
+										<div class="block3-left"></div>
+								</div>
+						</div>
+						
+				</div>
+			</div>
+         
+			
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

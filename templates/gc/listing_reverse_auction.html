@@ -1,0 +1,810 @@
+<if condition="isset($ilance->GPC['invited']) AND $ilance->GPC['invited'] == '1'">
+<div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+	<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td style="padding-left:5px;" valign="top"></td>
+			<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="10" height="1" alt="" id="" /></td>
+			<td style="padding-right:5px;"><div><strong>{_register_to_bid}</strong></div><div class="gray" style="padding-top:4px">{_congratulations_you_have_been_selected_to_place_a_bid_on_this_auction} <span class="blue"><a href="{https_server}{ilpage[registration]}?invited=1&amp;id={project_id}">{_please_register_here}</a></span></div></td>
+		</tr>
+		</table>
+		</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+</tr>
+</table>
+</div></if>
+
+<if condition="isset($show['bidderuninvited']) AND $show['bidderuninvited'] AND empty($ilance->GPC['invited'])">
+<div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+	<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td style="padding-left:5px;" valign="top"></td>
+			<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="10" height="1" alt="" id="" /></td>
+			<td style="padding-right:5px;"><div><strong>{_invitation_only}</strong></div><div class="gray" style="padding-top:4px">{_in_order_to_place_bids_and_interact}</div></td>
+		</tr>
+		</table>
+		</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+</tr>
+</table>
+</div></if>
+
+<if condition="isset($show['iswinner']) AND $show['iswinner']">
+<div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+	<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td style="padding-left:5px;" valign="top"></td>
+			<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="10" height="1" alt="" id="" /></td>
+			<td style="padding-right:5px;"><div><strong>{_congratulations}</strong></div><div class="gray" style="padding-top:4px">{_congratulations_you_have_been_awarded_for_this_project_good_luck}</div></td>
+		</tr>
+		</table>
+		</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+</tr>
+</table>
+</div></if>
+
+<div id="endedlistingrow" style="display:none">
+<!-- viewing completed listing -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+<td>
+<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+<div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td style="padding-left:5px;" valign="top"></td>
+	<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+	<td style="padding-right:5px;"><div><strong>{_this_listing_has_ended}</strong></div><!--<div style="padding-top:4px">{transactionstatus}</div>--><div class="gray" style="padding-top:4px"><span class="blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;cid={cid}">{_no_more_bids_can_be_placed_at_this_time_find_similar_items_in_this_category}</a></span>&nbsp;&nbsp;<span class="gray">|</span>&nbsp;&nbsp;<span class="blue"><a href="{http_server}{ilpage[buying]}?cmd=new-rfp&amp;cid={cid}">{_post_a_similar_project_in_this_category}</a></span>&nbsp;&nbsp;<span class="gray">|</span>&nbsp;&nbsp;<span class="blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;searchuser={buyername}">{_view_other_projects_posted_by_this_buyer}</a></span></div>
+	
+	</td>
+</tr>
+</table>
+</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+</td>
+</tr>
+</table>
+</div>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+    <td width="70%" valign="top">
+    
+		<div>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+		<tr>
+		<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+		<div class="bigtabs" style="padding-bottom:10px; padding-top:10px">
+        <div class="bigtabsheader">
+        <span style="float:right; padding-bottom:9px; padding-right:9px; font-size:14px" class="blue"><if condition="isset($show['ended']) AND $show['ended'] == false"><a href="{https_server}{ilpage[buying]}?cmd=new-rfp&amp;cid={cid}">{_post_a_similar_project_in_this_category}</a>&nbsp;&nbsp;&nbsp;<span class="gray">|</span>&nbsp;&nbsp;&nbsp;</if><span id="projectstatustext" class="gray">{project_status}</span></span>
+        <ul id="decideview">
+        	<li id="taboverview" class="on"><a href="javascript:void(0)" onclick="toggle_tab('decideview', 'taboverview', 'overview', 'mediaviewtext')">{_overview}</a></li>
+            <if condition="isset($show['videodescription']) AND $show['videodescription']"><li id="tabvideo"><a href="javascript:void(0)" onclick="toggle_tab('decideview', 'tabvideo', 'video', 'mediaviewtext'); fo.write('videoapplet-description');">{_video} {_description}</a></li></if>
+            <if condition="isset($show['ended']) AND $show['ended'] == false AND isset($show['is_owner']) AND $show['is_owner']"><li id="tabtools" class=""><a href="javascript:void(0)" onclick="toggle_tab('decideview', 'tabtools', 'tools', 'mediaviewtext')">{_promote}</a></li></if>
+            {apihook[rfp_detailed_left_tabs]}
+        </ul>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        
+        <div id="overview" style="display:none"></div>
+        <div id="video" style="display:none">
+            <if condition="isset($show['videodescription']) AND $show['videodescription']">
+            <div style="padding-left:15px; padding-right:5px; padding-top:10px; width:400px">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+            <tr>
+                <td>
+                    <div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+                    <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td><div style="padding:10px"><div>{videodescription}</div></div></td>
+                    </tr>
+                    </table></div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+                </td>
+            </tr>
+            </table>
+            </div></if>
+        </div>
+        
+        
+        <!-- START buyer tools content -->
+        <div id="tools" style="display:none">
+
+                <div style="padding-left:15px; padding-right:5px; padding-top:10px; width:400px">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+                <tr>
+                    <td>
+                        <div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+                        <table border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td><div style="font-size:13px; padding-bottom:6px; padding-top:6px">
+                                <div class="blue" style="padding-left:10px; padding-bottom:9px; font-size:14px"><strong>{user[username]}, {_promote_and_enhance_this_listing}</strong></div>               
+                                <form action="{http_server}{ilpage[rfp]}" method="get" name="toolsenhancement" style="margin:0px">
+                                <input type="hidden" name="cmd" value="buyertools" />
+                                <input type="hidden" name="subcmd" value="enhancements" />                               
+                                <input type="hidden" name="pid" value="{project_id}" />               
+                                <div>{enhancements}</div>
+                                <div style="padding-left:10px; padding-top:4px; padding-bottom:6px"><input type="submit" value=" {_go} " class="buttons" style="font-size:15px" onclick="return confirm_js('{_i_understand_an_invoice_will_be_generated_to_my_account_for_the_enhancement}');" /></div>
+                                <input type="hidden" name="old[featured]" value="{featured}" />
+                                <input type="hidden" name="old[featured_date]" value="{featured_date}" />                               
+                                <input type="hidden" name="old[highlite]" value="{highlite}" />
+                                <input type="hidden" name="old[bold]" value="{bold}" />
+                                <input type="hidden" name="old[autorelist]" value="{autorelist}" />                               
+                                </form>                    			
+                            </div></td>
+                        </tr>
+                        </table></div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+                    </td>
+                </tr>
+                </table>
+                </div>
+
+            
+            {apihook[merch_detailed_left_tabs_content_tools]}
+            
+        </div><!-- END buyer tools content -->
+        
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+        	<td width="0" valign="top"><div id="mediaviewtext" style="display:inline"></div></td>
+			<td width="100%" valign="top">
+			
+				<div style="padding-left:12px"><table border="0" cellspacing="{table_cellspacing}" cellpadding="6">
+                <tr valign="top">
+			  		<td colspan="2"><div style="font-size:19px"><strong>{project_title}</strong> <!--{icons}--></div></td>
+				</tr>
+				<tr id="awardedbidderrow" style="display:none" valign="top"> 
+			  		<td align="right"><span class="gray"><span style="float:left; padding-right:2px"><img src="{template_relativeimagepath}{template_imagesfolder}bid_awarded_small.gif" border="0" alt="" /></span>{_awarded_vendor}:</span></td>
+			  		<td><span class="black" style="font-weight:bold" id="awardedbiddertext"><strong>{awarded_vendor}</strong></span></td>
+				</tr>
+                <tr valign="top"> 
+			  		<td align="right"><span class="gray">{_ends}:</span></td>
+			  		<td><span class="blueonly" style="font-family: arial; font-size:16px; font-weight:bold;" id="timelefttext">{timeleft}</span> &nbsp;&nbsp;&nbsp;<span class="black">({ends})</span></td>
+				</tr>
+				<tr valign="top">
+			  		<td align="right"><span class="gray">{_bid_history_lc}:</span></td>
+			  		<td><span class="blue"><span class="blue" id="bidstext">{bids}</span> {_bids_lower}</span> <span class="smaller gray" style="padding-top:4px">&nbsp;&nbsp;&nbsp;<if condition="isset($show['is_owner']) AND $show['is_owner']">{shortlistedbids} {_shortlisted}, </if><span id="declinedbidstext">{declinedbids}</span> {_declined}, <span id="retractedbidstext">{retractedbids}</span> {_retracted}</span></td>
+				</tr>
+				<tr id="placebidrow" valign="top">
+			  		<td></td>
+			  		<if condition="isset($show['can_bid']) AND $show['can_bid'] AND isset($show['is_owner']) AND $show['is_owner'] == false">
+			  			<td valign="top"><input type="button" value=" {_place_bid} " class="buttons" style="font-size:15px" onclick="location.href='{https_server}{ilpage[rfp]}?cmd=bid&amp;id={project_id}'" />
+			  			<if condition="isset($show['addedtowatchlist']) AND $show['addedtowatchlist']">
+			  				&nbsp;&nbsp;&nbsp;
+			  				<span font-size:13px" id="itemwatchlistresponse" class="gray">{_you_are_watching_this_item}
+			  				<span class="smaller gray">[ 
+			  				<span class="blue">
+			  				<if condition="$ilconfig['globalauctionsettings_seourls']">
+			  				<a href="{http_server}watchlist">{_watchlist}</a>
+			  				<else />
+			  				<a href="{http_server}{ilpage[watchlist]}">{_watchlist}</a>
+			  				</if>
+			  				</span> ]
+			  				</span>
+			  				</span>
+				  			<else />
+				  			&nbsp;&nbsp;&nbsp;
+				  			<span font-size:13px" id="itemwatchlistresponse" class="blue"><a href="javascript:void(0)" onclick="add_item_to_watchlist('{project_id}', '{user[userid]}')" style="text-decoration:underline">{_watch_this_item}</a></span>
+			  			</if>
+			  			</td>
+			  		<else />
+			  		<td></td>
+			  		</if>
+				</tr>
+				
+                <tr valign="top">
+                    <td align="right"><span class="gray">{_budget}:</span></td>
+                    <td>{project_budget}</td>
+                </tr>
+				<tr valign="top"> 
+					<td align="right"><span class="gray">{_average_bid}:</span></td>
+					<td><strong><span id="averagebidtext">{average}</span></strong></td>
+				</tr>
+				<tr valign="top">
+			  		<td align="right"><span class="gray">{_started}:</span></td>
+			  		<td><span>{started}</span></td>
+				</tr>
+				<tr style="display:none" id="lowestbidderrow" valign="top"> 
+			  		<td align="right"><span class="gray">{_lowest_bid}:</span></td>
+			  		<td><span id="lowestbiddertext">{lowest}</span></td>
+				</tr>
+				<tr style="display:none" valign="top"> 
+			  		<td align="right"><span class="gray">{_highest_bid}:</span></td>
+			  		<td><span class="blue" id="highestbiddertext">{highest}</span></td>
+				</tr>
+				<tr style="display:none" id="lowestbiddertextrow" valign="top"> 
+			  		<td align="right"><span class="gray">{_low_bidder}:</span></td>
+			  		<td><span class="blue" id="lowbiddertext">{lowbidder}</span></td>
+				</tr>
+				<tr valign="top"> 
+			  		<td align="right"><span class="gray">{_history}:</span></td>
+			  		<td><span id="viewstext">{views}</span> {_views}<if condition="$show['publicboard']">, {boardcount} {_questions}</if></td>
+				</tr>
+				</table></div>
+				
+			</td>
+            
+		</tr>
+		</table>
+
+		
+		</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+		</td>
+		</tr>
+		</table>
+		</div>
+		
+	</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="30%" valign="top">
+	
+	
+		<div class="block-wrapper">
+		<div class="block5">
+		
+				<div class="block5-top">
+						<div class="block5-right">
+								<div class="block5-left"></div>
+						</div>
+				</div>
+				
+				<div class="block5-header">{_meet_the_buyer}</div>
+				<div class="block5-content-gray" style="padding:9px"><div class="smaller">{_member_since} {memberstart}</div></div>
+				<div class="block5-content" style="padding:0px">
+					  <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="5">
+					  {apihook[rfp_detailed_right_nav_tr_start]}
+					  <tr class="alt1">
+							<td colspan="2"><div class="blue" style="font-size:17px; padding-left:4px; padding-top:3px">{project_buyer}</div><div style="padding-top:4px; padding-bottom:4px; padding-left:4px"><span class="smaller blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;searchuser={buyername}">{_view_other_projects_posted_by_this_buyer}</a></span></div></td>
+					  </tr>
+					  <tr>
+						<td width="25%" align="right" nowrap="nowrap"><div class="gray" style="padding-top:7px">{_location}:</div></td>
+						<td width="75%"><div style="padding-top:7px">{location}</div></td>
+					  </tr>
+					  <tr>
+							<td valign="top" align="right" nowrap="nowrap"><span class="gray">{_feedback}:</span></td>
+							<td><span><strong>{buyerscore}%</strong></span> <span><strong>{_positive_lower}</strong></span></td>
+					  </tr>
+                      <tr valign="top">
+                            <td align="right"><span class="gray">{_facts}:</span></td>
+                            <td><div>{jobsposted} {_jobs_posted}, {jobsawarded} {_awarded_lower}</div>
+                            <div style="padding-top:3px"><strong>{awardratio}%</strong> <strong>{_job_award_ratio}</strong></div></td>
+                      </tr>
+					  <tr valign="top">
+							<td nowrap="nowrap" align="right"><span class="gray">{_i_can_pay_via}:</span></td>
+							<td>{paymentmethods}</td>
+					  </tr>
+					  {apihook[rfp_detailed_right_nav_tr_end]}
+					  </table>
+					  
+					  {apihook[rfp_detailed_right_nav]}
+
+				</div>
+				
+				<div class="block5-footer">
+						<div class="block5-right">
+								<div class="block5-left"></div>
+						</div>
+				</div>
+				
+		</div>
+	</div>
+	
+	<div style="padding:0px 2px 15px 0px;">
+	<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+	
+	<table border="0" cellspacing="{table_cellspacing}" cellpadding="5" width="100%">
+	{apihook[rfp_detailed_info_right_nav_tr_start]}
+    <tr class="alt1" valign="top">
+		<td colspan="2"><div class="black" style="font-size:16px; font-weight:bold; padding-left:4px; padding-bottom:6px">{_information}<if condition="isset($show['is_owner']) AND $show['is_owner']">&nbsp;&nbsp;&nbsp;<span class="smaller blue"><a href="{https_server}{ilpage[buying]}?cmd=rfp-management&amp;state=service&amp;id={project_id}" style="text-decoration:underline">{_edit_item}</a></span></if></div></td>
+	</tr>
+	<tr>
+		<td width="25%" align="right" valign="top" nowrap="nowrap"><div class="gray" style="padding-top:7px">{_listing_id}:</div></td>
+		<td width="75%"><div class="blue" style="padding-top:7px">#{project_id}</div></td>
+	</tr>
+	<tr>
+		<td align="right" nowrap="nowrap"><span class="gray">{_listing_type}:</span></td>
+		<td>{project_details}</td>
+	</tr>
+	<tr> 
+		<td align="right" nowrap="nowrap"><span class="gray">{_bidding_privacy}:</span></td>
+		<td>{bidprivacy}</td>
+	</tr>
+    <tr> 
+        <td align="right" nowrap="nowrap"><span class="gray">{_bidding_type}:</span></td>
+        <td>{bidtypefilter}</td>
+    </tr>
+	<tr id="listingrevisionrow" style="display:none">
+		<td nowrap="nowrap" align="right"><span class="gray">{_listing_revision}:</span></td>
+		<td><span class="blue" style="font-size:14px">{updateid}</span></td>
+	</tr>
+	<tr>
+		<td valign="top" align="right" nowrap="nowrap"><span class="gray">{_buyers_invited}:</span></td>
+		<td valign="top"><span>{invite_list}</span></td>
+	</tr>
+	<tr>
+		<td valign="top" align="right" nowrap="nowrap"><span class="gray">{_category}:</span></td>
+		<td valign="top"><span class="blue">{category}</span></td>
+	</tr>
+	{apihook[rfp_detailed_info_right_nav_tr_end]}
+	</table>
+	
+	</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</div>
+	
+	
+	
+	</td>
+  </tr>
+</table>
+
+<div class="bigtabs" style="padding-bottom:15px">
+<div class="bigtabsheader">
+<ul id="listingtabs">
+    <li id="tabdescription" class="on"><a href="javascript:void(0)" onclick="toggle_tab('listingtabs', 'tabdescription', 'listingdescription', 'listingtabtext')">{_description}</a></li>
+    <if condition="isset($show['livebid']) AND $show['livebid']"><li id="tabrealtimebids" class=""><if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['userid'] > 0"><a href="javascript:void(0)" onclick="toggle_tab('listingtabs', 'tabrealtimebids', 'listingrealtimebids', 'listingtabtext'); fo2.write('applet{project_id}');">{_realtime_bidding}</a><else /><a href="javascript:void(0)" onclick="toggle_tab('listingtabs', 'tabrealtimebids', 'listingrealtimebids', 'listingtabtext');">{_realtime_bidding}</a></if></li></if>
+	<if condition="isset($show['filters_vendors']) AND $show['filters_vendors']"><li id="tablistingfilters" class=""><a href="javascript:void(0)" onclick="toggle_tab('listingtabs', 'tablistingfilters', 'listingfilters', 'listingtabtext')">{_project_security}</a></li></if>
+	<if condition="$show['publicboard']"><li id="tabmessages" class=""><a href="javascript:void(0)" onclick="toggle_tab('listingtabs', 'tabmessages', 'listingmessages', 'listingtabtext')">{_ask_a_question}</a></li></if>
+	<!--<li id="tabtrackback" class=""><a href="javascript:void(0)" onclick="toggle_tab('listingtabs', 'tabtrackback', 'listingtrackbacks', 'listingtabtext')">Trackbacks</a></li>-->
+	{apihook[rfp_detailed_mid_tabs]}
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+    <td width="70%" valign="top">
+		<div id="listingtabtext" style=""></div>
+
+		<div id="listingadditional_info">
+		<if condition="isset($show['has_additional_info']) AND $show['has_additional_info'] == true">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 16px 15px 0px;">
+		<tr>
+			<td>
+				<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+				<div style="padding-left:10px"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_additional_information}</span></div>
+				<div style="padding:10px">{additional_info}</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+			</td>
+		</tr>
+		</table>
+		</if>
+		</div>
+		
+		<!-- realtime bid history -->
+		<div id="listingrealtimebids" style="display:none">
+		<if condition="isset($show['livebid']) AND $show['livebid']">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 16px 15px 0px;">
+		<tr>
+			<td>
+				<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+				<div style="padding-left:10px"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_realtime_bidding}</span></div>
+				<div style="padding:10px" align="center">{bidapplet}</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+			</td>
+		</tr>
+		</table>
+		</if>
+		</div>
+		<!-- / realtime bid history -->
+		
+		<!-- bid history -->
+		<a name="bids"></a>
+		<div id="listingbids" style="">
+		<div><span class="black" style="font-size:19px">{_bid_history}<if condition="$show['bidhistoryinfo']"> : <span class="litegray">{bidhistoryinfo}</span></if></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="smaller blue"><a href="{ilpage[accounting]}?cmd=feecalculator&amp;c={cid}&amp;fvf=1&amp;t=service" onclick="popUP(this.href,'feecalculator','600','450','yes','yes'); return false;">FVF {_calculator}</a></span><if condition="isset($show['is_owner']) AND $show['is_owner']">&nbsp;&nbsp;&nbsp;<span class="smaller gray">|</span>&nbsp;&nbsp;&nbsp;<span class="smaller blue"><a href="{http_server}{ilpage[buying]}?cmd=management">{_owner_of_this_listing}</a></span></if>&nbsp;&nbsp;&nbsp;<span class="smaller gray">|</span>&nbsp;&nbsp;&nbsp;<span class="smaller blue"><a href="{http_server}{ilpage[selling]}?cmd=management&amp;bidsub=awarded">{_reverse_auctions_awarded}</a></span></div>
+	    
+			<div style="padding-right:10px; padding-top:9px">
+			<if condition="isset($show['active_bids']) AND $show['active_bids']"> 
+				<div class="bigtabs" style="padding-bottom:10px; padding-top:6px">
+				<div class="bigtabsheader">
+				<ul>
+					<li title="" class="on"><a href="javascript:void(0)">{_active_bids} ({bidsactive})</a></li>
+					<if condition="isset($show['is_owner']) AND $show['is_owner']"><li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=shortlist">{_shortlist} ({shortlistedbids})</a></li></if>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=declined">{_declined} ({declinedbids})</a></li>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=retracted">{_retracted} ({retractedbids})</a></li>
+				</ul>
+				</div>
+				</div>
+				<div style="clear:both;"></div>
+			</if>
+			<if condition="isset($show['shortlist_bids']) AND $show['shortlist_bids'] AND isset($show['is_owner']) AND $show['is_owner']"> 
+				<div class="bigtabs" style="padding-bottom:10px; padding-top:0px">
+				<div class="bigtabsheader">
+				<ul>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=active">{_active_bids} ({bidsactive})</a></li>
+					<if condition="isset($show['is_owner']) AND $show['is_owner']"><li title="" class="on"><a href="javascript:void(0)">{_shortlist} ({shortlistedbids})</a></li></if>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=declined">{_declined} ({declinedbids})</a></li>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=retracted">{_retracted} ({retractedbids})</a></li>
+				</ul>
+				</div>
+				</div>
+				<div style="clear:both;"></div>
+			</if>		
+			<if condition="isset($show['declined_bids']) AND $show['declined_bids']">
+				<div class="bigtabs" style="padding-bottom:10px; padding-top:6px">
+				<div class="bigtabsheader">
+				<ul>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=active">{_active_bids} ({bidsactive})</a></li>
+					<if condition="isset($show['is_owner']) AND $show['is_owner']"><li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=shortlist">{_shortlist} ({shortlistedbids})</a></li></if>
+					<li title="" class="on"><a href="javascript:void(0)">{_declined} ({declinedbids})</a></li>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=retracted">{_retracted} ({retractedbids})</a></li>
+				</ul>
+				</div>
+				</div>
+				<div style="clear:both;"></div>
+			</if>
+			<if condition="isset($show['retracted_bids']) AND $show['retracted_bids']">
+				<div class="bigtabs" style="padding-bottom:10px; padding-top:6px">
+				<div class="bigtabsheader">
+				<ul>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=active">{_active_bids} ({bidsactive})</a></li>
+					<if condition="isset($show['is_owner']) AND $show['is_owner']"><li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=shortlist">{_shortlist} ({shortlistedbids})</a></li></if>
+					<li title="" class=""><a href="{http_server}{ilpage[rfp]}?id={project_id}&amp;view=declined">{_declined} ({declinedbids})</a></li>
+					<li title="" class="on"><a href="javascript:void(0)">{_retracted} ({retractedbids})</a></li>
+				</ul>
+				</div>
+				</div>
+				<div style="clear:both;"></div>
+			</if>
+			<table width="100%" border="0" align="center" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" id="bids_history">
+			<tr class="alt2"> 
+				<td width="7%" align="center"><div class="smaller">{_bid_id}</div></td>
+				<td width="20%"><div class="smaller">{_provider}</div></td>
+				<td width="13%" nowrap="nowrap"><div class="smaller">{_bid_amount}</div></td>
+				<td width="7%"><div class="smaller">{_delivery}</div></td>
+				<td width="14%" nowrap="nowrap"><div class="smaller">{_preferred_payment}</div></td>
+				<td width="21%"><div class="smaller">{_bid_placed}</div></td>
+				<td width="5%" nowrap="nowrap"><div class="smaller">{_earnings}</div></td>
+				<td width="6%" nowrap="nowrap" align="right"><div class="smaller">{_portfolio}</div></td>
+			</tr>
+			<loop name="bid_results_rows"> 
+			<tr> 
+				<td valign="top" align="center"><a name="bid{bid_id}"></a><span style="font-size:15px" class="gray">{bid_id}</span></td>
+				<td valign="top">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr> 
+						<td><span style="font-family: arial; font-size:15px; padding-right:45px; padding-top:4px" class="blue">{provider} &nbsp;{verified}</span><div class="smaller gray" style="padding-top:3px">{isonline}</div></td>
+					</tr>
+					</table>
+				</td>
+				<td nowrap="nowrap" valign="top"><div style="font-size:15px"><strong>{bidamount}</strong></div><div class="smaller gray" style="padding-top:3px">{bidamounttype}</div></td>
+				<td valign="top"><div class="smaller">{delivery}</div></td>
+				<td valign="top" nowrap="nowrap"><div class="smaller black">{paymethod}</div></td>
+				<td valign="top"><div class="smaller gray">{bid_datetime}</div></td>
+				<td valign="top" nowrap="nowrap"><div class="smaller black">{earnings}</div></td>
+				<td valign="top" nowrap="nowrap" align="right"><div class="smaller blue">{portfolio}</div></td>
+			</tr>
+			<tr> 
+				<td valign="top" align="center"><div class="smaller">{award}</div></td>
+				<td colspan="7" valign="top"> 
+				  <div style="padding-bottom:6px">
+					<div class="bubble_container">
+						<div class="bubble_bl"><div class="bubble_br"><div class="bubble_tl"><div class="bubble_tr"><div style="padding-left:12px; padding-right:12px; padding-top:6px">
+							<div style="font-size:13px">{proposal}</div>
+							
+							<if condition="isset($show['retracted_bids']) AND $show['retracted_bids']">
+							{bidretraction}
+							</if>
+							
+							<div style="padding-top:9px;">{custom_bid_fields}</div>
+							<div style="padding-top:9px; padding-bottom:9px">{bidattach}</div>
+						</div></div></div></div></div>
+						<div class="{bottombubbleclass}"><div style="padding-top:6px">{shortlist}{awardbutton}{unawardbutton}{declinebutton}</div>
+						</div>
+					</div>
+				  </div></td>
+			</tr>
+			</loop name="bid_results_rows">
+			<if condition="isset($show['no_bid_rows_returned']) AND $show['no_bid_rows_returned']"> 
+			<tr> 
+				<td colspan="8" align="center">{_no_results_found}</td>
+			</tr>
+			<if condition="isset($show['can_bid']) AND $show['can_bid'] AND $show['is_owner'] == false">
+			<tr>
+				<td colspan="8"><input type="button" value=" {_place_bid} " class="buttons" style="font-size:15px" onclick="location.href='{https_server}{ilpage[rfp]}?cmd=bid&amp;id={project_id}'" /></td>
+			</tr>
+			</if>
+			</if>
+			</table>
+			</div>
+		</div>
+		<!-- / bid history -->
+		
+		
+	</td>
+	<td width="30%" valign="top">
+	<div id="rightsidemodule">
+	
+		<if condition="isset($show['otherservicelistings']) AND $show['otherservicelistings']">
+		<!-- buyers other projects -->
+		<div class="block-wrapper">
+
+			<div class="block5">
+			
+					<div class="block5-top">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+					<div class="block5-header">
+							{_buyers_other_projects}
+					</div>
+					
+					<div class="block5-content" style="padding:0px">
+							<div>
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							<loop name="otherlistings">
+							<tr class="alt1">
+								<td valign="top"><span class="blue">{project_title}</span><div class="black" style="padding-top:4px; font-size:15px"><strong>{timeleft}</strong></div></td>
+							</tr>
+							</loop name="otherlistings">
+							<tr>
+								<td><span class="smaller blue"><a href="{http_server}{ilpage[search]}?mode=service&amp;searchuser={buyername}">{_view_other_projects_posted_by_this_buyer}</a></span></td>
+							</tr>
+							</table>
+							</div>
+					</div>
+					
+					<div class="block5-footer">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div>
+		<div style="padding-bottom:5px"></div>
+		</if>
+		
+		
+		<div class="block-wrapper">
+
+			<div class="block5">
+			
+					<div class="block5-top">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+					<div class="block5-header">
+							{_last_viewed_projects}
+					</div>
+					
+					<div class="block5-content" style="padding:0px">
+							<div>
+							
+							<table width="100%" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+							<loop name="lastviewedlistings">
+							<tr class="alt1">
+								<td valign="top"><div class="blue">{project_title}</div><div style="padding-top:3px" class="smaller gray">{_budget}: {budget}</div><div class="black" style="padding-top:9px; font-size:15px"><strong>{timeleft}</strong></div></td>
+							</tr>
+							</loop name="lastviewedlistings">
+							<tr>
+								<td><span class="smaller blue"><a href="{ilpage[preferences]}?cmd=favorites&amp;do=recentlyreviewed&amp;subcmd=clearservicelist&amp;returnurl={pageurl}" onclick="return confirm('{_are_you_sure_you_would_like_to_clear_your_recently_reviewed_service_auctions_list}')">{_clear_recent}</a></span></td>
+							</tr>
+							</table>
+							
+							</div>
+					</div>
+					
+					<div class="block5-footer">
+							<div class="block5-right">
+									<div class="block5-left"></div>
+							</div>
+					</div>
+					
+			</div>
+			
+		</div>
+	
+	
+	</div></td>
+</tr>
+</table>
+
+<!-- START listing description & project specifics -->
+<div id="listingdescription" style="display:none">
+
+	<if condition="isset($show['itemspecifics']) AND $show['itemspecifics']">
+	<!-- START project specifics -->
+	<div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 16px 15px 0px;">
+	<tr>
+	<td>
+	<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+	<div>
+	<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="10" height="1"></td>
+		<td valign="top"></td>
+		<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+		<td style="padding-right:5px;"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_specifics}</span></td>
+	</tr>
+	</table>
+	
+	<div style="padding-left:7px; margin-top:-14px">{project_questions}</div>
+	
+	</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+	</tr>
+	</table>
+	</div>
+	<!-- END project specifics -->
+	</if>
+	
+	<!-- START project description -->
+	<div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 16px 15px 0px;">
+	<tr>
+		<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+		<div>
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="10" height="1"></td>
+			<td valign="top"></td>
+			<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+			<td style="padding-right:5px;"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_description}</span></td>
+		</tr>
+		<tr>
+			<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="10" height="1"></td>
+			<td valign="top"></td>
+			<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+			<td style="padding-right:5px; padding-top:10px"><div>{description}</div></td>
+		</tr>
+		</table>
+		</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+		</td>
+	</tr>
+	</table>
+	</div>
+	<!-- END project description -->
+	
+	<if condition="isset($show['has_attachments']) AND $show['has_attachments']">
+	<!-- START project attachments -->
+	<div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 16px 15px 0px;">
+	<tr>
+	<td>
+	<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+	<div>
+	<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="10" height="1"></td>
+		<td valign="top"></td>
+		<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+		<td style="padding-right:5px;"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_attachments}</span></td>
+	</tr>
+	<tr>
+		<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="10" height="1"></td>
+		<td valign="top"></td>
+		<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+		<td style="padding-right:5px; padding-top:10px" width="100%">{project_attachment}</td>
+	</tr>
+	</table>
+	</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+	</tr>
+	</table>
+	</div>
+	<div style="padding-bottom:6px"></div>
+	<!-- END project attachments --></if>	
+</div>
+<!-- END listing description & project specifics -->
+
+<!-- START messages posted -->
+<div id="listingmessages" style="display:none">
+<if condition="isset($show['publicboard']) AND $show['publicboard']"><table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 16px 35px 0px;">
+<tr>
+	<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+		<div>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td style="padding-left:15px;"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_ask_the_purchaser_a_question}</span></td>
+			</tr>
+			<tr>
+				<td style="padding-left:8px; padding-right:10px;">
+				
+				<a name="messages"></a>
+				<form name="ilform" action="{http_server}{ilpage[rfp]}" method="post" accept-charset="UTF-8" style="margin:0px">
+				<table border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}" width="100%">
+				<loop name="messages">
+				<tr>
+					<td>
+						
+						<span style="float:right" class="smaller"><if condition="!empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['isadmin'] == '1'"><span class="gray">{_admin}</span>: <span class="blue"><a href="{https_server}{ilpage[rfp]}?cmd=removemessage&amp;messageid={messageid}&amp;pid={project_id}" onclick="return confirm('{_please_take_a_moment_to_confirm_your_action_continue}')">{_remove_post}</a></span></if></span>
+						<if condition="isset($show['is_owner']) AND $show['is_owner'] OR !empty($_SESSION['ilancedata']['user']['userid']) AND $_SESSION['ilancedata']['user']['isadmin']"><div class="smaller black">{username} {_on} {date}</div></if>
+						<div class="gray" style="padding-top:6px">{message}</div>
+								
+					</td>
+				</tr>
+				</loop name="messages">
+				<if condition="!empty($_SESSION['ilancedata']['user']['userid'])">
+				<tr>
+					<td><div class="smaller gray" style="padding-bottom:3px">{_do_not_include_your_personal_information_such_as}</div><div class="ilance_wysiwyg"><textarea name="message" id="message" style="width: 450px; height: 64px; font-family: Verdana" wrap="physical"></textarea></div></td>
+				</tr>
+				</if>
+				<if condition="isset($show['ended']) AND $show['ended'] == false AND !empty($_SESSION['ilancedata']['user']['userid'])">
+				<tr>
+					<td align="right"><div style="float:left"><input type="submit" class="buttons" value=" {_submit} " style="font-size:15px" /></div></td>
+				</tr>
+				</if>
+				</table>
+				<input type="hidden" name="cmd" value="insertmessage" /><input type="hidden" name="pid" value="{project_id}" /><input type="hidden" name="buyerid" value="{project_user_id}" />
+				</form></td>
+			</tr>
+			</table>
+		</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+</tr>
+</table></if></div><!-- END messages posted -->
+
+<!-- START buyer filter permissions -->
+<div id="listingfilters" style="display:none">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 16px 15px 0px;">
+<tr>
+	<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+		<div style="padding-left:10px"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_project_security}</span><div class="gray">{_the_purchaser_has_chosen_specific_filters_for_this_listing_you_may}</div></div>
+		<div style="padding:10px" align="left">{filter_permissions}</div>
+		<div style="padding-left:10px"></div>
+		<div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+</tr>
+</table>
+</div><!-- END buyer filter permissions -->
+
+<!-- START trackbacks -->
+<div id="listingtrackbacks" style="display:none">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 16px 15px 0px;">
+<tr>
+	<td>
+		<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div>
+		<div style="padding-left:10px"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">Trackbacks</span><div class="gray">{_the_seller_has_chosen_to_track_outside_external_links_connecting_to_this_listing_publically_visible}</div></div>
+		<div style="padding:10px" align="left">{trackbacks}</div>
+		<div style="padding-left:10px"><span class="gray" style="font-family: arial; font-size:13px; font-weight:bold">{_would_you_like_to_trackback_your_link_to_this_listing}</span><div class="blue" style="padding-top:4px"><a href="{http_server}{ilpage[merch]}?cmd=trackback&amp;id={project_id}">{_trackback_your_url_to_this_listing_here}</a></div></div>
+		<div class="s"><div class="e"><div class="w"></div></div></div></div>
+	</td>
+</tr>
+</table>
+</div><!-- END trackbacks -->
+
+{apihook[rfp_detailed_mid_tabs_content]}
+
+<script type="text/javascript">
+<!--
+listingpane = fetch_js_object('listingdescription').innerHTML;
+fetch_js_object('listingtabtext').innerHTML = listingpane;
+fetch_js_object('tabdescription').className = 'on';
+
+<if condition="isset($show['videodescription']) AND $show['videodescription']">
+listingpane2 = fetch_js_object('video').innerHTML;
+fetch_js_object('mediaviewtext').innerHTML = listingpane2;
+fetch_js_object('taboverview').className = '';
+fetch_js_object('tabvideo').className = 'on';
+<else /><if condition="isset($show['ended']) AND $show['ended'] == false AND isset($show['is_owner']) AND $show['is_owner']">
+listingpane2 = fetch_js_object('tools').innerHTML;
+fetch_js_object('mediaviewtext').innerHTML = listingpane2;
+fetch_js_object('taboverview').className = '';
+fetch_js_object('tabtools').className = 'on';
+</if>
+</if>
+//-->
+</script>
+
+{jsend}

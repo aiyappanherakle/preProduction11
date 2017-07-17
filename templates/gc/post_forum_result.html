@@ -1,0 +1,168 @@
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+</script>
+<script type="text/javascript">
+function validate_form()
+{
+	var coin=document.getElementById("coin_id").value;
+	var image=document.getElementById("item_image").value;
+	var image_size_1=document.getElementById("item_image_size_1");
+	var image_size_2=document.getElementById("item_image_size_2");
+	var image_size_3=document.getElementById("item_image_size_3");
+	
+	
+	
+	if(document.getElementById("item_image").checked)
+	{
+
+		if(!(image_size_1.checked) && !(image_size_2.checked) && !(image_size_3.checked))
+		{
+			alert("Please select the size of image you need")
+			return false
+		}
+		else
+			return true		
+	}
+	
+}
+
+$(document).ready(function(){
+  $("#item_image").click(function(){
+    
+		$("#radi_id").toggle(this.checked);	
+  });
+});
+
+</script>
+</head>
+<body>
+<if condition="isset($show_bb_code['show_bb_code']) AND $show_bb_code['show_bb_code']=='show'">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+
+<div class="block-wrapper">
+        
+            <div class="block5">
+            
+                    <div class="block5-top">
+                            <div class="block5-right">
+                                    <div class="block5-left"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="block5-header">GreatCollections encourages consignors to promote listings on the various numismatic forums such as PCGS, NGC, CoinTalk, CoinCommunity and the Lincoln Cent Resource. All you need to do is select the code below and post in the relevant forum.</div>
+                    
+                    <div class="block5-content" style="padding:0px; background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_gray_1x1000.gif) repeat-x;">
+                      	<div style="padding:10px;">
+			<div>
+				<div>BBCode - Use for PCGS/Collectors Universe Forum</div>
+				<textarea id="txtSelect" cols="80" rows="8" >{bb_code}</textarea>
+			</div>
+			<br>
+			<div>
+				<div>HTML - Use for NGC and CoinTalk Forums</div>
+				<div><textarea cols="80" rows="8" >{html}</textarea></div>
+			</div>
+			<br>
+			<div>
+				<div>Plain Text</div>
+				<div><textarea cols="80" rows="8" >{text}</textarea></div>
+			</div>
+		</div>	 
+                    </div>
+                    
+                    <div class="block5-footer">
+                            <div class="block5-right">
+                                    <div class="block5-left"></div>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+	
+	</td>
+</tr>
+</table>		
+<else />
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+		
+		<form name="post_forum_form" method="post" onSubmit="return validate_form()" action="post_forum.php" >
+		<input type="hidden" name="cmd" value="invoicing" />
+			
+			<div>From the following,Select the options you neeeded to post in forum</div>
+			
+			<table>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_title" id="item_title" value="3" />Item Title
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_id" id="item_id" value="1" />Item Id
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_image" id="item_image" value="2" />Item Image
+					</td>
+				</tr>
+				<tr id="radi_id" style="display:none;" >
+					<td>
+					</td>
+					<td>
+					</td>
+					<td colspan="3">
+						<input type="radio" name="item_image_size[]" id="item_image_size_1" value="1" />Thumbnail
+						<input type="radio" name="item_image_size[]" id="item_image_size_2" value="2" />Medium
+						<input type="radio" name="item_image_size[]" id="item_image_size_3" value="3" />Full
+					</td>
+				</tr>
+					
+				<!--<tr>
+					<td>
+						<input type="checkbox" name="item_denomination" id="item_denomination" value="5" />ITEM DENOMINATION
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_series" id="item_series" value="6" />ITEM SERIES
+					</td>
+				</tr>-->
+
+				<tr>
+					<td>
+						<input type="checkbox" name="item_start_price" id="item_start_price" value="7" />Item Start Price
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_end_date" id="item_end_date" value="8" />Item Ending Date
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" name="item_description" id="item_description" value="4" />Item Description
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" name="submit" value="GET CODE" >
+					</td>
+				</tr>
+			</table>
+
+		</form>	
+	</td>	
+</tr>
+</table>
+	
+</if>
+</body>

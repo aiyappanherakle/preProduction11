@@ -1,0 +1,193 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		
+		<a href="consignments.php"><span>Listing</span></a>
+		<a href="consignments.php?cmd=create" ><span>Create</span></a> 
+	   <a href="consignments.php?cmd=list_raw_send" ><span>List Raw</span></a>
+	   <a href="consignments.php?cmd=search"  class="sel" ><span>Search</span></a>
+	<a href="consignments.php?cmd=pen_con_list"  ><span>Pending List</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Consignments</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Search</h2>
+			
+			
+			     <form method="get" action="{ilpage[consignment]}" accept-charset="UTF-8" id="consignment" style="margin: 0px;">
+				    <input type="hidden" name="cmd" value="search" />
+					<input type="hidden" name="subcmd" value="search_now" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Coin  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+															 <tr class="alt1">
+						<td width="5%" class="gray">Item ID</td>
+					    <td width="5%" class="gray"><input type="text" name="item"></td>
+						<td><input type="radio" name="radio_item" value="AND" checked="checked">&nbsp;&nbsp;<b> And </b> &nbsp;&nbsp;<input type="radio" name="radio_item" value="OR">&nbsp;&nbsp; <b> OR </b> &nbsp;&nbsp;</td>
+						</tr>
+                               <tr class="alt1">
+						<td width="5%" class="gray">PCGS</td>
+					    <td width="5%" class="gray"><input type="text" name="pcgs"></td>
+						<td><input type="radio" name="radio_pcgs" value="AND" checked="checked">&nbsp;&nbsp;<b> And </b> &nbsp;&nbsp;<input type="radio" name="radio_pcgs" value="OR">&nbsp;&nbsp; <b> OR </b> &nbsp;&nbsp;</td>
+						</tr>
+						
+						<tr class="alt1">
+						<td width="5%" class="gray">Key word</td>
+					    <td width="5%" class="gray"><input type="text" name="keyword"></td>
+						<td><input type="radio" name="radio_keyword" value="AND" checked="checked">&nbsp;&nbsp;<b> And </b> &nbsp;&nbsp;<input type="radio" name="radio_keyword" value="OR">&nbsp;&nbsp; <b> OR </b> &nbsp;&nbsp;</td>
+						</tr> 						
+					
+						<tr class="alt1">
+						<td width="5%" class="gray">Pedigree</td>
+					    <td width="5%" class="gray"><input type="text" name="pedigree"></td>
+						<td><input type="radio" name="radio_ped" value="AND" checked="checked">&nbsp;&nbsp;<b> And </b> &nbsp;&nbsp;<input type="radio" name="radio_ped" value="OR">&nbsp;&nbsp; <b> OR </b> &nbsp;&nbsp;</td>
+						</tr>
+						
+						</tr>
+						<tr class="alt1">
+						<td width="5%" class="gray">Site ID</td>
+					    <td width="5%" class="gray">
+						<select name="site_id" style="width:160px;">
+								<option value="0">In GC</option>
+								<option value="1">In Ebay</option>
+								<option value="2">In Bids.com</option>
+						</select></td>
+						<td><input type="radio" name="radio_siteid" value="AND" checked="checked">&nbsp;&nbsp;<b> And </b> &nbsp;&nbsp;<input type="radio" name="radio_siteid" value="OR">&nbsp;&nbsp; <b> OR </b> &nbsp;&nbsp;</td>
+						</tr> 
+						<tr class="alt1">
+						<td width="5%" class="gray">CAC</td>
+					    <td width="5%" class="gray"><input type="text" name="cac"></td>
+						<td><input type="radio" name="radio_cac" value="AND" checked="checked">&nbsp;&nbsp;<b> And </b> &nbsp;&nbsp;<input type="radio" name="radio_cac" value="OR">&nbsp;&nbsp; <b> OR </b> &nbsp;&nbsp;</td>
+						</tr> 
+						<tr class="alt1">
+						<td width="5%" class="gray">Star</td>
+					    <td width="5%" class="gray"><input type="text" name="star"></td>
+						<td><input type="radio" name="radio_star" value="AND" checked="checked">&nbsp;&nbsp;<b> And </b> &nbsp;&nbsp;<input type="radio" name="radio_star" value="OR">&nbsp;&nbsp; <b> OR </b> &nbsp;&nbsp;</td>
+						</tr>
+						<tr class="alt1">
+						<td width="5%" class="gray">Certificate</td>
+					    <td width="5%" class="gray"><input type="text" name="certificate"></td>
+						
+						</tr>
+                                <tr class="alt1" >
+                                  <td nowrap="nowrap"><span class="gray">{_sort_results_by}</span></td>
+                                  <td><label for="orderbyasc"><input type="radio" id="orderby" name="orderby" value="ASC" />{_ascending}</label></td>
+								  <td>
+                                        <label for="orderbydesc"><input type="radio" name="orderby" value="DESC" checked="checked" />{_descending}</label></td>
+                                  </tr>
+                                <tr>
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                <script type="text/javascript">
+                                <!--
+                                inlineCB = new iL_Inline('inlineCB', 'members', 'subscribers', '{_go}');
+                                //-->
+                                </script>							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+					
+				 
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number_search} Coins Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="12%" align="left">Coin ID </td>
+								<td width="12%">PCGS</td>
+								<td width="12%">Category</td>
+								<td width="12%">End Date</td>
+								<td width="12%">Site ID</td>
+								<td width="12%">Site ID</td>
+								<td width="12%">Star</td>
+								<td width="12%">Action</td>
+							
+							  </tr>
+							  <loop name="coin_listing_search">
+								<tr class="alt1" valign="top">
+								
+								 <td nowrap="nowrap"><span class="blue">{coin_id}</span></td>
+								  <td>{pcgs}</td>
+								  <td>{Category}</td>
+								  <td width="12%">{End_Date}</td>
+								  <td width="12%">{Site_Id}</td>
+								  <td width="12%">{Quantity}</td>
+								  <td width="12%">{Star}</td>
+								  <td width="12%">{action}</td>
+								 
+								</tr>
+							  </loop name="coin_listing_search">
+							   <if condition="isset($show['no']) AND $show['no'] == 'no_result'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="8" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							 
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				  
+      				
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

@@ -1,0 +1,85 @@
+		<link type="text/css" href="{https_server}/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="{https_server}/functions/javascript/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="{https_server}/functions/javascript/jquery-ui-1.8.17.custom.min.js"></script>
+<div id="v3body4">
+
+	<!-- sub navigation -->
+
+	<div id="sub">
+		<div id="subnav">
+			<a href="accountant.php" class="sel"><span>Invoices</span></a>
+			<a href="sales_tax.php"><span>Sales Tax</span></a>
+			<a href="sales_tax.php?cmd=all_sales"><span>All Sales Tax</span></a> 
+		</div>
+	</div>
+
+	<!-- /sub navigation -->
+	
+<!-- begin content -->
+<div id="content">
+<div class="header">Sales Summary</div>
+<br />
+	
+ 				
+				 
+						<div class="block">		
+								<div class="block-top">
+									<div class="block-right">
+											<div class="block-left"></div>
+									</div>
+								</div>
+								<div class="block-header">All the sales details between the selected dates will be exported to a csv</div>
+								<div class="block-content" style="padding:0px">
+								<form name="ilform" action="" method="post" accept-charset="UTF-8" style="margin: 0px;" >
+						  		<input type="hidden" name="cmd" value="export_invoice_csv" />
+								<table align="center" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+								<tr>
+								<td>
+								Starting Date
+								</td>
+								<td>
+								<input id="datepicker" name="start_date" type="text">
+								 
+								</td>
+								</tr>
+								<tr>
+								<td>
+								End Date
+								</td>
+								<td>
+								<input id="datepicker1" name="end_date" type="text">
+								 
+								</td>
+								</tr>
+								<tr>
+								<td colspan="2" align="center">
+								<input type="submit" class="buttons" value=" {_export} " name="print" style="font-size:15px" />
+								 
+								</td>
+								</tr>
+								</table>
+								</form>
+								</div>
+								<div class="block-footer">
+									<div class="block-right">
+										<div class="block-left"></div>
+									</div>
+								</div>
+							</div>
+					 
+							 
+						
+						<script>
+								$(function() {
+									$("#datepicker").datepicker({
+											dateFormat: 'yy-mm-dd',
+										});
+									$("#datepicker1").datepicker({
+											dateFormat: 'yy-mm-dd',
+										});
+										// Custom function to enable SUNDAY only in jquery calender
+								});
+						</script>
+ 
+</div>
+</div>								

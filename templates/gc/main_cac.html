@@ -1,0 +1,106 @@
+<style type="text/css">
+#seperator
+{
+    width: 0px;
+}
+#textim{
+
+background-image: url("{https_server}images/gc/coin_bg.jpg");
+
+width:198px;
+
+height:160px;
+
+}
+#fetit
+
+{
+
+background:none;
+
+color:#303030;
+
+font-size:12px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+
+text-transform:capitalize;
+
+}
+#amo
+
+{
+
+background:none;
+
+color:#E16E19;
+
+font-size:14px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+
+text-transform:capitalize;
+
+}
+</style>
+<div class="block-wrapper">        
+<div class="block">
+
+        <div class="block-top">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+        <div class="block-header">CAC Verfied Coins</div>
+        <div class="block-content-yellow" style="padding:9px"><div class="smaller">{_overview}</div></div>
+        <div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding:14px">
+        
+        	<div>CAC was founded by John Albanese in 2007, as a third-party to grading services.  CAC experts examine coins previously certified by either the Professional Coin Grading Service (PCGS) or the Numismatic Guaranty Corporation of America (NGC). CAC then affixes a distinctive green sticker to the holder of each coin which, in its judgment, fully merits the grade that was assigned.  Each sticker incorporates a tamper-resistant hologram.
+			<br /><br />           
+           In addition to attracting additional bidders for CAC-verified coins, CAC actively makes a market in CAC coins, further backing up their product.  Press releases issued by CAC state that CAC has bought over $100 million in CAC coins between 2007 and 2010.
+			<br /><br />
+            <strong>Great</strong>Collections is a CAC Authorized Dealer and Submitter, and can have your coins sent to CAC for review.  Please contact us for more information about our services for CAC coins.
+            <br /><br />
+             <a href="{http_server}search.php?q=cac&mode=product&sort=01" style="text-decoration:underline;">Click here to view CAC coins on GreatCollections</a>.<br />
+            <a href="{http_server}forms/" style="text-decoration:underline;">CAC coins for sale?  Download a consignment form here</a>.           
+            <br /><br />
+             <strong>Sample of a CAC Verified Coins:</strong><br />
+			CAC <br /><br />
+            <center>
+            <img src="{https_server}images/gc/grading_services/cac_pcgs_certified_coin.jpg" / width=200 height=265 alt="PCGS CAC Coin">&nbsp;&nbsp;
+            <img src="{https_server}images/gc/grading_services/cac_ngc_certified_coin.jpg" / width=200 height=283 alt="NGC CAC Coin">&nbsp;&nbsp;
+            <!--<img src="" / width=190 height=250 alt="Gold CAC Coin">      -->      
+           
+            </center>
+
+            </div>
+            
+       	</div>
+                
+        <div class="block-footer">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+		
+		<br /><br />
+<if condition="isset($show['result'])">
+<div style="width:950px;margin-top:-30px;">
+      <div id="auction_box" style="width: 928px;"> 
+         <div id="title_text">Featured Coin Auctions</div>
+         <div>&nbsp;</div>
+         {myfeature}      
+      </div>
+</div>
+</if> 	       
+
+</div>
+</div>

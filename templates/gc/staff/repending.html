@@ -1,0 +1,237 @@
+<script type="text/javascript">
+function selectall(){
+		var len = document.getElementsByName('documents[]');
+        for (var idx = 0; idx < len.length; idx++) {
+		document.getElementsByName('documents[]')[idx].checked = true;
+		
+        }
+}
+function deselectall(){
+		var len = document.getElementsByName('documents[]');
+        for (var idx = 0; idx < len.length; idx++) {
+		document.getElementsByName('documents[]')[idx].checked = false;
+        }	
+}	
+function invert(){
+        var len = document.getElementsByName('documents[]');
+        for (var idx = 0; idx < len.length; idx++) {
+		if (document.getElementsByName('documents[]')[idx].checked==false){
+		    document.getElementsByName('documents[]')[idx].checked=true;}
+        else{
+	        document.getElementsByName('documents[]')[idx].checked=false;}
+			}	
+		
+}
+</script>
+<script type="text/javascript">
+function checkpending(lis, sea)
+{
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4){
+		
+			document.getElementById('listed_ajax').innerHTML= request.responseText;
+			//document.getElementById('sitvalue').innerHTML= '<input type="submit" class="buttons" value=" {_search} " onclick="return checklistedajax('+lis+',document.getElementById(\'serachid\').value);" style="font-size:15px" />';
+			
+			
+		}
+		else{
+			document.getElementById('listed_ajax').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='consignment_ajax.php?pending_list_user=' +lis+'&pending_list_con='+sea;
+	request.open("GET", url,true);
+	request.send(null);
+}
+</script>
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="pendings.php" class=""><span>Pending</span></a>
+		<a href="pendingsnew.php" class=""><span>Pending User</span></a>
+		<a href="rependings.php" class="sel"><span>Re-list</span></a>
+		<a href="auction_archive.php" class=""><span>Auction Archive</span></a>
+		<a href="auction_details_change.php" class=""><span>To Modify</span></a>
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+<!-- begin content -->
+<div id="content">
+<div class="header">Re-List Pending</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Items</h2>
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{numbers} List of relist
+							
+							<span style=" float: right;padding-top:4px;">
+										<span class="blue" style="font-size:14px">
+										<a href="javascript:void(0)"onClick="selectall();" style="text-decoration:underline; font-weight: normal;">{_select_all}</a></span>
+										&nbsp;&nbsp; 
+										<span class="blue" style="font-size:14px">
+										<a href="javascript:void(0)" onClick="deselectall();" style="text-decoration:underline;font-weight: normal;">{_deselect_all}</a></span>
+										&nbsp;&nbsp;
+										<span class="blue" style="font-size:14px">
+										<a href="javascript:void(0)" onClick="invert();" style="text-decoration:underline;font-weight: normal;">{_invert}</a></span>
+										&nbsp;&nbsp;
+										</span>
+							
+										
+							</div>
+							<div class="block3-content" style="padding:0px">
+								
+							
+							 
+								<form  action="" method="post" accept-charset="UTF-8" style="margin:0px;">
+								<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="12%" align="left">Username</td>
+								<td width="12%">No.of.pending</td>
+								<td width="12%">Details</td>
+								<!--karthik on july20 for return-->
+								<td width="12%">Return</td>
+								<td width="12%">Checkbox</td>
+							
+							  </tr>
+							  <loop name="user_list">
+								<tr class="alt1" valign="top">
+								  
+								 <td width="12%" align="left">{username}</td>
+								<td width="12%"><strong>{posted}</strong></td>
+								<td width="12%">{action}</td>
+								<!--karthik on july20 for return-->
+								 <td>{return_con}</td>
+								<!--sekar on check box july19-->
+								<td>{checkbox}</td>
+								 
+								</tr>
+							  </loop name="user_list">
+							   <if condition="isset($show['no']) AND $show['no'] == 'user_list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							 
+							</table>
+							    
+							<input type="hidden" name="cmd" value="check" />
+							<table align="center">
+							
+							  <tr><td><input type="submit" value="{_submit}" class="buttons" style="font-size:16px" /></td></tr>    
+						</table>
+						</form>
+						<!--sekar finished on check box july19-->
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number} Item pendings to Re-List - {user_name}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							
+							 
+								
+								<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								<td width="5%" align="left">Coin ID</td>
+								<td width="5%" align="left">User Name</td>
+								<td width="5%" align="left">PCGS</td>
+								<td width="5%" align="left">Title</td>
+								<td width="5%" align="left">Min Bid</td>
+								<td width="5%" align="left">Reserve</td>
+								<td width="5%" align="left">Buy Now</td>
+								<td width="5%" align="left">Ended Date</td>
+								<td width="5%" align="left">Relist</td>	
+								 <td width="5%" align="left">Return</td>	
+							
+							  </tr>
+							  <loop name="pending_listnew">
+								<tr class="alt1" valign="top">
+								  
+								<td width="5%" align="left">{coin_id}</td>
+								<td width="5%" align="left">{user_id}</td>
+								<td width="5%" align="left">{pcgs}</td>
+								<td width="5%" align="left">{Title}</td>
+								<td width="5%" align="left">{Minimum_bid}</td>
+								<td width="5%" align="left">{Reserve_Price}</td>
+								<td width="5%" align="left">{Buy_it_now}</td>
+								<td width="5%" align="left">{End_Date}</td>
+								<td width="5%" align="left">{action}</td>
+								<td width="5%" align="left">{return_con}</td>	
+								
+								 
+								</tr>
+							  </loop name="pending_listnew">
+							   <if condition="isset($show['no']) AND $show['no'] == 'pending_list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							 
+							</table>
+							    
+						
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+			
+					 {pagnation}			
+				
+        	</div>
+             
+			
+	 	 </div>
+		<!-- /  tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

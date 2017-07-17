@@ -1,0 +1,209 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+ <div id="sub">
+	<div id="subnav">
+		<a href="users.php"><span>{_management}</span></a>
+    <a href="email_generator_version4.php"  target="_blank" class=""><span>Email Generator 4.0</span></a> 
+    <a href="email_export.php" class=""><span>Email Export</span></a> 
+    <a href="email_design.php" class=""><span>Email Design</span></a>
+    <a href="email_generator_hotlist.php" ><span>Email Hotlist</span></a> 
+    <a href="email_preferences.php" class="sel"><span>Email Preferences</span></a>
+    <a href="email_generator.php" class=""><span>Email Template</span></a> 
+    <a href="email_template.php" class=""><span>New Template</span></a> 
+    <a href="email_generator_version2.php" class=""><span>Email Template 2.0</span></a> 
+    <a href="uhr_template.php" class=""><span>UHR Template</span></a>
+    <a href="saved_search.php" class=""><span>Search Options</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Email Preferences</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+						     <form method="get" action="email_preferences.php" accept-charset="UTF-8" id="contactus" style="margin: 0px;">
+				    <input type="hidden" name="subcmd" value="search_list" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Contact us  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                         <option value="user_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option value="username" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'username'">selected="selected"</if>>{_username}</option>
+                                        <option value="email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'email'">selected="selected"</if>>{_email}</option>
+                                        <option value="first_name" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'first_name'">selected="selected"</if>>{_first_name}</option>
+                                        <option value="last_name" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'last_name'">selected="selected"</if>>{_last_name}</option>
+                                        <option value="phone" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'phone'">selected="selected"</if>>{_phone}</option>
+                                        <option value="city" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'city'">selected="selected"</if>>{_city}</option>
+                                        <option value="zip_code" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'zip_code'">selected="selected"</if>>{_zipcode}</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18" value="{get_filtervalue}"  style="width: 75%;" />
+                                  </td>
+                                </tr>
+                               
+                               
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                           							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+			 
+					
+				   <if condition="isset($show['search_list']) AND $show['search_list'] == 'search_list'">
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number_search} Email Preferences Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								  <td align="center" width="19%">  ID </td>
+                                  <td width="34%"> User Name </td>
+ 
+                                  <td width="31%">Email</td> 
+								  <td>Actions</td>
+							  </tr>
+							  <loop name="email_preferences_search">
+								<tr class="alt1" valign="top">
+								  
+								<td align="center" nowrap="nowrap"><span   class="gray">{user_id}</span></td>
+								<td nowrap="nowrap"><span class="gray">{username}</span></td>
+ 
+								<td nowrap="nowrap"><span class="gray"><a href="mailto:{email}">{email}</a></span></td> 
+								<td nowrap="nowrap"> &nbsp;&nbsp;{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- {remove} --></td>
+							   </tr>
+							  </loop name="email_preferences_search">
+							   <if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="4" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+
+                             <tr class="alt1" valign="top">
+						      <td  colspan="5" width="12%" ></td>
+						      </tr>
+							 
+							</table>
+ 
+                         
+							
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				   <else />
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number} Email Preferences Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								  <td align="center" width="19%">  ID </td>
+                                  <td width="34%"> User Name </td>
+ 
+                                  <td width="31%">Email</td> 
+								  <td>Actions</td>
+  								
+							 
+							  </tr>
+							  <loop name="email_preferences_listing">
+								<tr class="alt1" valign="top">
+								  
+								<td align="center" nowrap="nowrap"><span   class="gray">{user_id}</span></td>
+								<td nowrap="nowrap"><span class="gray">{username}</span></td>
+ 
+								<td nowrap="nowrap"><span class="gray"><a href="mailto:{email}">{email}</a></span></td> 
+								<td nowrap="nowrap"> &nbsp;&nbsp;{edit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- {remove} --></td>
+								   
+ 								 
+							  </loop name="email_preferences_listing">
+							  
+							  <if condition="isset($show['no']) AND $show['no'] == 'list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+							</table>
+							 {listing_pagnation}
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				</if>
+      				
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->

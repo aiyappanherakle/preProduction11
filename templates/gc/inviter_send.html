@@ -1,0 +1,103 @@
+<form action="" method="POST" name="openinviter">{oi_messages}
+    <input type="hidden" name="step" value="send_invites">
+    <input type="hidden" name="provider_box" value="{provider_box}">
+    <input type="hidden" name="email_box" value="{email_box}">
+    <input type="hidden" name="oi_session_id" value="{oi_session_id}">
+    <div class="block2-wrapper">
+        <div class="block2">
+            <div class="block2-top">
+                <div class="block2-right">
+                    <div class="block2-left"></div>
+                </div>
+            </div>
+            <div class="block2-header">{_step_2}: {_add_a_message}</div>
+            <div class="block2-content">
+                <div style="padding:3px">
+
+                    <textarea rows="5" cols="50" name="message_box" class="thTextArea" style="width:300px;" onchange="document.getElementById('usermessage').innerHTML = this.value;">{message_box}</textarea>
+
+                    <input type="button" value=" {_Preview_Message} " class="buttons" style="font-size:14px" onclick="javascript:jQuery('#message_preview_modal').jqm({modal: false}).jqmShow();" />
+                    
+
+
+                </div></div><div class="block2-footer">
+                <div class="block2-right">
+
+                    <div class="block2-left"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="block2-wrapper">
+        <div class="block2">
+            <div class="block2-top">
+                <div class="block2-right">
+                    <div class="block2-left"></div>
+                </div>
+            </div>
+            <div class="block2-header">{_step_3}:{_choose_your_contacts}</div>
+            <div class="block2-content">
+                <div class="gray" style="padding-left: 5px; padding-top: 6px; font-size: 16px;">
+<strong>{_invite_your_contacts_to_join_you_get_paid_}</strong>
+</div>
+                <div>
+                        <table cellspacing="6" cellpadding="1" dir="ltr" width="100%">
+                        <tr class="thTableHeader"><td colspan="{invitetdhead_colspan}"></td></tr>
+
+                        <if condition="$contact_count == 0">
+                            <tr class=""><td align="center" style="padding:20px;" colspan="{invitetdhead_colspan}">{_you_do_not_have_any_contacts_in_your_address_book}.</td></tr>
+
+                            <else />
+                            <tr class=""><td><input type="checkbox" onChange="toggleAll(this)" name="toggle_all" title="Select/Deselect all" checked>{_invite}?</td><td>{_name}</td>{email_label}</tr>
+                            {contact_list}
+                        </if>
+
+                    </table>
+                     
+                </div></div><div class="block2-footer">
+                <div class="block2-right">
+
+                    <div class="block2-left"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="block2-wrapper">
+        <div class="block2">
+            <div class="block2-top">
+                <div class="block2-right">
+                    <div class="block2-left"></div>
+                </div>
+            </div>
+            <div class="block2-header">{_step_4}: {_add_some_extra_emails} <i>({_optional})</i></div>
+            <div class="block2-content">
+
+                <div style="padding:3px">
+
+                    <table cellspacing="6" cellpadding="1" dir="ltr" width="100%">
+                        {extra_emails}
+                        
+                    </table>
+
+                </div> </div><div class="block2-footer">
+                <div class="block2-right">
+
+                    <div class="block2-left"></div>
+                </div>
+            </div>
+        </div>
+</div>
+
+    <input type="submit" name="send" value="{_Send_invites}" class="thButton">
+
+</form>
+
+<div id="message_preview_modal" class="modal modal_window" style="display: none; cursor: default; width:520px; height:330px">
+{email_preview}
+<!--<div id="usermessage"></div>-->
+
+</div>

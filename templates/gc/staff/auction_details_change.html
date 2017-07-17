@@ -1,0 +1,712 @@
+<script>
+function validate()
+{
+if((document.getElementById("from_user_id").value==''))
+{
+alert("Enter From User Box");
+return false;
+}
+else if(document.getElementById("to_user_id").value=='')
+{
+alert("Enter To User Box");
+return false;
+}
+else if((document.getElementById("from_user_id").value)==(document.getElementById("to_user_id").value))
+{
+alert("Same UserId In both Field. Please Change Any UserID");
+return false;
+}
+else
+return true
+}
+function fetch_user_details(userid)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+{// code for IE7+, Firefox, Chrome, Opera, Safari
+xmlhttp=new XMLHttpRequest();
+}
+else
+{// code for IE6, IE5
+xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.onreadystatechange=function()
+{
+if (xmlhttp.readyState==4 && xmlhttp.status==200)
+{
+returned=xmlhttp.responseText;
+result=returned.split("|");
+document.getElementById("from_user").value=result[1]	 
+document.getElementById("from_user_details").innerHTML=result[0];
+}
+}
+xmlhttp.open("GET","auction_details_change.php?get_user_detail=" +userid,true);
+xmlhttp.send();
+}
+function fetch_touser_details(userid)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+{// code for IE7+, Firefox, Chrome, Opera, Safari
+xmlhttp=new XMLHttpRequest();
+}
+else
+{// code for IE6, IE5
+xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.onreadystatechange=function()
+{
+if (xmlhttp.readyState==4 && xmlhttp.status==200)
+{
+returning=xmlhttp.responseText;
+result=returning.split("|");
+document.getElementById("to_user").value=result[1];
+document.getElementById("to_user_details").innerHTML=result[0];
+}
+}
+xmlhttp.open("GET","auction_details_change.php?get_user_detail=" +userid,true);
+xmlhttp.send();
+}
+function fetch_user_details1(userid)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+{// code for IE7+, Firefox, Chrome, Opera, Safari
+xmlhttp=new XMLHttpRequest();
+}
+else
+{// code for IE6, IE5
+xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.onreadystatechange=function()
+{
+if (xmlhttp.readyState==4 && xmlhttp.status==200)
+{
+document.getElementById("user_details").innerHTML=xmlhttp.responseText;
+}
+}
+xmlhttp.open("GET","auction_details_change.php?get_fromuser_detail=" +userid,true);
+xmlhttp.send();
+}
+//tamil * 29.6.12 * ajax and validation * start \\
+function fetch_user_id(userid)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+{// code for IE7+, Firefox, Chrome, Opera, Safari
+xmlhttp=new XMLHttpRequest();
+}
+else
+{// code for IE6, IE5
+xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.onreadystatechange=function()
+{
+if (xmlhttp.readyState==4 && xmlhttp.status==200)
+{
+returned=xmlhttp.responseText;
+result=returned.split("|");
+document.getElementById("ajax_user_id").value=result[0]
+document.getElementById("regular_html").innerHTML=result[1]
+document.getElementById("fixed_html").innerHTML=result[2]
+}
+}
+if(userid > 0 || userid !='') 
+{
+xmlhttp.open("GET","auction_details_change.php?get_user_id="+userid,true);
+xmlhttp.send();
+}
+else{
+alert("enter username/user_id/email/firstname/lastname")
+}
+} 
+function validate_form()
+{
+if(document.getElementById("user_name_details").value=='')
+{
+alert("Enter some value");
+return false;
+}	
+else
+{
+var chks = document.getElementsByName('checkbox[]');
+var checkCount = 0;
+for (var i = 0; i < chks.length; i++)
+{
+if (chks[i].checked)
+{
+checkCount++;
+}
+}
+if (checkCount < 1)
+{
+alert("Please select at least one project to proceed.");
+return false;
+}
+return true;
+}
+}
+//tamil * 29.6.12 * ajax and validation *  end \\
+</script>
+<!--<script >
+function fetch_user_details(userid)
+{
+if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+request = new XMLHttpRequest();
+} else if (window.ActiveXObject) { // Internet Explorer
+request = new ActiveXObject("Microsoft.XMLHTTP");
+}
+request.onreadystatechange = function ajaxResponse(){
+if (request.readyState==4){
+document.getElementById('from_user_details').innerHTML= request.responseText;
+}
+}
+url ='auction_details_change.php?get_user_detail=' +userid;
+if((userid.length>0) && (parseInt(userid)>0))
+{
+request.open("GET", url,true);
+request.send(null);
+}
+return false;
+}
+</script>-->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+<div id="subnav">
+<a href="pendings.php" class=""><span>{_pending}</span></a>
+<a href="pendingsnew.php" class=""><span>{_pending_user}</span></a>
+<a href="rependings.php" class=""><span>{_relist}</span></a>
+<a href="auction_archive.php" class=""><span>{_auction_archive}</span></a>
+<a href="auction_details_change.php" class="sel"><span>To Modify</span></a>
+</div>
+</div>
+<!-- /sub navigation -->
+<div id="content">
+<div class="header">{_auction_details_change}</div>
+<br />
+<div class="tab-pane">
+<div class="tab-pane" id="reportlistings">
+<!--tamil * 26:06:12 * sold_to_pending * start -->
+<div class="tab-page">
+<h2 class="tab">SoldToPending</h2>
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>	
+<div class="block3-header">SoldToPending</div>
+<div class="block3-content-gray" style="padding:9px">
+<div class="smaller">
+Move the sold item to pending items 
+</div>
+</div>
+<div class="block3-content" style="padding:0px">
+<form method="post" action="auction_details_change.php" accept-charset="UTF-8"  style="margin: 0px;" >
+<input type="hidden" name="cmd" value="sold_to_pending" />
+<input type="hidden" name="user_id"  id="ajax_user_id" />								
+<table  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">									
+<tr>
+<td>
+Username/email/First or Last name 
+</td>
+<td>
+<input type="text" name="user_name_details" id="user_name_details" value="" onblur="fetch_user_id(this.value)"   />
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td id="regular_html">
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td id="fixed_html">
+</td>
+</tr>
+</table>
+<table>		
+<tr>
+<td colspan="2" align="center">
+<input type="submit" name="submit" value="Move" onclick="return validate_form();" />
+</td>
+</tr>
+</table> 
+</form>
+</div>
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--tamil * 26:06:12 * sold_to_pending *  end -->				
+<div class="tab-page">
+<h2 class="tab">Dead Beat</h2>
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>						
+<div class="block3-header">Dead Beat</div>
+<div class="block3-content-gray" style="padding:9px">
+<div class="smaller">
+Terminate this user and move the items from his unpaid invoice to another user 
+</div>
+</div>
+<div class="block3-content" style="padding:0px">
+<form method="get" action="auction_details_change.php" accept-charset="UTF-8"  style="margin: 0px;">
+<input type="hidden" name="subcmd" value="dead_beat">
+<input type="hidden" name="from_user" id="from_user" value="">
+<input type="hidden" name="to_user" id="to_user" value="">
+<table  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">
+<tr>
+<td style="width: 90px;">From Userid/user name </td><td style="width: 90px;"><input type="text" name="from_user_id" id="from_user_id" onblur="fetch_user_details(this.value);fetch_user_details1(this.value)"/></td><td id="from_user_details"  style="width: 90px;"></td>
+</tr>
+</table>
+<table>
+<tr>
+<td id="user_details"></td>
+</tr>
+</table>
+<table  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">
+<tr>
+<td style="width: 90px;"> To Userid/user name </td><td style="width: 90px;"><input type="text" name="to_user_id" id="to_user_id" onblur="fetch_touser_details(this.value)"/></td><td id="to_user_details"  style="width:90px;"></td>
+</tr>
+<td id="move_result"></td>
+<tr>
+<td colspan="2" align="center"><input type="submit" name="submit" value="submit" onclick="return validate();"/></td>
+</tr>
+<tr>
+</tr>
+</table>
+</form>		 
+</div>
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+<!--block wrapper-->
+</div>
+<div class="tab-page">
+<h2 class="tab">{_cancel_sale}</h2>
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+<div class="block3-header">{_cancel_sale}</div>
+<div class="block3-content-gray" style="padding:9px">
+<div class="smaller">{_this_system_will_delete_project_bidsproxy_bids_and_invoice_tables_and_then_it_will_update_in_project_table_canceled_item_will_appear_on_relist_tab_with_corresponding_consignor_name}
+</div>
+</div>
+<div class="block3-content" style="padding:0px">
+<form method="get" action="auction_details_change.php" accept-charset="UTF-8"  style="margin: 0px;">
+<input type="hidden" name="cmd" value="cancel_sale" />	
+<table  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">
+<tr>
+<td>{_project_id} </td><td><input type="text" name="proj_id" value=""/></td>
+</tr>
+<tr><td>OR</td></tr>
+<tr>
+<td>Buyer Email/UserId</td><td><input type="text" name="email" value=""/></td>
+</tr>
+
+<tr>
+<td>{_mark_start_price_as_current_price} </td><td> <input type="checkbox" name="start_price" value="1"/></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" name="submit" value="submit"/></td>
+</tr>
+</table>
+</form>	
+
+<if condition="isset($show['no_cancel_list']) and $show['no_cancel_list']==false">
+<table>
+<tr><td>ItemId</td><td>Title</td><td>InvoiceId</td><td>Price</td><td>Statement Date</td><td>Consignor Email</td><td>Select</td></tr>
+
+<loop name="cancel_list">
+<tr>
+<td>{projectid}</td>
+<td width="100">{project_title}</td>
+<td>{invoiceid}</td>
+<td>{amount}</td>
+<td>{statementdate}</td>
+<td>{seller_email}&nbsp;[{seller_id}]</td>
+
+<td><input type="checkbox" name="selectcancel[]" value="{checkbox_value}"></td>
+</tr>
+</loop name="cancel_list">
+	 
+	 
+
+</table>
+</if>
+</div>
+
+
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+<!--block wrapper-->
+</div>
+<!--	buynow cancel	-->	
+<div class="tab-page">
+<h2 class="tab">{_buynow_cancel}</h2>
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+<div class="block3-header">{_buynow_cancel}</div>
+<div class="block3-content-gray" style="padding:9px">
+<div class="smaller">{_this_system_will_delete_buynow_orders_and_invoice_tables_and_then_it_will_update_in_project_table_canceled_item_will_appear_on_relist_tab_with_corresponding_consignor_name}
+</div>
+</div>
+<div class="block3-content" style="padding:0px">
+<form method="post" action="auction_details_change.php" accept-charset="UTF-8"  style="margin: 0px;">
+<input type="hidden" name="subbuynow" value="buynow_cancel" />	
+<table  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">
+<tr>
+<td>User ID / Buyer Id    </td><td><input type="text" name="user_id" value=""/></td>
+</tr>
+<tr align="left">
+<td> ( OR )</td>
+</tr>                    
+<tr>
+<td>{_username}</td><td><input type="text" name="username" value=""/></td>
+</tr>
+<tr>
+<td>{_project_id}</td><td><input type="text" name="proj_id" value=""/></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" name="submit" value="Go"/></td>
+</tr>
+</table>
+</form>	
+</div>
+<div class="block3-header">Buynow Cancel List</div>
+<div class="block3-content" style="padding:0px">
+<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+<tr> 
+<td>Orderid</td>	
+<td>{_project_id}</td>							 
+<td>BuyerId</td>
+<td>OwnerId</td>
+<td>InvoiceId</td>
+<td>Qty</td>
+<td>Amount</td>
+<td>Delete</td>
+</tr>
+<loop name="total_list"> 							
+<tr class="alt1" valign="top">								
+<td>{orderid}</td>
+<td>{project_id}</td>															
+<td>{buyer_id}</td>
+<td>{owner_id}</td>
+<td>{invoiceid}</td>
+<td>{qty}</td>
+<td>{amount}</td>
+<td>{delete}</td>
+</tr>
+</loop name="total_list">
+<tr>
+<td>{htm}</td>
+</tr>
+</table>	
+</div>
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+<!--block wrapper-->
+</div>
+<div class="tab-page">
+<h2 class="tab">{_manual_award}</h2>
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+<div class="block3-header">{_manual_award}</div>
+<div class="block3-content-gray" style="padding:9px">
+<div class="smaller">
+{_this_system_will_used_to_sell_items_to_particular_user_after_the_project_ends_without_bids}
+</div>
+</div>
+<div class="block3-content" style="padding:0px">
+<form method="post" action="auction_details_change.php" accept-charset="UTF-8"  style="margin: 0px;">
+<input type="hidden" name="cancelcmd" value="auction_sale" />		
+<table  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">
+<tr>
+<td>{_project_id}</td><td><input type="text" name="proj_id" value=""/></td>
+</tr>
+<tr>
+<td>User Details:</td><td><input type="text" name="buyer_id" value=""/>											
+<input type="radio" name="user_confirm" value="1" checked="checked" id="user_confirm1" >User: ID / Buyer Id
+<input type="radio" name="user_confirm" value="0" id="user_confirm2">User Name</td>
+</tr>
+<tr>
+<td>Selling Price</td><td><input type="text" name="current_price" value=""/>({_enter_the_current_price_in_this_text_box__otherwise_the_old_current_price_wil_be_considered})</td>
+</tr>
+<tr>
+<td colspan="2" align=""><input type="submit" name="submit" value="submit"/></td>
+</tr>
+</table>
+</form>		 
+</div>
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+<!--block wrapper-->
+</div>
+
+<!--Move item-->
+<div class="tab-page">
+<h2 class="tab">Change buyer </h2>
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+<div class="block3-header">Change buyer details</div>
+<div class="block3-content-gray" style="padding:9px">
+<div class="smaller">
+Change buyer details for a coin/coins entered to an inhouse buyer account
+</div>
+</div>
+<div class="block3-content" style="padding:0px">
+<form method="post" action="auction_details_change.php" accept-charset="UTF-8"  style="margin: 0px;">
+<input type="hidden" name="cmd" value="change_buyer" />		
+<table  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">
+<tr>
+<td>{_project_id} Sepreated by comma</td><td><input type="text" name="project_id" value="{given_projects}"/></td>
+</tr>
+<tr>
+<td>&nbsp;</td><td>OR</td>
+</tr>
+<tr>
+<td>Invoice Id</td><td><input type="text" name="invoice_id" value="{given_invoice_id}"/></td>
+</tr>
+<tr>
+<td>&nbsp;</td><td>OR</td>
+</tr>
+<tr>
+<td>Buyer Id</td><td><input type="text" name="buyer_id" value="{given_buyer_id}"/>(<input type="checkbox" name="both" id="both"  value="1"><label for="both" >Moved Pending invoices too, will move only unpaid if unchecked)</label></td>
+</tr>
+
+
+
+<tr>
+<td colspan="2" align=""><input type="submit" name="submit" value="submit"/></td>
+</tr>
+</table>
+</form>		
+ </div>
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<if condition="isset($show['change_buyer_confirm']) and $show['change_buyer_confirm']=true">
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+<div class="block3-header">list</div>
+<div class="block3-content-gray" style="padding:9px">
+
+</div>
+<div class="block3-content" style="padding:0px">
+ 	 
+<form method="post" action="auction_details_change.php" accept-charset="UTF-8"  style="margin: 0px;">
+<input type="hidden" name="cmd" value="change_buyer_confirm" />		
+	
+<table><tr><td>Project id</td><td>Seller id</td><td>buyer id</td><td>Type</td><td>Amount</td><td>Select</td></tr>
+<loop name="change_buyers">
+<tr>
+<td>{project_id}</td><td>{sellername}</td><td>{buyername}</td><td>{filtered_auctiontype}</td><td>{currentprice}</td><td><input type="checkbox" name="selecte[]" value="{checkbox_value}"></td></tr>
+</loop name="change_buyers">
+<tr>
+<td colspan="3" align="right"><strong>Inhouse User Id</strong></td><td  colspan="3"><input type="text" name="inhouse_user_id" value="82"/>(set to default 82, user name 1111)</td>
+</tr>
+<td colspan="6"><input type="submit" name="submit" value="submit"/></td>
+</tr>
+</table>
+</form>
+
+ 
+</div>
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+</if>
+
+<!--block wrapper-->
+</div>
+<!--Move item-->
+
+<!--	//list return-->
+
+<div class="tab-page">
+<h2 class="tab">{_return_list}</h2>
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+<div class="block3-header">({number}) {_list_of_return_coin}</div>
+<div class="block3-content-gray" style="padding:9px">
+<div class="smaller">
+{_this_system_helps_to_move_the_returned_item_back_in_coin_area}
+</div>
+</div>
+<div class="block3-content" style="padding:0px">
+<form  action="auction_details_change.php" method="post" accept-charset="UTF-8" style="margin:0px;">
+<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+<tr class="alt2">
+<td width="12%">Coin ID</td>
+<td width="12%">ConsignID</td>
+<td width="12%">Seller</td>
+<td width="12%">Date of Return</td>
+<td width="12%">Shipping Fees</td>
+<td width="12%">Charge Fees</td>
+<td width="12%">Return Back to GC</td>
+</tr>
+<loop name="return_sale_list">
+<tr class="alt1" valign="top">
+<td width="12%">{coin_id}</td>
+<td width="12%">{consign_id}</td>
+<td width="12%">{sel}</td>
+<td width="12%">{return_date}</td>
+<td width="12%">{shipamt}</td>
+<td width="12%">{chargeamt}</td>
+<td width="12%">{returnback}</td>
+</tr>
+</loop name="return_sale_list">
+<if condition="isset($show['no']) AND $show['no'] == 'return_list'">
+<tr class="alt1">
+<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+</tr>
+</if>
+</table>
+<input type="hidden" name="cmd" value="check" />
+<table align="center">
+<tr class="alt1" valign="top">
+<td>
+<input type="submit" value="{_submit}" class="buttons" style="font-size:16px" />
+</td>
+</tr>
+<tr>
+<td>
+{return_pagnation}
+</td>
+</tr>     
+</table>
+</form>	
+</div>
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+<!--block wrapper-->
+</div>
+<!--vijay work on 31.10.13 start -->
+<div class="tab-page">
+<h2 class="tab">Auction To Buy Now</h2>
+<div class="block-wrapper">
+<div class="block3">
+<div class="block3-top">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+<div class="block3-header">Change an Auction item to Change to Buy Now (Ie. Item Without bid .)</div>
+<div class="block3-content-gray" style="padding:9px">
+<div class="smaller">this system will change project table and coin tables and then it will update in  a Auction item to Change to Buy Now item in project table and coin table.The item will  Change to Buy Now with corresponding consignor name
+</div>
+</div>
+<div class="block3-content" style="padding:0px">
+<form method="get" action="auction_details_change.php" accept-charset="UTF-8"  style="margin: 0px;">
+<input type="hidden" name="cmd" value="auction_to_buynow" />	
+<table  cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" align="center">
+<tr>
+<td>{_project_id} </td><td><input type="text" name="project_id" value=""/></td>
+</tr>
+
+<tr>
+<td>Buy now price</td><td><input type="text" name="buynow_price" value=""/></td>
+</tr>
+
+
+<tr>
+<td colspan="2" align="center"><input type="submit" name="submit" value="submit"/></td>
+</tr>
+</table>
+</form>	
+
+
+</div>
+
+
+<div class="block3-footer">
+<div class="block3-right">
+<div class="block3-left"></div>
+</div>
+</div>
+</div>
+</div>
+<!--block wrapper-->
+</div>
+
+<!--vijay work on 31.10.13 end -->
+</div>					
+</div>
+</div>
+<br />
+<br />

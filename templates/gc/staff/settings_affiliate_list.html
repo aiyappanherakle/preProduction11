@@ -1,0 +1,134 @@
+<!-- begin v3body4 -->
+<div id="v3body4" style="width: 952px;">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav" style="width: 949px;">
+		<a href="settings.php"><span>{_grading_list}</span></a>
+		<a href="settings.php?cmd=referalid"><span>{_referal_id}</span></a> 
+		<a href="settings.php?cmd=shipping"><span>{_shipping}</span></a> 
+		<a href="settings.php?cmd=dailydeals"><span>{_daily_deals}</span></a> 
+		<a href="settings.php?cmd=searchpage"><span>{_search_page}</span></a> 
+		<a href="settings.php?cmd=alertarea"><span>{_alert_area}</span></a> 
+		<a href="settings.php?cmd=affiliatelist" class="sel"><span>{_affiliate_listing}</span></a> 
+		<a href="settings.php?cmd=promocode"><span>{_promocode}</span></a>
+		<a href="settings.php?cmd=coincondition"><span>{_coin_condition}</span></a>
+		<a href="settings.php?cmd=timeline"><span>{_time_line}</span></a>
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">{_settings}</div><br />
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+	
+		<!-- Affliate Listing -->
+		<div class="tab-page">
+			
+			<h2 class="tab">{_affiliate_listing}</h2>
+			
+			<form method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+			<input type="hidden" name="cmd" value="affiliatelist" />
+			<input type="hidden" name="subcmd" value="{hiddenfieldsubcmdaff}" />
+			{hiddendo}
+			{hiddenid}	
+			<div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_affiliate_listing}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">{_add_new_affiliate_listing}</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                                <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="20%"><span class="gray">{_add_new_listing}</span></td>
+                                  <td width="80%"><input type="text" name="sitename" size="18" value="{sitename}" style="width: 50%;" />
+                                       </td>
+                                </tr>                       
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_save} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                                							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+			</div>
+			</form>
+					
+			
+			<form id="staffsettings" method="post" action="{ilpage[staffsettings]}" accept-charset="UTF-8" style="margin:0px">
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{_listing}</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								<td width="20%" nowrap="nowrap">{_listing_site}</td>
+								<td width="15%" align="left">{_edit}</td>
+								<td width="65%">{_delete}</td>
+							  </tr>
+							  <loop name="affiliatelist">
+								<tr class="alt1" valign="top">
+								  <td nowrap="nowrap" valign="top"><span style="font-size:17px" class="gray">{sitename}</span></td>
+								  <td nowrap="nowrap">{edit}</td>
+								 <td nowrap="nowrap">{remove}</td>
+								 							 
+								</tr>
+							  </loop name="affiliatelist">
+							  <if condition="isset($show['no_affiliatelist']) AND $show['no_affiliatelist']">
+								<tr class="alt1">
+								  <td colspan="3" nowrap="nowrap" align="center">{_no_results_found}</td>
+								</tr>
+							  </if>
+							  							  
+							  <tr>
+								<td colspan="11">{prevnext}</td>
+							</tr>
+							</table>
+
+								
+</div>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+      				</form>	
+												
+				
+			</div>
+
+			
+		<!-- / Affliate Listing -->
+		
+		
+</div>
+<!-- / tab pane -->

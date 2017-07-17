@@ -1,0 +1,330 @@
+<style>
+/* Quotes */
+.quotereply {
+    border: 1px #eee solid;
+    border-left: 3px #ccc solid;
+    background-color: #fff;
+    background-repeat: repeat;
+    margin: 10px 15px;
+    padding: 10px;
+}
+
+* html .quotereply {
+    height: 1%;
+}
+
+* html .quotereply {
+    padding-bottom: 15px;
+}
+
+.quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-1.gif');
+    overflow: auto;
+}
+
+.quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-2.gif');
+    border-color: #eef;
+    border-left-color: #ccf;
+}
+
+.quotereply .quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-3.gif');
+    border-color: #efe;
+    border-left-color: #cfc;
+}
+
+.quotereply .quotereply .quotereply .quotereply {
+    background-image: url('{template_relativeimagepath}{template_imagesfolder}quote-background-4.gif');
+    border-color: #fee;
+    border-left-color: #fcc;
+}
+
+/* Threaded Mode Indentss */
+.topic-reply-indent3 {
+	margin-left: 20px;
+	}
+.topic-reply-indent4 {
+	margin-left: 40px;
+	}
+.topic-reply-indent5 {
+	margin-left: 60px;
+	}
+.topic-reply-indent6 {
+	margin-left: 80px;
+	}
+.topic-reply-indent7 {
+	margin-left: 100px;
+	}
+.topic-reply-indent8 {
+	margin-left: 120px;
+	}
+.topic-reply-indent9 {
+	margin-left: 140px;
+	}
+.topic-reply-indent10 {
+	margin-left: 160px;
+	}
+.topic-reply-indent11 {
+	margin-left: 180px;
+	}
+.topic-reply-indent12 {
+	margin-left: 200px;
+	}
+.topic-reply-indent-max {
+	margin-left: 220px;
+	}
+.topic-reply-indent2,
+.topic-reply-indent3,
+.topic-reply-indent4,
+.topic-reply-indent5,
+.topic-reply-indent6,
+.topic-reply-indent7,
+.topic-reply-indent8,
+.topic-reply-indent9,
+.topic-reply-indent10,
+.topic-reply-indent11,
+.topic-reply-indent12,
+.topic-reply-indent-max 
+{
+	background: transparent url('{template_relativeimagepath}{template_imagesfolder}topic-indent-left.gif') no-repeat left top;
+	padding-left: 18px;
+}
+</style>
+
+<if condition="!empty($searchtext)"><!--<div style="padding-bottom:10px">{searchtext}</div>--></if>
+
+<div class="bigtabs" style="padding-bottom:10px; padding-top:5px">
+<div class="bigtabsheader">
+<ul>
+	<li title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum">{_forum}</a><else /><a href="{ilpage[forum]}">{_forum}</a></if></li>
+	<li title="" class="<if condition="isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'search' AND (empty($ilance->GPC['view']) OR isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'custom')">on</if>"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/search">{_search}</a><else /><a href="{ilpage[forum]}?cmd=search">{_search}</a></if></li>
+</ul>
+<div style="padding-top:6px"></div>
+<span style="padding-left:15px" id="forumoptions">
+    <span class="smaller blue">
+    	<if condition="$ilconfig['globalauctionsettings_seourls']">
+        	<if condition="isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'today'">
+            	<span class="black"><strong>{_view_todays_topics}</strong></span>
+            <else />
+            	<a href="{http_server}forum/search/today">{_view_todays_topics}</a>
+            </if>
+        <else />
+        	<if condition="isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'today'">
+            	<span class="black"><strong>{_view_todays_topics}</strong></span>
+            <else />
+            	<a href="{http_server}{ilpage[forum]}?cmd=search&amp;view=today">{_view_todays_topics}</a>
+            </if>
+        </if>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <if condition="$ilconfig['globalauctionsettings_seourls']">
+        	<if condition="isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'new'">
+            	<span class="black"><strong>{_view_new_topics}</strong></span>
+            <else />
+            	<a href="{http_server}forum/search/new">{_view_new_topics}</a>
+            </if>
+        <else />
+        	<if condition="isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'new'">
+            	<span class="black"><strong>{_view_new_topics}</strong></span>
+            <else />
+	        	<a href="{http_server}{ilpage[forum]}?cmd=search&amp;view=new">{_view_new_topics}</a>
+            </if>
+        </if>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <if condition="$ilconfig['globalauctionsettings_seourls']">
+        	<if condition="isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'updated'">
+            	<span class="black"><strong>{_view_updated_topics}</strong></span>
+            <else />
+            	<a href="{http_server}forum/search/updated">{_view_updated_topics}</a>
+            </if>
+        <else />
+        	<if condition="isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'updated'">
+            	<span class="black"><strong>{_view_updated_topics}</strong></span>
+            <else />
+        		<a href="{http_server}{ilpage[forum]}?cmd=search&amp;view=updated">{_view_updated_topics}</a>
+            </if>
+        </if>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <if condition="$ilconfig['globalauctionsettings_seourls']">
+        	<if condition="isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'unanswered'">
+            	<span class="black"><strong>{_view_unanswered_topics}</strong></span>
+            <else />
+            	<a href="{http_server}forum/search/unanswered">{_view_unanswered_topics}</a>
+            </if>
+        <else />
+        	<if condition="isset($ilance->GPC['view']) AND $ilance->GPC['view'] == 'unanswered'">
+            	<span class="black"><strong>{_view_unanswered_topics}</strong></span>
+            <else />
+            	<a href="{http_server}{ilpage[forum]}?cmd=search&amp;view=unanswered">{_view_unanswered_topics}</a>
+            </if>
+        </if>
+    </span>
+</span>
+</div>
+</div>
+<div style="clear:both;"></div>
+
+<if condition="isset($show['searchmode']) AND $show['searchmode'] == 0">
+<form method="get" action="{ilpage[forum]}" name="ilform" accept-charset="UTF-8" style="margin: 0px;">
+<input type="hidden" name="cmd" value="search" />
+<input type="hidden" name="view" value="custom" />
+<div class="block-wrapper">
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_forum_search}</div>
+			<div class="block-content-yellow" style="padding:9px"><div class="smaller">{_use_advanced_forum_search}</div></div>
+			<div class="block-content" style="padding:0px">
+				
+				<table border="0" cellpadding="9" cellspacing="1" width="100%">
+				<tr> 
+					<td width="50%" align="left" valign="top"> 
+				
+						<div style="padding-bottom:3px"><strong>{_keywords}</strong></div>
+						<table cellpadding="0" cellspacing="0" border="0">
+						<tr> 
+							<td colspan="2"><input type="text" name="q" value="" maxlength="49" size="20" class="input" style="font-family: verdana" /> <select name="topictitlesonly" style="font-family: verdana">
+							<option value="-1" selected="selected">{_search_topics_and_replies}</option>
+							<option value="1" >{_search_topic_titles_only}</option>
+							</select></td>
+						</tr>
+						</table>
+                        
+						<div style="padding-bottom:5px; padding-top:12px"><strong>Show results as</strong></div>
+						<div class="gray"><label for="topics"><input type="radio" name="show" value="topics" checked="checked" /> <img src="{template_relativeimagepath}{template_imagesfolder}topicicon.gif" border="0" alt="" /> Topics</label> &nbsp;&nbsp;&nbsp;<label for="posts"><input type="radio" name="show" value="posts" /> <img src="{template_relativeimagepath}{template_imagesfolder}topicposticon.gif" border="0" alt="" /> Posts</label></div>
+                        
+                  </td>
+					<td width="50%" valign="top"> 
+						<div style="padding-bottom:3px"><strong>Search by Username</strong></div>
+						<div><input type="text" name="searchuser" value="" maxlength="49" size="25" class="input" /> <label for="exactname"><input type="checkbox" name="exactname" value="1" id="exactname" checked="checked" /> <span class="gray">{_exact_name}</span></label></div></td>
+				</tr>
+				<tr class="alt1"> 
+					<td align="left" valign="top">
+                    
+                    	<hr size="1" width="100%" style="color:#cccccc;  margin-bottom:1px" />
+                    
+						<div style="padding-bottom:3px"><strong>{_category}</strong></div>
+						<div>{forum_category_selection}</div>
+                        
+                        <hr size="1" width="100%" style="color:#cccccc; margin-top:8px; margin-bottom:1px" />
+                        
+						<div style="padding-top:8px; padding-bottom:3px"><strong>{_results_display}</strong></div>
+						<select name="oldfirst" style="width:150px; font-family: verdana">
+						<option value="0" selected="selected">{_oldest_posts_first}</option>
+						<option value="1">{_newest_posts_first}</option>
+						</select>
+						
+					</td>
+					<td align="left" valign="top">
+						<hr size="1" width="100%" style="color:#cccccc; margin-bottom:1px" />
+						<div style="padding-bottom:3px"><strong>{_find_topics_with}</strong></div>
+						
+						<div><select name="replycount" style="width:150px; font-family: verdana">
+						<option value="0" selected="selected">{_at_least}</option>
+						<option value="1" >{_at_most}</option>
+						</select>
+						<input type="text" class="input" name="limit" size="3" value="0" /> &nbsp;&nbsp;<span class="smaller gray">{_replies}</span></div>
+                        
+						<hr size="1" width="100%" style="color:#cccccc; margin-top:6px; margin-bottom:1px" />
+						
+						
+						<div style="padding-top:8px; padding-bottom:3px"><strong>{_search_topics_from}</strong></div>
+						<select name="searchfrom" style="width:150px; font-family: verdana">
+						<option value="0" selected="selected">{_any_date}</option>
+						<option value="lastvisit">{_your_last_visit}</option>
+						<option value="1">{_yesterday}</option>
+						<option value="7">{_a_week_ago}</option>
+						<option value="14">{_two_weeks_ago}</option>
+						<option value="30">{_a_month_ago}</option>
+						<option value="90">{_three_months_ago}</option>
+						<option value="180">{_six_months_ago}</option>
+						<option value="365">{_a_year_ago}</option>
+						</select> 
+						
+						<select name="oldernewer" style="font-family: verdana">
+						<option value="newer" selected="selected">{_and_newer}</option>
+						<option value="older">{_and_older}</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input style="font-size:15px" type="submit" value="{_search}" class="buttons" /></td>
+				</tr>
+				</table>
+				
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+</form>
+
+<script type="text/javascript">	setupAllTabs(); </script>
+<else />
+<div class="block-wrapper">
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header"><span style="font-size:15px">{_search}: <span class="blue">{searchtext}</span></span></div>
+			<!--<div class="block-content-yellow" style="padding:9px"><div class="smaller">xxx</div></div>-->
+			<div class="block-content" style="padding:0px">
+				
+				<table cellpadding="9" cellspacing="1" border="0" width="100%">
+				<tr class="alt2">
+					<td width="28" align="center">RSS</td>
+					<td align="left">{_type}</td>
+					<td align="left">{_topic} / {_topic_starter}</td>
+					<td width="166">{_last_post}</td>
+					<td width="62">{_replies}</td>
+					<td width="57">{_views}</td>
+					<td width="58">{_forum}</td>
+				</tr>
+				<loop name="topics">
+				<tr class="alt1" valign="top">
+					<td align="left"><span style="padding-left:4px"><a href="{http_server}{ilpage[forum]}?cmd=rss&amp;tid={tid}"><img src="{template_relativeimagepath}{template_imagesfolder}feed.png" border="0" alt="{_syndicate_this_topic}" /></a></span></td>
+					<td align="center">{searchposttype}</td>
+					<td width="907" align="left"><span style="float:right">{issubscribed}</span><span class="blue">{ttitle}</span> <span class="smaller" style="color:#999999">{daysold}</span>
+                    <if condition="isset($ilance->GPC['show']) AND $ilance->GPC['show'] == 'posts'"><div style="padding-bottom:3px">{postpreview}</div></if><div class="smaller">{tposter}</div></td>
+					<td nowrap="nowrap" width="166"><span style="float:right; padding-left:3px"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/{tid}/lastpost">{lastpostbulb}</a><else /><a href="{ilpage[forum]}?tid={tid}&amp;view=lastpost">{lastpostbulb}</a></if></span> <div align="left" class="smaller">{lastpost}</div></td>
+					<td align="center"><span class="gray" style="font-size:15px">{replies}</span></td>
+					<td align="center"><span class="gray" style="font-size:15px">{views}</span></td>
+					<td align="left"><span class="blue">{forum}</span></td>
+				</tr>
+				</loop name="topics">
+				<if condition="isset($notopics) AND $notopics">
+				<tr>
+					<td colspan="7" align="center">{_no_topics_found}.  <span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum/search">{_try_another_search}</a><else /><a href="{ilpage[forum]}?cmd=search">{_try_another_search}</a></if></span>.</td>
+				</tr>
+                <else />
+                <tr>
+					<td colspan="7">{prevnext}</td>
+				</tr>
+				</if>
+				</table>
+                
+	  </div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+
+<span class="blue"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="{http_server}forum">Choose a forum to post a new topic</a><else /><a href="{http_server}{ilpage[forum]}">Choose a forum to post a new topic</a></if></span>
+
+</if>

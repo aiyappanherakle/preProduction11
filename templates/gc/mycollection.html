@@ -1,0 +1,518 @@
+<style type="text/css">
+tr.sec 
+{
+background-color:#ffffff;
+}
+tr.fir 
+{
+background-color:#F1F4F4;
+}
+#conf
+{
+color:#000000;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+font-weight:bold;
+font-size:16px;
+}
+.itemid {
+color:#272F44;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+font-weight:bold;
+font-size:12px;
+}
+tr#testg td, #testg
+{
+color:#10272E;
+font-size:12px;
+font-weight:bold;
+line-height:14px;
+text-decoration:none;
+}
+.myti {
+color:#3D4149;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+font-weight:bold;
+font-size:15px;
+}
+td.titl{
+color:#ffffff;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+font-weight:bold;
+font-size:13px;
+}
+#start {
+
+-moz-box-shadow:1px 1px 10px #7d7d7d;
+-webkit-border-radius: 12px;
+-moz-border-radius: 12px;
+border-radius: 12px;
+border:2px solid #7d7d7d;
+
+ -moz-box-shadow: 1px 1px 10px #7d7d7d;
+ -webkit-box-shadow: 1px 1px 10px #7d7d7d;
+ box-shadow: 1px 1px 10px #7d7d7d;
+}
+#namedisplay
+{
+color:#434343;
+font-family:Tahoma, Arial, "Times New Roman", Verdana;
+text-transform:capitalize;
+font-weight:bold;
+}
+</style>
+
+<script type="text/javascript">
+
+function clic(ww,op)
+{
+var f = ww; 
+
+var u = document.getElementById(f).value = op;
+
+
+}
+function moveti(q,w)
+{
+
+if(w == '0' || w == '')
+{
+jQuery('#success').jqm({modal: false}).jqmShow();
+document.getElementById('conf').innerHTML = 'Sorry select dropdown';
+}
+ else
+ {
+    if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	}   else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	    request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4)
+		{   
+		    if(request.responseText == 'move')
+			{jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML = 'Successfully Moved';
+			
+			window.location = "mycollection.php";
+			}
+						
+		}
+		else
+		{jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='mycollection.php?moveti=' +q+'&myna='+w;
+	request.open("GET", url,true);
+	request.send(null);
+	}
+}
+function savestuff(it,pc,my,us)
+{
+ if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	}   else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	    request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4)
+		{   
+		    if(request.responseText == 'sav')
+			{jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML = 'Successfully Added';
+			jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmHide();
+			window.location = "mycollection.php";
+			}
+						
+		}
+		else
+		{
+		   jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='mycollection.php?myitemid=' +it+'&pcgs='+pc+'&mycolid='+my+'&user_te='+us;
+	request.open("GET", url,true);
+	request.send(null);
+}
+function addmystuff(it,pc,us)
+{
+jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmShow();
+document.getElementById('item').value = it;
+document.getElementById('pcgs').value = pc;
+document.getElementById('user').value = us;
+document.getElementById('ite').innerHTML = it;
+document.getElementById('pcg').innerHTML = pc;
+}
+function delmycoinsave(my,ue)
+{
+
+ var where_to = confirm("Do you really want to Delete My coin collection");
+ if (where_to == true)
+ {
+   
+    if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	}   else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	    request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4)
+		{   
+		    if(request.responseText == 'upd')
+			{
+			
+			jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML = 'Successfully Deleted';
+			
+			window.location = "mycollection.php";
+			}
+						
+		}
+		else
+		{   jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='mycollection.php?mycoinsave_del=' +my+'&user_te='+ue;
+	request.open("GET", url,true);
+	request.send(null);
+}	
+	
+}
+
+function delmycp(my,ue)
+{
+
+    var where_to = confirm("Do you really want to Delete My coin collection");
+ if (where_to == true)
+ {
+   
+ 
+  
+    if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	}   else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	    request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4)
+		{   
+		    if(request.responseText == 'sor')
+			{
+			jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML = 'Sorry, Item presented in that coolection so u can move it and delete';
+			window.location = "mycollection.php";
+			}
+		    else
+			{
+			jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML = 'Successfully Deleted';
+			
+			window.location = "mycollection.php";
+			}
+						
+		}
+		else
+		{   jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='mycollection.php?mycollection_del=' +my+'&user_te='+ue;
+	request.open("GET", url,true);
+	request.send(null);
+}	
+	
+}
+
+
+function myname(val,tes)
+{
+
+if(val == '')
+{
+jQuery('#success').jqm({modal: false}).jqmShow();
+document.getElementById('conf').innerHTML = 'Field is Empty';
+
+}
+else
+{
+    if (window.XMLHttpRequest) { // Mozilla & other compliant browsers
+		request = new XMLHttpRequest();
+	}   else if (window.ActiveXObject) { // Internet Explorer
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	    request.onreadystatechange = function ajaxResponse(){
+		if (request.readyState==4)
+		{   
+		    if(request.responseText == 'exit')
+			{
+			jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML = 'Already Exit';
+			
+			}
+			else
+			{
+			jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML = 'Successfully Added';
+			
+			window.location = "mycollection.php";
+			
+			}
+			
+		}
+		else
+		{   jQuery('#success').jqm({modal: false}).jqmShow();
+			document.getElementById('conf').innerHTML= "<img src='images/default/wheel.gif'/>";	
+		}
+	}
+	url ='mycollection.php?mycollection_name=' +val+'&user_te='+tes;
+	request.open("GET", url,true);
+	request.send(null);
+	
+	}
+
+
+}
+
+/*VENKAT COLLECTION*/
+function showfav(a)
+{
+var a=a;
+if (a.length==0)
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+	
+	/*window.location="mycollection.php";*/
+    }
+  }
+xmlhttp.open("GET","ajax.php?&col1="+a,true);
+xmlhttp.send();
+}
+/*VENKAT COLLECTION*/
+</script>
+<div id="txtHint" style="display:block"></div>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">
+     <div id="start">
+	 <div style="padding:15px;">
+	 <table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+     <tr valign="top">
+	 <strong><span class="myti">{_my_coin_collection}</span></strong>
+	 <td>
+	 </td>
+	 </tr>
+	 </table>
+	 <br />
+	 <table width="100%" border="0">
+  <tr>
+    <td class="myti" style="font-size:11px;">{_this_is_a_convenient_system_to_keep_track_of_all_of_your_coins_whether_purchased_from_greatcollections_or_a_third_party_upload_images_keep_track_of_costs_and_acquisition_dates_and_more}<br /><br /></td>
+  </tr>
+</table>
+
+	 
+	<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+	<tr style="background-color:#232B42;">
+	<td width="12%" class="titl">{_item_id}</td>
+	<td width="14%" class="titl">{_pcgs}</td>
+	<td width="12%" class="titl">{_amount}</td>
+	<td width="12%" class="titl">{_description}</td>
+	<td width="12%" class="titl">{_bought_on}</td>
+	<td width="12%" class="titl">{_seller}</td>
+	<td width="12%" nowrap="nowrap" class="titl">{_add_to_mycoincollection}</td>
+	
+	</tr>
+	<loop name="item_won_list">
+	<tr  id="testg" valign="top" class="{class}" >
+	<td width="12%"><img src="{template_relativeimagepath}{template_imagesfolder}more_link.gif" /> {project_id}</td>
+	<td width="14%">{cid}</td>
+	<td width="12%">US$ {Amount}</td>
+	<td width="12%">{description}</td>
+	<td width="12%">{SoldDate}</td>
+	<td width="12%">{Seller}</td>
+	<td width="12%">{CancelSale}</td></tr>
+   </loop name="item_won_list">
+   <if condition="isset($show['er']) AND $show['er'] == 'won_list'">
+   <tr >
+	 <td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+   </tr>
+   </if>
+   </table>
+    
+	<div style="height:35px;">&nbsp;</div>
+	<div id="test">
+   <table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+   <tr valign="top">
+   <td><strong><span class="myti">{_add_a_new_collection_name}</span></strong>
+   </td></tr><tr valign="top"> <td>&nbsp;
+   </td></tr>
+   <tr><td class="myti" style="font-size:11px;">{txt_coin}</td></tr>
+  <tr valign="top"> <td><input type="text" id="mycol" value=""/>
+   </td></tr><tr valign="top"> <td>&nbsp;
+   </td></tr>
+ <tr valign="top">  <td><span onclick="myname(document.getElementById('mycol').value,'{user_id}');" style="cursor:pointer;color:#5A8CAF;"><strong>{_add1}</strong></span>
+   </td></tr>
+  <tr valign="top"><td> <span id="namedisplay"></span></td></tr>
+  
+   </table>
+   	<div style="height:35px;">&nbsp;</div><strong><span class="myti">{_list_of_my_collections}</span></strong> <div style="height:5px;">&nbsp;</div>
+	<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+	<tr style="background-color:#232B42;">
+	<td width="12%" class="titl">{_my_list}</td>
+	<td width="14%" class="titl">{_action}</td>
+	</tr>
+	<loop name="my_coll">
+	<tr class="{class}" id="testg" valign="top">
+	<td width="12%">{myname}</td>
+	<td width="14%">{del}</td>
+	</tr>
+   </loop name="my_coll">
+   <tr><span id="namedisplayd"></span></tr>
+   <if condition="isset($show['dno']) AND $show['dno'] == 'listmy'">
+   <tr class="alt1">
+	<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+   </tr>
+   </if>
+   </table>
+   </div>
+   
+   
+   <div style="height:35px;">&nbsp;</div><strong><span class="myti">{_list_all_my_coin_collection}</span></strong> <div style="height:5px;">&nbsp;</div>
+    <span id="updates"></span><span id="dfd"></span>
+	
+	
+    <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+	<tr style="background-color:#232B42;">
+	<td width="12%" class="titl">{_pcgs}</td>
+	<td width="14%" class="titl">{_description}</td>
+	<td width="14%" class="titl">{_bought_from_gc}</td>
+	<td width="14%" class="titl">{_current_collection}</td>
+	<td width="14%" class="titl">{_move_to}</td>
+	<td width="14% " class="titl">{_edit}</td>
+	<td width="14%" class="titl">{_delete}</td>
+	<td width="14%" class="titl">{_favourite} </td>
+	</tr>
+	<loop name="my_coll_total">
+	<tr class="{class}" id="testg" valign="top">
+	<td width="12%">{pcgs}</td>
+	<td width="14%">{description}</td>
+	<td width="14%">{gc}</td>
+	<td width="14%">{myname}</td>
+	<td width="14%">{mov} {move}{movre} </td>
+	<td width="14%">{edit}</td>
+	<td width="14%">{dele}</td>
+	<td width="14%">{fav}</td>
+	</tr>
+    </loop name="my_coll_total">
+    <tr></tr>
+    <if condition="isset($show['no']) AND $show['no'] == 'total'">
+    <tr class="alt1">
+	<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+    </tr>
+    </if>
+    </table>
+	<div style="height:50px;">&nbsp;</div><strong><span class="myti">{_my_favourite_collections}</span></strong> <div style="height:5px;">&nbsp;</div>
+	<div class="myti" style="font-size:11px;">{_designate_up_to_six_coins_that_you_consider_your_favorites_to_add_a_favorite_click_on_the_name_of_your_collection_above_and_then_star_the_coin}</div>
+	<br />
+	<div style="border: 1px solid #0033FF"></div>
+	<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+	<tr style="background-color:#232B42;">
+	<td width="12%" class="titl">{_pcgs}</td>
+	<td width="14%" class="titl">{_description}</td>
+	</tr>
+	<loop name="my_fav">
+	<tr  id="testg" valign="top">
+	<td width="12%">{pcgs}</td>
+	<td width="14%">{des}</td>
+	</tr>
+   </loop name="my_fav">
+   <tr><span id="namedisplayd"></span></tr>
+   <if condition="isset($show['favno']) AND $show['favno'] == 'listmy'">
+   <tr class="alt1">
+	<td colspan="11" nowrap="nowrap" align="center">{_no_results_found}</td>
+   </tr>
+   </if>
+   </table>
+   </div>
+	 <div style="height:35px;">&nbsp;</div><strong><span class="myti">{_add_new_coin_that_you_bought_some_where_out_of_gc} </span></strong> <div style="height:5px;">&nbsp;</div>
+    <div style="border: 1px dotted #232B42;">
+    <form method="post" action="{ilpage[mydata]}" accept-charset="UTF-8" name="ilform" style="margin: 0px;">
+    <input type="hidden" name="subcmd" value="mydata_coin" />
+    <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+	<tr >
+	<td width="12%" id="testg">{_pcgs}</td></tr>
+	<tr ><td width="14%"><input type="text" name="pcgs"/></td></tr>
+	<tr ><td width="14%" id="testg">{_description}</td></tr>
+	<tr ><td width="14%"><textarea name="description"></textarea></td></tr>
+	<tr ><td width="14%" id="testg">{_grade}</td></tr>
+	<tr ><td width="14%">{pro_grade}</td> </tr>
+	
+	<tr ><td width="14%" id="testg">{_image_upload}</td></tr>
+	<tr ><td width="14%">{varcase}{uploadproductbutton}</td></tr>
+	<tr ><td width="14%"><p>
+	  <input type="submit" value="ADD" />
+	</p>
+	   </td></tr>
+	</table>
+	
+	</form>
+	</div>
+	</div>
+	</div>
+   </td>
+</tr>
+
+</table>
+
+
+ <div style="display:none;cursor: default; width: 560px; height: 200px; z-index: 1000; " class="modal modal_window jqmID1" id="success"> 
+ <div align="center" style="padding-top: 80px;" id="conf"></div>
+ </div>
+ <div style="display:none;cursor: default; width: 560px; height: 200px; z-index: 1000; " class="modal modal_window jqmID1" id="zipcode_nag_modal">   <div id="savemyid">    
+  <div class="myti">{_add_coin_to_my_coin_collection}</div><div style="height:5px;">&nbsp;</div>
+  <div style="height:5px;">&nbsp;</div>
+   <div class="itemid">{_item_id}</div>
+   
+   <div><span id="ite"></span></div>
+   <div style="height:5px;">&nbsp;</div>
+   <div  class="itemid">{_pcgs}</div>
+   <div><span id="pcg"></span></div><div style="height:5px;">&nbsp;</div>
+   <div  class="itemid">{_select_the_collection_you_wish_to_add_this_coin}</div><div style="height:5px;">&nbsp;</div>
+   <div>{listall}</div>
+ 
+<input type="hidden" id="item" value="" name="item_id" />
+<input type="hidden" id="pcgs" value="" name="pcgs" />
+<input type="hidden" id="user" value="" name="user" />
+            
+                <div style="padding-top: 12px;"><span style="cursor:pointer;color:#5A8CAF;" onclick="savestuff(document.getElementById('item').value,document.getElementById('pcgs').value,document.getElementById('myt').value,document.getElementById('user').value);"><strong>{_save}</strong></span> &nbsp;&nbsp;&nbsp;<span class="blue"><a onclick="javascript:jQuery('#zipcode_nag_modal').jqm({modal: false}).jqmHide();" href="javascript:void(0)">{_cancel}</a></span></div>
+            </div>
+		
+           </div>
+      

@@ -1,0 +1,278 @@
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+ 
+<!-- /sub navigation -->
+
+<!-- begin content -->
+<div id="content">
+<div class="header">Bold Highlite Featured</div><br />
+	
+	
+	<!-- tab pane -->
+	<div class="tab-pane">
+	
+			
+		<!-- grading tab page -->
+		<div class="tab-page">
+			
+			<h2 class="tab">Listing</h2>
+						     <form method="get" action="changed_bold_highlite_featured.php" accept-charset="UTF-8" id="CBHF" style="margin: 0px;">
+				    <input type="hidden" name="subcmd" value="search_list" />
+                    <div class="block-wrapper">
+                    <div class="block3">
+                    
+                            <div class="block3-top">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                            <div class="block3-header">{_search}</div>
+                            <div class="block3-content-gray" style="padding:9px"><div class="smaller">You can search and filter Contact us  using the following form below</div></div>
+                            <div class="block3-content" style="padding:0px">
+                                
+                            <table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="{table_cellpadding}">
+                                <tr class="alt1">
+                                  <td width="10%"><span class="gray">Search User</span>
+                                  <td width="90%">
+                                        <select name="filterby" style="font-family: Verdana">
+                                        <optgroup label="{_filter_by}">
+                                        <option value=""></option>
+                                         <option value="u.user_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'u.user_id'">selected="selected"</if>>{_user_id}</option>
+                                        <option value="u.username" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'u.username'">selected="selected"</if>>{_username}</option>
+                                        <option value="u.email" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'u.email'">selected="selected"</if>>{_email}</option>                                       
+                                        <option value="c.coin_id" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'c.coin_id'">selected="selected"</if>>Coin Id</option>
+                                        <option value="c.consignid" <if condition="isset($ilance->GPC['filterby']) AND $ilance->GPC['filterby'] == 'c.consignid'">selected="selected"</if>>Consign Id</option>
+                                        </optgroup>
+                                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="filtervalue" size="18" value="{get_filtervalue}"  style="width: 75%;" />
+                                  </td>
+                                </tr>
+                               
+                               
+                                
+                                <tr>
+                                  <td colspan="2"><input type="submit" class="buttons" value=" {_search} " style="font-size:15px" /></td> 
+                                  </tr>
+                                </table>
+                           							
+                            </div>
+                            
+                            <div class="block3-footer">
+                                    <div class="block3-right">
+                                            <div class="block3-left"></div>
+                                    </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    </form>
+			 
+					<form method="get" action="changed_bold_highlite_featured.php" accept-charset="UTF-8" id="CBHF" style="margin: 0px;">
+						<input type="hidden" name="cmd" value="CBHF_list_edit">
+
+				   <if condition="isset($show['search_list']) AND $show['search_list'] == 'search_list'">
+				   <div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number_search} Bold Highlite Featured Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								  <td> Item ID </td>
+                                  <td style="width:40%;"> Title </td>
+ 
+                                  <td>Bids/Buy</td> 
+								  <td>Current Bid</td>
+								  <td align="center">Bold <input type="checkbox"  name="select-all" id="select-all" /></td>
+								  <td align="center">Highlite <input type="checkbox" name="select-alll" id="select-alll" /></td>
+								  <td align="center">featured <input type="checkbox" name="select-allll" id="select-allll" /></td> 
+							  </tr>
+							  <loop name="bold_highlite_featured_search">
+								<tr class="alt1" valign="top">
+
+								<td>{project_id}</td>
+								<td style="width:40%;">{project_title}</td>
+ 
+								<td>{bids}/{buy}</td> 
+
+								<td> &nbsp;&nbsp;{currentprice}</td>
+					            <td align="center"><input type="checkbox" {bold} value="{project_id}" name="bold[]" id="select-all" /></td>
+								<td align="center"><input type="checkbox" {highlite} value="{project_id}" name="highlite[]" id="select-alll" /></td>
+								<td align="center"><input type="checkbox" {featured} value="{project_id}" name="featured[]" id="select-allll" /></td>
+							   </tr>
+							   <input type="hidden" name="project_id[]" Value="{project_id}" style="margin-left: 420px;">
+							  </loop name="bold_highlite_featured_search">
+							   <if condition="isset($show['no']) AND $show['no'] == 'list_search'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="7" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+
+                              <tr>
+                                     <td colspan="7"><br>
+                                     	 
+                             <input type="submit" name="changed_CBHF_Update" Value="Update" style="margin-left: 420px;">
+                             </td>
+                                   </tr>
+
+							 
+							</table>
+ 
+                         
+							
+
+								
+</div> 
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				   <else />
+					<div class="block-wrapper">
+					<div class="block3">
+					
+							<div class="block3-top">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+							<div class="block3-header">{number} Bold Highlite Featured Found</div>
+							<div class="block3-content" style="padding:0px">
+								
+							<table width="100%" cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}">
+							  <tr class="alt2">
+								
+								  <td> Item ID </td>
+                                  <td style="width:40%;"> Title </td>
+ 
+                                  <td>Bids/Buy</td> 
+								  <td>Current Bid</td>
+								  <td align="center">Bold <input type="checkbox"  name="select-all" id="select-all" /></td>
+								  <td align="center">Highlite <input type="checkbox" name="select-alll" id="select-alll" /></td>
+								  <td align="center">Featured <input type="checkbox" name="select-allll" id="select-allll" /></td> 
+  								
+							 
+							  </tr>
+							  <loop name="bold_highlite_featured">
+								<tr class="alt1" valign="top">
+								  
+								<td>{project_id}</td>
+								<td style="width:40%;">{project_title}</td>
+ 
+								<td>{bids}/{buy}</td> 
+
+								<td> &nbsp;&nbsp;{currentprice}</td>
+					            <td align="center"><input type="checkbox" {bold} value="{project_id}" name="bold[]" id="select-all" /></td>
+								<td align="center"><input type="checkbox" {highlite} value="{project_id}" name="highlite[]" id="select-alll" /></td>
+								<td align="center"><input type="checkbox" {featured} value="{project_id}" name="featured[]" id="select-allll" /></td>
+								 </tr>  
+								 <input type="hidden" name="project_id[]" Value="{project_id}" style="margin-left: 420px;">
+ 								 
+							  </loop name="bold_highlite_featured">
+							  
+							  <if condition="isset($show['no']) AND $show['no'] == 'list'">
+                                                               <tr class="alt1">
+                                                                 <td colspan="7" nowrap="nowrap" align="center">{_no_results_found}</td>
+                                                               </tr>
+                                                         </if>
+                             <tr>
+                                     <td colspan="7"><br>
+                                     	 
+                             <input type="submit" name="changed_CBHF_Update" Value="Update" style="margin-left: 420px;">
+                             </td>
+                                   </tr>
+
+							</table>
+							 {listing_pagnation}
+								
+</div>
+
+
+</form>
+							
+							<div class="block3-footer">
+									<div class="block3-right">
+											<div class="block3-left"></div>
+									</div>
+							</div>
+							
+					</div>
+				</div>
+				</if>
+      				
+	  </div>
+		<!-- / grading tab page -->
+		
+		
+		
+</div>
+<!-- / tab pane -->
+
+<script type="text/javascript"> 
+$( document ).ready(function() {
+$('#select-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $('input[name="bold[]"]:checkbox').each(function() {
+            this.checked = true;                        
+        });
+    }
+	else 
+	{
+	 $('input[name="bold[]"]:checkbox').each(function() {
+            this.checked = false;                        
+        });
+	
+	}
+});
+});
+$( document ).ready(function() {
+$('#select-alll').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $('input[name="highlite[]"]:checkbox').each(function() {
+            this.checked = true;                        
+        });
+    }
+	else 
+	{
+	 $('input[name="highlite[]"]:checkbox').each(function() {
+            this.checked = false;                        
+        });
+	
+	}
+});
+});
+$( document ).ready(function() {
+$('#select-allll').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $('input[name="featured[]"]:checkbox').each(function() {
+            this.checked = true;                        
+        });
+    }
+	else 
+	{
+	 $('input[name="featured[]"]:checkbox').each(function() {
+            this.checked = false;                        
+        });
+	
+	}
+});
+});
+</script>

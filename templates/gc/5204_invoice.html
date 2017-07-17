@@ -1,0 +1,471 @@
+		<link type="text/css" href="{https_server}/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+
+		<script type="text/javascript" src="{https_server}/functions/javascript/jquery-1.7.1.min.js"></script>
+
+		<script type="text/javascript" src="{https_server}/functions/javascript/jquery-ui-1.8.17.custom.min.js"></script>
+
+<script type="text/javascript">
+<!--
+function checkform(formobj)
+{
+	if(document.getElementById("shipper_id").value == '-1')
+	{
+	   alert("Please select a shipping option before continuing.");
+	   return false;
+	 } 
+	return true;
+}
+//-->
+</script>
+
+<!-- begin v3body4 -->
+<div id="v3body4">
+<!-- sub navigation -->
+<div id="sub">
+	<div id="subnav">
+		<a href="users.php" class="sel"><span>{_management}</span></a>
+		<a href="email_generator.php" class=""><span>Email Template</span></a> 
+		<a href="email_template.php" class=""><span>New Template</span></a> 
+		<a href="uhr_template.php" class=""><span>UHR Template</span></a>
+		<a href="email_export.php" class=""><span>Email Export</span></a> 
+		<a href="saved_search.php" class=""><span>Search Options</span></a>
+		<a href="user_watchlist.php" class=""><span>watchlist Export</span></a> 
+		
+	</div>
+</div>
+<!-- /sub navigation -->
+
+<!-- begin content -->
+
+<!-- begin content -->
+<div id="content">
+<h1>BUG #5204</h1>
+	<div class="header">{_subscriber_management} {customername}</div><br />
+
+		<div class="tab-pane" id="userlistings">
+		<div class="tab-page">
+
+				<h2 class="tab">Invoice</h2>
+
+				<div class="block-wrapper">
+
+					<div class="block">
+						
+						<div class="block-top">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+
+							</div>
+						</div>
+						
+						<div class="block-header">Pending Invoice</div>
+						
+						<div class="block-content-yellow" style="padding:9px"><div class="smaller">&</div></div>
+						<form action="5204_invoice.php" method="post">
+							<input type="hidden" name="subcmd" value="view_pending_invoice"/>
+							<input type="hidden" name="uid" value="{id}" />
+							<div class="block-content" style="padding:0px">
+								<table width="100%" border="0" align="center" cellpadding="9" cellspacing="1">
+									<tr>
+										<td>
+											
+										</td>
+									</tr><tr>
+										<td>
+											
+											
+											
+											
+											
+											
+											
+
+<div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0px 2px 15px 0px;">
+<tr>
+<td>
+<div class="grayborder"><div class="n"><div class="e"><div class="w"></div></div></div><div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td style="padding-left:5px;" valign="top"></td>
+	<td><img src="{template_relativeimagepath}{template_imagesfolder}spacer.gif" width="5" height="1"></td>
+	<td style="padding-right:5px;"><if condition="$show['invoicecancelled']">
+<div><div class="header" align="left" style="padding-bottom:3px">{_this_invoice_is_cancelled}</div></div>
+<else />
+
+  <if condition="$show['ispaid'] OR $show['iscomplete']">
+	<div>
+		<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice_checkmark.gif" border="0" alt="" id="invoicepaidicon" /></span> {_amount_paid}: <span class="blue">{amountpaid}</span></div>
+		<div class="smaller gray">{_this_invoice_has_been_paid_in_full} {_as_of} <span class="black">{paiddate}</span></div>
+	</div>
+  </if>
+  
+ <!-- Karthik Changes on Oct-31 for Base Shipping amount --> 
+ 
+  <if condition="$show['isunpaid'] OR $show['isscheduled']">
+	<div>
+		<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice.gif" border="0" alt="" id="invoiceunpaidicon" /></span> {_amount_due}: <span class="red" id="totalamt_area">{totalamount}</span></div>
+		<div class="smaller gray">{_this_invoice_is_pending} {_as_of} <span class="red">{createdate}</span></div>
+        <if condition="isset($show['subscriptionpayment']) AND $show['subscriptionpayment']"><hr size="1" width="100%" style="color:#cccccc" /><div><strong>{_this_is_a_subscription_transaction_once_you_settle_for_the_amount}</strong></div></if>
+	</div>
+  </if>
+  
+ <!-- Changes End --> 
+  
+  <if condition="$show['iscancelled']">
+	<div>
+		<div align="left" style="padding-bottom:3px; font-size:19px"><span style="float:left; padding-right:6px"><img src="{template_relativeimagepath}{template_imagesfolder}icons/invoice.gif" border="0" alt="" id="invoiceunpaidicon" /></span> {_amount_due}: <span class="red">{totalamount}</span></div>
+		<div class="smaller gray">{_this_invoice_is_cancelled}</div>
+	</div>
+  </if>
+  
+</if></td>
+</tr>
+</table>
+</div><div class="s"><div class="e"><div class="w"></div></div></div></div>
+</td>
+</tr>
+</table>
+</div>
+
+<div style="padding-top:6px"></div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td valign="top" width="50%">
+	
+		<div class="block-wrapper">
+		
+			<div class="block">
+			
+					<div class="block-top">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+					<div class="block-header">{_customer_information}</div>
+					
+					<div class="block-content-yellow" style="padding:9px"><div class="smaller"><div>{customername} <span class="gray">GC Username: {customer} </span> </div></div></div>
+					<div class="block-content" style="padding:12px">
+						
+						
+						
+						<!--Murugan For Customer Email-->
+						<div></div><b>{_shipping_address}</b>&nbsp;&nbsp;({_billing_address_information_will_be_asked_later})
+						<!--Murugan For Customer Email-->
+						<div><blockquote>
+						Name: {customername}<br />
+						Email: {customeremail}
+						{customerinfo}
+						
+						<div class="smaller gray" style="padding-top:6px">[ <span class="blue"><a href="{https_server}{ilpage[preferences]}?cmd=profile&amp;redirect={pageurl_urlencoded}">{_edit}</a></span> ]</div>						
+						</blockquote>
+						
+						</div>
+						
+					  
+					</div>
+					
+					<div class="block-footer">
+							<div class="block-right">
+									<div class="block-left"></div>
+							</div>
+					</div>
+					
+			</div>
+		</div>
+	</td>
+
+</tr>
+</table>
+
+<!--Murugan For Item Details-->
+<!--<if condition="isset($show['listing']) AND $show['listing']">-->
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_items_won_purchased}</div>
+			
+			
+			<div class="block-content" style="padding:0px">
+				
+				
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<tr>
+					<td align="left" nowrap="nowrap" class="alt2">Item</td> 
+					<td width="40%" align="left" class="alt2" nowrap="nowrap">Title</td>
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Site</td>
+					<td width="10%" align="left" class="alt2" nowrap="nowrap">Quantity</td> 
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Final Price</td> 
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">Buyer Fee's</td>
+					<td width="15%" align="left" class="alt2" nowrap="nowrap">{_total}</td>
+				</tr>
+				<loop name="regardlist"> 
+				<tr>
+					<td align="left" nowrap="nowrap" valign="top">{item_id}</td>
+					<td align="left" valign="top">{itemtitle}</td>
+					<td align="left" valign="top">{Site_Id}</td>
+					<td align="left" valign="top">{qty}</td>
+					<td align="left" nowrap="nowrap" valign="top">{finalprice}</td>
+					<td align="left" nowrap="nowrap" valign="top">{buyerfees}</td>
+					<td align="left" nowrap="nowrap" valign="top">{totallistamount}</td>
+				</tr>
+				</loop name="regardlist">
+				</table>
+				
+			  
+			</div>
+			
+			<div class="block-footer">
+					<div class="block-right">
+
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+<!--</if>-->
+
+
+<form method="post" action="{ilpage[invoicepayment]}" name="invoicepayment" onsubmit="return checkform(this);" accept-charset="UTF-8" style="margin:0px;">
+<input type="hidden" name="cmd" value="{cmd}" />
+<input type="hidden" name="shipping_cost" id="shipping_cost" value="7.00" />
+<input type="hidden" name="disount_val" id="disount_val" value="0" />
+<input type="hidden" name="checkpromo" id="checkpromo" value="0" />
+{securekey_hidden}
+<div class="block-wrapper">
+
+	<div class="block">
+	
+			<div class="block-top">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+			<div class="block-header">{_total_options_and_payments}</div>
+			{invidhidden}
+			{qtyhidden}
+			{totalhidden}
+			{taxamounthidden}
+			<!--<div class="block-content-yellow"><div class="smaller"></div></div>-->
+			<div class="block-content" style="padding:0px">
+			<table>
+			<tr>
+			<td>
+			<div align="left">
+			<table>
+			<tr>
+			<td>{_gift_code} </td>
+			<td><input type="text" name="promocode" id="promocode" /><input type="button" value="Go" name="go" onclick="return promocodecheck(document.getElementById('promocode').value,'{user_id}')" /></td>
+			</tr>
+			
+			<tr>
+			<td >
+			{_discount_from_gift_code}
+			</td>
+			<td>
+			<div id="promodiv"></div>
+			<div id="promodivvalue"></div>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>Shipping Method </td>
+			<td>{shipper_drop_down}</td>
+			</tr>
+			<tr>
+			<td>Payment Method </td>
+			<td>{payment_method_pulldown}</td>
+			</tr>
+			<tr>
+			<td>&nbsp;</td>
+			<td  style="padding-top: 20px;"><script type="text/javascript" data-ppmnid="48482894571498" src="//ad.where.com/jin/spotlight/ads?pubid=431bbbeb00&format=js&v=2.4&placementtype=234x60&ppmnid=48482894571498&rand=' + Math.round(Math.random() * 100000000000000) + '"></script>
+			</td>
+			</tr>
+			</table>
+			</div>
+			</td>
+			<td>
+			<div align="right">
+				
+				
+				<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+				<!--<tr class="alt1">
+					<td colspan="2"><div style="padding-top:6px; padding-bottom:6px; font-size:13px" class="blue">{description}</div>
+					</td>
+				</tr>-->
+				<tr>
+					<td align="right"><span style="font-size:14px" class="gray">{_subtotal}</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray" id="sub_total_amount_div">{amount}</span></td> 
+				</tr>
+				<if condition="isset($show['taxes']) AND $show['taxes']">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{taxinfo}</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray" id="sales_tax_div">{taxamount}</span></td> 
+				</tr>
+				</if>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="green">Discounts</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" id="dicount_amount_div" class="green">(US$0.00)</span></td> 
+				</tr>
+				<!--<if condition="isset($show['buyer']) AND $show['buyer']">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">Buyer Fee</span></td> 
+					<td width="15%" colspan="-3" align="right" nowrap="nowrap" class="alt1"><span style="font-size:14px" class="gray">{buyerfee}</span></td> 
+				</tr>
+				</if>-->
+				  
+				<TR >
+					<td align="right"><span style="font-size:14px" class="blue">Shipping/Handling Charges</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="gray"  id="ship_cost_div">US$0.00</span></td>
+				</TR>
+				 <if condition="isset($show['miscamount']) AND $show['miscamount']==true">
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{_misc_amount}</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="green">({miscamount})</span></td>
+				</tr>
+				</if>
+				<tr>
+					<td align="right"><span style="font-size:14px" class="green">{_payments}</span></td>
+					<td colspan="-3" align="right" class="alt1"><span style="font-size:14px" class="green">({amountpaid})</span></td>
+				</tr>
+				
+				<tr>
+					<td align="right"><span style="font-size:14px" class="blue">{_total}</span></td>
+					<td colspan="-3" align="right"><span style="font-size:16px" class="blue" id="totalamount_area"><strong>{totalamount}</strong></span></td>
+				</tr>
+				</table>
+				
+			  
+			</div>
+			</td>
+			</tr>
+			</table>
+			</div>
+			<div class="block-footer">
+					<div class="block-right">
+							<div class="block-left"></div>
+					</div>
+			</div>
+			
+	</div>
+</div>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<if condition="isset($show['paymentpulldown']) AND $show['paymentpulldown']">
+	<td valign="top" width="50%">
+	
+	
+	
+	</td>
+	<else />
+	<td valign="top" width="50%">
+	
+	<div class="block-wrapper">
+
+	<div class="block3">
+	
+			<div class="block3-top">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+			<div class="block3-header">{_action} / {_transaction_tools}</div>
+			
+			<!--<div class="block-content-yellow"><div class="smaller"></div></div>-->
+			<div class="block3-content" style="padding:9px">
+				
+				
+
+				<div>
+				<select name="invcmd" style="font-family: verdana">
+				<optgroup label="{_select_action}">
+				<option value="csv">{_download_as_csv}</option>
+				</optgroup>
+				</select> 
+				</div>
+				
+				<if condition="isset($show['viewingasprovider']) AND $show['viewingasprovider']">
+				<div style="padding-top:4px">
+				<hr size="1" width="100%" style="color:#ccc" />
+				<span style="font-size:13px"><if condition="$show['ispaid'] OR $show['iscomplete']"><else /><span class="blue"><a href="{markedaspaidurl}" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')"><strong>{_mark_as_paid}</strong></a></span> &nbsp;&nbsp;|&nbsp;&nbsp;</if> <if condition="$show['isunpaid']"><else /><span class="blue"><a href="{markedasunpaidurl}" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')"><strong>{_mark_as_unpaid}</strong></a></span> &nbsp;&nbsp;|&nbsp;&nbsp;</if> <if condition="$show['iscancelled']"><else /><span class="blue"><a href="{markedascancelledurl}" onclick="return confirm_js('{_please_take_a_moment_to_confirm_your_action}')"><strong>{_mark_as_cancelled}</strong></a></span></if></span>
+				</div>
+				</if>
+				
+			  
+			</div>
+			
+			<div class="block3-footer">
+					<div class="block3-right">
+							<div class="block3-left"></div>
+					</div>
+			</div>
+			
+		</div>
+	</div>	
+	</td>
+	</if>
+	
+</tr>
+</table>
+
+
+<div style="margin-top:3px"><if condition="isset($show['providerblock']) AND $show['providerblock'] AND isset($show['escrowblock']) AND $show['escrowblock'] == false"><input type="submit" value=" {_continue} " class="buttons" id="sub" style="font-size:15px"  /><else /><input type="submit" value=" {_continue} " class="buttons" id="sub"  style="font-size:15px"  /></if> &nbsp;&nbsp;&nbsp;&nbsp;<span class="blue"><a href="javascript:history.back()">{_return_to_the_previous_menu}</a></span></div>
+</form>
+
+
+<div align="center" style="padding-top:7px"></div>
+
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+										</td>
+									</tr>
+								</table>	
+							</div>
+						</form>
+						
+						<div class="block-footer">
+						
+							<div class="block-right">
+							
+								<div class="block-left"></div>
+								
+							</div>
+							
+						</div>
+							
+					</div>
+					
+				</div>
+
+			</div>
+
+</div>
+	</div>
+<br />
+<br />			

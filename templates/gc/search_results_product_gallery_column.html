@@ -1,0 +1,30 @@
+<if condition="$auctiontype == 'regular'"><div style="padding:6px">
+		<div style="padding-bottom:30px" align="center">
+		<span style="float:right">{data[sel]}</span><div align="center">{data[sample]}</div>
+        </div>
+        
+		
+		<div style="height:35px" align="left"><span style="font-size:13px" class="blue">{data[title]}</span><div align="left" class="black" style="padding-top:3px; font-size:10px; font-family: verdana">{data[description]} </div></div>
+
+		<div style="padding-top:30px"></div>
+		<div align="left" style="padding:2px"><span style="float:right" class="blue"><strong>{data[price]}</strong></span><strong>{data[bids]}</strong><!-- <span class="gray">{_bids}</span>--></div>
+		<div align="left" style="padding:2px"><span style="float:right; padding-top:2px;">{data[buynow]}</span>{data[buynowimg]}&nbsp;</div>
+        <div style="margin-top:6px; padding:2px"><span style="font-size:17px; float:right" class="black"><strong>{data[timeleft]}</strong></span></div>
+        
+ 
+</div></if>
+
+<if condition="$auctiontype == 'fixed'"><div style="padding:6px">
+		<div style="padding-bottom:30px" align="center">
+        <span style="float:right">{data[sel]}</span><div align="center">{data[sample]}</div>
+        </div>
+        
+		<div style="height:35px" align="left"><span class="blue" style="font-size:13px">{data[title]}</span><div align="left" class="black" style="padding-top:3px; font-size:10px; font-family: verdana">{data[description]} </div></div>
+        
+        <div style="padding-top:30px"></div>
+		<div align="left" style="padding:2px"><span style="float:right; padding-top:2px;">{data[buynow]}</span>{data[buynowimg]} {data[buynowtxt]}</div>
+        <div style="margin-top:22px; padding:2px"><span style="font-size:17px; float:right" class="black"><strong>{data[timeleft]}</strong></span></div>
+        
+	 
+</div></if>
+<if condition="$auctiontype == 'blank'"><div align="center"></div></if>

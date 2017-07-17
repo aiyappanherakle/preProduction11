@@ -1,0 +1,226 @@
+
+<style type="text/css">
+
+.dynamic-tab-pane-control .tab-row #tab_medium {
+    background-image: url("https://www.greatcollections.com/images/gc/tabs/tab_medium.png") !important;
+    border: 0 none;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    font: 11px arial;
+    margin: 1px -1px 1px 2px;
+    min-height: 20px;
+    min-width: 70px;
+    overflow: hidden;
+    padding: 7px 0 0;
+    position: relative;
+    text-align: center;
+    top: 0;
+	width: 150px;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.dynamic-tab-pane-control .tab-row #tab_medium.selected {
+    background-image: url("https://www.greatcollections.com/images/gc/tabs/tab_medium_active.png") !important;
+    background-repeat: no-repeat;
+    border-bottom-width: 0;
+    font: 11px arial;
+    margin: 2px -3px -3px 0;
+    min-height: 22px !important;
+    min-width: 74px !important;
+    padding: 9px 0 0;
+    top: -4px;
+    z-index: 3;
+	width: 150px;
+}
+
+.dynamic-tab-pane-control .tab-row #tab_medium.hover {
+    background-image: url("https://www.greatcollections.com/images/gc/tabs/tab_medium_hover.png") !important;
+    background-repeat: no-repeat;
+    font: 11px arial;
+    min-height: 20px;
+    min-width: 70px;
+	width: 150px;
+}
+</style>
+
+<script type="text/javascript">
+function validate()
+{
+
+	
+	
+	if((document.getElementById("cert_no").value==''))
+	{
+		alert('Please enter valid Certification Number');
+		return false;
+	}
+	
+	else
+	{
+		return true;
+	}
+}
+</script>
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr> 
+				<td valign="top">
+
+					<div class="block-wrapper">
+
+							<div class="block">
+
+									<div class="block-top">
+									<div class="block-right">
+									<div class="block-left"></div>
+									</div>
+									</div>
+
+									<div class="block-header">
+									<span style="float:right; padding-top:3px" class="smaller gray"></span>Search by Certification Number for Coins You Won or Sold</div>
+
+									<div class="block-content-yellow">				
+									
+									<div style="margin-top:6px">
+									<form method="post" action="certificationnumber_search.php" id="search" accept-charset="UTF-8" style="margin: 0px; padding-bottom:12px;" onsubmit="return validate();">	
+									<input type="hidden" name="cmd" value="certificationnumber_search"/>
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr> 
+									<td width="8%" nowrap="nowrap"><strong>Certification Number :</strong>&nbsp;&nbsp;<input type="text" id="cert_no" name="cert_no" value="{cert_no}" maxlength="100" size="50" style="width: 100px;" class="input" />&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+									<td width="66%" nowrap="nowrap"><input type="submit" class="buttons" value=" {_search} " /></td>
+									</tr>
+									</table>
+									</form>	
+									</div>
+									</div>
+									
+									<if condition="isset($show_certificationnumber_search) and ($show_certificationnumber_search==1)">
+									<div class="tab-pane">
+									
+									
+										<div class="tab-page">
+										<h2 class="tab">Coins Sold {sold_count}</h2>
+											<div class="block-wrapper">
+											<div class="block3">
+											<div class="block3-top">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>						
+											<div class="block3-header">Coins Sold</div>
+
+											<div class="block3-content" style="padding:0px">
+											<table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+																	
+																			
+																	
+																		<if condition="isset($total_n) AND $total_n==true">	
+																			<tr class="alt2">
+																				<td>Image</td>
+																				<td>Title</td>
+																				<td>Price</td>
+																				<td>Type</td>
+																				<td>Date</td> 
+																			</tr>
+																		
+																			<loop name="listpagesld">
+																				<tr class="alt1">
+																					<td valign="top" align="center" class="">{imgval}</td>
+																					<td>{project_title}<br>{description}													
+																					</td>
+																					<td>{currentprice}</td>										
+																					<td class="smaller blue">{bids}</td>
+																					<td>{date_end}</td>
+																				</tr>
+																			</loop name="listpagesld"> 
+																		</if>
+																		<if condition="isset($total_n) AND $total_n==false">
+																			<tr class="alt1">
+																				<td  align="center" ><strong>No Results - You Did Not Sell This Certification Number Through GreatCollections.</strong></td>
+																			</tr>
+																		</if>
+
+																	
+																	
+																</table>	 
+											</div>
+											<div class="block3-footer">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>
+											</div>
+											</div>
+										</div>
+										
+										<div class="tab-page">
+										<h2 class="tab" id="tab_medium">Coins Won/Purchased {purchased_count}</h2>
+											<div class="block-wrapper">
+											<div class="block3">
+											<div class="block3-top">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>	
+											<div class="block3-header">Coins Won/Purchased</div>
+
+											<div class="block3-content" style="padding:0px">
+											 <table cellpadding="{table_cellpadding}" cellspacing="{table_cellspacing}" border="0" width="100%" align="center">
+																	
+																			
+																	
+																		<if condition="isset($total_num) AND $total_num==true">	
+																			<tr class="alt2">
+																				<td>Image</td>
+																				<td>Title</td>
+																				<td>Price</td>
+																				<td>Type</td>
+																				<td>Date</td> 
+																			</tr>
+																		
+																			<loop name="listpage">
+																				<tr class="alt1">
+																					<td valign="top" align="center" class="">{imgvals}</td>
+																					<td>{project_title}<br>{description}<br> <if condition="isset($show['proxy']) AND $show['proxy']==true">
+																					
+																					 {proxybit}
+																					
+																					</if></td>
+																					<td>{currentprice}</td>										
+																					<td class="smaller blue">{bids}</td>
+																					<td>{date_end}</td>
+																				</tr>
+																			</loop name="listpage">
+																		</if>
+																		<if condition="isset($total_num) AND $total_num==false">
+																			<tr class="alt1">
+																				<td  align="center" ><strong>No Results - You Did Not Win/Purchase This Certification Number Through GreatCollections.</strong></td>
+																			</tr>
+																		</if>
+
+																	
+																	
+																</table>
+											</div>
+											<div class="block3-footer">
+											<div class="block3-right">
+											<div class="block3-left"></div>
+											</div>
+											</div>
+											</div>
+											</div>
+										</div>
+									</div>					
+									</if>
+																		
+							</div>
+					</div>
+
+				</td>
+			</tr>
+</table>	
+
+

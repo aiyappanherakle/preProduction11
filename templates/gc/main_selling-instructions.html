@@ -1,0 +1,291 @@
+<meta name="description" content="Information on Selling Coins, Coin Values and Coin Grading. Free Coin Appraisals. Sell by Auction at GreatCollections Coin Auctions">
+
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+	//slides the element with class "menu_body" when paragraph with class "menu_head" is clicked 
+	$("#firstpane h3.menu_head").click(function()
+    {
+		$(this).css({backgroundImage:"url()"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+       	/*$(this).siblings().css({backgroundImage:"url(left.png)"});*/
+		var h=document.getElementById("ccc").value;
+		if(h==1)
+		{
+		
+		var a=document.getElementById("check").value;
+		if(!a)
+		{
+		document.getElementById("check").value=1;
+		document.getElementById("img1").src="images/down.png";
+		document.getElementById("check1").value="";
+		document.getElementById("img2").src="images/left.png";
+		document.getElementById("check2").value="";
+		document.getElementById("img3").src="images/left.png";
+		
+		}
+		else
+		{
+		document.getElementById("check").value="";
+		document.getElementById("img1").src="images/left.png";
+		document.getElementById("check1").value="";
+		document.getElementById("img2").src="images/left.png";
+		document.getElementById("check2").value="";
+		document.getElementById("img3").src="images/left.png";
+		}
+		}
+		if(h==2)
+		{
+		
+		var b=document.getElementById("check1").value;
+		if(!b)
+		{
+		document.getElementById("check1").value=1;
+		document.getElementById("img2").src="images/down.png";
+		document.getElementById("check").value="";
+		document.getElementById("img1").src="images/left.png";
+		document.getElementById("check2").value="";
+		document.getElementById("img3").src="images/left.png";
+		
+		}
+		else
+		{
+		document.getElementById("check1").value="";
+		document.getElementById("img2").src="images/left.png";
+		document.getElementById("check").value="";
+		document.getElementById("img1").src="images/left.png";
+		document.getElementById("check2").value="";
+		document.getElementById("img3").src="images/left.png";
+		}
+		}
+			if(h==3)
+		{
+		
+		var c=document.getElementById("check2").value;
+		if(!c)
+		{
+		document.getElementById("check2").value=1;
+		document.getElementById("img3").src="images/down.png";
+		document.getElementById("check").value="";
+		document.getElementById("img1").src="images/left.png";
+		document.getElementById("check1").value="";
+		document.getElementById("img2").src="images/left.png";
+		
+		}
+		else
+		{
+		document.getElementById("check2").value="";
+		document.getElementById("img3").src="images/left.png";
+		document.getElementById("check").value="";
+		document.getElementById("img1").src="images/left.png";
+		document.getElementById("check1").value="";
+		document.getElementById("img2").src="images/left.png";
+		}
+		}
+		
+		
+	});
+
+	
+});
+	function hhh(a)
+	{
+	
+	document.getElementById("ccc").value=a;
+	}
+</script>
+
+
+<style type="text/css">
+body {
+	margin: 0px auto;
+	font: 75%/120% Verdana,Arial, Helvetica, sans-serif;
+}
+.menu_list {	
+	/*width: 150px;
+	border: 1px solid #333333; */
+	width:272px;
+}
+.menu_head {
+
+width:250px;
+color:#FFFFFF;
+	padding: 5px 10px;
+	cursor: pointer;
+	position: relative;
+	margin:1px;
+	font-weight:bold;
+    background: #434343 center left no-repeat;
+}
+.menu_body {
+	display:none;
+	width:250px;
+	margin:10px 10px 10px 10px;
+	
+
+}
+.menu_body a{
+
+width:250px;
+  display:block;
+  color:#006699;
+  background-color:#FFFFFF;
+  padding-left:10px;
+  font-weight:bold;
+  text-decoration:none;
+}
+.menu_body a:hover{
+width:250px;
+  color: #000000;
+  text-decoration:underline;
+  }
+  
+  .firstpane {
+    font-family: Arial,san-serif;
+    color: #E64F23;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: normal;
+    padding: 10px 0;
+}
+#spanuseful {
+    font-family: Arial,san-serif;
+    color: #E64F23;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: normal;
+    padding-left: 35px;
+	margin:0px;
+}
+h1{
+    color: #FFFFFF;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    position: relative;
+	margin: 0px;
+}
+
+h3{
+margin:0px;
+font-size: small;
+}
+</style>
+
+
+
+
+
+
+
+<div class="block-wrapper">        
+<div class="block">
+
+        <div class="block-top">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+        <div class="block-header"><h1>{_selling_instructions_top_border_header}</h1></div>
+        
+        <div class="block-content" style="background:url({template_relativeimagepath}{template_imagesfolder}icons/bg_gradient_yellow_1x1000.gif) repeat-x; padding: 2px 14px 14px;">
+        
+        	<div>
+            
+            {_selling_instructions_top_header}
+           	<!--<h2><b><i>Instructions for Consigning with GreatCollections.</i></b></h2>-->
+            <table width=100% align=center >
+            	<TR>
+            		<TD width=71%>
+            			{_selling_instructions_list}
+            			<!--1.Fill out the consignment form.  Use the value column only if you have a good idea of the value.  You may leave it blank if you are not sure.  If there is not enough room on the form, please attach an inventory listing, but be sure to sign and date the main consignment form.
+	            		<br /><br />
+	            		2.Mail the consignment form/inventory listing with the coins to <strong>Great</strong>Collections via insured mail (through the Post Office).            
+	           			<br /><br />
+	           			3.Pack the coins well (we recommend packing a box within a box) and also use extra tape around the outside of the package.  Before sending your box, shake it gently. If you can hear coins or items moving around, please add additional paper/peanuts/bubble wrap to completely full the box so nothing is moving around.
+           				<br /><br />
+           				4.On the day your coins arrive at <strong>Great</strong>Collections, we will send you a confirmation e-mail or telephone you.
+           				<br /><br />
+           				5.If you have requested a cash advance, we will contact you within 24 hours of the coins arriving to confirm the advance amount.
+           				<br /><br />
+           				6.Certified coins are assigned to auction within a few days of arriving at <strong>Great</strong>Collections.  Raw coins are assigned to auction as soon as they return from the grading services.
+           				<br /><br />
+						7.Coins list on our website every Tuesday and Wednesday, and auctions last 11-12 days, always ending on a Sunday.           				
+           				<br /><br />
+           				8.From the moment your coins arrive at <strong>Great</strong>Collections, they are fully covered by our extensive insurance policy with Lloyd’s of London.
+           				<br /><br />
+           				9.If your coins need to be reviewed by CAC (an option on the form), this will delay the listing of your coins by approximately 7-10 days.
+           				<br /><br />
+           				10.We pay all consignors within 30 days of auction date, however, most are paid within 7-10 days.  Checks are mailed with detailed accounting statements, which you can also view online.
+           				<br /><br />
+           				11.If you have any questions, please do not hesitate to contact us by e-mail to <a href="mailto:info@greatcollections.com" style="text-decoration:underline;">info@greatcollections.com</a>
+           				  	or telephone 1-800-442-6467. -->
+           			</TD>
+
+
+            		<td width=30% valign=top>
+            
+			            <!--      
+			            <font size=4>Questions about Coin Values and Selling Coins?  Call us at 1.800.44.COINS (+1.949.679.4180)</font>
+			            <br />
+			            <br />
+			            
+			            
+			            
+			            <strong>Quick Link:</strong><br /><br />
+			            
+			            <font size=4><a href="/forms/coins.pdf" style="text-decoration:underline;"><strong>Great</strong>Collections Consignment Form</a></font>
+			            <br />[PDF File]-->
+
+
+			          <!-- Meeran -->
+					<div  id="firstpane" class="menu_list" > <!--Code for menu starts here-->
+						<h2 id="spanuseful">Useful Selling Links</h2></span>
+						<h3 class="menu_head" onclick="hhh('1')">
+							<img id="img1" src="images/left.png" />&nbsp; Request a Coin Estimate</h3>
+						<div class="menu_body">
+							<p>You can fill out our exclusive 
+								<a href="/coin_appraisal.php">Coin Estimate form</a>Or e-mail a list to us at <a href="mailto:info@greatcollections.com">info@greatcollections.com</a></p>
+						</div>
+						<h3 class="menu_head" onclick="hhh('2')">
+							<img id="img2" src="images/left.png" />&nbsp; Print Consignment Form</h3>
+						<div class="menu_body">
+							<p><a href="{http_server}forms/coins.pdf">- Certified Coin Consignment Form</a><br /></p>
+							<p><a href="{http_server}forms/raw_coins.pdf">- Raw Coin Consignment Form</a></p>
+						</div>
+						<h3 class="menu_head" onclick="hhh('3')">
+							<img id="img3" src="images/left.png" />&nbsp; Questions? Contact Us</h3>
+						<div class="menu_body">
+							<p><b>Telephone:</b><Br />
+				                 &nbsp;&nbsp;1.800.44.COINS (+1.949.679.4180)</p>
+							<p><b>E-mail:</b>
+				            	&nbsp;&nbsp;<a href="mailto:info@greatcollections.com">info@greatcollections.com</a></p>
+							<p><b>Address:</b><br />
+					            	&nbsp;&nbsp;17500 Red Hill Avenue, Suite 160<br />&nbsp;&nbsp;Irvine, California 92614
+			            </div>
+					</div>
+				<input type="hidden" id="check" />
+				<input type="hidden" id="check1" />
+				<input type="hidden" id="check2" />
+				<input type="hidden" id="ccc" />
+          <!-- Meeran -->
+  
+  
+           		 </td>
+            </TR>
+        </table>
+            
+            
+
+            
+            </div>
+            
+       	</div>
+                
+        <div class="block-footer">
+                <div class="block-right">
+                        <div class="block-left"></div>
+                </div>
+        </div>
+</div>
+</div>

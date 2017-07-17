@@ -1,0 +1,126 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+  <tr valign="top">
+	<td>{v3left_nav}</td>
+	<td><div style="width:10px"></div></td>
+	<td width="100%">		
+	<div class="block-wrapper">
+					<!--<div class="block">-->
+						<div class="block-top">
+						  <div class="block-right"></div>
+						</div>
+						<div class="block-content" id="collapseobj_recenthistory" style="{collapse[collapseobj_recenthistory]}; padding:0px">
+					
+							<div class="bigtabs" style="padding-bottom:10px; padding-top:10px">
+								<div class="bigtabsheader">
+									<ul id="homepagetabs2">
+									{apihook[main_template_top_bigtabs_start]}
+									<li id="currently_selling" title="" class="on"><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Current">{_currently_selling}</a><else /><a href="sell.php?cmd=current">{_currently_selling}</a></if></li>
+									<li id="_items_sold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Sold">{_items_sold}</a><else /><a href="sell.php?cmd=sold">{_items_sold}</a></if></li>
+									<li id="_items_unsold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Unsold">{_items_unsold}</a><else /><a href="sell.php?cmd=unsold">{_items_unsold}</a></if></li> 
+									<li id="_items_pending" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Pending">{_items_pending}</a><else /><a href="sell.php?cmd=pending">{_items_pending}</a></if></li>
+									<li id="_items_returned" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Returned">{_items_returned}</a><else /><a href="sell.php?cmd=returned">{_items_returned}</a></if></li>
+									<li id="_buy_now_sold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Buynowsold">{_buy_now_sold}</a><else /><a href="sell.php?cmd=buynowsold">{_buy_now_sold}</a></if></li>
+									<li id="Buy_now_unsold" title="" class=""><if condition="$ilconfig['globalauctionsettings_seourls']"><a href="Sell/Buynowunsold">{_buy_now_unsold}</a><else /><a href="sell.php?cmd=buynowunsold">{_buy_now_unsold}</a></if></li>
+									
+									{apihook[main_template_top_bigtabs_end]}
+									</ul>
+								</div>
+							</div>
+						</div>
+								<div style="clear:both;"></div>
+
+		<div id="new3">
+                     
+						<div class="block3">
+						
+							<div class="block3-top">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						
+						<div class="block3-header">{_currently_selling}</div>
+							<div style="padding: 0px;" class="block3-content">
+							
+							<!--<div style="background-color:#cd9c9c">
+							<div style="margin-left:450px;">
+							<form name="ilform" action="" method="post" accept-charset="UTF-8" style="margin: 0px;" enctype="multipart/form-data">
+											<input type="hidden" name="subcmd" value="currentsearch" /> 
+												<table width="100%" border="0" cellspacing="{table_cellspacing}" cellpadding="12">
+													<tr>
+														<td>
+														Select Date
+														</td>
+														<td>
+														<select name="searchsell">
+															<option value="1">Last 24 Hours</option>
+															<option value="2">Last 7days</option>
+															<option value="3">Last 30days</option>
+															<option value="4">Last 60days</option>
+														</select>
+														</td>
+														<td>
+														<input type="submit" class="buttons" value=" {_search} " style="font-size:15px" />
+														</td>
+													</tr>
+												</table>
+											</form>
+											</div>
+							</div>-->
+							<!-- BEGIN service panel buying activity -->
+							<table width="100%" cellspacing="0" cellpadding="9" border="0" align="center">
+									<tbody>
+										<tr class="alt2">
+											<td>{_thumbnail}</td>
+											
+																						
+											
+											{listing1}
+											
+											<td>{_bid_message}</td>
+											<td>Views/Tracked</td>
+										{listing2}									
+											<!--<td>{_status}</td>-->
+											 
+										</tr>
+										
+										<loop name="res_gcselling">
+										<tr>
+										 <td>{thumbnail}</td>
+										 <td><a href="{item_path}">{item_id}</a></td>
+										 <td><a href="{item_path}">{item_title}</a></td>										
+										 <td>{bids}</td>
+										 <td>{minbid_min}&nbsp;&nbsp;/&nbsp;&nbsp;{minbid_buynow}</td>
+										 <td>{current_bid}</td>
+										 <td>{description}</td>
+										<td>{views_trackers}</td>
+										 <td>{timelef}</td>		
+										 <!--<td>{status}</td>-->
+										</tr>
+										</loop name="res_gcselling"> 
+										<if condition="isset($res_gcselling['mm']) AND $res_gcselling['mm'] == 'Nofound'">
+										<tr>
+											<td colspan="9" align="center">{_no_results_found}</td>
+										</tr>	
+										<else />
+										<tr>
+											<td colspan="9">{prevnext}</td>
+										</tr>								
+										</if>
+									</tbody>
+								</table>
+								
+							<!-- END service panel buying activity -->
+							</div>
+						
+							<div class="block3-footer">
+								<div class="block3-right">
+									<div class="block3-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+	</div>
+	</td>
+ </tr>
+</table>
