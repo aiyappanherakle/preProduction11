@@ -401,7 +401,7 @@ if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_logout')
 	set_cookie('lastactivity', DATETIME24H, true);
 	
 	// expire member specific cookies so the marketplace doesn't re-login user in automatically
-        // leave username cookie alone so the marketplace can greet the member by username (login, breadcrumb, etc)
+    // leave username cookie alone so the marketplace can greet the member by username (login, breadcrumb, etc)
 	set_cookie('userid', '', false);
 	set_cookie('password', '', false);
 	
@@ -413,8 +413,8 @@ if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_logout')
 	set_cookie('inlineservice', '', false);
 	set_cookie('inlineprovider', '', false);
         
-        set_cookie('collapse', '', false);
-        set_cookie('hideacpnag', '', false);
+    set_cookie('collapse', '', false);
+    set_cookie('hideacpnag', '', false);
 	
 	($apihook = $ilance->api('logout_process_end')) ? eval($apihook) : false;
 
@@ -423,8 +423,8 @@ if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_logout')
 	$ilance->sessions->session_destroy(session_id());
 	session_destroy();	
 	
-        // refresh page to set new sessions to empty values
-		//june02
+    // refresh page to set new sessions to empty values
+	//june02
 	//refresh(HTTPS_SERVER . $ilpage['login']);
 	refresh(HTTPS_SERVER . $ilpage['main']);
 	exit();
@@ -438,16 +438,16 @@ if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_pw-renew')
 
 	// javascript header includes
 	$headinclude .= '
-<script type="text/javascript" language="Javascript">
-<!--
-function validate_input(f)
-{
+	<script type="text/javascript" language="Javascript">
+	<!--
+	function validate_input(f)
+	{
         haveerrors = 0;
         (f.email.value.search("@") == -1 || f.email.value.search("[.*]") == -1) ? showImage("emailerror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/fieldempty.gif", true) : showImage("emailerror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/blankimage.gif", false);
         return (!haveerrors);
-}
-//-->
-</script>';
+	}
+	//-->
+	</script>';
 	
 	$pprint_array = array('userid','input_style','remote_addr','rid','login_include','headinclude','onload','area_title','page_title','site_name','https_server','http_server','lanceads_header','lanceads_footer');
 	
@@ -460,7 +460,7 @@ function validate_input(f)
 // #### USER REQUESTING PASSWORD ###############################################
 else if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_do-pw-request' AND isset($ilance->GPC['email']) AND !empty($ilance->GPC['email']))
 {
-        $area_title = $phrase['_change_account_password_verification'];
+    $area_title = $phrase['_change_account_password_verification'];
 	$page_title = SITE_NAME . ' - ' . $phrase['_change_account_password_verification'];
                 
 	$sql = $ilance->db->query("
@@ -478,16 +478,16 @@ else if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_do-pw-request' 
 		if ($res['secretquestion'] != '' AND $res['secretanswer'] != '')
 		{
 			$headinclude .= '
-<script type="text/javascript">
-<!--
-function validate_secret_answer(f)
-{
-        haveerrors = 0;
-        (f.secretanswer.value.length < 1) ? showImage("secretanswererror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/fieldempty.gif", true) : showImage("secretanswererror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/blankimage.gif", false);
-        return (!haveerrors);
-}
-//-->
-</script>';
+			<script type="text/javascript">
+			<!--
+			function validate_secret_answer(f)
+			{
+		        haveerrors = 0;
+		        (f.secretanswer.value.length < 1) ? showImage("secretanswererror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/fieldempty.gif", true) : showImage("secretanswererror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/blankimage.gif", false);
+		        return (!haveerrors);
+			}
+			//-->
+			</script>';
 			$secret_question = stripslashes($res['secretquestion']);
 					
 			$pprint_array = array('email','username','secret_question','userid','input_style','remote_addr','rid','login_include','headinclude','onload','area_title','page_title','site_name','https_server','http_server','lanceads_header','lanceads_footer');
@@ -509,10 +509,10 @@ function validate_secret_answer(f)
 	else
 	{
 		$area_title = $phrase['_request_account_password_denied'];
-                $page_title = SITE_NAME . ' - ' . $phrase['_request_account_password_denied'];
-                
-                print_notice($phrase['_request_account_password_denied'], $phrase['_were_sorry_we_were_unable_to_find_the_information_required_to_continue_with_password_renewal'], HTTPS_SERVER . $ilpage['login'] . '?cmd=_pw-renew', $phrase['_retry']);
-                exit();
+		$page_title = SITE_NAME . ' - ' . $phrase['_request_account_password_denied'];
+
+		print_notice($phrase['_request_account_password_denied'], $phrase['_were_sorry_we_were_unable_to_find_the_information_required_to_continue_with_password_renewal'], HTTPS_SERVER . $ilpage['login'] . '?cmd=_pw-renew', $phrase['_retry']);
+		exit();
 	}
 }
 // #### USER CHANGING PASSWORD #################################################
@@ -651,11 +651,12 @@ else if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'password-change'
 		$ilance->email = construct_dm_object('email', $ilance);
 		$ilance->email->mail = $ilconfig['globalserversettings_adminemail'];
 		$ilance->email->slng = $_SESSION['ilancedata']['user']['slng'];
-		$ilance->email->get('password_renewed');		
+		$ilance->email->get('password_renewed_admin');		
 		$ilance->email->set(array(
 			'{{username}}' => $username,
 			'{{password}}' => $newpassword,
-			'{{pwd_reset_link}}' => '<a href="'.HTTPS_SERVER.'login.php?cmd=_reset-newpassword&code='.$code.'&userid='.$userid.'">'.HTTPS_SERVER.'login.php?cmd=_reset-newpassword&code='.$code.'&userid='.$userid.'</a>'
+			'{{pwd_reset_link}}' => '<a href="'.HTTPS_SERVER.'login.php?cmd=_reset-newpassword&code='.$code.'&userid='.$userid.'">'.HTTPS_SERVER.'login.php?cmd=_reset-newpassword&code='.$code.'&userid='.$userid.'</a>',
+			'{{ip_address}}' => IPADDRESS
 		));
 		$ilance->email->send();
 
@@ -833,16 +834,16 @@ else if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_ip-reset')
 
 	// javascript header includes
 	$headinclude .= '
-<script type="text/javascript">
-<!--
-function validate_input(f)
-{
+	<script type="text/javascript">
+	<!--
+	function validate_input(f)
+	{
         haveerrors = 0;
         (f.email.value.search("@") == -1 || f.email.value.search("[.*]") == -1) ? showImage("emailerror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/fieldempty.gif", true) : showImage("emailerror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/blankimage.gif", false);
         return (!haveerrors);
-}
-//-->
-</script>';
+	}
+	//-->
+	</script>';
 	
 	$pprint_array = array('userid','input_style','remote_addr','rid','login_include','headinclude','onload','area_title','page_title','site_name','https_server','http_server','lanceads_header','lanceads_footer');
 	
@@ -856,7 +857,7 @@ function validate_input(f)
 // #### USER REQUESTING IP PREFERENCE CHANGE ###################################
 else if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_do-ip-change' AND isset($ilance->GPC['email']) AND !empty($ilance->GPC['email']))
 {
-        $area_title = $phrase['_change_ip_preference'];
+    $area_title = $phrase['_change_ip_preference'];
 	$page_title = SITE_NAME . ' - ' . $phrase['_change_ip_preference'];
                 
 	$sql = $ilance->db->query("
@@ -873,17 +874,17 @@ else if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == '_do-ip-change' A
 		$username = stripslashes($res['username']);
 		
 		$headinclude .= '
-<script type="text/javascript">
-<!--
-function validate_secret_answer(f)
-{
-        haveerrors = 0;
-        (f.secretanswer.value.length < 1) ? showImage("secretanswererror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/fieldempty.gif", true) : showImage("secretanswererror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/blankimage.gif", false);
-        return (!haveerrors);
-}
-//-->
-</script>';
-		
+		<script type="text/javascript">
+		<!--
+		function validate_secret_answer(f)
+		{
+	        haveerrors = 0;
+	        (f.secretanswer.value.length < 1) ? showImage("secretanswererror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/fieldempty.gif", true) : showImage("secretanswererror", "' . $ilconfig['template_relativeimagepath'] . $ilconfig['template_imagesfolder'] . 'icons/blankimage.gif", false);
+	        return (!haveerrors);
+		}
+		//-->
+		</script>';
+				
 		$pprint_array = array('email','username','secret_question','userid','input_style','remote_addr','rid','login_include','headinclude','onload','area_title','page_title','site_name','https_server','http_server','lanceads_header','lanceads_footer');
 		
 		$ilance->template->fetch('main', 'login_ipaddress_change.html');
@@ -895,10 +896,10 @@ function validate_secret_answer(f)
 	else
 	{
 		$area_title = $phrase['_change_ip_preference_denied'];
-                $page_title = SITE_NAME . ' - ' . $phrase['_change_ip_preference_denied'];
-                
-                print_notice($phrase['_change_ip_preference_denied'], $phrase['_were_sorry_we_were_unable_to_find_the_information_required_to_continue_with_ip_address_preference_changes'], HTTPS_SERVER . $ilpage['login'] . '?cmd=_ip-reset', $phrase['_retry']);
-                exit();
+		$page_title = SITE_NAME . ' - ' . $phrase['_change_ip_preference_denied'];
+
+		print_notice($phrase['_change_ip_preference_denied'], $phrase['_were_sorry_we_were_unable_to_find_the_information_required_to_continue_with_ip_address_preference_changes'], HTTPS_SERVER . $ilpage['login'] . '?cmd=_ip-reset', $phrase['_retry']);
+		exit();
 	}
 }
 
@@ -925,10 +926,10 @@ else if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'ipaddress-change
 	else
 	{
 		$area_title = $phrase['_change_ip_preference_denied'];
-                $page_title = SITE_NAME . ' - ' . $phrase['_change_ip_preference_denied'];
-                
-                print_notice($phrase['_change_ip_preference_denied'], $phrase['_were_sorry_we_were_unable_to_find_the_information_required_to_continue_with_ip_address_preference_changes'], HTTPS_SERVER . $ilpage['login'] . '?cmd=_ip-reset', $phrase['_retry']);
-                exit();
+		$page_title = SITE_NAME . ' - ' . $phrase['_change_ip_preference_denied'];
+
+		print_notice($phrase['_change_ip_preference_denied'], $phrase['_were_sorry_we_were_unable_to_find_the_information_required_to_continue_with_ip_address_preference_changes'], HTTPS_SERVER . $ilpage['login'] . '?cmd=_ip-reset', $phrase['_retry']);
+		exit();
 	}
 	
 	if ($secretanswermd5 == $secretanswerdb)
@@ -948,10 +949,10 @@ else if (isset($ilance->GPC['cmd']) AND $ilance->GPC['cmd'] == 'ipaddress-change
 	else
 	{
 		$area_title = $phrase['_change_ip_preference_denied'];
-                $page_title = SITE_NAME . ' - ' . $phrase['_change_ip_preference_denied'];
-                
-                print_notice($phrase['_change_ip_preference_denied'], $phrase['_were_sorry_we_were_unable_to_find_the_information_required_to_continue_with_ip_address_preference_changes'], HTTPS_SERVER . $ilpage['login'] . '?cmd=_ip-reset', $phrase['_retry']);
-                exit();
+		$page_title = SITE_NAME . ' - ' . $phrase['_change_ip_preference_denied'];
+
+		print_notice($phrase['_change_ip_preference_denied'], $phrase['_were_sorry_we_were_unable_to_find_the_information_required_to_continue_with_ip_address_preference_changes'], HTTPS_SERVER . $ilpage['login'] . '?cmd=_ip-reset', $phrase['_retry']);
+		exit();
 	}
 }
 
