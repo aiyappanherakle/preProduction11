@@ -10029,7 +10029,20 @@ function print_accepted_array()
 	$accepted=array('greatcollections-vs-ebay','wantlist','terms','contact','about','consign-now','consign-now1','consign-now2','why-greatcollections','news','promise','through','sell','selling-instructions','larryking','worth','grading','consignment','privacy','PCGS','NGC','ANACS','FUN','ANA','CAC','NAA','WINGS','ICTA','allitem','return','paymonth','404','members','cce','pcgs-sell','pcgs-raw');
 	return $accepted;
 }
-
+function token($length = 32) {
+	// Create random token
+	$string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	
+	$max = strlen($string) - 1;
+	
+	$token = '';
+	
+	for ($i = 0; $i < $length; $i++) {
+		$token .= $string[mt_rand(0, $max)];
+	}	
+	
+	return $token;
+}
 
 
 //EDITED BY TAMIL ON 21/11/12 FOR SITEMAP * END

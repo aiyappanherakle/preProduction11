@@ -16,7 +16,27 @@
 include("./functions/config.php");
 $ilance->encrypt = construct_object( 'api.encrypt' );
 
-if ((isset($_GET['q']) and !empty($_GET['q'])))
+if ((isset($_GET['aaa']) and !empty($_GET['aaa'])))
+{
+    $text = $_GET['aaa'];
+    $width = (strlen($ilance->encrypt->DecryptText($text))*9)*3;
+    $height = 11*4+20;
+    $heig = 0.92*1.333333;
+    $font_size = 40;
+    $align="right";
+    $font = "Helvetica.ttf";
+}
+if ((isset($_GET['aa']) and !empty($_GET['aa'])))
+{
+    $text = $_GET['aa'];
+    $width = (strlen($ilance->encrypt->DecryptText($text))*9)*3;
+    $height = 11*3;
+    $heig = 0.92;
+    $font_size = 30;
+    $align="right";
+    $font = "Helvetica.ttf";
+}
+else if ((isset($_GET['q']) and !empty($_GET['q'])))
 {
     $text = $_GET['q'];
     $width = 540;
@@ -73,10 +93,11 @@ else
 
 $ilance->encrypt->text = $text;//text will be split to two lines is it includes double pipe ||
 $ilance->encrypt->width = $width;//text width generally 3 time the image size that appers in the page
-$ilance->encrypt->height = $height;//same as wigth
+$ilance->encrypt->height = $height;//same as width
 $ilance->encrypt->heig = $heig;//top padding for thetext in the image
 $ilance->encrypt->font_size = $font_size;
 $ilance->encrypt->font = $font;//name of the font
+$ilance->encrypt->align = isset($align)?$align:"left";//text align
 $ilance->encrypt->font_dir='../helveticaneue/';//if the font group changes or put in some other folder
 
 $ilance->encrypt->print_image();

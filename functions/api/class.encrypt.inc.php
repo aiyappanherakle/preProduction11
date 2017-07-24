@@ -30,6 +30,7 @@ class encrypt
     var $font_dir='';
     var $font_size='';
     var $heig=1;
+    var $align="left";
     function safegc_b64encode($string) 
     {
         $data = base64_encode($string);
@@ -80,6 +81,7 @@ class encrypt
     function print_image()
     {
         $text=$this->DecryptText($this->text);
+        //$text=$this->text;
         $width=$this->width;
         $height=$this->height;
         $font_dir=$this->font_dir;
@@ -115,14 +117,19 @@ class encrypt
                 $text_color = imagecolorallocate($im, 153, 153, 153);
                 $font_size = 33;
             }
+
             $text_box = imagettfbbox($font_size,$angle,$font_dir.$font,$text);
             $text_widthh = abs(max($text_box[2], $text_box[4]));
             $text_height = abs(max($text_box[5], $text_box[7]));
-            $x = (imagesx($im) - $text_widthh)/6;
+            if($this->align=="right")
+                $x = imagesx($im) - (abs($text_box[4] - $text_box[0])+2);
+            else
+                $x = (imagesx($im) - $text_widthh)/6;
+
             $y = ((imagesy($im) + $text_height)/2)-($lines-$heig)*$text_height;
             $lines=$lines-1.3;
             $i++;
-            imagettftext($im, $font_size, $angle, 1, $y, $text_color, $font_dir.$font, $text);
+            imagettftext($im, $font_size, $angle, $x, $y, $text_color, $font_dir.$font, $text);
         }
 
         header('Pragma: public');

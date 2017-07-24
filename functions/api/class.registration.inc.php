@@ -261,6 +261,16 @@ class registration
                             {
                                 $usralrdPurch = 'No';
                             }
+			    
+			    if ($ress['status'] == 'banned' OR $ress['status'] == 'suspended')
+			    {
+			    	$user_status = 'Yes';
+			    }
+			    else
+			    {
+			    	$user_status = 'No';
+			    }
+								
 
                             if($ress['ipaddress'] == $user['ipaddress'])
                             {
@@ -293,8 +303,8 @@ class registration
                             $messagebody .= "Email: " . $ress['email'] . "\n";
                             $messagebody .= "Address: ". ucwords($ress['address']) . ' ' . ucwords($ress['address2']).' '.ucwords($ress['city']).' '.ucwords($ress['state']).' '.mb_strtoupper(trim($result_zcc)). "\n";
                             $messagebody .= "IP address: " . $result_ipp. "\n";
-                            $messagebody .= "Status: " . $ress['status']. "\n";
-                            $messagebody .= "User Already Purchased: " . $usralrdPurch. "\n";
+                            $messagebody .= "Suspended/Banned: " . $user_status . "\n";
+			    $messagebody .= "Paid invoice: " . $usralrdPurch . "\n";
                             $messagebody .= "*********************************"."\n";
                         }
 
