@@ -541,7 +541,7 @@ class template
 			'categorypopup' => isset($categorypopup) ? $categorypopup : '',
 			'red' => $log_red,
 			'motd_list' => isset($motd_list) ? $motd_list : '',
-			'year' => date('Y')
+			'year' => gmdate('Y', time() + 3600 * ($ilconfig['globalserverlocale_officialtimezone'] + $ilconfig['globalserverlocale_officialtimezonedst']))
                 );
                 
                 ($apihook = $ilance->api('fetch_template_templatebits')) ? eval($apihook) : false;
@@ -1341,7 +1341,7 @@ class template
 				'categorypopup' => isset($categorypopup) ? $categorypopup : '',
 				'red' => $log_red,
 				'motd_list' => isset($motd_list) ? $motd_list : '',
-				'year' => date('Y'),
+				'year' => gmdate('Y', time() + 3600 * ($ilconfig['globalserverlocale_officialtimezone'] + $ilconfig['globalserverlocale_officialtimezonedst']))
                         );
                         unset($doctypeinfo);
                         
